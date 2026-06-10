@@ -50,8 +50,12 @@ if [[ $WORKFLOW_EXIT -eq 0 && -s "$ART/article.md" ]]; then
       cat "$ART/topic.md"
       echo
     fi
-    for round in 1 2; do
-      echo "## ${round}라운드"
+    for round in 1 2 3; do
+      if [[ $round -eq 3 ]]; then
+        echo "## 3라운드 — 최종 변론 (논설위원)"
+      else
+        echo "## ${round}라운드"
+      fi
       echo
       for entry in "${MEMBERS[@]}"; do
         key="${entry%%:*}"; label="${entry#*:}"
