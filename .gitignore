@@ -3,3 +3,4 @@ dist/
 .coco-agents/
 newsroom/artifacts/
 .DS_Store
+.astro/
