@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+
+// 편집국 정본 파일을 빌드 시점에 원문 그대로 가져온다.
+// 독자에게 보이는 이 텍스트가 실제로 기사를 만든 프롬프트 원문이다.
+const charter = (await import('../../../newsroom/charter.md?raw')).default;
+const common = (await import('../../../newsroom/CLAUDE.md?raw')).default;
+const sources = (await import('../../../newsroom/sources.md?raw')).default;
+
+const personaFiles = import.meta.glob('../../../newsroom/personas/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+const order = [
+  ['lighthouse', '등대 — 데스크'],
+  ['watchman', '파수꾼 — 취재기자'],
+  ['zelkova', '느티나무 — 논설위원 (중도 보수)'],
+  ['waterway', '물길 — 논설위원 (중도 진보)'],
+  ['gadfly', '등에 — 철학'],
+  ['stethoscope', '청진기 — 심리'],
+  ['weft', '씨줄 — 사회'],
+  ['balance', '저울 — 경제'],
+] as const;
+
+const personas = order.map(([key, label]) => {
+  const path = Object.keys(personaFiles).find((p) => p.endsWith(`${key}.md`));
+  return { label, text: path ? (personaFiles[path] as string) : '' };
+});
+---
+<Base title="편집국" description="news-room의 편집 강령과 에이전트 프롬프트 전문">
+  <h1>편집국</h1>
+  <p>
+    news-room의 기사는 서로 다른 철학적 스탠스를 가진 AI 에이전트들의 토론으로
+    만들어집니다. 이 페이지의 텍스트는 장식이 아니라, 실제로 매일 기사를 만드는
+    <strong>프롬프트 원문</strong>입니다. 우리는 렌즈를 숨기지 않습니다.
+  </p>
+
+  <h2>편집 강령</h2>
+  <pre class="prompt">{charter}</pre>
+
+  <h2>편집국 공통 지침</h2>
+  <pre class="prompt">{common}</pre>
+
+  <h2>사람들</h2>
+  {personas.map((p) => (
+    <details>
+      <summary>{p.label}</summary>
+      <pre class="prompt">{p.text}</pre>
+    </details>
+  ))}
+
+  <h2>취재 소스</h2>
+  <p>소스의 선택 자체가 편집 스탠스의 일부이므로, 이 목록도 공개합니다.</p>
+  <pre class="prompt">{sources}</pre>
+</Base>

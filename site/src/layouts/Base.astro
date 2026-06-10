@@ -1,0 +1,83 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const fullTitle = title ? `${title} — news-room` : 'news-room';
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+  </head>
+  <body>
+    <header>
+      <a class="masthead" href={base}>news-room</a>
+      <p class="tagline">하루 하나, 깊게.</p>
+      <nav>
+        <a href={base}>기사</a>
+        <a href={`${base}/newsroom/`}>편집국</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>
+        이 매체는 렌즈를 숨기지 않습니다 — 편집 강령, 모든 에이전트의 프롬프트,
+        취재 소스, 매일의 토론 전문이 공개됩니다.
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #fbfaf7;
+    --muted: #6b6b6b;
+    --rule: #d9d5cc;
+    --accent: #8a3324;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+    max-width: 42rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif KR', 'Apple SD Gothic Neo', serif;
+    line-height: 1.85;
+    word-break: keep-all;
+  }
+  header { text-align: center; border-bottom: 3px double var(--rule); padding-bottom: 1.25rem; margin-bottom: 2.5rem; }
+  .masthead {
+    font-size: 2rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+  }
+  .tagline { margin: 0.25rem 0 0.75rem; color: var(--muted); font-size: 0.9rem; }
+  nav { display: flex; justify-content: center; gap: 1.5rem; font-size: 0.95rem; }
+  nav a { color: var(--ink); text-decoration: none; }
+  nav a:hover { color: var(--accent); }
+  main a { color: var(--accent); }
+  h1, h2, h3 { line-height: 1.4; }
+  footer {
+    margin-top: 4rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: 0.85rem; text-align: center;
+  }
+  details {
+    margin: 2rem 0; border: 1px solid var(--rule); border-radius: 4px;
+    padding: 0.75rem 1rem; background: #fff;
+  }
+  details summary { cursor: pointer; font-weight: 600; }
+  pre.prompt {
+    white-space: pre-wrap; background: #fff; border: 1px solid var(--rule);
+    border-radius: 4px; padding: 1rem; font-size: 0.85rem; line-height: 1.7;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+</style>

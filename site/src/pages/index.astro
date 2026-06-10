@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL;
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+function dateId(id: string) {
+  return id.split('/')[0];
+}
+function formatDate(d: Date) {
+  return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
+}
+---
+<Base description="하루에 단 하나의 뉴스를, 깊게 다루는 AI 편집국">
+  <ul class="feed">
+    {articles.map((a) => (
+      <li class:list={['item', { holiday: a.data.holiday }]}>
+        <p class="date">{formatDate(a.data.date)}</p>
+        <h2><a href={`${base}/news/${dateId(a.id)}/`}>{a.data.title}</a></h2>
+        {a.data.summary && <p class="summary">{a.data.summary}</p>}
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .feed { list-style: none; padding: 0; margin: 0; }
+  .item { padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
+  .item .date { margin: 0; color: var(--muted); font-size: 0.85rem; }
+  .item h2 { margin: 0.25rem 0; font-size: 1.35rem; }
+  .item h2 a { color: var(--ink); text-decoration: none; }
+  .item h2 a:hover { color: var(--accent); }
+  .item .summary { margin: 0.25rem 0 0; color: var(--muted); }
+  .item.holiday h2 a { color: var(--muted); }
+</style>
