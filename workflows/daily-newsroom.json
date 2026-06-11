@@ -114,29 +114,233 @@
     "desk_write": {
       "backend": "claude",
       "runtime": "claude_headless",
-      "role": "personas/lighthouse.md를 읽고 데스크 '등대'로 일하라. artifacts/topic.md, artifacts/news-landscape.md, 그리고 토론 전체(artifacts/round1-*.md, artifacts/round2-*.md, artifacts/round3-*.md)를 읽고 최종 기사를 artifacts/article.md에 작성하라. 기사는 토론 의사록이 아니라 대중 독자를 위한 이야기다 — 사건의 개요와 흐름이 그려지게 서사를 먼저 세우고, 토론자 발언의 나열로 쓰지 말라. CLAUDE.md의 frontmatter 형식과 기사 불변 요소 4가지를 반드시 지켜라. 토론에 없던 주장을 만들어내지 말라.",
+      "role": "personas/lighthouse.md를 읽고 데스크 '등대'로 일하라. artifacts/topic.md, artifacts/news-landscape.md, 그리고 토론 전체(artifacts/round1-*.md, artifacts/round2-*.md, artifacts/round3-*.md)를 읽고 최종 기사를 artifacts/article.md에 작성하라. 기사는 토론 의사록이 아니라 대중 독자를 위한 이야기다 — 사건의 개요와 흐름이 그려지게 서사를 먼저 세우고, 토론자 발언의 나열로 쓰지 말라. CLAUDE.md의 frontmatter 형식과 기사 불변 요소 목록 전체를 반드시 지켜라 (목록은 CLAUDE.md가 기준이다). 토론에 없던 주장을 만들어내지 말라. 기사는 토론의 요약이 아니다 — 독자는 토론을 보지 않았다고 가정하고, 토론 참여자의 이름·발언 순서·대립 구도·합의 과정을 본문에 반영하지 말라. 토론의 주장은 확인된 사실/쟁점/반론/조사 과제/데스크 판단으로 변환해서만 쓴다.",
       "budget": "medium"
     }
   },
   "steps": [
-    { "id": "collect", "kind": "task", "agent": "watchman", "output": "artifacts/news-landscape.md" },
-    { "id": "select-topic", "kind": "task", "agent": "desk_select", "needs": ["collect"], "output": "artifacts/topic.md" },
-    { "id": "r1-zelkova", "kind": "task", "agent": "zelkova_r1", "needs": ["select-topic"], "output": "artifacts/round1-zelkova.md" },
-    { "id": "r1-waterway", "kind": "task", "agent": "waterway_r1", "needs": ["select-topic"], "output": "artifacts/round1-waterway.md" },
-    { "id": "r1-gadfly", "kind": "task", "agent": "gadfly_r1", "needs": ["select-topic"], "output": "artifacts/round1-gadfly.md" },
-    { "id": "r1-stethoscope", "kind": "task", "agent": "stethoscope_r1", "needs": ["select-topic"], "output": "artifacts/round1-stethoscope.md" },
-    { "id": "r1-weft", "kind": "task", "agent": "weft_r1", "needs": ["select-topic"], "output": "artifacts/round1-weft.md" },
-    { "id": "r1-balance", "kind": "task", "agent": "balance_r1", "needs": ["select-topic"], "output": "artifacts/round1-balance.md" },
-    { "id": "r1-guest", "kind": "task", "agent": "guest_r1", "needs": ["select-topic"], "output": "artifacts/round1-guest.md" },
-    { "id": "r2-zelkova", "kind": "task", "agent": "zelkova_r2", "needs": ["r1-zelkova", "r1-waterway", "r1-gadfly", "r1-stethoscope", "r1-weft", "r1-balance", "r1-guest"], "output": "artifacts/round2-zelkova.md" },
-    { "id": "r2-waterway", "kind": "task", "agent": "waterway_r2", "needs": ["r1-zelkova", "r1-waterway", "r1-gadfly", "r1-stethoscope", "r1-weft", "r1-balance", "r1-guest"], "output": "artifacts/round2-waterway.md" },
-    { "id": "r2-gadfly", "kind": "task", "agent": "gadfly_r2", "needs": ["r1-zelkova", "r1-waterway", "r1-gadfly", "r1-stethoscope", "r1-weft", "r1-balance", "r1-guest"], "output": "artifacts/round2-gadfly.md" },
-    { "id": "r2-stethoscope", "kind": "task", "agent": "stethoscope_r2", "needs": ["r1-zelkova", "r1-waterway", "r1-gadfly", "r1-stethoscope", "r1-weft", "r1-balance", "r1-guest"], "output": "artifacts/round2-stethoscope.md" },
-    { "id": "r2-weft", "kind": "task", "agent": "weft_r2", "needs": ["r1-zelkova", "r1-waterway", "r1-gadfly", "r1-stethoscope", "r1-weft", "r1-balance", "r1-guest"], "output": "artifacts/round2-weft.md" },
-    { "id": "r2-balance", "kind": "task", "agent": "balance_r2", "needs": ["r1-zelkova", "r1-waterway", "r1-gadfly", "r1-stethoscope", "r1-weft", "r1-balance", "r1-guest"], "output": "artifacts/round2-balance.md" },
-    { "id": "r2-guest", "kind": "task", "agent": "guest_r2", "needs": ["r1-zelkova", "r1-waterway", "r1-gadfly", "r1-stethoscope", "r1-weft", "r1-balance", "r1-guest"], "output": "artifacts/round2-guest.md" },
-    { "id": "r3-zelkova", "kind": "task", "agent": "zelkova_r3", "needs": ["r2-zelkova", "r2-waterway", "r2-gadfly", "r2-stethoscope", "r2-weft", "r2-balance", "r2-guest"], "output": "artifacts/round3-zelkova.md" },
-    { "id": "r3-waterway", "kind": "task", "agent": "waterway_r3", "needs": ["r2-zelkova", "r2-waterway", "r2-gadfly", "r2-stethoscope", "r2-weft", "r2-balance", "r2-guest"], "output": "artifacts/round3-waterway.md" },
-    { "id": "write-article", "kind": "fanin", "agent": "desk_write", "needs": ["r3-zelkova", "r3-waterway"], "output": "artifacts/article.md" }
+    {
+      "id": "collect",
+      "kind": "task",
+      "agent": "watchman",
+      "output": "artifacts/news-landscape.md"
+    },
+    {
+      "id": "select-topic",
+      "kind": "task",
+      "agent": "desk_select",
+      "needs": [
+        "collect"
+      ],
+      "output": "artifacts/topic.md"
+    },
+    {
+      "id": "r1-zelkova",
+      "kind": "task",
+      "agent": "zelkova_r1",
+      "needs": [
+        "select-topic"
+      ],
+      "output": "artifacts/round1-zelkova.md"
+    },
+    {
+      "id": "r1-waterway",
+      "kind": "task",
+      "agent": "waterway_r1",
+      "needs": [
+        "select-topic"
+      ],
+      "output": "artifacts/round1-waterway.md"
+    },
+    {
+      "id": "r1-gadfly",
+      "kind": "task",
+      "agent": "gadfly_r1",
+      "needs": [
+        "select-topic"
+      ],
+      "output": "artifacts/round1-gadfly.md"
+    },
+    {
+      "id": "r1-stethoscope",
+      "kind": "task",
+      "agent": "stethoscope_r1",
+      "needs": [
+        "select-topic"
+      ],
+      "output": "artifacts/round1-stethoscope.md"
+    },
+    {
+      "id": "r1-weft",
+      "kind": "task",
+      "agent": "weft_r1",
+      "needs": [
+        "select-topic"
+      ],
+      "output": "artifacts/round1-weft.md"
+    },
+    {
+      "id": "r1-balance",
+      "kind": "task",
+      "agent": "balance_r1",
+      "needs": [
+        "select-topic"
+      ],
+      "output": "artifacts/round1-balance.md"
+    },
+    {
+      "id": "r1-guest",
+      "kind": "task",
+      "agent": "guest_r1",
+      "needs": [
+        "select-topic"
+      ],
+      "output": "artifacts/round1-guest.md"
+    },
+    {
+      "id": "r2-zelkova",
+      "kind": "task",
+      "agent": "zelkova_r2",
+      "needs": [
+        "r1-zelkova",
+        "r1-waterway",
+        "r1-gadfly",
+        "r1-stethoscope",
+        "r1-weft",
+        "r1-balance",
+        "r1-guest"
+      ],
+      "output": "artifacts/round2-zelkova.md"
+    },
+    {
+      "id": "r2-waterway",
+      "kind": "task",
+      "agent": "waterway_r2",
+      "needs": [
+        "r1-zelkova",
+        "r1-waterway",
+        "r1-gadfly",
+        "r1-stethoscope",
+        "r1-weft",
+        "r1-balance",
+        "r1-guest"
+      ],
+      "output": "artifacts/round2-waterway.md"
+    },
+    {
+      "id": "r2-gadfly",
+      "kind": "task",
+      "agent": "gadfly_r2",
+      "needs": [
+        "r1-zelkova",
+        "r1-waterway",
+        "r1-gadfly",
+        "r1-stethoscope",
+        "r1-weft",
+        "r1-balance",
+        "r1-guest"
+      ],
+      "output": "artifacts/round2-gadfly.md"
+    },
+    {
+      "id": "r2-stethoscope",
+      "kind": "task",
+      "agent": "stethoscope_r2",
+      "needs": [
+        "r1-zelkova",
+        "r1-waterway",
+        "r1-gadfly",
+        "r1-stethoscope",
+        "r1-weft",
+        "r1-balance",
+        "r1-guest"
+      ],
+      "output": "artifacts/round2-stethoscope.md"
+    },
+    {
+      "id": "r2-weft",
+      "kind": "task",
+      "agent": "weft_r2",
+      "needs": [
+        "r1-zelkova",
+        "r1-waterway",
+        "r1-gadfly",
+        "r1-stethoscope",
+        "r1-weft",
+        "r1-balance",
+        "r1-guest"
+      ],
+      "output": "artifacts/round2-weft.md"
+    },
+    {
+      "id": "r2-balance",
+      "kind": "task",
+      "agent": "balance_r2",
+      "needs": [
+        "r1-zelkova",
+        "r1-waterway",
+        "r1-gadfly",
+        "r1-stethoscope",
+        "r1-weft",
+        "r1-balance",
+        "r1-guest"
+      ],
+      "output": "artifacts/round2-balance.md"
+    },
+    {
+      "id": "r2-guest",
+      "kind": "task",
+      "agent": "guest_r2",
+      "needs": [
+        "r1-zelkova",
+        "r1-waterway",
+        "r1-gadfly",
+        "r1-stethoscope",
+        "r1-weft",
+        "r1-balance",
+        "r1-guest"
+      ],
+      "output": "artifacts/round2-guest.md"
+    },
+    {
+      "id": "r3-zelkova",
+      "kind": "task",
+      "agent": "zelkova_r3",
+      "needs": [
+        "r2-zelkova",
+        "r2-waterway",
+        "r2-gadfly",
+        "r2-stethoscope",
+        "r2-weft",
+        "r2-balance",
+        "r2-guest"
+      ],
+      "output": "artifacts/round3-zelkova.md"
+    },
+    {
+      "id": "r3-waterway",
+      "kind": "task",
+      "agent": "waterway_r3",
+      "needs": [
+        "r2-zelkova",
+        "r2-waterway",
+        "r2-gadfly",
+        "r2-stethoscope",
+        "r2-weft",
+        "r2-balance",
+        "r2-guest"
+      ],
+      "output": "artifacts/round3-waterway.md"
+    },
+    {
+      "id": "write-article",
+      "kind": "fanin",
+      "agent": "desk_write",
+      "needs": [
+        "r3-zelkova",
+        "r3-waterway"
+      ],
+      "output": "artifacts/article.md"
+    }
   ]
 }
