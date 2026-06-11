@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "daily-newsroom",
-  "description": "news-room의 일일 발행 워크플로: 수집 → 주제 선정 → 토론 2라운드 → 논설위원 최종 변론 → 기사 작성. 모든 role과 페르소나는 공개된다.",
+  "description": "news-room의 일일 발행 워크플로: 수집 → 주제 선정 → 토론 2라운드 → 논설위원 최종 변론 → 기사 초고 → 퇴고. 모든 role과 페르소나는 공개된다.",
   "agents": {
     "watchman": {
       "backend": "claude",
@@ -114,8 +114,14 @@
     "desk_write": {
       "backend": "claude",
       "runtime": "claude_headless",
-      "role": "personas/lighthouse.md를 읽고 데스크 '등대'로 일하라. artifacts/topic.md, artifacts/news-landscape.md, 그리고 토론 전체(artifacts/round1-*.md, artifacts/round2-*.md, artifacts/round3-*.md)를 읽고 최종 기사를 artifacts/article.md에 작성하라. 기사는 토론 의사록이 아니라 대중 독자를 위한 이야기다 — 사건의 개요와 흐름이 그려지게 서사를 먼저 세우고, 토론자 발언의 나열로 쓰지 말라. CLAUDE.md의 frontmatter 형식과 기사 불변 요소 목록 전체를 반드시 지켜라 (목록은 CLAUDE.md가 기준이다). 토론에 없던 주장을 만들어내지 말라. 기사는 토론의 요약이 아니다 — 독자는 토론을 보지 않았다고 가정하고, 토론 참여자의 이름·발언 순서·대립 구도·합의 과정을 본문에 반영하지 말라. 토론의 주장은 확인된 사실/쟁점/반론/조사 과제/데스크 판단으로 변환해서만 쓴다.",
+      "role": "personas/lighthouse.md를 읽고 데스크 '등대'로 일하라. artifacts/topic.md, artifacts/news-landscape.md, 그리고 토론 전체(artifacts/round1-*.md, artifacts/round2-*.md, artifacts/round3-*.md)를 읽고 기사 초고를 artifacts/article-draft.md에 작성하라. 기사는 토론 의사록이 아니라 대중 독자를 위한 이야기다 — 사건의 개요와 흐름이 그려지게 서사를 먼저 세우고, 토론자 발언의 나열로 쓰지 말라. CLAUDE.md의 frontmatter 형식과 기사 불변 요소 목록 전체를 반드시 지켜라 (목록은 CLAUDE.md가 기준이다). 토론에 없던 주장을 만들어내지 말라. 기사는 토론의 요약이 아니다 — 독자는 토론을 보지 않았다고 가정하고, 토론 참여자의 이름·발언 순서·대립 구도·합의 과정을 본문에 반영하지 말라. 토론의 주장은 확인된 사실/쟁점/반론/조사 과제/데스크 판단으로 변환해서만 쓴다.",
       "budget": "medium"
+    },
+    "desk_edit": {
+      "backend": "claude",
+      "runtime": "claude_headless",
+      "role": "너는 news-room의 퇴고 편집자다. personas/lighthouse.md의 장르·문체 규칙과 style-exemplar.md(문체 기준 예문)를 읽어라. artifacts/article-draft.md(초고)를 읽고, 같은 사실관계와 논지를 유지하되 예문의 톤으로 전면 퇴고해 최종 기사를 artifacts/article.md에 작성하라. 중요: 토론 파일(artifacts/round*.md, topic.md, news-landscape.md)은 읽지 말라 — 초고에 대한 충성도, 토론에 대한 충성도를 둘 다 버려라. 분량을 20~30% 줄여라: 곁가지 단서·부연·수사적 질문·경구·메타 설명을 깎고, 명제형 추상 문장은 구체적 사실·제도·행위로 바꿔라. frontmatter와 CLAUDE.md의 기사 불변 요소는 유지하라. 새 주장이나 새 사실을 추가하지 말라.",
+      "budget": "low"
     }
   },
   "steps": [
@@ -339,6 +345,15 @@
       "needs": [
         "r3-zelkova",
         "r3-waterway"
+      ],
+      "output": "artifacts/article-draft.md"
+    },
+    {
+      "id": "edit-article",
+      "kind": "task",
+      "agent": "desk_edit",
+      "needs": [
+        "write-article"
       ],
       "output": "artifacts/article.md"
     }
