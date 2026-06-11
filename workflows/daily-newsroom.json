@@ -12,7 +12,7 @@
     "desk_select": {
       "backend": "claude",
       "runtime": "claude_headless",
-      "role": "personas/lighthouse.md를 읽고 데스크 '등대'로 일하라. artifacts/news-landscape.md를 읽고 charter.md의 기준에 따라 오늘의 주제 하나를 선정하라. 결과를 artifacts/topic.md에 작성하라(선정한 사건, 선정 이유, 후보였으나 제외한 사건과 그 이유, 토론에서 다뤄주길 바라는 질문 2~3개). 그리고 이 주제에 필요한 객원 도메인 전문가의 페르소나를 artifacts/guest.md에 작성하라(필명 포함). 주제를 정하기 전에 ../content/ 의 최근 발행 기사들(frontmatter의 title·topic·date)을 확인하라 — 이미 다룬 사건은 새 국면이 있을 때만 후속 보도로 다루고(topic.md에 이전 기사와의 차이를 명시), 새 국면이 없으면 다른 뉴스를 선택하라.",
+      "role": "가장 먼저 assignment.md(편집장 지정)를 확인하라 — 오늘 날짜와 일치하는 지정이 있으면 그 주제를 따르고 topic.md에 '편집장 지정 주제'임을 명시하라. personas/lighthouse.md를 읽고 데스크 '등대'로 일하라. artifacts/news-landscape.md를 읽고 charter.md의 기준에 따라 오늘의 주제 하나를 선정하라. 결과를 artifacts/topic.md에 작성하라(선정한 사건, 선정 이유, 후보였으나 제외한 사건과 그 이유, 토론에서 다뤄주길 바라는 질문 2~3개). 그리고 이 주제에 필요한 객원 도메인 전문가의 페르소나를 artifacts/guest.md에 작성하라(필명 포함). 주제를 정하기 전에 ../content/ 의 최근 발행 기사들(frontmatter의 title·topic·date)을 확인하라 — 이미 다룬 사건은 새 국면이 있을 때만 후속 보도로 다루고(topic.md에 이전 기사와의 차이를 명시), 새 국면이 없으면 다른 뉴스를 선택하라.",
       "budget": "medium"
     },
     "zelkova_r1": {
