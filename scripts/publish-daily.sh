@@ -4,11 +4,17 @@
 # 파이프라인이 실패해도 휴간 공지는 거의 항상 발행된다 (강령 7).
 set -uo pipefail
 
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+NEWS_ROOM_TZ="${NEWS_ROOM_TZ:-Asia/Seoul}"
+
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DATE="$(date +%F)"
+DATE="$(TZ="$NEWS_ROOM_TZ" date +%F)"
 WS="$REPO/newsroom"
 ART="$WS/artifacts"
 OUT="$REPO/content/$DATE"
+WORKFLOW="${NEWS_ROOM_WORKFLOW:-$REPO/workflows/daily-newsroom-single-claude.json}"
+COCO_AGENTS_RUST_PTY_TIMEOUT_SECS="${COCO_AGENTS_RUST_PTY_TIMEOUT_SECS:-3600}"
+export COCO_AGENTS_RUST_PTY_TIMEOUT_SECS
 
 cd "$REPO"
 git pull --rebase --quiet || true
@@ -18,9 +24,9 @@ rm -rf "$ART"
 mkdir -p "$ART"
 echo "$DATE" > "$ART/today.txt"
 
-# 편집국 소집
-coco-agents workflow run "$REPO/workflows/daily-newsroom.json" \
-  --workspace "$WS" --structured
+# 편집국 소집: 서버 배치에서는 단일 Claude Code 세션으로 실행한다.
+coco-agents workflow run "$WORKFLOW" \
+  --workspace "$WS" --rust-pty
 WORKFLOW_EXIT=$?
 
 mkdir -p "$OUT"

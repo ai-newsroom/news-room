@@ -26,15 +26,18 @@ site/        Astro 정적 사이트 → GitHub Pages
 ```
 [홈서버 cron, 매일 1회]
   └→ scripts/publish-daily.sh
-       └→ coco-agents workflow run workflows/daily-newsroom.json --workspace newsroom/
-            ① 파수꾼: 한국 뉴스 지형 수집
-            ② 등대: 오늘의 주제 선정 + 객원 전문가 소집
-            ③ 토론 1라운드: 7인이 각자의 시각 제시 (병렬)
-            ④ 토론 2라운드: 서로의 글을 읽고 반박·보완
-            ⑤ 등대: 토론을 종합해 기사 작성
+       └→ coco-agents workflow run workflows/daily-newsroom-single-claude.json --workspace newsroom/
+            ① 단일 Claude Code 세션 실행
+            ② 뉴스 지형 수집, 주제 선정, 토론 artifacts 작성
+            ③ 기사 초고와 최종 기사 작성
        └→ content/YYYY-MM-DD/ 에 기사·토론 전문 저장 (실패 시 휴간 공지)
        └→ git commit & push → GitHub Actions가 사이트 빌드·배포
 ```
+
+`workflows/daily-newsroom.json`은 여러 AgentTask로 편집국을 모델링한 개발/실험용
+워크플로다. Proxmox 서버 배치에서는 사양과 운영 안정성을 고려해
+`daily-newsroom-single-claude.json`을 기본값으로 사용한다. coco-agents 자체 개발과
+multi-agent workflow 실험은 로컬 개발 머신에서 수행한다.
 
 ## 편집국 사람들
 
