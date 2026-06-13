@@ -12,9 +12,10 @@ DATE="$(TZ="$NEWS_ROOM_TZ" date +%F)"
 WS="$REPO/newsroom"
 ART="$WS/artifacts"
 OUT="$REPO/content/$DATE"
-WORKFLOW="${NEWS_ROOM_WORKFLOW:-$REPO/workflows/daily-newsroom-single-claude.json}"
-COCO_AGENTS_RUST_PTY_TIMEOUT_SECS="${COCO_AGENTS_RUST_PTY_TIMEOUT_SECS:-3600}"
-export COCO_AGENTS_RUST_PTY_TIMEOUT_SECS
+PROMPT_FILE="${NEWS_ROOM_PROMPT_FILE:-$REPO/prompts/daily-newsroom-single-claude.md}"
+SESSION_STARTUP_TIMEOUT_SECS="${NEWS_ROOM_SESSION_STARTUP_TIMEOUT_SECS:-60}"
+SESSION_TURN_TIMEOUT_SECS="${NEWS_ROOM_SESSION_TURN_TIMEOUT_SECS:-3600}"
+SESSION_RUN_JSON="$ART/session-run.json"
 
 cd "$REPO"
 git pull --rebase --quiet || true
@@ -24,14 +25,23 @@ rm -rf "$ART"
 mkdir -p "$ART"
 echo "$DATE" > "$ART/today.txt"
 
-# 편집국 소집: 서버 배치에서는 단일 Claude Code 세션으로 실행한다.
-coco-agents workflow run "$WORKFLOW" \
-  --workspace "$WS" --rust-pty
-WORKFLOW_EXIT=$?
+# 편집국 소집: 서버 배치에서는 workflow가 아니라 단일 Claude Code PTY 세션을 실행한다.
+PROMPT="$(cat "$PROMPT_FILE")"
+coco-agents session run \
+  --backend claude \
+  --runtime rust-pty-attached \
+  --workspace "$WS" \
+  --name "news-room-$DATE" \
+  --startup-timeout "$SESSION_STARTUP_TIMEOUT_SECS" \
+  --turn-timeout "$SESSION_TURN_TIMEOUT_SECS" \
+  --json \
+  "$PROMPT" > "$SESSION_RUN_JSON"
+SESSION_EXIT=$?
+echo "$SESSION_EXIT" > "$ART/session-exit-code.txt"
 
 mkdir -p "$OUT"
 
-if [[ $WORKFLOW_EXIT -eq 0 && -s "$ART/article.md" ]]; then
+if [[ -s "$ART/article.md" ]]; then
   cp "$ART/article.md" "$OUT/article.md"
   [[ -s "$ART/guest.md" ]] && cp "$ART/guest.md" "$OUT/guest.md"
 
