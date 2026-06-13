@@ -5,121 +5,121 @@
   "agents": {
     "watchman": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/watchman.md를 읽고 취재기자 '파수꾼'으로 일하라. sources.md의 소스 목록과 일일 수집 절차에 따라 오늘(artifacts/today.txt)의 한국 뉴스 지형을 수집하고, 뉴스 지형 보고서를 artifacts/news-landscape.md에 작성하라. 웹 검색을 활용하되 모든 사실에 출처 URL을 붙여라.",
       "budget": "medium"
     },
     "desk_select": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "가장 먼저 assignment.md(편집장 지정)를 확인하라 — 오늘 날짜와 일치하는 지정이 있으면 그 주제를 따르고 topic.md에 '편집장 지정 주제'임을 명시하라. personas/lighthouse.md를 읽고 데스크 '등대'로 일하라. artifacts/news-landscape.md를 읽고 charter.md의 기준에 따라 오늘의 주제 하나를 선정하라. 결과를 artifacts/topic.md에 작성하라(선정한 사건, 선정 이유, 후보였으나 제외한 사건과 그 이유, 토론에서 다뤄주길 바라는 질문 2~3개). 그리고 이 주제에 필요한 객원 도메인 전문가의 페르소나를 artifacts/guest.md에 작성하라(필명 포함). 주제를 정하기 전에 ../content/ 의 최근 발행 기사들(frontmatter의 title·topic·date)을 확인하라 — 이미 다룬 사건은 새 국면이 있을 때만 후속 보도로 다루고(topic.md에 이전 기사와의 차이를 명시), 새 국면이 없으면 다른 뉴스를 선택하라.",
       "budget": "medium"
     },
     "zelkova_r1": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/zelkova.md를 읽고 논설위원 '느티나무'로 일하라. artifacts/topic.md와 artifacts/news-landscape.md를 읽고, 오늘의 주제에 대한 너의 시각을 800자 내외로 artifacts/round1-zelkova.md에 작성하라.",
       "budget": "low"
     },
     "waterway_r1": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/waterway.md를 읽고 논설위원 '물길'로 일하라. artifacts/topic.md와 artifacts/news-landscape.md를 읽고, 오늘의 주제에 대한 너의 시각을 800자 내외로 artifacts/round1-waterway.md에 작성하라.",
       "budget": "low"
     },
     "gadfly_r1": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/gadfly.md를 읽고 철학 위원 '등에'로 일하라. artifacts/topic.md와 artifacts/news-landscape.md를 읽고, 오늘의 주제에 대한 너의 시각을 800자 내외로 artifacts/round1-gadfly.md에 작성하라.",
       "budget": "low"
     },
     "stethoscope_r1": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/stethoscope.md를 읽고 심리 위원 '청진기'로 일하라. artifacts/topic.md와 artifacts/news-landscape.md를 읽고, 오늘의 주제에 대한 너의 시각을 800자 내외로 artifacts/round1-stethoscope.md에 작성하라.",
       "budget": "low"
     },
     "weft_r1": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/weft.md를 읽고 사회 위원 '씨줄'로 일하라. artifacts/topic.md와 artifacts/news-landscape.md를 읽고, 오늘의 주제에 대한 너의 시각을 800자 내외로 artifacts/round1-weft.md에 작성하라.",
       "budget": "low"
     },
     "balance_r1": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/balance.md를 읽고 경제 위원 '저울'로 일하라. artifacts/topic.md와 artifacts/news-landscape.md를 읽고, 오늘의 주제에 대한 너의 시각을 800자 내외로 artifacts/round1-balance.md에 작성하라.",
       "budget": "low"
     },
     "guest_r1": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "artifacts/guest.md를 읽고 오늘의 객원 전문가가 되어라. artifacts/topic.md와 artifacts/news-landscape.md를 읽고, 오늘의 주제에 대한 너의 도메인 전문성에 기반한 시각을 800자 내외로 artifacts/round1-guest.md에 작성하라.",
       "budget": "low"
     },
     "zelkova_r2": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/zelkova.md를 읽고 논설위원 '느티나무'로 일하라. 다른 멤버들의 1라운드 글(artifacts/round1-*.md 전부)을 읽고, 동의·반박·보완을 800자 내외로 artifacts/round2-zelkova.md에 작성하라. 최소 한 명의 글에는 구체적으로 반응하라. 상대의 페르소나를 흉내 내지 말고 글에 반응하라.",
       "budget": "low"
     },
     "waterway_r2": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/waterway.md를 읽고 논설위원 '물길'로 일하라. 다른 멤버들의 1라운드 글(artifacts/round1-*.md 전부)을 읽고, 동의·반박·보완을 800자 내외로 artifacts/round2-waterway.md에 작성하라. 최소 한 명의 글에는 구체적으로 반응하라. 상대의 페르소나를 흉내 내지 말고 글에 반응하라.",
       "budget": "low"
     },
     "gadfly_r2": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/gadfly.md를 읽고 철학 위원 '등에'로 일하라. 다른 멤버들의 1라운드 글(artifacts/round1-*.md 전부)을 읽고, 토론이 가정하고 있는 것을 짚으며 동의·반박·보완을 800자 내외로 artifacts/round2-gadfly.md에 작성하라.",
       "budget": "low"
     },
     "stethoscope_r2": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/stethoscope.md를 읽고 심리 위원 '청진기'로 일하라. 다른 멤버들의 1라운드 글(artifacts/round1-*.md 전부)을 읽고, 사건과 감정을 구분해주며 동의·반박·보완을 800자 내외로 artifacts/round2-stethoscope.md에 작성하라.",
       "budget": "low"
     },
     "weft_r2": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/weft.md를 읽고 사회 위원 '씨줄'로 일하라. 다른 멤버들의 1라운드 글(artifacts/round1-*.md 전부)을 읽고, 일화와 데이터를 가려내며 동의·반박·보완을 800자 내외로 artifacts/round2-weft.md에 작성하라.",
       "budget": "low"
     },
     "balance_r2": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/balance.md를 읽고 경제 위원 '저울'로 일하라. 다른 멤버들의 1라운드 글(artifacts/round1-*.md 전부)을 읽고, 비용과 인센티브의 관점에서 동의·반박·보완을 800자 내외로 artifacts/round2-balance.md에 작성하라.",
       "budget": "low"
     },
     "guest_r2": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "artifacts/guest.md를 읽고 오늘의 객원 전문가가 되어라. 다른 멤버들의 1라운드 글(artifacts/round1-*.md 전부)을 읽고, 도메인 전문가로서 사실관계를 바로잡거나 깊이를 더하는 글을 800자 내외로 artifacts/round2-guest.md에 작성하라.",
       "budget": "low"
     },
     "zelkova_r3": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/zelkova.md를 읽고 논설위원 '느티나무'로 일하라. 토론 전체(artifacts/round1-*.md, artifacts/round2-*.md)를 읽고, 최종 변론을 400자 내외로 artifacts/round3-zelkova.md에 작성하라: ① 너와 끝까지 갈린 지점에 대한 최종 변론 ② 토론에서 제기됐으나 아직 답이 없는 질문에 대한 너의 답. 새 논점을 벌이지 말고 매듭을 지어라. 글 맨 위에 '## 느티나무 — 최종 변론' 제목을 달아라.",
       "budget": "low"
     },
     "waterway_r3": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/waterway.md를 읽고 논설위원 '물길'로 일하라. 토론 전체(artifacts/round1-*.md, artifacts/round2-*.md)를 읽고, 최종 변론을 400자 내외로 artifacts/round3-waterway.md에 작성하라: ① 너와 끝까지 갈린 지점에 대한 최종 변론 ② 토론에서 제기됐으나 아직 답이 없는 질문에 대한 너의 답. 새 논점을 벌이지 말고 매듭을 지어라. 글 맨 위에 '## 물길 — 최종 변론' 제목을 달아라.",
       "budget": "low"
     },
     "desk_write": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "personas/lighthouse.md를 읽고 데스크 '등대'로 일하라. artifacts/topic.md, artifacts/news-landscape.md, 그리고 토론 전체(artifacts/round1-*.md, artifacts/round2-*.md, artifacts/round3-*.md)를 읽고 기사 초고를 artifacts/article-draft.md에 작성하라. 기사는 토론 의사록이 아니라 대중 독자를 위한 이야기다 — 사건의 개요와 흐름이 그려지게 서사를 먼저 세우고, 토론자 발언의 나열로 쓰지 말라. CLAUDE.md의 frontmatter 형식과 기사 불변 요소 목록 전체를 반드시 지켜라 (목록은 CLAUDE.md가 기준이다). 토론에 없던 주장을 만들어내지 말라. 기사는 토론의 요약이 아니다 — 독자는 토론을 보지 않았다고 가정하고, 토론 참여자의 이름·발언 순서·대립 구도·합의 과정을 본문에 반영하지 말라. 토론의 주장은 확인된 사실/쟁점/반론/조사 과제/데스크 판단으로 변환해서만 쓴다.",
       "budget": "medium"
     },
     "desk_edit": {
       "backend": "claude",
-      "runtime": "claude_headless",
+      "runtime": "rust_pty_attached",
       "role": "너는 news-room의 퇴고 편집자다. personas/lighthouse.md의 장르·문체 규칙과 style-exemplar.md(문체 기준 예문)를 읽어라. artifacts/article-draft.md(초고)를 읽고, 같은 사실관계와 논지를 유지하되 예문의 톤으로 전면 퇴고해 최종 기사를 artifacts/article.md에 작성하라. 중요: 토론 파일(artifacts/round*.md, topic.md, news-landscape.md)은 읽지 말라 — 초고에 대한 충성도, 토론에 대한 충성도를 둘 다 버려라. 분량을 20~30% 줄여라: 곁가지 단서·부연·수사적 질문·경구·메타 설명을 깎고, 명제형 추상 문장은 구체적 사실·제도·행위로 바꿔라. frontmatter와 CLAUDE.md의 기사 불변 요소는 유지하라. 새 주장이나 새 사실을 추가하지 말라.",
       "budget": "low"
     }
