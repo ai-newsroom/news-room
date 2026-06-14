@@ -104,4 +104,8 @@ EOF
 fi
 
 git add "content/$DATE"
-git commit -m "publish: $DATE" --quiet && git push --quiet
+if git diff --cached --quiet; then
+  echo "No content changes for $DATE"
+else
+  git commit -m "publish: $DATE" --quiet && git push --quiet
+fi
