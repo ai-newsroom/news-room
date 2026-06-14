@@ -5,19 +5,19 @@
 set -uo pipefail
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-export COCO_AGENTS_CLAUDE_EFFORT="medium"
+export COCO_AGENTS_CLAUDE_EFFORT="${COCO_AGENTS_CLAUDE_EFFORT:-medium}"
 export COCO_AGENTS_CLAUDE_ALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_ALLOWED_TOOLS:-WebSearch,WebFetch,Task,Read,Write,Edit,MultiEdit}"
 NEWS_ROOM_TZ="${NEWS_ROOM_TZ:-Asia/Seoul}"
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DATE="$(TZ="$NEWS_ROOM_TZ" date +%F)"
-WS="$REPO/newsroom"
-ART="$WS/artifacts"
+WS="$REPO"
+ART="$REPO/newsroom/artifacts"
 OUT="$REPO/content/$DATE"
-WORKFLOW="${NEWS_ROOM_WORKFLOW:-$REPO/workflows/daily-newsroom.json}"
-COCO_AGENTS_RUST_PTY_TIMEOUT_SECS="${COCO_AGENTS_RUST_PTY_TIMEOUT_SECS:-3600}"
-export COCO_AGENTS_RUST_PTY_TIMEOUT_SECS
-WORKFLOW_RUN_LOG="$ART/workflow-run.log"
+PROMPT_FILE="${NEWS_ROOM_PROMPT_FILE:-$REPO/prompts/daily-newsroom-single-claude.md}"
+SESSION_STARTUP_TIMEOUT_SECS="${NEWS_ROOM_SESSION_STARTUP_TIMEOUT_SECS:-60}"
+SESSION_TURN_TIMEOUT_SECS="${NEWS_ROOM_SESSION_TURN_TIMEOUT_SECS:-7200}"
+SESSION_RUN_JSON="$ART/session-run.json"
 
 cd "$REPO"
 git pull --rebase --quiet || true
@@ -27,12 +27,19 @@ rm -rf "$ART"
 mkdir -p "$ART"
 echo "$DATE" > "$ART/today.txt"
 
-# 편집국 소집: workflow 정의를 coco-agents가 step/agent 단위로 실행한다.
-coco-agents workflow run "$WORKFLOW" \
+# 편집국 소집: 서버 배치에서는 단일 Claude Code PTY 세션을 오래 실행한다.
+PROMPT="$(cat "$PROMPT_FILE")"
+coco-agents session run \
+  --backend claude \
+  --runtime rust-pty-attached \
   --workspace "$WS" \
-  --rust-pty > "$WORKFLOW_RUN_LOG" 2>&1
-WORKFLOW_EXIT=$?
-echo "$WORKFLOW_EXIT" > "$ART/workflow-exit-code.txt"
+  --name "news-room-$DATE" \
+  --startup-timeout "$SESSION_STARTUP_TIMEOUT_SECS" \
+  --turn-timeout "$SESSION_TURN_TIMEOUT_SECS" \
+  --json \
+  "$PROMPT" > "$SESSION_RUN_JSON"
+SESSION_EXIT=$?
+echo "$SESSION_EXIT" > "$ART/session-exit-code.txt"
 
 mkdir -p "$OUT"
 
