@@ -5,6 +5,7 @@
 set -uo pipefail
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+export COCO_AGENTS_CLAUDE_EFFORT=""
 export COCO_AGENTS_CLAUDE_ALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_ALLOWED_TOOLS:-WebSearch,WebFetch,Task,Read,Write,Edit,MultiEdit}"
 NEWS_ROOM_TZ="${NEWS_ROOM_TZ:-Asia/Seoul}"
 
