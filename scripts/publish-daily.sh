@@ -5,6 +5,7 @@
 set -uo pipefail
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+export COCO_AGENTS_CLAUDE_DISALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_DISALLOWED_TOOLS:-WebSearch,WebFetch,Fetch}"
 NEWS_ROOM_TZ="${NEWS_ROOM_TZ:-Asia/Seoul}"
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
