@@ -5,13 +5,13 @@
 set -uo pipefail
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-export COCO_AGENTS_CLAUDE_DISALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_DISALLOWED_TOOLS:-WebSearch,WebFetch,Fetch}"
+export COCO_AGENTS_CLAUDE_ALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_ALLOWED_TOOLS:-WebSearch,WebFetch,Task,Read,Write,Edit,MultiEdit}"
 NEWS_ROOM_TZ="${NEWS_ROOM_TZ:-Asia/Seoul}"
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DATE="$(TZ="$NEWS_ROOM_TZ" date +%F)"
-WS="$REPO/newsroom"
-ART="$WS/artifacts"
+WS="$REPO"
+ART="$REPO/newsroom/artifacts"
 OUT="$REPO/content/$DATE"
 PROMPT_FILE="${NEWS_ROOM_PROMPT_FILE:-$REPO/prompts/daily-newsroom-single-claude.md}"
 SESSION_STARTUP_TIMEOUT_SECS="${NEWS_ROOM_SESSION_STARTUP_TIMEOUT_SECS:-60}"
