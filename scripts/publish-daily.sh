@@ -5,41 +5,74 @@
 set -uo pipefail
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-export COCO_AGENTS_CLAUDE_EFFORT="${COCO_AGENTS_CLAUDE_EFFORT:-medium}"
-export COCO_AGENTS_CLAUDE_ALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_ALLOWED_TOOLS:-WebSearch,WebFetch,Task,Read,Write,Edit,MultiEdit}"
 NEWS_ROOM_TZ="${NEWS_ROOM_TZ:-Asia/Seoul}"
+NEWS_ROOM_BACKEND="${NEWS_ROOM_BACKEND:-claude}"
+
+case "$NEWS_ROOM_BACKEND" in
+  claude|codex) ;;
+  *)
+    echo "Unsupported NEWS_ROOM_BACKEND: $NEWS_ROOM_BACKEND" >&2
+    exit 2
+    ;;
+esac
+
+if [[ "$NEWS_ROOM_BACKEND" == "claude" ]]; then
+  export COCO_AGENTS_CLAUDE_EFFORT="${COCO_AGENTS_CLAUDE_EFFORT:-medium}"
+  export COCO_AGENTS_CLAUDE_ALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_ALLOWED_TOOLS:-WebSearch,WebFetch,Task,Read,Write,Edit,MultiEdit}"
+fi
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DATE="$(TZ="$NEWS_ROOM_TZ" date +%F)"
 WS="$REPO"
 ART="$REPO/newsroom/artifacts"
 OUT="$REPO/content/$DATE"
-PROMPT_FILE="${NEWS_ROOM_PROMPT_FILE:-$REPO/prompts/daily-newsroom-single-claude.md}"
+DEFAULT_PROMPT_FILE="$REPO/prompts/daily-newsroom-single-$NEWS_ROOM_BACKEND.md"
+PROMPT_FILE="${NEWS_ROOM_PROMPT_FILE:-$DEFAULT_PROMPT_FILE}"
 SESSION_STARTUP_TIMEOUT_SECS="${NEWS_ROOM_SESSION_STARTUP_TIMEOUT_SECS:-60}"
 SESSION_TURN_TIMEOUT_SECS="${NEWS_ROOM_SESSION_TURN_TIMEOUT_SECS:-7200}"
 SESSION_RUN_JSON="$ART/session-run.json"
+CODEX_LAST_MESSAGE="$ART/session-last-message.txt"
+NEWS_ROOM_CODEX_SANDBOX="${NEWS_ROOM_CODEX_SANDBOX:-danger-full-access}"
 
 cd "$REPO"
 git pull --rebase --quiet || true
+
+if [[ ! -f "$PROMPT_FILE" ]]; then
+  echo "Prompt file not found: $PROMPT_FILE" >&2
+  exit 2
+fi
 
 # 작업대 초기화
 rm -rf "$ART"
 mkdir -p "$ART"
 echo "$DATE" > "$ART/today.txt"
 
-# 편집국 소집: 서버 배치에서는 단일 Claude Code PTY 세션을 오래 실행한다.
-PROMPT="$(cat "$PROMPT_FILE")"
-coco-agents session run \
-  --backend claude \
-  --runtime rust-pty-attached \
-  --workspace "$WS" \
-  --name "news-room-$DATE" \
-  --startup-timeout "$SESSION_STARTUP_TIMEOUT_SECS" \
-  --turn-timeout "$SESSION_TURN_TIMEOUT_SECS" \
-  --json \
-  "$PROMPT" > "$SESSION_RUN_JSON"
+# 편집국 소집: Claude는 PTY 세션, Codex는 batch-friendly exec 경로를 사용한다.
+case "$NEWS_ROOM_BACKEND" in
+  claude)
+    PROMPT="$(cat "$PROMPT_FILE")"
+    coco-agents session run \
+      --backend claude \
+      --runtime rust-pty-attached \
+      --workspace "$WS" \
+      --name "news-room-claude-$DATE" \
+      --startup-timeout "$SESSION_STARTUP_TIMEOUT_SECS" \
+      --turn-timeout "$SESSION_TURN_TIMEOUT_SECS" \
+      --json \
+      "$PROMPT" > "$SESSION_RUN_JSON"
+    ;;
+  codex)
+    codex exec \
+      --cd "$WS" \
+      --sandbox "$NEWS_ROOM_CODEX_SANDBOX" \
+      --json \
+      --output-last-message "$CODEX_LAST_MESSAGE" \
+      - < "$PROMPT_FILE" > "$SESSION_RUN_JSON"
+    ;;
+esac
 SESSION_EXIT=$?
 echo "$SESSION_EXIT" > "$ART/session-exit-code.txt"
+echo "$NEWS_ROOM_BACKEND" > "$ART/session-backend.txt"
 
 mkdir -p "$OUT"
 
