@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_run_0123456789abcdef0123456789abcdef",
+  "valid_contract": {
+    "status": "completed",
+    "summary": "fixture handoff completed",
+    "evidence": [
+      "fixed fixture evidence"
+    ],
+    "follow_ups": [
+      {
+        "title": "bounded fixture follow-up",
+        "description": "fixture contract coverage",
+        "acceptance_criteria": [
+          "observable fixture condition"
+        ],
+        "priority": 0,
+        "risk": "low",
+        "kind": "capability",
+        "objective_id": null,
+        "capability_experiment": {
+          "capability": "fixture capability",
+          "hypothesis": "a valid nested contract is accepted",
+          "success_measure": "the fixed valid fixture passes",
+          "rollback_plan": "remove the fixture if it stops representing the contract"
+        }
+      }
+    ]
+  },
+  "failure_cases": [
+    {
+      "case_id": "wrong-path",
+      "materialization": "none",
+      "path": "different-run/result.json",
+      "expected_error": "result_path_mismatch"
+    },
+    {
+      "case_id": "missing-file",
+      "materialization": "none",
+      "path": "expected",
+      "expected_error": "result_missing"
+    },
+    {
+      "case_id": "invalid-json",
+      "materialization": "raw",
+      "path": "expected",
+      "content": "{not valid json",
+      "expected_error": "invalid_json"
+    },
+    {
+      "case_id": "missing-required-field",
+      "materialization": "json",
+      "path": "expected",
+      "content": {
+        "status": "completed",
+        "summary": "follow_ups is absent",
+        "evidence": []
+      },
+      "expected_error": "contract_fields_mismatch"
+    }
+  ]
+}

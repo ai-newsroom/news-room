@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "eda",
+  "profile_class": "technical",
+  "paths": {
+    "workspace": "editions/eda",
+    "editorial_profile": "editions/eda/edition.json",
+    "sources": "editions/eda/sources/primary-sources.json",
+    "content_root": "content/eda",
+    "run_root": "var/runs/eda",
+    "decision_root": "decisions/eda"
+  },
+  "schedule": {
+    "enabled": false,
+    "managed_by": "none",
+    "timezone": "Asia/Seoul",
+    "cadence": "on-demand"
+  },
+  "release": {
+    "mode": "prepare-only",
+    "requires_human_approval": true,
+    "git_write": false,
+    "deploy": false
+  },
+  "site": {
+    "route_prefix": "/eda",
+    "include_in_legacy_home": false
+  },
+  "forbidden_fallbacks": [
+    "newsroom/charter.md",
+    "newsroom/personas",
+    "newsroom/sources.md",
+    "editions/ai"
+  ]
+}

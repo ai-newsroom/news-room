@@ -4,10 +4,12 @@ import Base from '../../layouts/Base.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
-  return articles.map((article) => ({
-    params: { id: article.id.split('/')[0] },
-    props: { article },
-  }));
+  return articles
+    .filter((article) => article.data.publication === 'published')
+    .map((article) => ({
+      params: { id: article.id.split('/')[0] },
+      props: { article },
+    }));
 }
 
 const { article } = Astro.props;
@@ -21,6 +23,31 @@ const DebateContent = debate ? (await render(debate)).Content : null;
 const guests = await getCollection('guests');
 const guest = guests.find((g) => g.id.split('/')[0] === dateId);
 const GuestContent = guest ? (await render(guest)).Content : null;
+
+const draftFiles = import.meta.glob('../../../../content/*/draft.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+const promptFiles = import.meta.glob('../../../../content/*/prompt.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+const runFiles = import.meta.glob('../../../../content/*/run.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+function rawArtifact(files: Record<string, unknown>, filename: string) {
+  const path = Object.keys(files).find((p) => p.endsWith(`/${dateId}/${filename}`));
+  return path ? (files[path] as string) : null;
+}
+
+const draftText = rawArtifact(draftFiles, 'draft.md');
+const promptText = rawArtifact(promptFiles, 'prompt.md');
+const runText = rawArtifact(runFiles, 'run.md');
 
 function formatDate(d: Date) {
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
@@ -46,10 +73,37 @@ function formatDate(d: Date) {
       <div class="debate"><GuestContent /></div>
     </details>
   )}
+
+  {draftText && (
+    <details>
+      <summary>기사 초고 보기</summary>
+      <pre class="artifact">{draftText}</pre>
+    </details>
+  )}
+
+  {promptText && (
+    <details>
+      <summary>발행 세션 프롬프트 보기</summary>
+      <pre class="artifact">{promptText}</pre>
+    </details>
+  )}
+
+  {runText && (
+    <details>
+      <summary>사용 모델 및 실행 정보 보기</summary>
+      <pre class="artifact">{runText}</pre>
+    </details>
+  )}
 </Base>
 
 <style>
   .date { color: var(--muted); font-size: 0.9rem; margin-bottom: 0; }
   article h1 { margin-top: 0.25rem; font-size: 1.7rem; }
   .debate { font-size: 0.95rem; }
+  .artifact {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
 </style>

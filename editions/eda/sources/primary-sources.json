@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "edition": "eda",
+  "registry_id": "eda-primary-source-startpoints",
+  "as_of": "2026-07-20",
+  "purpose_ko": "EDA 도구·표준·논문·benchmark·공개 flow의 변화를 발견한 뒤 정확한 버전과 실행 artifact로 이동하기 위한 공개 seed 목록이다.",
+  "relation_policy_ko": "primary는 릴리스 소유자·표준 기구·논문 저자·benchmark 운영자가 자기 산출물을 공개한 원문이다. 타 도구 대비 성능 결론은 독립 재현이 없으면 secondary/I1로 승격하지 않는다.",
+  "selection_policy": {
+    "technical_scope_only": true,
+    "imports_current_affairs_sources": false,
+    "popularity_used": false,
+    "rule_ko": "시사판의 좌우 매체·커뮤니티 목록을 상속하지 않고 exact tool version, 표준 원문, 공개 benchmark와 실행 가능한 flow로 이어지는 기술 출발점만 선정한다."
+  },
+  "forbidden_imports": ["newsroom/sources.md"],
+  "sources": [
+    {
+      "id": "cadence-software-downloads",
+      "name": "Cadence Software Downloads",
+      "source_type": "tool-release",
+      "canonical_url": "https://www.cadence.com/en_US/home/support/software-downloads.html",
+      "owner": {
+        "name": "Cadence Design Systems",
+        "kind": "vendor"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "Cadence 제품의 release·update 존재와 지원 조건에는 P1이지만 개선 효과와 경쟁 도구 비교는 독립 근거가 아니다.",
+      "evidence_codes": ["P1"],
+      "access": {
+        "status": "subscription-or-entitlement",
+        "requires_authentication": true,
+        "requires_payment": "yes",
+        "constraints_ko": "안내 페이지는 공개지만 실제 release 정보와 다운로드는 현 유지보수 계약 및 Cadence ASK 또는 eDA-on-Tap 계정이 필요하다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "도구 판매사가 자기 release의 기능과 효과를 설명한다."
+      },
+      "collection_notes_ko": "권한이 없으면 unavailable로 기록하고 보도자료나 검색 snippet으로 release note를 대체하지 않는다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "synopsys-product-releases",
+      "name": "Synopsys Licensing, Installation and Product Releases",
+      "source_type": "tool-release",
+      "canonical_url": "https://www.synopsys.com/support/licensing-installation-computeplatforms.html",
+      "owner": {
+        "name": "Synopsys",
+        "kind": "vendor"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "Synopsys 제품 release 일정과 다운로드 제공 사실에는 P1이지만 상세 문서에 접근하지 못하면 기능 주장의 근거로 쓰지 않는다.",
+      "evidence_codes": ["P1"],
+      "access": {
+        "status": "subscription-or-entitlement",
+        "requires_authentication": true,
+        "requires_payment": "yes",
+        "constraints_ko": "공개 안내에 따르면 최신 release와 software download는 등록된 SolvNetPlus 사용자 권한이 필요하다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "도구 판매사가 자기 release와 지원 범위를 설명한다."
+      },
+      "collection_notes_ko": "release name과 service pack을 분리하고 gated 문서를 보지 못했으면 unavailable로 둔다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "openroad-releases",
+      "name": "OpenROAD releases",
+      "source_type": "tool-release",
+      "canonical_url": "https://github.com/The-OpenROAD-Project/OpenROAD/releases",
+      "owner": {
+        "name": "The OpenROAD Project",
+        "kind": "open-source-project"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "OpenROAD tag, release note와 source는 exact tool 변경의 P1/P2이며 QoR 주장은 고정 design·platform에서 재실행해야 한다.",
+      "evidence_codes": ["P1", "P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "공개 GitHub release다. API rate limit과 release asset별 라이선스를 확인한다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "프로젝트 유지관리자가 자기 도구의 기능과 QoR 개선을 보고한다."
+      },
+      "collection_notes_ko": "pre-release 여부, tag, commit, binary provenance와 알려진 문제를 함께 기록한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "ieee-systemverilog-1800",
+      "name": "IEEE 1800 SystemVerilog standard",
+      "source_type": "standard",
+      "canonical_url": "https://standards.ieee.org/ieee/1800/7743/",
+      "owner": {
+        "name": "IEEE Standards Association",
+        "kind": "standards-body"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "SystemVerilog 문법·의미와 표준 상태의 P1 원문이며 개별 EDA 도구의 구현 준수 여부는 별도 시험 대상이다.",
+      "evidence_codes": ["P1"],
+      "access": {
+        "status": "partial",
+        "requires_authentication": false,
+        "requires_payment": "sometimes",
+        "constraints_ko": "표준 landing은 공개다. 전문은 IEEE Get Program의 무상 접근 또는 구독 조건이 적용될 수 있다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "표준 working group에 EDA 벤더와 사용자 조직이 참여하므로 제안·구현 이해관계를 확인한다."
+      },
+      "collection_notes_ko": "active/superseded 상태, edition, approval·published 날짜와 errata를 함께 수집한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "accellera-uvm-downloads",
+      "name": "Accellera UVM standards and reference implementation",
+      "source_type": "standard",
+      "canonical_url": "https://www.accellera.org/downloads/standards/uvm",
+      "owner": {
+        "name": "Accellera Systems Initiative",
+        "kind": "standards-body"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "UVM standard와 reference implementation의 버전·내용에는 P1/P2 원문이며 상용 simulator 호환성은 별도 검증한다.",
+      "evidence_codes": ["P1", "P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "표준 download 목록과 공개 reference repository를 열람할 수 있으며 각 배포물의 라이선스를 따른다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "회원사와 working group 참여자가 표준 범위와 reference implementation을 결정한다."
+      },
+      "collection_notes_ko": "standard 문서와 reference implementation release를 같은 버전으로 가정하지 않고 각각 저장한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "si2-openaccess-coalition",
+      "name": "Si2 OpenAccess Coalition",
+      "source_type": "standard",
+      "canonical_url": "https://si2.org/openaccess-coalition/",
+      "owner": {
+        "name": "Silicon Integration Initiative",
+        "kind": "standards-body"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "OpenAccess API와 coalition 산출물의 소유 조직 원문이며 EDA 도구 상호운용성 주장에는 구현별 시험이 필요하다.",
+      "evidence_codes": ["P1", "P2"],
+      "access": {
+        "status": "partial",
+        "requires_authentication": true,
+        "requires_payment": "sometimes",
+        "constraints_ko": "개요와 일부 public solution은 공개지만 coalition 공동 결과와 extension 접근은 회원 자격이 필요하다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "EDA 공급사·foundry·설계사가 회원으로 표준과 extension 우선순위를 정한다."
+      },
+      "collection_notes_ko": "public solution과 member-only 산출물을 구분하고 접근하지 못한 문서는 unavailable로 둔다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "arxiv-cs-ar-recent",
+      "name": "arXiv Hardware Architecture recent submissions",
+      "source_type": "paper-index",
+      "canonical_url": "https://arxiv.org/list/cs.AR/recent",
+      "owner": {
+        "name": "Cornell University arXiv",
+        "kind": "academic-host"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "연결 논문은 저자가 자기 EDA·architecture 방법과 실험을 보고하는 P1이지만 범주가 넓고 동료심사를 보증하지 않는다.",
+      "evidence_codes": ["P1"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "초록과 PDF는 공개다. API·feed 이용 정책과 호출 간격을 지키고 EDA 관련성을 후속 분류한다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "각 저자·소속·연구비와 사용한 상용 tool·PDK 제공 관계를 논문별로 확인한다."
+      },
+      "collection_notes_ko": "버전, submission history, code·dataset link와 실제 conference 채택 여부를 분리한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "ispd-2019-routing-benchmark",
+      "name": "ISPD 2019 Initial Detailed Routing Contest",
+      "source_type": "public-benchmark",
+      "canonical_url": "https://www.ispd.cc/contests/19/",
+      "owner": {
+        "name": "ACM ISPD and contest organizers",
+        "kind": "conference-organizer"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "공개 benchmark, rules, evaluator와 결과는 해당 contest의 P1/P2 원문이며 최신 공정 전체를 대표하지 않는다.",
+      "evidence_codes": ["P1", "P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "contest 페이지와 공개 artifact를 열람할 수 있으나 각 benchmark의 재배포·사용 조건을 확인해야 한다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "운영진과 후원사가 문제·metric·baseline을 선정하고 참가팀은 contest 조건에 맞춰 tuning한다."
+      },
+      "collection_notes_ko": "rules, benchmark version, evaluator, machine 조건, score와 참가 submission을 한 묶음으로 보존한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "openroad-flow-scripts",
+      "name": "OpenROAD Flow Scripts",
+      "source_type": "open-source-flow",
+      "canonical_url": "https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts",
+      "owner": {
+        "name": "The OpenROAD Project",
+        "kind": "open-source-project"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "RTL-to-GDS flow script, design config와 log 구조의 P2 원문이며 결과는 platform·tool commit·옵션에 종속된다.",
+      "evidence_codes": ["P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "sometimes",
+        "constraints_ko": "source는 공개지만 실행에는 Docker 또는 build dependency, PDK 라이선스, 계산 자원이 추가로 필요할 수 있다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "프로젝트가 자기 flow와 포함 도구의 QoR·사용성을 설명한다."
+      },
+      "collection_notes_ko": "ORFS와 OpenROAD·Yosys·KLayout commit, platform, design config와 생성 log를 함께 고정한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "chipfoundry-openlane2",
+      "name": "ChipFoundry OpenLane 2",
+      "source_type": "open-source-flow",
+      "canonical_url": "https://github.com/chipfoundry/openlane2",
+      "owner": {
+        "name": "ChipFoundry",
+        "kind": "open-source-project"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "OpenLane 2 flow, config, changelog와 code의 P1/P2 원문이며 bundled binary와 PDK의 라이선스는 별도다.",
+      "evidence_codes": ["P1", "P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "sometimes",
+        "constraints_ko": "source는 공개다. Nix·Docker artifact, bundled utility, PDK는 서로 다른 배포 및 라이선스 조건을 가질 수 있다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "flow 유지관리 조직이 자기 architecture와 tapeout 사례를 설명한다."
+      },
+      "collection_notes_ko": "이전 Efabless URL의 redirect에 의존하지 않고 현재 canonical URL, tag와 changelog를 저장한다.",
+      "last_verified_at": "2026-07-20"
+    }
+  ]
+}

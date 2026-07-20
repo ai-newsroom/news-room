@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "inventory_role": "stage-0-excluded-experiment-content",
+  "current_state": "excluded-by-publication-frontmatter",
+  "migration_target": "remain-outside-published-routes",
+  "content": [
+    {
+      "content_id": "2026-06-14-codex-high-test",
+      "source": "content/2026-06-14-codex-high-test/article.md",
+      "current_route": "/news/2026-06-14-codex-high-test/",
+      "current_home_href": "/news-room/news/2026-06-14-codex-high-test/",
+      "title": "1,540원 환율과 10.5% 명목 성장률, 같은 숫자표에서 읽어야 할 것",
+      "reason": "단일 Codex high 비교 실험이며 운영 legacy URL로 승격하지 않는다."
+    },
+    {
+      "content_id": "2026-06-14-codex-high-workflow-test",
+      "source": "content/2026-06-14-codex-high-workflow-test/article.md",
+      "current_route": "/news/2026-06-14-codex-high-workflow-test/",
+      "current_home_href": "/news-room/news/2026-06-14-codex-high-workflow-test/",
+      "title": "1,540원 환율과 10.5% 명목 GDP, 먼저 나눠 읽어야 할 것",
+      "reason": "전체 workflow 비교 실험이며 운영 legacy URL로 승격하지 않는다."
+    }
+  ]
+}

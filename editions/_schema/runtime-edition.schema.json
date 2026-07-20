@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://news-room.local/schemas/runtime-edition.schema.json",
+  "title": "news-room stage-1 runtime edition configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "profile_class",
+    "paths",
+    "schedule",
+    "release",
+    "site",
+    "forbidden_fallbacks"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "enum": ["current-affairs", "ai", "eda"]
+    },
+    "profile_class": {
+      "type": "string",
+      "enum": ["current-affairs", "technical"]
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workspace",
+        "editorial_profile",
+        "sources",
+        "content_root",
+        "run_root",
+        "decision_root"
+      ],
+      "properties": {
+        "workspace": {"$ref": "#/$defs/repository_path"},
+        "prompt": {"$ref": "#/$defs/repository_path"},
+        "workflow": {"$ref": "#/$defs/repository_path"},
+        "legacy_entrypoint": {"$ref": "#/$defs/repository_path"},
+        "editorial_profile": {"$ref": "#/$defs/repository_path"},
+        "sources": {"$ref": "#/$defs/repository_path"},
+        "content_root": {"$ref": "#/$defs/repository_path"},
+        "run_root": {"$ref": "#/$defs/repository_path"},
+        "decision_root": {"$ref": "#/$defs/repository_path"}
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "managed_by", "timezone", "cadence"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "managed_by": {
+          "type": "string",
+          "enum": ["none", "external-cron", "engine"]
+        },
+        "timezone": {
+          "type": "string",
+          "const": "Asia/Seoul"
+        },
+        "cadence": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "requires_human_approval",
+        "git_write",
+        "deploy"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["legacy-wrapper", "prepare-only"]
+        },
+        "requires_human_approval": {"type": "boolean"},
+        "git_write": {"type": "boolean"},
+        "deploy": {"type": "boolean"}
+      }
+    },
+    "site": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route_prefix", "include_in_legacy_home"],
+      "properties": {
+        "route_prefix": {
+          "type": "string",
+          "pattern": "^/[a-z][a-z0-9-]*$"
+        },
+        "include_in_legacy_home": {"type": "boolean"}
+      }
+    },
+    "forbidden_fallbacks": {
+      "type": "array",
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/repository_path"
+      }
+    }
+  },
+  "$defs": {
+    "repository_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    }
+  }
+}

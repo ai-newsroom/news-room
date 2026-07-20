@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "case_id": "unknown-key",
+      "edition": "ai",
+      "mutation": {
+        "path": ["unexpected"],
+        "value": true
+      },
+      "expected_error": "unexpected property"
+    },
+    {
+      "case_id": "path-escape",
+      "edition": "ai",
+      "mutation": {
+        "path": ["paths", "content_root"],
+        "value": "../outside"
+      },
+      "expected_error": "does not match"
+    },
+    {
+      "case_id": "duplicate-route",
+      "edition": "eda",
+      "mutation": {
+        "path": ["site", "route_prefix"],
+        "value": "/ai"
+      },
+      "expected_error": "duplicate route prefix"
+    },
+    {
+      "case_id": "technical-newsroom-fallback",
+      "edition": "ai",
+      "mutation": {
+        "path": ["paths", "workspace"],
+        "value": "newsroom"
+      },
+      "expected_error": "edition-owned and explicit"
+    }
+  ]
+}

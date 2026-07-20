@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://news-room.local/schemas/technical-edition.schema.json",
+  "title": "news-room technical edition editorial configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "profile_class",
+    "inherits",
+    "editorial",
+    "publication",
+    "forbidden_fallbacks"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "enum": ["ai", "eda"]
+    },
+    "profile_class": {
+      "type": "string",
+      "const": "technical"
+    },
+    "inherits": {
+      "type": "array",
+      "const": ["technical-common"]
+    },
+    "editorial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "charter",
+        "roles",
+        "sources",
+        "evidence_rubric",
+        "selection_rules",
+        "release_gates",
+        "article_template",
+        "no_publish_template"
+      ],
+      "properties": {
+        "charter": {"$ref": "#/$defs/section_reference"},
+        "roles": {"$ref": "#/$defs/section_reference"},
+        "sources": {"$ref": "#/$defs/section_reference"},
+        "evidence_rubric": {"$ref": "#/$defs/section_reference"},
+        "selection_rules": {"$ref": "#/$defs/section_reference"},
+        "release_gates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["common", "edition"],
+          "properties": {
+            "common": {"$ref": "#/$defs/section_reference"},
+            "edition": {"$ref": "#/$defs/section_reference"}
+          }
+        },
+        "article_template": {"$ref": "#/$defs/section_reference"},
+        "no_publish_template": {"$ref": "#/$defs/section_reference"}
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_decisions",
+        "publish_requires_human_approval",
+        "automatic_publish"
+      ],
+      "properties": {
+        "allowed_decisions": {
+          "type": "array",
+          "const": ["publish-candidate", "no-publish"]
+        },
+        "publish_requires_human_approval": {
+          "type": "boolean",
+          "const": true
+        },
+        "automatic_publish": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "forbidden_fallbacks": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "allOf": [
+        {"contains": {"const": "newsroom/charter.md"}, "minContains": 1},
+        {"contains": {"const": "newsroom/personas"}, "minContains": 1},
+        {"contains": {"const": "newsroom/sources.md"}, "minContains": 1}
+      ]
+    }
+  },
+  "$defs": {
+    "section_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "heading"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!newsroom(?:/|$))(?!.*(?:^|/)\\.\\.(?:/|$)).+\\.md$"
+        },
+        "heading": {
+          "type": "string",
+          "pattern": "^#{2,4} [^#].+$"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://news-room.local/schemas/technical-source-registry.schema.json",
+  "title": "news-room technical edition source registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "edition",
+    "registry_id",
+    "as_of",
+    "purpose_ko",
+    "relation_policy_ko",
+    "selection_policy",
+    "forbidden_imports",
+    "sources"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "edition": {
+      "type": "string",
+      "enum": ["ai", "eda"]
+    },
+    "registry_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "as_of": {
+      "type": "string",
+      "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}$"
+    },
+    "purpose_ko": {
+      "type": "string",
+      "minLength": 20
+    },
+    "relation_policy_ko": {
+      "type": "string",
+      "minLength": 20
+    },
+    "selection_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "technical_scope_only",
+        "imports_current_affairs_sources",
+        "popularity_used",
+        "rule_ko"
+      ],
+      "properties": {
+        "technical_scope_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "imports_current_affairs_sources": {
+          "type": "boolean",
+          "const": false
+        },
+        "popularity_used": {
+          "type": "boolean",
+          "const": false
+        },
+        "rule_ko": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "forbidden_imports": {
+      "type": "array",
+      "const": ["newsroom/sources.md"]
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "source_type",
+        "canonical_url",
+        "owner",
+        "default_relation",
+        "relation_notes_ko",
+        "evidence_codes",
+        "access",
+        "conflict_of_interest",
+        "collection_notes_ko",
+        "last_verified_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 3
+        },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "model-system-card",
+            "paper-index",
+            "code-repository",
+            "release-notes",
+            "independent-evaluation",
+            "tool-release",
+            "standard",
+            "public-benchmark",
+            "open-source-flow"
+          ]
+        },
+        "canonical_url": {
+          "type": "string",
+          "pattern": "^https://[^ ]+$"
+        },
+        "owner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "kind"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 2
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "vendor",
+                "academic-host",
+                "open-source-project",
+                "benchmark-consortium",
+                "standards-body",
+                "conference-organizer"
+              ]
+            }
+          }
+        },
+        "default_relation": {
+          "type": "string",
+          "enum": ["primary", "secondary"]
+        },
+        "relation_notes_ko": {
+          "type": "string",
+          "minLength": 20
+        },
+        "evidence_codes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["P0", "P1", "P2", "I1", "S1", "S2"]
+          }
+        },
+        "access": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "requires_authentication",
+            "requires_payment",
+            "constraints_ko"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "public",
+                "partial",
+                "account-required",
+                "subscription-or-entitlement"
+              ]
+            },
+            "requires_authentication": {
+              "type": "boolean"
+            },
+            "requires_payment": {
+              "type": "string",
+              "enum": ["no", "sometimes", "yes", "unknown"]
+            },
+            "constraints_ko": {
+              "type": "string",
+              "minLength": 10
+            }
+          }
+        },
+        "conflict_of_interest": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["possible", "notes_ko"],
+          "properties": {
+            "possible": {
+              "type": "boolean"
+            },
+            "notes_ko": {
+              "type": "string",
+              "minLength": 10
+            }
+          }
+        },
+        "collection_notes_ko": {
+          "type": "string",
+          "minLength": 10
+        },
+        "last_verified_at": {
+          "type": "string",
+          "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}$"
+        }
+      }
+    }
+  }
+}

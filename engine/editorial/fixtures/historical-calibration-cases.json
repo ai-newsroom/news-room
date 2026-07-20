@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "fixture_id": "ai-eda-historical-release-calibration",
+  "fixture_policy_ko": "과거 공개 시점에 확보할 수 있었던 근거만 고정한다. 최신 지식으로 당시의 evidence ceiling을 소급 상승시키지 않는다.",
+  "cases": [
+    {
+      "case_id": "ai-pytorch-2-0-compile-release",
+      "edition": "ai",
+      "historical_cutoff": "2023-03-15",
+      "subject_ko": "PyTorch 2.0 정식 릴리스와 opt-in torch.compile beta API",
+      "candidate_scores": {
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_usefulness": 2,
+        "korean_relevance": 1
+      },
+      "roles_completed": [
+        "ai-primary-evidence-reporter",
+        "ai-evaluation-method-reviewer",
+        "ai-desk"
+      ],
+      "material_change": true,
+      "reproducibility": "R2",
+      "conflict_of_interest": {
+        "disclosed": true,
+        "notes_ko": [
+          "PyTorch 팀이 자기 release와 기능을 설명한다.",
+          "성능 수치는 이 fixture의 중심 결론으로 사용하지 않는다."
+        ]
+      },
+      "rights_and_security": {
+        "risks_resolved": true,
+        "notes_ko": "공개 문서와 공개 tag만 사용하며 모델·데이터·credential을 내려받지 않는다."
+      },
+      "evidence_ceiling": "E2",
+      "claim_ledger": [
+        {
+          "claim_id": "AI-PT2-C1",
+          "is_core": false,
+          "claim_kind": "release-fact",
+          "statement_ko": "PyTorch 팀은 2023년 3월 15일 PyTorch 2.0 release를 발표했다.",
+          "evidence": [
+            {
+              "source_url": "https://docs.pytorch.org/blog/pytorch-2.0-release/",
+              "source_type": "P1",
+              "evidence_grade": "E1",
+              "origin": "open-source-project",
+              "version": "PyTorch 2.0; 2023-03-15",
+              "direct_or_derived": "direct",
+              "limitations_ko": ["release 작성 주체의 자기 발표다."],
+              "conflicts_ko": ["PyTorch 팀의 자체 release 문서"]
+            }
+          ],
+          "comparison": {
+            "required": false,
+            "conditions": {}
+          }
+        },
+        {
+          "claim_id": "AI-PT2-C2",
+          "is_core": true,
+          "claim_kind": "technical-change",
+          "statement_ko": "PyTorch 2.0은 기존 eager 실행에 선택적으로 적용하는 torch.compile beta API와 공개 구현을 제공했다.",
+          "evidence": [
+            {
+              "source_url": "https://docs.pytorch.org/get-started/pytorch-2.0/",
+              "source_type": "P1",
+              "evidence_grade": "E2",
+              "origin": "open-source-project",
+              "version": "PyTorch 2.0 documentation",
+              "direct_or_derived": "direct",
+              "limitations_ko": ["beta API이며 backend·hardware별 지원 범위가 다르다."],
+              "conflicts_ko": ["PyTorch 팀이 자체 기능을 설명한다."]
+            },
+            {
+              "source_url": "https://github.com/pytorch/pytorch/tree/v2.0.0",
+              "source_type": "P2",
+              "evidence_grade": "E2",
+              "origin": "open-source-project",
+              "version": "git tag v2.0.0",
+              "direct_or_derived": "direct",
+              "limitations_ko": ["코드 공개는 모든 모델·hardware에서의 성능 향상을 보증하지 않는다."],
+              "conflicts_ko": ["PyTorch 프로젝트의 자체 code artifact"]
+            }
+          ],
+          "comparison": {
+            "required": false,
+            "conditions": {}
+          }
+        }
+      ],
+      "expected": {
+        "decision": "publish-candidate",
+        "score_total": 9,
+        "reason_codes": [],
+        "failed_gates": []
+      }
+    },
+    {
+      "case_id": "ai-nvidia-blackwell-25x-announcement",
+      "edition": "ai",
+      "historical_cutoff": "2024-03-18",
+      "subject_ko": "NVIDIA Blackwell 발표 시점의 최대 25배 비용·에너지 절감 주장",
+      "candidate_scores": {
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 0,
+        "decision_usefulness": 2,
+        "korean_relevance": 1
+      },
+      "roles_completed": [
+        "ai-primary-evidence-reporter",
+        "ai-evaluation-method-reviewer",
+        "ai-desk"
+      ],
+      "material_change": true,
+      "reproducibility": "R0",
+      "conflict_of_interest": {
+        "disclosed": true,
+        "notes_ko": [
+          "NVIDIA가 자기 hardware와 software stack의 비교 수치를 발표했다.",
+          "파트너 인용은 독립 benchmark가 아니다."
+        ]
+      },
+      "rights_and_security": {
+        "risks_resolved": true,
+        "notes_ko": "공개 press release만 검토하고 엠바고·NDA·비공개 benchmark를 사용하지 않는다."
+      },
+      "evidence_ceiling": "E1",
+      "claim_ledger": [
+        {
+          "claim_id": "AI-BW-C1",
+          "is_core": false,
+          "claim_kind": "release-fact",
+          "statement_ko": "NVIDIA는 2024년 3월 18일 Blackwell platform을 발표했다.",
+          "evidence": [
+            {
+              "source_url": "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing",
+              "source_type": "P0",
+              "evidence_grade": "E1",
+              "origin": "vendor",
+              "version": "NVIDIA press release; 2024-03-18",
+              "direct_or_derived": "direct",
+              "limitations_ko": ["발표 행위만 확인하며 기술 검증 문서는 아니다."],
+              "conflicts_ko": ["NVIDIA의 자체 제품 발표"]
+            }
+          ],
+          "comparison": {
+            "required": false,
+            "conditions": {}
+          }
+        },
+        {
+          "claim_id": "AI-BW-C2",
+          "is_core": true,
+          "claim_kind": "comparative-performance",
+          "statement_ko": "NVIDIA는 GB200 NVL72가 같은 수의 H100 대비 LLM inference에서 비용과 에너지를 최대 25배 줄인다고 주장했다.",
+          "evidence": [
+            {
+              "source_url": "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing",
+              "source_type": "P0",
+              "evidence_grade": "E1",
+              "origin": "vendor",
+              "version": "NVIDIA press release; 2024-03-18",
+              "direct_or_derived": "direct",
+              "limitations_ko": [
+                "최대값이며 model·input/output 길이·precision·batch·전력 측정법이 원문에 충분히 공개되지 않았다.",
+                "출시 전 vendor 비교이고 독립 재현이 없다."
+              ],
+              "conflicts_ko": ["NVIDIA가 비교 대상 제품도 판매한다."]
+            }
+          ],
+          "comparison": {
+            "required": true,
+            "conditions": {
+              "baseline": true,
+              "workload": false,
+              "hardware": true,
+              "quality_equivalence": false,
+              "statistical_scope": false
+            }
+          }
+        }
+      ],
+      "expected": {
+        "decision": "no-publish",
+        "score_total": 7,
+        "reason_codes": [
+          "PRIMARY_SOURCE_MISSING",
+          "VENDOR_CLAIM_ONLY",
+          "COMPARISON_NOT_VALID",
+          "REPRODUCIBILITY_TOO_LOW"
+        ],
+        "failed_gates": [
+          "primary-source",
+          "core-evidence-ceiling",
+          "vendor-claim-only",
+          "comparison-conditions",
+          "reproducibility"
+        ]
+      }
+    },
+    {
+      "case_id": "eda-ieee-1800-2023-active-standard",
+      "edition": "eda",
+      "historical_cutoff": "2024-02-28",
+      "subject_ko": "IEEE 1800-2023 SystemVerilog active standard 발행",
+      "candidate_scores": {
+        "flow_impact": 2,
+        "novelty": 2,
+        "condition_disclosure": 2,
+        "reproducibility": 1,
+        "practice_usefulness": 2
+      },
+      "roles_completed": [
+        "eda-primary-evidence-reporter",
+        "eda-repro-license-reviewer",
+        "eda-desk"
+      ],
+      "material_change": true,
+      "reproducibility": "R1",
+      "conflict_of_interest": {
+        "disclosed": true,
+        "notes_ko": [
+          "IEEE 1800 working group에는 EDA 공급사와 사용자 조직이 참여할 수 있다.",
+          "vendor 구현 준수 여부는 이 fixture가 판정하지 않는다."
+        ]
+      },
+      "rights_and_security": {
+        "risks_resolved": true,
+        "notes_ko": "공개 IEEE landing과 IEEE Get Program 안내만 사용하고 표준 전문을 재배포하지 않는다."
+      },
+      "evidence_ceiling": "E2",
+      "claim_ledger": [
+        {
+          "claim_id": "EDA-SV-C1",
+          "is_core": false,
+          "claim_kind": "release-fact",
+          "statement_ko": "IEEE 1800-2023은 2024년 2월 28일 발행된 active standard다.",
+          "evidence": [
+            {
+              "source_url": "https://standards.ieee.org/ieee/1800/7743/",
+              "source_type": "P1",
+              "evidence_grade": "E1",
+              "origin": "standards-body",
+              "version": "IEEE 1800-2023",
+              "direct_or_derived": "direct",
+              "limitations_ko": ["ANSI approval 날짜는 후속 상태이며 발행 날짜와 구분한다."],
+              "conflicts_ko": ["표준 기구의 자기 상태 기록"]
+            }
+          ],
+          "comparison": {
+            "required": false,
+            "conditions": {}
+          }
+        },
+        {
+          "claim_id": "EDA-SV-C2",
+          "is_core": true,
+          "claim_kind": "standard-change",
+          "statement_ko": "IEEE 1800-2023은 1800-2017을 대체하며 SystemVerilog 문법·의미와 verification 기능 범위를 정의하는 새 revision이다.",
+          "evidence": [
+            {
+              "source_url": "https://standards.ieee.org/ieee/1800/7743/",
+              "source_type": "P1",
+              "evidence_grade": "E2",
+              "origin": "standards-body",
+              "version": "IEEE 1800-2023; supersedes IEEE 1800-2017",
+              "direct_or_derived": "direct",
+              "limitations_ko": [
+                "개별 clause 변화와 tool 지원 상태는 전문·vendor conformance 자료로 추가 확인해야 한다.",
+                "표준 발행이 즉시 모든 simulator 구현 지원을 뜻하지 않는다."
+              ],
+              "conflicts_ko": ["working group 구성원의 구현 이해관계 가능성"]
+            }
+          ],
+          "comparison": {
+            "required": false,
+            "conditions": {}
+          }
+        }
+      ],
+      "expected": {
+        "decision": "publish-candidate",
+        "score_total": 9,
+        "reason_codes": [],
+        "failed_gates": []
+      }
+    },
+    {
+      "case_id": "eda-synopsys-dsoai-customer-claims",
+      "edition": "eda",
+      "historical_cutoff": "2023-02-07",
+      "subject_ko": "Synopsys DSO.ai 100 tapeout와 3배 생산성·최대 25% 전력 절감 발표",
+      "candidate_scores": {
+        "flow_impact": 2,
+        "novelty": 2,
+        "condition_disclosure": 0,
+        "reproducibility": 0,
+        "practice_usefulness": 2
+      },
+      "roles_completed": [
+        "eda-primary-evidence-reporter",
+        "eda-repro-license-reviewer",
+        "eda-desk"
+      ],
+      "material_change": true,
+      "reproducibility": "R0",
+      "conflict_of_interest": {
+        "disclosed": true,
+        "notes_ko": [
+          "Synopsys가 자기 DSO.ai 고객 결과를 모아 발표했다.",
+          "고객 인용은 공개 benchmark·독립 재현을 대신하지 않는다."
+        ]
+      },
+      "rights_and_security": {
+        "risks_resolved": true,
+        "notes_ko": "공개 press release만 사용하고 고객 design·PDK·NDA 자료를 추정하지 않는다."
+      },
+      "evidence_ceiling": "E1",
+      "claim_ledger": [
+        {
+          "claim_id": "EDA-DSO-C1",
+          "is_core": false,
+          "claim_kind": "release-fact",
+          "statement_ko": "Synopsys는 2023년 2월 7일 DSO.ai를 사용한 첫 100건의 상용 tapeout 도달을 발표했다.",
+          "evidence": [
+            {
+              "source_url": "https://news.synopsys.com/2023-02-07-AI-designed-Chips-Reach-Scale-with-First-100-Commercial-Tape-outs-Using-Synopsys-Technology",
+              "source_type": "P0",
+              "evidence_grade": "E1",
+              "origin": "vendor",
+              "version": "Synopsys press release; 2023-02-07",
+              "direct_or_derived": "direct",
+              "limitations_ko": ["tapeout 집계 정의와 전체 project 목록은 공개되지 않았다."],
+              "conflicts_ko": ["Synopsys의 자체 제품 발표"]
+            }
+          ],
+          "comparison": {
+            "required": false,
+            "conditions": {}
+          }
+        },
+        {
+          "claim_id": "EDA-DSO-C2",
+          "is_core": true,
+          "claim_kind": "comparative-performance",
+          "statement_ko": "Synopsys는 고객 결과가 3배 넘는 생산성 향상과 최대 25% 낮은 총전력을 보였다고 주장했다.",
+          "evidence": [
+            {
+              "source_url": "https://news.synopsys.com/2023-02-07-AI-designed-Chips-Reach-Scale-with-First-100-Commercial-Tape-outs-Using-Synopsys-Technology",
+              "source_type": "P0",
+              "evidence_grade": "E1",
+              "origin": "vendor",
+              "version": "Synopsys press release; 2023-02-07",
+              "direct_or_derived": "direct",
+              "limitations_ko": [
+                "design, node, library, baseline tool version, constraint와 분포가 같은 공개 표에 없다.",
+                "생산성·전력 수치가 서로 같은 design과 조건에서 나온 것인지 확인할 수 없다."
+              ],
+              "conflicts_ko": ["Synopsys와 인용 고객이 도구 도입 성과를 홍보한다."]
+            }
+          ],
+          "comparison": {
+            "required": true,
+            "conditions": {
+              "baseline": false,
+              "workload": false,
+              "hardware": false,
+              "quality_equivalence": false,
+              "statistical_scope": false
+            }
+          }
+        }
+      ],
+      "expected": {
+        "decision": "no-publish",
+        "score_total": 6,
+        "reason_codes": [
+          "PRIMARY_SOURCE_MISSING",
+          "VENDOR_CLAIM_ONLY",
+          "COMPARISON_NOT_VALID",
+          "REPRODUCIBILITY_TOO_LOW"
+        ],
+        "failed_gates": [
+          "selection-score",
+          "primary-source",
+          "core-evidence-ceiling",
+          "vendor-claim-only",
+          "comparison-conditions",
+          "reproducibility"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "id": "eda",
+  "profile_class": "technical",
+  "inherits": ["technical-common"],
+  "editorial": {
+    "charter": {
+      "path": "docs/08-ai-eda-editorial-profiles.md",
+      "heading": "### 6.1 EDA판 강령과 주제 선정"
+    },
+    "roles": {
+      "path": "docs/08-ai-eda-editorial-profiles.md",
+      "heading": "### 6.2 EDA판 역할"
+    },
+    "sources": {
+      "path": "docs/08-ai-eda-editorial-profiles.md",
+      "heading": "### 6.3 EDA판 source/evidence 적용과 추가 출고 게이트"
+    },
+    "evidence_rubric": {
+      "path": "docs/08-ai-eda-editorial-profiles.md",
+      "heading": "## 3. source/evidence rubric"
+    },
+    "selection_rules": {
+      "path": "docs/08-ai-eda-editorial-profiles.md",
+      "heading": "### 6.1 EDA판 강령과 주제 선정"
+    },
+    "release_gates": {
+      "common": {
+        "path": "docs/08-ai-eda-editorial-profiles.md",
+        "heading": "### 4.1 모든 기술판이 통과할 게이트"
+      },
+      "edition": {
+        "path": "docs/08-ai-eda-editorial-profiles.md",
+        "heading": "### 6.3 EDA판 source/evidence 적용과 추가 출고 게이트"
+      }
+    },
+    "article_template": {
+      "path": "docs/08-ai-eda-editorial-profiles.md",
+      "heading": "### 4.2 심층 기사 형식"
+    },
+    "no_publish_template": {
+      "path": "docs/08-ai-eda-editorial-profiles.md",
+      "heading": "### 4.3 미발행 결정 형식"
+    }
+  },
+  "publication": {
+    "allowed_decisions": ["publish-candidate", "no-publish"],
+    "publish_requires_human_approval": true,
+    "automatic_publish": false
+  },
+  "forbidden_fallbacks": [
+    "newsroom/charter.md",
+    "newsroom/personas",
+    "newsroom/sources.md",
+    "editions/ai"
+  ]
+}

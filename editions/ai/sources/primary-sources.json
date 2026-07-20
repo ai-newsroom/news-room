@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "registry_id": "ai-primary-source-startpoints",
+  "as_of": "2026-07-20",
+  "purpose_ko": "AI 모델·평가·학습 및 서빙 시스템의 변화를 발견한 뒤 주장과 가장 가까운 원문으로 이동하기 위한 공개 seed 목록이다.",
+  "relation_policy_ko": "primary는 소유 주체가 자기 모델·코드·측정을 설명하는 원문, secondary는 다른 주체의 주장을 독립적으로 시험하는 출발점이다. 실제 등급은 claim마다 다시 판정한다.",
+  "selection_policy": {
+    "technical_scope_only": true,
+    "imports_current_affairs_sources": false,
+    "popularity_used": false,
+    "rule_ko": "시사판의 매체 성향·커뮤니티 균형이나 인기 순위를 가져오지 않고 버전, 방법, artifact, 평가 조건으로 이어지는 기술 원문만 선정한다."
+  },
+  "forbidden_imports": ["newsroom/sources.md"],
+  "sources": [
+    {
+      "id": "openai-deployment-safety-hub",
+      "name": "OpenAI Deployment Safety Hub",
+      "source_type": "model-system-card",
+      "canonical_url": "https://deploymentsafety.openai.com/",
+      "owner": {
+        "name": "OpenAI",
+        "kind": "vendor"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "OpenAI가 배포한 모델의 system card와 자체 평가에는 P1 원문이지만 경쟁 모델 대비 우월성의 독립 근거는 아니다.",
+      "evidence_codes": ["P1"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "공개 웹 문서다. 문서가 갱신될 수 있으므로 모델명, 게시일과 문서 버전을 함께 저장한다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "모델 개발·판매 주체가 자체 안전성과 성능을 평가한다."
+      },
+      "collection_notes_ko": "개별 card의 PDF 또는 고정 URL, 게시일, 갱신 이력을 보존한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "anthropic-system-cards",
+      "name": "Anthropic Model System Cards",
+      "source_type": "model-system-card",
+      "canonical_url": "https://www.anthropic.com/system-cards",
+      "owner": {
+        "name": "Anthropic",
+        "kind": "vendor"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "Claude 모델의 능력·안전 평가와 배포 판단을 설명하는 P1 원문이며 자체 benchmark 해석은 독립 검증이 필요하다.",
+      "evidence_codes": ["P1"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "목록과 연결된 문서는 공개되어 있다. PDF 교체 가능성 때문에 파일 해시와 확인일을 남긴다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "Claude 개발사가 자기 모델의 평가 범위와 공개 항목을 선택한다."
+      },
+      "collection_notes_ko": "모델명과 card 날짜를 key로 삼고 수정본은 이전 파일을 덮지 않는다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "google-deepmind-model-cards",
+      "name": "Google DeepMind Model Cards",
+      "source_type": "model-system-card",
+      "canonical_url": "https://deepmind.google/models/model-cards/",
+      "owner": {
+        "name": "Google DeepMind",
+        "kind": "vendor"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "Gemini·Gemma 등 Google 모델의 설계, 평가, 용도와 한계에 관한 P1 원문이며 모델 간 비교는 별도 I1이 필요하다.",
+      "evidence_codes": ["P1"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "공개 목록이지만 card가 사후 갱신될 수 있어 published/updated 날짜와 PDF를 함께 기록한다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "모델 소유자가 자체 평가 방법과 공개할 한계를 결정한다."
+      },
+      "collection_notes_ko": "목록의 변경일과 개별 card URL을 분리해 수집한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "arxiv-cs-lg-recent",
+      "name": "arXiv Machine Learning recent submissions",
+      "source_type": "paper-index",
+      "canonical_url": "https://arxiv.org/list/cs.LG/recent",
+      "owner": {
+        "name": "Cornell University arXiv",
+        "kind": "academic-host"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "연결된 논문은 저자가 자기 방법과 실험을 보고하는 P1이지만 목록 등재는 동료심사나 정확성 보증이 아니다.",
+      "evidence_codes": ["P1"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "초록과 PDF는 공개다. API·feed 이용 시 arXiv 이용 정책과 호출 간격을 지켜야 한다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "플랫폼보다 각 논문 저자·후원자의 이해관계를 claim 단위로 확인해야 한다."
+      },
+      "collection_notes_ko": "버전 번호와 submission history를 보존하고 초록만으로 성능 주장을 채택하지 않는다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "huggingface-transformers-repository",
+      "name": "Hugging Face Transformers repository",
+      "source_type": "code-repository",
+      "canonical_url": "https://github.com/huggingface/transformers",
+      "owner": {
+        "name": "Hugging Face",
+        "kind": "vendor"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "공개 구현, issue, test와 commit은 P2 artifact지만 특정 모델의 원 저자 주장이나 전체 서빙 성능을 대신하지 않는다.",
+      "evidence_codes": ["P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "웹과 git clone은 공개다. GitHub API의 비인증 rate limit과 저장소 라이선스를 준수한다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "Hugging Face는 라이브러리와 연계 서비스의 운영 주체다."
+      },
+      "collection_notes_ko": "branch가 아니라 tag 또는 commit SHA와 관련 test·issue URL을 기록한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "pytorch-release-notes",
+      "name": "PyTorch releases",
+      "source_type": "release-notes",
+      "canonical_url": "https://github.com/pytorch/pytorch/releases",
+      "owner": {
+        "name": "PyTorch Foundation",
+        "kind": "open-source-project"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "PyTorch 버전, 호환성, 회귀와 수정 내역에는 P1이며 공개 tag·source는 P2로 검사할 수 있다.",
+      "evidence_codes": ["P1", "P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "공개 GitHub release다. asset 다운로드와 API 호출에는 GitHub rate limit이 적용될 수 있다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "프로젝트 유지관리자가 자기 릴리스의 개선점과 알려진 문제를 선별해 기술한다."
+      },
+      "collection_notes_ko": "release tag, commit SHA, tracked regression과 wheel build matrix를 함께 저장한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "vllm-release-notes",
+      "name": "vLLM releases",
+      "source_type": "release-notes",
+      "canonical_url": "https://github.com/vllm-project/vllm/releases",
+      "owner": {
+        "name": "vLLM Project",
+        "kind": "open-source-project"
+      },
+      "default_relation": "primary",
+      "relation_notes_ko": "서빙 엔진 기능·지원 모델·호환성 변경의 P1 원문이며 tag와 코드는 P2로 확인할 수 있다.",
+      "evidence_codes": ["P1", "P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "no",
+        "constraints_ko": "공개 GitHub release다. 실제 성능 재현에는 GPU, 모델 접근권한과 별도 비용이 필요할 수 있다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "프로젝트 유지관리자가 자기 기능과 benchmark 결과를 설명한다."
+      },
+      "collection_notes_ko": "지원 모델 표, backend, breaking change를 exact tag와 연결한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "stanford-helm",
+      "name": "Stanford HELM",
+      "source_type": "independent-evaluation",
+      "canonical_url": "https://crfm.stanford.edu/helm/latest/",
+      "owner": {
+        "name": "Stanford Center for Research on Foundation Models",
+        "kind": "academic-host"
+      },
+      "default_relation": "secondary",
+      "relation_notes_ko": "HELM이 직접 실행한 측정에는 P1 성격이 있고 모델 벤더 주장과의 관계에서는 조건 일치 시 I1 후보로 쓴다.",
+      "evidence_codes": ["I1", "P2"],
+      "access": {
+        "status": "public",
+        "requires_authentication": false,
+        "requires_payment": "sometimes",
+        "constraints_ko": "결과와 코드 일부는 공개지만 재실행에는 모델 API 권한, 데이터 라이선스와 호출 비용이 들 수 있다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "CRFM이 benchmark 설계와 집계 방법을 소유하며 연구비·모델 접근 제공 관계를 별도 확인한다."
+      },
+      "collection_notes_ko": "scenario, metric, model version, run date와 adapter 조건이 같은지 확인한다.",
+      "last_verified_at": "2026-07-20"
+    },
+    {
+      "id": "mlcommons-benchmarks",
+      "name": "MLCommons benchmarks",
+      "source_type": "independent-evaluation",
+      "canonical_url": "https://mlcommons.org/benchmarks/",
+      "owner": {
+        "name": "MLCommons",
+        "kind": "benchmark-consortium"
+      },
+      "default_relation": "secondary",
+      "relation_notes_ko": "공개 rules와 제출 결과는 benchmark 운영의 P1/P2이며 특정 벤더의 포괄적 우월성 주장에는 조건이 맞을 때만 I1이다.",
+      "evidence_codes": ["I1", "P1", "P2"],
+      "access": {
+        "status": "partial",
+        "requires_authentication": false,
+        "requires_payment": "sometimes",
+        "constraints_ko": "공개 결과는 열람 가능하지만 일부 working group 참여·제출에는 회원 자격 또는 non-member agreement가 필요하다."
+      },
+      "conflict_of_interest": {
+        "possible": true,
+        "notes_ko": "산업·학계 회원이 rules와 workload를 정하고 참가자가 자기 시스템을 최적화해 제출한다."
+      },
+      "collection_notes_ko": "suite와 version, division, rules, quality target, submission log와 변경 이력을 함께 수집한다.",
+      "last_verified_at": "2026-07-20"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "current-affairs",
+  "profile_class": "current-affairs",
+  "paths": {
+    "workspace": "newsroom",
+    "prompt": "prompts/daily-newsroom-single-claude.md",
+    "workflow": "workflows/daily-newsroom-single-claude.json",
+    "legacy_entrypoint": "scripts/publish-daily.sh",
+    "editorial_profile": "newsroom/charter.md",
+    "sources": "newsroom/sources.md",
+    "content_root": "content",
+    "run_root": "newsroom/artifacts",
+    "decision_root": "newsroom/artifacts"
+  },
+  "schedule": {
+    "enabled": true,
+    "managed_by": "external-cron",
+    "timezone": "Asia/Seoul",
+    "cadence": "daily; exact cron expression is managed outside this repository"
+  },
+  "release": {
+    "mode": "legacy-wrapper",
+    "requires_human_approval": false,
+    "git_write": true,
+    "deploy": false
+  },
+  "site": {
+    "route_prefix": "/news",
+    "include_in_legacy_home": true
+  },
+  "forbidden_fallbacks": []
+}

@@ -17,9 +17,15 @@ case "$NEWS_ROOM_BACKEND" in
 esac
 
 if [[ "$NEWS_ROOM_BACKEND" == "claude" ]]; then
+  NEWS_ROOM_RUNTIME="${NEWS_ROOM_RUNTIME:-rust-pty-attached}"
   export COCO_AGENTS_CLAUDE_EFFORT="${COCO_AGENTS_CLAUDE_EFFORT:-medium}"
   export COCO_AGENTS_CLAUDE_ALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_ALLOWED_TOOLS:-WebSearch,WebFetch,Task,Read,Write,Edit,MultiEdit}"
+else
+  NEWS_ROOM_RUNTIME="${NEWS_ROOM_RUNTIME:-codex-exec}"
 fi
+NEWS_ROOM_MODEL="${NEWS_ROOM_MODEL:-not-pinned-by-publish-daily.sh}"
+NEWS_ROOM_EFFORT="${COCO_AGENTS_CLAUDE_EFFORT:-backend-default}"
+NEWS_ROOM_ALLOWED_TOOLS="${COCO_AGENTS_CLAUDE_ALLOWED_TOOLS:-backend-default}"
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DATE="$(TZ="$NEWS_ROOM_TZ" date +%F)"
@@ -42,6 +48,18 @@ if [[ ! -f "$PROMPT_FILE" ]]; then
   exit 2
 fi
 
+PROMPT_DIR="$(cd "$(dirname "$PROMPT_FILE")" && pwd -P)"
+PROMPT_BASENAME="$(basename "$PROMPT_FILE")"
+PROMPT_REAL="$PROMPT_DIR/$PROMPT_BASENAME"
+case "$PROMPT_REAL" in
+  "$REPO"/prompts/*.md) ;;
+  *)
+    echo "Refusing to publish prompt outside repo prompts/: $PROMPT_REAL" >&2
+    exit 2
+    ;;
+esac
+PROMPT="$(cat "$PROMPT_FILE")"
+
 # 작업대 초기화
 rm -rf "$ART"
 mkdir -p "$ART"
@@ -50,10 +68,9 @@ echo "$DATE" > "$ART/today.txt"
 # 편집국 소집: Claude는 PTY 세션, Codex는 batch-friendly exec 경로를 사용한다.
 case "$NEWS_ROOM_BACKEND" in
   claude)
-    PROMPT="$(cat "$PROMPT_FILE")"
     coco-agents session run \
       --backend claude \
-      --runtime rust-pty-attached \
+      --runtime "$NEWS_ROOM_RUNTIME" \
       --workspace "$WS" \
       --name "news-room-claude-$DATE" \
       --startup-timeout "$SESSION_STARTUP_TIMEOUT_SECS" \
@@ -74,7 +91,34 @@ SESSION_EXIT=$?
 echo "$SESSION_EXIT" > "$ART/session-exit-code.txt"
 echo "$NEWS_ROOM_BACKEND" > "$ART/session-backend.txt"
 
+public_value() {
+  case "$1" in
+    *[!A-Za-z0-9._,=:/+-]*)
+      printf 'redacted-unsafe-value'
+      ;;
+    *)
+      printf '%s' "$1"
+      ;;
+  esac
+}
+
 mkdir -p "$OUT"
+printf '%s\n' "$PROMPT" > "$OUT/prompt.md"
+[[ -s "$ART/article-draft.md" ]] && cp "$ART/article-draft.md" "$OUT/draft.md"
+cat > "$OUT/run.md" <<EOF
+# 발행 실행 정보 — $DATE
+
+- backend: $(public_value "$NEWS_ROOM_BACKEND")
+- runtime: $(public_value "$NEWS_ROOM_RUNTIME")
+- model: $(public_value "$NEWS_ROOM_MODEL")
+- effort: $(public_value "$NEWS_ROOM_EFFORT")
+- allowed_tools: $(public_value "$NEWS_ROOM_ALLOWED_TOOLS")
+- prompt_file: prompts/$PROMPT_BASENAME
+- session_exit_code: $SESSION_EXIT
+
+model 값이 "not-pinned-by-publish-daily.sh"이면, 이 발행 스크립트가 모델명을 직접 고정하지 않았다는 뜻이다.
+실제 모델 선택은 실행 백엔드의 기본 설정이나 상위 환경에 의해 결정될 수 있다.
+EOF
 
 if [[ -s "$ART/article.md" ]]; then
   cp "$ART/article.md" "$OUT/article.md"

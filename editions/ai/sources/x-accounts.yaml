@@ -1,0 +1,474 @@
+schema_version: 1
+edition: ai
+registry_id: ai-frontier-x-accounts
+contract: x-signal-contract.md
+as_of: "2026-07-19"
+
+selection_policy:
+  purpose_ko: >-
+    X 계정을 기사 근거 목록이 아니라 원 논문·코드·시스템 카드·릴리스 노트를
+    발견하기 위한 사람 중심 신호망으로 운영한다.
+  follower_count_used: false
+  follower_count_rule_ko: >-
+    팔로워 수, 인증 배지, 노출·좋아요·재게시 수는 선정·유지·근거 등급의 입력으로
+    저장하거나 사용하지 않는다.
+  required_expertise:
+    - model-research
+    - evaluation
+    - safety
+    - agents
+    - reasoning-systems
+    - open-source
+    - data
+    - training-infrastructure
+    - serving-infrastructure
+  balance_rules:
+    - active seed의 어느 한 조직도 25%를 초과하지 않는다.
+    - 산업 연구·엔지니어, 학계, 박사과정·초기 경력, 오픈 연구·독립 실무 역할을 모두 포함한다.
+    - 전문 태그 하나의 유명 인물만이 아니라 상호 검증 가능한 서로 다른 역할을 포함한다.
+    - 경영자·브랜드 대표라는 사실만으로 선정하지 않으며 공개 기술 산출물 경로를 요구한다.
+  status_semantics:
+    active: 신원과 handle이 확인되었으며 수집 대상으로 허용된다. 최근 게시를 뜻하지 않는다.
+    quiet: 180일 이상 원문 기술 게시를 관찰하지 못했으나 기록은 보존한다.
+    verification_due: last_verified_at이 90일을 넘겨 재검증 전 신규 수집을 보류한다.
+    renamed: handle 변경이 확인되어 이전 URL과 새 URL을 함께 보존한다.
+    departed: 소속 이탈은 확인했으나 새 역할을 아직 확인하지 못했다.
+    deleted: 계정 삭제 또는 영구 접근 불가가 확인되었다.
+    excluded: 명시적 사유로 수집 대상에서 제외되었으며 기록은 삭제하지 않는다.
+  activity_semantics:
+    recent: 최근 180일 이내 원문 기술 게시를 직접 확인했다.
+    quiet: 최근 180일 이내 원문 기술 게시를 확인하지 못했다.
+    unverified: X 접근 제한 등으로 게시 주기를 판정하지 않았다.
+
+seed_balance:
+  account_count: 13
+  primary_organization_counts:
+    Anthropic: 3
+    OpenAI: 2
+    Carnegie Mellon University: 1
+    EleutherAI: 1
+    Microsoft AI: 1
+    NVIDIA: 1
+    Parlance Labs: 1
+    Princeton University: 1
+    Stanford University: 1
+    Princeton University and Together AI: 1
+  role_group_counts:
+    industry-research-ic: 3
+    industry-research-lead: 3
+    academic-faculty: 3
+    doctoral-or-early-career-researcher: 2
+    open-research-lead: 1
+    independent-applied-practitioner: 1
+  note_ko: >-
+    한 계정이 여러 전문 영역을 잇기 때문에 태그 수는 계정 수와 일치하지 않는다.
+    조직 비중의 최대값은 Anthropic 3/13(23.1%)이다.
+
+accounts:
+  - id: noam-brown
+    real_name: Noam Brown
+    x_handle: "@polynoamial"
+    x_url: https://x.com/polynoamial
+    current_affiliation:
+      organization: OpenAI
+      role: Member of Technical Staff
+      confidence: high
+      evidence:
+        - url: https://forum.openai.com/public/events/virtual-thinking-machines-how-reasoning-ai-is-rewriting-the-future-of-work-science-and-strategy-9roxabbops
+          source: OpenAI Forum speaker profile
+          confirms: [real_name, organization, role, expertise]
+    x_identity_evidence:
+      - url: https://x.com/polynoamial/status/1870196476908834893
+        source: direct X post
+        confirms: [x_handle]
+    role_group: industry-research-ic
+    expertise_tags: [model-research, reasoning-systems, multi-agent, reinforcement-learning]
+    selection_reason_ko: >-
+      추론 모델과 다중 에이전트 연구의 원 연구자 관점을 포착하고 논문·시스템 카드로
+      역추적할 수 있다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      OpenAI 직원으로 자사 모델·출시 맥락에 가까우며, 성능·일반화 주장은 독립 평가로
+      별도 확인한다.
+
+  - id: shunyu-yao
+    real_name: Shunyu Yao
+    x_handle: "@ShunyuYao12"
+    x_url: https://x.com/ShunyuYao12
+    current_affiliation:
+      organization: OpenAI
+      role: Researcher, agents
+      confidence: medium
+      evidence:
+        - url: https://ysymyth.github.io/
+          source: researcher-maintained profile
+          confirms: [real_name, organization, role, expertise]
+    x_identity_evidence:
+      - url: https://x.com/ShunyuYao12
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: industry-research-ic
+    expertise_tags: [agents, agent-evaluation, reasoning-systems, model-research]
+    selection_reason_ko: >-
+      ReAct 계열을 포함한 에이전트 연구와 실제 에이전트 평가 신호를 원 논문·코드로
+      연결할 수 있다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      OpenAI 연구자이며 에이전트 중심 문제 설정에 무게가 실릴 수 있다. 개인 페이지의
+      갱신 시점이 불명확해 다음 주기에는 고용주 근거를 함께 재확인한다.
+
+  - id: amanda-askell
+    real_name: Amanda Askell
+    x_handle: "@AmandaAskell"
+    x_url: https://x.com/AmandaAskell
+    current_affiliation:
+      organization: Anthropic
+      role: Character work lead
+      confidence: high
+      evidence:
+        - url: https://www.anthropic.com/constitution
+          source: Anthropic official publication
+          confirms: [real_name, organization, role, expertise]
+    x_identity_evidence:
+      - url: https://x.com/AmandaAskell
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: industry-research-lead
+    expertise_tags: [safety, alignment, model-behavior, post-training]
+    selection_reason_ko: >-
+      모델 행동·성격·규범 설계에 관한 1차 설명을 헌법 문서와 연구 산출물로 연결한다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      Anthropic의 모델 행동 설계 책임자로 자사 안전 접근을 설명하는 위치다. 규범적
+      주장과 실증적 안전 성능을 분리한다.
+
+  - id: jan-leike
+    real_name: Jan Leike
+    x_handle: "@janleike"
+    x_url: https://x.com/janleike
+    current_affiliation:
+      organization: Anthropic
+      role: Alignment Science team lead
+      confidence: high
+      evidence:
+        - url: https://jan.leike.name/
+          source: researcher-maintained profile
+          confirms: [real_name, organization, role, expertise, x_handle]
+    x_identity_evidence:
+      - url: https://x.com/janleike
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: industry-research-lead
+    expertise_tags: [safety, alignment, scalable-oversight, evaluation]
+    selection_reason_ko: >-
+      정렬 과학과 확장 가능한 감독 연구를 안전 평가·논문으로 추적할 수 있는 연구
+      책임자 신호다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      Anthropic 안전 조직의 문제 정의와 우선순위를 반영한다. 위험 전망은 타 연구기관과
+      실증 자료를 함께 비교한다.
+
+  - id: shayne-longpre
+    real_name: Shayne Longpre
+    x_handle: "@ShayneRedford"
+    x_url: https://x.com/ShayneRedford
+    current_affiliation:
+      organization: Anthropic
+      role: Member of Technical Staff; MIT PhD; Data Provenance Initiative founder
+      confidence: high
+      evidence:
+        - url: https://www.shaynelongpre.com/
+          source: researcher-maintained profile
+          confirms: [real_name, organization, role, expertise, x_handle]
+    x_identity_evidence:
+      - url: https://x.com/ShayneRedford
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: doctoral-or-early-career-researcher
+    expertise_tags: [data, data-provenance, evaluation, open-source, transparency]
+    selection_reason_ko: >-
+      학습 데이터의 출처·동의·라이선스와 독립 평가를 기술 연구 및 공개 데이터셋으로
+      연결하는 초기 경력 연구자 관점을 제공한다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      Anthropic 직원이면서 데이터 거버넌스·공익 평가 활동을 병행한다. 고용주 이해관계와
+      공개 연구·정책 주장을 각각 표기한다.
+
+  - id: percy-liang
+    real_name: Percy Liang
+    x_handle: "@percyliang"
+    x_url: https://x.com/percyliang
+    current_affiliation:
+      organization: Stanford University
+      role: Professor; Center for Research on Foundation Models director
+      confidence: high
+      evidence:
+        - url: https://profiles.stanford.edu/percy-liang
+          source: Stanford official profile
+          confirms: [real_name, organization, role, expertise]
+    x_identity_evidence:
+      - url: https://x.com/percyliang
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: academic-faculty
+    expertise_tags: [evaluation, benchmarking, reproducibility, open-source, foundation-models]
+    selection_reason_ko: >-
+      HELM·투명성 평가처럼 비교 가능한 평가 설계와 재현성 자료를 학술 원문으로
+      연결한다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      학술 평가·투명성 프레임에 강점이 있으나 CRFM 자체 벤치마크의 설계 선택도 검토
+      대상이다.
+
+  - id: sayash-kapoor
+    real_name: Sayash Kapoor
+    x_handle: "@sayashk"
+    x_url: https://x.com/sayashk
+    current_affiliation:
+      organization: Princeton University
+      role: Computer Science PhD candidate; Harvard Berkman Klein Center affiliate
+      confidence: high
+      evidence:
+        - url: https://cyber.harvard.edu/people/sayash-kapoor
+          source: Harvard Berkman Klein Center official profile
+          confirms: [real_name, organization, role, expertise, x_handle]
+    x_identity_evidence:
+      - url: https://x.com/sayashk
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: doctoral-or-early-career-researcher
+    expertise_tags: [evaluation, reliability, reproducibility, transparency, ai-risks]
+    selection_reason_ko: >-
+      과장된 AI 주장과 평가 오류를 재현성·독립 감사 관점에서 점검하는 초기 경력 연구
+      신호를 제공한다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      신뢰성·과장 비판에 초점이 있어 부정 결과를 더 많이 포착할 수 있다. 비판 대상의
+      원문 및 반론과 함께 검토한다.
+
+  - id: linxi-jim-fan
+    real_name: Linxi "Jim" Fan
+    x_handle: "@DrJimFan"
+    x_url: https://x.com/DrJimFan
+    current_affiliation:
+      organization: NVIDIA
+      role: Senior Research Scientist; Lead of AI Agents
+      confidence: high
+      evidence:
+        - url: https://jimfan.me/
+          source: researcher-maintained profile
+          confirms: [real_name, organization, role, expertise, x_handle]
+    x_identity_evidence:
+      - url: https://x.com/DrJimFan
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: industry-research-lead
+    expertise_tags: [agents, embodied-ai, multimodal, reinforcement-learning, model-research]
+    selection_reason_ko: >-
+      에이전트·로보틱스·멀티모달 연구를 논문과 공개 프로젝트로 연결해 텍스트 모델에
+      치우친 신호망을 보완한다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      NVIDIA 직원으로 가속 컴퓨팅과 자사 연구 생태계에 가까우며, 데모와 일반화된
+      에이전트 능력을 구분한다.
+
+  - id: stella-biderman
+    real_name: Stella Biderman
+    x_handle: "@BlancheMinerva"
+    x_url: https://x.com/BlancheMinerva
+    current_affiliation:
+      organization: EleutherAI
+      role: Executive Director
+      confidence: medium
+      evidence:
+        - url: https://orcid.org/0000-0001-8228-1042
+          source: researcher-maintained ORCID record
+          confirms: [real_name, organization]
+        - url: https://www.mozillafoundation.org/en/research/browse-authors/stella-biderman-1253/
+          source: Mozilla Foundation author profile
+          confirms: [real_name, organization, role, expertise]
+    x_identity_evidence:
+      - url: https://x.com/BlancheMinerva/status/1770802140459462833
+        source: direct X post
+        confirms: [x_handle]
+    role_group: open-research-lead
+    expertise_tags: [open-source, data, model-training, reproducibility, governance]
+    selection_reason_ko: >-
+      오픈 모델·학습 데이터·대규모 공개 연구의 운영 관점을 코드·데이터셋·논문으로
+      추적할 수 있다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      오픈 연구·오픈 모델의 효용을 중시한다. 현재 직함 근거가 자체 조직 페이지가
+      아니므로 다음 검증에서 공식 조직 근거를 우선 보강한다.
+
+  - id: luca-soldaini
+    real_name: Luca Soldaini
+    x_handle: "@soldni"
+    x_url: https://x.com/soldni
+    current_affiliation:
+      organization: Microsoft AI
+      role: Member of Technical Staff
+      confidence: high
+      evidence:
+        - url: https://soldaini.net/
+          source: researcher-maintained profile
+          confirms: [real_name, organization, role, expertise, x_handle]
+    x_identity_evidence:
+      - url: https://x.com/soldni
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: industry-research-ic
+    expertise_tags: [data, pre-training, post-training, open-source, model-research]
+    selection_reason_ko: >-
+      데이터 방법론과 사전·사후학습, OLMo를 포함한 오픈 모델 경험을 원 코드·데이터로
+      연결한다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      Microsoft AI 직원이며 과거 Ai2 오픈 모델 경험이 있다. 현 소속 제품 주장과 과거
+      오픈 연구 관점을 구별한다.
+
+  - id: tri-dao
+    real_name: Tri Dao
+    x_handle: "@tri_dao"
+    x_url: https://x.com/tri_dao
+    current_affiliation:
+      organization: Princeton University and Together AI
+      role: Assistant Professor; co-founder and Chief Scientist
+      confidence: high
+      evidence:
+        - url: https://tridao.me/
+          source: researcher-maintained profile
+          confirms: [real_name, organization, role, expertise, x_handle]
+        - url: https://www.cs.princeton.edu/people/profile/td8762
+          source: Princeton official profile
+          confirms: [real_name, organization, role]
+    x_identity_evidence:
+      - url: https://x.com/tri_dao
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: academic-faculty
+    expertise_tags: [training-infrastructure, serving-infrastructure, efficient-attention, model-architecture]
+    selection_reason_ko: >-
+      FlashAttention 등 학습·추론 효율 연구를 구현·벤치마크·하드웨어 조건까지 따라갈
+      수 있는 시스템 연구 신호다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      교수와 Together AI 공동창업자·수석과학자 역할을 겸한다. 자사 서빙 벤치마크는
+      하드웨어·커널·비용 조건과 독립 재현을 확인한다.
+
+  - id: tim-dettmers
+    real_name: Tim Dettmers
+    x_handle: "@Tim_Dettmers"
+    x_url: https://x.com/Tim_Dettmers
+    current_affiliation:
+      organization: Carnegie Mellon University
+      role: Assistant Professor
+      confidence: high
+      evidence:
+        - url: https://www.csd.cmu.edu/people/faculty/tim-dettmers
+          source: Carnegie Mellon University official profile
+          confirms: [real_name, organization, role, expertise]
+    x_identity_evidence:
+      - url: https://x.com/Tim_Dettmers
+        source: direct X profile
+        confirms: [x_handle]
+    role_group: academic-faculty
+    expertise_tags: [training-infrastructure, quantization, efficiency, open-source, agents]
+    selection_reason_ko: >-
+      양자화·메모리 효율·접근 가능한 학습 및 오픈 에이전트 연구를 구현과 측정 조건까지
+      추적한다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: unverified
+    bias_notes_ko: >-
+      저비용·오픈 접근성과 학술 재현을 중시한다. 특정 효율 기법의 장점은 지원
+      하드웨어와 정확도 손실 조건을 함께 검증한다.
+
+  - id: hamel-husain
+    real_name: Hamel Husain
+    x_handle: "@HamelHusain"
+    x_url: https://x.com/HamelHusain
+    current_affiliation:
+      organization: Parlance Labs
+      role: Machine learning engineer and educator
+      confidence: high
+      evidence:
+        - url: https://parlance-labs.com/team.html
+          source: Parlance Labs official team page
+          confirms: [real_name, organization, role, expertise]
+        - url: https://pages.hamel.dev/profile/links
+          source: practitioner-maintained profile
+          confirms: [real_name, expertise, x_handle]
+    x_identity_evidence:
+      - url: https://x.com/HamelHusain/status/2027886222161678845
+        source: direct X post
+        confirms: [x_handle]
+    role_group: independent-applied-practitioner
+    expertise_tags: [evaluation, agents, fine-tuning, serving-infrastructure, production-systems]
+    selection_reason_ko: >-
+      연구 발표만으로 드러나지 않는 프로덕션 평가·관측·에이전트 실패를 공개 도구와
+      재현 가능한 사례로 연결한다.
+    added_at: "2026-07-19"
+    last_verified_at: "2026-07-19"
+    status: active
+    activity_state: recent
+    bias_notes_ko: >-
+      컨설팅·교육 실무 관점이며 고객 사례는 공개 범위가 제한될 수 있다. 일화는 일반
+      성능 근거로 승격하지 않는다.
+
+change_log:
+  - changed_at: "2026-07-19"
+    action: seed-created
+    account_ids:
+      - noam-brown
+      - shunyu-yao
+      - amanda-askell
+      - jan-leike
+      - shayne-longpre
+      - percy-liang
+      - sayash-kapoor
+      - linxi-jim-fan
+      - stella-biderman
+      - luca-soldaini
+      - tri-dao
+      - tim-dettmers
+      - hamel-husain
+    reason_ko: >-
+      필수 전문 영역과 역할군을 덮되 단일 조직이 25%를 넘지 않는 초기 seed를 만들었다.
+      팔로워 수는 조회·저장·선정에 사용하지 않았다.
+    evidence_ko: 각 계정의 current_affiliation.evidence와 x_identity_evidence 참조
+    reviewer: newsroom-maintainer

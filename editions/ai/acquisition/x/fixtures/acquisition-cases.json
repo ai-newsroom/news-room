@@ -1,0 +1,396 @@
+{
+  "schema_version": 1,
+  "pricing_snapshot": {
+    "checked_at": "2026-07-20",
+    "post_read_unit_cost_usd": "0.005",
+    "source": "https://docs.x.com/x-api/getting-started/pricing"
+  },
+  "route_requests": [
+    {
+      "name": "timeline-since-and-page",
+      "config": {
+        "route": "user_timeline",
+        "scope_key": "42",
+        "max_results": 10
+      },
+      "checkpoint": {
+        "route": "user_timeline",
+        "scope_key": "42",
+        "since_id": "100",
+        "pagination_token": "page-2",
+        "high_watermark_id": "106",
+        "complete": false
+      },
+      "expected_path": "/2/users/42/tweets",
+      "expected_params": {
+        "since_id": "100",
+        "pagination_token": "page-2",
+        "exclude": "retweets",
+        "max_results": "10"
+      }
+    },
+    {
+      "name": "recent-search-since-and-page",
+      "config": {
+        "route": "recent_search",
+        "scope_key": "watchlist-shard-1",
+        "query": "(from:alpha OR from:beta) -is:retweet",
+        "max_results": 20
+      },
+      "checkpoint": {
+        "route": "recent_search",
+        "scope_key": "watchlist-shard-1",
+        "since_id": "500",
+        "pagination_token": "search-page-2",
+        "high_watermark_id": "550",
+        "complete": false
+      },
+      "expected_path": "/2/tweets/search/recent",
+      "expected_params": {
+        "query": "(from:alpha OR from:beta) -is:retweet",
+        "since_id": "500",
+        "next_token": "search-page-2",
+        "max_results": "20"
+      }
+    },
+    {
+      "name": "filtered-stream-connection",
+      "config": {
+        "route": "filtered_stream",
+        "scope_key": "ai-watchlist-rules",
+        "max_results": 100
+      },
+      "checkpoint": {
+        "route": "filtered_stream",
+        "scope_key": "ai-watchlist-rules",
+        "since_id": null,
+        "pagination_token": null,
+        "high_watermark_id": null,
+        "complete": false
+      },
+      "expected_path": "/2/tweets/search/stream",
+      "expected_params": {}
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "pagination-since-edit-and-dedupe",
+      "config": {
+        "route": "user_timeline",
+        "scope_key": "42",
+        "max_results": 10
+      },
+      "checkpoint": {
+        "route": "user_timeline",
+        "scope_key": "42",
+        "since_id": "100",
+        "pagination_token": null,
+        "high_watermark_id": null,
+        "complete": true
+      },
+      "budget": {
+        "max_calls_per_run": 5,
+        "max_post_reads_per_run": 20,
+        "monthly_post_read_limit": 1000,
+        "monthly_cost_limit_usd": "5.00",
+        "post_read_unit_cost_usd": "0.005"
+      },
+      "known_records": [
+        {
+          "canonical_post_id": "104",
+          "current_post_id": "104",
+          "version_ids": ["104"],
+          "content": {
+            "id": "104",
+            "text": "before edit"
+          },
+          "deleted": false
+        }
+      ],
+      "expected_post_ids": ["106", "105", "103"],
+      "pages": [
+        {
+          "request_token": null,
+          "observed_at": "2026-07-20T10:02:00Z",
+          "response": {
+            "data": [
+              {
+                "id": "106",
+                "text": "after edit",
+                "author_id": "42",
+                "created_at": "2026-07-20T10:00:00Z",
+                "edit_history_tweet_ids": ["104", "106"]
+              },
+              {
+                "id": "105",
+                "text": "new post",
+                "author_id": "42",
+                "created_at": "2026-07-20T10:01:00Z",
+                "edit_history_tweet_ids": ["105"]
+              }
+            ],
+            "meta": {
+              "newest_id": "106",
+              "oldest_id": "105",
+              "next_token": "page-2"
+            }
+          }
+        },
+        {
+          "request_token": "page-2",
+          "observed_at": "2026-07-20T10:04:00Z",
+          "response": {
+            "data": [
+              {
+                "id": "105",
+                "text": "new post",
+                "author_id": "42",
+                "created_at": "2026-07-20T10:01:00Z",
+                "edit_history_tweet_ids": ["105"]
+              },
+              {
+                "id": "103",
+                "text": "older page result",
+                "author_id": "42",
+                "created_at": "2026-07-20T09:58:00Z",
+                "edit_history_tweet_ids": ["103"]
+              }
+            ],
+            "meta": {
+              "newest_id": "105",
+              "oldest_id": "103"
+            }
+          }
+        }
+      ],
+      "expected_result": {
+        "event_kinds": ["edit", "upsert", "upsert"],
+        "event_current_ids": ["106", "105", "103"],
+        "since_id": "106",
+        "pagination_token": null,
+        "complete": true,
+        "calls": 2,
+        "post_reads_gross": 4,
+        "estimated_cost_usd": "0.020",
+        "duplicate_reads": 1,
+        "edits": 1,
+        "deletes": 0,
+        "lead_time_seconds": [120, 60, 360],
+        "recall": 1.0,
+        "circuit_breaker": null
+      }
+    },
+    {
+      "name": "recent-search-dedupes-timeline-record",
+      "config": {
+        "route": "recent_search",
+        "scope_key": "watchlist-shard-1",
+        "query": "(from:alpha OR from:beta) -is:retweet",
+        "max_results": 20
+      },
+      "checkpoint": {
+        "route": "recent_search",
+        "scope_key": "watchlist-shard-1",
+        "since_id": "100",
+        "pagination_token": null,
+        "high_watermark_id": null,
+        "complete": true
+      },
+      "budget": {
+        "max_calls_per_run": 2,
+        "max_post_reads_per_run": 20,
+        "monthly_post_read_limit": 1000,
+        "monthly_cost_limit_usd": "5.00",
+        "post_read_unit_cost_usd": "0.005"
+      },
+      "known_records": [
+        {
+          "canonical_post_id": "105",
+          "current_post_id": "105",
+          "version_ids": ["105"],
+          "content": {
+            "id": "105",
+            "text": "already collected by timeline"
+          },
+          "deleted": false
+        }
+      ],
+      "expected_post_ids": ["105", "107"],
+      "pages": [
+        {
+          "request_token": null,
+          "observed_at": "2026-07-20T10:06:00Z",
+          "response": {
+            "data": [
+              {
+                "id": "107",
+                "text": "search-only recovery",
+                "author_id": "84",
+                "created_at": "2026-07-20T10:03:00Z",
+                "edit_history_tweet_ids": ["107"]
+              },
+              {
+                "id": "105",
+                "text": "already collected by timeline",
+                "author_id": "42",
+                "created_at": "2026-07-20T10:01:00Z",
+                "edit_history_tweet_ids": ["105"]
+              }
+            ],
+            "meta": {
+              "newest_id": "107",
+              "oldest_id": "105"
+            }
+          }
+        }
+      ],
+      "expected_result": {
+        "event_current_ids": ["107"],
+        "since_id": "107",
+        "calls": 1,
+        "post_reads_gross": 2,
+        "estimated_cost_usd": "0.010",
+        "duplicate_reads": 1,
+        "recall": 1.0
+      }
+    },
+    {
+      "name": "delete-edit-chain-tombstone",
+      "config": {
+        "route": "filtered_stream_webhook",
+        "scope_key": "mock-webhook",
+        "max_results": 100
+      },
+      "checkpoint": {
+        "route": "filtered_stream_webhook",
+        "scope_key": "mock-webhook",
+        "since_id": null,
+        "pagination_token": null,
+        "high_watermark_id": null,
+        "complete": false
+      },
+      "budget": {
+        "max_calls_per_run": 1,
+        "max_post_reads_per_run": 10,
+        "monthly_post_read_limit": 100,
+        "monthly_cost_limit_usd": "1.00",
+        "post_read_unit_cost_usd": "0.005"
+      },
+      "known_records": [
+        {
+          "canonical_post_id": "201",
+          "current_post_id": "202",
+          "version_ids": ["201", "202"],
+          "content": {
+            "id": "202",
+            "text": "edited content that must be removed"
+          },
+          "deleted": false
+        }
+      ],
+      "pages": [
+        {
+          "observed_at": "2026-07-20T11:00:00Z",
+          "response": {
+            "data": [],
+            "compliance_events": [
+              {
+                "type": "delete",
+                "post_id": "201"
+              },
+              {
+                "type": "delete",
+                "post_id": "202"
+              }
+            ]
+          }
+        }
+      ],
+      "expected_result": {
+        "event_kinds": ["delete"],
+        "canonical_post_id": "201",
+        "record_deleted": true,
+        "record_content": null,
+        "deletes": 1,
+        "post_reads_gross": 0,
+        "estimated_cost_usd": "0.000"
+      }
+    },
+    {
+      "name": "call-budget-stops-mid-pagination",
+      "config": {
+        "route": "user_timeline",
+        "scope_key": "77",
+        "max_results": 10
+      },
+      "checkpoint": {
+        "route": "user_timeline",
+        "scope_key": "77",
+        "since_id": "300",
+        "pagination_token": null,
+        "high_watermark_id": null,
+        "complete": true
+      },
+      "budget": {
+        "max_calls_per_run": 1,
+        "max_post_reads_per_run": 20,
+        "monthly_post_read_limit": 100,
+        "monthly_cost_limit_usd": "1.00",
+        "post_read_unit_cost_usd": "0.005"
+      },
+      "pages": [
+        {
+          "request_token": null,
+          "observed_at": "2026-07-20T12:01:00Z",
+          "response": {
+            "data": [
+              {
+                "id": "303",
+                "text": "first page a",
+                "author_id": "77",
+                "created_at": "2026-07-20T12:00:00Z",
+                "edit_history_tweet_ids": ["303"]
+              },
+              {
+                "id": "302",
+                "text": "first page b",
+                "author_id": "77",
+                "created_at": "2026-07-20T11:59:00Z",
+                "edit_history_tweet_ids": ["302"]
+              }
+            ],
+            "meta": {
+              "next_token": "budget-page-2"
+            }
+          }
+        },
+        {
+          "request_token": "budget-page-2",
+          "observed_at": "2026-07-20T12:02:00Z",
+          "response": {
+            "data": [
+              {
+                "id": "301",
+                "text": "must not be processed",
+                "author_id": "77",
+                "created_at": "2026-07-20T11:58:00Z",
+                "edit_history_tweet_ids": ["301"]
+              }
+            ],
+            "meta": {}
+          }
+        }
+      ],
+      "expected_result": {
+        "event_current_ids": ["303", "302"],
+        "since_id": "300",
+        "pagination_token": "budget-page-2",
+        "complete": false,
+        "calls": 1,
+        "post_reads_gross": 2,
+        "estimated_cost_usd": "0.010",
+        "circuit_breaker": "max_calls_per_run"
+      }
+    }
+  ]
+}

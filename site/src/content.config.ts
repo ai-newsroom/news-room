@@ -10,6 +10,7 @@ const articles = defineCollection({
     guest: z.string().optional(),
     summary: z.string().optional(),
     holiday: z.boolean().optional(),
+    publication: z.enum(['published', 'experiment']).default('published'),
   }),
 });
 

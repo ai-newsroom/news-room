@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "ai",
+  "profile_class": "technical",
+  "paths": {
+    "workspace": "editions/ai",
+    "editorial_profile": "editions/ai/edition.json",
+    "sources": "editions/ai/sources/primary-sources.json",
+    "content_root": "content/ai",
+    "run_root": "var/runs/ai",
+    "decision_root": "decisions/ai"
+  },
+  "schedule": {
+    "enabled": false,
+    "managed_by": "none",
+    "timezone": "Asia/Seoul",
+    "cadence": "on-demand"
+  },
+  "release": {
+    "mode": "prepare-only",
+    "requires_human_approval": true,
+    "git_write": false,
+    "deploy": false
+  },
+  "site": {
+    "route_prefix": "/ai",
+    "include_in_legacy_home": false
+  },
+  "forbidden_fallbacks": [
+    "newsroom/charter.md",
+    "newsroom/personas",
+    "newsroom/sources.md",
+    "editions/eda"
+  ]
+}

@@ -55,7 +55,9 @@ coco-agents의 워크플로 정의(JSON)는 에이전트별 `backend`(claude/cod
   읽고 그 인물이 되라고 지시한다 (coco-agents의 기존 워크플로들이 쓰는 패턴).
   → 프롬프트 공개(강령 6)가 레포 공개로 저절로 구현되는 구조 유지.
 - **실행은 coco-agents가 담당**: 홈서버 cron이
-  `coco-agents workflow run workflows/daily-newsroom.json --workspace <news-room>` 호출.
+  `scripts/publish-daily.sh`를 실행하고, 래퍼는 `coco-agents session run`에
+  `prompts/daily-newsroom-single-claude.md`의 내용을 전달한다. 이 프롬프트가
+  `workflows/daily-newsroom.json`을 읽고 절차를 수행한다.
 - 객원 전문가(매일 다른 페르소나)는 등대의 주제 선정 스텝이 `artifacts/guest.md`로 정의를
   출력하고, 객원 스텝의 role이 그 파일을 읽어 그 인물이 되는 방식으로 동적 처리.
 
@@ -68,8 +70,10 @@ steps:
   3. 토론 1라운드: 느티나무·물길·등에·청진기·씨줄·저울·객원
      (task ×7, needs 2, 병렬)  → artifacts/round1-*.md       (각자의 시각)
   4. 토론 2라운드: 같은 멤버들 (needs 3 전체)                  (서로의 글을 읽고 반박·보완)
-  5. 등대-기사작성(fanin, needs 4) → content/YYYY-MM-DD/{article,debate,guest}.md
-  6. git commit & push (래퍼 스크립트)
+  5. 등대-기사작성(fanin, needs 4) → artifacts/article-draft.md
+  6. 퇴고                         → artifacts/article.md
+  7. 래퍼 조립                     → content/YYYY-MM-DD/{article,debate,guest,draft,prompt,run}.md
+  8. git commit & push (래퍼 스크립트)
 ```
 
 라운드 수(2라운드면 충분한가)는 구현하면서 실험으로 정한다.

@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "multi_channel_run": {
+    "input": {
+      "schema_version": 1,
+      "run_id": "fixture-run-001",
+      "edition": "ai",
+      "started_at": "2026-07-20T10:00:00Z",
+      "ended_at": "2026-07-20T10:01:00Z",
+      "channels": [
+        {
+          "channel_id": "x-frontier",
+          "channel_type": "x",
+          "configuration_id": "x-watch-v1",
+          "collection_status": "completed",
+          "execution_time_seconds": 12.5,
+          "direct_cost_usd": "0.04",
+          "candidates": [
+            {
+              "candidate_id": "x:101",
+              "canonical_candidate_id": "topic:alpha",
+              "source_published_at": "2026-07-20T09:55:00Z",
+              "discovered_at": "2026-07-20T10:00:00Z",
+              "duplicate_of": null,
+              "primary_evidence_promoted": true,
+              "editorial_disposition": "publish-candidate",
+              "false_positive": false,
+              "false_positive_reason": null
+            },
+            {
+              "candidate_id": "x:101-search",
+              "canonical_candidate_id": "topic:alpha",
+              "source_published_at": "2026-07-20T09:55:00Z",
+              "discovered_at": "2026-07-20T10:00:10Z",
+              "duplicate_of": "x:101",
+              "primary_evidence_promoted": false,
+              "editorial_disposition": "unreviewed",
+              "false_positive": null,
+              "false_positive_reason": null
+            },
+            {
+              "candidate_id": "x:102",
+              "canonical_candidate_id": "topic:beta",
+              "source_published_at": "2026-07-20T09:50:00Z",
+              "discovered_at": "2026-07-20T10:00:00Z",
+              "duplicate_of": null,
+              "primary_evidence_promoted": false,
+              "editorial_disposition": "no-publish",
+              "false_positive": true,
+              "false_positive_reason": "edition-topic-mismatch"
+            },
+            {
+              "candidate_id": "x:103",
+              "canonical_candidate_id": "topic:gamma",
+              "source_published_at": "2026-07-20T09:45:00Z",
+              "discovered_at": "2026-07-20T10:00:00Z",
+              "duplicate_of": null,
+              "primary_evidence_promoted": false,
+              "editorial_disposition": "no-publish",
+              "false_positive": false,
+              "false_positive_reason": null
+            }
+          ]
+        },
+        {
+          "channel_id": "vendor-blogs",
+          "channel_type": "official-blog",
+          "configuration_id": "vendor-blog-v1",
+          "collection_status": "completed",
+          "execution_time_seconds": 8,
+          "direct_cost_usd": "0",
+          "candidates": [
+            {
+              "candidate_id": "blog:201",
+              "canonical_candidate_id": "topic:delta",
+              "source_published_at": "2026-07-20T09:58:00Z",
+              "discovered_at": "2026-07-20T10:00:00Z",
+              "duplicate_of": null,
+              "primary_evidence_promoted": true,
+              "editorial_disposition": "no-publish",
+              "false_positive": false,
+              "false_positive_reason": null
+            },
+            {
+              "candidate_id": "blog:202",
+              "canonical_candidate_id": "topic:epsilon",
+              "source_published_at": "2026-07-20T09:57:00Z",
+              "discovered_at": "2026-07-20T10:00:00Z",
+              "duplicate_of": null,
+              "primary_evidence_promoted": false,
+              "editorial_disposition": "no-publish",
+              "false_positive": true,
+              "false_positive_reason": "marketing-only-no-material-change"
+            }
+          ]
+        },
+        {
+          "channel_id": "ml-paper-feed",
+          "channel_type": "paper-feed",
+          "configuration_id": "paper-feed-v1",
+          "collection_status": "completed",
+          "execution_time_seconds": 20,
+          "direct_cost_usd": "0",
+          "candidates": [
+            {
+              "candidate_id": "paper:301",
+              "canonical_candidate_id": "topic:zeta",
+              "source_published_at": "2026-07-20T09:00:00Z",
+              "discovered_at": "2026-07-20T10:00:00Z",
+              "duplicate_of": null,
+              "primary_evidence_promoted": true,
+              "editorial_disposition": "publish-candidate",
+              "false_positive": false,
+              "false_positive_reason": null
+            },
+            {
+              "candidate_id": "paper:302",
+              "canonical_candidate_id": "topic:eta",
+              "source_published_at": "2026-07-20T08:00:00Z",
+              "discovered_at": "2026-07-20T10:00:00Z",
+              "duplicate_of": null,
+              "primary_evidence_promoted": true,
+              "editorial_disposition": "no-publish",
+              "false_positive": false,
+              "false_positive_reason": null
+            }
+          ]
+        },
+        {
+          "channel_id": "repository-releases",
+          "channel_type": "repository-release",
+          "configuration_id": "repository-release-v1",
+          "collection_status": "completed",
+          "execution_time_seconds": 4,
+          "direct_cost_usd": "0.01",
+          "candidates": [
+            {
+              "candidate_id": "release:401",
+              "canonical_candidate_id": "topic:theta",
+              "source_published_at": "2026-07-20T09:59:00Z",
+              "discovered_at": "2026-07-20T10:00:00Z",
+              "duplicate_of": null,
+              "primary_evidence_promoted": true,
+              "editorial_disposition": "publish-candidate",
+              "false_positive": false,
+              "false_positive_reason": null
+            }
+          ]
+        },
+        {
+          "channel_id": "standards-watch",
+          "channel_type": "standards-conference",
+          "configuration_id": "standards-watch-v1",
+          "collection_status": "completed",
+          "execution_time_seconds": 1.5,
+          "direct_cost_usd": "0",
+          "candidates": []
+        }
+      ]
+    },
+    "expected": {
+      "run_candidate_count": 9,
+      "run_unique_candidate_count": 8,
+      "run_execution_time_seconds": 46,
+      "run_direct_cost_usd": "0.050000",
+      "channels": {
+        "x-frontier": {
+          "candidate_count": 4,
+          "unique_candidate_count": 3,
+          "duplicate_count": 1,
+          "duplicate_rate": 0.25,
+          "primary_evidence_promoted_count": 1,
+          "primary_evidence_promotion_rate": 0.333333,
+          "publish_candidate_contribution_count": 1,
+          "publish_candidate_contribution_rate": 0.333333,
+          "false_positive_count": 1,
+          "false_positive_reviewed_count": 3,
+          "false_positive_rate": 0.333333,
+          "discovery_latency_seconds": {
+            "count": 3,
+            "min": 300,
+            "median": 600,
+            "p95": 900,
+            "max": 900
+          },
+          "execution_time_seconds": 12.5,
+          "direct_cost_usd": "0.040000"
+        },
+        "vendor-blogs": {
+          "primary_evidence_promotion_rate": 0.5,
+          "publish_candidate_contribution_rate": 0.0,
+          "false_positive_rate": 0.5
+        },
+        "ml-paper-feed": {
+          "primary_evidence_promotion_rate": 1.0,
+          "publish_candidate_contribution_rate": 0.5,
+          "false_positive_rate": 0.0
+        },
+        "repository-releases": {
+          "primary_evidence_promotion_rate": 1.0,
+          "publish_candidate_contribution_rate": 1.0,
+          "false_positive_rate": 0.0
+        },
+        "standards-watch": {
+          "candidate_count": 0,
+          "duplicate_rate": null,
+          "primary_evidence_promotion_rate": null,
+          "publish_candidate_contribution_rate": null,
+          "false_positive_rate": null
+        }
+      }
+    }
+  },
+  "retrospective": {
+    "channel_id": "ml-paper-feed",
+    "offset_days": [0, 1, 2, 3, 4, 5, 6, 7, 8, 14],
+    "policy": {
+      "min_runs": 10,
+      "min_span_days": 14,
+      "min_primary_promotion_rate_improvement": 0.1,
+      "max_false_positive_rate_regression": 0.05,
+      "max_cost_per_unique_candidate_usd": "0.15",
+      "max_median_latency_regression_seconds": 300
+    },
+    "baseline": {
+      "window_id": "paper-baseline-window",
+      "configuration_id": "paper-baseline-v1",
+      "execution_time_seconds": 20,
+      "direct_cost_usd": "0.40",
+      "candidates": [
+        {"primary": true, "disposition": "publish-candidate", "false_positive": false, "latency_seconds": 300},
+        {"primary": false, "disposition": "no-publish", "false_positive": true, "reason": "topic-mismatch", "latency_seconds": 600},
+        {"primary": true, "disposition": "no-publish", "false_positive": false, "latency_seconds": 900},
+        {"primary": false, "disposition": "no-publish", "false_positive": false, "latency_seconds": 1200}
+      ]
+    },
+    "retain": {
+      "window_id": "paper-retain-window",
+      "configuration_id": "paper-query-v2",
+      "execution_time_seconds": 18,
+      "direct_cost_usd": "0.32",
+      "candidates": [
+        {"primary": true, "disposition": "publish-candidate", "false_positive": false, "latency_seconds": 240},
+        {"primary": true, "disposition": "no-publish", "false_positive": false, "latency_seconds": 480},
+        {"primary": true, "disposition": "no-publish", "false_positive": false, "latency_seconds": 720},
+        {"primary": false, "disposition": "no-publish", "false_positive": false, "latency_seconds": 960}
+      ]
+    },
+    "adjust": {
+      "window_id": "paper-adjust-window",
+      "configuration_id": "paper-query-v3",
+      "execution_time_seconds": 18,
+      "direct_cost_usd": "0.32",
+      "candidates": [
+        {"primary": true, "disposition": "publish-candidate", "false_positive": false, "latency_seconds": 240},
+        {"primary": false, "disposition": "no-publish", "false_positive": false, "latency_seconds": 480},
+        {"primary": true, "disposition": "no-publish", "false_positive": false, "latency_seconds": 720},
+        {"primary": false, "disposition": "no-publish", "false_positive": false, "latency_seconds": 960}
+      ]
+    },
+    "rollback": {
+      "window_id": "paper-rollback-window",
+      "configuration_id": "paper-query-v4",
+      "execution_time_seconds": 30,
+      "direct_cost_usd": "0.80",
+      "candidates": [
+        {"primary": true, "disposition": "publish-candidate", "false_positive": false, "latency_seconds": 900},
+        {"primary": true, "disposition": "no-publish", "false_positive": true, "reason": "topic-mismatch", "latency_seconds": 1200},
+        {"primary": true, "disposition": "no-publish", "false_positive": true, "reason": "marketing-only", "latency_seconds": 1500},
+        {"primary": false, "disposition": "no-publish", "false_positive": false, "latency_seconds": 1800}
+      ]
+    },
+    "next_experiment": {
+      "capability": "paper-feed-query-tuning",
+      "hypothesis": "주제 taxonomy를 좁히면 1차 근거 승격률을 유지하며 오탐을 줄일 수 있다.",
+      "scope": "AI paper feed 한 shard와 기존 source 목록만 변경한다.",
+      "success_measure": "최소 10 run과 14일을 모두 채운 뒤 baseline 대비 승격률·오탐률·지연·직접 비용을 비교한다.",
+      "rollback_plan": "해당 shard query만 baseline configuration으로 되돌리고 run 기록은 보존한다.",
+      "max_runs": 20,
+      "max_days": 21
+    }
+  }
+}

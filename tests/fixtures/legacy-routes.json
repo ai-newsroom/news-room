@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "inventory_role": "stage-0-operational-legacy-routes",
+  "baseline_through": "2026-06-16",
+  "site_base": "/news-room",
+  "routes": [
+    {
+      "content_id": "2026-06-11",
+      "source": "content/2026-06-11/article.md",
+      "route": "/news/2026-06-11/",
+      "home_href": "/news-room/news/2026-06-11/",
+      "title": "투표용지가 모자랐던 선거, 조사는 어디서 시작해야 하나"
+    },
+    {
+      "content_id": "2026-06-11-prep",
+      "source": "content/2026-06-11-prep/article.md",
+      "route": "/news/2026-06-11-prep/",
+      "home_href": "/news-room/news/2026-06-11-prep/",
+      "title": "창간 준비호 — 이 신문이 만들어진 방식에 대하여"
+    },
+    {
+      "content_id": "2026-06-12",
+      "source": "content/2026-06-12/article.md",
+      "route": "/news/2026-06-12/",
+      "home_href": "/news-room/news/2026-06-12/",
+      "title": "전직 대통령에게 처음 적용된 '일반이적죄' — 무인기 재판 1심, 법은 작전과 이적을 무엇으로 가르나"
+    },
+    {
+      "content_id": "2026-06-13",
+      "source": "content/2026-06-13/article.md",
+      "route": "/news/2026-06-13/",
+      "home_href": "/news-room/news/2026-06-13/",
+      "title": "봉쇄된 개표소 앞의 갈림길 — 확인된 부실과 입증되지 않은 '부정선거' 사이"
+    },
+    {
+      "content_id": "2026-06-14",
+      "source": "content/2026-06-14/article.md",
+      "route": "/news/2026-06-14/",
+      "home_href": "/news-room/news/2026-06-14/",
+      "title": "환율 1,540원과 명목 GDP 50년 최고: 같은 한 주 두 숫자 읽는 법"
+    },
+    {
+      "content_id": "2026-06-15",
+      "source": "content/2026-06-15/article.md",
+      "route": "/news/2026-06-15/",
+      "home_href": "/news-room/news/2026-06-15/",
+      "title": "스페이스X 공모주, 한국 0주·일본 7배 — 0과 7배 사이를 무엇으로 메울 것인가"
+    },
+    {
+      "content_id": "2026-06-16",
+      "source": "content/2026-06-16/article.md",
+      "route": "/news/2026-06-16/",
+      "home_href": "/news-room/news/2026-06-16/",
+      "title": "미·이란 종전 양해각서, 사흘 뒤 서명 — 호르무즈가 풀리면 우리 부엌까지 며칠 걸리나"
+    }
+  ]
+}

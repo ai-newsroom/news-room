@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "initial": {
+    "staged_files": {
+      "tracked modified.txt": "tracked baseline\n",
+      "src/tracked-staged.txt": "staged content\n"
+    },
+    "worktree_modifications": {
+      "tracked modified.txt": "tracked worktree change\n"
+    },
+    "untracked_files": {
+      "root untracked.txt": "root untracked\n",
+      "untracked dir/deeper/file one.txt": "nested untracked\n",
+      "untracked dir/deeper/more/file two.txt": "second nested untracked\n"
+    }
+  },
+  "expected_initial_paths": [
+    "root untracked.txt",
+    "src/tracked-staged.txt",
+    "tracked modified.txt",
+    "untracked dir/deeper/file one.txt",
+    "untracked dir/deeper/more/file two.txt"
+  ],
+  "allowed_new": {
+    "allowances": ["allowed new/"],
+    "files": {
+      "allowed new/nested/new file.txt": "allowed result\n"
+    }
+  },
+  "unexpected_new": {
+    "files": {
+      "surprise/new.txt": "not authorized\n"
+    }
+  },
+  "changed_preexisting": {
+    "path": "untracked dir/deeper/file one.txt",
+    "replacement": "mutated after pre-capture\n"
+  },
+  "missing_preexisting": {
+    "path": "root untracked.txt"
+  }
+}

@@ -1,0 +1,886 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "name": "missing-primary-source",
+      "signal": {
+        "signal_id": "x:1001",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-researcher",
+          "real_name": "Fixture Researcher",
+          "x_handle": "@fixture",
+          "affiliation_snapshot": "Example University",
+          "conflicts": ["없음"]
+        },
+        "post": {
+          "post_id": "1001",
+          "url": "https://x.com/fixture/status/1001",
+          "posted_at": "2026-07-20T09:00:00Z",
+          "text_excerpt": "Model A is 20% better."
+        },
+        "observed_at": "2026-07-20T09:05:00Z",
+        "edit_state": {
+          "canonical_post_id": "1001",
+          "current_post_id": "1001",
+          "version_ids": ["1001"],
+          "is_deleted": false,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T09:05:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1001",
+          "reply_to_post_id": null,
+          "quoted_post_id": null,
+          "thread_post_ids": ["1001"],
+          "completeness": "complete"
+        },
+        "outbound_links": [],
+        "source_evidence": [],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "performance",
+            "claim_text_ko": "Model A v1이 비교 모델보다 20% 높다.",
+            "material": true,
+            "subject_version": "Model-A-v1",
+            "claim_date": "2026-07-20",
+            "source_refs": []
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "signal-only",
+        "evidence_grade": "E0",
+        "reproducibility": "R0",
+        "editorial_disposition": "no-publish",
+        "reason_codes": ["PRIMARY_SOURCE_MISSING"]
+      }
+    },
+    {
+      "name": "official-announcement-confirmed",
+      "signal": {
+        "signal_id": "x:1002",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-release-lead",
+          "real_name": "Fixture Release Lead",
+          "x_handle": "@releaselead",
+          "affiliation_snapshot": "Example Lab",
+          "conflicts": ["Example Lab employee"]
+        },
+        "post": {
+          "post_id": "1002",
+          "url": "https://x.com/releaselead/status/1002",
+          "posted_at": "2026-07-20T09:10:00Z",
+          "text_excerpt": "We released Model B v2 today."
+        },
+        "observed_at": "2026-07-20T09:12:00Z",
+        "edit_state": {
+          "canonical_post_id": "1002",
+          "current_post_id": "1002",
+          "version_ids": ["1002"],
+          "is_deleted": false,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T09:12:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1002",
+          "reply_to_post_id": null,
+          "quoted_post_id": null,
+          "thread_post_ids": ["1002"],
+          "completeness": "complete"
+        },
+        "outbound_links": [
+          {
+            "link_id": "L1",
+            "original_url": "https://t.co/release-b",
+            "resolved_url": "https://example.org/releases/model-b-v2",
+            "artifact_kind": "release-note",
+            "status": "accessible",
+            "accessed_at": "2026-07-20",
+            "version": "Model-B-v2",
+            "published_at": "2026-07-20"
+          }
+        ],
+        "source_evidence": [
+          {
+            "source_id": "S1",
+            "url": "https://example.org/releases/model-b-v2",
+            "source_type": "P0",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Model-B-v2",
+            "published_at": "2026-07-20",
+            "conditions_complete": false,
+            "independent": false,
+            "reproduction_state": "R0",
+            "reproduction_log_url": null
+          }
+        ],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "announcement",
+            "claim_text_ko": "Example Lab이 Model B v2를 2026-07-20에 공개했다.",
+            "material": true,
+            "subject_version": "Model-B-v2",
+            "claim_date": "2026-07-20",
+            "source_refs": ["S1"]
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "announcement-confirmed",
+        "evidence_grade": "E1",
+        "reproducibility": "R0",
+        "editorial_disposition": "review-ready",
+        "reason_codes": []
+      }
+    },
+    {
+      "name": "paper-and-code-primary-linked",
+      "signal": {
+        "signal_id": "x:1003",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-systems-author",
+          "real_name": "Fixture Systems Author",
+          "x_handle": "@systemsauthor",
+          "affiliation_snapshot": "Example University",
+          "conflicts": ["없음"]
+        },
+        "post": {
+          "post_id": "1003",
+          "url": "https://x.com/systemsauthor/status/1003",
+          "posted_at": "2026-07-20T09:20:00Z",
+          "text_excerpt": "Paper and code for Runtime C v1."
+        },
+        "observed_at": "2026-07-20T09:22:00Z",
+        "edit_state": {
+          "canonical_post_id": "1003",
+          "current_post_id": "1003",
+          "version_ids": ["1003"],
+          "is_deleted": false,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T09:22:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1003",
+          "reply_to_post_id": "998",
+          "quoted_post_id": "997",
+          "thread_post_ids": ["998", "1003"],
+          "completeness": "complete"
+        },
+        "outbound_links": [
+          {
+            "link_id": "L1",
+            "original_url": "https://t.co/runtime-paper",
+            "resolved_url": "https://example.org/papers/runtime-c-v1",
+            "artifact_kind": "paper",
+            "status": "accessible",
+            "accessed_at": "2026-07-20",
+            "version": "Runtime-C-v1",
+            "published_at": "2026-07-20"
+          },
+          {
+            "link_id": "L2",
+            "original_url": "https://t.co/runtime-code",
+            "resolved_url": "https://example.org/code/runtime-c-v1",
+            "artifact_kind": "code",
+            "status": "accessible",
+            "accessed_at": "2026-07-20",
+            "version": "Runtime-C-v1",
+            "published_at": "2026-07-20"
+          }
+        ],
+        "source_evidence": [
+          {
+            "source_id": "S1",
+            "url": "https://example.org/papers/runtime-c-v1",
+            "source_type": "P1",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Runtime-C-v1",
+            "published_at": "2026-07-20",
+            "conditions_complete": true,
+            "independent": false,
+            "reproduction_state": "R1",
+            "reproduction_log_url": null
+          },
+          {
+            "source_id": "S2",
+            "url": "https://example.org/code/runtime-c-v1",
+            "source_type": "P2",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Runtime-C-v1",
+            "published_at": "2026-07-20",
+            "conditions_complete": true,
+            "independent": false,
+            "reproduction_state": "R2",
+            "reproduction_log_url": null
+          }
+        ],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "technical",
+            "claim_text_ko": "Runtime C v1은 공개된 방식으로 연산을 묶어 처리한다.",
+            "material": true,
+            "subject_version": "Runtime-C-v1",
+            "claim_date": "2026-07-20",
+            "source_refs": ["S1", "S2"]
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "primary-source-linked",
+        "evidence_grade": "E2",
+        "reproducibility": "R2",
+        "editorial_disposition": "review-ready",
+        "reason_codes": []
+      }
+    },
+    {
+      "name": "independent-reproduction-verified",
+      "signal": {
+        "signal_id": "x:1004",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-model-author",
+          "real_name": "Fixture Model Author",
+          "x_handle": "@modelauthor",
+          "affiliation_snapshot": "Example Vendor",
+          "conflicts": ["Example Vendor employee"]
+        },
+        "post": {
+          "post_id": "1004",
+          "url": "https://x.com/modelauthor/status/1004",
+          "posted_at": "2026-07-20T09:30:00Z",
+          "text_excerpt": "Model D v3 improves benchmark Q under the linked setup."
+        },
+        "observed_at": "2026-07-20T09:32:00Z",
+        "edit_state": {
+          "canonical_post_id": "1004",
+          "current_post_id": "1004",
+          "version_ids": ["1004"],
+          "is_deleted": false,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T09:32:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1004",
+          "reply_to_post_id": null,
+          "quoted_post_id": null,
+          "thread_post_ids": ["1004"],
+          "completeness": "complete"
+        },
+        "outbound_links": [
+          {
+            "link_id": "L1",
+            "original_url": "https://t.co/model-d-card",
+            "resolved_url": "https://example.org/cards/model-d-v3",
+            "artifact_kind": "system-card",
+            "status": "accessible",
+            "accessed_at": "2026-07-20",
+            "version": "Model-D-v3",
+            "published_at": "2026-07-20"
+          },
+          {
+            "link_id": "L2",
+            "original_url": "https://t.co/model-d-bench",
+            "resolved_url": "https://example.org/bench/model-d-v3",
+            "artifact_kind": "benchmark",
+            "status": "accessible",
+            "accessed_at": "2026-07-20",
+            "version": "Model-D-v3",
+            "published_at": "2026-07-20"
+          }
+        ],
+        "source_evidence": [
+          {
+            "source_id": "S1",
+            "url": "https://example.org/cards/model-d-v3",
+            "source_type": "P1",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Model-D-v3",
+            "published_at": "2026-07-20",
+            "conditions_complete": true,
+            "independent": false,
+            "reproduction_state": "R1",
+            "reproduction_log_url": null
+          },
+          {
+            "source_id": "S2",
+            "url": "https://example.org/bench/model-d-v3",
+            "source_type": "P2",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Model-D-v3",
+            "published_at": "2026-07-20",
+            "conditions_complete": true,
+            "independent": false,
+            "reproduction_state": "R2",
+            "reproduction_log_url": null
+          },
+          {
+            "source_id": "S3",
+            "url": "https://independent.example.org/model-d-v3-reproduction",
+            "source_type": "I1",
+            "discovered_via": "research",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Model-D-v3",
+            "published_at": "2026-07-22",
+            "conditions_complete": true,
+            "independent": true,
+            "reproduction_state": "R3",
+            "reproduction_log_url": "https://independent.example.org/model-d-v3-logs"
+          }
+        ],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "performance",
+            "claim_text_ko": "Model D v3은 공개 조건의 benchmark Q에서 baseline보다 높다.",
+            "material": true,
+            "subject_version": "Model-D-v3",
+            "claim_date": "2026-07-20",
+            "source_refs": ["S1", "S2", "S3"]
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "independently-verified",
+        "evidence_grade": "E4",
+        "reproducibility": "R3",
+        "editorial_disposition": "review-ready",
+        "reason_codes": []
+      }
+    },
+    {
+      "name": "deleted-post-rejected",
+      "signal": {
+        "signal_id": "x:1005",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-deleted",
+          "real_name": "Fixture Deleted Author",
+          "x_handle": "@deletedauthor",
+          "affiliation_snapshot": "Example Lab",
+          "conflicts": ["없음"]
+        },
+        "post": {
+          "post_id": "1005",
+          "url": "https://x.com/deletedauthor/status/1005",
+          "posted_at": "2026-07-20T09:40:00Z",
+          "text_excerpt": "This text must be purged."
+        },
+        "observed_at": "2026-07-20T09:41:00Z",
+        "edit_state": {
+          "canonical_post_id": "1005",
+          "current_post_id": "1005",
+          "version_ids": ["1005"],
+          "is_deleted": true,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T09:42:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1005",
+          "reply_to_post_id": null,
+          "quoted_post_id": null,
+          "thread_post_ids": ["1005"],
+          "completeness": "unknown"
+        },
+        "outbound_links": [],
+        "source_evidence": [],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "technical",
+            "claim_text_ko": "삭제된 글의 기술 주장이다.",
+            "material": true,
+            "subject_version": "Deleted-v1",
+            "claim_date": "2026-07-20",
+            "source_refs": []
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "rejected",
+        "evidence_grade": "E0",
+        "reproducibility": "R0",
+        "editorial_disposition": "no-publish",
+        "reason_codes": ["POST_DELETED"],
+        "retention_action": "tombstone-purge-content",
+        "text_excerpt": null
+      }
+    },
+    {
+      "name": "material-edit-not-reverified",
+      "signal": {
+        "signal_id": "x:1006",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-edited",
+          "real_name": "Fixture Edited Author",
+          "x_handle": "@editedauthor",
+          "affiliation_snapshot": "Example Lab",
+          "conflicts": ["없음"]
+        },
+        "post": {
+          "post_id": "1007",
+          "url": "https://x.com/editedauthor/status/1007",
+          "posted_at": "2026-07-20T09:45:00Z",
+          "text_excerpt": "Observed before a material edit."
+        },
+        "observed_at": "2026-07-20T09:46:00Z",
+        "edit_state": {
+          "canonical_post_id": "1006",
+          "current_post_id": "1007",
+          "version_ids": ["1006", "1007"],
+          "is_deleted": false,
+          "material_change": true,
+          "latest_version_verified_at": null
+        },
+        "thread_context": {
+          "conversation_id": "1006",
+          "reply_to_post_id": null,
+          "quoted_post_id": null,
+          "thread_post_ids": ["1006", "1007"],
+          "completeness": "partial"
+        },
+        "outbound_links": [],
+        "source_evidence": [],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "technical",
+            "claim_text_ko": "수정 전 글에서 추출한 기술 주장이다.",
+            "material": true,
+            "subject_version": "Edited-v1",
+            "claim_date": "2026-07-20",
+            "source_refs": []
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "rejected",
+        "evidence_grade": "E0",
+        "reproducibility": "R0",
+        "editorial_disposition": "no-publish",
+        "reason_codes": ["EDIT_NOT_REVERIFIED"],
+        "retention_action": "rehydrate-latest-version"
+      }
+    },
+    {
+      "name": "personal-opinion-signal-only",
+      "signal": {
+        "signal_id": "x:1008",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-opinion",
+          "real_name": "Fixture Opinion Author",
+          "x_handle": "@opinionauthor",
+          "affiliation_snapshot": "Independent",
+          "conflicts": ["없음"]
+        },
+        "post": {
+          "post_id": "1008",
+          "url": "https://x.com/opinionauthor/status/1008",
+          "posted_at": "2026-07-20T09:50:00Z",
+          "text_excerpt": "I think agents will replace every interface."
+        },
+        "observed_at": "2026-07-20T09:51:00Z",
+        "edit_state": {
+          "canonical_post_id": "1008",
+          "current_post_id": "1008",
+          "version_ids": ["1008"],
+          "is_deleted": false,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T09:51:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1008",
+          "reply_to_post_id": "990",
+          "quoted_post_id": null,
+          "thread_post_ids": ["990", "1008"],
+          "completeness": "partial"
+        },
+        "outbound_links": [],
+        "source_evidence": [],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "opinion",
+            "claim_text_ko": "작성자는 에이전트가 모든 인터페이스를 대체할 것이라고 전망했다.",
+            "material": true,
+            "subject_version": "agent-forecast",
+            "claim_date": "2026-07-20",
+            "source_refs": []
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "signal-only",
+        "evidence_grade": "E0",
+        "reproducibility": "R0",
+        "editorial_disposition": "no-publish",
+        "reason_codes": ["OPINION_ONLY"]
+      }
+    },
+    {
+      "name": "nda-implied-source-rejected",
+      "signal": {
+        "signal_id": "x:1009",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-nda",
+          "real_name": "Fixture NDA Author",
+          "x_handle": "@ndaauthor",
+          "affiliation_snapshot": "Example Vendor",
+          "conflicts": ["Example Vendor employee"]
+        },
+        "post": {
+          "post_id": "1009",
+          "url": "https://x.com/ndaauthor/status/1009",
+          "posted_at": "2026-07-20T10:00:00Z",
+          "text_excerpt": "Private briefing suggests a result I cannot share."
+        },
+        "observed_at": "2026-07-20T10:01:00Z",
+        "edit_state": {
+          "canonical_post_id": "1009",
+          "current_post_id": "1009",
+          "version_ids": ["1009"],
+          "is_deleted": false,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T10:01:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1009",
+          "reply_to_post_id": null,
+          "quoted_post_id": null,
+          "thread_post_ids": ["1009"],
+          "completeness": "complete"
+        },
+        "outbound_links": [
+          {
+            "link_id": "L1",
+            "original_url": "https://t.co/private-briefing",
+            "resolved_url": "https://restricted.example.org/briefing",
+            "artifact_kind": "official-doc",
+            "status": "restricted",
+            "accessed_at": "2026-07-20",
+            "version": "Private-v1",
+            "published_at": null
+          }
+        ],
+        "source_evidence": [
+          {
+            "source_id": "S1",
+            "url": "https://restricted.example.org/briefing",
+            "source_type": "P1",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": false,
+            "version": "Private-v1",
+            "published_at": null,
+            "conditions_complete": false,
+            "independent": false,
+            "reproduction_state": "R0",
+            "reproduction_log_url": null
+          }
+        ],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "performance",
+            "claim_text_ko": "비공개 briefing의 성능 주장이다.",
+            "material": true,
+            "subject_version": "Private-v1",
+            "claim_date": "2026-07-20",
+            "source_refs": ["S1"]
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": true,
+          "notes": ["비공개 briefing과 공유 제한을 암시한다."]
+        }
+      },
+      "expected": {
+        "promotion_status": "rejected",
+        "evidence_grade": "E0",
+        "reproducibility": "R0",
+        "editorial_disposition": "no-publish",
+        "reason_codes": ["SECURITY_OR_LICENSE_RISK"],
+        "retention_action": "discard-restricted-material"
+      }
+    },
+    {
+      "name": "conflicted-performance-awaits-independent-source",
+      "signal": {
+        "signal_id": "x:1010",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-vendor-engineer",
+          "real_name": "Fixture Vendor Engineer",
+          "x_handle": "@vendorengineer",
+          "affiliation_snapshot": "Example Vendor",
+          "conflicts": ["Example Vendor employee", "benchmark co-author"]
+        },
+        "post": {
+          "post_id": "1010",
+          "url": "https://x.com/vendorengineer/status/1010",
+          "posted_at": "2026-07-20T10:10:00Z",
+          "text_excerpt": "Our Engine E v4 leads benchmark Z under the linked setup."
+        },
+        "observed_at": "2026-07-20T10:11:00Z",
+        "edit_state": {
+          "canonical_post_id": "1010",
+          "current_post_id": "1010",
+          "version_ids": ["1010"],
+          "is_deleted": false,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T10:11:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1010",
+          "reply_to_post_id": null,
+          "quoted_post_id": "900",
+          "thread_post_ids": ["1010"],
+          "completeness": "complete"
+        },
+        "outbound_links": [
+          {
+            "link_id": "L1",
+            "original_url": "https://t.co/engine-e-report",
+            "resolved_url": "https://example.org/reports/engine-e-v4",
+            "artifact_kind": "system-card",
+            "status": "accessible",
+            "accessed_at": "2026-07-20",
+            "version": "Engine-E-v4",
+            "published_at": "2026-07-20"
+          },
+          {
+            "link_id": "L2",
+            "original_url": "https://t.co/engine-e-bench",
+            "resolved_url": "https://example.org/bench/engine-e-v4",
+            "artifact_kind": "benchmark",
+            "status": "accessible",
+            "accessed_at": "2026-07-20",
+            "version": "Engine-E-v4",
+            "published_at": "2026-07-20"
+          }
+        ],
+        "source_evidence": [
+          {
+            "source_id": "S1",
+            "url": "https://example.org/reports/engine-e-v4",
+            "source_type": "P1",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Engine-E-v4",
+            "published_at": "2026-07-20",
+            "conditions_complete": true,
+            "independent": false,
+            "reproduction_state": "R1",
+            "reproduction_log_url": null
+          },
+          {
+            "source_id": "S2",
+            "url": "https://example.org/bench/engine-e-v4",
+            "source_type": "P2",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Engine-E-v4",
+            "published_at": "2026-07-20",
+            "conditions_complete": true,
+            "independent": false,
+            "reproduction_state": "R2",
+            "reproduction_log_url": null
+          }
+        ],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "performance",
+            "claim_text_ko": "Engine E v4는 공개 조건의 benchmark Z에서 baseline보다 높다.",
+            "material": true,
+            "subject_version": "Engine-E-v4",
+            "claim_date": "2026-07-20",
+            "source_refs": ["S1", "S2"]
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "primary-source-linked",
+        "evidence_grade": "E2",
+        "reproducibility": "R2",
+        "editorial_disposition": "no-publish",
+        "reason_codes": ["CONFLICT_UNRESOLVED"]
+      }
+    },
+    {
+      "name": "independent-source-contradicts-claim",
+      "signal": {
+        "signal_id": "x:1011",
+        "edition": "ai",
+        "author": {
+          "registry_account_id": "fixture-contradicted",
+          "real_name": "Fixture Contradicted Author",
+          "x_handle": "@contradicted",
+          "affiliation_snapshot": "Example Vendor",
+          "conflicts": ["Example Vendor employee"]
+        },
+        "post": {
+          "post_id": "1011",
+          "url": "https://x.com/contradicted/status/1011",
+          "posted_at": "2026-07-20T10:20:00Z",
+          "text_excerpt": "Model F v1 always lowers latency."
+        },
+        "observed_at": "2026-07-20T10:21:00Z",
+        "edit_state": {
+          "canonical_post_id": "1011",
+          "current_post_id": "1011",
+          "version_ids": ["1011"],
+          "is_deleted": false,
+          "material_change": false,
+          "latest_version_verified_at": "2026-07-20T10:21:00Z"
+        },
+        "thread_context": {
+          "conversation_id": "1011",
+          "reply_to_post_id": null,
+          "quoted_post_id": null,
+          "thread_post_ids": ["1011"],
+          "completeness": "complete"
+        },
+        "outbound_links": [
+          {
+            "link_id": "L1",
+            "original_url": "https://t.co/model-f-report",
+            "resolved_url": "https://example.org/reports/model-f-v1",
+            "artifact_kind": "paper",
+            "status": "accessible",
+            "accessed_at": "2026-07-20",
+            "version": "Model-F-v1",
+            "published_at": "2026-07-20"
+          }
+        ],
+        "source_evidence": [
+          {
+            "source_id": "S1",
+            "url": "https://example.org/reports/model-f-v1",
+            "source_type": "P1",
+            "discovered_via": "outbound",
+            "relation": "supports",
+            "accessible": true,
+            "public": true,
+            "version": "Model-F-v1",
+            "published_at": "2026-07-20",
+            "conditions_complete": true,
+            "independent": false,
+            "reproduction_state": "R1",
+            "reproduction_log_url": null
+          },
+          {
+            "source_id": "S2",
+            "url": "https://independent.example.org/model-f-v1-audit",
+            "source_type": "I1",
+            "discovered_via": "research",
+            "relation": "contradicts",
+            "accessible": true,
+            "public": true,
+            "version": "Model-F-v1",
+            "published_at": "2026-07-21",
+            "conditions_complete": true,
+            "independent": true,
+            "reproduction_state": "R2",
+            "reproduction_log_url": "https://independent.example.org/model-f-v1-audit-log"
+          }
+        ],
+        "extracted_claims": [
+          {
+            "claim_id": "C1",
+            "claim_kind": "performance",
+            "claim_text_ko": "Model F v1은 모든 공개 workload에서 latency를 낮춘다.",
+            "material": true,
+            "subject_version": "Model-F-v1",
+            "claim_date": "2026-07-20",
+            "source_refs": ["S1", "S2"]
+          }
+        ],
+        "promotion_status": "signal-only",
+        "access_constraints": {
+          "embargo_or_nda_implied": false,
+          "notes": []
+        }
+      },
+      "expected": {
+        "promotion_status": "rejected",
+        "evidence_grade": "E0",
+        "reproducibility": "R0",
+        "editorial_disposition": "no-publish",
+        "reason_codes": ["CLAIM_CONTRADICTED"]
+      }
+    }
+  ]
+}
