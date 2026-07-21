@@ -35,6 +35,11 @@ assert.equal((landing.match(new RegExp(articleTitle, 'g')) ?? []).length, 1);
 for (const expected of [
   articleTitle,
   '0334b6f3da2b8519e9c832175c16fd46d32d6f2a',
+  '개발자와 연구자가 이제 자기 장비에서 검증을 시작할 수 있다',
+  '무엇이 바뀌었나: 4B Edge가 실제 배포 대상이 됐다',
+  '4B MoT는 어떻게 동작하나',
+  '공개 범위와 직접 써볼 때의 판단',
+  'benchmark를 어디까지 믿을 수 있나',
   'VANTAGE',
   '독립 재현',
   '이해상충과 취재 조건',
