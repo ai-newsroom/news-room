@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-07-21",
+  "subject": "NVIDIA Cosmos 3 Edge 4B",
+  "decision": "publish-candidate",
+  "decision_reason_codes": [
+    "PRIMARY_SOURCE_LINKED",
+    "PUBLIC_ARTIFACTS_AVAILABLE",
+    "VENDOR_BENCHMARKS_NOT_INDEPENDENTLY_REPRODUCED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-07-21",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "conflicts": [
+    "NVIDIA develops the model and the measured NVIDIA hardware, authored the technical report, and published the benchmark tables.",
+    "The Hugging Face launch article includes NVIDIA participation and is not an independent evaluation."
+  ],
+  "claims": [
+    {
+      "claim_id": "cosmos-edge-release",
+      "claim": "NVIDIA released the 4B Cosmos3-Edge base model and the 4B Cosmos3-Edge-Policy-DROID checkpoint on 2026-07-20.",
+      "central": true,
+      "disposition": "confirmed",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "reason_codes": ["PRIMARY_SOURCE_LINKED", "ANNOUNCEMENT_AND_MODEL_CARD_AGREE"],
+      "sources": [
+        {
+          "source_id": "hf-launch",
+          "url": "https://huggingface.co/blog/nvidia/cosmos3edge",
+          "version": "published 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P0",
+          "owner": "Hugging Face and NVIDIA",
+          "limitations": "Launch announcement; promotional framing."
+        },
+        {
+          "source_id": "edge-card",
+          "url": "https://huggingface.co/nvidia/Cosmos3-Edge",
+          "version": "revision 6f58f6b4c91288838e60b6bcb2cc45d997e961de; model release 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P1",
+          "owner": "NVIDIA",
+          "limitations": "Revision was pinned from the Hugging Face model API; card content remains NVIDIA-authored."
+        },
+        {
+          "source_id": "edge-policy-card",
+          "url": "https://huggingface.co/nvidia/Cosmos3-Edge-Policy-DROID",
+          "version": "revision 3ea407af3e156c0af3b4bb6edd85842cc9a58777; model release 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P1",
+          "owner": "NVIDIA",
+          "limitations": "Revision was pinned from the Hugging Face model API; card content is NVIDIA-authored."
+        }
+      ],
+      "limitations": ["Availability was inspected through public cards; weights were not downloaded."],
+      "conflicts": ["NVIDIA is the developer and release source."],
+      "recheck_triggers": ["Model card release date or model scope changes", "Stable Hugging Face revision becomes available"]
+    },
+    {
+      "claim_id": "cosmos-edge-architecture-io",
+      "claim": "Cosmos3-Edge is a 4B Mixture-of-Transformers with autoregressive and diffusion paths, and its published Edge interface covers text, image, video, and action inputs and outputs.",
+      "central": true,
+      "disposition": "confirmed",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "reason_codes": ["PRIMARY_SOURCE_CROSSCHECKED", "EDGE_SCOPE_DISTINGUISHED_FROM_FAMILY_SCOPE", "RUNTIME_SURFACES_DISTINGUISHED", "PUBLIC_EDGE_CODE_REVISION_PINNED", "FIRST_PUBLIC_REVISION_DISTINGUISHED_FROM_CURRENT_MAIN"],
+      "sources": [
+        {
+          "source_id": "technical-report",
+          "url": "https://arxiv.org/abs/2606.02800",
+          "version": "arXiv:2606.02800v4, 2026-06-23",
+          "source_grade": "P1",
+          "owner": "NVIDIA and coauthors",
+          "limitations": "Vendor-authored report; v1 described Edge as a later release."
+        },
+        {
+          "source_id": "edge-card",
+          "url": "https://huggingface.co/nvidia/Cosmos3-Edge",
+          "version": "revision 6f58f6b4c91288838e60b6bcb2cc45d997e961de; model release 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P1",
+          "owner": "NVIDIA",
+          "limitations": "Card may change after access."
+        },
+        {
+          "source_id": "hf-launch",
+          "url": "https://huggingface.co/blog/nvidia/cosmos3edge",
+          "version": "published 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P0",
+          "owner": "Hugging Face and NVIDIA",
+          "limitations": "Family-level audio description exceeds the explicit Edge model-card I/O list."
+        },
+        {
+          "source_id": "cosmos-code-edge-release",
+          "url": "https://github.com/NVIDIA/cosmos/commit/0334b6f3da2b8519e9c832175c16fd46d32d6f2a",
+          "version": "first public Edge-support commit 0334b6f3da2b8519e9c832175c16fd46d32d6f2a; committed 2026-07-20T16:07:51Z; accessed 2026-07-21",
+          "source_grade": "P2",
+          "owner": "NVIDIA",
+          "limitations": "This public snapshot added Edge-specific SFT launchers and updated README.md, inference_benchmarks.md, and cookbooks/cosmos3/generator/action/run_policy_with_cosmos_framework.md. Its parent 703afe0c770997416db50895f82a547b7b2e5b65 has no Cosmos3-Edge entry in README.md; the commit squashes private history, so it establishes the first public repository revision, not the original private authorship date."
+        },
+        {
+          "source_id": "cosmos-code-current-main",
+          "url": "https://github.com/NVIDIA/cosmos/commit/b01cefc00920e8ecb319f15e20ce1eb8850e41ec",
+          "version": "main HEAD b01cefc00920e8ecb319f15e20ce1eb8850e41ec at 2026-07-21T06:53:04Z; accessed 2026-07-21",
+          "source_grade": "P2",
+          "owner": "NVIDIA",
+          "limitations": "This is the inspected current-main snapshot, not the first public Edge revision. It is the direct child of 0334b6f3da2b8519e9c832175c16fd46d32d6f2a and corrects Edge sampling parameters in the Cosmos Framework audiovisual example."
+        }
+      ],
+      "limitations": [
+        "No parameter-level audit was run.",
+        "The model-version summary covers text, image, video, and action across Edge, but the detailed card splits Reasoner video input from Generator text, image, and action input; the code README separately documents video-conditioned generation.",
+        "Audio appears in Cosmos 3 family architecture prose but not in the inspected Edge model-card input/output specification.",
+        "GitHub has no separately tagged Edge release as of access; first-public provenance is based on the public commit and its parent."
+      ],
+      "conflicts": ["All architecture descriptions originate with NVIDIA."],
+      "recheck_triggers": ["Independent architecture inspection", "Edge model card adds or removes a modality", "NVIDIA publishes a tagged Edge release or changes the pinned Edge code paths after b01cefc00920e8ecb319f15e20ce1eb8850e41ec"]
+    },
+    {
+      "claim_id": "cosmos-edge-open-artifacts-license",
+      "claim": "Public model weights and implementation material are available under stated OpenMDW-1.1 terms, but the complete training corpus is not public.",
+      "central": true,
+      "disposition": "confirmed-with-limitations",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "reason_codes": ["PUBLIC_ARTIFACTS_AVAILABLE", "PUBLIC_EDGE_CODE_REVISION_PINNED", "FIRST_PUBLIC_REVISION_DISTINGUISHED_FROM_CURRENT_MAIN", "LICENSE_CONDITIONS_RECORDED", "TRAINING_DATA_NOT_FULLY_AUDITABLE"],
+      "sources": [
+        {
+          "source_id": "edge-card",
+          "url": "https://huggingface.co/nvidia/Cosmos3-Edge",
+          "version": "revision 6f58f6b4c91288838e60b6bcb2cc45d997e961de; model release 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P2",
+          "owner": "NVIDIA",
+          "limitations": "Weights were not downloaded or hashed in this reporting run."
+        },
+        {
+          "source_id": "cosmos-code-edge-release",
+          "url": "https://github.com/NVIDIA/cosmos/commit/0334b6f3da2b8519e9c832175c16fd46d32d6f2a",
+          "version": "first public Edge-support commit 0334b6f3da2b8519e9c832175c16fd46d32d6f2a; committed 2026-07-20T16:07:51Z; accessed 2026-07-21",
+          "source_grade": "P2",
+          "owner": "NVIDIA",
+          "limitations": "The fixed commit exposes Edge documentation, benchmarks, policy execution, and Edge SFT paths, but examples reference the separate cosmos-framework for some training and serving operations; no separate Edge GitHub release tag exists."
+        },
+        {
+          "source_id": "cosmos-code-current-main",
+          "url": "https://github.com/NVIDIA/cosmos/commit/b01cefc00920e8ecb319f15e20ce1eb8850e41ec",
+          "version": "main HEAD b01cefc00920e8ecb319f15e20ce1eb8850e41ec at 2026-07-21T06:53:04Z; accessed 2026-07-21",
+          "source_grade": "P2",
+          "owner": "NVIDIA",
+          "limitations": "Current-main validation is a later snapshot than first publication. It changes Edge example sampling parameters and must not be reported as the first public Edge revision."
+        },
+        {
+          "source_id": "openmdw-license",
+          "url": "https://openmdw.ai/license/1-1/",
+          "version": "OpenMDW-1.1; accessed 2026-07-21",
+          "source_grade": "P1",
+          "owner": "OpenMDW",
+          "limitations": "License applies to materials actually provided under it and does not guarantee completeness or third-party rights clearance."
+        }
+      ],
+      "limitations": [
+        "Redistribution must preserve the license and applicable copyright/origin notices.",
+        "Users retain responsibility for third-party rights clearance.",
+        "The model card describes NVIDIA-owned and public training data only at an aggregate level.",
+        "The first public Edge commit is a snapshot of earlier private work, so the public history does not expose the individual pre-publication code revisions."
+      ],
+      "conflicts": ["NVIDIA decides which artifacts and training-data details to disclose."],
+      "recheck_triggers": ["License text or repository license changes", "Weights or required code become access-restricted", "Dataset provenance is published", "NVIDIA publishes a tagged Edge release or moves the verified code paths after b01cefc00920e8ecb319f15e20ce1eb8850e41ec"]
+    },
+    {
+      "claim_id": "cosmos-edge-vantage",
+      "claim": "Cosmos3-Edge ranks first on VANTAGE-Bench among similarly sized 4B models.",
+      "central": true,
+      "disposition": "vendor-claim-only",
+      "source_grade": "P1",
+      "evidence_level": "E1",
+      "reproducibility": "R1",
+      "reason_codes": ["VENDOR_BENCHMARK_ONLY", "COMPARATOR_SET_NOT_INDEPENDENTLY_AUDITED", "NO_INDEPENDENT_REPRODUCTION"],
+      "sources": [
+        {
+          "source_id": "hf-launch",
+          "url": "https://huggingface.co/blog/nvidia/cosmos3edge",
+          "version": "published 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P0",
+          "owner": "Hugging Face and NVIDIA",
+          "limitations": "States the rank without an independently audited comparator protocol."
+        },
+        {
+          "source_id": "technical-report",
+          "url": "https://arxiv.org/abs/2606.02800",
+          "version": "arXiv:2606.02800v4, 2026-06-23",
+          "source_grade": "P1",
+          "owner": "NVIDIA and coauthors",
+          "limitations": "Vendor-authored evaluation and broad multi-model table."
+        }
+      ],
+      "limitations": ["Comparator inclusion, aggregate scoring, and third-party submission validation were not independently verified."],
+      "conflicts": ["NVIDIA provides the model and reports the result."],
+      "recheck_triggers": ["Independent VANTAGE run at a pinned revision", "Public leaderboard adds verified submissions", "Scoring protocol changes"]
+    },
+    {
+      "claim_id": "cosmos-edge-robolab",
+      "claim": "Post-training Cosmos3-Edge on DROID yields a state-of-the-art RoboLab policy.",
+      "central": true,
+      "disposition": "vendor-claim-only",
+      "source_grade": "P1",
+      "evidence_level": "E1",
+      "reproducibility": "R1",
+      "reason_codes": ["VENDOR_BENCHMARK_ONLY", "EDGE_NUMERIC_LEDGER_NOT_TEXT_VERIFIED", "NANO_RESULT_NOT_TRANSFERABLE_TO_EDGE"],
+      "sources": [
+        {
+          "source_id": "edge-policy-card",
+          "url": "https://huggingface.co/nvidia/Cosmos3-Edge-Policy-DROID",
+          "version": "revision 3ea407af3e156c0af3b4bb6edd85842cc9a58777; model release 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P1",
+          "owner": "NVIDIA",
+          "limitations": "RoboLab result is presented as an image; exact Edge values were not independently machine-read or rerun."
+        },
+        {
+          "source_id": "technical-report",
+          "url": "https://arxiv.org/abs/2606.02800",
+          "version": "arXiv:2606.02800v4, 2026-06-23",
+          "source_grade": "P1",
+          "owner": "NVIDIA and coauthors",
+          "limitations": "The 39.7% specific-instruction RoboLab result is for Cosmos3-Nano-Policy-DROID 16B, not Edge 4B."
+        }
+      ],
+      "limitations": ["No independent Edge policy run or variance estimate was found."],
+      "conflicts": ["NVIDIA post-trained the policy and published the benchmark result."],
+      "recheck_triggers": ["Text-form Edge RoboLab ledger with rollout counts appears", "Independent pinned-revision RoboLab evaluation"]
+    },
+    {
+      "claim_id": "cosmos-edge-15hz",
+      "claim": "A 32-action Cosmos3-Edge DROID policy meets a 15 Hz control budget on Jetson Thor.",
+      "central": true,
+      "disposition": "confirmed-as-vendor-measurement-on-t5000-only",
+      "source_grade": "P1",
+      "evidence_level": "E1",
+      "reproducibility": "R1",
+      "reason_codes": ["VENDOR_MEASUREMENT_ONLY", "PLATFORM_AND_RUNTIME_BOUNDED", "SOURCE_RESOLUTION_MISMATCH", "NO_INDEPENDENT_REPRODUCTION"],
+      "measurement": {
+        "platform": "NVIDIA Jetson AGX Thor T5000, 128 GB, MAXN, 1575 MHz",
+        "request_mode": "one request at a time over persistent loopback connection",
+        "observation": "640x540 mapped to a 544x736 processing bucket",
+        "action_chunk": "[32, 8]",
+        "denoising": "4 UniPC steps, guidance 3.0",
+        "conditioning_fps": 15,
+        "budget_seconds": 2.133,
+        "median_e2e_seconds": 1.528,
+        "observed_range_seconds": [1.503, 1.673],
+        "timed_requests": 16,
+        "rtf_at_15hz": 1.4
+      },
+      "sources": [
+        {
+          "source_id": "hf-launch",
+          "url": "https://huggingface.co/blog/nvidia/cosmos3edge",
+          "version": "published 2026-07-20; accessed 2026-07-21",
+          "source_grade": "P0",
+          "owner": "Hugging Face and NVIDIA",
+          "limitations": "Summarizes a 640x360 observation, 32 actions, and Jetson Thor without the detailed platform protocol."
+        },
+        {
+          "source_id": "edge-policy-card",
+          "url": "https://huggingface.co/nvidia/Cosmos3-Edge-Policy-DROID",
+          "version": "revision 3ea407af3e156c0af3b4bb6edd85842cc9a58777; model release 2026-07-20; PBR accessed 2026-07-21",
+          "source_grade": "P1",
+          "owner": "NVIDIA",
+          "limitations": "Detailed table uses 640x540 mapped to 544x736, not the launch article's 640x360; only T5000 meets 15 Hz in that table."
+        }
+      ],
+      "limitations": [
+        "The launch article and detailed card report different observation resolutions.",
+        "T4000, T3000, and T2000 entries in the same PyTorch table do not meet the 15 Hz budget.",
+        "Control rate is an action-chunk budget, not generated-video frame rate."
+      ],
+      "conflicts": ["NVIDIA supplies the hardware, runtime, model, and measurement."],
+      "recheck_triggers": ["NVIDIA reconciles the resolution mismatch", "Independent T5000 reproduction", "Tail-latency and sustained thermal results are published"]
+    },
+    {
+      "claim_id": "cosmos-edge-throughput",
+      "claim": "Cosmos3-Edge provides high-throughput inference on datacenter and edge NVIDIA platforms.",
+      "central": true,
+      "disposition": "confirmed-as-condition-bounded-vendor-measurements",
+      "source_grade": "P1",
+      "evidence_level": "E1",
+      "reproducibility": "R1",
+      "reason_codes": ["VENDOR_MEASUREMENT_ONLY", "BATCH_RESOLUTION_PLATFORM_RECORDED", "CROSS_TABLE_COMPARISON_FORBIDDEN", "NO_INDEPENDENT_REPRODUCTION"],
+      "selected_measurements": [
+        {
+          "mode": "vLLM-Omni generator",
+          "platform": "Jetson AGX Thor T5000 128 GB MAXN",
+          "batch_size": 1,
+          "conditions": "832x480, 189-frame I2V; DROID [16,8] action configuration",
+          "image_to_video_seconds": 137.5,
+          "forward_dynamics_seconds": 6.05,
+          "inverse_dynamics_seconds": 7.19,
+          "policy_droid_seconds": 6.32
+        },
+        {
+          "mode": "embedded eager Transformers reasoner",
+          "platform": "Jetson AGX Thor T5000 128 GB MAXN",
+          "conditions": "preliminary measurements; runtime not comparable with vLLM serving",
+          "text": "1705 prompt tokens; 8717 prefill tok/s; 37.3 decode tok/s; 3.60 s E2E",
+          "image": "911 prompt tokens; 4845 prefill tok/s; 42.6 decode tok/s; 3.17 s E2E",
+          "video": "1263 prompt tokens; 6032 prefill tok/s; 41.8 decode tok/s; 3.25 s E2E"
+        },
+        {
+          "mode": "vLLM reasoner serving",
+          "platform": "single RTX PRO 6000",
+          "conditions": "50 input / 100 output / 1 video FPS",
+          "concurrency_1": "1.98 req/s; 503.44 ms request latency",
+          "concurrency_64": "10.27 req/s; 6188.90 ms request latency"
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "edge-card",
+          "url": "https://huggingface.co/nvidia/Cosmos3-Edge",
+          "version": "revision 6f58f6b4c91288838e60b6bcb2cc45d997e961de; model release 2026-07-20; PBR accessed 2026-07-21",
+          "source_grade": "P1",
+          "owner": "NVIDIA",
+          "limitations": "NVIDIA-run tables; different runtime stacks, workloads, resolution, and concurrency are not directly comparable."
+        }
+      ],
+      "limitations": [
+        "Generator tables use a single GPU or platform and batch size 1.",
+        "T2000 I2V uses 448x256 while T5000/T3000 use 832x480.",
+        "Higher aggregate serving throughput at concurrency 64 accompanies much higher request latency.",
+        "No power, sustained thermal, tail-latency, or independent cost measurement is included."
+      ],
+      "conflicts": ["All selected performance values were measured and published by NVIDIA on NVIDIA hardware."],
+      "recheck_triggers": ["Independent pinned-version hardware benchmark", "Sustained power and tail-latency report", "Model-card PBR methodology changes"]
+    }
+  ],
+  "release_gate": {
+    "decision": "publish-candidate",
+    "reason": "The public weights, code, license, architecture, and measurement conditions create clear verification value; performance-superiority language is retained only as attributed vendor claims with adjacent limits.",
+    "human_approval_required": true,
+    "article_path": "content/ai/2026-07-21/article.md",
+    "site_exposure_expected": true,
+    "site_exposure_basis": "The dedicated aiArticles collection is isolated under content/ai, and /ai routes require a matching approved release record with pinned article and evidence hashes."
+  }
+}
