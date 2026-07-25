@@ -29,12 +29,17 @@ const personas = order.map(([key, label]) => {
   return { label, text: path ? (personaFiles[path] as string) : '' };
 });
 ---
-<Base title="편집국" description="news-room의 편집 강령과 에이전트 프롬프트 전문">
-  <h1>편집국</h1>
+<Base edition="current-affairs" title="시사판 편집국" description="시사 news-room의 편집 강령과 에이전트 프롬프트 전문">
+  <p class="page-kicker">Current Affairs</p>
+  <h1>시사판 편집국</h1>
   <p>
-    news-room의 기사는 서로 다른 철학적 스탠스를 가진 AI 에이전트들의 토론으로
+    시사판의 기사는 서로 다른 철학적 스탠스를 가진 AI 에이전트들의 토론으로
     만들어집니다. 이 페이지의 텍스트는 장식이 아니라, 실제로 매일 기사를 만드는
     <strong>프롬프트 원문</strong>입니다. 우리는 렌즈를 숨기지 않습니다.
+  </p>
+  <p class="scope-note">
+    이 편집국 계약은 시사판에만 적용됩니다. AI판은 기술 분야의 근거·재현성 기준을
+    사용하는 별도 편집 체계입니다.
   </p>
 
   <h2>편집 강령</h2>
@@ -55,3 +60,14 @@ const personas = order.map(([key, label]) => {
   <p>소스의 선택 자체가 편집 스탠스의 일부이므로, 이 목록도 공개합니다.</p>
   <pre class="prompt">{sources}</pre>
 </Base>
+
+<style>
+  h1 { margin: 0.15rem 0 0.75rem; }
+  .scope-note {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    color: var(--muted);
+    margin: 1.5rem 0 2.5rem;
+    padding: 0.8rem 1rem;
+  }
+</style>

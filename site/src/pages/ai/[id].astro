@@ -18,33 +18,39 @@ function formatDate(d: Date) {
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
 }
 ---
-<Base title={article.data.title} description={article.data.summary}>
-  <nav class="edition-nav" aria-label="AI News 이동">
-    <a href={`${base}/ai/`}>AI News</a>
-    <a href={base}>시사판</a>
-  </nav>
-
+<Base edition="ai" title={article.data.title} description={article.data.summary}>
   <article class="technical-article">
-    <p class="date">{formatDate(article.data.date)} · AI News</p>
+    <p class="article-kicker"><a href={`${base}/ai/`}>AI 뉴스</a> · {formatDate(article.data.date)}</p>
     <h1>{article.data.title}</h1>
-    <p class="release-note">
-      공개 승인 완료 · 근거 상한 {article.data.evidence_ceiling} · 재현성 {article.data.reproducibility}
-      · 발행 ID {release.data.publication_id}
-    </p>
+    <ul class="release-note" aria-label="기사 공개 및 검증 정보">
+      <li>공개 승인 완료</li>
+      <li>근거 수준 {article.data.evidence_ceiling}</li>
+      <li>재현성 {article.data.reproducibility}</li>
+      <li>발행 ID {release.data.publication_id}</li>
+    </ul>
     <Content />
   </article>
 </Base>
 
 <style>
-  .edition-nav { display: flex; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
-  .date { color: var(--muted); font-size: 0.9rem; margin-bottom: 0; }
-  article h1 { margin-top: 0.25rem; font-size: 1.7rem; }
+  article h1 { font-size: clamp(1.75rem, 5vw, 2.35rem); margin: 0.25rem 0 1rem; }
   .release-note {
     border-block: 1px solid var(--rule);
-    color: var(--muted);
-    font-size: 0.85rem;
-    padding: 0.6rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    list-style: none;
     margin-bottom: 2rem;
+    padding: 0.7rem 0;
+  }
+  .release-note li {
+    color: var(--muted);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.78rem;
+  }
+  .release-note li:first-child {
+    color: var(--accent);
+    font-weight: 700;
   }
   .technical-article :global(table) {
     display: block;
@@ -57,4 +63,10 @@ function formatDate(d: Date) {
     padding: 0.5rem;
     vertical-align: top;
   }
+  .technical-article :global(a),
+  .technical-article :global(code),
+  .technical-article :global(li) {
+    overflow-wrap: anywhere;
+  }
+  .technical-article :global(code) { word-break: break-all; }
 </style>

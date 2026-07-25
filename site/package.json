@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "npm run test:ui",
+    "test:ui": "node tests/edition-navigation.mjs && node tests/ai-release-routes.mjs && node tests/provenance-ui-fixture.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0"

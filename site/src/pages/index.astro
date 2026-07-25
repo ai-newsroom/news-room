@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import EditionHero from '../components/EditionHero.astro';
 import Base from '../layouts/Base.astro';
 
 const base = import.meta.env.BASE_URL;
-// 날짜 내림차순, 같은 날짜는 id 오름차순 (본호가 준비호보다 위에 오게)
 const articles = (await getCollection('articles'))
   .filter((article) => article.data.publication === 'published')
   .sort(
@@ -13,29 +13,53 @@ const articles = (await getCollection('articles'))
 function dateId(id: string) {
   return id.split('/')[0];
 }
+
 function formatDate(d: Date) {
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
 }
 ---
-<Base description="하루에 단 하나의 뉴스를, 깊게 다루는 AI 편집국">
-  <ul class="feed">
-    {articles.map((a) => (
-      <li class:list={['item', { holiday: a.data.holiday }]}>
-        <p class="date">{formatDate(a.data.date)}</p>
-        <h2><a href={`${base}/news/${dateId(a.id)}/`}>{a.data.title}</a></h2>
-        {a.data.summary && <p class="summary">{a.data.summary}</p>}
-      </li>
-    ))}
-  </ul>
+<Base
+  edition="current-affairs"
+  title="시사 뉴스"
+  description="하루에 단 하나의 시사 뉴스를 토론과 검증을 거쳐 깊게 다루는 AI 편집국"
+>
+  <EditionHero
+    kicker="Current Affairs"
+    title="시사 뉴스"
+    description="그날 가장 중요한 시사 이슈 하나를 고르고, 서로 다른 관점의 토론을 거쳐 깊이 읽습니다."
+    actionHref={`${base}/newsroom/`}
+    actionLabel="편집 강령과 제작 과정 보기"
+  />
+
+  <section class="feed-section" aria-labelledby="recent-current-affairs">
+    <h2 id="recent-current-affairs" class="section-title">최근 기사</h2>
+    <ul class="feed">
+      {articles.map((article) => (
+        <li class:list={['item', { holiday: article.data.holiday }]}>
+          <p class="date">{formatDate(article.data.date)}</p>
+          <h3><a href={`${base}/news/${dateId(article.id)}/`}>{article.data.title}</a></h3>
+          {article.data.summary && <p class="summary">{article.data.summary}</p>}
+        </li>
+      ))}
+    </ul>
+  </section>
 </Base>
 
 <style>
-  .feed { list-style: none; padding: 0; margin: 0; }
-  .item { padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
-  .item .date { margin: 0; color: var(--muted); font-size: 0.85rem; }
-  .item h2 { margin: 0.25rem 0; font-size: 1.35rem; }
-  .item h2 a { color: var(--ink); text-decoration: none; }
-  .item h2 a:hover { color: var(--accent); }
-  .item .summary { margin: 0.25rem 0 0; color: var(--muted); }
-  .item.holiday h2 a { color: var(--muted); }
+  .feed-section { margin-top: 2rem; }
+  .section-title {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .feed { list-style: none; margin: 0.65rem 0 0; padding: 0; }
+  .item { border-top: 1px solid var(--soft-rule); padding: 1.5rem 0 1.6rem; }
+  .item .date { color: var(--muted); font-size: 0.82rem; margin: 0; }
+  .item h3 { font-size: 1.35rem; margin: 0.2rem 0; }
+  .item h3 a { color: var(--ink); text-decoration: none; }
+  .item h3 a:hover { color: var(--accent); }
+  .item .summary { color: var(--muted); margin: 0.35rem 0 0; }
+  .item.holiday h3 a { color: var(--muted); }
 </style>

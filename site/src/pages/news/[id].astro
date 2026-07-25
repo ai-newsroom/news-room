@@ -48,14 +48,15 @@ function rawArtifact(files: Record<string, unknown>, filename: string) {
 const draftText = rawArtifact(draftFiles, 'draft.md');
 const promptText = rawArtifact(promptFiles, 'prompt.md');
 const runText = rawArtifact(runFiles, 'run.md');
+const base = import.meta.env.BASE_URL;
 
 function formatDate(d: Date) {
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
 }
 ---
-<Base title={article.data.title} description={article.data.summary}>
+<Base edition="current-affairs" title={article.data.title} description={article.data.summary}>
   <article>
-    <p class="date">{formatDate(article.data.date)}</p>
+    <p class="article-kicker"><a href={base}>시사 뉴스</a> · {formatDate(article.data.date)}</p>
     <h1>{article.data.title}</h1>
     <Content />
   </article>
@@ -97,8 +98,7 @@ function formatDate(d: Date) {
 </Base>
 
 <style>
-  .date { color: var(--muted); font-size: 0.9rem; margin-bottom: 0; }
-  article h1 { margin-top: 0.25rem; font-size: 1.7rem; }
+  article h1 { font-size: clamp(1.75rem, 5vw, 2.35rem); margin: 0.25rem 0 1.5rem; }
   .debate { font-size: 0.95rem; }
   .artifact {
     white-space: pre-wrap;

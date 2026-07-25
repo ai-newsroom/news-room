@@ -1,11 +1,29 @@
 ---
+type Edition = 'current-affairs' | 'ai';
+
 interface Props {
   title?: string;
   description?: string;
+  edition?: Edition;
 }
-const { title, description } = Astro.props;
+
+const {
+  title,
+  description,
+  edition = 'current-affairs',
+} = Astro.props;
 const base = import.meta.env.BASE_URL;
 const fullTitle = title ? `${title} — news-room` : 'news-room';
+
+const editions = [
+  { id: 'current-affairs', label: '시사판', href: base },
+  { id: 'ai', label: 'AI판', href: `${base}/ai/` },
+] as const;
+
+const footerCopy = {
+  'current-affairs': '시사판은 편집 강령, 에이전트 프롬프트, 취재 소스와 기사별 토론 과정을 공개합니다.',
+  ai: 'AI판은 공개 승인된 기사만 게재하며 원문, 버전, 근거 수준과 재현 범위를 함께 기록합니다.',
+}[edition];
 ---
 <!doctype html>
 <html lang="ko">
@@ -15,69 +33,241 @@ const fullTitle = title ? `${title} — news-room` : 'news-room';
     <title>{fullTitle}</title>
     {description && <meta name="description" content={description} />}
   </head>
-  <body>
-    <header>
-      <a class="masthead" href={base}>news-room</a>
-      <p class="tagline">하루 하나, 깊게.</p>
-      <nav>
-        <a href={base}>기사</a>
-        <a href={`${base}/newsroom/`}>편집국</a>
+  <body class={`edition-${edition}`}>
+    <header class="site-header">
+      <div class="brand-row">
+        <a class="masthead" href={base}>news-room</a>
+        <p class="tagline">중요한 소식을, 깊게.</p>
+      </div>
+      <nav class="edition-switcher" aria-label="뉴스룸 판 선택">
+        {editions.map((item) => (
+          <a
+            href={item.href}
+            aria-current={edition === item.id ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
     </header>
     <main>
       <slot />
     </main>
     <footer>
-      <p>
-        이 매체는 렌즈를 숨기지 않습니다 — 편집 강령, 모든 에이전트의 프롬프트,
-        취재 소스, 매일의 토론 전문이 공개됩니다.
-      </p>
+      <p>{footerCopy}</p>
+      {edition === 'current-affairs' && (
+        <p><a href={`${base}/newsroom/`}>시사판 편집국과 제작 과정 보기</a></p>
+      )}
+      <p class="footer-principle">판마다 편집 기준과 검증 범위를 분리하고, 적용 범위를 독자에게 밝힙니다.</p>
     </footer>
   </body>
 </html>
 
 <style is:global>
   :root {
-    --ink: #1a1a1a;
-    --paper: #fbfaf7;
-    --muted: #6b6b6b;
-    --rule: #d9d5cc;
+    --ink: #191918;
+    --paper: #faf8f3;
+    --surface: #fffefa;
+    --muted: #67655f;
+    --rule: #d9d4c9;
+    --soft-rule: #e9e5dc;
     --accent: #8a3324;
+    --accent-soft: #f2e6e1;
   }
+
   * { box-sizing: border-box; }
+
+  html { background: var(--paper); }
+
   body {
     margin: 0 auto;
-    padding: 2.5rem 1.25rem 4rem;
-    max-width: 42rem;
+    padding: 2rem 1.25rem 4rem;
+    max-width: 50rem;
     background: var(--paper);
     color: var(--ink);
     font-family: 'Noto Serif KR', 'Apple SD Gothic Neo', serif;
+    font-size: 1rem;
     line-height: 1.85;
     word-break: keep-all;
   }
-  header { text-align: center; border-bottom: 3px double var(--rule); padding-bottom: 1.25rem; margin-bottom: 2.5rem; }
+
+  body.edition-ai {
+    --accent: #245f78;
+    --accent-soft: #e4eef2;
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+
+  .brand-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
   .masthead {
-    font-size: 2rem; font-weight: 700; letter-spacing: 0.04em;
-    color: var(--ink); text-decoration: none;
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    line-height: 1.2;
+    text-decoration: none;
   }
-  .tagline { margin: 0.25rem 0 0.75rem; color: var(--muted); font-size: 0.9rem; }
-  nav { display: flex; justify-content: center; gap: 1.5rem; font-size: 0.95rem; }
-  nav a { color: var(--ink); text-decoration: none; }
-  nav a:hover { color: var(--accent); }
+
+  .tagline {
+    color: var(--muted);
+    font-size: 0.86rem;
+    margin: 0;
+  }
+
+  .edition-switcher {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+  }
+
+  .edition-switcher a {
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    padding: 0.75rem 0.5rem 0.8rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .edition-switcher a:hover { color: var(--accent); }
+
+  .edition-switcher a[aria-current='page'] {
+    color: var(--accent);
+  }
+
+  .edition-switcher a[aria-current='page']::after {
+    background: var(--accent);
+    bottom: -1px;
+    content: '';
+    height: 3px;
+    left: 18%;
+    position: absolute;
+    right: 18%;
+  }
+
   main a { color: var(--accent); }
-  h1, h2, h3 { line-height: 1.4; }
+
+  article a,
+  article code {
+    overflow-wrap: anywhere;
+  }
+
+  a:focus-visible,
+  summary:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3 {
+    line-height: 1.42;
+    text-wrap: balance;
+  }
+
+  .edition-hero {
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0.75rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .edition-kicker,
+  .page-kicker,
+  .article-kicker {
+    color: var(--accent);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 750;
+    letter-spacing: 0.11em;
+    margin: 0 0 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .edition-hero h1 {
+    font-size: clamp(2rem, 6vw, 2.85rem);
+    margin: 0;
+  }
+
+  .edition-hero .dek {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0.65rem 0 0;
+    max-width: 40rem;
+  }
+
+  .hero-title-row {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+  }
+
+  .hero-action {
+    display: inline-block;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 650;
+    margin-top: 1rem;
+    text-underline-offset: 0.2em;
+  }
+
+  .article-kicker a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   footer {
-    margin-top: 4rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
-    color: var(--muted); font-size: 0.85rem; text-align: center;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.84rem;
+    margin-top: 5rem;
+    padding-top: 1.35rem;
+    text-align: left;
   }
+
+  footer p { margin: 0.35rem 0; }
+  footer a { color: var(--accent); text-underline-offset: 0.18em; }
+  .footer-principle { font-size: 0.78rem; }
+
   details {
-    margin: 2rem 0; border: 1px solid var(--rule); border-radius: 4px;
-    padding: 0.75rem 1rem; background: #fff;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    margin: 2rem 0;
+    padding: 0.75rem 1rem;
   }
-  details summary { cursor: pointer; font-weight: 600; }
+
+  details summary { cursor: pointer; font-weight: 650; }
+
   pre.prompt {
-    white-space: pre-wrap; background: #fff; border: 1px solid var(--rule);
-    border-radius: 4px; padding: 1rem; font-size: 0.85rem; line-height: 1.7;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
     font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    padding: 1rem;
+    white-space: pre-wrap;
+  }
+
+  @media (max-width: 36rem) {
+    body { padding: 1.25rem 1rem 3rem; }
+    .site-header { margin-bottom: 2.25rem; }
+    .brand-row { align-items: flex-start; flex-direction: column; gap: 0.2rem; }
+    .masthead { font-size: 1.65rem; }
+    .edition-switcher a { padding-inline: 0.25rem; }
+    .edition-hero { padding-bottom: 1.75rem; }
   }
 </style>
