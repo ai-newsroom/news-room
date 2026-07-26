@@ -52,6 +52,7 @@ assert.ok(pages.newsroom.includes('이 편집국 계약은 시사판에만 적�
 assert.equal(pages.newsroom.includes('EDA판'), false);
 
 assert.ok(pages.ai.includes('<h1 id="edition-title">AI 뉴스</h1>'));
+assert.ok(pages.ai.includes('SW 엔지니어가 빠르게 판단할 수 있도록 설명합니다'));
 assert.ok(pages.ai.includes('근거 수준 E2'));
 assert.equal(pages.ai.includes('aria-label="AI News 이동"'), false);
 assert.equal(pages.ai.includes('매일의 토론 전문'), false);

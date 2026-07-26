@@ -171,6 +171,9 @@ def _editorial_references(config: Mapping[str, Any]) -> Iterable[Tuple[str, Mapp
     editorial = config["editorial"]
     for key in EDITORIAL_REFERENCE_KEYS:
         yield key, editorial[key]
+    for key in ("style_contract", "article_prompt"):
+        if key in editorial:
+            yield key, editorial[key]
     yield "release_gates.common", editorial["release_gates"]["common"]
     yield "release_gates.edition", editorial["release_gates"]["edition"]
 
@@ -223,6 +226,12 @@ def validate_config(
 ) -> Dict[str, Any]:
     validate_schema(config, schema)
     edition_id = config["id"]
+    if edition_id == "ai":
+        for key in ("style_contract", "article_prompt"):
+            if key not in config["editorial"]:
+                raise EditionValidationError(
+                    f"AI editorial config must declare its SW-engineer {key}"
+                )
 
     forbidden = set(config["forbidden_fallbacks"])
     missing_forbidden = CURRENT_AFFAIRS_FALLBACKS - forbidden

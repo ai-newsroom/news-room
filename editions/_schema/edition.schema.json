@@ -59,7 +59,9 @@
           }
         },
         "article_template": {"$ref": "#/$defs/section_reference"},
-        "no_publish_template": {"$ref": "#/$defs/section_reference"}
+        "no_publish_template": {"$ref": "#/$defs/section_reference"},
+        "style_contract": {"$ref": "#/$defs/section_reference"},
+        "article_prompt": {"$ref": "#/$defs/section_reference"}
       }
     },
     "publication": {

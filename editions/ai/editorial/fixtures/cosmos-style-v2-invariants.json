@@ -1,0 +1,14 @@
+{
+  "contract_id": "ai-technical-blog-v2",
+  "publication_id": "2026-07-21",
+  "before_article_sha256": "28239a17340def9abc395f313c6084f6aa65a5e150760d90dcce859c66d53553",
+  "fact_inventory_sha256": "51c1a28d74371f066944e3dd52e4a94733df5f1cb5c6796110fdf220c0a8845a",
+  "number_token_kinds": 96,
+  "url_count": 7,
+  "revision_count": 6,
+  "ledger_sha256": "76ad573955850b46b121828e87576c8aefbfd607455c72384836f105b42b78d5",
+  "sources_sha256": "41c48c210486b3d70ff092b1556022c821b5bf2ba5590dadfbbcc1bafa0374cf",
+  "license_occurrences": 2,
+  "vendor_claim_occurrences": 1,
+  "evidence_sha256": "0a7722d1b3448e9d67f4f89b7cb43ab0a3e835681f0122418611102138c21f3a"
+}

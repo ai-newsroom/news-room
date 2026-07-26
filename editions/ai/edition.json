@@ -38,6 +38,14 @@
       "path": "docs/08-ai-eda-editorial-profiles.md",
       "heading": "### 4.2 심층 기사 형식"
     },
+    "style_contract": {
+      "path": "docs/08-ai-eda-editorial-profiles.md",
+      "heading": "#### AI 기술 블로그 문체 계약 (`ai-technical-blog-v2`)"
+    },
+    "article_prompt": {
+      "path": "editions/ai/editorial/article-prompt.md",
+      "heading": "## 실행 계약"
+    },
     "no_publish_template": {
       "path": "docs/08-ai-eda-editorial-profiles.md",
       "heading": "### 4.3 미발행 결정 형식"

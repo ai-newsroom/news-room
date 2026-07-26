@@ -41,8 +41,14 @@ class EditionConfigTests(unittest.TestCase):
             with self.subTest(edition=edition):
                 config = self.config(edition)
                 result = validate_config(config, SCHEMA, ROOT)
-                self.assertEqual(set(config["editorial"]), set(EDITORIAL_REFERENCE_KEYS) | {"release_gates"})
-                self.assertEqual(result["resolved_section_references"], 9)
+                expected = set(EDITORIAL_REFERENCE_KEYS) | {"release_gates"}
+                if edition == "ai":
+                    expected.update({"style_contract", "article_prompt"})
+                self.assertEqual(set(config["editorial"]), expected)
+                self.assertEqual(
+                    result["resolved_section_references"],
+                    11 if edition == "ai" else 9,
+                )
                 self.assertTrue(result["publish_requires_human_approval"])
                 self.assertEqual(result["fallback_policy"], "explicit-failure")
 
@@ -52,6 +58,25 @@ class EditionConfigTests(unittest.TestCase):
                 config = self.config()
                 del config["editorial"][key]
                 self.assert_rejected(config, "missing required property")
+
+    def test_ai_style_contract_and_article_prompt_are_required(self):
+        config = self.config()
+        self.assertEqual(
+            config["editorial"]["style_contract"]["heading"],
+            "#### AI 기술 블로그 문체 계약 (`ai-technical-blog-v2`)",
+        )
+        self.assertEqual(
+            config["editorial"]["article_prompt"],
+            {
+                "path": "editions/ai/editorial/article-prompt.md",
+                "heading": "## 실행 계약",
+            },
+        )
+        for key in ("style_contract", "article_prompt"):
+            with self.subTest(key=key):
+                missing = self.config()
+                del missing["editorial"][key]
+                self.assert_rejected(missing, f"SW-engineer {key}")
 
     def test_human_approval_cannot_be_disabled(self):
         config = self.config()
