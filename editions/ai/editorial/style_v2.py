@@ -37,6 +37,8 @@ ENGINEER_JUDGMENT_LABELS = (
     "도입 전에 확인할 것",
     "아직 결론 내릴 수 없는 것",
 )
+EDITORIAL_SIGNIFICANCE_HEADING = "## 이 공개의 의의와 편집 판단"
+EDITORIAL_JUDGMENT_LABEL = "편집 판단:"
 DEFAULT_TERM_RULES = {
     "MoT": ["트랜스포머 혼합 구조", "Mixture-of-Transformers"],
     "자동회귀": ["다음 토큰"],
@@ -141,6 +143,10 @@ def validate_text(
             errors.append(
                 {"code": "engineer-judgment-label-missing", "line": 1, "label": label}
             )
+    if EDITORIAL_SIGNIFICANCE_HEADING not in narrative:
+        errors.append({"code": "editorial-significance-heading-missing", "line": 1})
+    if EDITORIAL_JUDGMENT_LABEL not in narrative:
+        errors.append({"code": "editorial-judgment-label-missing", "line": 1})
 
     for term, explanations in (required_terms or {}).items():
         first = next(

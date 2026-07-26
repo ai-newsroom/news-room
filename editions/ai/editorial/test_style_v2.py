@@ -82,6 +82,8 @@ class AiTechnicalBlogV2Test(unittest.TestCase):
         self.assertIn("주 독자는 AI 연구자가 아니라", prompt)
         self.assertIn("AI 모델·API·SDK·오픈소스", prompt)
         self.assertIn("SW 엔지니어를 위한 판단", prompt)
+        self.assertIn("이 공개의 의의와 편집 판단", prompt)
+        self.assertIn("편집 판단:", prompt)
         config = json.loads(
             (ROOT / "editions/ai/edition.json").read_text(encoding="utf-8")
         )
@@ -100,6 +102,10 @@ class AiTechnicalBlogV2Test(unittest.TestCase):
         )
         self.assertIn(
             "the evidence-preserving ai-technical-blog-v2 SW-engineer editorial revision",
+            release["human_approval"]["scope"],
+        )
+        self.assertIn(
+            "the clearly labeled significance and editorial judgment section",
             release["human_approval"]["scope"],
         )
         self.assertIn(

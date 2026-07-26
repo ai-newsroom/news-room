@@ -7,7 +7,7 @@
   "article_path": "content/ai/2026-07-21/article.md",
   "evidence_path": "decisions/ai/2026-07-21/evidence.json",
   "artifact_hashes": {
-    "article_sha256": "712e662204201a7a51d0ed0301ef8927430c12ef4253c3f9bde2ade77748a13b",
+    "article_sha256": "13a47f8afd2994a2cc3cd9eb5baf622e5a097a943d05b82e30c5d5b80eb28e64",
     "evidence_sha256": "0a7722d1b3448e9d67f4f89b7cb43ab0a3e835681f0122418611102138c21f3a"
   },
   "routes": [
@@ -18,10 +18,11 @@
     "approved": true,
     "approved_at": "2026-07-26",
     "approved_by": "repository owner",
-    "approval_basis": "The repository owner approved an SW-engineer-friendly AI News tone and article publication on 2026-07-26; the revision is evidence-preserving and passed the ai-technical-blog-v2 validator.",
+    "approval_basis": "The repository owner approved an SW-engineer-friendly AI News tone and article publication, plus a clearly labeled evidence-based editorial significance section, on 2026-07-26; the revision preserves the factual inventory and passed the ai-technical-blog-v2 validator.",
     "scope": [
       "the pinned Cosmos 3 Edge article and evidence ledger",
       "the evidence-preserving ai-technical-blog-v2 SW-engineer editorial revision",
+      "the clearly labeled significance and editorial judgment section",
       "the dedicated /ai landing and /ai/2026-07-21 article route",
       "the minimum route validation files needed for this release"
     ]
