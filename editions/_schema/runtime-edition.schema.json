@@ -58,7 +58,7 @@
         "enabled": {"type": "boolean"},
         "managed_by": {
           "type": "string",
-          "enum": ["none", "external-cron", "engine"]
+          "enum": ["none", "external-cron", "engine", "codex-automation"]
         },
         "timezone": {
           "type": "string",
@@ -82,7 +82,7 @@
       "properties": {
         "mode": {
           "type": "string",
-          "enum": ["legacy-wrapper", "prepare-only"]
+          "enum": ["legacy-wrapper", "prepare-only", "automatic"]
         },
         "requires_human_approval": {"type": "boolean"},
         "git_write": {"type": "boolean"},

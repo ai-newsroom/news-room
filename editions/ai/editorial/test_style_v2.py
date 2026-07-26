@@ -40,7 +40,7 @@ class AiTechnicalBlogV2Test(unittest.TestCase):
             encoding="utf-8"
         )
         errors = style_v2.validate_text(
-            article, required_terms=style_v2.DEFAULT_TERM_RULES
+            article, required_terms=style_v2.COSMOS_2026_07_21_TERM_RULES
         )
         self.assertEqual(errors, [])
 
@@ -73,6 +73,48 @@ class AiTechnicalBlogV2Test(unittest.TestCase):
             baseline["evidence_sha256"],
         )
 
+    def test_cli_contract_is_topic_neutral(self):
+        article = """---
+edition: ai
+decision: publish-candidate
+title: "새 주제"
+date: 2026-07-26
+subject: "새 사건"
+summary: "새 사건을 설명합니다."
+evidence_ceiling: E1
+reproducibility: R1
+conflicts: ["없음"]
+---
+
+공개된 새 사건은 SW 엔지니어에게 중요한 변경을 보여 줍니다.
+
+## SW 엔지니어를 위한 판단
+
+- 지금 확인할 수 있는 것
+- 도입 전에 확인할 것
+- 아직 결론 내릴 수 없는 것
+
+## 이 공개의 의의와 편집 판단
+
+**편집 판단:** 확인된 범위에서 판단합니다.
+
+## 근거 원장
+
+| Claim | 판정 |
+|---|---|
+| C1 | 확인 |
+
+## 출처
+
+1. https://example.com/source
+"""
+        report = style_v2.validation_report(article)
+        self.assertEqual(report["status"], "passed", report["errors"])
+        self.assertNotIn(
+            "required-term-missing",
+            {error["code"] for error in report["errors"]},
+        )
+
     def test_prompt_config_and_release_use_approved_v2_contract(self):
         docs = (ROOT / "docs/08-ai-eda-editorial-profiles.md").read_text(
             encoding="utf-8"
@@ -102,15 +144,15 @@ class AiTechnicalBlogV2Test(unittest.TestCase):
         )
         self.assertIn(
             "the evidence-preserving ai-technical-blog-v2 SW-engineer editorial revision",
-            release["human_approval"]["scope"],
+            release["authorization"]["scope"],
         )
         self.assertIn(
             "the clearly labeled significance and editorial judgment section",
-            release["human_approval"]["scope"],
+            release["authorization"]["scope"],
         )
         self.assertIn(
             "approved an SW-engineer-friendly AI News tone and article publication",
-            release["human_approval"]["approval_basis"],
+            release["authorization"]["approval_basis"],
         )
         article_path = ROOT / release["article_path"]
         evidence_path = ROOT / release["evidence_path"]

@@ -78,12 +78,10 @@
           "const": ["publish-candidate", "no-publish"]
         },
         "publish_requires_human_approval": {
-          "type": "boolean",
-          "const": true
+          "type": "boolean"
         },
         "automatic_publish": {
-          "type": "boolean",
-          "const": false
+          "type": "boolean"
         }
       }
     },

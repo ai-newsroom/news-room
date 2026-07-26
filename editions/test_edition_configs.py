@@ -49,7 +49,14 @@ class EditionConfigTests(unittest.TestCase):
                     result["resolved_section_references"],
                     11 if edition == "ai" else 9,
                 )
-                self.assertTrue(result["publish_requires_human_approval"])
+                self.assertEqual(
+                    result["publish_requires_human_approval"],
+                    edition == "eda",
+                )
+                self.assertEqual(
+                    result["automatic_publish"],
+                    edition == "ai",
+                )
                 self.assertEqual(result["fallback_policy"], "explicit-failure")
 
     def test_every_missing_editorial_setting_fails_instead_of_falling_back(self):
@@ -78,19 +85,27 @@ class EditionConfigTests(unittest.TestCase):
                 del missing["editorial"][key]
                 self.assert_rejected(missing, f"SW-engineer {key}")
 
-    def test_human_approval_cannot_be_disabled(self):
+    def test_ai_automatic_policy_cannot_be_weakened_or_mixed(self):
         config = self.config()
-        config["publication"]["publish_requires_human_approval"] = False
-        self.assert_rejected(config, "must equal True")
+        config["publication"]["publish_requires_human_approval"] = True
+        self.assert_rejected(config, "AI publication")
 
         config = self.config()
         config["publication"]["publish_requires_human_approval"] = 1
         self.assert_rejected(config, "expected boolean")
 
-    def test_automatic_publish_cannot_be_enabled(self):
         config = self.config()
+        config["publication"]["automatic_publish"] = False
+        self.assert_rejected(config, "AI publication")
+
+    def test_eda_remains_human_approved_and_non_automatic(self):
+        config = self.config("eda")
+        config["publication"]["publish_requires_human_approval"] = False
+        self.assert_rejected(config, "EDA publication")
+
+        config = self.config("eda")
         config["publication"]["automatic_publish"] = True
-        self.assert_rejected(config, "must equal False")
+        self.assert_rejected(config, "EDA publication")
 
     def test_each_current_affairs_fallback_must_be_forbidden(self):
         for fallback in CURRENT_AFFAIRS_FALLBACKS:

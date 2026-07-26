@@ -39,7 +39,7 @@ ENGINEER_JUDGMENT_LABELS = (
 )
 EDITORIAL_SIGNIFICANCE_HEADING = "## 이 공개의 의의와 편집 판단"
 EDITORIAL_JUDGMENT_LABEL = "편집 판단:"
-DEFAULT_TERM_RULES = {
+COSMOS_2026_07_21_TERM_RULES = {
     "MoT": ["트랜스포머 혼합 구조", "Mixture-of-Transformers"],
     "자동회귀": ["다음 토큰"],
     "diffusion": ["확산", "노이즈"],
@@ -208,19 +208,24 @@ def inventory_digest(inventory: dict[str, object]) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def validation_report(text: str) -> dict[str, object]:
+    """Validate the topic-neutral writing contract used by the CLI."""
+    errors = validate_text(text)
+    return {
+        "contract_id": CONTRACT_ID,
+        "status": "passed" if not errors else "failed",
+        "errors": errors,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("article", type=Path)
     args = parser.parse_args()
     text = args.article.read_text(encoding="utf-8")
-    errors = validate_text(text, required_terms=DEFAULT_TERM_RULES)
-    report = {
-        "contract_id": CONTRACT_ID,
-        "status": "passed" if not errors else "failed",
-        "errors": errors,
-    }
+    report = validation_report(text)
     print(json.dumps(report, ensure_ascii=False, sort_keys=True))
-    return 0 if not errors else 1
+    return 0 if report["status"] == "passed" else 1
 
 
 if __name__ == "__main__":

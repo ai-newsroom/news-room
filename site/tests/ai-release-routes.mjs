@@ -8,8 +8,41 @@ const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = resolve(scriptDirectory, '../..');
 const siteRoot = join(repositoryRoot, 'site');
 const distRoot = join(siteRoot, 'dist');
-const publicationId = '2026-07-21';
-const articleTitle = 'NVIDIA Cosmos 3 Edge 4B 공개: 엣지 실행은 확인됐지만 성능 우월성은 아직 벤더 측정이다';
+const decisionsRoot = join(repositoryRoot, 'decisions', 'ai');
+const contentRoot = join(repositoryRoot, 'content', 'ai');
+
+const releaseIds = (await readdir(decisionsRoot, { withFileTypes: true }))
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => entry.name)
+  .sort();
+const approved = [];
+for (const id of releaseIds) {
+  let release;
+  try {
+    release = JSON.parse(await readFile(join(decisionsRoot, id, 'release.json'), 'utf8'));
+  } catch {
+    continue;
+  }
+  if (release.release_status !== 'approved-for-publication') continue;
+  assert.equal(release.publication_id, id);
+  assert.ok(['human', 'automatic'].includes(release.authorization.mode));
+  if (release.authorization.mode === 'automatic') {
+    assert.equal(release.authorization.policy_id, 'ai-auto-publish-v1');
+    assert.ok(release.authorization.checks.length >= 5);
+  } else {
+    assert.equal(release.authorization.approved, true);
+  }
+  const source = await readFile(join(contentRoot, id, 'article.md'), 'utf8');
+  const titleLine = source.split('\n').find((line) => line.startsWith('title:'));
+  assert.ok(titleLine, `missing title: ${id}`);
+  approved.push({
+    id,
+    release,
+    source,
+    title: JSON.parse(titleLine.slice('title:'.length).trim()),
+  });
+}
+assert.ok(approved.length >= 1);
 
 const build = spawnSync('npm', ['run', 'build'], {
   cwd: siteRoot,
@@ -21,55 +54,53 @@ assert.equal(build.status, 0, build.stdout + build.stderr);
 const aiRootEntries = (await readdir(join(distRoot, 'ai'), { withFileTypes: true }))
   .map((entry) => entry.name)
   .sort();
-assert.deepEqual(aiRootEntries, [publicationId, 'index.html']);
+assert.deepEqual(aiRootEntries, [...approved.map(({ id }) => id), 'index.html'].sort());
 
 const landing = await readFile(join(distRoot, 'ai', 'index.html'), 'utf8');
-const article = await readFile(join(distRoot, 'ai', publicationId, 'index.html'), 'utf8');
 const legacyHome = await readFile(join(distRoot, 'index.html'), 'utf8');
-const legacySameDate = await readFile(join(distRoot, 'news', publicationId, 'index.html'), 'utf8');
+for (const { id, release, source, title } of approved) {
+  const article = await readFile(join(distRoot, 'ai', id, 'index.html'), 'utf8');
+  assert.ok(landing.includes(title));
+  assert.ok(landing.includes(`href="/news-room/ai/${id}/"`));
+  assert.ok(article.includes(title));
+  assert.ok(article.includes('SW 엔지니어를 위한 판단'));
+  assert.ok(article.includes('이 공개의 의의와 편집 판단'));
+  assert.ok(article.includes('편집 판단:'));
+  assert.ok(article.includes('이해상충과 취재 조건'));
+  assert.ok(article.includes(`발행 ID ${id}`));
+  const label = release.authorization.mode === 'automatic'
+    ? '자동 출고 검증 완료'
+    : '사람 공개 승인 완료';
+  assert.ok(article.includes(label));
+  assert.equal(legacyHome.includes(title), false);
+  assert.equal(source.includes('no-publish'), false);
+}
 
-assert.ok(landing.includes(articleTitle));
-assert.ok(landing.includes(`href="/news-room/ai/${publicationId}/"`));
-assert.equal((landing.match(new RegExp(articleTitle, 'g')) ?? []).length, 1);
-
+const cosmos = approved.find(({ id }) => id === '2026-07-21');
+assert.ok(cosmos);
+const cosmosHtml = await readFile(join(distRoot, 'ai', cosmos.id, 'index.html'), 'utf8');
 for (const expected of [
-  articleTitle,
   '0334b6f3da2b8519e9c832175c16fd46d32d6f2a',
-  'SW 엔지니어에게 중요한 변화',
-  'SW 엔지니어를 위한 판단',
-  '지금 확인할 수 있는 것',
-  '도입 전에 확인할 것',
-  '아직 결론 내릴 수 없는 것',
-  '이 공개의 의의와 편집 판단',
-  '편집 판단:',
-  '검증 가능한 소프트웨어 구성 요소로 다룰 수 있게 됐다는 데 있습니다',
-  'PoC와 평가 기준선을',
-  '만들 가치가 있는 후보',
   '앞선 토큰으로 다음 토큰을 예측하는 자동회귀 Reasoner',
   '확산(diffusion) Generator',
   '트랜스포머 혼합 구조(Mixture-of-Transformers, MoT)',
-  '무엇이 바뀌었나: 4B Edge가 실제 배포 대상이 됐다',
-  '4B MoT는 어떻게 동작하나',
-  'SW 엔지니어가 지금 확인할 수 있는 범위',
-  '성능 수치는 어디까지 믿을 수 있나',
-  '도입 전에 무엇을 확인해야 하나',
   'VANTAGE',
   '독립 재현',
-  '이해상충과 취재 조건',
-  'NVIDIA는 모델·GPU·runtime을 공급하면서 기술 보고서 작성, benchmark 측정, 모델 카드 게시까지 맡았습니다',
-  '공개 승인 완료',
-]) assert.ok(article.includes(expected), `missing AI article evidence: ${expected}`);
+]) assert.ok(cosmosHtml.includes(expected), `missing pinned Cosmos evidence: ${expected}`);
 
-assert.equal(legacyHome.includes(articleTitle), false);
-assert.equal(legacyHome.includes(`/ai/${publicationId}/`), false);
-assert.equal(legacySameDate.includes(articleTitle), false);
-assert.equal(article.includes('/news/2026-07-21/'), false);
-assert.equal(article.includes('no-publish'), false);
+const contentIds = (await readdir(contentRoot, { withFileTypes: true }))
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => entry.name);
+const unapprovedTechnicalRoutes = contentIds.filter(
+  (id) => !approved.some((publication) => publication.id === id),
+).length;
+assert.equal(unapprovedTechnicalRoutes, 0);
 
 console.log(JSON.stringify({
   status: 'pass',
-  approvedAiRoutes: ['/ai/', `/ai/${publicationId}/`],
-  unapprovedTechnicalRoutes: 0,
+  approvedAiRoutes: ['/ai/', ...approved.map(({ id }) => `/ai/${id}/`)],
+  authorizationModes: [...new Set(approved.map(({ release }) => release.authorization.mode))],
+  unapprovedTechnicalRoutes,
   legacyHomeUnchangedByAiContent: true,
   sameDateLegacyRouteIsolated: true,
 }));

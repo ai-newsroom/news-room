@@ -31,7 +31,8 @@ AI 모델·API·SDK·오픈소스를 제품과 개발 환경에 적용할지 판
    직접 실행하지 않았다면 문서에서 확인한 절차라고 밝히고 재현 결과처럼 쓰지 않습니다.
 6. 초고를 쓴 뒤 `python3 editions/ai/editorial/style_v2.py <기사 경로>`를 실행합니다.
    문체 오류를 고치되 claim, 수치, URL, version·commit, license, 근거 등급, 재현성,
-   한계와 이해상충을 바꾸지 않습니다.
+   한계와 이해상충을 바꾸지 않습니다. 이 validator는 주제에 독립적인 문체·기사 구조만
+   검사합니다. 주제별 전문 용어와 사실 불변성은 해당 후보의 claim 원장과 대조합니다.
 
 서술은 동료 엔지니어에게 설계 검토 내용을 설명하듯 직접적인 `합니다체`로 씁니다.
 API, SDK, runtime, latency, throughput, commit처럼 익숙한 용어는 그대로 사용할 수

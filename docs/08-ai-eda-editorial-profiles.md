@@ -1,7 +1,8 @@
 # AI·EDA 기술판 독립 편집 프로필 설계
 
 > 상태: edition 설정에 연결됨. AI판 문체 v2는 전용 article prompt와 validator로
-> 검증하며, 자동 발행은 비활성 상태다.
+> 검증하며, AI판은 `ai-auto-publish-v1` 출고 정책으로 자동 발행한다. EDA판은
+> 비활성·사람 승인 상태를 유지한다.
 >
 > 목적: AI판과 EDA판이 공통 발행 엔진은 함께 쓰되, 시사판과 서로의 편집 판단을
 > 암묵적으로 상속하지 않게 한다. 이 문서에서 `필수`는 향후 edition 설정과 출고
@@ -23,7 +24,7 @@
 - 실행 프롬프트·모델·도구·종료 상태 기록
 - 기사와 근거 원장의 조립, 정적 사이트 렌더링
 - 출고 게이트 실행 결과와 미발행 결정 보존
-- 사람이 승인한 경우에만 이루어지는 commit·push·배포
+- edition별 출고 권한을 통과한 경우에만 이루어지는 commit·push·배포
 
 향후 edition 설정은 `inherits: technical-common`처럼 기술 공통 규칙만 명시적으로
 가져와야 한다. `newsroom/`, 시사판 persona, 시사판 source 목록을 기본값이나 fallback으로
@@ -165,7 +166,8 @@ NDA나 라이선스 때문에 독자가 볼 수 없는 자료는 독립 근거�
    사용하지 않았는가.
 9. **편집 품질**: 한국어로 정확히 풀었고 홍보 문구를 제목이나 데스크 결론으로
    옮기지 않았는가.
-10. **사람 승인**: 실제 publish·commit·push·배포 직전 명시적 승인이 있는가.
+10. **출고 권한**: 사람 승인 edition은 명시적 승인이 있고, 자동 출고 edition은
+    고정 정책 ID·근거 하한·문체·중복·route·build 검사가 모두 통과했는가.
 
 ### 4.2 심층 기사 형식
 
@@ -264,6 +266,23 @@ AI판은 다음을 이유만으로 주제로 고르지 않는다.
 - 이름만 바뀐 모델·기능이나 이전 기사와 실질 차이가 없는 업데이트
 - system card, release note, 논문, 실행 artifact 중 어느 것도 없는 소문
 - 접근할 수 없는 비공개 평가만 근거로 한 우월성 주장
+
+#### AI 자동 출고 계약 (`ai-auto-publish-v1`)
+
+AI판은 매일 08:00 `Asia/Seoul`에 최대 한 편을 검토한다. 중심 주장에 `E2` 이상이
+없거나 선정 점수가 기준 미만이면 정상 `no-publish`로 끝내며, 날짜를 채우기 위한 기사나
+실패 공지를 만들지 않는다.
+
+자동 출고는 기사·claim 원장·이해상충·문체 v2·publication ID·route 중복·site test와
+build가 모두 통과한 경우에만 `content/ai/<date>`와 `decisions/ai/<date>`를 승격한다.
+그 뒤 fast-forward commit·push, GitHub Pages 성공, 공개 URL의 title과 발행 ID를
+확인한다. 어느 단계든 실패하면 다음 단계로 진행하지 않고 force push나 자동
+history rewrite를 하지 않는다.
+
+공개 URL 확인에 성공한 날에만 post-publication 회고를 한 turn 실행한다. 회고는
+기사의 근거 공백, 출처 coverage, 문체 오류, 검증·배포 마찰을 평가하고 conductor inbox에
+후속 제안을 남긴다. 같은 실행에서 발행 기사를 조용히 다시 쓰거나 두 번째 기사를
+발행하지 않는다.
 
 #### AI 기술 블로그 문체 계약 (`ai-technical-blog-v2`)
 
@@ -485,7 +504,8 @@ selection_rules: "edition 전용 선정 기준"
 release_gates: "공통 + edition 전용 gate"
 article_template: "기술 심층 기사 형식"
 no_publish_template: "미발행 결정 형식"
-publish_requires_human_approval: true
+publish_requires_human_approval: false # AI판
+automatic_publish: true                # AI판; EDA판은 반대
 forbidden_fallbacks:
   - newsroom/charter.md
   - newsroom/personas/
@@ -494,5 +514,5 @@ forbidden_fallbacks:
 
 구현 검증은 같은 후보 bundle을 각 edition에 넣었을 때 AI판과 EDA판이 자기 기준으로
 서로 다른 결정을 내릴 수 있고, 어떤 edition도 시사판 역할을 로드하지 않는지를 확인해야
-한다. 그것은 이 문서의 설계를 실행 계약으로 옮기는 별도 작업이며, 이번 설계안이 자동
-발행 준비 완료를 뜻하지는 않는다.
+한다. AI판 자동 출고는 `ai-auto-publish-v1`에 한정하며, EDA판이나 시사판으로 권한을
+확대하지 않는다.

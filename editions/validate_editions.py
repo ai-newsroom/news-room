@@ -232,6 +232,22 @@ def validate_config(
                 raise EditionValidationError(
                     f"AI editorial config must declare its SW-engineer {key}"
                 )
+        if config["publication"] != {
+            "allowed_decisions": ["publish-candidate", "no-publish"],
+            "publish_requires_human_approval": False,
+            "automatic_publish": True,
+        }:
+            raise EditionValidationError(
+                "AI publication must use automatic publish without human approval"
+            )
+    elif config["publication"] != {
+        "allowed_decisions": ["publish-candidate", "no-publish"],
+        "publish_requires_human_approval": True,
+        "automatic_publish": False,
+    }:
+        raise EditionValidationError(
+            "EDA publication must remain human-approved and non-automatic"
+        )
 
     forbidden = set(config["forbidden_fallbacks"])
     missing_forbidden = CURRENT_AFFAIRS_FALLBACKS - forbidden
@@ -257,6 +273,7 @@ def validate_config(
         "publish_requires_human_approval": config["publication"][
             "publish_requires_human_approval"
         ],
+        "automatic_publish": config["publication"]["automatic_publish"],
         "fallback_policy": "explicit-failure",
     }
 

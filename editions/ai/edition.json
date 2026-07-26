@@ -53,8 +53,8 @@
   },
   "publication": {
     "allowed_decisions": ["publish-candidate", "no-publish"],
-    "publish_requires_human_approval": true,
-    "automatic_publish": false
+    "publish_requires_human_approval": false,
+    "automatic_publish": true
   },
   "forbidden_fallbacks": [
     "newsroom/charter.md",

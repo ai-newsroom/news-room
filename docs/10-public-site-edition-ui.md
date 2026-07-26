@@ -53,9 +53,10 @@ EDA는 공개 정보 구조에서 제외한다. 연구·수집 설정의 존속 
 
 ## 5. 비범위와 되돌림
 
-이번 변경은 콘텐츠 원문, release 승인, collection 경계, runner, schedule, git·배포 정책을
-바꾸지 않는다. 통합 feed도 만들지 않는다. 문제가 생기면 공통 layout만 되돌릴 수 있으며
-기존 시사·AI route와 콘텐츠 파일에는 migration이 필요 없다.
+이 UI의 최초 변경은 콘텐츠 원문, release 승인, collection 경계, runner, schedule,
+git·배포 정책을 바꾸지 않았다. 이후 AI판은 `ai-auto-publish-v1` authorization도
+사람 승인과 같은 hash·route 검사를 통과한 경우에만 표시하도록 확장됐다. 통합 feed는
+만들지 않는다.
 
 공개 반영은 로컬 검증 뒤 별도 commit·push·deploy 단계로 진행한다.
 

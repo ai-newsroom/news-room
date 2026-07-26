@@ -29,10 +29,7 @@ export async function getApprovedAiPublications() {
   const approved = [];
 
   for (const release of releases) {
-    if (
-      release.data.release_status !== 'approved-for-publication'
-      || release.data.human_approval.approved !== true
-    ) continue;
+    if (release.data.release_status !== 'approved-for-publication') continue;
 
     const id = release.data.publication_id;
     if (publicationId(release.id) !== id || seen.has(id)) {
@@ -67,10 +64,21 @@ export async function getApprovedAiPublications() {
     }
 
     const evidence = JSON.parse(evidenceBytes.toString('utf8'));
+    const humanAuthorized = (
+      release.data.authorization.mode === 'human'
+      && evidence.release_gate?.human_approval_required === true
+    );
+    const automaticallyAuthorized = (
+      release.data.authorization.mode === 'automatic'
+      && evidence.release_gate?.human_approval_required === false
+      && evidence.release_gate?.automatic_publish_allowed === true
+      && evidence.release_gate?.quality_gate_passed === true
+      && evidence.release_gate?.policy_id === release.data.authorization.policy_id
+    );
     if (
       evidence.edition !== 'ai'
       || evidence.decision !== 'publish-candidate'
-      || evidence.release_gate?.human_approval_required !== true
+      || (!humanAuthorized && !automaticallyAuthorized)
     ) {
       throw new Error(`AI release evidence gate mismatch: ${id}`);
     }

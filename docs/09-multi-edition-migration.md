@@ -23,8 +23,9 @@
    prompt, role, source, validator도 fallback으로 사용하지 않는다.
 5. `no-publish`는 정상적인 편집 결정이지만 공개 기사나 휴간 공지가 아니다. 실행 실패와
    구분해 공개 content tree 밖에 둔다.
-6. 새 공통 runner의 기본 모드는 `prepare-only`다. 사람의 명시적 승인 전에는 content
-   승격, `git add`, commit, push, deploy를 하지 않는다.
+6. 새 공통 runner의 기본 모드는 `prepare-only`다. 다만 AI판은 별도
+   `ai-auto-publish-v1`의 근거·문체·route·build gate를 모두 통과한 경우에만 content
+   승격, commit, push, deploy를 자동 수행한다. EDA판은 사람 승인 전 쓰기를 금지한다.
 7. migration은 각 단계가 독립적으로 되돌릴 수 있어야 한다. 기존 파일 이동이나 일괄
    frontmatter 변환은 이 계획의 필수 단계가 아니다.
 
@@ -215,8 +216,8 @@ runner는 `resolve -> acquire -> analyze -> decide -> validate -> stage` phase�
 |---|---|---|
 | 실행 실패 | `var/runs/.../run.json`의 failed 상태 | 기사·no-publish로 변환하지 않음 |
 | `no-publish` | `decisions/<edition>/<date>/...` 후보 | 사이트 제외, 자동 git 없음 |
-| `publish-candidate` | `var/runs/.../staged-content/` | 사람 승인 전 `content/` 복사 금지 |
-| 승인된 publish | config가 정한 content root | 별도 publish adapter가 승인 증거를 확인 |
+| `publish-candidate` | `var/runs/.../staged-content/` | edition별 출고 권한 전 `content/` 복사 금지 |
+| 승인된 publish | config가 정한 content root | publish adapter가 사람 또는 자동 정책 증거를 확인 |
 
 한 run은 자기 `var/runs/<run-id>/<edition>`만 쓸 수 있다. 공통 engine은 다른 edition의
 workspace나 decisions를 검색하지 않는다. 동일 publication id 재실행은 임시 디렉터리에
@@ -329,7 +330,8 @@ feed는 별도 후속이며, migration을 위해 통합 feed를 만들 필요는
 
 - AI를 먼저 `dry-run`, 다음 `prepare`로 실행해 미발행 결정과 candidate를 검토한다.
 - EDA도 같은 순서를 별도로 밟는다. EDA fixture와 gate가 없으면 시작하지 않는다.
-- schedule이나 실제 publish는 edition별 사람 승인과 별도 inbox가 있을 때만 켠다.
+- schedule이나 실제 publish는 edition별 출고 권한과 별도 inbox가 있을 때만 켠다.
+  AI판은 `ai-auto-publish-v1`, EDA판은 사람 승인을 사용한다.
 
 **통과 조건:** 양 edition이 시사판 파일을 읽지 않고 자기 설정만으로 결정 artifact를 만든다.
 

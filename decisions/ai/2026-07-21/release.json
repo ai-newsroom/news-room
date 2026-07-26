@@ -14,7 +14,8 @@
     "/ai/",
     "/ai/2026-07-21/"
   ],
-  "human_approval": {
+  "authorization": {
+    "mode": "human",
     "approved": true,
     "approved_at": "2026-07-26",
     "approved_by": "repository owner",

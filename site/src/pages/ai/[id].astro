@@ -13,6 +13,9 @@ export async function getStaticPaths() {
 const { article, release } = Astro.props;
 const { Content } = await render(article);
 const base = import.meta.env.BASE_URL;
+const authorizationLabel = release.data.authorization.mode === 'automatic'
+  ? '자동 출고 검증 완료'
+  : '사람 공개 승인 완료';
 
 function formatDate(d: Date) {
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
@@ -23,7 +26,7 @@ function formatDate(d: Date) {
     <p class="article-kicker"><a href={`${base}/ai/`}>AI 뉴스</a> · {formatDate(article.data.date)}</p>
     <h1>{article.data.title}</h1>
     <ul class="release-note" aria-label="기사 공개 및 검증 정보">
-      <li>공개 승인 완료</li>
+      <li>{authorizationLabel}</li>
       <li>근거 수준 {article.data.evidence_ceiling}</li>
       <li>재현성 {article.data.reproducibility}</li>
       <li>발행 ID {release.data.publication_id}</li>

@@ -14,13 +14,13 @@ function formatDate(d: Date) {
   <EditionHero
     kicker="AI Technology"
     title="AI 뉴스"
-    description="모델·API·개발 도구의 변화를 SW 엔지니어가 빠르게 판단할 수 있도록 설명합니다. 원문, 버전, 재현 범위를 검증하고 사람이 공개를 승인한 기사만 게재합니다."
+    description="모델·API·개발 도구의 변화를 SW 엔지니어가 빠르게 판단할 수 있도록 설명합니다. 원문, 버전, 재현 범위와 자동 출고 게이트를 통과한 기사만 게재합니다."
   />
 
   <section class="feed-section" aria-labelledby="recent-ai-news">
     <h2 id="recent-ai-news" class="section-title">최근 기사</h2>
     <ul class="feed">
-      {publications.map(({ id, article }) => (
+      {publications.map(({ id, article, release }) => (
         <li class="item">
           <p class="date">{formatDate(article.data.date)}</p>
           <h3><a href={`${base}/ai/${id}/`}>{article.data.title}</a></h3>
@@ -28,7 +28,7 @@ function formatDate(d: Date) {
           <ul class="signals" aria-label="기사 검증 수준">
             <li>근거 수준 {article.data.evidence_ceiling}</li>
             <li>재현성 {article.data.reproducibility}</li>
-            <li>공개 승인</li>
+            <li>{release.data.authorization.mode === 'automatic' ? '자동 출고' : '사람 승인'}</li>
           </ul>
         </li>
       ))}
