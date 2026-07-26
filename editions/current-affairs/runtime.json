@@ -17,7 +17,7 @@
     "enabled": true,
     "managed_by": "external-cron",
     "timezone": "Asia/Seoul",
-    "cadence": "daily; exact cron expression is managed outside this repository"
+    "cadence": "daily at 07:00; exact cron expression is managed outside this repository"
   },
   "release": {
     "mode": "legacy-wrapper",

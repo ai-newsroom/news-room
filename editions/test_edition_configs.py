@@ -24,6 +24,10 @@ SCHEMA = load_json(ROOT / "editions/_schema/edition.schema.json")
 CONFIG_PATHS = {
     edition: ROOT / f"editions/{edition}/edition.json" for edition in ("ai", "eda")
 }
+RUNTIME_PATHS = {
+    edition: ROOT / f"editions/{edition}/runtime.json"
+    for edition in ("current-affairs", "ai")
+}
 
 
 class EditionConfigTests(unittest.TestCase):
@@ -169,6 +173,26 @@ class EditionConfigTests(unittest.TestCase):
         report = json.loads(completed.stdout)
         self.assertEqual(report["status"], "passed")
         self.assertEqual([item["id"] for item in report["editions"]], ["ai", "eda"])
+
+    def test_current_affairs_and_ai_publish_at_distinct_documented_times(self):
+        current_affairs = load_json(RUNTIME_PATHS["current-affairs"])
+        ai = load_json(RUNTIME_PATHS["ai"])
+
+        self.assertEqual(current_affairs["schedule"]["timezone"], "Asia/Seoul")
+        self.assertIn("07:00", current_affairs["schedule"]["cadence"])
+        self.assertEqual(ai["schedule"]["timezone"], "Asia/Seoul")
+        self.assertIn("08:00", ai["schedule"]["cadence"])
+
+    def test_current_affairs_prompts_cannot_identify_as_ai_edition(self):
+        for backend in ("codex", "claude"):
+            with self.subTest(backend=backend):
+                prompt = (
+                    ROOT / f"prompts/daily-newsroom-single-{backend}.md"
+                ).read_text(encoding="utf-8")
+                first_line = prompt.splitlines()[0]
+                self.assertIn("시사판", first_line)
+                self.assertIn("current-affairs", first_line)
+                self.assertNotIn("AI 편집국", first_line)
 
 
 if __name__ == "__main__":

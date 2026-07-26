@@ -24,18 +24,24 @@ site/        Astro 정적 사이트 → GitHub Pages
 ## 동작 방식
 
 ```
-[홈서버 cron, 매일 1회]
+[시사판 홈서버 timer, 매일 07:00 Asia/Seoul]
   └→ scripts/publish-daily.sh
-       └→ coco-agents session run prompts/daily-newsroom-single-claude.md
-            ① 단일 Claude Code 세션 실행
+       └→ prompts/daily-newsroom-single-{codex|claude}.md
+            ① Codex exec 또는 coco-agents 관리 Claude 세션 실행
             ② 뉴스 지형 수집, 주제 선정, 토론 artifacts 작성
             ③ 기사 초고와 최종 기사 작성
        └→ content/YYYY-MM-DD/ 에 기사·토론 전문·초고·실행 프롬프트·모델 정보 저장 (실패 시 휴간 공지)
        └→ git commit & push → GitHub Actions가 사이트 빌드·배포
+
+[AI판 Codex automation, 매일 08:00 Asia/Seoul]
+  └→ editions/ai/의 독립된 취재·검증·자동 출고 계약 실행
+       └→ content/ai/YYYY-MM-DD/ 에 최대 한 편 발행
 ```
 
-`prompts/daily-newsroom-single-claude.md`는 서버 배치용 진입 프롬프트다. 이 프롬프트가
-`workflows/daily-newsroom.json`을 읽고 그 절차를 단일 Claude Code 세션 안에서 수행한다.
+`prompts/daily-newsroom-single-codex.md`와
+`prompts/daily-newsroom-single-claude.md`는 시사판 서버 배치용 진입 프롬프트다.
+이 프롬프트는 `workflows/daily-newsroom.json`을 읽고 시사판 절차를 단일 세션 안에서
+수행하며, AI판의 `content/ai/`나 편집 계약을 사용하지 않는다.
 `workflows/daily-newsroom.json`은 여러 AgentTask로 편집국을 모델링한 정본 절차이며,
 coco-agents 자체 개발과 multi-agent workflow 실험은 로컬 개발 머신에서 수행한다.
 
