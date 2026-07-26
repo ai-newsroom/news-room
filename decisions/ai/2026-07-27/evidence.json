@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-07-27",
+  "subject": "MCP 2026-07-28 release candidate and GitHub MCP Server stateless support",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The base protocol lifecycle changes one day before the scheduled final release, affects production MCP scaling and state design, and is inspectable in a normative release candidate, official SDK, conformance suite, and GitHub server source."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-product-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI, Anthropic, Google/DeepMind, GitHub developer-tool, vLLM, and NVIDIA announcement surfaces."
+      },
+      {
+        "channel": "X search",
+        "classification": "S2 discovery only",
+        "note": "Reviewed accessible X search signals around Claude Opus 5, MCP, and NVIDIA Korea; no X content is used as article evidence."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Claude Opus 5 availability in GitHub Copilot",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Recent availability is confirmed, but GitHub performance language is vendor testing and did not provide enough same-condition independent evidence for a stronger technical conclusion."
+      },
+      {
+        "subject": "NVIDIA and Korea AI infrastructure partnerships",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 2,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Highly relevant to Korean readers, but the latest material is mainly partnership and capacity announcements without an inspectable new hardware or software artifact for a software-engineering decision."
+      },
+      {
+        "subject": "MCP 2026-07-28 stateless core and GitHub server support",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Normative text, immutable code, an official SDK prerelease, and executable conformance tests support a scoped engineering conclusion."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "MATERIAL_PROTOCOL_CHANGE",
+    "PRIMARY_SPEC_AND_CODE_AVAILABLE",
+    "EXECUTABLE_CONFORMANCE_ARTIFACT",
+    "FINAL_SPEC_PENDING",
+    "HOSTED_DEPLOYMENT_UNVERIFIED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-07-27",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "conflicts": [
+    "GitHub is the publisher and operator of the GitHub MCP Server being described.",
+    "The Model Context Protocol project and official SDK maintainers describe their own specification and implementations.",
+    "No advance access, vendor account, credits, sponsorship, or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "mcp-stateless-wire",
+      "claim": "The MCP 2026-07-28 release candidate removes the initialize/initialized handshake and protocol-level session, moves version and client capability metadata to each request, and adds server/discover.",
+      "central": true,
+      "disposition": "confirmed-with-final-spec-pending",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Compared the official RC explanation, draft specification, and immutable RC release tag.",
+      "sources": [
+        {
+          "source_id": "mcp-rc-blog",
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "version": "published 2026-05-21; accessed 2026-07-27",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol project",
+          "limitations": "Maintainer explanation of an unreleased final specification."
+        },
+        {
+          "source_id": "mcp-draft-spec",
+          "url": "https://modelcontextprotocol.io/specification/draft",
+          "version": "draft accessed 2026-07-27",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol project",
+          "limitations": "Mutable draft URL; final text may differ."
+        },
+        {
+          "source_id": "mcp-rc-tag",
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases/tag/2026-07-28-RC",
+          "version": "tag 2026-07-28-RC; commit 9d700ed62dcf86cb77475c9b81930611a9182f46",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol project",
+          "limitations": "Release candidate explicitly permits changes before final."
+        }
+      ],
+      "limitations": [
+        "The final 2026-07-28 specification had not shipped at article time.",
+        "Protocol statelessness does not eliminate application state."
+      ],
+      "conflict_of_interest": [
+        "Specification authors are describing their own protocol revision."
+      ],
+      "recheck_triggers": [
+        "Final 2026-07-28 specification is published",
+        "RC-to-final changelog becomes available"
+      ]
+    },
+    {
+      "claim_id": "github-server-stateless-implementation",
+      "claim": "GitHub announced support for the next MCP specification, and its public server commit configures a stateless Streamable HTTP handler and depends on the official Go SDK v1.7.0-pre.3.",
+      "central": true,
+      "disposition": "confirmed-in-public-source",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected go.mod and pkg/http/handler.go at immutable GitHub MCP Server commit eb088dfe9d854dab6453a8d4ae5871a5ced20974.",
+      "sources": [
+        {
+          "source_id": "github-changelog",
+          "url": "https://github.blog/changelog/2026-07-23-github-mcp-server-supports-the-next-mcp-specification/",
+          "version": "published 2026-07-23; accessed 2026-07-27",
+          "source_grade": "P1",
+          "owner": "GitHub",
+          "limitations": "Vendor announcement; no hosted deployment metrics or source revision is supplied."
+        },
+        {
+          "source_id": "github-handler",
+          "url": "https://github.com/github/github-mcp-server/blob/eb088dfe9d854dab6453a8d4ae5871a5ced20974/pkg/http/handler.go",
+          "version": "commit eb088dfe9d854dab6453a8d4ae5871a5ced20974; accessed 2026-07-27",
+          "source_grade": "P2",
+          "owner": "GitHub",
+          "limitations": "Public repository may not match the hosted service deployment."
+        },
+        {
+          "source_id": "github-go-mod",
+          "url": "https://github.com/github/github-mcp-server/blob/eb088dfe9d854dab6453a8d4ae5871a5ced20974/go.mod",
+          "version": "commit eb088dfe9d854dab6453a8d4ae5871a5ced20974; accessed 2026-07-27",
+          "source_grade": "P2",
+          "owner": "GitHub",
+          "limitations": "Dependency declaration alone does not prove hosted conformance."
+        }
+      ],
+      "limitations": [
+        "No GitHub hosted-server conformance result was published.",
+        "No latency, database-operation, or scaling benchmark artifact was published."
+      ],
+      "conflict_of_interest": [
+        "GitHub describes and maintains its own server."
+      ],
+      "recheck_triggers": [
+        "GitHub publishes an exact hosted revision or conformance report",
+        "A stable GitHub MCP Server release pins the final protocol SDK"
+      ]
+    },
+    {
+      "claim_id": "go-sdk-prerelease",
+      "claim": "The official Go SDK v1.7.0-pre.3 targets protocol version 2026-07-28, includes related compliance fixes, and remains a prerelease.",
+      "central": false,
+      "disposition": "confirmed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected the signed prerelease tag, release notes, and compatibility table.",
+      "sources": [
+        {
+          "source_id": "go-sdk-pre3",
+          "url": "https://github.com/modelcontextprotocol/go-sdk/releases/tag/v1.7.0-pre.3",
+          "version": "v1.7.0-pre.3; commit 827f90ba0c13edb546028df42fadc9f1211a4ff2; published 2026-07-17",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol Go SDK maintainers",
+          "limitations": "Prerelease maintained by the implementation authors."
+        },
+        {
+          "source_id": "go-sdk-code",
+          "url": "https://github.com/modelcontextprotocol/go-sdk/tree/827f90ba0c13edb546028df42fadc9f1211a4ff2",
+          "version": "commit 827f90ba0c13edb546028df42fadc9f1211a4ff2",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol Go SDK maintainers",
+          "limitations": "Article did not build or execute the SDK."
+        }
+      ],
+      "limitations": [
+        "Other language SDKs have distinct release status and opt-in behavior.",
+        "The article did not run compatibility tests."
+      ],
+      "conflict_of_interest": [
+        "SDK maintainers report their own implementation status."
+      ],
+      "recheck_triggers": [
+        "Stable v1.7.0 is released",
+        "Final specification changes the implemented behavior"
+      ]
+    },
+    {
+      "claim_id": "conformance-artifact",
+      "claim": "The public MCP conformance framework can select the 2026-07-28 stateless lifecycle and test clients and servers against protocol scenarios.",
+      "central": false,
+      "disposition": "confirmed-not-executed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected README and package metadata at immutable commit a865118206d4d8cc8dbc5f5201607839281d0c3b.",
+      "sources": [
+        {
+          "source_id": "conformance-code",
+          "url": "https://github.com/modelcontextprotocol/conformance/tree/a865118206d4d8cc8dbc5f5201607839281d0c3b",
+          "version": "commit a865118206d4d8cc8dbc5f5201607839281d0c3b; package.json 0.2.0-alpha.9; accessed 2026-07-27",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol project",
+          "limitations": "Main snapshot is alpha and was not executed for this article."
+        },
+        {
+          "source_id": "mcp-draft-spec",
+          "url": "https://modelcontextprotocol.io/specification/draft",
+          "version": "draft accessed 2026-07-27",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol project",
+          "limitations": "Mutable draft pending final release."
+        }
+      ],
+      "limitations": [
+        "No test target was run in this article.",
+        "Public test availability is not proof that GitHub's hosted server passes."
+      ],
+      "conflict_of_interest": [
+        "The protocol project maintains both specification and conformance framework."
+      ],
+      "recheck_triggers": [
+        "A final-version conformance package is released",
+        "GitHub publishes conformance output"
+      ]
+    },
+    {
+      "claim_id": "payload-inspection-scope-gap",
+      "claim": "GitHub's changelog says new headers avoid inspecting every request payload for logging and secret scanning, while the inspected public server commit still contains middleware that reads and parses POST bodies for routing and secret-scanning context.",
+      "central": false,
+      "disposition": "scope-difference-confirmed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Compared the announcement language with pkg/http/middleware/mcp_parse.go at the same-day public commit.",
+      "sources": [
+        {
+          "source_id": "github-changelog",
+          "url": "https://github.blog/changelog/2026-07-23-github-mcp-server-supports-the-next-mcp-specification/",
+          "version": "published 2026-07-23; accessed 2026-07-27",
+          "source_grade": "P1",
+          "owner": "GitHub",
+          "limitations": "Does not identify the hosted layer or exact source revision."
+        },
+        {
+          "source_id": "github-body-parser",
+          "url": "https://github.com/github/github-mcp-server/blob/eb088dfe9d854dab6453a8d4ae5871a5ced20974/pkg/http/middleware/mcp_parse.go",
+          "version": "commit eb088dfe9d854dab6453a8d4ae5871a5ced20974; accessed 2026-07-27",
+          "source_grade": "P2",
+          "owner": "GitHub",
+          "limitations": "Public local server middleware may differ from hosted gateway code."
+        }
+      ],
+      "limitations": [
+        "The two sources may describe different deployment layers.",
+        "The code confirms parsing exists, not its production performance cost."
+      ],
+      "conflict_of_interest": [
+        "GitHub owns both the announcement and public server code."
+      ],
+      "recheck_triggers": [
+        "GitHub clarifies the hosted versus public-server path",
+        "Public middleware changes to header-only routing"
+      ]
+    },
+    {
+      "claim_id": "editorial-migration-separation",
+      "claim": "Teams should separate protocol state from application state and verify version negotiation, fallback, authorization, idempotency, and observability independently during migration.",
+      "central": false,
+      "disposition": "editorial-judgment",
+      "source_grade": "derived",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Derived from the protocol's explicit-handle design, SDK compatibility boundaries, and conformance workflow.",
+      "sources": [
+        {
+          "source_id": "mcp-rc-blog",
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "version": "published 2026-05-21; accessed 2026-07-27",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol project",
+          "limitations": "Protocol-level guidance does not validate organization-specific controls."
+        },
+        {
+          "source_id": "conformance-code",
+          "url": "https://github.com/modelcontextprotocol/conformance/tree/a865118206d4d8cc8dbc5f5201607839281d0c3b",
+          "version": "commit a865118206d4d8cc8dbc5f5201607839281d0c3b",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol project",
+          "limitations": "Conformance does not replace application security and workload testing."
+        }
+      ],
+      "limitations": [
+        "Control choices require workload-specific tests.",
+        "No measured benefit is claimed."
+      ],
+      "conflict_of_interest": [
+        "No vendor access or sponsorship; judgment is based on public sources."
+      ],
+      "recheck_triggers": [
+        "Production incident or compatibility data changes the risk model",
+        "Final specification adds migration requirements"
+      ]
+    }
+  ]
+}
