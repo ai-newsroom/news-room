@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-07-28",
+  "subject": "AMD ROCm.AI, AMD Skills, and ROCm CLI v0.1.0-experimental.1",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "AMD moved part of its GPU software onboarding and model-serving workflow into agent-readable skills and a downloadable CLI. The announcement, immutable code, exact release tag, installer, checksums, and skill scripts support a scoped engineering conclusion while exposing material Tech Preview limits."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-product-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI, Anthropic, Google/DeepMind, GitHub developer-tool, AMD, ROCm, NVIDIA, vLLM, and Hugging Face announcement and release surfaces."
+      },
+      {
+        "channel": "hardware-release-signals",
+        "classification": "S2 discovery only",
+        "note": "Reviewed AMD Advancing AI 2026 hardware and software announcements, including MI400, Helios, the Korea partnership, and ROCm.AI, before opening the linked primary artifacts."
+      },
+      {
+        "channel": "X search",
+        "classification": "S2 discovery only",
+        "note": "Reviewed accessible X surfaces and search results for frontier researchers and AI infrastructure signals, including Andrej Karpathy, Jim Fan, Logan Kilpatrick, and AMD. No X content is used as article evidence."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "AMD and Korea Ministry of Science and ICT sovereign AI partnership",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 2,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The announcement is highly relevant to Korean readers, but the central commitments remain a partnership announcement without a versioned deployment plan, procurement scope, or executable technical artifact, so the central claim stays at E1."
+      },
+      {
+        "subject": "GitHub Models full retirement on 2026-07-30",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The shutdown deadline is operationally useful and officially confirmed, but it is a service policy change with no P2 artifact supporting an E2 central technical conclusion."
+      },
+      {
+        "subject": "GitHub Copilot enterprise policy updates on 2026-07-27",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "The availability change is confirmed, but the newly published material does not establish a broader inspectable engineering change with an E2 center."
+      },
+      {
+        "subject": "ROCm.AI public skills and ROCm CLI v0.1.0-experimental.1",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "A recent official announcement is backed by a fixed skills catalog, executable helper scripts, an exact CLI tag, downloadable Linux and Windows assets, checksums, signatures, and installer code. The same artifacts make the Tech Preview and planned-feature boundaries observable."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "MATERIAL_DEVELOPER_WORKFLOW_CHANGE",
+    "PRIMARY_RELEASE_AND_CODE_AVAILABLE",
+    "EXECUTABLE_ARTIFACTS_AVAILABLE",
+    "TECH_PREVIEW_LIMITS_DISCLOSED",
+    "PERFORMANCE_UNVERIFIED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-07-28",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "conflicts": [
+    "AMD is the publisher and maintainer of ROCm.AI, AMD Skills, and ROCm CLI.",
+    "The public artifacts describe AMD's own supported workflows and do not constitute independent production validation.",
+    "No advance access, AMD hardware, vendor account, credits, sponsorship, advertising relationship, or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "rocm-ai-public-layers",
+      "claim": "AMD presents ROCm.AI as a unified experience across AMD Skills, ROCm CLI, ROCm Console, and Hyperloom, while public immutable artifacts currently provide an inspectable agent-skill catalog and ROCm CLI source and release.",
+      "central": true,
+      "disposition": "confirmed-with-scope-limits",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Compared AMD's 2026-07-23 product explanation with the immutable AMD Skills commit, ROCm CLI tag, source tree, and release assets.",
+      "sources": [
+        {
+          "source_id": "amd-rocm-ai-blog",
+          "url": "https://www.amd.com/en/blogs/2026/rocm-ai-the-ai-native-developer-experience-for-building.html",
+          "version": "published 2026-07-23; accessed 2026-07-28",
+          "source_grade": "P1",
+          "owner": "AMD",
+          "limitations": "Vendor-authored product explanation; no independent benchmark or exact support matrix for the unified experience."
+        },
+        {
+          "source_id": "amd-skills-fixed-tree",
+          "url": "https://github.com/amd/skills/tree/228980933abd97a8aa4a2656c8ea3ae9e8b590c7",
+          "version": "commit 228980933abd97a8aa4a2656c8ea3ae9e8b590c7; committed 2026-07-20; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD",
+          "limitations": "Tech Preview catalog maintained by the product owner; article did not execute the skills."
+        },
+        {
+          "source_id": "rocm-cli-release",
+          "url": "https://github.com/ROCm/rocm-cli/releases/tag/v0.1.0-experimental.1",
+          "version": "v0.1.0-experimental.1; tag commit cae77819a58ee8448a14160ce989832f500e6cc4; published 2026-07-27",
+          "source_grade": "P2",
+          "owner": "AMD ROCm",
+          "limitations": "Experimental Tech Preview release; binaries were inspected as release metadata but not executed."
+        }
+      ],
+      "limitations": [
+        "The article did not execute the end-to-end ROCm.AI workflow.",
+        "No public Hyperloom execution artifact or comparable benchmark was identified.",
+        "The public code does not prove the success rate of fresh-host setup or model serving."
+      ],
+      "conflict_of_interest": [
+        "AMD describes and maintains its own developer experience and repositories."
+      ],
+      "recheck_triggers": [
+        "Hyperloom public code, benchmark, or reproducible workload is released",
+        "ROCm.AI publishes a versioned support matrix or stable contract",
+        "Independent teams publish same-condition deployment results"
+      ]
+    },
+    {
+      "claim_id": "rocm-cli-experimental-release",
+      "claim": "ROCm CLI v0.1.0-experimental.1 publishes Linux and Windows x86_64 archives with SHA-256 and detached-signature sidecars, and its pinned Linux installer verifies the archive checksum before activation.",
+      "central": true,
+      "disposition": "confirmed-not-executed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected the GitHub release API and page, tag ref, release assets, checksum sidecar, Cargo metadata, and install.sh at immutable commit cae77819a58ee8448a14160ce989832f500e6cc4.",
+      "sources": [
+        {
+          "source_id": "rocm-cli-release",
+          "url": "https://github.com/ROCm/rocm-cli/releases/tag/v0.1.0-experimental.1",
+          "version": "v0.1.0-experimental.1; published 2026-07-27",
+          "source_grade": "P2",
+          "owner": "AMD ROCm",
+          "limitations": "Release metadata marks prerelease false and uses stable wording even though the version is experimental and the README says Tech Preview."
+        },
+        {
+          "source_id": "rocm-cli-install-script",
+          "url": "https://github.com/ROCm/rocm-cli/blob/cae77819a58ee8448a14160ce989832f500e6cc4/install.sh",
+          "version": "commit cae77819a58ee8448a14160ce989832f500e6cc4; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD ROCm",
+          "limitations": "Code inspection only; installer was not run and host mutations were not observed."
+        },
+        {
+          "source_id": "rocm-cli-linux-checksum",
+          "url": "https://github.com/ROCm/rocm-cli/releases/download/v0.1.0-experimental.1/rocm-cli-linux-amd64.tar.gz.sha256",
+          "version": "SHA-256 93bafca6b3f12eba027504a09ac22f44bb0a37caf8ef032d24817b5764164733; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD ROCm",
+          "limitations": "The article did not download and hash the 16,969,947-byte archive itself."
+        },
+        {
+          "source_id": "rocm-cli-release-trust",
+          "url": "https://github.com/ROCm/rocm-cli/blob/cae77819a58ee8448a14160ce989832f500e6cc4/docs/release-trust.md",
+          "version": "commit cae77819a58ee8448a14160ce989832f500e6cc4; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD ROCm",
+          "limitations": "Project-authored trust design; organization-specific enforcement and trust roots require separate review."
+        }
+      ],
+      "limitations": [
+        "The release binaries were not executed or independently reproduced from source.",
+        "Linux and Windows x86_64 assets do not prove support for every AMD GPU and operating system combination.",
+        "Signature assets existing does not prove a downstream deployment requires signature verification."
+      ],
+      "conflict_of_interest": [
+        "The project owner publishes the binaries, checksums, signatures, installer, and trust documentation."
+      ],
+      "recheck_triggers": [
+        "A non-experimental stable release is published",
+        "Independent reproducible-build or installer audit results are published",
+        "The release support matrix and rollback contract become versioned"
+      ]
+    },
+    {
+      "claim_id": "amd-skills-current-versus-planned",
+      "claim": "At AMD Skills commit 228980933abd97a8aa4a2656c8ea3ae9e8b590c7, the catalog links usable local-AI, serving, kernel-evaluation, and trace-analysis skills while marking rocm-doctor, hyperloom-kernel-optimizer, apu-memory-tuner, and other entries as planned; some planned work is visible under staging.",
+      "central": false,
+      "disposition": "confirmed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected README catalog rows, repository tree, individual skill files, helper scripts, and staging paths at the immutable commit.",
+      "sources": [
+        {
+          "source_id": "amd-skills-readme",
+          "url": "https://github.com/amd/skills/blob/228980933abd97a8aa4a2656c8ea3ae9e8b590c7/README.md",
+          "version": "commit 228980933abd97a8aa4a2656c8ea3ae9e8b590c7; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD",
+          "limitations": "Tech Preview catalog may change frequently."
+        },
+        {
+          "source_id": "instinct-serving-skill",
+          "url": "https://github.com/amd/skills/blob/228980933abd97a8aa4a2656c8ea3ae9e8b590c7/skills/serving-llms-on-instinct/SKILL.md",
+          "version": "commit 228980933abd97a8aa4a2656c8ea3ae9e8b590c7; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD",
+          "limitations": "Instruction and scripts are inspectable, but the article did not run them on Instinct hardware."
+        },
+        {
+          "source_id": "rocm-doctor-staging",
+          "url": "https://github.com/amd/skills/tree/228980933abd97a8aa4a2656c8ea3ae9e8b590c7/staging/rocm-doctor",
+          "version": "commit 228980933abd97a8aa4a2656c8ea3ae9e8b590c7; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD",
+          "limitations": "A staging directory is not a supported catalog entry or production contract."
+        }
+      ],
+      "limitations": [
+        "Repository presence does not establish stable support or successful execution.",
+        "Federated skills depend on upstream pinned commits and external tools.",
+        "The exact catalog can change after the inspected commit."
+      ],
+      "conflict_of_interest": [
+        "AMD owns the catalog and chooses which workflows and limitations to encode."
+      ],
+      "recheck_triggers": [
+        "Planned entries move into the supported catalog",
+        "The catalog publishes versioned compatibility and deprecation policy",
+        "Behavioral evaluation results are published for the relevant skills"
+      ]
+    },
+    {
+      "claim_id": "rocm-cli-runtime-boundaries",
+      "claim": "The fixed ROCm CLI README describes examine, SDK installation, model serving, dashboard telemetry, and chat, labels the software Tech Preview, and limits live dashboard telemetry to Linux or WSL.",
+      "central": false,
+      "disposition": "confirmed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected README and source layout at tag commit cae77819a58ee8448a14160ce989832f500e6cc4.",
+      "sources": [
+        {
+          "source_id": "rocm-cli-readme",
+          "url": "https://github.com/ROCm/rocm-cli/blob/cae77819a58ee8448a14160ce989832f500e6cc4/README.md",
+          "version": "commit cae77819a58ee8448a14160ce989832f500e6cc4; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD ROCm",
+          "limitations": "Project documentation, not an independent compatibility test."
+        },
+        {
+          "source_id": "rocm-cli-fixed-tree",
+          "url": "https://github.com/ROCm/rocm-cli/tree/cae77819a58ee8448a14160ce989832f500e6cc4",
+          "version": "commit cae77819a58ee8448a14160ce989832f500e6cc4; accessed 2026-07-28",
+          "source_grade": "P2",
+          "owner": "AMD ROCm",
+          "limitations": "Source availability supports inspection and buildability, not hardware compatibility across all paths."
+        }
+      ],
+      "limitations": [
+        "Synthetic demo mode is not evidence of real GPU telemetry or inference.",
+        "The article did not build the Rust workspace.",
+        "Command and behavior stability are explicitly not guaranteed."
+      ],
+      "conflict_of_interest": [
+        "The CLI authors document their own feature and support boundaries."
+      ],
+      "recheck_triggers": [
+        "Windows live-telemetry support is documented and tested",
+        "A stable CLI contract replaces the Tech Preview warning",
+        "Independent hardware matrices become available"
+      ]
+    },
+    {
+      "claim_id": "editorial-staged-adoption",
+      "claim": "Teams should approve AMD Skills instructions and ROCm CLI host mutations separately, pin immutable revisions, and expand agent permissions only after sandbox installation and a fixed-model smoke test pass.",
+      "central": false,
+      "disposition": "editorial-judgment",
+      "source_grade": "derived",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Derived from the mutable Tech Preview catalog, the skill's shell and Docker workflow, the CLI installer's filesystem behavior, and the release maturity limits.",
+      "sources": [
+        {
+          "source_id": "amd-skills-readme",
+          "url": "https://github.com/amd/skills/blob/228980933abd97a8aa4a2656c8ea3ae9e8b590c7/README.md",
+          "version": "commit 228980933abd97a8aa4a2656c8ea3ae9e8b590c7",
+          "source_grade": "P2",
+          "owner": "AMD",
+          "limitations": "Does not define an organization-specific approval policy."
+        },
+        {
+          "source_id": "instinct-serving-skill",
+          "url": "https://github.com/amd/skills/blob/228980933abd97a8aa4a2656c8ea3ae9e8b590c7/skills/serving-llms-on-instinct/SKILL.md",
+          "version": "commit 228980933abd97a8aa4a2656c8ea3ae9e8b590c7",
+          "source_grade": "P2",
+          "owner": "AMD",
+          "limitations": "Workflow-specific instructions do not replace local security and change-management controls."
+        },
+        {
+          "source_id": "rocm-cli-install-script",
+          "url": "https://github.com/ROCm/rocm-cli/blob/cae77819a58ee8448a14160ce989832f500e6cc4/install.sh",
+          "version": "commit cae77819a58ee8448a14160ce989832f500e6cc4",
+          "source_grade": "P2",
+          "owner": "AMD ROCm",
+          "limitations": "Filesystem and shell-profile changes depend on installer configuration and host state."
+        }
+      ],
+      "limitations": [
+        "The recommended gates require adaptation to each organization's threat model and hardware fleet.",
+        "No measured productivity benefit is claimed."
+      ],
+      "conflict_of_interest": [
+        "No vendor access or sponsorship; judgment is derived from public artifacts."
+      ],
+      "recheck_triggers": [
+        "The project publishes an enterprise rollout and rollback guide",
+        "Independent production incident or success-rate data changes the risk model"
+      ]
+    }
+  ]
+}
