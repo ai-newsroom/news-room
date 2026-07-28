@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-07-29",
+  "subject": "Moonshot AI Kimi K3 public weights and self-hosting boundary",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The promised Kimi K3 weights became public on 2026-07-27 together with a technical report, fixed configuration, custom license, serving recipes, and executable runtime code. Those artifacts support a scoped engineering conclusion about inspectability, artifact size, protocol requirements, and minimum deployment topology without promoting vendor benchmark claims."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-product-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI, Anthropic, Google, GitHub Copilot, Moonshot AI, Celeris, MCP, vLLM, and SGLang announcement and release surfaces before opening primary artifacts."
+      },
+      {
+        "channel": "hardware-and-runtime-release-signals",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent NVIDIA and MLCommons hardware signals plus vLLM and SGLang release and recipe surfaces. Hardware marketing and search summaries were not used as article evidence."
+      },
+      {
+        "channel": "X search",
+        "classification": "S2 discovery only",
+        "note": "Reviewed accessible X search and trending surfaces for Kimi K3 weight-release reactions and frontier-researcher signals, including the local-serving hardware discussion. No X post or X-generated summary is used as article evidence."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Moonshot AI Kimi K3 full weight release",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Public fixed weights, configuration, technical report, custom license, verifier code, and two serving-engine implementations make the artifact and deployment boundary inspectable at E2 while exposing unresolved production limits."
+      },
+      {
+        "subject": "GitHub Copilot for JetBrains OpenTelemetry and model-management update",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The official changelog is operationally useful, but the newly published central capability remains a product announcement without an inspectable implementation or independent technical artifact sufficient for an E2 center."
+      },
+      {
+        "subject": "Celeris-1 low-latency diffusion-model API",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The API documentation and CLI are public, but the central latency and quality claims are vendor-run comparisons without public weights, a complete technical report, or independent same-condition verification."
+      },
+      {
+        "subject": "GitHub Models retirement on 2026-07-30",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The shutdown date is official and actionable, but it is a previously announced service-policy change and the central claim remains E1 rather than a new inspectable E2 technical change."
+      },
+      {
+        "subject": "MLPerf Training v6.0 system results",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Results and submissions are inspectable, but the release is from 2026-06-16 and no material 2026-07-29 change was identified."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "MATERIAL_OPEN_WEIGHT_RELEASE",
+    "PRIMARY_WEIGHTS_CONFIG_AND_REPORT_AVAILABLE",
+    "EXECUTABLE_SERVING_ARTIFACTS_AVAILABLE",
+    "CUSTOM_LICENSE_BOUNDARY_DISCLOSED",
+    "PRODUCTION_PERFORMANCE_UNVERIFIED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-07-29",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "conflicts": [
+    "Moonshot AI develops Kimi K3 and publishes the model repository, weights, technical report, license, benchmark descriptions, and Vendor Verifier.",
+    "vLLM and SGLang maintain public Kimi K3 serving recipes and implementations; their support labels are project-authored evidence, not this article's independent production run.",
+    "No advance access, vendor account, credits, hardware, sponsorship, advertising relationship, NDA, or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "public-weight-artifact",
+      "claim": "Hugging Face revision 9f62e4e9fffbd0a83ddd60e1c209d828994b3569 is public and non-gated and contains 96 safetensors weight shards totaling 1,560,936,091,448 bytes plus configuration and index artifacts.",
+      "central": true,
+      "disposition": "confirmed-metadata-not-downloaded",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Queried the official Hugging Face model API with blobs=true on 2026-07-29, counted siblings ending in safetensors, and summed each LFS size; then inspected config.json and the model card at the immutable revision.",
+      "sources": [
+        {
+          "source_id": "kimi-k3-hf-fixed-tree",
+          "url": "https://huggingface.co/moonshotai/Kimi-K3/tree/9f62e4e9fffbd0a83ddd60e1c209d828994b3569",
+          "version": "revision 9f62e4e9fffbd0a83ddd60e1c209d828994b3569; last modified 2026-07-27T16:29:18Z; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "The article inspected metadata and selected small files but did not download or independently hash the 1.56 TB checkpoint."
+        },
+        {
+          "source_id": "kimi-k3-hf-fixed-config",
+          "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/9f62e4e9fffbd0a83ddd60e1c209d828994b3569/config.json",
+          "version": "revision 9f62e4e9fffbd0a83ddd60e1c209d828994b3569; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "Configuration availability does not establish runtime correctness."
+        },
+        {
+          "source_id": "kimi-k3-hf-weight-index",
+          "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/9f62e4e9fffbd0a83ddd60e1c209d828994b3569/model.safetensors.index.json",
+          "version": "revision 9f62e4e9fffbd0a83ddd60e1c209d828994b3569; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "The 59,764,096-byte index was not used to validate every tensor against downloaded shards."
+        }
+      ],
+      "limitations": [
+        "No weight shard was downloaded or executed.",
+        "The total is derived from official LFS size metadata, not a local filesystem measurement.",
+        "Public access can change after the observation date, while the revision identity remains fixed."
+      ],
+      "conflict_of_interest": [
+        "Moonshot AI controls the official model repository and its metadata."
+      ],
+      "recheck_triggers": [
+        "A signed manifest or upstream checksum bundle is published",
+        "A new revision changes shard count or byte size",
+        "Independent mirrors publish matching full-checkpoint hashes"
+      ]
+    },
+    {
+      "claim_id": "architecture-and-context",
+      "claim": "Kimi K3 is documented as a 2.8T-parameter Mixture-of-Experts model with 104B activated parameters, 93 layers, 16 of 896 routed experts selected per token, MXFP4 weights, and a 1,048,576-token configured context limit.",
+      "central": true,
+      "disposition": "confirmed-from-primary-report-and-config",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Cross-checked the immutable GitHub model summary, arXiv technical report, and immutable Hugging Face text_config.",
+      "sources": [
+        {
+          "source_id": "kimi-k3-github-fixed",
+          "url": "https://github.com/MoonshotAI/Kimi-K3/tree/7c5be9599120d7993748de66a76128614f15f210",
+          "version": "commit 7c5be9599120d7993748de66a76128614f15f210; committed 2026-07-28T11:48:20Z; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "Developer-authored repository; architecture and benchmark interpretations are not independent validation."
+        },
+        {
+          "source_id": "kimi-k3-technical-report",
+          "url": "https://arxiv.org/abs/2607.24653",
+          "version": "arXiv:2607.24653; submitted 2026-07-27; accessed 2026-07-29",
+          "source_grade": "P1",
+          "owner": "Moonshot AI authors",
+          "limitations": "Author-reported architecture, training, and evaluation; not peer-reviewed independent replication."
+        },
+        {
+          "source_id": "kimi-k3-hf-fixed-config",
+          "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/9f62e4e9fffbd0a83ddd60e1c209d828994b3569/config.json",
+          "version": "revision 9f62e4e9fffbd0a83ddd60e1c209d828994b3569; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "Configured maximum context does not prove equivalent quality across the entire window."
+        }
+      ],
+      "limitations": [
+        "The article did not load the model or validate tensor shapes.",
+        "Activated parameter count does not describe total storage or all runtime memory.",
+        "Maximum configured context is not a measured effective-context guarantee."
+      ],
+      "conflict_of_interest": [
+        "Moonshot AI reports its own architecture and training results."
+      ],
+      "recheck_triggers": [
+        "Independent architecture inspection or compatible loader reports are published",
+        "Independent 1M-context evaluations publish prompts, outputs, and runtime logs",
+        "A revision changes config or model summary"
+      ]
+    },
+    {
+      "claim_id": "serving-topology-and-maturity",
+      "claim": "Public Kimi K3 serving artifacts start at eight high-memory accelerators and still include nightly, pre-release, estimated-footprint, or final-verification warnings that require workload-specific validation before production adoption.",
+      "central": true,
+      "disposition": "confirmed-public-code-not-executed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected the vLLM Kimi K3 YAML at commit 5e93cbed6168919ef4d3e26ceda34a1245199499, the rendered recipe, SGLang cookbook, and Kimi K3 implementation tree at SGLang commit b5607ec5a4f416a8e52c6b47e23d476e3686c887.",
+      "sources": [
+        {
+          "source_id": "vllm-kimi-k3-fixed-recipe",
+          "url": "https://github.com/vllm-project/recipes/blob/5e93cbed6168919ef4d3e26ceda34a1245199499/models/moonshotai/Kimi-K3.yaml",
+          "version": "commit 5e93cbed6168919ef4d3e26ceda34a1245199499; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "vLLM Project contributors",
+          "limitations": "The recipe labels itself pre-release, requires a K3-enabled nightly, and retains an estimated footprint that predates the published checkpoint."
+        },
+        {
+          "source_id": "sglang-kimi-k3-cookbook",
+          "url": "https://docs.sglang.io/cookbook/autoregressive/Moonshotai/Kimi-K3",
+          "version": "live cookbook accessed 2026-07-29; linked implementation inspected at commit b5607ec5a4f416a8e52c6b47e23d476e3686c887",
+          "source_grade": "P1",
+          "owner": "SGLang Project",
+          "limitations": "Project-authored deployment guidance states that final-weight serving rounds and some presets still require validation."
+        },
+        {
+          "source_id": "sglang-kimi-k3-fixed-code",
+          "url": "https://github.com/sgl-project/sglang/tree/b5607ec5a4f416a8e52c6b47e23d476e3686c887/python/sglang/srt/models",
+          "version": "commit b5607ec5a4f416a8e52c6b47e23d476e3686c887; committed 2026-07-28T21:32:48Z; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "SGLang Project contributors",
+          "limitations": "Code presence and tests do not prove the article's environment can load or serve the full checkpoint."
+        }
+      ],
+      "limitations": [
+        "No eight-GPU or larger system was available to the article.",
+        "No container digest was pulled or executed.",
+        "No startup, accuracy, throughput, latency, power, or failure-recovery result was reproduced."
+      ],
+      "conflict_of_interest": [
+        "Serving projects document and label their own support status."
+      ],
+      "recheck_triggers": [
+        "Stable vLLM or SGLang releases include Kimi K3 without nightly requirements",
+        "Final-weight serving rounds publish immutable logs for the documented topologies",
+        "Independent operators publish same-revision production measurements"
+      ]
+    },
+    {
+      "claim_id": "reasoning-message-contract",
+      "claim": "Moonshot's public usage contract requires multi-turn and tool-call clients to pass the complete prior assistant message, including reasoning_content and tool_calls, back in subsequent messages.",
+      "central": false,
+      "disposition": "confirmed-not-executed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected the Model Usage section at immutable Kimi K3 commit and the public Vendor Verifier feature and tool-call tests.",
+      "sources": [
+        {
+          "source_id": "kimi-k3-github-fixed",
+          "url": "https://github.com/MoonshotAI/Kimi-K3/tree/7c5be9599120d7993748de66a76128614f15f210",
+          "version": "commit 7c5be9599120d7993748de66a76128614f15f210; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "Usage contract was not exercised against an endpoint."
+        },
+        {
+          "source_id": "kimi-vendor-verifier-fixed",
+          "url": "https://github.com/MoonshotAI/Kimi-Vendor-Verifier/tree/def8ee5595e944b3afb57e04053e17ac6f6fbb60",
+          "version": "commit def8ee5595e944b3afb57e04053e17ac6f6fbb60; committed 2026-07-28T08:21:24Z; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "Vendor-provided verifier; no test was run because API credentials and a serving endpoint were not provided."
+        }
+      ],
+      "limitations": [
+        "No OpenAI-compatible or Anthropic-compatible client round trip was executed.",
+        "Provider and self-hosted behavior may differ until the same fixtures pass."
+      ],
+      "conflict_of_interest": [
+        "Moonshot AI publishes both the model contract and verifier."
+      ],
+      "recheck_triggers": [
+        "A stable client SDK formalizes the preserved-thinking message schema",
+        "Independent providers publish verifier logs for the fixed model revision"
+      ]
+    },
+    {
+      "claim_id": "custom-license-boundary",
+      "claim": "Kimi K3 weights and code are available under a custom license that grants broad use rights but adds separate-agreement and prominent-display conditions for defined large service businesses or products.",
+      "central": true,
+      "disposition": "confirmed-not-legal-advice",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected the immutable Kimi K3 License and Hugging Face license metadata, preserving the exact thresholds and listed exceptions in the article.",
+      "sources": [
+        {
+          "source_id": "kimi-k3-fixed-license",
+          "url": "https://github.com/MoonshotAI/Kimi-K3/blob/7c5be9599120d7993748de66a76128614f15f210/LICENSE",
+          "version": "commit 7c5be9599120d7993748de66a76128614f15f210; accessed 2026-07-29",
+          "source_grade": "P1",
+          "owner": "Moonshot AI",
+          "limitations": "License text is primary legal source but the article does not provide legal interpretation for a specific organization."
+        },
+        {
+          "source_id": "kimi-k3-hf-fixed-tree",
+          "url": "https://huggingface.co/moonshotai/Kimi-K3/tree/9f62e4e9fffbd0a83ddd60e1c209d828994b3569",
+          "version": "revision 9f62e4e9fffbd0a83ddd60e1c209d828994b3569; license metadata 'other', license_name 'kimi-k3'; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "Repository metadata is descriptive and does not replace the license text."
+        }
+      ],
+      "limitations": [
+        "The article does not determine whether any particular deployment is covered by a threshold or exception.",
+        "Applicable law and organizational relationships require separate counsel."
+      ],
+      "conflict_of_interest": [
+        "Moonshot AI authored the license that governs its model."
+      ],
+      "recheck_triggers": [
+        "Moonshot AI publishes a revised license or official clarification",
+        "A target organization changes deployment from internal use to a third-party service"
+      ]
+    },
+    {
+      "claim_id": "editorial-staged-adoption",
+      "claim": "Teams should treat the release as an artifact-verification opportunity and gate adoption through immutable manifests, license review, fixed-runtime smoke tests, API-parity fixtures, workload evaluation, and rollback rather than assuming open weights imply easy local deployment.",
+      "central": false,
+      "disposition": "editorial-judgment",
+      "source_grade": "derived",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Derived from the public artifact size, minimum topology, moving runtime integration, message contract, and custom-license conditions.",
+      "sources": [
+        {
+          "source_id": "kimi-k3-hf-fixed-tree",
+          "url": "https://huggingface.co/moonshotai/Kimi-K3/tree/9f62e4e9fffbd0a83ddd60e1c209d828994b3569",
+          "version": "revision 9f62e4e9fffbd0a83ddd60e1c209d828994b3569; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "Moonshot AI",
+          "limitations": "Artifact availability alone does not choose the correct deployment strategy."
+        },
+        {
+          "source_id": "vllm-kimi-k3-fixed-recipe",
+          "url": "https://github.com/vllm-project/recipes/blob/5e93cbed6168919ef4d3e26ceda34a1245199499/models/moonshotai/Kimi-K3.yaml",
+          "version": "commit 5e93cbed6168919ef4d3e26ceda34a1245199499; accessed 2026-07-29",
+          "source_grade": "P2",
+          "owner": "vLLM Project contributors",
+          "limitations": "Recipe requirements are starting points, not the article's production measurements."
+        }
+      ],
+      "limitations": [
+        "The recommended gate order is editorial judgment and must be adapted to the organization's traffic, security, cost, and hardware constraints."
+      ],
+      "conflict_of_interest": [
+        "No vendor or infrastructure provider influenced the recommendation."
+      ],
+      "recheck_triggers": [
+        "Stable single-node deployment becomes available on materially smaller hardware",
+        "Independent cost and reliability studies support a different adoption sequence"
+      ]
+    }
+  ]
+}
