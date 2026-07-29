@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-07-30",
+  "subject": "Model Context Protocol 2026-07-28 final specification and stable SDK migration boundary",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The MCP 2026-07-28 specification moved from release candidate to an immutable stable tag with a versioned schema and stable Go and TypeScript SDK releases. Direct RC-to-final schema comparison exposes an interoperability-relevant identity-field change, while exact SDK documentation supports a scoped deployment decision about negotiation, legacy fallback, server entry points, and conformance pinning."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-product-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI, Anthropic, Google DeepMind, Meta AI, GitHub Copilot, Moonshot AI, and MCP official announcement and release surfaces before opening primary artifacts."
+      },
+      {
+        "channel": "developer-tool-and-hardware-release-signals",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent GitHub Changelog, VS Code, NVIDIA, AMD, MLCommons, vLLM, and SGLang surfaces. Search summaries and vendor marketing were not used as article evidence."
+      },
+      {
+        "channel": "frontier-researcher-X-search",
+        "classification": "S2 discovery only",
+        "note": "Reviewed accessible X search surfaces for recent signals from frontier researchers and MCP maintainers, including Andrej Karpathy, Ilya Sutskever, Jim Fan, and David Soria Parra queries. Current direct posts were incomplete or not material to the selected claim, so no X post or X-generated summary is used as article evidence."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Model Context Protocol 2026-07-28 final specification and stable SDKs",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "The stable spec, immutable final schema, merged field-shape change, signed Go release, TypeScript v2 release, and public conformance code support an E2 engineering conclusion that materially resolves the RC status while exposing concrete migration hazards."
+      },
+      {
+        "subject": "GitHub Models full retirement on 2026-07-30",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The shutdown date and migration guidance are official and actionable, but at the Seoul publication time the date boundary had not yet established a directly observable complete shutdown, and the central claim remained a previously announced E1 policy change."
+      },
+      {
+        "subject": "NVIDIA and Safe Superintelligence strategic compute partnership",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The partnership and investment are confirmed by the parties, but compute growth, research direction, and platform effects are forward-looking vendor claims without a public technical artifact supporting an E2 center."
+      },
+      {
+        "subject": "Meta signing the EU AI-generated-content transparency code",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The signature signal is recent but is primarily a policy commitment, and no new inspectable implementation contract or code artifact supported a software-engineering E2 conclusion."
+      },
+      {
+        "subject": "GitHub Models API documentation and Microsoft Foundry migration path",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official API and migration documents are available, but they do not independently establish that all product surfaces were already unavailable at the observation time."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "FINAL_SPEC_RELEASED",
+    "IMMUTABLE_VERSIONED_SCHEMA_AVAILABLE",
+    "RC_TO_FINAL_WIRE_DELTA_INSPECTABLE",
+    "STABLE_GO_AND_TYPESCRIPT_SDKS_AVAILABLE",
+    "NEW_SPEC_CONFORMANCE_REMAINS_ALPHA",
+    "RUNTIME_INTEROPERABILITY_NOT_REPRODUCED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-07-30",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "conflicts": [
+    "The Model Context Protocol project and official SDK maintainers publish and describe their own specification, release, code, and conformance artifacts.",
+    "GitHub hosts the repositories and releases and participates in the MCP ecosystem; GitHub-hosted metadata is primary evidence for release identity, not independent runtime verification.",
+    "No advance access, vendor account, credits, hardware, sponsorship, advertising relationship, NDA, or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "stable-final-spec-and-schema",
+      "claim": "The MCP project published protocol revision 2026-07-28 as a stable release at immutable commit 5f5440bb26a62e2cf3440b92da5a667efa03b267 with a versioned specification and schema/2026-07-28 artifacts.",
+      "central": true,
+      "disposition": "confirmed-from-release-and-fixed-source",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Queried the official GitHub release and tag refs, opened the official versioned specification, and inspected the repository tree and schema at the immutable final commit on 2026-07-30.",
+      "sources": [
+        {
+          "source_id": "mcp-final-release",
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases/tag/2026-07-28",
+          "version": "stable release published 2026-07-28T16:47:49Z; tag target 5f5440bb26a62e2cf3440b92da5a667efa03b267; accessed 2026-07-30",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol project",
+          "limitations": "Project-authored release metadata establishes release identity but not third-party implementation compatibility."
+        },
+        {
+          "source_id": "mcp-final-spec",
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28",
+          "version": "versioned specification 2026-07-28; accessed 2026-07-30",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol project",
+          "limitations": "Normative specification does not prove a particular deployment conforms."
+        },
+        {
+          "source_id": "mcp-final-schema-fixed",
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/5f5440bb26a62e2cf3440b92da5a667efa03b267/schema/2026-07-28/schema.ts",
+          "version": "commit 5f5440bb26a62e2cf3440b92da5a667efa03b267; accessed 2026-07-30",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol project",
+          "limitations": "Schema was inspected but not used to generate code or validate a live transcript."
+        }
+      ],
+      "limitations": [
+        "No third-party server or client was tested against the final schema.",
+        "Repository and website artifacts are maintained by the specification project.",
+        "Stable status does not imply every official or community SDK has complete support."
+      ],
+      "conflict_of_interest": [
+        "The MCP project publishes its own specification and release status."
+      ],
+      "recheck_triggers": [
+        "The release tag or website publishes an erratum",
+        "A new protocol revision supersedes 2026-07-28",
+        "Independent interoperability reports become available"
+      ]
+    },
+    {
+      "claim_id": "rc-to-final-identity-wire-change",
+      "claim": "Between RC commit 9d700ed62dcf86cb77475c9b81930611a9182f46 and the final schema, clientInfo changed from required to optional and serverInfo moved from the DiscoverResult body to optional io.modelcontextprotocol/serverInfo in result _meta.",
+      "central": true,
+      "disposition": "confirmed-by-fixed-schema-diff",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Inspected schema/draft/schema.ts at the immutable RC tag, schema/2026-07-28/schema.ts at the immutable final tag, and merged specification PR #3002. Compared the TypeScript declarations for RequestMetaObject, ResultMetaObject, and DiscoverResult.",
+      "sources": [
+        {
+          "source_id": "mcp-rc-schema-fixed",
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9d700ed62dcf86cb77475c9b81930611a9182f46/schema/draft/schema.ts",
+          "version": "RC tag commit 9d700ed62dcf86cb77475c9b81930611a9182f46; accessed 2026-07-30",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol project",
+          "limitations": "RC artifact was explicitly non-final."
+        },
+        {
+          "source_id": "mcp-final-schema-fixed",
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/5f5440bb26a62e2cf3440b92da5a667efa03b267/schema/2026-07-28/schema.ts",
+          "version": "final tag commit 5f5440bb26a62e2cf3440b92da5a667efa03b267; accessed 2026-07-30",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol project",
+          "limitations": "Field shape was inspected but no generated client was compiled."
+        },
+        {
+          "source_id": "mcp-pr-3002",
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3002",
+          "version": "merged 2026-07-16T02:16:05Z; merge commit 71e306956a4959c9655e5036be215d41986596e6; accessed 2026-07-30",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol project contributors",
+          "limitations": "Pull request rationale and tests are project-authored."
+        }
+      ],
+      "limitations": [
+        "The article did not compile an RC-generated client against a final server.",
+        "The comparison focuses on identity fields and does not enumerate every RC-to-final commit.",
+        "Self-reported identity fields remain unverified and cannot support authentication claims."
+      ],
+      "conflict_of_interest": [
+        "The specification contributors explain and merge their own protocol change."
+      ],
+      "recheck_triggers": [
+        "An erratum changes identity-field normative language",
+        "SDKs document incompatible interpretations of PR #3002",
+        "Independent interop tests reproduce or reject the described failure mode"
+      ]
+    },
+    {
+      "claim_id": "stable-sdk-activation-differences",
+      "claim": "Stable Go SDK v1.7.0 and TypeScript server 2.0.0 expose the final revision through different default negotiation and server entry behavior, so package installation alone does not establish that a deployment speaks 2026-07-28.",
+      "central": true,
+      "disposition": "confirmed-from-fixed-release-and-source-not-executed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Resolved the official annotated Go tag to commit bc72835f62eb94d0fb484439f886b6885b075f36 and the TypeScript server tag to commit cc4b41617ce3601b1290d67216ea0b194a3cd9ac, then inspected release notes, exact protocol and migration guides, and package metadata.",
+      "sources": [
+        {
+          "source_id": "go-sdk-v1-7-0-release",
+          "url": "https://github.com/modelcontextprotocol/go-sdk/releases/tag/v1.7.0",
+          "version": "signed annotated tag resolving to commit bc72835f62eb94d0fb484439f886b6885b075f36; published 2026-07-28T13:09:53Z; accessed 2026-07-30",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol Go SDK maintainers",
+          "limitations": "Maintainer-authored support statement; no local Go client or server was run."
+        },
+        {
+          "source_id": "go-sdk-protocol-fixed",
+          "url": "https://github.com/modelcontextprotocol/go-sdk/blob/bc72835f62eb94d0fb484439f886b6885b075f36/docs/protocol.md",
+          "version": "commit bc72835f62eb94d0fb484439f886b6885b075f36; accessed 2026-07-30",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol Go SDK maintainers",
+          "limitations": "Documentation and source path were inspected without executing negotiation."
+        },
+        {
+          "source_id": "typescript-server-v2-release",
+          "url": "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol%2Fserver%402.0.0",
+          "version": "tag resolving to commit cc4b41617ce3601b1290d67216ea0b194a3cd9ac; published 2026-07-27T23:55:41Z; accessed 2026-07-30",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol TypeScript SDK maintainers",
+          "limitations": "Maintainer-authored release; tag object is unsigned and package was not installed."
+        },
+        {
+          "source_id": "typescript-final-migration-fixed",
+          "url": "https://github.com/modelcontextprotocol/typescript-sdk/blob/cc4b41617ce3601b1290d67216ea0b194a3cd9ac/docs/migration/support-2026-07-28.md",
+          "version": "commit cc4b41617ce3601b1290d67216ea0b194a3cd9ac; accessed 2026-07-30",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol TypeScript SDK maintainers",
+          "limitations": "Migration behavior was read from exact source but not exercised over HTTP or stdio."
+        },
+        {
+          "source_id": "typescript-server-package-fixed",
+          "url": "https://github.com/modelcontextprotocol/typescript-sdk/blob/cc4b41617ce3601b1290d67216ea0b194a3cd9ac/packages/server/package.json",
+          "version": "@modelcontextprotocol/server 2.0.0; Node.js >=20; commit cc4b41617ce3601b1290d67216ea0b194a3cd9ac; accessed 2026-07-30",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol TypeScript SDK maintainers",
+          "limitations": "Package metadata does not establish install or runtime success."
+        }
+      ],
+      "limitations": [
+        "No SDK package was installed, built, or executed.",
+        "Only Go and TypeScript were compared in depth.",
+        "Stable release labels do not independently prove every transport and peer combination passes conformance."
+      ],
+      "conflict_of_interest": [
+        "Official SDK maintainers report their own support and migration behavior."
+      ],
+      "recheck_triggers": [
+        "A patch release changes negotiation defaults or server entry points",
+        "TypeScript v1 support policy changes",
+        "Independent cross-SDK interoperability matrices are published"
+      ]
+    },
+    {
+      "claim_id": "new-spec-conformance-alpha",
+      "claim": "The official conformance repository contains 2026-07-28 SDK-runner support at commit 49103de6ed70804e940637bf3e9e29e4a3f54e64, while its package metadata is 0.2.0-alpha.10 and the latest listed stable release is v0.1.16 from 2026-03-27.",
+      "central": false,
+      "disposition": "confirmed-from-fixed-code-and-release-metadata-not-executed",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Queried official release metadata, resolved main to commit 49103de6ed70804e940637bf3e9e29e4a3f54e64, and inspected package.json and the commit message on 2026-07-30.",
+      "sources": [
+        {
+          "source_id": "conformance-fixed-commit",
+          "url": "https://github.com/modelcontextprotocol/conformance/tree/49103de6ed70804e940637bf3e9e29e4a3f54e64",
+          "version": "commit 49103de6ed70804e940637bf3e9e29e4a3f54e64; committed 2026-07-28T09:56:25Z; package version 0.2.0-alpha.10; accessed 2026-07-30",
+          "source_grade": "P2",
+          "owner": "Model Context Protocol conformance maintainers",
+          "limitations": "Moving development artifact was pinned to a commit but not installed or run."
+        },
+        {
+          "source_id": "conformance-releases",
+          "url": "https://github.com/modelcontextprotocol/conformance/releases",
+          "version": "release list observed 2026-07-30; latest stable listed v0.1.16 published 2026-03-27",
+          "source_grade": "P1",
+          "owner": "Model Context Protocol conformance maintainers",
+          "limitations": "Release list can change after observation."
+        }
+      ],
+      "limitations": [
+        "The conformance package was not downloaded or executed.",
+        "Alpha versioning does not by itself establish incorrect results.",
+        "No pass or fail conclusion is made for any SDK or hosted server."
+      ],
+      "conflict_of_interest": [
+        "The MCP project maintains its own conformance tooling."
+      ],
+      "recheck_triggers": [
+        "A stable 0.2.x conformance release is published",
+        "Official SDK tier results for 2026-07-28 are published",
+        "Conformance scenarios or invocation flags change"
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R2",
+    "performed": [
+      "Resolved official release and tag refs to immutable commits",
+      "Inspected the final versioned specification and schema",
+      "Compared RC and final identity-field declarations",
+      "Inspected exact Go and TypeScript release documentation and package metadata",
+      "Inspected exact conformance commit metadata and package version"
+    ],
+    "not_performed": [
+      "No SDK package installation or compilation",
+      "No live MCP client/server negotiation",
+      "No conformance-suite execution",
+      "No latency, throughput, memory, or failure-recovery benchmark",
+      "No complete cross-language SDK support audit"
+    ]
+  }
+}
