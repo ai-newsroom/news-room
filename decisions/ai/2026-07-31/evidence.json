@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-07-31",
+  "subject": "GitHub Models retirement and Microsoft Foundry migration boundary",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "GitHub completed the retirement of a developer-facing inference service on 2026-07-30. On the Seoul publication morning, credential-free probes made the previously announced change directly observable as HTTP 410 on both catalog and inference routes, while current official quickstart and REST pages still advertised the retired success path. Official Foundry documents expose a concrete deployment, identity, billing, and endpoint migration boundary useful to software engineers."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-product-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI, Anthropic, Google AI, GitHub Copilot, Moonshot AI, and model-release surfaces. Search snippets and announcement summaries were used only to find primary pages."
+      },
+      {
+        "channel": "developer-tool-and-hardware-release-signals",
+        "classification": "S2 discovery only",
+        "note": "Reviewed GitHub Changelog, NVIDIA developer, AMD developer and ROCm, Hugging Face, vLLM, SGLang, and recent hardware-software release surfaces. No search result or secondary report is cited as article evidence."
+      },
+      {
+        "channel": "frontier-researcher-X-search",
+        "classification": "S2 discovery only",
+        "note": "Opened current X profile surfaces for Noam Brown, Shunyu Yao, Percy Liang, and Sayash Kapoor and ran recent-post searches. Direct profile pages exposed no usable post content in the available public response and search results did not identify a material new primary artifact, so X contributed no article fact or source."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "GitHub Models retirement and live API behavior",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "The full-retirement announcement is now paired with directly reproducible HTTP 410 responses, a stale official success-path quickstart, and specific Foundry deployment and authentication contracts. This upgrades the previous day's E1 policy candidate to an E2 operational conclusion."
+      },
+      {
+        "subject": "AMD Kimi K2.6 agentic serving stack on MI355X",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The July 21 technical article and linked code describe a substantial KV-cache and scheduling stack, but the timing is older, the benchmark remains vendor-run, and recent AI editions already covered closely related AMD and Kimi deployment boundaries."
+      },
+      {
+        "subject": "OpenAI ChatGPT Work workflow events and guidance",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Current official event pages establish availability and workflow guidance but do not provide a new versioned API, system card, release note, or executable artifact supporting an E2 technical center."
+      },
+      {
+        "subject": "Recent frontier-researcher X signals",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 0,
+        "decision_utility": 0,
+        "korean_reader_relevance": 1,
+        "total": 3,
+        "decision": "not-selected",
+        "reason": "Accessible profile responses did not expose a current material post leading to a directly verifiable primary artifact. X remained S2 discovery-only and was not promoted."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "FULL_RETIREMENT_ANNOUNCED",
+    "CATALOG_AND_INFERENCE_HTTP_410_OBSERVED",
+    "OFFICIAL_SUCCESS_PATH_DOCS_STILL_LIVE",
+    "FOUNDRY_DEPLOYMENT_AND_AUTH_BOUNDARY_DOCUMENTED",
+    "AUTHENTICATED_CUSTOMER_PATH_NOT_TESTED",
+    "FOUNDRY_RUNTIME_NOT_PROVISIONED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-07-31T08:05:32+09:00",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "conflicts": [
+    "GitHub operates the retired GitHub Models product and the GitHub Copilot alternative it recommends.",
+    "Microsoft operates Foundry, Azure subscriptions, deployment resources, and the migration documentation used to describe the replacement boundary.",
+    "No advance access, vendor account, paid subscription, credits, sponsorship, advertising relationship, NDA, embargo, or production credential was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "retirement-and-live-410",
+      "claim": "GitHub announced GitHub Models fully retired on 2026-07-30, and credential-free probes at 2026-07-31T08:05:31+09:00 and 08:05:32+09:00 observed HTTP 410 on the public catalog and chat completions routes.",
+      "central": true,
+      "disposition": "confirmed-from-official-announcement-and-live-http",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Opened GitHub's July 30 retirement announcement, then issued a credential-free GET to /catalog/models and a credential-free POST with a minimal synthetic JSON body to /inference/chat/completions. Both returned HTTP 410 and the same 152-byte JSON body with SHA-256 eb684b77670c904f8a8ac2304cacadd359f792928a5ff14d502912342ee84afd.",
+      "sources": [
+        {
+          "source_id": "github-models-retired-announcement",
+          "url": "https://github.blog/changelog/2026-07-30-github-models-is-now-retired/",
+          "version": "published 2026-07-30; accessed 2026-07-31",
+          "source_grade": "P1",
+          "owner": "GitHub",
+          "limitations": "Vendor-authored product status establishes GitHub's retirement decision but is not an independent measurement of every account path."
+        },
+        {
+          "source_id": "github-models-catalog-live",
+          "url": "https://models.github.ai/catalog/models",
+          "version": "HTTP 410 observed 2026-07-31T08:05:31+09:00; body SHA-256 eb684b77670c904f8a8ac2304cacadd359f792928a5ff14d502912342ee84afd",
+          "source_grade": "P2",
+          "owner": "GitHub",
+          "limitations": "Credential-free GET does not establish account-specific authenticated behavior and the response body may change after observation."
+        },
+        {
+          "source_id": "github-models-inference-live",
+          "url": "https://models.github.ai/inference/chat/completions",
+          "version": "credential-free POST returned HTTP 410 at 2026-07-31T08:05:32+09:00; body SHA-256 eb684b77670c904f8a8ac2304cacadd359f792928a5ff14d502912342ee84afd",
+          "source_grade": "P2",
+          "owner": "GitHub",
+          "limitations": "No GitHub token or paid model call was used, so response schema after authentication was not tested."
+        },
+        {
+          "source_id": "github-models-retirement-plan",
+          "url": "https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/",
+          "version": "published 2026-07-01; accessed 2026-07-31",
+          "source_grade": "P1",
+          "owner": "GitHub",
+          "limitations": "The plan listed July 16 and July 23 brownouts but does not explain why the July 31 observed body still uses the brownout code."
+        }
+      ],
+      "limitations": [
+        "No authenticated existing-customer request was sent.",
+        "The marketplace route redirected to login, so signed-in playground removal was not independently observed.",
+        "The response body says temporary brownout even though the official product announcement says retired; the article reports both without inferring an unannounced restoration."
+      ],
+      "conflict_of_interest": [
+        "GitHub reports and serves the status of its own retired product."
+      ],
+      "recheck_triggers": [
+        "The endpoints change from HTTP 410 to another status or error code",
+        "GitHub publishes an erratum or revised retirement scope",
+        "An authenticated legacy-customer path is publicly documented as still available"
+      ]
+    },
+    {
+      "claim_id": "official-docs-still-advertise-retired-path",
+      "claim": "At the 2026-07-31 observation time, GitHub's official quickstart and REST inference reference still documented models.github.ai calls using GitHub credentials and showed successful completion responses, while the documented live routes returned HTTP 410.",
+      "central": true,
+      "disposition": "confirmed-by-live-document-and-endpoint-comparison",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Opened the live GitHub quickstart and REST inference reference on 2026-07-31, recorded the documented endpoint, models permission and HTTP 200 examples, and compared them with the credential-free 410 observations on the same host.",
+      "sources": [
+        {
+          "source_id": "github-models-quickstart-live",
+          "url": "https://docs.github.com/en/enterprise-cloud@latest/github-models/quickstart",
+          "version": "live document accessed 2026-07-31; examples use models.github.ai, PAT models scope, Actions models: read and GITHUB_TOKEN",
+          "source_grade": "P1",
+          "owner": "GitHub",
+          "limitations": "Moving documentation may be updated after publication and does not establish runtime availability."
+        },
+        {
+          "source_id": "github-models-rest-inference-live",
+          "url": "https://docs.github.com/en/rest/models/inference",
+          "version": "live document accessed 2026-07-31; examples show API version 2026-03-10 and HTTP 200",
+          "source_grade": "P1",
+          "owner": "GitHub",
+          "limitations": "Generated REST reference may lag product retirement and example responses are not live tests."
+        },
+        {
+          "source_id": "github-models-inference-live",
+          "url": "https://models.github.ai/inference/chat/completions",
+          "version": "credential-free POST returned HTTP 410 at 2026-07-31T08:05:32+09:00",
+          "source_grade": "P2",
+          "owner": "GitHub",
+          "limitations": "Credential-free probe does not test every authenticated request variant."
+        }
+      ],
+      "limitations": [
+        "The documents are not pinned to immutable commits.",
+        "The article does not claim the stale examples will remain after publication.",
+        "Historical API schema may remain useful even though the availability guidance is stale."
+      ],
+      "conflict_of_interest": [
+        "GitHub authors the documentation and operates the endpoint being compared."
+      ],
+      "recheck_triggers": [
+        "GitHub removes or marks the quickstart and REST reference retired",
+        "The live endpoint begins serving authenticated requests again",
+        "GitHub publishes a dedicated migration runbook"
+      ]
+    },
+    {
+      "claim_id": "foundry-migration-boundary",
+      "claim": "Microsoft's current Foundry documentation requires an Azure subscription, resource credentials and explicit model deployments, with requests addressed to resource endpoints and deployment names rather than the retired GitHub Models credential and preconfigured-catalog boundary.",
+      "central": true,
+      "disposition": "confirmed-from-official-contract-not-provisioned",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Opened the Microsoft upgrade and endpoint documents, compared prerequisites, model deployment semantics, endpoint forms, key and Entra ID authentication, and the stated August 26, 2026 Azure AI Inference beta SDK retirement. No Azure resource was created.",
+      "sources": [
+        {
+          "source_id": "microsoft-foundry-github-upgrade",
+          "url": "https://learn.microsoft.com/en-gb/azure/foundry/foundry-models/how-to/quickstart-github-models",
+          "version": "last updated 2026-02-27; accessed 2026-07-31",
+          "source_grade": "P1",
+          "owner": "Microsoft",
+          "limitations": "Microsoft-authored migration guidance describes its own paid service and includes UI steps that still begin from the retired GitHub Models playground."
+        },
+        {
+          "source_id": "microsoft-foundry-endpoints",
+          "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/endpoints",
+          "version": "live document accessed 2026-07-31; documents deployments, resource endpoints, keyless authentication and beta SDK retirement on 2026-08-26",
+          "source_grade": "P1",
+          "owner": "Microsoft",
+          "limitations": "Documentation was inspected without provisioning a resource or executing paid inference."
+        }
+      ],
+      "limitations": [
+        "No model availability, region, quota, price, latency, quality or content-filter behavior was tested.",
+        "The article does not assert every GitHub Models client requires the same code changes.",
+        "Microsoft documentation is primary for product contract but not independent evidence of performance or cost superiority."
+      ],
+      "conflict_of_interest": [
+        "Microsoft sells and operates the replacement service described."
+      ],
+      "recheck_triggers": [
+        "Microsoft publishes a post-retirement migration guide that removes the old playground dependency",
+        "Foundry endpoint or SDK lifecycle documentation changes",
+        "A tested migration fixture establishes model-by-model parity or incompatibility"
+      ]
+    },
+    {
+      "claim_id": "http-410-retry-semantics",
+      "claim": "The observed retirement body uses temporary-brownout wording, but RFC 9110 defines HTTP 410 for unavailable resources whose condition is likely permanent; combined with GitHub's retirement announcement, clients should not classify this response as an unbounded transient retry.",
+      "central": false,
+      "disposition": "derived-from-standard-announcement-and-live-response",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Compared RFC 9110 section 15.5.11, GitHub's full-retirement statement, and the exact 410 response body observed on both endpoints.",
+      "sources": [
+        {
+          "source_id": "rfc-9110-410",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html#name-410-gone",
+          "version": "RFC 9110 section 15.5.11; accessed 2026-07-31",
+          "source_grade": "P1",
+          "owner": "IETF HTTP Working Group / RFC Editor",
+          "limitations": "The standard defines status semantics but does not determine GitHub's internal rollout duration."
+        },
+        {
+          "source_id": "github-models-catalog-live",
+          "url": "https://models.github.ai/catalog/models",
+          "version": "HTTP 410 with github_models_retirement_brownout observed 2026-07-31T08:05:31+09:00",
+          "source_grade": "P2",
+          "owner": "GitHub",
+          "limitations": "The error code or message may change after observation."
+        },
+        {
+          "source_id": "github-models-retired-announcement",
+          "url": "https://github.blog/changelog/2026-07-30-github-models-is-now-retired/",
+          "version": "published 2026-07-30; accessed 2026-07-31",
+          "source_grade": "P1",
+          "owner": "GitHub",
+          "limitations": "Product announcement does not prescribe client retry implementation."
+        }
+      ],
+      "limitations": [
+        "The article recommends a bounded operational classification and does not claim GitHub will never alter the endpoint response.",
+        "Existing queued jobs may need provider-specific replay and idempotency handling not covered by HTTP status alone."
+      ],
+      "conflict_of_interest": [
+        "GitHub controls its endpoint response and retirement messaging."
+      ],
+      "recheck_triggers": [
+        "GitHub publishes explicit retry or migration error semantics",
+        "The endpoint status changes",
+        "The body no longer uses the brownout code"
+      ]
+    }
+  ]
+}
