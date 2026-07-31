@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-08-01",
+  "subject": "vLLM 0.26.0 security and resource-boundary changes",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "vLLM 0.26.0 changes externally reachable request amplification, structured-output compilation, optional cache deserialization, derender resource bounds and validation-error disclosure. The exact release tag, merge ancestry, public source tests and PyPI artifacts make the implementation inspectable, while the operational limits are directly useful to software engineers running shared inference services."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-product-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI, Anthropic, Google DeepMind, Google developer and GitHub Copilot announcement surfaces. Search results and feed summaries were used only to locate primary releases and were not promoted to article evidence."
+      },
+      {
+        "channel": "developer-tool-and-hardware-release-signals",
+        "classification": "S2 discovery only",
+        "note": "Reviewed official GitHub release surfaces for PyTorch, Transformers, vLLM, SGLang, llama.cpp, Ollama, Codex, Claude Code and Gemini CLI, plus NVIDIA and AMD developer surfaces. The selected vLLM candidate was then verified against the official release, tag, PRs, advisory and PyPI artifacts."
+      },
+      {
+        "channel": "frontier-researcher-X-search",
+        "classification": "S2 discovery only",
+        "note": "Searched current public X surfaces for vLLM and frontier AI or AI-security researcher signals. Available results did not expose a timely material post leading to a stronger primary artifact, so X contributed no article fact or source."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "vLLM 0.26.0 security and resource-boundary changes",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "The stable release contains multiple bounded, externally relevant server-hardening changes with exact code, tests, tag ancestry and published package hashes. The deployment decisions are concrete without relying on vendor benchmark claims."
+      },
+      {
+        "subject": "Gemini CLI 0.53.1 invalid-stream guidance hotfix",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The same-day stable patch is exactly traceable and improves typed empty-response handling, but its scope is one CLI error-path fix and offers less broadly consequential deployment guidance than the vLLM server boundaries."
+      },
+      {
+        "subject": "Gemma 4 QAT and recent on-device artifact updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Weights and model cards are public, but the main release is older and the recent repository updates did not establish a newer central claim with a clearer publication-day decision boundary."
+      },
+      {
+        "subject": "Recent frontier-researcher X signals",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 0,
+        "decision_utility": 0,
+        "korean_reader_relevance": 1,
+        "total": 3,
+        "decision": "not-selected",
+        "reason": "Accessible X search did not identify a current material signal that could be upgraded from S2 to a directly verified primary artifact."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "STABLE_RELEASE_PUBLISHED",
+    "REQUEST_FANOUT_BOUND_ADDED",
+    "DERENDER_RESOURCE_BOUNDS_ADDED",
+    "REGEX_TIMEOUT_BACKEND_COVERAGE_EXTENDED",
+    "OUTLINES_PICKLE_CACHE_PATH_REMOVED",
+    "VALIDATION_ERROR_PATH_SANITIZED",
+    "SOURCE_AND_PACKAGE_ARTIFACTS_VERIFIED",
+    "RUNTIME_CANARY_NOT_EXECUTED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-01T08:10:15+09:00",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "conflicts": [
+    "The vLLM project and pull-request authors describe their own release, implementation and tests.",
+    "GitHub hosts the repository and advisory database used to inspect the public artifacts.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "release-tag-and-artifacts",
+      "claim": "vLLM v0.26.0 is a stable release at tag commit 568afb3a13806beb53bb2e6bd518269357b237c0; the six inspected security-related merge commits are ancestors of that tag, and PyPI publishes two Linux wheels plus an sdist for version 0.26.0.",
+      "central": true,
+      "disposition": "confirmed-from-release-tag-ancestry-and-package-registry",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Resolved the official Git tag through the GitHub API, checked compare status from each merge commit to the tag, queried PyPI JSON, downloaded the 38,353,572-byte sdist and matched SHA-256 23e9fa19d7e20ce7dcc1c074d41503e2116d23f19e688f5d5ea91b741f958502.",
+      "sources": [
+        {
+          "source_id": "vllm-026-release",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.26.0",
+          "version": "published 2026-07-27; tag v0.26.0; accessed 2026-08-01",
+          "source_grade": "P1",
+          "owner": "vLLM Project",
+          "limitations": "Maintainer-authored release notes summarize selected changes and do not independently validate every security claim or deployment."
+        },
+        {
+          "source_id": "vllm-026-tag",
+          "url": "https://github.com/vllm-project/vllm/commit/568afb3a13806beb53bb2e6bd518269357b237c0",
+          "version": "commit 568afb3a13806beb53bb2e6bd518269357b237c0",
+          "source_grade": "P2",
+          "owner": "vLLM Project",
+          "limitations": "Source tag establishes code identity but not behavior of every built image or downstream package."
+        },
+        {
+          "source_id": "vllm-026-pypi",
+          "url": "https://pypi.org/project/vllm/0.26.0/",
+          "version": "0.26.0; sdist SHA-256 23e9fa19d7e20ce7dcc1c074d41503e2116d23f19e688f5d5ea91b741f958502; accessed 2026-08-01",
+          "source_grade": "P2",
+          "owner": "Python Package Index / vLLM publishers",
+          "limitations": "Artifacts were inspected without installing wheels or running a GPU server."
+        }
+      ],
+      "limitations": [
+        "No wheel, container image or GPU runtime was executed.",
+        "The project test suite was not rerun.",
+        "Downstream images may patch or replace files relative to the official tag."
+      ],
+      "conflict_of_interest": [
+        "vLLM maintainers publish the release and package artifacts being evaluated."
+      ],
+      "recheck_triggers": [
+        "The v0.26.0 tag or PyPI artifact metadata changes",
+        "A yanked release or maintainer security correction is published",
+        "A downstream distribution reports a materially different patch set"
+      ]
+    },
+    {
+      "claim_id": "completion-prompt-fanout-bound",
+      "claim": "vLLM 0.26.0 validates multi-prompt lists and prompt_embeds in /v1/completions before engine allocation, using VLLM_MAX_COMPLETION_PROMPTS with a default of 1024 while treating list[int] as one tokenized prompt.",
+      "central": true,
+      "disposition": "confirmed-from-immutable-source-and-tests",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected PR #47845, the tagged envs.py and completion protocol validator, and regression tests covering scalar prompts, token-id prompts, values at the configured limit and one above it.",
+      "sources": [
+        {
+          "source_id": "vllm-pr-47845",
+          "url": "https://github.com/vllm-project/vllm/pull/47845",
+          "version": "merge commit 675f4295cdfe0d870471c2b51bfeca3a68a9569e; included in v0.26.0",
+          "source_grade": "P2",
+          "owner": "vLLM Project contributors",
+          "limitations": "PR description and tests are project-authored and no live request was sent by the editorial run."
+        },
+        {
+          "source_id": "vllm-026-completion-protocol",
+          "url": "https://github.com/vllm-project/vllm/blob/568afb3a13806beb53bb2e6bd518269357b237c0/vllm/entrypoints/openai/completion/protocol.py",
+          "version": "v0.26.0 commit 568afb3a13806beb53bb2e6bd518269357b237c0",
+          "source_grade": "P2",
+          "owner": "vLLM Project",
+          "limitations": "Static source inspection does not measure allocation timing or resource savings in a running server."
+        }
+      ],
+      "limitations": [
+        "The default 1024 is configurable and can still be too high for a small shared deployment.",
+        "Single-prompt token length and other endpoints require separate limits.",
+        "Gateway and authenticated-principal quotas were not tested."
+      ],
+      "conflict_of_interest": [
+        "The vLLM project authors and tests its own request validator."
+      ],
+      "recheck_triggers": [
+        "The environment variable default or prompt type semantics change",
+        "A bypass is reported through another prompt representation",
+        "A live canary shows engine work beginning before validation rejection"
+      ]
+    },
+    {
+      "claim_id": "regex-timeout-backend-extension",
+      "claim": "vLLM 0.26.0 routes lm-format-enforcer RegexParser compilation through the shared timeout helper, whose default VLLM_REGEX_COMPILATION_TIMEOUT_S is 5 and whose non-positive setting disables the timeout.",
+      "central": true,
+      "disposition": "confirmed-from-advisory-pr-and-immutable-source",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Compared GitHub Advisory GHSA-rwxx-mrjm-wc2m, PR #47595 and the tagged lm-format-enforcer backend, timeout helper and environment defaults. Kept the advisory's v0.24.0 xgrammar/outlines remediation separate from the v0.26.0 lm-format-enforcer coverage extension.",
+      "sources": [
+        {
+          "source_id": "vllm-redos-advisory",
+          "url": "https://github.com/advisories/GHSA-rwxx-mrjm-wc2m",
+          "version": "CVE-2026-55574; published 2026-07-02; updated 2026-07-17",
+          "source_grade": "P1",
+          "owner": "GitHub Advisory Database / vLLM security coordinator",
+          "limitations": "The advisory describes xgrammar and outlines with patched version 0.24.0; it does not by itself establish the later lm-format-enforcer implementation."
+        },
+        {
+          "source_id": "vllm-pr-47595",
+          "url": "https://github.com/vllm-project/vllm/pull/47595",
+          "version": "merge commit c9a788eedc412acceaa5112e0d44624b49841577; included in v0.26.0",
+          "source_grade": "P2",
+          "owner": "vLLM Project contributors",
+          "limitations": "No adversarial regex was executed against a running lm-format-enforcer backend by the editorial run."
+        },
+        {
+          "source_id": "vllm-026-lmfe-source",
+          "url": "https://github.com/vllm-project/vllm/blob/568afb3a13806beb53bb2e6bd518269357b237c0/vllm/v1/structured_output/backend_lm_format_enforcer.py",
+          "version": "v0.26.0 commit 568afb3a13806beb53bb2e6bd518269357b237c0",
+          "source_grade": "P2",
+          "owner": "vLLM Project",
+          "limitations": "Static code cannot establish prompt-to-worker recovery time or coverage of unrelated parser work."
+        }
+      ],
+      "limitations": [
+        "A timeout is a resource bound, not proof that all regex or grammar inputs are safe.",
+        "Operators can disable the timeout by setting a non-positive value.",
+        "Worker recovery and native-code cancellation behavior were not measured."
+      ],
+      "conflict_of_interest": [
+        "The vLLM project coordinates the advisory and authors the remediation code."
+      ],
+      "recheck_triggers": [
+        "The timeout helper or default changes",
+        "A bypass or worker leak is reported for lm-format-enforcer",
+        "An independent runtime reproduction measures recovery behavior"
+      ]
+    },
+    {
+      "claim_id": "outlines-cache-serialization-change",
+      "claim": "The optional Outlines disk cache in vLLM 0.26.0 no longer depends on diskcache/pickle and instead stores strings or outlines_core.Index native binary data in SQLite; this does not remove all pickle-related dependencies from vLLM.",
+      "central": true,
+      "disposition": "confirmed-from-pr-requirements-source-and-tests",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected PR #44549, requirements removal, OutlinesDiskCache implementation and tests in the verified v0.26.0 sdist. Also found cloudpickle still present in common requirements, preventing an overbroad all-pickle-removed claim.",
+      "sources": [
+        {
+          "source_id": "vllm-pr-44549",
+          "url": "https://github.com/vllm-project/vllm/pull/44549",
+          "version": "merge commit 96d2ceda4bb54d5601db7b464070860856c4f0b5; included in v0.26.0",
+          "source_grade": "P2",
+          "owner": "vLLM Project contributors",
+          "limitations": "The PR states the old cache was disabled by default and vLLM was not vulnerable in practice; it references a diskcache CVE rather than a vLLM advisory."
+        },
+        {
+          "source_id": "vllm-026-cache-source",
+          "url": "https://github.com/vllm-project/vllm/blob/568afb3a13806beb53bb2e6bd518269357b237c0/vllm/v1/structured_output/utils.py",
+          "version": "v0.26.0 commit 568afb3a13806beb53bb2e6bd518269357b237c0",
+          "source_grade": "P2",
+          "owner": "vLLM Project",
+          "limitations": "The editorial run did not exercise an existing cache directory or verify Rust serde against malicious binary data."
+        }
+      ],
+      "limitations": [
+        "The change applies to the optional Outlines disk cache, not every vLLM serialization path.",
+        "Existing cache migration and rollback were not tested.",
+        "Native binary deserialization was inspected but not security-audited independently."
+      ],
+      "conflict_of_interest": [
+        "The vLLM project characterizes its own practical exposure and replacement implementation."
+      ],
+      "recheck_triggers": [
+        "Maintainers publish cache migration guidance or a security correction",
+        "The cache implementation or serialization format changes",
+        "An independent audit reports a native binary deserialization issue"
+      ]
+    },
+    {
+      "claim_id": "derender-and-error-boundaries",
+      "claim": "vLLM 0.26.0 checks caller-supplied derender response counts, token lengths and logprob structures before decode, and builds validation errors from structured error entries while sanitizing absolute server paths.",
+      "central": false,
+      "disposition": "confirmed-from-immutable-source-and-tests",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected PRs #47260 and #46415, their merge ancestry, tagged serving code and regression tests. Confirmed _validate_derender_bounds is called before derender parser methods and validation_exception_handler avoids str(exc).",
+      "sources": [
+        {
+          "source_id": "vllm-pr-47260",
+          "url": "https://github.com/vllm-project/vllm/pull/47260",
+          "version": "merge commit 8e61b646e2d157f9b93451fa048f9c8530c8a67b; included in v0.26.0",
+          "source_grade": "P2",
+          "owner": "vLLM Project contributors",
+          "limitations": "Applies to the named derender endpoints and does not prove all request paths have equivalent bounds."
+        },
+        {
+          "source_id": "vllm-pr-46415",
+          "url": "https://github.com/vllm-project/vllm/pull/46415",
+          "version": "merge commit e87521626febe2763f997691d1599de4175f4324; included in v0.26.0",
+          "source_grade": "P2",
+          "owner": "vLLM Project contributors",
+          "limitations": "Project tests cover selected exception shapes; custom endpoints and plugins may use other handlers."
+        },
+        {
+          "source_id": "vllm-026-derender-source",
+          "url": "https://github.com/vllm-project/vllm/blob/568afb3a13806beb53bb2e6bd518269357b237c0/vllm/entrypoints/scale_out/derender/serving.py",
+          "version": "v0.26.0 commit 568afb3a13806beb53bb2e6bd518269357b237c0",
+          "source_grade": "P2",
+          "owner": "vLLM Project",
+          "limitations": "No oversized HTTP payload was sent by the editorial run."
+        }
+      ],
+      "limitations": [
+        "Only the named paths and handlers were inspected.",
+        "Proxy and middleware error transformations were not tested.",
+        "No live CPU or memory measurements were collected."
+      ],
+      "conflict_of_interest": [
+        "The vLLM project authors the implementation and regression tests."
+      ],
+      "recheck_triggers": [
+        "New endpoints bypass the shared bounds or error handler",
+        "A path-disclosure or resource-bound bypass is reported",
+        "Runtime canaries show decode or parser work before validation"
+      ]
+    }
+  ]
+}
