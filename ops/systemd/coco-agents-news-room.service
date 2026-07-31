@@ -1,0 +1,15 @@
+[Unit]
+Description=coco-agents control plane for news-room
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pys/repositories/news-room
+Environment=PATH=/home/pys/.cargo/bin:/home/pys/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/pys/.cargo/bin/coco-agents serve --workspace /home/pys/repositories/news-room --bind 127.0.0.1:7357
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -36,7 +36,18 @@ site/        Astro 정적 사이트 → GitHub Pages
 [AI판 Codex automation, 매일 08:00 Asia/Seoul]
   └→ editions/ai/의 독립된 취재·검증·자동 출고 계약 실행
        └→ content/ai/YYYY-MM-DD/ 에 최대 한 편 발행
+
+[시사판 지속 개선, 매일 발행 뒤]
+  └→ coco-agents routine이 지속 개선 컨덕터 세션을 깨움
+       ├→ 최신 시사판 결과를 읽기 전용으로 회고
+       ├→ 실행 가치가 있는 개선을 inbox proposal로 최대 한 건 기록
+       ├→ 편집자가 승인한 항목만 별도 작업 세션에 배정
+       └→ 독립 검토와 제한된 finalization 뒤 완료 처리
 ```
+
+첫 shadow 단계에서는 기존 발행 timer를 유지한다. 개선 루프가 검증되면 컨덕터가 발행
+시작과 결과 확인까지 포함한 하루 사이클 전체를 소유하고, 기존 timer는 중복 방지를 위해
+비활성화한다. 컨덕터는 같은 턴에서 기사 작성·자기 평가·자기 수정을 모두 수행하지 않는다.
 
 `prompts/daily-newsroom-single-codex.md`와
 `prompts/daily-newsroom-single-claude.md`는 시사판 서버 배치용 진입 프롬프트다.
@@ -44,6 +55,9 @@ site/        Astro 정적 사이트 → GitHub Pages
 수행하며, AI판의 `content/ai/`나 편집 계약을 사용하지 않는다.
 `workflows/daily-newsroom.json`은 여러 AgentTask로 편집국을 모델링한 정본 절차이며,
 coco-agents 자체 개발과 multi-agent workflow 실험은 로컬 개발 머신에서 수행한다.
+
+발행 후 지속 개선의 운영 계약과 승인 경계는
+[`docs/12-continuous-improvement-loop.md`](docs/12-continuous-improvement-loop.md)에 있다.
 
 ## 편집국 사람들
 
