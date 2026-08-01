@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-08-02",
+  "decision": "publish-candidate",
+  "subject": "OpenAI Content Provenance API and Python 2.52.0, Go 3.49.0, Ruby 0.75.0 SDK support",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The new authenticated API makes OpenAI-specific image and audio provenance signals available to software review workflows, while the official guide, public verifier surface and exact Python, Go and Ruby SDK tags expose a narrow, inspectable contract. Its negative-result, access and data-control boundaries directly affect architecture decisions for Korean teams using the global API."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-product-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI, Anthropic, Google DeepMind, Google developer, Meta and Mistral announcement surfaces. Search results and feed summaries only located candidates; the selected facts were rechecked in OpenAI's official API guide, public verifier and SDK artifacts."
+      },
+      {
+        "channel": "developer-tool-and-hardware-release-signals",
+        "classification": "S2 discovery only",
+        "note": "Queried official GitHub release APIs for vLLM, SGLang, Transformers, PyTorch, llama.cpp, TensorRT-LLM and the OpenAI, Anthropic, Google GenAI and MCP SDKs, and reviewed NVIDIA and AMD developer surfaces. Recent versions were then inspected at their official release and immutable source URLs."
+      },
+      {
+        "channel": "frontier-researcher-X-search",
+        "classification": "S2 discovery only",
+        "note": "Searched current public X surfaces for OpenAI, Anthropic, frontier researchers and SynthID or provenance signals. Accessible search did not yield a timely primary technical artifact stronger than the official API and SDK sources, so no X post supports an article fact."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "OpenAI Content Provenance API and synchronized SDK support",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "The official API contract and three same-day SDK releases provide a new programmatic trust-and-safety integration point with concrete result, privacy and failure semantics."
+      },
+      {
+        "subject": "TensorRT-LLM v1.3.0rc23 serving and model-support changes",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The release has important serving changes but remains an RC with documented hang, crash and OOM cases across selected models and hardware. The provenance API offers a narrower stable interface and clearer publication-day decision boundary."
+      },
+      {
+        "subject": "OpenAI Python SDK 2.52.0 Retry-After behavior",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "included-as-secondary-context",
+        "reason": "Honoring Retry-After up to two minutes is operationally useful and relevant to the new endpoint's rate-limit guidance, but it is a generic client fix rather than the central release."
+      },
+      {
+        "subject": "llama.cpp b10223 CI-only daily build",
+        "importance": 0,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 0,
+        "korean_reader_relevance": 1,
+        "total": 4,
+        "decision": "not-selected",
+        "reason": "The current build only fixes selected CI errors and does not establish a material user-facing capability or deployment decision."
+      },
+      {
+        "subject": "Recent frontier-researcher X signals",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 0,
+        "decision_utility": 0,
+        "korean_reader_relevance": 1,
+        "total": 3,
+        "decision": "not-selected",
+        "reason": "Accessible X search did not identify a timely material signal that could be promoted from S2 to a directly verified primary artifact."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PROGRAMMATIC_PROVENANCE_API_PUBLISHED",
+    "THREE_OFFICIAL_SDKS_RELEASED",
+    "SIGNAL_SPECIFIC_RESULT_SCHEMA_VERIFIED",
+    "NEGATIVE_RESULT_LIMITS_DISCLOSED",
+    "DATA_CONTROL_BOUNDARY_DISCLOSED",
+    "EXACT_TAGS_AND_SOURCE_VERIFIED",
+    "AUTHENTICATED_RUNTIME_NOT_EXECUTED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-02T08:07:35+09:00",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "conflicts": [
+    "OpenAI issues the provenance signals for its products, operates the verifier and API, publishes the SDKs and describes their behavior.",
+    "GitHub hosts the immutable release and source artifacts used to inspect the SDK contract.",
+    "No advance access, API account, credits, media fixture, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "api-and-sdk-release",
+      "claim": "OpenAI exposes POST /v1/content_provenance_checks as a synchronous single-file verification API, and the official guide requires Python 2.52.0, Go 3.49.0 or Ruby 0.75.0 or later for the documented SDK methods.",
+      "central": true,
+      "disposition": "confirmed-from-official-guide-releases-and-immutable-tags",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Read the official API guide and compared its minimum SDK versions with the three official 2026-07-31 releases. Resolved lightweight tags to Python commit ca693fbaa20a620ce53a48f4419a1a01444564e7, Go commit f0e6bff60a2c883de7a8cbc5492d763625f84b61 and Ruby commit 692e6c7cab56554e470fe414bcdd23ae7416d205.",
+      "sources": [
+        {
+          "source_id": "openai-content-provenance-guide",
+          "url": "https://developers.openai.com/api/docs/guides/content-provenance",
+          "version": "accessed 2026-08-02; Markdown HTTP 200, 9782 bytes, SHA-256 368645d44bb8c2a7c28d5b1c40efe236db635bdead823787c900ed18bde2a204",
+          "source_grade": "P1",
+          "owner": "OpenAI",
+          "limitations": "Mutable vendor documentation defines the service contract but does not independently establish regional access, runtime performance or detector accuracy."
+        },
+        {
+          "source_id": "openai-python-252-release",
+          "url": "https://github.com/openai/openai-python/releases/tag/v2.52.0",
+          "version": "v2.52.0; published 2026-07-31; tag commit ca693fbaa20a620ce53a48f4419a1a01444564e7",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "The release establishes client support, not access for every API organization or runtime detection quality."
+        },
+        {
+          "source_id": "openai-go-349-release",
+          "url": "https://github.com/openai/openai-go/releases/tag/v3.49.0",
+          "version": "v3.49.0; published 2026-07-31; tag commit f0e6bff60a2c883de7a8cbc5492d763625f84b61",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "Generated SDK code was not compiled or used against the production endpoint by the editorial run."
+        },
+        {
+          "source_id": "openai-ruby-075-release",
+          "url": "https://github.com/openai/openai-ruby/releases/tag/v0.75.0",
+          "version": "v0.75.0; published 2026-07-31; tag commit 692e6c7cab56554e470fe414bcdd23ae7416d205",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "Generated SDK code was not executed against the production endpoint by the editorial run."
+        }
+      ],
+      "limitations": [
+        "The authenticated API was not called.",
+        "Organizations without endpoint access can receive HTTP 404.",
+        "Actual rate limits, latency, price and regional processing were not verified."
+      ],
+      "conflict_of_interest": [
+        "OpenAI publishes the service contract and all three SDK implementations being evaluated."
+      ],
+      "recheck_triggers": [
+        "The guide changes minimum SDK versions or endpoint path",
+        "Any of the three tags is moved or a release is yanked",
+        "OpenAI publishes access, pricing or regional availability details"
+      ]
+    },
+    {
+      "claim_id": "signal-specific-results",
+      "claim": "Image responses contain applicable C2PA and SynthID result entries, audio responses contain a SynthID entry, and clients must interpret each entry independently because the response has no top-level outcome.",
+      "central": true,
+      "disposition": "confirmed-from-official-schema-and-immutable-python-types",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Compared the official response examples and interpretation rules with the Python 2.52.0 discriminated union ResultC2PA and ResultSynthID types at the exact release tag. The inspected type file was 3120 bytes with SHA-256 f5bfb7b65b1d601fb8b3d985f5ced9052de8fd70f9913947e4728a44942ea00c.",
+      "sources": [
+        {
+          "source_id": "openai-content-provenance-guide-schema",
+          "url": "https://developers.openai.com/api/docs/guides/content-provenance#understand-verification-results",
+          "version": "accessed 2026-08-02",
+          "source_grade": "P1",
+          "owner": "OpenAI",
+          "limitations": "Documentation examples are illustrative and do not establish result ordering or detection performance on arbitrary files."
+        },
+        {
+          "source_id": "openai-python-result-type",
+          "url": "https://github.com/openai/openai-python/blob/ca693fbaa20a620ce53a48f4419a1a01444564e7/src/openai/types/content_provenance_check.py",
+          "version": "v2.52.0 tag commit ca693fbaa20a620ce53a48f4419a1a01444564e7; SHA-256 f5bfb7b65b1d601fb8b3d985f5ced9052de8fd70f9913947e4728a44942ea00c",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "Generated type definitions establish the client schema but cannot validate production verifier output or service correctness."
+        }
+      ],
+      "limitations": [
+        "No live image or audio response was captured.",
+        "Clients should not assume array order or a fixed result count.",
+        "Optional model, generated_at and issuer fields may be absent."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors both the API schema and its generated client representation."
+      ],
+      "recheck_triggers": [
+        "A new signal type is added",
+        "The response gains a top-level outcome or changes omission semantics",
+        "SDK types diverge from the service guide"
+      ]
+    },
+    {
+      "claim_id": "negative-result-boundary",
+      "claim": "A not_detected result means that a supported OpenAI provenance signal was not found; it does not prove human authorship, exclude OpenAI content with removed or degraded signals, or detect content generated by other companies' models.",
+      "central": true,
+      "disposition": "confirmed-as-explicit-vendor-contract-limit",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Compared the negative-result wording in the official API guide, public verifier FAQ and immutable Python result-type docstrings. No independent false-negative benchmark was found or used.",
+      "sources": [
+        {
+          "source_id": "openai-guide-negative-result",
+          "url": "https://developers.openai.com/api/docs/guides/content-provenance#use-verification-results-responsibly",
+          "version": "accessed 2026-08-02",
+          "source_grade": "P1",
+          "owner": "OpenAI",
+          "limitations": "This is the vendor's declared interpretation boundary, not an independent measurement of false negatives."
+        },
+        {
+          "source_id": "openai-public-verifier",
+          "url": "https://openai.com/research/verify/",
+          "version": "browser surface accessed 2026-08-02; supported images and audio; command-line HTTP received bot-protection 403",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "The public interactive surface was opened but no file was uploaded and no result was captured."
+        },
+        {
+          "source_id": "openai-python-negative-result-type",
+          "url": "https://github.com/openai/openai-python/blob/ca693fbaa20a620ce53a48f4419a1a01444564e7/src/openai/types/content_provenance_check.py",
+          "version": "v2.52.0 tag commit ca693fbaa20a620ce53a48f4419a1a01444564e7",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "Docstrings repeat the contract but do not quantify detection errors."
+        }
+      ],
+      "limitations": [
+        "No independent false-positive or false-negative study was verified.",
+        "Transformation robustness was not tested.",
+        "The API is specific to supported OpenAI signals and is not a general AI detector."
+      ],
+      "conflict_of_interest": [
+        "OpenAI defines and explains the scope of the signals it emits and detects."
+      ],
+      "recheck_triggers": [
+        "OpenAI expands detection to third-party models",
+        "Independent benchmarks quantify error rates and transformation robustness",
+        "The meaning of detected or not_detected changes"
+      ]
+    },
+    {
+      "claim_id": "format-access-and-data-boundaries",
+      "claim": "The API accepts listed image and audio formats with a 50 MiB per-file limit and a decoded-audio limit of 60 seconds, may return 400, 404 or 429 for distinct failure classes, and is not eligible for Zero Data Retention.",
+      "central": false,
+      "disposition": "confirmed-from-official-service-guide",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the official supported-formats, availability, error and data-control sections and kept public verifier data handling separate from API Zero Data Retention eligibility.",
+      "sources": [
+        {
+          "source_id": "openai-guide-formats-data",
+          "url": "https://developers.openai.com/api/docs/guides/content-provenance#supported-formats-and-availability",
+          "version": "accessed 2026-08-02",
+          "source_grade": "P1",
+          "owner": "OpenAI",
+          "limitations": "The guide does not state actual organization-specific rate limits, price, retention duration or regional processing details."
+        },
+        {
+          "source_id": "openai-verifier-data-faq",
+          "url": "https://openai.com/research/verify/",
+          "version": "accessed 2026-08-02",
+          "source_grade": "P1",
+          "owner": "OpenAI",
+          "limitations": "The public browser tool's storage and training statement does not replace the API's separate data-control terms."
+        }
+      ],
+      "limitations": [
+        "Limits and status behavior were not exercised against the authenticated endpoint.",
+        "The API's actual retention duration was not published in the inspected guide.",
+        "Price and quota were not verified."
+      ],
+      "conflict_of_interest": [
+        "OpenAI publishes the operating and data-control boundaries of its own service."
+      ],
+      "recheck_triggers": [
+        "Supported formats, file limits or status codes change",
+        "The endpoint becomes eligible for Zero Data Retention",
+        "OpenAI publishes detailed pricing, quota or retention terms"
+      ]
+    },
+    {
+      "claim_id": "python-implementation-artifact",
+      "claim": "Python SDK 2.52.0 contains synchronous and asynchronous multipart resource methods, C2PA and SynthID result types, and generated API-surface tests for content provenance checks.",
+      "central": false,
+      "disposition": "confirmed-from-immutable-source-and-tests",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Inspected feature commit 1d6c1180f8eaa71bfd45cae67360987b2bea3656 and the files present at release tag commit ca693fbaa20a620ce53a48f4419a1a01444564e7. The resource file was 9106 bytes with SHA-256 7532148384f553e43b3b29a39d0d7f65212d2336e5a9cc9a90b5f83b22cf7bc6.",
+      "sources": [
+        {
+          "source_id": "openai-python-feature-commit",
+          "url": "https://github.com/openai/openai-python/commit/1d6c1180f8eaa71bfd45cae67360987b2bea3656",
+          "version": "commit 1d6c1180f8eaa71bfd45cae67360987b2bea3656; included in v2.52.0",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "The change is generated from an OpenAPI spec and its tests target a mock base URL, not the production verifier."
+        },
+        {
+          "source_id": "openai-python-resource",
+          "url": "https://github.com/openai/openai-python/blob/ca693fbaa20a620ce53a48f4419a1a01444564e7/src/openai/resources/content_provenance_checks.py",
+          "version": "v2.52.0 tag commit ca693fbaa20a620ce53a48f4419a1a01444564e7; SHA-256 7532148384f553e43b3b29a39d0d7f65212d2336e5a9cc9a90b5f83b22cf7bc6",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "Static client code does not establish server availability or detection correctness."
+        },
+        {
+          "source_id": "openai-python-generated-test",
+          "url": "https://github.com/openai/openai-python/blob/ca693fbaa20a620ce53a48f4419a1a01444564e7/tests/api_resources/test_content_provenance_checks.py",
+          "version": "v2.52.0 tag commit ca693fbaa20a620ce53a48f4419a1a01444564e7",
+          "source_grade": "P2",
+          "owner": "OpenAI",
+          "limitations": "Generated tests validate client method shapes and response parsing against a test server, not watermark detection quality."
+        }
+      ],
+      "limitations": [
+        "The SDK test suite was not rerun by the editorial run.",
+        "The production API was not called.",
+        "No media detector artifact is included in the client repository."
+      ],
+      "conflict_of_interest": [
+        "OpenAI generates and tests its own SDK contract."
+      ],
+      "recheck_triggers": [
+        "The generated resource or result types change",
+        "A client bug changes multipart or retry behavior",
+        "A production contract test becomes publicly reproducible"
+      ]
+    }
+  ]
+}

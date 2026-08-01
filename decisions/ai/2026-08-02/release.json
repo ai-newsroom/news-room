@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-02",
+  "decision": "publish-candidate",
+  "release_status": "approved-for-publication",
+  "article_path": "content/ai/2026-08-02/article.md",
+  "evidence_path": "decisions/ai/2026-08-02/evidence.json",
+  "artifact_hashes": {
+    "article_sha256": "2d2d9462d206f9a7e9b6b3628d23e000f1e761615514ef65abc3650fe190a7e8",
+    "evidence_sha256": "4d366707fafc3ba84cd99dfe32b8ff9231902ede0b01a11bf1d099f9cbf4fa73"
+  },
+  "routes": [
+    "/ai/",
+    "/ai/2026-08-02/"
+  ],
+  "authorization": {
+    "mode": "automatic",
+    "policy_id": "ai-auto-publish-v1",
+    "authorized_at": "2026-08-02T08:12:55+09:00",
+    "executor": "codex-automation",
+    "checks": [
+      "ai-editorial-config",
+      "selection-threshold",
+      "central-evidence-e2",
+      "ai-technical-blog-v2",
+      "claim-source-ledger",
+      "publication-id-and-route-unique",
+      "artifact-hashes",
+      "site-tests-and-build"
+    ]
+  }
+}
