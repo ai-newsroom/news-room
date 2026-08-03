@@ -34,6 +34,7 @@ DEFAULT_REGISTRIES = (
 REQUIRED_SOURCE_TYPES = {
     "ai": {
         "model-system-card",
+        "model-registry",
         "paper-index",
         "code-repository",
         "release-notes",

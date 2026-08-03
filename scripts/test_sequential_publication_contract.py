@@ -12,6 +12,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class SequentialPublicationContractTest(unittest.TestCase):
+    def test_ai_discovery_prompt_uses_global_sources_without_fixed_checklist(self) -> None:
+        prompt = (ROOT / "prompts/daily-ai-codex.md").read_text()
+        self.assertIn("강제 순회 목록이 아니라 발견 출발점", prompt)
+        for provider in ("Qwen", "DeepSeek", "Mistral"):
+            self.assertIn(provider, prompt)
+        self.assertIn("discovery_review", prompt)
+        self.assertIn("선택하지 않은 실질적 발표", prompt)
+
     def test_runner_orders_live_current_affairs_before_ai(self) -> None:
         runner = (ROOT / "scripts/publish-sequential-daily.sh").read_text()
         current = runner.index('"$REPO/scripts/publish-daily.sh"')

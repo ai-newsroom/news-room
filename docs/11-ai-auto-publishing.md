@@ -40,6 +40,12 @@ Pages 단계로 보낸다.
 소유하고, 시사판 공개 검증 뒤 같은 clean checkout을 최신 `main` 상태로 AI판에 넘긴다.
 개선 worker와 컨덕터는 이 checkout을 수정할 수 없다.
 
+기사 생성 turn은 source registry를 강제 순회 목록이 아닌 발견 seed로 사용한다. 지역과
+언어에 치우치지 않게 공식 모델 발표·model registry·GitHub·release note를 탐색하고,
+선택하지 않은 주요 후보와 이유도 evidence의 `discovery_review`에 남긴다. 특정 URL을
+확인하지 않았다는 이유만으로 자동 출고를 막지는 않으며, coverage 누락은 09:30 회고와
+다음 개선 작업에서 다룬다.
+
 ## 발행 후 자기개선 turn
 
 09:30 회고 routine은 공개 URL 검증이 성공한 판만 다음과 같이 회고한다.

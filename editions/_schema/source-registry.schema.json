@@ -111,6 +111,7 @@
           "type": "string",
           "enum": [
             "model-system-card",
+            "model-registry",
             "paper-index",
             "code-repository",
             "release-notes",
