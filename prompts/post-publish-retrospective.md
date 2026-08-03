@@ -1,15 +1,19 @@
-# 시사판 발행 후 회고 턴
+# 일일 순차 발행 후 회고 턴
 
 `prompts/conductor-role.md`와 `docs/12-continuous-improvement-loop.md`를 먼저 읽고 그대로
 따라라. 이 턴은 읽기 전용 회고이며 구현 턴이 아니다.
 
 ## 절차
 
-1. `Asia/Seoul`의 오늘 날짜를 확인하고 `content/YYYY-MM-DD/`의 시사판 발행 결과를 찾는다.
-   `content/ai/`와 다른 edition은 이번 회고 범위가 아니다.
-2. 오늘 결과가 없으면 어떤 상태도 바꾸지 말고 `NO_PUBLICATION`으로 끝낸다.
+1. `Asia/Seoul`의 오늘 날짜를 확인한다. `git fetch origin main` 뒤 로컬 working tree가 아니라
+   `origin/main`에서 `content/YYYY-MM-DD/article.md`와 선택적인
+   `content/ai/YYYY-MM-DD/article.md`를 찾는다.
+2. 시사판 원격 파일이 없거나 공개 `/news/YYYY-MM-DD/` URL이 HTTP 200과 기대 제목을
+   만족하지 않으면 어떤 상태도 바꾸지 말고 `NO_PUBLICATION`으로 끝낸다. AI판은 원격 파일이
+   있을 때만 `/ai/YYYY-MM-DD/`의 발행 ID와 공개 상태를 추가로 검증한다.
 3. 다음을 필요한 만큼 읽는다.
-   - article.md, debate.md, draft.md, prompt.md, run.md
+   - 원격 시사판 article.md, debate.md, draft.md, prompt.md, run.md
+   - 원격에 AI판이 있으면 article.md, evidence.json, release.json
    - `newsroom/charter.md`, `newsroom/style-exemplar.md`, `newsroom/CLAUDE.md`
    - `docs/04-article-format.md`, `docs/07-retrospectives.md`
    - 관련 Git 및 실행 증거
@@ -19,6 +23,7 @@
    - 출처·근거·시간 감각·중복 주제·발행 실패 문제
    - 프롬프트나 절차의 충돌 때문에 생긴 문제
    - 이전 capability 실험의 지표와 새 회귀
+   - 발행 전용 checkout의 clean/fast-forward/finalization 경계 위반
 5. 현재 proposed/ready/running/blocked 항목을 읽고 같은 날짜·근거·수정 범위의 중복을 찾는다.
 6. 실행 가치가 분명한 문제가 없거나 이미 추적 중이면 어떤 proposal도 만들지 말고
    `NO_PROPOSAL`로 끝낸다.
@@ -35,7 +40,7 @@
 - `--kind capability`
 - capability area
 - 반증 가능한 hypothesis
-- 이후 시사판 3회에서 확인할 수치 또는 명확한 rubric인 measure
+- 해당 판의 이후 발행 3회에서 확인할 수치 또는 명확한 rubric인 measure
 - 정확한 rollback plan
 - 최소 두 개의 observable acceptance criterion
 - 올바른 risk

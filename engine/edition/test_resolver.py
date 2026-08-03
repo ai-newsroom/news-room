@@ -123,7 +123,7 @@ class RuntimeEditionResolverTest(unittest.TestCase):
             )
         )
 
-    def test_current_affairs_points_to_current_legacy_contract(self):
+    def test_current_affairs_points_to_sequential_publication_contract(self):
         current = resolver.resolve_requested("current-affairs")[
             "resolution"
         ]
@@ -139,46 +139,58 @@ class RuntimeEditionResolverTest(unittest.TestCase):
         )
         self.assertEqual(
             paths["legacy_entrypoint"]["relative"],
-            "scripts/publish-daily.sh",
+            "scripts/publish-sequential-daily.sh",
         )
         self.assertTrue(current["schedule"]["enabled"])
         self.assertEqual(
-            current["schedule"]["managed_by"], "external-cron"
+            current["schedule"]["managed_by"],
+            "systemd:news-room-daily.timer",
         )
         self.assertEqual(
-            current["release"]["mode"], "legacy-wrapper"
+            current["release"]["mode"], "sequential-wrapper"
+        )
+        self.assertTrue(current["release"]["deploy"])
+
+    def test_ai_is_automatic_second_phase_of_sequential_publication(self):
+        resolved = resolver.resolve_requested("ai")["resolution"]
+        self.assertTrue(resolved["schedule"]["enabled"])
+        self.assertEqual(
+            resolved["schedule"]["managed_by"],
+            "systemd:news-room-daily.timer",
+        )
+        self.assertIn("current-affairs", resolved["schedule"]["cadence"])
+        self.assertEqual(
+            resolved["release"],
+            {
+                "mode": "automatic",
+                "requires_human_approval": False,
+                "git_write": True,
+                "deploy": True,
+            },
+        )
+        self.assertEqual(
+            resolved["fallback_policy"], "technical-explicit-failure"
+        )
+        self.assertFalse(
+            resolved["phase_plan"][-1]["requires_human_approval"]
         )
 
-    def test_technical_editions_are_disabled_prepare_only_and_human_gated(
-        self,
-    ):
-        for edition in ("ai", "eda"):
-            with self.subTest(edition=edition):
-                report = resolver.resolve_requested(edition)
-                resolved = report["resolution"]
-                self.assertFalse(resolved["schedule"]["enabled"])
-                self.assertEqual(
-                    resolved["schedule"]["managed_by"], "none"
-                )
-                self.assertEqual(
-                    resolved["release"],
-                    {
-                        "mode": "prepare-only",
-                        "requires_human_approval": True,
-                        "git_write": False,
-                        "deploy": False,
-                    },
-                )
-                self.assertEqual(
-                    resolved["fallback_policy"],
-                    "technical-explicit-failure",
-                )
-                self.assertNotIn(
-                    "prompt", resolved["normalized_paths"]
-                )
-                self.assertNotIn(
-                    "workflow", resolved["normalized_paths"]
-                )
+    def test_eda_remains_disabled_prepare_only_and_human_gated(self):
+        resolved = resolver.resolve_requested("eda")["resolution"]
+        self.assertFalse(resolved["schedule"]["enabled"])
+        self.assertEqual(resolved["schedule"]["managed_by"], "none")
+        self.assertEqual(
+            resolved["release"],
+            {
+                "mode": "prepare-only",
+                "requires_human_approval": True,
+                "git_write": False,
+                "deploy": False,
+            },
+        )
+        self.assertTrue(
+            resolved["phase_plan"][-1]["requires_human_approval"]
+        )
 
     def test_resolver_cli_only_outputs_paths_and_a_nonexecuting_phase_plan(
         self,

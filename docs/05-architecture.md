@@ -6,22 +6,25 @@
 ## 전체 그림
 
 ```
-[홈서버 — 매일 정해진 시각 (cron/스케줄러)]
+[홈서버 — 매일 07:00 단일 순차 발행]
     │
-    ├─ 1. 편집국 파이프라인 실행 (Claude Code / codex app-server 에이전트)
+    ├─ 1. 발행 전용 clean checkout preflight + 단일 실행 lock
+    ├─ 2. 시사 편집국 파이프라인 실행 (Claude Code / Codex)
     │     ① 파수꾼: 한국 뉴스 지형 수집 (메이저 언론 + 커뮤니티·SNS)
     │     ② 등대: 오늘의 주제 선정, 객원 전문가 정의
     │     ③ 토론: 느티나무·물길·등에·청진기·씨줄·저울 + 객원
     │     ④ 등대: 토론 종합, 기사 작성
     │
-    ├─ 2. 산출물을 레포에 저장 (마크다운)
+    ├─ 3. 시사 산출물을 레포에 저장 (마크다운)
     │     content/2026-06-11/
     │       article.md        ← 기사 본문
     │       debate.md         ← 토론 전문
     │       guest.md          ← 오늘의 객원 페르소나/프롬프트
     │       sources.md        ← 출처 목록 (article.md에 포함시킬 수도)
     │
-    └─ 3. git commit & push
+    ├─ 4. 공통 finalizer → git push → 시사 공개 URL 확인
+    ├─ 5. 같은 checkout에서 AI판 후보 생성·검증·materialize
+    └─ 6. 공통 finalizer → git push → AI 공개 URL 확인
             │
             ▼
 [GitHub] ── GitHub Actions: 정적 사이트 빌드 ──▶ GitHub Pages 배포
@@ -39,11 +42,11 @@
 - 데이터베이스 없음. **git 레포 자체가 데이터베이스이자 아카이브.**
 - 상시 실행 서버 없음. 하루 1회 배치만 돌면 됨.
 
-시사판 발행 자체는 하루 1회 배치로 유지한다. 다만 발행 뒤 회고와 승인 작업 연결을 위해
+시사판과 AI판 발행은 하루 1회 순차 배치로 유지한다. 다만 발행 뒤 회고와 승인 작업 연결을 위해
 `coco-agents serve`가 프로젝트 로컬 routine과 관리 세션의 장기 실행 주체로 상주한다.
 이 프로세스는 편집 판단을 하드코딩하지 않고 clock, 세션 실행, 메시지 전달만 담당한다.
-첫 shadow 단계에서는 기존 systemd 발행 timer가 배치를 시작한다. 루프 검증 뒤에는 지속
-컨덕터가 발행 어댑터의 시작과 결과 확인까지 소유하고 외부 timer를 비활성화한다.
+systemd timer 하나가 순차 배치를 시작한다. 별도 AI automation은 비활성화하며, 지속
+컨덕터는 원격 commit과 공개 결과 확인부터 회고·개선 루프를 소유한다.
 
 ## 이 구조의 숨은 장점: 프롬프트 공개가 저절로 된다
 
@@ -69,8 +72,8 @@ coco-agents의 워크플로 정의(JSON)는 에이전트별 `backend`(claude/cod
   `workflows/daily-newsroom.json`으로. 워크플로의 각 `role`은 해당 페르소나 마크다운을
   읽고 그 인물이 되라고 지시한다 (coco-agents의 기존 워크플로들이 쓰는 패턴).
   → 프롬프트 공개(강령 6)가 레포 공개로 저절로 구현되는 구조 유지.
-- **실행은 coco-agents가 담당**: 홈서버 cron이
-  `scripts/publish-daily.sh`를 실행하고, 래퍼는 `coco-agents session run`에
+- **실행은 순차 발행기가 담당**: 홈서버 timer가
+  `scripts/publish-sequential-daily.sh`를 실행하고, 시사 단계는 `coco-agents session run`에
   `prompts/daily-newsroom-single-claude.md`의 내용을 전달한다. 이 프롬프트가
   `workflows/daily-newsroom.json`을 읽고 절차를 수행한다.
 - 객원 전문가(매일 다른 페르소나)는 등대의 주제 선정 스텝이 `artifacts/guest.md`로 정의를
@@ -88,7 +91,8 @@ steps:
   5. 등대-기사작성(fanin, needs 4) → artifacts/article-draft.md
   6. 퇴고                         → artifacts/article.md
   7. 래퍼 조립                     → content/YYYY-MM-DD/{article,debate,guest,draft,prompt,run}.md
-  8. git commit & push (래퍼 스크립트)
+  8. 공통 finalizer가 허용된 시사 경로만 git commit & push
+  9. 공개 검증 뒤 AI판 생성·검증·finalization
 ```
 
 라운드 수(2라운드면 충분한가)는 구현하면서 실험으로 정한다.

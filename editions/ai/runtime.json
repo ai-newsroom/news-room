@@ -12,9 +12,9 @@
   },
   "schedule": {
     "enabled": true,
-    "managed_by": "codex-automation",
+    "managed_by": "systemd:news-room-daily.timer",
     "timezone": "Asia/Seoul",
-    "cadence": "daily at 08:00; maximum one published article per Seoul date"
+    "cadence": "daily after the 07:00 current-affairs publication is live-verified; maximum one published article per Seoul date"
   },
   "release": {
     "mode": "automatic",

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the sequential news-room publication once per day
+
+[Timer]
+OnCalendar=*-*-* 22:00:00 UTC
+Persistent=true
+Unit=news-room-daily.service
+
+[Install]
+WantedBy=timers.target

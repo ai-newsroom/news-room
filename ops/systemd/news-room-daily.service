@@ -1,0 +1,15 @@
+[Unit]
+Description=news-room sequential daily publication runner
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/pys/runtime/news-room-publisher
+Environment=PATH=/home/pys/.cargo/bin:/home/pys/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=NEWS_ROOM_TZ=Asia/Seoul
+Environment=NEWS_ROOM_BACKEND=codex
+Environment=NEWS_ROOM_CODEX_SANDBOX=danger-full-access
+ExecStart=/home/pys/runtime/news-room-publisher/scripts/publish-sequential-daily.sh
+TimeoutStartSec=4h
+UMask=0077

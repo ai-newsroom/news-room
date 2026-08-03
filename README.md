@@ -24,18 +24,14 @@ site/        Astro 정적 사이트 → GitHub Pages
 ## 동작 방식
 
 ```
-[시사판 홈서버 timer, 매일 07:00 Asia/Seoul]
-  └→ scripts/publish-daily.sh
-       └→ prompts/daily-newsroom-single-{codex|claude}.md
-            ① Codex exec 또는 coco-agents 관리 Claude 세션 실행
-            ② 뉴스 지형 수집, 주제 선정, 토론 artifacts 작성
-            ③ 기사 초고와 최종 기사 작성
-       └→ content/YYYY-MM-DD/ 에 기사·토론 전문·초고·실행 프롬프트·모델 정보 저장 (실패 시 휴간 공지)
-       └→ git commit & push → GitHub Actions가 사이트 빌드·배포
+[홈서버 단일 timer, 매일 07:00 Asia/Seoul]
+  └→ scripts/publish-sequential-daily.sh (발행 전용 clean checkout)
+       ├→ 시사판 생성·검증 → 공통 finalizer → push → 공개 URL 확인
+       └→ 시사판 공개 확인 뒤 AI판 생성·검증
+            └→ 공통 finalizer → push → 공개 URL 확인
 
-[AI판 Codex automation, 매일 08:00 Asia/Seoul]
-  └→ editions/ai/의 독립된 취재·검증·자동 출고 계약 실행
-       └→ content/ai/YYYY-MM-DD/ 에 최대 한 편 발행
+[별도 개선 checkout]
+  └→ 승인된 capability 작업만 구현·독립 검토·finalization
 
 [시사판 지속 개선, 매일 발행 뒤]
   └→ coco-agents routine이 지속 개선 컨덕터 세션을 깨움
@@ -45,9 +41,9 @@ site/        Astro 정적 사이트 → GitHub Pages
        └→ 독립 검토와 제한된 finalization 뒤 완료 처리
 ```
 
-첫 shadow 단계에서는 기존 발행 timer를 유지한다. 개선 루프가 검증되면 컨덕터가 발행
-시작과 결과 확인까지 포함한 하루 사이클 전체를 소유하고, 기존 timer는 중복 방지를 위해
-비활성화한다. 컨덕터는 같은 턴에서 기사 작성·자기 평가·자기 수정을 모두 수행하지 않는다.
+발행 checkout은 순차 발행기만 수정한다. 컨덕터와 개선 worker는 별도 checkout을 사용하며,
+검토되지 않은 변경을 발행 checkout에 남길 수 없다. 컨덕터는 같은 턴에서 기사 작성·자기
+평가·자기 수정을 모두 수행하지 않는다.
 
 `prompts/daily-newsroom-single-codex.md`와
 `prompts/daily-newsroom-single-claude.md`는 시사판 서버 배치용 진입 프롬프트다.

@@ -2,10 +2,10 @@
 
 ## 운영 결과
 
-AI판은 매일 08:00 `Asia/Seoul`에 한 번 실행한다. 실행은 오늘의 공식 AI 발표와
-frontier 신호를 조사하고, 가치 있는 기술 변화가 있을 때만 기사 한 편을 준비한다.
-발행에 성공하면 같은 실행의 마지막에 한 번의 post-publication 자기개선 turn을
-수행한다.
+AI판은 매일 07:00 `Asia/Seoul`에 시작하는 단일 발행 실행의 두 번째 판으로 실행한다.
+시사판 commit, push, 공개 URL 검증이 모두 성공한 뒤에만 오늘의 공식 AI 발표와 frontier
+신호를 조사하고, 가치 있는 기술 변화가 있을 때만 기사 한 편을 준비한다. 발행 후 회고는
+기사 생성 턴과 분리된 09:30 컨덕터 routine이 맡는다.
 
 ## 고정 안전 경계
 
@@ -31,13 +31,18 @@ decisions/ai/<publication-id>/evidence.json
 decisions/ai/<publication-id>/release.json
 ```
 
-이 명령 자체는 commit, push, deploy를 수행하지 않는다. scheduler는 격리된 clean
-worktree에서 materialize한 뒤 전체 test와 build를 다시 실행하고, 그 결과가 성공일 때만
-Git과 Pages 단계를 수행한다.
+이 명령 자체는 commit, push, deploy를 수행하지 않는다. `scripts/publish-ai-daily.sh`가
+발행 전용 clean checkout에서 후보 생성, materialize, 전체 test와 build를 수행한다.
+그 결과가 성공일 때만 공통 `scripts/finalize-publication.sh`가 허용된 세 파일을 Git과
+Pages 단계로 보낸다.
+
+시사판과 AI판은 서로 다른 worktree를 만들지 않는다. 한 명의 순차 발행기만 발행 checkout을
+소유하고, 시사판 공개 검증 뒤 같은 clean checkout을 최신 `main` 상태로 AI판에 넘긴다.
+개선 worker와 컨덕터는 이 checkout을 수정할 수 없다.
 
 ## 발행 후 자기개선 turn
 
-공개 URL 검증이 성공한 경우에만 다음을 회고한다.
+09:30 회고 routine은 공개 URL 검증이 성공한 판만 다음과 같이 회고한다.
 
 1. 제목과 세 줄 요약이 중심 근거의 범위를 넘지 않았는지 확인한다.
 2. 공식 source와 frontier 신호에서 놓친 coverage를 기록한다.

@@ -6,7 +6,7 @@
     "workspace": "newsroom",
     "prompt": "prompts/daily-newsroom-single-claude.md",
     "workflow": "workflows/daily-newsroom-single-claude.json",
-    "legacy_entrypoint": "scripts/publish-daily.sh",
+    "legacy_entrypoint": "scripts/publish-sequential-daily.sh",
     "editorial_profile": "newsroom/charter.md",
     "sources": "newsroom/sources.md",
     "content_root": "content",
@@ -15,15 +15,15 @@
   },
   "schedule": {
     "enabled": true,
-    "managed_by": "external-cron",
+    "managed_by": "systemd:news-room-daily.timer",
     "timezone": "Asia/Seoul",
-    "cadence": "daily at 07:00; exact cron expression is managed outside this repository"
+    "cadence": "daily at 07:00 as the first phase of the sequential publication run"
   },
   "release": {
-    "mode": "legacy-wrapper",
+    "mode": "sequential-wrapper",
     "requires_human_approval": false,
     "git_write": true,
-    "deploy": false
+    "deploy": true
   },
   "site": {
     "route_prefix": "/news",

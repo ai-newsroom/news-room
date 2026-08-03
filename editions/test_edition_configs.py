@@ -174,14 +174,23 @@ class EditionConfigTests(unittest.TestCase):
         self.assertEqual(report["status"], "passed")
         self.assertEqual([item["id"] for item in report["editions"]], ["ai", "eda"])
 
-    def test_current_affairs_and_ai_publish_at_distinct_documented_times(self):
+    def test_current_affairs_and_ai_share_one_sequential_schedule(self):
         current_affairs = load_json(RUNTIME_PATHS["current-affairs"])
         ai = load_json(RUNTIME_PATHS["ai"])
 
         self.assertEqual(current_affairs["schedule"]["timezone"], "Asia/Seoul")
         self.assertIn("07:00", current_affairs["schedule"]["cadence"])
         self.assertEqual(ai["schedule"]["timezone"], "Asia/Seoul")
-        self.assertIn("08:00", ai["schedule"]["cadence"])
+        self.assertEqual(
+            current_affairs["schedule"]["managed_by"],
+            "systemd:news-room-daily.timer",
+        )
+        self.assertEqual(
+            ai["schedule"]["managed_by"],
+            current_affairs["schedule"]["managed_by"],
+        )
+        self.assertIn("after", ai["schedule"]["cadence"])
+        self.assertIn("current-affairs", ai["schedule"]["cadence"])
 
     def test_current_affairs_prompts_cannot_identify_as_ai_edition(self):
         for backend in ("codex", "claude"):

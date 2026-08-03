@@ -47,7 +47,7 @@ EXPECTED_CURRENT_PATHS = {
     "workspace": "newsroom",
     "prompt": "prompts/daily-newsroom-single-claude.md",
     "workflow": "workflows/daily-newsroom-single-claude.json",
-    "legacy_entrypoint": "scripts/publish-daily.sh",
+    "legacy_entrypoint": "scripts/publish-sequential-daily.sh",
     "editorial_profile": "newsroom/charter.md",
     "sources": "newsroom/sources.md",
     "content_root": "content",
@@ -194,20 +194,20 @@ def _validate_current_affairs(config: Mapping[str, Any]) -> None:
     schedule = config["schedule"]
     if not (
         schedule["enabled"] is True
-        and schedule["managed_by"] == "external-cron"
+        and schedule["managed_by"] == "systemd:news-room-daily.timer"
     ):
         raise ResolutionError(
-            "current-affairs must describe the existing external cron"
+            "current-affairs must use the sequential systemd publication timer"
         )
     release = config["release"]
     if release != {
-        "mode": "legacy-wrapper",
+        "mode": "sequential-wrapper",
         "requires_human_approval": False,
         "git_write": True,
-        "deploy": False,
+        "deploy": True,
     }:
         raise ResolutionError(
-            "current-affairs release must describe, not change, the legacy wrapper"
+            "current-affairs release must use the sequential publication wrapper"
         )
     if config["site"] != {
         "route_prefix": "/news",
@@ -247,24 +247,45 @@ def _validate_technical(config: Mapping[str, Any]) -> None:
         )
 
     schedule = config["schedule"]
-    if not (
-        schedule["enabled"] is False
-        and schedule["managed_by"] == "none"
-        and schedule["cadence"] == "on-demand"
-    ):
-        raise ResolutionError(
-            f"{edition_id}: technical schedule must remain disabled"
-        )
     release = config["release"]
-    if release != {
-        "mode": "prepare-only",
-        "requires_human_approval": True,
-        "git_write": False,
-        "deploy": False,
-    }:
-        raise ResolutionError(
-            f"{edition_id}: release must be prepare-only with human approval"
-        )
+    if edition_id == "ai":
+        if not (
+            schedule["enabled"] is True
+            and schedule["managed_by"]
+            == "systemd:news-room-daily.timer"
+            and "current-affairs" in schedule["cadence"]
+        ):
+            raise ResolutionError(
+                "ai: schedule must follow live-verified current-affairs "
+                "under the sequential systemd timer"
+            )
+        if release != {
+            "mode": "automatic",
+            "requires_human_approval": False,
+            "git_write": True,
+            "deploy": True,
+        }:
+            raise ResolutionError(
+                "ai: release must match the automatic publication contract"
+            )
+    else:
+        if not (
+            schedule["enabled"] is False
+            and schedule["managed_by"] == "none"
+            and schedule["cadence"] == "on-demand"
+        ):
+            raise ResolutionError(
+                "eda: technical schedule must remain disabled"
+            )
+        if release != {
+            "mode": "prepare-only",
+            "requires_human_approval": True,
+            "git_write": False,
+            "deploy": False,
+        }:
+            raise ResolutionError(
+                "eda: release must be prepare-only with human approval"
+            )
     if config["site"] != {
         "route_prefix": f"/{edition_id}",
         "include_in_legacy_home": False,
@@ -344,7 +365,9 @@ def _phase_plan(
     edition_id: str, config: Mapping[str, Any]
 ) -> Sequence[Mapping[str, Any]]:
     if edition_id == "current-affairs":
-        later_mode = "delegated-to-legacy-wrapper-not-executed"
+        later_mode = "delegated-to-sequential-wrapper-not-executed"
+    elif edition_id == "ai":
+        later_mode = "delegated-to-sequential-wrapper-not-executed"
     else:
         later_mode = "disabled-in-stage-1"
     phases = [
@@ -370,7 +393,9 @@ def _phase_plan(
         ]
     else:
         phases[-1]["release_mode"] = config["release"]["mode"]
-        phases[-1]["requires_human_approval"] = True
+        phases[-1]["requires_human_approval"] = config["release"][
+            "requires_human_approval"
+        ]
     return phases
 
 

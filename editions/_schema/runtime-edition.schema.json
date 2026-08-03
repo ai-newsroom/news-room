@@ -58,7 +58,13 @@
         "enabled": {"type": "boolean"},
         "managed_by": {
           "type": "string",
-          "enum": ["none", "external-cron", "engine", "codex-automation"]
+          "enum": [
+            "none",
+            "external-cron",
+            "engine",
+            "codex-automation",
+            "systemd:news-room-daily.timer"
+          ]
         },
         "timezone": {
           "type": "string",
@@ -82,7 +88,12 @@
       "properties": {
         "mode": {
           "type": "string",
-          "enum": ["legacy-wrapper", "prepare-only", "automatic"]
+          "enum": [
+            "legacy-wrapper",
+            "sequential-wrapper",
+            "prepare-only",
+            "automatic"
+          ]
         },
         "requires_human_approval": {"type": "boolean"},
         "git_write": {"type": "boolean"},

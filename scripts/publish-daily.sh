@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # news-room 일일 발행 래퍼.
-# cron이 매일 1회 호출한다. LLM과 무관한 결정적 스크립트이므로
+# 상위 순차 발행기가 매일 1회 호출한다. LLM과 무관한 결정적 스크립트이므로
 # 파이프라인이 실패해도 휴간 공지는 거의 항상 발행된다 (강령 7).
-set -uo pipefail
+set -euo pipefail
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 NEWS_ROOM_TZ="${NEWS_ROOM_TZ:-Asia/Seoul}"
@@ -41,7 +41,12 @@ CODEX_LAST_MESSAGE="$ART/session-last-message.txt"
 NEWS_ROOM_CODEX_SANDBOX="${NEWS_ROOM_CODEX_SANDBOX:-danger-full-access}"
 
 cd "$REPO"
-git pull --rebase --quiet || true
+"$REPO/scripts/publication-git-preflight.sh"
+
+if git cat-file -e "HEAD:content/$DATE/article.md" 2>/dev/null; then
+  echo "Current-affairs publication already exists for $DATE"
+  exit 0
+fi
 
 if [[ ! -f "$PROMPT_FILE" ]]; then
   echo "Prompt file not found: $PROMPT_FILE" >&2
@@ -68,6 +73,7 @@ echo "$DATE" > "$ART/today.txt"
 # 편집국 소집: Claude는 PTY 세션, Codex는 batch-friendly exec 경로를 사용한다.
 case "$NEWS_ROOM_BACKEND" in
   claude)
+    set +e
     coco-agents session run \
       --backend claude \
       --runtime "$NEWS_ROOM_RUNTIME" \
@@ -77,17 +83,21 @@ case "$NEWS_ROOM_BACKEND" in
       --turn-timeout "$SESSION_TURN_TIMEOUT_SECS" \
       --json \
       "$PROMPT" > "$SESSION_RUN_JSON"
+    SESSION_EXIT=$?
+    set -e
     ;;
   codex)
+    set +e
     codex exec \
       --cd "$WS" \
       --sandbox "$NEWS_ROOM_CODEX_SANDBOX" \
       --json \
       --output-last-message "$CODEX_LAST_MESSAGE" \
       - < "$PROMPT_FILE" > "$SESSION_RUN_JSON"
+    SESSION_EXIT=$?
+    set -e
     ;;
 esac
-SESSION_EXIT=$?
 echo "$SESSION_EXIT" > "$ART/session-exit-code.txt"
 echo "$NEWS_ROOM_BACKEND" > "$ART/session-backend.txt"
 
@@ -182,9 +192,4 @@ holiday: true
 EOF
 fi
 
-git add "content/$DATE"
-if git diff --cached --quiet; then
-  echo "No content changes for $DATE"
-else
-  git commit -m "publish: $DATE" --quiet && git push --quiet
-fi
+"$REPO/scripts/finalize-publication.sh" current-affairs "$DATE"
