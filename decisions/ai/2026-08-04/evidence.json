@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "date": "2026-08-04",
+  "subject": "vLLM v0.26.0 release",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "vLLM is a widely used open-source LLM serving engine. v0.26.0 changes model support, KV offload/tiering, attention backend selection, Rust frontend and API surface in ways that affect deployment matrices. The release has exact GitHub tag, PR links, PyPI package metadata and installation documentation, making the central claim verifiable from primary artifacts."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI, Anthropic and Google DeepMind official release surfaces. Anthropic Claude Sonnet 5 and Opus 5 had official release posts and system-card references, but their broad capability conclusions remained vendor-evaluation bounded and did not provide a stronger open artifact boundary than the selected developer-tool release."
+      },
+      {
+        "channel": "developer-tool-and-serving-release-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed vLLM, PyTorch, GitHub developer tooling and PyPI release signals. vLLM v0.26.0 was selected because the release note, tag, PRs and package hashes allow claim-level verification."
+      },
+      {
+        "channel": "frontier-researcher-public-signals",
+        "classification": "S2 discovery only",
+        "note": "Search and public profile snippets were used only as discovery signals. No X post or search snippet was used as article evidence."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Anthropic Claude Opus 5",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Official release and system-card references exist, but broad coding and agentic performance claims rely on vendor-selected evaluations and early customer reports rather than executable artifacts."
+      },
+      {
+        "subject": "Anthropic Claude Sonnet 5",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The release is relevant to developers, but it was older than the selected vLLM release and the central cost-performance framing remained vendor-evaluation bounded."
+      },
+      {
+        "subject": "vLLM v0.26.0",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Exact source tag, PRs, release notes, PyPI artifacts and install docs support a bounded E2 article about serving-engine deployment decisions."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "RELEASE_PUBLISHED",
+    "SOURCE_TAG_VERIFIED",
+    "PYPI_ARTIFACT_METADATA_VERIFIED",
+    "SERVING_RUNTIME_SURFACE_CHANGED",
+    "GPU_RUNTIME_NOT_EXECUTED",
+    "BENCHMARKS_NOT_INDEPENDENTLY_REPRODUCED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-04T08:04:20+09:00",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "release_gate_notes": {
+    "automatic_policy": "ai-auto-publish-v1",
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-04, subject and evidence ceiling",
+      "selection total is 9 with threshold 7",
+      "at least one central claim has E2 evidence",
+      "central claims include at least two distinct primary source URLs",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required headings",
+      "route uniqueness, artifact hashes, site tests and production build are delegated to the sequential publisher outside this turn"
+    ]
+  },
+  "conflicts": [
+    "vLLM maintainers and contributors describe their own release, code and package artifacts.",
+    "GitHub and PyPI host the public source and package records used to inspect artifact identity.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "vLLM v0.26.0 was released on GitHub on 2026-07-27 and resolves to tag commit 568afb3a13806beb53bb2e6bd518269357b237c0.",
+      "central": true,
+      "disposition": "confirmed-from-release-page-and-tag-ref",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Opened the GitHub release page and checked the tag ref with git ls-remote, which returned 568afb3a13806beb53bb2e6bd518269357b237c0 for refs/tags/v0.26.0.",
+      "sources": [
+        {
+          "source_id": "vllm-0260-release",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.26.0",
+          "version": "v0.26.0; released 2026-07-27; accessed 2026-08-03 UTC",
+          "source_grade": "P1",
+          "owner": "vLLM project maintainers",
+          "limitations": "Maintainer-authored release notes select and describe changes."
+        },
+        {
+          "source_id": "vllm-0260-commit",
+          "url": "https://github.com/vllm-project/vllm/commit/568afb3a13806beb53bb2e6bd518269357b237c0",
+          "version": "commit 568afb3a13806beb53bb2e6bd518269357b237c0",
+          "source_grade": "P2",
+          "owner": "vLLM project repository",
+          "limitations": "Tag identity does not prove runtime behavior."
+        }
+      ],
+      "limitations": [
+        "The source tree was not cloned or tested.",
+        "GitHub release metadata can be edited after publication, so the exact tag commit is recorded separately."
+      ],
+      "conflict_of_interest": [
+        "vLLM maintainers publish the release being evaluated."
+      ],
+      "accessed_at": "2026-08-03"
+    },
+    {
+      "claim_id": "C2",
+      "claim": "vLLM v0.26.0 release notes list Inkling support stack, KV offloading/tiered storage, per-KV-cache-group attention backend selection, Rust frontend video/audio/native bench, and OpenAI-compatible API changes as release changes.",
+      "central": true,
+      "disposition": "confirmed-from-release-note-and-linked-pr",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read the v0.26.0 release note and opened PR #48012 to confirm one linked implementation change was merged on 2026-07-17.",
+      "sources": [
+        {
+          "source_id": "vllm-0260-release",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.26.0",
+          "version": "v0.26.0 release notes",
+          "source_grade": "P1",
+          "owner": "vLLM project maintainers",
+          "limitations": "The release note is project-authored and not an independent validation of behavior."
+        },
+        {
+          "source_id": "vllm-pr-48012",
+          "url": "https://github.com/vllm-project/vllm/pull/48012",
+          "version": "PR #48012; merged 2026-07-17",
+          "source_grade": "P2",
+          "owner": "vLLM contributors",
+          "limitations": "Only one linked PR was opened as a spot check; runtime behavior was not executed."
+        }
+      ],
+      "limitations": [
+        "No model serving process was started.",
+        "Feature parity across Python and Rust frontend paths was not verified.",
+        "Release-note grouping does not establish production suitability."
+      ],
+      "conflict_of_interest": [
+        "The project describes its own changes."
+      ],
+      "accessed_at": "2026-08-03"
+    },
+    {
+      "claim_id": "C3",
+      "claim": "PyPI lists vllm 0.26.0 source distribution and x86_64/aarch64 manylinux wheels with upload dates, sizes and SHA-256 hashes.",
+      "central": true,
+      "disposition": "confirmed-from-pypi-file-metadata",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Opened the PyPI project page and recorded vllm-0.26.0.tar.gz SHA-256 23e9fa19d7e20ce7dcc1c074d41503e2116d23f19e688f5d5ea91b741f958502, x86_64 wheel SHA-256 adb1e4c9b46d0dfdb094121ae5aad670a42412dd813ed4e5db069ed6a15006de, and aarch64 wheel SHA-256 52a4c3e55c2c80cc8793e52ccc244457ceade25b0ad7caa1c15e5002a95a1b2c.",
+      "sources": [
+        {
+          "source_id": "vllm-pypi",
+          "url": "https://pypi.org/project/vllm/",
+          "version": "vllm 0.26.0 files; uploaded 2026-07-25; accessed 2026-08-03 UTC",
+          "source_grade": "P2",
+          "owner": "PyPI package maintainers and vLLM project uploaders",
+          "limitations": "Registry metadata and hashes identify files but do not validate runtime compatibility."
+        },
+        {
+          "source_id": "vllm-install-docs",
+          "url": "https://docs.vllm.ai/en/stable/getting_started/installation/gpu/",
+          "version": "stable GPU installation documentation; accessed 2026-08-03 UTC",
+          "source_grade": "P1",
+          "owner": "vLLM documentation maintainers",
+          "limitations": "Stable documentation may move as newer releases become stable."
+        }
+      ],
+      "limitations": [
+        "The wheel was not installed.",
+        "Container images and CUDA/ROCm runtime combinations were not executed.",
+        "Stable documentation can change after this evidence snapshot."
+      ],
+      "conflict_of_interest": [
+        "vLLM uploaders and documentation maintainers describe their own package."
+      ],
+      "accessed_at": "2026-08-03"
+    },
+    {
+      "claim_id": "C4",
+      "claim": "DeepSeek-V4 TPOT and kernel-speed figures in the release note are project-reported PR-level measurements, not independently reproduced benchmark results.",
+      "central": false,
+      "disposition": "bounded-as-vendor-project-claim",
+      "source_grade": "P1",
+      "evidence_level": "E1",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the release-note bullets that report 2.94% E2E TPOT, 1.5-2x kernel and 1.8% E2E TPOT improvements and treated them as project-reported conditions only.",
+      "sources": [
+        {
+          "source_id": "vllm-0260-release",
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.26.0",
+          "version": "v0.26.0 release notes",
+          "source_grade": "P1",
+          "owner": "vLLM project maintainers",
+          "limitations": "No independent benchmark and no local reproduction were available in this turn."
+        }
+      ],
+      "limitations": [
+        "No hardware, model weights, prompts, batch, concurrency or scheduler settings were reproduced.",
+        "The article does not rank vLLM against other serving engines."
+      ],
+      "conflict_of_interest": [
+        "The project reports its own performance-related changes."
+      ],
+      "accessed_at": "2026-08-03"
+    }
+  ],
+  "source_urls": [
+    "https://github.com/vllm-project/vllm/releases/tag/v0.26.0",
+    "https://github.com/vllm-project/vllm/commit/568afb3a13806beb53bb2e6bd518269357b237c0",
+    "https://github.com/vllm-project/vllm/pull/48012",
+    "https://pypi.org/project/vllm/",
+    "https://docs.vllm.ai/en/stable/getting_started/installation/gpu/",
+    "https://docs.vllm.ai/projects/vllm-omni/en/latest/getting_started/installation/gpu/"
+  ]
+}
