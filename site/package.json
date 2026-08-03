@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "npm run test:ui",
-    "test:ui": "node tests/edition-navigation.mjs && node tests/ai-release-routes.mjs && node tests/provenance-ui-fixture.mjs"
+    "test:ui": "node tests/edition-navigation.mjs && node tests/ai-release-routes.mjs && node tests/provenance-ui-fixture.mjs && node tests/social-cards.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0"

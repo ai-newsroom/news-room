@@ -54,7 +54,7 @@ function formatDate(d: Date) {
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
 }
 ---
-<Base edition="current-affairs" title={article.data.title} description={article.data.summary}>
+<Base edition="current-affairs" pageType="article" title={article.data.title} description={article.data.summary}>
   <article>
     <p class="article-kicker"><a href={base}>시사 뉴스</a> · {formatDate(article.data.date)}</p>
     <h1>{article.data.title}</h1>
