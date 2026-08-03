@@ -44,6 +44,7 @@ class PublicationGitBoundaryTest(unittest.TestCase):
         for name in SCRIPTS:
             shutil.copy2(ROOT / "scripts" / name, self.seed / "scripts" / name)
             os.chmod(self.seed / "scripts" / name, 0o755)
+        shutil.copy2(ROOT / ".gitignore", self.seed / ".gitignore")
         (self.seed / "README.md").write_text("seed\n", encoding="utf-8")
         run("git", "add", ".", cwd=self.seed)
         run("git", "commit", "-m", "seed", cwd=self.seed)
@@ -144,6 +145,32 @@ class PublicationGitBoundaryTest(unittest.TestCase):
         )
         self.assertEqual(completed.returncode, 2)
         self.assertIn("exactly", completed.stderr)
+
+    def test_ai_finalizer_ignores_python_bytecode_cache(self) -> None:
+        article_root = self.publisher / "content/ai/2026-08-04"
+        decision_root = self.publisher / "decisions/ai/2026-08-04"
+        article_root.mkdir(parents=True)
+        decision_root.mkdir(parents=True)
+        (article_root / "article.md").write_text("article\n", encoding="utf-8")
+        (decision_root / "evidence.json").write_text("{}\n", encoding="utf-8")
+        (decision_root / "release.json").write_text("{}\n", encoding="utf-8")
+
+        cache = self.publisher / "editions/ai/editorial/__pycache__"
+        cache.mkdir(parents=True)
+        (cache / "style_v2.cpython-312.pyc").write_bytes(b"generated cache")
+
+        completed = run(
+            "bash",
+            "scripts/finalize-publication.sh",
+            "ai",
+            "2026-08-04",
+            cwd=self.publisher,
+        )
+        self.assertRegex(completed.stdout.strip(), r"^[0-9a-f]{40}$")
+        self.assertEqual(
+            run("git", "status", "--porcelain", cwd=self.publisher).stdout,
+            "",
+        )
 
 
 if __name__ == "__main__":

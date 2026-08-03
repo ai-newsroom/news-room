@@ -173,7 +173,7 @@ if [[ -s "$ART/article.md" ]]; then
         fi
       done
     done
-  } > "$OUT/debate.md"
+  } | awk -f "$REPO/scripts/trim-trailing-blank-lines.awk" > "$OUT/debate.md"
 else
   # 휴간 공지 — 실패도 뉴스로 알린다
   cat > "$OUT/article.md" <<EOF

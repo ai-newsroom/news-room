@@ -5,3 +5,5 @@ newsroom/artifacts/
 var/runs/
 .DS_Store
 .astro/
+__pycache__/
+*.py[cod]
