@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-05",
+  "date": "2026-08-05",
+  "subject": "Mistral Shieldstral 1.0",
+  "central_claim": "Mistral Shieldstral 1.0 is a public-preview, Apache-2.0 open-weights multimodal moderation classifier that turns product safety policy into inference-time natural-language yes/no questions and derives a continuous safety score from yes/no logits.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "Shieldstral changes a practical moderation design choice for AI application teams: instead of one fixed harm taxonomy, policy can be expressed as an inference-time natural-language query. The release has an official blog post, Mistral docs model card, Hugging Face weights/model card, API metadata with exact revision and an arXiv technical report, so the bounded central claim reaches E2. Korean teams still need their own language and product-policy calibration, which makes the decision useful without overstating vendor benchmark claims."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI API changelog and developer blog, Anthropic release notes/newsroom, Google DeepMind blog/model cards, Mistral news/docs, Qwen blog/Hugging Face registry and DeepSeek Hugging Face/GitHub surfaces. Search snippets and model registry sorting were used only to discover candidates; article facts were checked against opened primary sources."
+      },
+      {
+        "channel": "model-registry-and-release-note-sweep",
+        "classification": "S2 discovery only",
+        "note": "Queried Hugging Face APIs for recent Qwen and DeepSeek model changes, GitHub API for vLLM latest release, and official docs for Mistral, OpenAI, Anthropic and Google. Mistral Shieldstral was selected because it had same-day official publication plus model card, weights and paper artifacts."
+      },
+      {
+        "channel": "frontier-researcher-and-public-signal-review",
+        "classification": "S2 discovery only",
+        "note": "No X post or search result was used as factual evidence. Public signals were treated only as prompts to open official documents, papers, model cards or code/release artifacts."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Mistral Shieldstral 1.0",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Published on 2026-08-04 with official blog, docs model card, Hugging Face weights/API metadata and an arXiv report. The central design claim is verifiable at E2, while performance claims can be bounded as vendor-reported."
+      },
+      {
+        "subject": "DeepSeek-V4-Flash-0731",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "not-selected",
+        "reason": "The Hugging Face model card and arXiv report provide strong primary artifacts for a recent agentic/coding model update, but the main release timestamp was 2026-08-01 and benchmark comparisons include internal harness/test sets and vendor-reported results. It was not as timely as the same-day Shieldstral publication."
+      },
+      {
+        "subject": "Google Gemini Robotics 2 / ER 2 / On-Device 2",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official blog and model cards were available from 2026-07-30, but access is limited or trusted-tester/private-preview for important surfaces, and evaluation results point back to vendor figures rather than executable artifacts for general SW engineers."
+      },
+      {
+        "subject": "OpenAI July 30 API price/Fast mode update",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The API changelog provides clear primary evidence for GPT-5.6 Luna/Terra price changes and Fast mode, but it was older than the selected release and more of a commercial/API operations update than a new model or safety artifact."
+      },
+      {
+        "subject": "Anthropic August 1 Dreams support for Claude Opus 5",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Official release notes confirm the support change, but it is a research-preview product availability update with limited direct engineering decision value compared with an open-weight moderation model."
+      },
+      {
+        "subject": "Qwen recent registry updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The recent official Hugging Face registry changes visible in the sweep centered on July ASR and existing Qwen3 thinking variants rather than a same-day major model release with stronger editorial value."
+      },
+      {
+        "subject": "vLLM v0.26.0",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "It remains a highly verifiable serving-runtime release and was selected for the previous AI edition. Repeating it would add little new value for publication_id 2026-08-05."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "RELEASE_PUBLISHED",
+    "MODEL_CARD_VERIFIED",
+    "OPEN_WEIGHTS_VERIFIED",
+    "TECHNICAL_REPORT_VERIFIED",
+    "VENDOR_BENCHMARK_BOUNDED",
+    "RUNTIME_NOT_EXECUTED",
+    "INDEPENDENT_BENCHMARK_NOT_FOUND"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-04T22:11:29Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-05, subject, central claim, evidence ceiling and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence",
+      "central claims include at least two distinct primary source URLs",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections",
+      "route uniqueness, artifact hashes, site tests and production build are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Mistral AI is the developer and distributor of Shieldstral 1.0 and authored the official blog/docs/model card; the arXiv report authors are affiliated with the model developer.",
+    "Hugging Face hosts the public model repository and API metadata used to inspect artifact identity.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "Mistral published Shieldstral 1.0 on 2026-08-04 as a Public Preview model card with Apache 2.0 weights, 3.8B parameters and 32k context.",
+      "central": true,
+      "disposition": "confirmed-from-official-docs-and-model-registry",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Opened Mistral Docs Shieldstral 1.0 model card and Hugging Face model page/API metadata; recorded model ID, license, parameter count, context size and latest revision.",
+      "sources": [
+        {
+          "source_id": "mistral-docs-shieldstral",
+          "url": "https://docs.mistral.ai/models/model-cards/shieldstral-1-0",
+          "version": "Shieldstral 1.0; August 4, 2026; Public Preview",
+          "source_grade": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Vendor-authored model card and availability status may be updated after access."
+        },
+        {
+          "source_id": "hf-shieldstral-model",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+          "version": "revision b6073e818d5d119c772e44b84372b62bd51c2a00; lastModified 2026-08-04T16:51:39Z",
+          "source_grade": "P2",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Repository metadata confirms public artifacts and license tags but does not prove runtime behavior."
+        }
+      ],
+      "limitations": [
+        "Model was not downloaded or executed.",
+        "Public Preview availability can change after publication."
+      ],
+      "conflict_of_interest": [
+        "Mistral publishes the model being evaluated."
+      ],
+      "accessed_at": "2026-08-04"
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Shieldstral frames moderation as a binary question-answering task using Instruct, Query and Document fields, then computes a continuous score from the yes/no token logits.",
+      "central": true,
+      "disposition": "confirmed-from-blog-model-card-and-technical-report",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read the official blog, Hugging Face model card usage section and arXiv HTML technical report task definition; compared the described input fields and yes/no logit normalization.",
+      "sources": [
+        {
+          "source_id": "mistral-blog-shieldstral",
+          "url": "https://mistral.ai/news/shieldstral/",
+          "version": "Introducing Shieldstral; published 2026-08-04",
+          "source_grade": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Announcement text is vendor-authored and summarizes implementation choices."
+        },
+        {
+          "source_id": "hf-shieldstral-model",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+          "version": "revision b6073e818d5d119c772e44b84372b62bd51c2a00",
+          "source_grade": "P2",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Usage helper was read but not executed."
+        },
+        {
+          "source_id": "arxiv-shieldstral",
+          "url": "https://arxiv.org/abs/2607.25857",
+          "version": "arXiv:2607.25857v1; submitted 2026-07-28",
+          "source_grade": "P1",
+          "owner": "Shieldstral authors",
+          "limitations": "Author technical report; not independent validation."
+        }
+      ],
+      "limitations": [
+        "No local inference was run.",
+        "Threshold calibration was not reproduced on any product dataset."
+      ],
+      "conflict_of_interest": [
+        "The implementation is described by the model developer and authors."
+      ],
+      "accessed_at": "2026-08-04"
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The Shieldstral technical report describes a training-data recipe covering approximately 54.1M samples and evaluates the model across 16 benchmarks, 21 splits and 10 baselines.",
+      "central": true,
+      "disposition": "confirmed-from-technical-report",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Opened arXiv abstract and HTML technical report sections on training data construction and evaluation.",
+      "sources": [
+        {
+          "source_id": "arxiv-shieldstral",
+          "url": "https://arxiv.org/abs/2607.25857",
+          "version": "arXiv:2607.25857v1; submitted 2026-07-28",
+          "source_grade": "P1",
+          "owner": "Shieldstral authors",
+          "limitations": "Training data and evaluation details are author-reported; full datasets and independent reproduction were not available in this turn."
+        }
+      ],
+      "limitations": [
+        "Training data was not independently inspected.",
+        "Benchmark scripts/logs were not executed.",
+        "Synthetic-data generation and filtering may carry bias or label noise."
+      ],
+      "conflict_of_interest": [
+        "The report authors are affiliated with the model developer."
+      ],
+      "accessed_at": "2026-08-04"
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Mistral reports F1 benchmark results in which Shieldstral leads selected text safety and multimodal safety rows, but these are vendor-reported results rather than independent comparisons.",
+      "central": false,
+      "disposition": "bounded-as-vendor-reported-benchmark",
+      "source_grade": "P1",
+      "evidence_level": "E1",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the Hugging Face benchmark tables and notes, including threshold and baseline-condition notes.",
+      "sources": [
+        {
+          "source_id": "hf-shieldstral-model",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+          "version": "revision b6073e818d5d119c772e44b84372b62bd51c2a00",
+          "source_grade": "P1",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Benchmark tables are project-authored and were not independently rerun."
+        },
+        {
+          "source_id": "arxiv-shieldstral",
+          "url": "https://arxiv.org/abs/2607.25857",
+          "version": "arXiv:2607.25857v1; submitted 2026-07-28",
+          "source_grade": "P1",
+          "owner": "Shieldstral authors",
+          "limitations": "Author-reported evaluation; no external evaluator or editor-run logs."
+        }
+      ],
+      "limitations": [
+        "No independent benchmark was found or run.",
+        "The article does not claim general superiority over all moderation models."
+      ],
+      "conflict_of_interest": [
+        "Mistral reports its own benchmark results."
+      ],
+      "accessed_at": "2026-08-04"
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Mistral's model card discloses limitations: uneven language/domain coverage, residual label noise, and reduced reliability on adversarial, obfuscated or very long inputs.",
+      "central": false,
+      "disposition": "confirmed-from-model-card",
+      "source_grade": "P1",
+      "evidence_level": "E1",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the Limitations & Ethical Considerations section of the Hugging Face model card.",
+      "sources": [
+        {
+          "source_id": "hf-shieldstral-model",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+          "version": "revision b6073e818d5d119c772e44b84372b62bd51c2a00",
+          "source_grade": "P1",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Vendor-authored limitation disclosure."
+        }
+      ],
+      "limitations": [
+        "No Korean-language stress test was run.",
+        "No adversarial or long-document evaluation was independently performed."
+      ],
+      "conflict_of_interest": [
+        "Mistral discloses limitations of its own model."
+      ],
+      "accessed_at": "2026-08-04"
+    }
+  ],
+  "source_urls": [
+    "https://mistral.ai/news/shieldstral/",
+    "https://docs.mistral.ai/models/model-cards/shieldstral-1-0",
+    "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+    "https://arxiv.org/abs/2607.25857"
+  ],
+  "reproducibility_notes": {
+    "status": "R2",
+    "public_artifacts": [
+      "Hugging Face model repository with safetensors and config files",
+      "Mistral docs model card",
+      "arXiv technical report",
+      "documented vLLM, llama.cpp and Transformers usage paths"
+    ],
+    "not_performed": [
+      "model download",
+      "local inference",
+      "GPU latency or throughput measurement",
+      "independent benchmark reproduction",
+      "Korean moderation calibration"
+    ]
+  }
+}
