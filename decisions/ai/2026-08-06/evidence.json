@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-06",
+  "date": "2026-08-06",
+  "subject": "Anthropic Claude Enterprise Inference hooks beta",
+  "central_claim": "Anthropic's Claude Enterprise Inference hooks beta lets an organization route governed prompts from claude.ai, Cowork and Claude Code to its own HTTPS AI security server before inference, where an allow or deny verdict determines whether the model request proceeds.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "Inference hooks move enterprise AI policy enforcement into the pre-inference path for Claude Enterprise surfaces. The change has same-day official release notes plus detailed official docs for availability, request flow, verdict schema, failure handling and limitations. It is directly useful to engineering and security teams deciding whether to govern Claude use through inline DLP/policy servers, while the article avoids unverified claims about security effectiveness."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI developer blog/API docs/pricing, Anthropic release notes/newsroom/platform docs, Google Gemini API changelog, Qwen blog and Hugging Face registry, DeepSeek Hugging Face/GitHub surfaces, Mistral docs changelog and vLLM/PyTorch release pages. Search snippets and registry listings were used only to discover candidates; article facts were checked against opened primary sources."
+      },
+      {
+        "channel": "same-day-release-review",
+        "classification": "S2 discovery only",
+        "note": "Anthropic release notes showed an August 5, 2026 Inference hooks beta and Opus 4.1 retirement. The hooks feature had multiple official docs covering behavior and limitations, making it stronger than a retirement-only item for a technical article."
+      },
+      {
+        "channel": "model-and-infrastructure-comparison",
+        "classification": "S2 discovery only",
+        "note": "OpenAI GPT-5.6 price/Fast mode update and August 3 system-card update were reviewed as higher-profile model economics/safety alternatives, but their main release dates were July 30 and August 3 rather than the August 5 same-day window. No X post or search result was used as factual evidence."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Anthropic Claude Enterprise Inference hooks beta",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Published in official release notes on 2026-08-05 with supporting overview, configuration and endpoint docs. The central technical claim is bounded and reaches E2 through multiple primary documentation URLs."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Luna/Terra price cuts and Fast mode rename",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 9,
+        "decision": "not-selected",
+        "reason": "Official OpenAI blog, model docs and pricing page clearly verify Luna/Terra prices and Fast mode behavior, and the API economics matter to Korean developers. It was not selected because the main commercial update was dated 2026-07-30 and had lower same-day novelty than Anthropic's August 5 release."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 system card August 3 prompt-injection evaluation update",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The system card change log verifies an August 3 addition of GPT-Red prompt-injection evaluation results. It is technically important but narrower and older than the selected same-day enterprise control-plane change."
+      },
+      {
+        "subject": "Anthropic Opus 4.1 API retirement on 2026-08-05",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Release notes confirm requests to claude-opus-4-1-20250805 now return errors and recommend Opus 5. This is operationally useful but mostly a migration notice rather than a richer technical change."
+      },
+      {
+        "subject": "Mistral Leanstral 1.5",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 0,
+        "total": 4,
+        "decision": "not-selected",
+        "reason": "Mistral changelog verifies the June 30 model release and September 30 retirement date, but it is older and focused on Lean 4 formal proof engineering with limited immediate Korean SW audience relevance."
+      },
+      {
+        "subject": "Qwen recent official blog/model registry updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Qwen official blog and Hugging Face registry surfaced Qwen-Image and Qwen3 Thinking/Coder variants, but the opened official blog items were not same-day 2026 releases and did not outrank the selected governance feature."
+      },
+      {
+        "subject": "DeepSeek-V4-Flash-0731",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "DeepSeek's official Hugging Face registry showed a recently updated DeepSeek-V4-Flash-0731 model with public artifacts. It was not selected because the update was several days old and benchmark interpretation would need a separate model-card/report review."
+      },
+      {
+        "subject": "Google Gemini API recent changes",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The Gemini changelog did not show a more recent same-day major model release. The visible June and May items were deprecations, managed agents and GA model updates already older than the selected item."
+      },
+      {
+        "subject": "vLLM v0.26.0",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "GitHub release notes provide strong primary evidence for a serving-runtime update, but it was released on 2026-07-27 and had already been considered in recent AI edition history."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "SAME_DAY_RELEASE_VERIFIED",
+    "PRIMARY_DOCS_VERIFIED",
+    "TECHNICAL_CONTRACT_VERIFIED",
+    "SECURITY_EFFECTIVENESS_NOT_CLAIMED",
+    "ENTERPRISE_TENANT_NOT_EXECUTED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-05T22:11:51Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-06 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence",
+      "central claims include at least two distinct primary source URLs",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections",
+      "route uniqueness, artifact hashes, site tests and production build are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Anthropic is the developer and distributor of Claude and Inference hooks and authored the release notes and documentation used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "Anthropic added Inference hooks beta for Claude Enterprise organizations in its August 5, 2026 Claude Platform release notes.",
+      "central": true,
+      "disposition": "confirmed-from-official-release-notes",
+      "source_grade": "P1",
+      "evidence_level": "E1",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Opened Anthropic Claude Platform release notes and recorded the August 5, 2026 entry.",
+      "sources": [
+        {
+          "source_id": "anthropic-release-notes-2026-08-05",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "version": "Claude Platform release notes; August 5, 2026 entry",
+          "source_grade": "P1",
+          "owner": "Anthropic",
+          "limitations": "Vendor-authored release note; page can be updated."
+        }
+      ],
+      "limitations": [
+        "Enterprise tenant access was not used to verify UI availability."
+      ],
+      "conflict_of_interest": [
+        "Anthropic publishes the product being evaluated."
+      ],
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Inference hooks route each governed prompt to an organization's HTTPS AI security server before inference, and an allow or deny verdict determines whether inference proceeds.",
+      "central": true,
+      "disposition": "confirmed-from-official-overview-and-endpoint-docs",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the Inference hooks overview and endpoint integration docs; compared request flow, verdict schema and failure semantics.",
+      "sources": [
+        {
+          "source_id": "anthropic-inference-hooks-overview",
+          "url": "https://platform.claude.com/docs/en/manage-claude/inference-hooks",
+          "version": "Inference hooks docs accessed 2026-08-05",
+          "source_grade": "P1",
+          "owner": "Anthropic",
+          "limitations": "Documentation describes intended behavior; no live traffic was captured."
+        },
+        {
+          "source_id": "anthropic-inference-hooks-endpoint",
+          "url": "https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint",
+          "version": "Develop an Inference hooks integration docs accessed 2026-08-05",
+          "source_grade": "P1",
+          "owner": "Anthropic",
+          "limitations": "Schema was read but not exercised against a tenant."
+        }
+      ],
+      "limitations": [
+        "No Enterprise test connection or webhook request was executed.",
+        "Security effectiveness is not inferred from the availability of the hook."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authors the integration docs."
+      ],
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Inference hooks apply to Claude Enterprise governed requests across claude.ai, Cowork and Claude Code sessions, while Claude Platform API organizations, Amazon Bedrock and Google Cloud are out of scope.",
+      "central": true,
+      "disposition": "confirmed-from-release-notes-and-availability-docs",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Matched the August 5 release note against the Inference hooks availability section.",
+      "sources": [
+        {
+          "source_id": "anthropic-release-notes-2026-08-05",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "version": "Claude Platform release notes; August 5, 2026 entry",
+          "source_grade": "P1",
+          "owner": "Anthropic",
+          "limitations": "Release note states product surfaces but not customer-specific entitlement details."
+        },
+        {
+          "source_id": "anthropic-inference-hooks-overview",
+          "url": "https://platform.claude.com/docs/en/manage-claude/inference-hooks",
+          "version": "Inference hooks docs accessed 2026-08-05",
+          "source_grade": "P1",
+          "owner": "Anthropic",
+          "limitations": "Availability may change after access."
+        }
+      ],
+      "limitations": [
+        "No customer contract or tenant-specific entitlement was checked."
+      ],
+      "conflict_of_interest": [
+        "Anthropic controls the documented availability."
+      ],
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The current Inference hooks event surface is prompt-side only and does not send raw file bytes, raw image bytes, system prompts or Anthropic-internal context; prompt rewriting/redaction is not supported.",
+      "central": true,
+      "disposition": "confirmed-from-official-docs",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read Inference hooks overview limitations and endpoint docs.",
+      "sources": [
+        {
+          "source_id": "anthropic-inference-hooks-overview",
+          "url": "https://platform.claude.com/docs/en/manage-claude/inference-hooks",
+          "version": "Inference hooks docs accessed 2026-08-05",
+          "source_grade": "P1",
+          "owner": "Anthropic",
+          "limitations": "The docs state response-side enforcement is planned later but do not commit a date."
+        }
+      ],
+      "limitations": [
+        "Attachment extraction behavior was not tested on real files or images."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authors the docs."
+      ],
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Configuration docs describe endpoint testing, a one-time signing secret, timeout and failure handling choices, shadow mode and rollout percentage.",
+      "central": false,
+      "disposition": "confirmed-from-official-configuration-docs",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read Configure Inference hooks docs and extracted operational controls without executing them.",
+      "sources": [
+        {
+          "source_id": "anthropic-inference-hooks-configuration",
+          "url": "https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration",
+          "version": "Configure Inference hooks docs accessed 2026-08-05",
+          "source_grade": "P1",
+          "owner": "Anthropic",
+          "limitations": "Settings were not changed in a tenant."
+        }
+      ],
+      "limitations": [
+        "No UI screenshots or live configuration logs were collected."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authors the docs."
+      ],
+      "accessed_at": "2026-08-05"
+    }
+  ],
+  "source_urls": [
+    "https://platform.claude.com/docs/en/release-notes/overview",
+    "https://platform.claude.com/docs/en/manage-claude/inference-hooks",
+    "https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint",
+    "https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration",
+    "https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed",
+    "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/",
+    "https://developers.openai.com/api/docs/pricing",
+    "https://deploymentsafety.openai.com/gpt-5-6",
+    "https://ai.google.dev/gemini-api/docs/changelog",
+    "https://docs.mistral.ai/resources/changelogs",
+    "https://github.com/vllm-project/vllm/releases",
+    "https://huggingface.co/Qwen/models",
+    "https://huggingface.co/deepseek-ai/models"
+  ],
+  "reproducibility_notes": {
+    "status": "R1",
+    "summary": "The public docs describe how to configure and implement Inference hooks, but verification requires a Claude Enterprise tenant and organization:manage permission. No live endpoint, webhook signature, latency, denial event or Activity Feed entry was produced in this turn.",
+    "not_run": [
+      "Claude Enterprise configuration",
+      "test connection",
+      "signed webhook request capture",
+      "Activity Feed denial query",
+      "SIEM or DLP integration"
+    ]
+  },
+  "benchmark_or_measurement_notes": {
+    "contains_model_benchmark": false,
+    "contains_security_effectiveness_claim": false,
+    "bounded_numeric_contracts": [
+      "default verdict timeout is 5 seconds according to Anthropic docs",
+      "endpoint response body read limit is 64 KiB according to endpoint docs",
+      "deny_reason is at most 500 characters and reference_id is at most 50 characters according to endpoint docs"
+    ],
+    "limitations": [
+      "These numbers are integration constraints, not evidence of DLP accuracy or prompt-injection robustness."
+    ]
+  }
+}
