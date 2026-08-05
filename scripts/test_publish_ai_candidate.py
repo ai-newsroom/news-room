@@ -173,6 +173,31 @@ class AutomaticAiPublisherTest(unittest.TestCase):
                     require_today=False,
                 )
 
+    def test_unexpected_frontmatter_field_is_rejected_before_materialization(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            article.write_text(
+                article.read_text(encoding="utf-8").replace(
+                    "date: 2026-07-26\n",
+                    'date: 2026-07-26\npublication_id: "2026-07-26"\n',
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(
+                publisher.PublishError,
+                r"unexpected article frontmatter field.*publication_id",
+            ):
+                publisher.validate_candidate(
+                    article,
+                    evidence_path,
+                    "2026-07-26",
+                    repo_root=root,
+                    require_today=False,
+                )
+            self.assertFalse((root / "content/ai/2026-07-26").exists())
+            self.assertFalse((root / "decisions/ai/2026-07-26").exists())
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

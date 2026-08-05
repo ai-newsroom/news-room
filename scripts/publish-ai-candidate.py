@@ -34,8 +34,20 @@ REQUIRED_HEADINGS = (
     "## 근거 원장",
     "## 출처",
 )
+ARTICLE_FRONTMATTER_KEYS = frozenset({
+    "edition",
+    "decision",
+    "title",
+    "date",
+    "subject",
+    "summary",
+    "evidence_ceiling",
+    "reproducibility",
+    "conflicts",
+})
 AUTOMATIC_CHECKS = (
     "ai-editorial-config",
+    "article-frontmatter-schema",
     "selection-threshold",
     "central-evidence-e2",
     "ai-technical-blog-v2",
@@ -87,6 +99,11 @@ def parse_frontmatter(text: str) -> Mapping[str, str]:
         if ":" not in line:
             continue
         key, raw = line.split(":", 1)
+        key = key.strip()
+        if not key:
+            raise PublishError("article frontmatter key is empty")
+        if key in result:
+            raise PublishError(f"duplicate article frontmatter field: {key}")
         value = raw.strip()
         if value.startswith('"') and value.endswith('"'):
             try:
@@ -156,12 +173,40 @@ def validate_candidate(
     if not isinstance(evidence, dict):
         raise PublishError("evidence must be an object")
 
+    frontmatter_keys = set(frontmatter)
+    unexpected_fields = sorted(frontmatter_keys - ARTICLE_FRONTMATTER_KEYS)
+    missing_fields = sorted(ARTICLE_FRONTMATTER_KEYS - frontmatter_keys)
+    if unexpected_fields:
+        raise PublishError(
+            "unexpected article frontmatter field(s): "
+            + ", ".join(unexpected_fields)
+        )
+    if missing_fields:
+        raise PublishError(
+            "missing article frontmatter field(s): " + ", ".join(missing_fields)
+        )
+
     if (
         frontmatter.get("edition") != "ai"
         or frontmatter.get("decision") != "publish-candidate"
         or frontmatter.get("date") != publication_id
     ):
         raise PublishError("article edition, decision, or date is invalid")
+    for field in ("title", "subject", "summary"):
+        if not frontmatter[field].strip():
+            raise PublishError(f"article {field} is required")
+    if frontmatter["reproducibility"] not in {"R0", "R1", "R2", "R3"}:
+        raise PublishError("article reproducibility is invalid")
+    try:
+        article_conflicts = json.loads(frontmatter["conflicts"])
+    except json.JSONDecodeError as error:
+        raise PublishError("article conflicts must be an inline JSON array") from error
+    if (
+        not isinstance(article_conflicts, list)
+        or not article_conflicts
+        or not all(isinstance(item, str) and item.strip() for item in article_conflicts)
+    ):
+        raise PublishError("article conflicts must contain at least one string")
     evidence_ceiling = frontmatter.get("evidence_ceiling")
     if EVIDENCE_ORDER.get(str(evidence_ceiling), -1) < EVIDENCE_ORDER["E2"]:
         raise PublishError("automatic publication requires E2 or higher")

@@ -49,6 +49,9 @@
    계약, 필수 절, 선정 점수, claim-source ledger, 이해상충, reproducibility, release gate를
    모두 지킨다. evidence의 release gate는 `ai-auto-publish-v1` 자동 출고 조건을 정확히
    기록한다.
+   기사 frontmatter에는 `edition`, `decision`, `title`, `date`, `subject`, `summary`,
+   `evidence_ceiling`, `reproducibility`, `conflicts`만 정확히 한 번씩 쓴다.
+   `publication_id`는 evidence와 실행 요청의 식별자이며 기사 frontmatter에는 쓰지 않는다.
 8. 기사와 evidence는 서로 같은 publication id, 중심 주장, 근거 수준, source URL을 가져야
    한다. 근거보다 강한 제목·요약·편집 판단을 쓰지 않는다.
 9. `content/`, `decisions/`, `docs/`, `editions/`, `scripts/`, `prompts/`, `site/`, `.coco-agents/`

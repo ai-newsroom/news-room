@@ -48,6 +48,23 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertIn('"decision") == "no-publish"', publisher)
         self.assertIn('mv "$DECISION_FILE.tmp" "$DECISION_FILE"', publisher)
 
+    def test_ai_validation_failure_gets_one_bounded_repair_before_materialization(self) -> None:
+        publisher = (ROOT / "scripts/publish-ai-daily.sh").read_text()
+        self.assertIn(
+            'MAX_VALIDATION_ATTEMPTS="${NEWS_ROOM_AI_MAX_VALIDATION_ATTEMPTS:-2}"',
+            publisher,
+        )
+        self.assertIn('REPAIR_PROMPT_FILE="$REPO/prompts/repair-ai-candidate.md"', publisher)
+        validation = publisher.index('while ! run_candidate_validation')
+        repair = publisher.index('repair_candidate "$VALIDATION_ATTEMPT"')
+        materialize = publisher.index('--executor "news-room-sequential-publisher"')
+        self.assertLess(validation, repair)
+        self.assertLess(repair, materialize)
+
+        repair_prompt = (ROOT / "prompts/repair-ai-candidate.md").read_text()
+        self.assertIn("기사 frontmatter에 `publication_id`를 넣지 않는다", repair_prompt)
+        self.assertIn("새 주제를 조사하지 않는다", repair_prompt)
+
     def test_both_editions_are_owned_by_one_timer(self) -> None:
         current = json.loads(
             (ROOT / "editions/current-affairs/runtime.json").read_text()

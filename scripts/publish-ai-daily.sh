@@ -17,9 +17,11 @@ NO_PUBLISH="$RUN_DIR/no-publish.json"
 ARTICLE="$STAGED_DIR/article.md"
 EVIDENCE="$RUN_DIR/evidence.json"
 PROMPT_FILE="$REPO/prompts/daily-ai-codex.md"
+REPAIR_PROMPT_FILE="$REPO/prompts/repair-ai-candidate.md"
 SESSION_RUN_JSON="$RUN_DIR/session-run.jsonl"
 LAST_MESSAGE="$RUN_DIR/session-last-message.txt"
 NEWS_ROOM_CODEX_SANDBOX="${NEWS_ROOM_CODEX_SANDBOX:-danger-full-access}"
+MAX_VALIDATION_ATTEMPTS="${NEWS_ROOM_AI_MAX_VALIDATION_ATTEMPTS:-2}"
 
 cd "$REPO"
 "$REPO/scripts/publication-git-preflight.sh" >/dev/null
@@ -44,8 +46,12 @@ if git cat-file -e "HEAD:content/ai/$PUBLICATION_ID/article.md" 2>/dev/null; the
   echo "AI publication already exists for $PUBLICATION_ID"
   exit 0
 fi
-if [[ ! -f "$PROMPT_FILE" ]]; then
-  echo "AI publication prompt is missing: $PROMPT_FILE" >&2
+if [[ ! -f "$PROMPT_FILE" || ! -f "$REPAIR_PROMPT_FILE" ]]; then
+  echo "AI publication or repair prompt is missing" >&2
+  exit 2
+fi
+if [[ ! "$MAX_VALIDATION_ATTEMPTS" =~ ^[12]$ ]]; then
+  echo "NEWS_ROOM_AI_MAX_VALIDATION_ATTEMPTS must be 1 or 2" >&2
   exit 2
 fi
 
@@ -109,12 +115,70 @@ if [[ ! -f "$ARTICLE" || ! -f "$EVIDENCE" ]]; then
   exit 2
 fi
 
-python3 editions/ai/editorial/style_v2.py "$ARTICLE"
-python3 scripts/publish-ai-candidate.py \
-  --article "$ARTICLE" \
-  --evidence "$EVIDENCE" \
-  --publication-id "$PUBLICATION_ID" \
-  --check-only
+run_candidate_validation() {
+  local attempt="$1"
+  local log="$RUN_DIR/validation-$attempt.log"
+  : > "$log"
+  if ! python3 editions/ai/editorial/style_v2.py "$ARTICLE" >> "$log" 2>&1; then
+    cat "$log" >&2
+    return 1
+  fi
+  if ! python3 scripts/publish-ai-candidate.py \
+    --article "$ARTICLE" \
+    --evidence "$EVIDENCE" \
+    --publication-id "$PUBLICATION_ID" \
+    --check-only >> "$log" 2>&1
+  then
+    cat "$log" >&2
+    return 1
+  fi
+  cat "$log"
+}
+
+repair_candidate() {
+  local failed_attempt="$1"
+  local validation_log="$RUN_DIR/validation-$failed_attempt.log"
+  local repair_run="$RUN_DIR/repair-$failed_attempt-session-run.jsonl"
+  local repair_last="$RUN_DIR/repair-$failed_attempt-last-message.txt"
+  local repair_exit
+
+  set +e
+  {
+    cat "$REPAIR_PROMPT_FILE"
+    printf '\n## 이번 복구 요청\n\n`%s`의 기존 후보를 최소 수정하라. 아래 결정적 검증 오류만 고친다.\n\n```text\n' "${REQUEST#$REPO/}"
+    cat "$validation_log"
+    printf '\n```\n'
+  } | codex exec \
+    --cd "$REPO" \
+    --sandbox "$NEWS_ROOM_CODEX_SANDBOX" \
+    --json \
+    --output-last-message "$repair_last" \
+    - > "$repair_run"
+  repair_exit=$?
+  set -e
+  printf '%s\n' "$repair_exit" > "$RUN_DIR/repair-$failed_attempt-exit-code.txt"
+  if [[ $repair_exit -ne 0 ]]; then
+    echo "AI candidate repair turn failed with exit code $repair_exit" >&2
+    return "$repair_exit"
+  fi
+}
+
+VALIDATION_ATTEMPT=1
+while ! run_candidate_validation "$VALIDATION_ATTEMPT"; do
+  if (( VALIDATION_ATTEMPT >= MAX_VALIDATION_ATTEMPTS )); then
+    echo "AI candidate remained invalid after $VALIDATION_ATTEMPT validation attempt(s)" >&2
+    exit 2
+  fi
+  repair_candidate "$VALIDATION_ATTEMPT"
+  VALIDATION_ATTEMPT=$((VALIDATION_ATTEMPT + 1))
+done
+
+if [[ -n "$(git status --porcelain=v1 --untracked-files=all)" ]]; then
+  echo "AI candidate turn modified files outside the ignored run directory" >&2
+  git status --short >&2
+  exit 2
+fi
+
 PYTHONDONTWRITEBYTECODE=1 python3 editions/validate_editions.py
 PYTHONDONTWRITEBYTECODE=1 python3 editions/validate_source_registries.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover editions

@@ -23,7 +23,11 @@ AI판은 매일 07:00 `Asia/Seoul`에 시작하는 단일 발행 실행의 두 �
 ## 실행 경계
 
 `scripts/publish-ai-candidate.py`는 무시되는 `var/runs/ai` 아래의 article·evidence를
-읽어 자동 출고 조건을 검사한다. 통과하면 다음 세 파일만 저장소에 materialize한다.
+읽어 자동 출고 조건을 검사한다. 기사 frontmatter는 공개 사이트의 엄격한 schema와 같은
+필드 집합을 사용하며, `publication_id` 같은 예상 밖 필드는 materialize 전에 거부한다.
+첫 검증이 실패하면 순차 발행기는 기존 주제와 근거를 바꾸지 않는 제한 복구 턴을 한 번만
+실행하고 같은 결정적 검사를 다시 수행한다. 두 번째 검사도 실패하면 공개 경로, commit,
+push, deploy 없이 실행 실패로 남긴다. 통과하면 다음 세 파일만 저장소에 materialize한다.
 
 ```text
 content/ai/<publication-id>/article.md
