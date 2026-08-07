@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-08",
+  "date": "2026-08-08",
+  "subject": "Mistral AI Shieldstral 1.0 3B",
+  "central_claim": "Mistral AI's Shieldstral 1.0 3B is a public Apache 2.0 open-weight multimodal safety classifier whose moderation contract is policy-adaptive binary question answering: operators provide natural-language instruction, query and document fields at inference time, and the model produces a yes/no-token-derived safety score.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "Shieldstral changes an implementation choice for AI safety engineering: a small open-weight multimodal classifier can be tested as a policy-adaptive guardrail rather than a fixed-label moderation model. The central claim is supported by Mistral's official blog, arXiv technical report and Hugging Face model artifact, including license, files, usage path, input contract and scoring method. The article limits performance claims to Mistral-authored evaluation results and does not infer production safety effectiveness."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-tool-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI blog/API surfaces, Anthropic newsroom/release notes, Google Gemini/DeepMind changelog and model pages, Qwen blog/Hugging Face/GitHub surfaces, DeepSeek Hugging Face/GitHub surfaces, Mistral news/changelog, vLLM and PyTorch releases. Search snippets and registry listings were used only to discover candidates; article claims use opened primary sources."
+      },
+      {
+        "channel": "mistral-primary-sources",
+        "classification": "P1/P2 source path",
+        "note": "Opened Mistral's Shieldstral blog, arXiv:2607.25857v2, and Hugging Face mistralai/Shieldstral-1.0-3B model card and file listing. These sources jointly verify publication, model identity, Apache 2.0 license, artifact availability, input contract, scoring method, recommended runtimes and evaluation scope."
+      },
+      {
+        "channel": "same-day-model-and-infrastructure-review",
+        "classification": "S2 discovery only",
+        "note": "Same-day or near-same-day high-profile alternatives included Anthropic's August 7 Fable 5 biology safeguards update and OpenAI's August 6 GPT-5.6 Sol/Luna ChatGPT update. Both were compared against the Shieldstral candidate. Shieldstral was selected because it has a technical report plus executable public model artifact, while the others were product/safety updates with weaker public reproducibility for the central engineering claim."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Mistral AI Shieldstral 1.0 3B",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because the central claim reaches E2 with at least two distinct primary URLs and a P2 model artifact. It gives SW engineers a concrete design and evaluation target for local or private moderation pipelines."
+      },
+      {
+        "subject": "Anthropic Fable 5 biology safeguards false-positive reduction",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Anthropic's August 7, 2026 official post says Fable 5 biology safeguards reduce fallbacks by about 85% and still route dual-use requests to Opus 5. It was not selected because the opened source was primarily a vendor product/safety claim without a separate public model card or reproducible artifact for the change."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Sol ChatGPT update and GPT-5.6 Luna free-user expansion",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 9,
+        "decision": "not-selected",
+        "reason": "OpenAI's August 6, 2026 official post verifies ChatGPT product availability, thought slider, free-user Luna expansion and internal factuality evaluation reductions. It was not selected because the central product change is not independently reproducible from public artifacts and the Work/Codex/API Sol model was explicitly not changed by that release."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 price-performance and inference efficiency posts",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Official OpenAI posts describe Luna/Terra API pricing and internal inference optimizations, including cost reductions. They were not selected because key cost and performance claims rely on vendor internal measurements rather than public execution artifacts."
+      },
+      {
+        "subject": "Mistral Studio prompt and skills system of record",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Mistral's August 4 news page surfaced the product item, but the visible evidence was less technical and less artifact-backed than Shieldstral."
+      },
+      {
+        "subject": "vLLM v0.26.0",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The GitHub release has strong P1/P2 evidence for serving-runtime changes, but it was released on 2026-07-27 and was already represented in recent AI edition history, so it did not outrank the newer model-artifact candidate."
+      },
+      {
+        "subject": "PyTorch 2.13.0",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "PyTorch release notes provide exact version and migration details, but the release was July 2026 and is a broader ML infrastructure release rather than the most recent AI-specific model or guardrail change."
+      },
+      {
+        "subject": "Qwen official blog/model registry updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Qwen official blog and Hugging Face/GitHub surfaces were searched, including Qwen Code and Qwen3.6 signals. No newer opened official candidate exceeded Shieldstral on artifact-backed editorial usefulness during this run."
+      },
+      {
+        "subject": "DeepSeek GitHub and Hugging Face surfaces",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "DeepSeek official repositories and model registry were checked as discovery surfaces. Visible same-day signals were weaker or issue-level rather than official model release notes with a complete technical report."
+      },
+      {
+        "subject": "Google Gemini/DeepMind recent changes",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Google Gemini and DeepMind official surfaces were included in discovery, but no opened same-day major model release with stronger public artifact support than Shieldstral was identified."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_ARTIFACTS_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "PERFORMANCE_CLAIMS_VENDOR_AUTHORED",
+    "NO_LOCAL_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-07T22:10:03Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-08 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence",
+      "central claims include at least two distinct primary source URLs",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and build must all pass before materialization to content/ai/2026-08-08 and decisions/ai/2026-08-08",
+      "route uniqueness, artifact hashes, site tests and production build are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Mistral AI is the developer and distributor of Shieldstral and authored the blog, model card and technical report used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "Mistral AI released Shieldstral 1.0 3B as a 3B open-weight multimodal safety classifier and the Hugging Face repository marks the model license as Apache 2.0.",
+      "central": true,
+      "disposition": "confirmed-from-official-blog-and-model-registry",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Opened Mistral's official Shieldstral blog and Hugging Face model card/file listing; recorded model ID, file availability and license label.",
+      "sources": [
+        {
+          "source_id": "mistral-shieldstral-blog",
+          "url": "https://mistral.ai/news/shieldstral/",
+          "version": "Introducing Shieldstral; accessed 2026-08-07",
+          "source_grade": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Vendor-authored release article; benchmark framing is not independent."
+        },
+        {
+          "source_id": "hf-shieldstral-model-card",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+          "version": "mistralai/Shieldstral-1.0-3B model card; accessed 2026-08-07",
+          "source_grade": "P2",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Model repository can change; current file listing was not downloaded."
+        },
+        {
+          "source_id": "hf-shieldstral-files",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B/tree/main",
+          "version": "main branch file listing; visible commit 003ec7e; accessed 2026-08-07",
+          "source_grade": "P2",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Web listing was opened; no checksum verification or local model download was performed."
+        }
+      ],
+      "limitations": [
+        "The model artifact was not downloaded or executed locally.",
+        "The Hugging Face main branch is mutable; the visible commit was recorded from the web listing."
+      ],
+      "conflict_of_interest": [
+        "Mistral AI publishes and maintains the model."
+      ],
+      "accessed_at": "2026-08-07"
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Shieldstral formulates moderation as a binary question-answering task with Instruct, Query and Document fields, then computes a continuous safety score from yes/no token probabilities.",
+      "central": true,
+      "disposition": "confirmed-from-technical-report-and-model-card",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Compared the task definition in arXiv:2607.25857v2 with the Hugging Face How It Works and usage helper.",
+      "sources": [
+        {
+          "source_id": "arxiv-shieldstral-v2",
+          "url": "https://arxiv.org/abs/2607.25857",
+          "version": "arXiv:2607.25857v2; submitted 2026-07-28, revised 2026-08-04",
+          "source_grade": "P1",
+          "owner": "Shieldstral authors / arXiv",
+          "limitations": "Author-authored technical report; not peer-reviewed proof of production impact."
+        },
+        {
+          "source_id": "arxiv-shieldstral-html-v2",
+          "url": "https://arxiv.org/html/2607.25857v2",
+          "version": "HTML rendering of arXiv:2607.25857v2; accessed 2026-08-07",
+          "source_grade": "P1",
+          "owner": "Shieldstral authors / arXiv",
+          "limitations": "HTML rendering may differ from PDF formatting; claims checked against abstract and task definition."
+        },
+        {
+          "source_id": "hf-shieldstral-model-card",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+          "version": "mistralai/Shieldstral-1.0-3B model card; accessed 2026-08-07",
+          "source_grade": "P2",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Usage helper was read but not executed."
+        }
+      ],
+      "limitations": [
+        "No local inference call was executed.",
+        "Policy prompt quality and threshold calibration remain application-specific."
+      ],
+      "conflict_of_interest": [
+        "Mistral AI authors the technical report and model card."
+      ],
+      "accessed_at": "2026-08-07"
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The model card describes Shieldstral as usable for prompt moderation, response moderation, refusal classification and multimodal text/image moderation, with vLLM, llama.cpp, SGLang and Transformers paths.",
+      "central": false,
+      "disposition": "confirmed-from-model-card",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read the Hugging Face Key Features, Use Cases and Usage sections.",
+      "sources": [
+        {
+          "source_id": "hf-shieldstral-model-card",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+          "version": "mistralai/Shieldstral-1.0-3B model card; accessed 2026-08-07",
+          "source_grade": "P2",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Compatibility claims were read from docs; no runtime installation was performed."
+        }
+      ],
+      "limitations": [
+        "Actual latency and throughput depend on hardware, backend, precision and image/text mix."
+      ],
+      "conflict_of_interest": [
+        "Mistral AI maintains the model card."
+      ],
+      "accessed_at": "2026-08-07"
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Mistral reports Shieldstral evaluation results across text, adaptability and multimodal safety benchmarks, but those results are author-side evaluations rather than independent reproduction.",
+      "central": false,
+      "disposition": "confirmed-as-vendor-authored-evaluation",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read the arXiv evaluation and ablation sections and the Hugging Face benchmark tables; did not rerun benchmarks.",
+      "sources": [
+        {
+          "source_id": "arxiv-shieldstral-html-v2",
+          "url": "https://arxiv.org/html/2607.25857v2",
+          "version": "arXiv:2607.25857v2 HTML; accessed 2026-08-07",
+          "source_grade": "P1",
+          "owner": "Shieldstral authors / arXiv",
+          "limitations": "Results are selected and reported by the model authors; independent logs were not found in this run."
+        },
+        {
+          "source_id": "hf-shieldstral-model-card",
+          "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+          "version": "mistralai/Shieldstral-1.0-3B model card; accessed 2026-08-07",
+          "source_grade": "P2",
+          "owner": "Mistral AI on Hugging Face",
+          "limitations": "Benchmark table is model-provider-authored."
+        }
+      ],
+      "limitations": [
+        "No independent benchmark or editorial reproduction was used to upgrade comparative performance claims to E3.",
+        "Some evaluation data, data generation and filtering steps are not fully reproducible from public artifacts."
+      ],
+      "conflict_of_interest": [
+        "Mistral AI reports its own evaluation results."
+      ],
+      "accessed_at": "2026-08-07"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "mistral-shieldstral-blog",
+      "url": "https://mistral.ai/news/shieldstral/",
+      "title": "Introducing Shieldstral.",
+      "source_grade": "P1",
+      "accessed_at": "2026-08-07"
+    },
+    {
+      "source_id": "hf-shieldstral-model-card",
+      "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+      "title": "mistralai/Shieldstral-1.0-3B",
+      "source_grade": "P2",
+      "accessed_at": "2026-08-07"
+    },
+    {
+      "source_id": "hf-shieldstral-files",
+      "url": "https://huggingface.co/mistralai/Shieldstral-1.0-3B/tree/main",
+      "title": "mistralai/Shieldstral-1.0-3B files at main",
+      "source_grade": "P2",
+      "accessed_at": "2026-08-07"
+    },
+    {
+      "source_id": "arxiv-shieldstral-v2",
+      "url": "https://arxiv.org/abs/2607.25857",
+      "title": "Shieldstral",
+      "source_grade": "P1",
+      "accessed_at": "2026-08-07"
+    },
+    {
+      "source_id": "arxiv-shieldstral-html-v2",
+      "url": "https://arxiv.org/html/2607.25857v2",
+      "title": "Shieldstral HTML technical report",
+      "source_grade": "P1",
+      "accessed_at": "2026-08-07"
+    }
+  ],
+  "style_contract": "ai-technical-blog-v2",
+  "article_path": "var/runs/ai/2026-08-08-sequential/20260807T221003Z-831656/staged-content/article.md"
+}
