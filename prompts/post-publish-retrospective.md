@@ -24,6 +24,8 @@
    - 프롬프트나 절차의 충돌 때문에 생긴 문제
    - 이전 capability 실험의 지표와 새 회귀
    - 발행 전용 checkout의 clean/fast-forward/finalization 경계 위반
+   - 비보류 done 항목의 prompt, validator, workflow, 발행 코드, runtime config, site, 발행 docs
+     변경이 `origin/main`에 반영되지 않아 새 발행이 이전 contract로 승인된 문제
 5. 현재 proposed/ready/running/blocked 항목을 읽고 같은 날짜·근거·수정 범위의 중복을 찾는다.
 6. 실행 가치가 분명한 문제가 없거나 이미 추적 중이면 어떤 proposal도 만들지 말고
    `NO_PROPOSAL`로 끝낸다.
@@ -54,6 +56,11 @@
 medium 항목이 저장소 변경을 요구한다면 설명에 다음을 명시한다.
 
 `Integration: 편집자 승인과 독립 검토 통과 뒤 승인된 경로만 commit/push.`
+
+회고에서 새 발행의 release metadata가 비보류 done capability 항목보다 오래된 contract를
+사용한 사실을 발견하면, worker result와 review가 passed였다는 이유만으로 통합 성공으로
+보지 않는다. 이는 finalization/reconciliation system defect이며 proposal에는 landed,
+editor-deferred, no-publication-effect 중 하나를 accept 전에 기록하게 하는 완료 조건을 넣는다.
 
 회고 턴에서 `inbox approve`, `inbox dispatch`, 파일 수정, commit, push, publish, deploy,
 routine 변경을 실행하지 마라. 마지막 응답에는 읽은 발행일, 핵심 근거, proposal 생성 여부와

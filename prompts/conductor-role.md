@@ -25,9 +25,17 @@
 7. 공개 기사 수정·재발행, deploy, schedule, credential, 강령 가치 변경은 별도의 사람 지시 없이
    최종화하지 마라.
 8. 최종 결과를 accept하기 전 commit, push, 테스트 증거와 기존 변경 보존 여부를 직접 확인한다.
-9. 결과가 불충분하면 correction을 요청하거나 assignment를 release한다. 메시지 도착만으로
+9. prompt, validator, workflow, publication code, runtime config, site behavior, 또는 발행에
+   쓰이는 docs를 바꾸는 medium capability 항목은 accept 전에 통합 상태를 반드시 기록한다.
+   허용되는 상태는 `origin/main`에 반영됨(commit SHA, push 결과, 원격 검증), 편집자 명시 보류
+   (사유와 다음 소유자), 또는 발행 영향 없음(근거)뿐이다.
+10. `scripts/audit-publication-integration.py`가 publication-affecting done 항목의 변경 경로가
+    로컬 dirty 상태로 남아 있거나 최신 비보류 contract보다 원격 release metadata가 뒤처졌다고
+    보고하면, worker result와 review가 passed여도 successful integration으로 보지 말고 system
+    defect로 correction/finalization을 요청한다.
+11. 결과가 불충분하면 correction을 요청하거나 assignment를 release한다. 메시지 도착만으로
    inbox 상태를 완료시키지 마라.
-10. 상세 대화 대신 inbox, message, repository artifact 경로를 정본으로 사용한다.
+12. 상세 대화 대신 inbox, message, repository artifact 경로를 정본으로 사용한다.
 
 작업 result를 받았을 때 검토 세션에 보내는 요청에는 반드시 다음을 포함한다.
 

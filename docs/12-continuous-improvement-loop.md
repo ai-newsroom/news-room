@@ -151,9 +151,38 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 4. `changes_requested`이면 컨덕터가 원래 작업 세션에 수정 요청을 보낸다.
 5. `passed`이고 승인 범위에 Git 최종 반영이 포함되면 컨덕터가 작업 세션에 좁은
    finalization 요청을 보낸다.
-6. 컨덕터는 최종 commit, push 결과, clean/preserved worktree를 확인한 뒤 해당 결과
+6. 중위험 저장소 변경이 prompt, validator, workflow, publication code, runtime config,
+   site behavior, 또는 발행에 쓰이는 docs를 바꾸면, 컨덕터는 accept 전에 다음 중 하나를
+   기록한다.
+   - `landed-on-origin/main`: commit SHA, push 결과, `origin/main` 검증, 승인된 경로 목록
+   - `editor-deferred`: 편집자가 보류한 사유, 다음 소유자, 발행 전 적용하지 않는다는 명시
+   - `no-publication-effect`: 발행 입력·검증·노출 경로에 영향이 없다는 근거
+7. 컨덕터는 최종 commit, push 결과, clean/preserved worktree를 확인한 뒤 해당 결과
    메시지로 `inbox accept`한다.
-7. high-risk 외부 동작은 완료 조건이 충족돼도 사람의 별도 지시 전까지 대기한다.
+8. high-risk 외부 동작은 완료 조건이 충족돼도 사람의 별도 지시 전까지 대기한다.
+
+## 최종 반영 감사
+
+publication-affecting medium capability 항목은 worker result와 독립 review가 모두
+통과했더라도, 다음 발행이 그 변경을 실제로 쓰기 전까지 통합이 완료된 것이 아니다. 완료된
+항목이 보류되지 않았는데 개선 checkout에만 남아 있고 `origin/main`의 release metadata가
+이전 contract를 기록한 채 새 발행이 성공하면, 이는 성공한 통합이 아니라 system defect다.
+
+컨덕터와 reviewer는 필요한 날짜에 다음 읽기 전용 감사를 실행하거나 같은 검사를 수동으로
+재현한다.
+
+```bash
+python3 scripts/audit-publication-integration.py \
+  --release-path decisions/ai/2026-08-04/release.json \
+  --expected-release-check ai-technical-blog-v3 \
+  --stale-release-check ai-technical-blog-v2
+```
+
+이 감사가 `done-publication-affecting-item-still-dirty`와
+`release-contract-behind-done-item`을 함께 보고하면, done AI v3 항목이 있고 승인된 AI v3
+파일이 로컬 dirty 상태인데 `origin/main` release metadata는 `ai-technical-blog-v2`를 쓴
+상태를 결정적으로 포착한 것이다. 이 검사는 자동 승인, 보류 patch 적용, commit, push,
+publish, deploy를 수행하지 않는다.
 
 ## 효과 관찰
 
