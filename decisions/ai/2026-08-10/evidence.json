@@ -1,0 +1,480 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-10",
+  "date": "2026-08-10",
+  "subject": "Liquid AI LFM2.5-2.6B",
+  "central_claim": "Liquid AI's LFM2.5-2.6B is a public 2.69B-parameter, 128K-context, tool-calling text model with native, GGUF, ONNX and MLX artifacts suitable for local-agent evaluation, but its lfm1.0 license places commercial use outside the granted license for legal entities with annual revenue of $10 million or more.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The release changes an engineering decision for teams considering private or edge agents: a small model now has public checkpoints, long-context config, tool-use instructions and multiple local runtime formats. The license condition is also decision-critical because the public artifact is not equivalent to unrestricted permissive open source. The central claim is supported by Liquid AI's official blog/docs and Hugging Face model artifacts/license."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "official-frontier-lab-and-tool-feeds",
+        "classification": "S2 discovery only",
+        "note": "Reviewed recent OpenAI blog and Deployment Safety Hub, Anthropic newsroom and release notes, Google Gemini API changelog, Qwen official blog and registry, DeepSeek Hugging Face/GitHub surfaces, Mistral changelog, PyTorch and vLLM release surfaces, and broader Hugging Face/Liquid AI signals. Search snippets were used only to discover candidates; article facts use opened primary sources."
+      },
+      {
+        "channel": "liquid-ai-primary-sources",
+        "classification": "P1/P2 source path",
+        "note": "Opened Liquid AI's LFM2.5-2.6B blog, Liquid docs, Hugging Face model card, raw README/config/LICENSE, and Hugging Face API metadata for post-trained, base, GGUF and ONNX repositories."
+      },
+      {
+        "channel": "same-day-model-and-infrastructure-review",
+        "classification": "S2 discovery only",
+        "note": "Compared Liquid AI's August 4 model-artifact release with OpenAI's GPT-5.6 price/performance and August system-card updates, Anthropic's Fable 5 biology safeguards post, Mistral changelog items, PyTorch 2.13.0, vLLM v0.26.0, Qwen blog/model registry and DeepSeek model registry. Liquid AI was selected because it was non-duplicate, artifact-backed, locally reproducible in principle, and included a concrete license constraint that changes adoption decisions."
+      },
+      {
+        "channel": "duplicate-review",
+        "classification": "editorial history check",
+        "note": "Read recent AI edition articles for 2026-08-05, 2026-08-06, 2026-08-08 and 2026-08-09. Shieldstral and cyber-agent containment were already covered, so they were excluded despite strong source support."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Liquid AI LFM2.5-2.6B",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because the central claim reaches E2 with multiple primary URLs and P2 artifacts. It gives SW engineers a concrete local-agent evaluation target while surfacing license constraints that affect production use."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Luna/Terra price reductions and Sol Fast mode",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "OpenAI's July 30 official post verifies lower Luna/Terra API pricing and Sol Fast mode. It was not selected because central cost-performance claims rely on vendor internal measurements, and recent AI edition coverage already used GPT-5.6 safety material on 2026-08-09."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 August ChatGPT/system-card update",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 9,
+        "decision": "not-selected",
+        "reason": "The August 6 system-card update has detailed P1 safety claims and product availability changes, but no public model artifact and weaker reproducibility than the selected local model release. It also overlaps with the previous day's GPT-5.6 cyber-safety article."
+      },
+      {
+        "subject": "Anthropic Fable 5 biology safeguards false-positive reduction",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Anthropic's August 7 post is a meaningful safety-product update, but public evidence remains vendor-authored and less directly reproducible for general SW engineers than the Liquid AI checkpoint and license evidence."
+      },
+      {
+        "subject": "Mistral Shieldstral 1.0 / Shieldstral 1.0 3B",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "not-selected",
+        "reason": "Strong P1/P2 support from Mistral and Hugging Face, but recent AI edition articles already covered Shieldstral on 2026-08-05 and 2026-08-08."
+      },
+      {
+        "subject": "Mistral Medium 3.1 and product changelog items",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Mistral changelog signals model releases and API updates, but the visible current entries did not provide a stronger same-day artifact-backed engineering decision than LFM2.5-2.6B."
+      },
+      {
+        "subject": "PyTorch 2.13.0",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "PyTorch release notes have strong release evidence, but the July 2026 release is less new for the 2026-08-10 AI article slot and is broader infrastructure rather than a fresh model/tooling decision."
+      },
+      {
+        "subject": "vLLM v0.26.0",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "GitHub release evidence is strong, but vLLM v0.26.0 was released on 2026-07-27 and was not the freshest non-duplicate topic."
+      },
+      {
+        "subject": "Qwen official blog and model registry updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Qwen blog and registry were searched as required discovery surfaces. No opened recent official Qwen candidate exceeded the selected topic on non-duplicate, decision-relevant, artifact-backed evidence."
+      },
+      {
+        "subject": "DeepSeek Hugging Face/GitHub surfaces",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "DeepSeek official registry showed recent model activity, but the visible signals did not provide a stronger current release with complete technical report and adoption-facing documentation than Liquid AI's release."
+      },
+      {
+        "subject": "Google Gemini API changelog",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Gemini changelog was reviewed; current visible items were deprecations, preview availability and product changes that did not outrank the selected artifact-backed release."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_ARTIFACTS_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "LICENSE_CONSTRAINT_DECISION_RELEVANT",
+    "PERFORMANCE_CLAIMS_VENDOR_AUTHORED",
+    "NO_LOCAL_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-09T22:09:02Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-10 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official blog/docs, model registry metadata, public artifacts and license text",
+      "central claims include at least two distinct primary source URLs",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and build must all pass before materialization to content/ai/2026-08-10 and decisions/ai/2026-08-10",
+      "route uniqueness, artifact hashes, site tests and production build are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Liquid AI is the developer and distributor of LFM2.5-2.6B and authored the blog, docs, model card and license used as primary sources.",
+    "Hugging Face hosts the model artifacts and API metadata used to verify public repository state.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "Liquid AI announced LFM2.5-2.6B and LFM2.5-2.6B-Base on 2026-08-04 and said both are available on Hugging Face.",
+      "central": true,
+      "disposition": "confirmed-from-official-blog-and-registry",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Opened Liquid AI's official blog and verified Hugging Face model repository/API metadata.",
+      "sources": [
+        {
+          "source_id": "liquid-blog-lfm25-26b",
+          "url": "https://www.liquid.ai/blog/lfm2-5-2-6b",
+          "version": "LFM2.5-2.6B: Deploy Agents Everywhere; Aug 2026; accessed 2026-08-09",
+          "source_grade": "P1",
+          "owner": "Liquid AI",
+          "limitations": "Vendor-authored release article; performance framing is not independent."
+        },
+        {
+          "source_id": "hf-lfm25-26b-api",
+          "url": "https://huggingface.co/api/models/LiquidAI/LFM2.5-2.6B",
+          "version": "sha ab00687315bc1298e9d54e9c4b611dde9867ccc2; lastModified 2026-08-07T10:30:38Z; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "Hugging Face main branch is mutable; metadata was read but files were not downloaded."
+        },
+        {
+          "source_id": "hf-lfm25-26b-base-api",
+          "url": "https://huggingface.co/api/models/LiquidAI/LFM2.5-2.6B-Base",
+          "version": "sha 78f33a52fbe65f7665963f482179dcc3e75f0d9e; lastModified 2026-08-04T13:02:13Z; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "Metadata verification only; no local model download."
+        }
+      ],
+      "limitations": [
+        "Announcement timing is vendor-authored; repository state can be updated after publication."
+      ],
+      "conflict_of_interest": [
+        "Liquid AI publishes and maintains the model."
+      ],
+      "accessed_at": "2026-08-09"
+    },
+    {
+      "claim_id": "C2",
+      "claim": "LFM2.5-2.6B is described as a 2.69B-parameter text model with 30 layers, 22 double-gated short convolution blocks, 8 GQA blocks, 131,072-token context and Korean in its supported language list.",
+      "central": true,
+      "disposition": "confirmed-from-model-card-config-and-docs",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Compared the Hugging Face model card, raw config.json and Liquid docs model page.",
+      "sources": [
+        {
+          "source_id": "hf-lfm25-26b-model-card",
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
+          "version": "model card; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "Model card is vendor-maintained and mutable."
+        },
+        {
+          "source_id": "hf-lfm25-26b-config",
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B/raw/main/config.json",
+          "version": "config.json on main; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "Read from mutable main branch; commit SHA recorded separately from API metadata."
+        },
+        {
+          "source_id": "liquid-docs-lfm25-26b",
+          "url": "https://docs.liquid.ai/lfm/models/lfm25-2.6b",
+          "version": "LFM2.5-2.6B docs page; accessed 2026-08-09",
+          "source_grade": "P1",
+          "owner": "Liquid AI",
+          "limitations": "Vendor docs; concise specification page."
+        }
+      ],
+      "limitations": [
+        "The model was not executed to verify effective context behavior or Korean quality."
+      ],
+      "conflict_of_interest": [
+        "Liquid AI authored the model card and docs."
+      ],
+      "accessed_at": "2026-08-09"
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Liquid AI provides LFM2.5-2.6B in native safetensors, GGUF, ONNX and MLX-oriented repository paths, with public non-gated Hugging Face metadata for the checked repositories.",
+      "central": true,
+      "disposition": "confirmed-from-huggingface-api-and-model-cards",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read Hugging Face API metadata and model cards for native, GGUF and ONNX repositories; MLX path was verified from model-card links but API metadata was not separately fetched.",
+      "sources": [
+        {
+          "source_id": "hf-lfm25-26b-api",
+          "url": "https://huggingface.co/api/models/LiquidAI/LFM2.5-2.6B",
+          "version": "sha ab00687315bc1298e9d54e9c4b611dde9867ccc2; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "Native repository metadata only."
+        },
+        {
+          "source_id": "hf-lfm25-26b-gguf",
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B-GGUF",
+          "version": "GGUF model card; API sha b421ad1d549afeda6a0fb2ad3a697cb5a7879adc; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "File listing inspected; no quantized file downloaded or executed."
+        },
+        {
+          "source_id": "hf-lfm25-26b-onnx",
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B-ONNX",
+          "version": "ONNX model card; API sha 66826372fd4fa166f53be0371c9315745c07cace; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "File listing inspected; no ONNX runtime execution."
+        },
+        {
+          "source_id": "hf-lfm25-26b-mlx",
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B-MLX",
+          "version": "MLX repository linked from model card; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "Linked repository was used to verify availability path; no local MLX execution."
+        }
+      ],
+      "limitations": [
+        "Artifact presence was verified by metadata/listing only; checksum verification and local execution were not performed."
+      ],
+      "conflict_of_interest": [
+        "Liquid AI maintains the model repositories."
+      ],
+      "accessed_at": "2026-08-09"
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The LFM Open License v1.0 grants commercial use only subject to a condition that the user or legal entity does not exceed $10 million in annual revenue; commercial use above that threshold is not licensed under the agreement.",
+      "central": true,
+      "disposition": "confirmed-from-license-text",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Opened raw LICENSE from the Hugging Face repository and recorded the Commercial Use Limitation clause.",
+      "sources": [
+        {
+          "source_id": "hf-lfm25-license",
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B/raw/main/LICENSE",
+          "version": "LFM Open License v1.0; accessed 2026-08-09",
+          "source_grade": "P1",
+          "owner": "Liquid AI",
+          "limitations": "Legal interpretation depends on organization facts and any separate agreement; this article is not legal advice."
+        },
+        {
+          "source_id": "hf-lfm25-26b-readme",
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B/raw/main/README.md",
+          "version": "README frontmatter license_name lfm1.0; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "README license label points to license text; legal clause source is the LICENSE file."
+        }
+      ],
+      "limitations": [
+        "The article reports license text and does not decide whether any specific company crosses the threshold or has a separate commercial agreement."
+      ],
+      "conflict_of_interest": [
+        "Liquid AI authored the license for its own model."
+      ],
+      "accessed_at": "2026-08-09"
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Liquid AI's benchmark and speed claims are vendor-authored results with disclosed partial settings such as vLLM/SGLang use, generation parameters, SGLang 0.5.16, 1,024 input tokens, up to 256 output tokens and BF16 for the GPU throughput test.",
+      "central": false,
+      "disposition": "vendor-claim-with-conditions-recorded",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Recorded benchmark rows and footnote conditions from Liquid AI blog and model card; did not reproduce measurements.",
+      "sources": [
+        {
+          "source_id": "liquid-blog-lfm25-26b",
+          "url": "https://www.liquid.ai/blog/lfm2-5-2-6b",
+          "version": "benchmark table and footnote; accessed 2026-08-09",
+          "source_grade": "P1",
+          "owner": "Liquid AI",
+          "limitations": "Vendor-authored benchmark; raw logs and all workload inputs were not opened."
+        },
+        {
+          "source_id": "hf-lfm25-26b-model-card",
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
+          "version": "performance section; accessed 2026-08-09",
+          "source_grade": "P2",
+          "owner": "Liquid AI on Hugging Face",
+          "limitations": "Model card repeats vendor evaluation results; independent reproduction not available in this run."
+        }
+      ],
+      "limitations": [
+        "No independent benchmark reproduction was performed.",
+        "The article does not make a general superiority claim."
+      ],
+      "conflict_of_interest": [
+        "Liquid AI reports performance for its own model."
+      ],
+      "accessed_at": "2026-08-09"
+    }
+  ],
+  "source_urls": [
+    "https://www.liquid.ai/blog/lfm2-5-2-6b",
+    "https://docs.liquid.ai/lfm/models/lfm25-2.6b",
+    "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
+    "https://huggingface.co/api/models/LiquidAI/LFM2.5-2.6B",
+    "https://huggingface.co/api/models/LiquidAI/LFM2.5-2.6B-Base",
+    "https://huggingface.co/LiquidAI/LFM2.5-2.6B-GGUF",
+    "https://huggingface.co/LiquidAI/LFM2.5-2.6B-ONNX",
+    "https://huggingface.co/LiquidAI/LFM2.5-2.6B-MLX",
+    "https://huggingface.co/LiquidAI/LFM2.5-2.6B/raw/main/README.md",
+    "https://huggingface.co/LiquidAI/LFM2.5-2.6B/raw/main/config.json",
+    "https://huggingface.co/LiquidAI/LFM2.5-2.6B/raw/main/LICENSE",
+    "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/",
+    "https://deploymentsafety.openai.com/gpt-5-6-august-update",
+    "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards",
+    "https://docs.mistral.ai/resources/changelogs",
+    "https://github.com/pytorch/pytorch/releases",
+    "https://github.com/vllm-project/vllm/releases",
+    "https://qwenlm.github.io/blog/",
+    "https://huggingface.co/deepseek-ai/models",
+    "https://ai.google.dev/gemini-api/docs/changelog"
+  ],
+  "reproducibility_notes": {
+    "status": "R2",
+    "what_is_public": [
+      "Hugging Face model repositories and metadata for native, base, GGUF and ONNX variants",
+      "README with model details, chat template, tool-use guidance and framework examples",
+      "config.json with architecture and context-length fields",
+      "license text"
+    ],
+    "not_done_in_this_turn": [
+      "No model weights were downloaded.",
+      "No local inference, tool-call parse test, benchmark or checksum verification was run.",
+      "No legal advice or organization-specific license determination was made."
+    ]
+  },
+  "benchmark_notes": {
+    "reported_by": "Liquid AI",
+    "independent_verification": false,
+    "conditions_recorded": [
+      "BFCLv4 temperature 0.001, max output tokens 4096",
+      "ToolSandbox temperature 0, max output tokens 1024",
+      "PinchBench temperature 0.6, max output tokens 8192",
+      "tau3-Bench and Claw-Eval temperature 0, no output limit, with Qwen models using temperature 0.6 per recommended settings",
+      "GPU throughput with SGLang 0.5.16, 1,024 input tokens, up to 256 output tokens, BF16, average of 3 runs per concurrency level"
+    ],
+    "limitations": [
+      "Vendor-authored benchmark and throughput graphs are not independent I1 evidence.",
+      "The article uses benchmark numbers only as reported conditions, not as a general superiority conclusion."
+    ]
+  }
+}
