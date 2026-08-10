@@ -18,6 +18,7 @@ ARTICLE="$STAGED_DIR/article.md"
 EVIDENCE="$RUN_DIR/evidence.json"
 PROMPT_FILE="$REPO/prompts/daily-ai-codex.md"
 REPAIR_PROMPT_FILE="$REPO/prompts/repair-ai-candidate.md"
+BRIEF_FILE="$REPO/prompts/ai-briefs/$PUBLICATION_ID.md"
 SESSION_RUN_JSON="$RUN_DIR/session-run.jsonl"
 LAST_MESSAGE="$RUN_DIR/session-last-message.txt"
 NEWS_ROOM_CODEX_SANDBOX="${NEWS_ROOM_CODEX_SANDBOX:-danger-full-access}"
@@ -71,6 +72,10 @@ set +e
 {
   cat "$PROMPT_FILE"
   printf '\n## 이번 실행 요청\n\n`%s`를 읽고 그 경로와 발행일을 정확히 사용하라.\n' "${REQUEST#$REPO/}"
+  if [[ -f "$BRIEF_FILE" ]]; then
+    printf '\n## 지정 편집 브리프\n\n다음 브리프는 이번 발행일의 주제와 독자 관점을 지정한다. 위의 근거·검증·release gate는 그대로 지킨다.\n\n'
+    cat "$BRIEF_FILE"
+  fi
 } | codex exec \
   --cd "$REPO" \
   --sandbox "$NEWS_ROOM_CODEX_SANDBOX" \

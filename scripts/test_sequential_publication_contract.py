@@ -42,6 +42,23 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertLess(current_guard, live_guard)
         self.assertLess(live_guard, codex)
 
+    def test_ai_entrypoint_loads_only_the_matching_date_brief(self) -> None:
+        publisher = (ROOT / "scripts/publish-ai-daily.sh").read_text()
+        self.assertIn(
+            'BRIEF_FILE="$REPO/prompts/ai-briefs/$PUBLICATION_ID.md"',
+            publisher,
+        )
+        brief_guard = publisher.index('if [[ -f "$BRIEF_FILE" ]]')
+        brief_read = publisher.index('cat "$BRIEF_FILE"')
+        codex = publisher.index("codex exec")
+        self.assertLess(brief_guard, brief_read)
+        self.assertLess(brief_read, codex)
+
+        brief = (ROOT / "prompts/ai-briefs/2026-08-11.md").read_text()
+        self.assertIn("Muse Glimmer 30B", brief)
+        self.assertIn("https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model", brief)
+        self.assertIn("https://huggingface.co/meta-models/Muse-Glimmer-30B", brief)
+
     def test_ai_no_publish_is_durable_for_same_date_replay(self) -> None:
         publisher = (ROOT / "scripts/publish-ai-daily.sh").read_text()
         self.assertIn('DECISION_FILE="$PUBLICATION_RUN_DIR/ai-decision.json"', publisher)
