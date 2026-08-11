@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-12",
+  "decision": "publish-candidate",
+  "release_status": "approved-for-publication",
+  "article_path": "content/ai/2026-08-12/article.md",
+  "evidence_path": "decisions/ai/2026-08-12/evidence.json",
+  "artifact_hashes": {
+    "article_sha256": "1da871b703977dc251df3a329cc4ed4c2b4496e2c462b33efab3ebe2be8f046d",
+    "evidence_sha256": "30a62e4cd54b0e1b9ae2f658fd33d7d252be332150e533467c9b594f5a7164c8"
+  },
+  "routes": [
+    "/ai/",
+    "/ai/2026-08-12/"
+  ],
+  "authorization": {
+    "mode": "automatic",
+    "policy_id": "ai-auto-publish-v1",
+    "authorized_at": "2026-08-12T07:14:29+09:00",
+    "executor": "news-room-sequential-publisher",
+    "checks": [
+      "ai-editorial-config",
+      "article-frontmatter-schema",
+      "selection-threshold",
+      "central-evidence-e2",
+      "ai-technical-blog-v2",
+      "claim-source-ledger",
+      "publication-id-and-route-unique",
+      "artifact-hashes",
+      "site-tests-and-build"
+    ]
+  }
+}

@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-12",
+  "date": "2026-08-12",
+  "subject": "Mistral Regional Inference, Priority Tier, and Z.ai GLM 5.2 on Mistral",
+  "central_claim": "Mistral's August 11, 2026 update changes API deployment decisions by making inference geography, service tier and third-party open-model hosting explicit platform choices: Regional Inference is generally available for EU and US endpoints with documented limits and a 10% upcharge, Priority Tier is in public preview with SLA and 1.75x pricing conditions, and Z.ai GLM 5.2 is listed as a hosted third-party open text model on Mistral.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The update affects concrete deployment choices for software teams using hosted AI APIs: data-location routing, feature availability, SLA/capacity tiering, pricing multipliers and hosted open-model selection. The central claim is bounded to documented API/platform behavior and reaches E2 through multiple official primary source URLs."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "mistral-official-news",
+        "classification": "P1 source path",
+        "note": "Opened Mistral's August 11, 2026 announcement for Regional Endpoints, Priority Tier and third-party open model support. The announcement was treated as primary for what Mistral announced, not as independent proof of reliability or performance."
+      },
+      {
+        "channel": "mistral-official-docs",
+        "classification": "P1 source path",
+        "note": "Opened the Regional Inference docs, Priority Tier docs and Z.ai GLM 5.2 model card to verify endpoint names, SDK/server configuration, limitations, pricing multipliers, SLA terms, model ID, context window, max output and feature listing."
+      },
+      {
+        "channel": "frontier-lab-and-model-registry-review",
+        "classification": "S2 discovery until opened primary source",
+        "note": "Reviewed current official surfaces and search results for OpenAI API changelog, Anthropic Platform release notes, Google Gemini API changelog, Qwen blog/model registry, DeepSeek GitHub/Hugging Face, Mistral news/docs, vLLM releases and PyTorch releases. Search snippets were used only to discover candidates; facts in the article use opened primary sources."
+      },
+      {
+        "channel": "duplicate-check",
+        "classification": "local-publication-history",
+        "note": "Searched existing AI articles and evidence for Shieldstral, GLM 5.2, Regional Inference, Priority Tier and related terms. Shieldstral was already covered on 2026-08-08, while Mistral Regional Inference and Priority Tier were not found as prior article subjects."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Mistral Regional Inference, Priority Tier and GLM 5.2 hosting",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it was the same-day official announcement with multiple opened primary docs and immediate API deployment implications. The article avoids reliability or performance claims not independently measured."
+      },
+      {
+        "subject": "Anthropic Compliance API local session transcripts",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Anthropic's August 11 release-note item is material for enterprise compliance and Claude Code/Cowork audit workflows, but the visible change is narrower and enterprise-gated compared with Mistral's broader API deployment surface."
+      },
+      {
+        "subject": "Anthropic Managed Agents budgets, advisor, inference_geo and GitHub skills",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The August 7 release notes and docs contain strong deployment details, especially hard spend caps and data residency controls, but the date is older than the selected same-day Mistral announcement and the scope is Claude Managed Agents only."
+      },
+      {
+        "subject": "Mistral Shieldstral 1.0 3B",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Strong P1/P2 support from Mistral technical report and Hugging Face artifacts, but the AI edition already covered Shieldstral on 2026-08-08, so it would be a duplicate."
+      },
+      {
+        "subject": "vLLM v0.27.0",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "not-selected",
+        "reason": "The August 10 release is substantial, with Kimi K3 full-stack support and 561 commits, but recent AI editions already covered vLLM v0.26.0 and Kimi K3 deployment boundaries. The Mistral announcement was less duplicative for the publication slot."
+      },
+      {
+        "subject": "Google Gemini API July 30 robotics endpoints",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Google's official changelog confirms Gemini Robotics ER 2 preview endpoints and an ER 1.6 shutdown date, but the item is older and robotics-specific. It did not outrank the selected current infrastructure release."
+      },
+      {
+        "subject": "PyTorch 2.13.0",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "PyTorch 2.13.0 release notes contain actionable compatibility and build changes, but PyTorch 2.13.0 was already reviewed as an alternative in recent evidence and did not present a stronger same-day AI model/API decision point."
+      },
+      {
+        "subject": "Qwen official blog and model registry updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Qwen surfaces were searched as required discovery paths. No opened current official Qwen candidate exceeded the selected topic on same-day novelty, non-duplication and adoption-facing deployment impact."
+      },
+      {
+        "subject": "DeepSeek GitHub and Hugging Face surfaces",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "DeepSeek official surfaces were included in discovery. Visible signals did not provide a stronger current, non-duplicate release with more actionable primary documentation than Mistral's same-day platform update."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "PERFORMANCE_CLAIMS_NOT_USED",
+    "NO_API_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-11T22:09:03Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-12 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official announcement and official product documentation",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-12 and decisions/ai/2026-08-12",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Mistral AI is the author and operator of the announcement, Regional Inference docs, Priority Tier docs and hosted GLM 5.2 model card used as primary sources.",
+    "Z.ai is the original developer of GLM 5.2, according to the Mistral model card.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "Mistral announced on 2026-08-11 that Regional Endpoints are generally available, Priority Tier is in public preview, and third-party open model support starts with Z.ai GLM 5.2.",
+      "central": true,
+      "disposition": "confirmed-from-official-announcement-and-docs",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Opened Mistral's announcement and linked Regional Inference, Priority Tier and GLM 5.2 documentation.",
+      "sources": [
+        {
+          "source_id": "mistral-sovereign-ai-announcement",
+          "url": "https://mistral.ai/news/regional-inference-open-models-new-compute/",
+          "version": "Published 2026-08-11; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Vendor-authored announcement; does not independently verify reliability, latency or performance."
+        },
+        {
+          "source_id": "mistral-regional-inference-docs",
+          "url": "https://docs.mistral.ai/inference/regional-inference",
+          "version": "Regional inference docs; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Documentation can change; API availability was not independently queried."
+        },
+        {
+          "source_id": "mistral-priority-tier-docs",
+          "url": "https://docs.mistral.ai/inference/priority-tier",
+          "version": "Priority Tier docs; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Public preview feature; entitlement and capacity are organization-specific."
+        },
+        {
+          "source_id": "mistral-glm-5-2-model-card",
+          "url": "https://docs.mistral.ai/models/zai-glm-5-2",
+          "version": "Z.ai GLM 5.2 model card; dated 2026-08-06; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Hosted model card does not independently validate Z.ai's model performance."
+        }
+      ],
+      "limitations": [
+        "The claim is limited to documented release and product behavior.",
+        "No API key was used to verify live endpoint responses."
+      ],
+      "conflict_of_interest": [
+        "Mistral-authored sources describe Mistral's own platform."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Regional Inference distinguishes the global endpoint from EU and US regional endpoints and applies a 1.1x pricing multiplier to regional token and cache usage.",
+      "central": true,
+      "disposition": "confirmed-from-official-regional-inference-docs",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read endpoint table, pricing notice and configuration examples in the Regional Inference docs.",
+      "sources": [
+        {
+          "source_id": "mistral-regional-inference-docs",
+          "url": "https://docs.mistral.ai/inference/regional-inference",
+          "version": "Endpoint table and pricing note; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Documentation was read but endpoint model lists were not queried."
+        }
+      ],
+      "limitations": [
+        "Regional endpoint availability depends on models and features available in the target region.",
+        "Regional Inference does not regionalize all control-plane data."
+      ],
+      "conflict_of_interest": [
+        "Mistral-authored documentation describes Mistral's own API."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Regional Inference currently documents feature limitations: function calling is the only supported regional tool, stateful Agents, Batch and Files API are unavailable, and available models vary by region.",
+      "central": true,
+      "disposition": "confirmed-from-official-regional-inference-docs",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the Regional Inference limitations and available-models sections.",
+      "sources": [
+        {
+          "source_id": "mistral-regional-inference-docs",
+          "url": "https://docs.mistral.ai/inference/regional-inference",
+          "version": "Limitations and available models sections; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "The exact per-region model list can change and was not queried in this turn."
+        }
+      ],
+      "limitations": [
+        "Does not cover partner-hosted deployments or self-hosted deployments.",
+        "Feature limitations may change after access."
+      ],
+      "conflict_of_interest": [
+        "Mistral-authored documentation describes Mistral's own API."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Priority Tier routes eligible completion requests through a priority queue, documents a 99.5% uptime SLA, uses service_tier values auto or standard_only, and bills at a 1.75x multiplier over Standard Tier list pricing.",
+      "central": true,
+      "disposition": "confirmed-from-official-priority-tier-docs",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the Priority Tier how-it-works, comparison table, request parameter, response usage and billing sections.",
+      "sources": [
+        {
+          "source_id": "mistral-priority-tier-docs",
+          "url": "https://docs.mistral.ai/inference/priority-tier",
+          "version": "Priority Tier docs; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Public preview; actual eligibility requires organization account setup and configured rate limits."
+        }
+      ],
+      "limitations": [
+        "The article does not claim a measured latency improvement.",
+        "Requests using auto can fall back to Standard Tier when not eligible or above configured limits."
+      ],
+      "conflict_of_interest": [
+        "Mistral-authored documentation describes Mistral's own API."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Mistral's GLM 5.2 model card lists zai-glm-5-2 as a public-preview third-party open text model served without Mistral modifications, with 1M context, 128k max output, and feature support including chat completions, function calling and structured outputs.",
+      "central": true,
+      "disposition": "confirmed-from-official-model-card",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the Z.ai GLM 5.2 model card and feature list.",
+      "sources": [
+        {
+          "source_id": "mistral-glm-5-2-model-card",
+          "url": "https://docs.mistral.ai/models/zai-glm-5-2",
+          "version": "Z.ai GLM 5.2 model card; dated 2026-08-06; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "Hosted model card is not an independent benchmark or a self-host artifact verification."
+        }
+      ],
+      "limitations": [
+        "No API call, endpoint latency test, quality evaluation or tool-call reliability test was performed.",
+        "The source does not prove equivalence to other Z.ai endpoints or self-hosted runs."
+      ],
+      "conflict_of_interest": [
+        "Mistral hosts and documents this Mistral platform model card."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "For Korean teams, the update is relevant as a deployment-control option for EU and US workloads, but it does not provide Korea-region data residency.",
+      "central": false,
+      "disposition": "derived-editorial-judgment-from-documented-regions",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "derived",
+      "method": "Derived from the documented endpoint geography list and the absence of a Korea or Asia regional endpoint in the opened docs.",
+      "sources": [
+        {
+          "source_id": "mistral-regional-inference-docs",
+          "url": "https://docs.mistral.ai/inference/regional-inference",
+          "version": "Supported endpoints table; accessed 2026-08-11",
+          "source_type": "P1",
+          "owner": "Mistral AI",
+          "limitations": "The article does not make a legal compliance conclusion for Korea or other jurisdictions."
+        }
+      ],
+      "limitations": [
+        "This is not legal advice.",
+        "Private enterprise arrangements and partner deployments were not investigated."
+      ],
+      "conflict_of_interest": [
+        "Mistral-authored documentation defines the public endpoint list."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "mistral-sovereign-ai-announcement",
+      "url": "https://mistral.ai/news/regional-inference-open-models-new-compute/",
+      "title": "In-region inference, open models, and new European infrastructure for sovereign AI.",
+      "source_type": "P1",
+      "accessed_at": "2026-08-11"
+    },
+    {
+      "source_id": "mistral-regional-inference-docs",
+      "url": "https://docs.mistral.ai/inference/regional-inference",
+      "title": "Regional inference",
+      "source_type": "P1",
+      "accessed_at": "2026-08-11"
+    },
+    {
+      "source_id": "mistral-priority-tier-docs",
+      "url": "https://docs.mistral.ai/inference/priority-tier",
+      "title": "Priority Tier",
+      "source_type": "P1",
+      "accessed_at": "2026-08-11"
+    },
+    {
+      "source_id": "mistral-glm-5-2-model-card",
+      "url": "https://docs.mistral.ai/models/zai-glm-5-2",
+      "title": "Z.ai GLM 5.2",
+      "source_type": "P1",
+      "accessed_at": "2026-08-11"
+    }
+  ]
+}
