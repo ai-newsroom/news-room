@@ -138,6 +138,11 @@ def validate_sources(claims: list[Mapping[str, Any]]) -> None:
                 raise PublishError("claim source must be an object")
             url = source.get("url")
             grade = source.get("source_grade")
+            source_type = source.get("source_type")
+            if grade is None:
+                grade = source_type
+            elif source_type is not None and source_type != grade:
+                raise PublishError("claim source grade fields conflict")
             if (
                 not isinstance(url, str)
                 or not url.startswith("https://")

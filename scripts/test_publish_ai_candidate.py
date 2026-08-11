@@ -157,6 +157,44 @@ class AutomaticAiPublisherTest(unittest.TestCase):
                     require_today=False,
                 )
 
+    def test_source_type_alias_matches_editorial_contract(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            value = json.loads(evidence_path.read_text())
+            for source in value["claims"][0]["sources"]:
+                source["source_type"] = source.pop("source_grade")
+            evidence_path.write_text(json.dumps(value), encoding="utf-8")
+
+            candidate = publisher.validate_candidate(
+                article,
+                evidence_path,
+                "2026-07-26",
+                repo_root=root,
+                require_today=False,
+            )
+            self.assertEqual(candidate["publication_id"], "2026-07-26")
+
+    def test_conflicting_source_grade_aliases_are_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            value = json.loads(evidence_path.read_text())
+            value["claims"][0]["sources"][0]["source_type"] = "P2"
+            evidence_path.write_text(json.dumps(value), encoding="utf-8")
+
+            with self.assertRaisesRegex(
+                publisher.PublishError,
+                "source grade fields conflict",
+            ):
+                publisher.validate_candidate(
+                    article,
+                    evidence_path,
+                    "2026-07-26",
+                    repo_root=root,
+                    require_today=False,
+                )
+
     def test_human_gate_cannot_enter_automatic_path(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
