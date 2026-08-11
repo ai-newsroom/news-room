@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-11",
+  "date": "2026-08-11",
+  "subject": "Meta Muse Glimmer 30B",
+  "central_claim": "Meta's Muse Glimmer 30B is an Apache 2.0 open-weight, 30B-class multimodal agent model with public full-precision weights, two 4-bit variants, a DFlash drafter and a perception encoder, designed to move some personal-agent workflows toward 24GB/32GB local hardware; however, its performance comparisons remain vendor-authored and condition-dependent rather than independent proof of general superiority.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The release changes an engineering decision for teams considering local-first agents: Meta released weights and related artifacts under Apache 2.0, gave a concrete local memory target, and documented agentic evaluation methods and safety caveats. The central claim reaches E2 through Meta's announcement, Hugging Face model card/files, evaluation methodology and license text."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "specified-editorial-brief",
+        "classification": "primary investigation target",
+        "note": "The run brief designated Meta Muse Glimmer 30B as the priority topic for publication date 2026-08-11. The brief did not relax evidence, scoring, or release gate requirements."
+      },
+      {
+        "channel": "meta-primary-sources",
+        "classification": "P1/P2 source path",
+        "note": "Opened Meta's August 10 announcement, the Hugging Face model card/files page, the Muse Glimmer Hugging Face collection, Meta's evaluation methodology PDF, Apache 2.0 license text, and the DFlash arXiv paper linked from the model card."
+      },
+      {
+        "channel": "official-frontier-lab-and-model-registry-review",
+        "classification": "S2 discovery only until opened primary sources",
+        "note": "Reviewed official OpenAI API changelog, Anthropic release notes/model pages, Qwen blog and Hugging Face registry, DeepSeek Hugging Face registry, and Mistral changelog/model release surface to compare same-window model, infrastructure and tool releases. Search snippets and registry lists were used only to find candidates; article facts are based on opened primary sources."
+      },
+      {
+        "channel": "runtime-and-tooling-review",
+        "classification": "scope boundary",
+        "note": "Checked Meta's own statement that llama.cpp, MLX and ExecuTorch optimized integrations were coming in the coming days and the Hugging Face collection showing related artifact categories. The article does not present partner runtime support as completed production support."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Meta Muse Glimmer 30B",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it satisfies the designated brief, has multiple primary URLs and public artifacts, changes local-agent adoption decisions, and has enough method documentation to state limits without relying on speculation."
+      },
+      {
+        "subject": "OpenAI Daybreak Blue/Red and GPT-5.6 Cyber access tiers",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "OpenAI's official changelog shows an August 7 security-model access update, but it targets approved defenders and is not as broadly actionable as the selected public artifact release for local agent evaluation."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Fast mode long-context update",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The August 5 changelog verifies Fast mode support for long-context GPT-5.6 requests, but the 2.5x speed framing is vendor-authored and the item is an API service update rather than a same-day open model release."
+      },
+      {
+        "subject": "Anthropic Claude Sonnet 5 / Opus 4.8 release-note surface",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Anthropic official docs expose meaningful API migration details, pricing and tokenizer changes, but the visible current items were not same-day and remain API-only compared with Meta's public weight release."
+      },
+      {
+        "subject": "Qwen official blog and Hugging Face registry updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Qwen surfaces were reviewed as required discovery paths. Visible recent official registry activity did not exceed the selected topic on same-day novelty and adoption-facing artifact package."
+      },
+      {
+        "subject": "DeepSeek Hugging Face registry and GitHub surface",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "DeepSeek registry showed recent model activity, including V4 Flash-related artifacts, but the strongest visible activity was older than the publication slot and did not displace the designated artifact-backed Meta release."
+      },
+      {
+        "subject": "Mistral changelog model releases",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Mistral's official changelog contains model and API release items, but no opened same-day item had stronger public artifact, methodology and safety-document support than Muse Glimmer 30B."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_ARTIFACTS_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "OPEN_WEIGHT_LICENSE_CONFIRMED",
+    "PERFORMANCE_CLAIMS_VENDOR_AUTHORED",
+    "NO_LOCAL_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-10T22:09:30Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-11 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official announcement, model card/files, public artifact listing, evaluation methodology and license text",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-11 and decisions/ai/2026-08-11",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Meta is the developer and distributor of Muse Glimmer 30B and authored the announcement, model card and evaluation methodology used as primary sources.",
+    "Hugging Face hosts the model artifacts and collection used to verify public repository state.",
+    "Apache Software Foundation hosts the Apache 2.0 license text.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "Meta announced Muse Glimmer 30B on 2026-08-10 and released open weights under Apache 2.0.",
+      "central": true,
+      "disposition": "confirmed-from-official-announcement-model-card-and-license",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Opened Meta's announcement, Hugging Face model card/files and Apache 2.0 license text.",
+      "sources": [
+        {
+          "source_id": "meta-announcement-muse-glimmer",
+          "url": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+          "version": "Introducing Muse Glimmer; published 2026-08-10; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Meta",
+          "limitations": "Vendor-authored announcement; performance framing is not independent."
+        },
+        {
+          "source_id": "hf-muse-glimmer-model-card",
+          "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+          "version": "Muse Glimmer Model Card; release date August 2026; visible commit f84ecc3 on files page; accessed 2026-08-10",
+          "source_type": "P2",
+          "owner": "Meta on Hugging Face",
+          "limitations": "Hugging Face repository and model card can be updated after access; files were not downloaded."
+        },
+        {
+          "source_id": "apache-20-license",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0",
+          "version": "Apache License Version 2.0; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Apache Software Foundation",
+          "limitations": "License text only; does not verify Meta's ownership or trademark permissions beyond the referenced artifact license claim."
+        }
+      ],
+      "limitations": [
+        "Open-weight release is not equivalent to open training data or independently verified performance.",
+        "Repository state may change after access."
+      ],
+      "conflict_of_interest": [
+        "Meta-authored sources describe Meta's own model."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Muse Glimmer 30B is described as a roughly 29.6B-parameter dense causal transformer with a perception encoder, 131,072 token context, interleaved text/image input, tool use and failure recovery capabilities.",
+      "central": true,
+      "disposition": "confirmed-from-model-card-and-announcement",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Compared Meta announcement capability descriptions with Hugging Face model overview and architecture table.",
+      "sources": [
+        {
+          "source_id": "meta-announcement-muse-glimmer",
+          "url": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+          "version": "Introducing Muse Glimmer; published 2026-08-10; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Meta",
+          "limitations": "Vendor-authored capability description."
+        },
+        {
+          "source_id": "hf-muse-glimmer-model-card",
+          "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+          "version": "Muse Glimmer Model Card; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Meta on Hugging Face",
+          "limitations": "Model card describes intended and evaluated capabilities; article does not claim all real applications achieve them."
+        }
+      ],
+      "limitations": [
+        "Actual tool-call reliability and failure recovery were not independently tested.",
+        "Training data and full training pipeline are not publicly reproducible from these sources."
+      ],
+      "conflict_of_interest": [
+        "Meta-authored sources describe Meta's own model."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Meta states that 4-bit quantization shrinks the language model to under 20GB, while the local deployment target leaves room for KV cache, perception encoder and DFlash drafter within a 24GB or 32GB envelope.",
+      "central": true,
+      "disposition": "confirmed-as-vendor-technical-claim",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read Meta's optimized-for-local-deployments section and model card artifact descriptions.",
+      "sources": [
+        {
+          "source_id": "meta-announcement-muse-glimmer",
+          "url": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+          "version": "Optimized for Local Deployments section; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Meta",
+          "limitations": "No independent memory measurement performed."
+        },
+        {
+          "source_id": "hf-muse-glimmer-model-card",
+          "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+          "version": "Released Artifacts section; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Meta on Hugging Face",
+          "limitations": "Artifact description does not itself prove runtime memory on every device."
+        }
+      ],
+      "limitations": [
+        "This is not stated as running lightly on all consumer laptops.",
+        "KV cache depends on context length and runtime implementation."
+      ],
+      "conflict_of_interest": [
+        "Meta-authored sources describe Meta's own measurements and design target."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The public artifact set includes BF16 full-precision weights, two 4-bit quantized variants, a DFlash drafter head and a perception encoder.",
+      "central": true,
+      "disposition": "confirmed-from-model-card-and-collection",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read Hugging Face model card released-artifacts table and Muse Glimmer collection entries.",
+      "sources": [
+        {
+          "source_id": "hf-muse-glimmer-model-card",
+          "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+          "version": "Released Artifacts section and files page; accessed 2026-08-10",
+          "source_type": "P2",
+          "owner": "Meta on Hugging Face",
+          "limitations": "Files were listed but not downloaded or hash-verified by the newsroom turn."
+        },
+        {
+          "source_id": "hf-muse-glimmer-collection",
+          "url": "https://huggingface.co/collections/meta-models/muse-glimmer",
+          "version": "Muse Glimmer collection; updated about 10-13 hours before access; accessed 2026-08-10",
+          "source_type": "P2",
+          "owner": "Meta on Hugging Face",
+          "limitations": "Collection entries can change after access."
+        }
+      ],
+      "limitations": [
+        "Public listing was verified; local execution was not performed.",
+        "Framework integrations may lag artifact publication."
+      ],
+      "conflict_of_interest": [
+        "Meta controls the official Hugging Face organization entries."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Meta's Gemma4-31B and Qwen3.6-27B comparison table is a vendor-authored evaluation whose results depend on scaffold, action space, judge, benchmark implementation and repetition choices.",
+      "central": true,
+      "disposition": "confirmed-from-model-card-and-methodology",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Compared model card benchmark table with Meta's evaluation methodology PDF sections on OSWorld-Verified, SWE-Bench, ScreenSpot Pro, OmniDocBench, IFBench, AIME, GPQA, HLE, AA-LCR and BEAM-128K.",
+      "sources": [
+        {
+          "source_id": "hf-muse-glimmer-model-card",
+          "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+          "version": "Benchmarks section; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Meta on Hugging Face",
+          "limitations": "Self-reported or internally run results are not independent evaluation."
+        },
+        {
+          "source_id": "meta-muse-glimmer-methodology",
+          "url": "https://research.meta.ai/static/muse-glimmer-methodology",
+          "version": "Muse Glimmer Eval Methodology PDF; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Meta",
+          "limitations": "Methodology documents conditions but does not provide newsroom reproduction logs."
+        }
+      ],
+      "limitations": [
+        "No independent benchmark was used to rank Muse Glimmer above competitors.",
+        "Article attributes comparative results to Meta and avoids general superiority claims."
+      ],
+      "conflict_of_interest": [
+        "Meta-authored benchmark methodology and table compare Meta's model with competing models."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Meta recommends additional guardrails, including human-in-the-loop confirmation for irreversible actions, when deploying Muse Glimmer in agentic contexts.",
+      "central": false,
+      "disposition": "confirmed-from-model-card",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read Hugging Face model card responsible-use and limitations sections.",
+      "sources": [
+        {
+          "source_id": "hf-muse-glimmer-model-card",
+          "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+          "version": "Responsible Use and Considerations and Limitations sections; accessed 2026-08-10",
+          "source_type": "P1",
+          "owner": "Meta on Hugging Face",
+          "limitations": "Recommendation is not an implementation or audit of downstream systems."
+        }
+      ],
+      "limitations": [
+        "Article does not claim Meta's suggested guardrails are sufficient.",
+        "Prompt injection and irreversible-action controls must be validated per application."
+      ],
+      "conflict_of_interest": [
+        "Meta-authored source describes responsible use guidance for Meta's own model."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "meta-announcement-muse-glimmer",
+      "url": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+      "title": "Introducing Muse Glimmer: An Open Agentic Model That Runs on Your Device",
+      "source_type": "P1",
+      "accessed_at": "2026-08-10"
+    },
+    {
+      "source_id": "hf-muse-glimmer-model-card",
+      "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+      "title": "Muse Glimmer Model Card",
+      "source_type": "P2",
+      "accessed_at": "2026-08-10"
+    },
+    {
+      "source_id": "hf-muse-glimmer-collection",
+      "url": "https://huggingface.co/collections/meta-models/muse-glimmer",
+      "title": "Muse Glimmer Hugging Face collection",
+      "source_type": "P2",
+      "accessed_at": "2026-08-10"
+    },
+    {
+      "source_id": "meta-muse-glimmer-methodology",
+      "url": "https://research.meta.ai/static/muse-glimmer-methodology",
+      "title": "Muse Glimmer Eval Methodology",
+      "source_type": "P1",
+      "accessed_at": "2026-08-10"
+    },
+    {
+      "source_id": "apache-20-license",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "title": "Apache License, Version 2.0",
+      "source_type": "P1",
+      "accessed_at": "2026-08-10"
+    },
+    {
+      "source_id": "dflash-arxiv",
+      "url": "https://arxiv.org/abs/2602.06036",
+      "title": "DFlash: Block Diffusion for Flash Speculative Decoding",
+      "source_type": "P1",
+      "accessed_at": "2026-08-10"
+    }
+  ]
+}
