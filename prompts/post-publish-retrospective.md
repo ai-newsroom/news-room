@@ -7,13 +7,18 @@
 
 1. `Asia/Seoul`의 오늘 날짜를 확인한다. `git fetch origin main` 뒤 로컬 working tree가 아니라
    `origin/main`에서 `content/YYYY-MM-DD/article.md`와 선택적인
-   `content/ai/YYYY-MM-DD/article.md`를 찾는다.
+   `content/ai/YYYY-MM-DD/article.md`와 `content/eda/YYYY-MM-DD/article.md`를 찾는다.
 2. 시사판 원격 파일이 없거나 공개 `/news/YYYY-MM-DD/` URL이 HTTP 200과 기대 제목을
-   만족하지 않으면 어떤 상태도 바꾸지 말고 `NO_PUBLICATION`으로 끝낸다. AI판은 원격 파일이
-   있을 때만 `/ai/YYYY-MM-DD/`의 발행 ID와 공개 상태를 추가로 검증한다.
-3. 다음을 필요한 만큼 읽는다.
+   만족하지 않으면 어떤 상태도 바꾸지 말고 `NO_PUBLICATION`으로 끝낸다. AI판과 EDA판은
+   원격 파일이 있을 때만 각각 `/ai/YYYY-MM-DD/`, `/eda/YYYY-MM-DD/`의 발행 ID와 공개
+   상태를 추가로 검증한다.
+3. 아래 tracked 자료는 local working tree가 아니라 `git show origin/main:<path>`로 필요한 만큼
+   읽는다. Conductor workspace의 오래되거나 미커밋된 파일을 발행 정본으로 사용하지 않는다.
    - 원격 시사판 article.md, debate.md, draft.md, prompt.md, run.md
    - 원격에 AI판이 있으면 article.md, evidence.json, release.json
+   - 원격에 EDA판이 있으면 article.md, evidence.json, release.json
+   - `editions/eda/editorial/article-prompt.md`, `editions/eda/editorial/style-contract.md`
+   - `docs/14-eda-auto-publishing.md`
    - `newsroom/charter.md`, `newsroom/style-exemplar.md`, `newsroom/CLAUDE.md`
    - `docs/04-article-format.md`, `docs/07-retrospectives.md`
    - 관련 Git 및 실행 증거
@@ -21,6 +26,8 @@
    - 강령 또는 기사 불변 요소 위반
    - 초고에서 최종본으로 제거되지 않은 반복적 문체·구조 문제
    - 출처·근거·시간 감각·중복 주제·발행 실패 문제
+   - EDA 벤더 주장의 과장, 원문 두 개의 역할 중복, 전문 용어 설명 누락
+   - 주요 EDA 벤더·학회·논문 신호의 반복적인 coverage 누락
    - 프롬프트나 절차의 충돌 때문에 생긴 문제
    - 이전 capability 실험의 지표와 새 회귀
    - 발행 전용 checkout의 clean/fast-forward/finalization 경계 위반
@@ -42,7 +49,7 @@
 - `--kind capability`
 - capability area
 - 반증 가능한 hypothesis
-- 해당 판의 이후 발행 3회에서 확인할 수치 또는 명확한 rubric인 measure
+- 문제가 발견된 해당 판의 이후 발행 3회에서 확인할 수치 또는 명확한 rubric인 measure
 - 정확한 rollback plan
 - 최소 두 개의 observable acceptance criterion
 - 올바른 risk

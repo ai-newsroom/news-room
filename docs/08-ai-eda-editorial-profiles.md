@@ -1,9 +1,8 @@
 # AI·EDA 기술판 독립 편집 프로필 설계
 
 > 상태: edition 설정에 연결됨. AI판 문체 v2는 전용 article prompt와 validator로
-> 검증하며, AI판은 `ai-auto-publish-v1` 출고 정책으로 자동 발행한다. EDA판은
-> 전용 쉬운 기술 문체와 결정적 후보 validator를 사용하되
-> 정기 schedule 비활성·사람 승인 상태를 유지한다.
+> 검증하며, AI판은 `ai-auto-publish-v1`, EDA판은 `eda-auto-publish-v1` 출고 정책으로
+> 각각 자동 발행한다. EDA판은 전용 쉬운 기술 문체와 결정적 후보 validator를 사용한다.
 >
 > 목적: AI판과 EDA판이 공통 발행 엔진은 함께 쓰되, 시사판과 서로의 편집 판단을
 > 암묵적으로 상속하지 않게 한다. 이 문서에서 `필수`는 향후 edition 설정과 출고
@@ -484,6 +483,18 @@ PPA 수치의 원문을 대신하지 않는다. 고객 testimonial과 익명 for
 - "PPA가 더 좋다"는 중심 결론에 비교 가능한 `E3` 이상이 있는가. 없다면 벤더 또는
   논문 저자의 `E1~E2` 결과로 귀속했는가.
 
+#### EDA 자동 출고 계약 (`eda-auto-publish-v1`)
+
+EDA판은 매일 시사판과 AI판 단계가 완료된 뒤 최대 한 편을 검토한다. 총점 7 이상, 중심
+주장 `E2` 이상, 서로 다른 원문 URL 최소 두 개와 위의 추가 게이트를 모두 통과해야 한다.
+원문 둘은 같은 보도자료를 옮긴 기사 둘이 아니라 벤더 발표와 연결 논문, release note와
+manual, 논문과 공개 artifact처럼 중심 판단의 서로 다른 면을 직접 확인할 자료여야 한다.
+
+자동 출고는 기사 frontmatter, 선정 점수, claim-source ledger, 이해상충, 필수 절,
+publication ID, route 중복, artifact hash, 전체 test와 site build를 결정적으로 검사한다.
+첫 검증 실패에는 주제·수치·source를 바꾸지 않는 복구 턴을 한 번만 허용한다. 재검증도
+실패하면 공개 경로를 만들거나 commit·push·deploy하지 않는다.
+
 ### 6.4 EDA판 결정 예시
 
 **심층 기사 후보 예시**
@@ -518,8 +529,8 @@ selection_rules: "edition 전용 선정 기준"
 release_gates: "공통 + edition 전용 gate"
 article_template: "기술 심층 기사 형식"
 no_publish_template: "미발행 결정 형식"
-publish_requires_human_approval: false # AI판
-automatic_publish: true                # AI판; EDA판은 반대
+publish_requires_human_approval: false # AI·EDA 자동 출고판
+automatic_publish: true                # edition별 별도 policy id 필요
 forbidden_fallbacks:
   - newsroom/charter.md
   - newsroom/personas/
@@ -528,5 +539,5 @@ forbidden_fallbacks:
 
 구현 검증은 같은 후보 bundle을 각 edition에 넣었을 때 AI판과 EDA판이 자기 기준으로
 서로 다른 결정을 내릴 수 있고, 어떤 edition도 시사판 역할을 로드하지 않는지를 확인해야
-한다. AI판 자동 출고는 `ai-auto-publish-v1`에 한정하며, EDA판이나 시사판으로 권한을
-확대하지 않는다.
+한다. AI판과 EDA판 자동 출고 권한은 각각 `ai-auto-publish-v1`과
+`eda-auto-publish-v1`에 한정하며 서로 또는 시사판으로 권한을 상속하지 않는다.

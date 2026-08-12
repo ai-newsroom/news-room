@@ -226,27 +226,19 @@ def validate_config(
 ) -> Dict[str, Any]:
     validate_schema(config, schema)
     edition_id = config["id"]
-    if edition_id == "ai":
-        for key in ("style_contract", "article_prompt"):
-            if key not in config["editorial"]:
-                raise EditionValidationError(
-                    f"AI editorial config must declare its SW-engineer {key}"
-                )
-        if config["publication"] != {
-            "allowed_decisions": ["publish-candidate", "no-publish"],
-            "publish_requires_human_approval": False,
-            "automatic_publish": True,
-        }:
+    for key in ("style_contract", "article_prompt"):
+        if key not in config["editorial"]:
             raise EditionValidationError(
-                "AI publication must use automatic publish without human approval"
+                f"{edition_id.upper()} editorial config must declare its {key}"
             )
-    elif config["publication"] != {
+    if config["publication"] != {
         "allowed_decisions": ["publish-candidate", "no-publish"],
-        "publish_requires_human_approval": True,
-        "automatic_publish": False,
+        "publish_requires_human_approval": False,
+        "automatic_publish": True,
     }:
         raise EditionValidationError(
-            "EDA publication must remain human-approved and non-automatic"
+            f"{edition_id.upper()} publication must use automatic publish "
+            "without per-article human approval"
         )
 
     forbidden = set(config["forbidden_fallbacks"])

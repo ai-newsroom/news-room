@@ -54,7 +54,10 @@ for ((attempt = 1; attempt <= ATTEMPTS; attempt++)); do
     elif grep -Fq "발행 ID $PUBLICATION_ID" "$BODY"; then
       if [[ "$EDITION" == ai ]] && grep -Fq "자동 출고 검증 완료" "$BODY"; then
         VERIFIED=true
-      elif [[ "$EDITION" == eda ]] && grep -Fq "사람 공개 승인 완료" "$BODY"; then
+      elif [[ "$EDITION" == eda ]] && {
+        grep -Fq "사람 공개 승인 완료" "$BODY" ||
+        grep -Fq "자동 출고 검증 완료" "$BODY"
+      }; then
         VERIFIED=true
       fi
     fi

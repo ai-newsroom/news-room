@@ -1,6 +1,6 @@
 # 공개 사이트 edition UI 계획
 
-> 상태: 시사·AI 공개 반영 완료, EDA판 확장 검증 중 (2026-08-13)
+> 상태: 시사·AI·EDA 공개 반영 완료 (2026-08-13)
 >
 > 범위: 시사판, AI판, EDA판의 공개 정보 구조와 공통 UI. 판별 콘텐츠 수집·판정 계약은 분리한다.
 
@@ -22,8 +22,9 @@ AI 화면의 footer도 시사판의 토론·프롬프트 공개 방식을 AI판 
 판 전환은 모든 화면의 공통 헤더 한 곳에서만 제공한다. 판 내부의 기사 목록과 편집 정보는
 본문에서 문맥에 맞는 링크로 제공한다.
 
-EDA판은 2026-08-13 사용자의 명시적 출시 요청 뒤 공개 정보 구조에 포함한다. EDA 후보는
-자동 발행하지 않고 사람 승인 release와 artifact hash를 통과한 기사만 공개 route에 넣는다.
+EDA판은 2026-08-13 사용자의 명시적 출시 요청 뒤 공개 정보 구조에 포함했다. 첫 기사는
+사람 승인 release를 사용했고, 이후 별도 승인된 `eda-auto-publish-v1` release도 같은
+artifact hash·route 검사를 통과한 경우에만 공개한다.
 
 공통 구조는 공유하지만 판의 편집 계약을 UI에서도 섞지 않는다.
 
@@ -57,8 +58,7 @@ EDA판은 2026-08-13 사용자의 명시적 출시 요청 뒤 공개 정보 구�
 이 UI의 최초 변경은 콘텐츠 원문, release 승인, collection 경계, runner, schedule,
 git·배포 정책을 바꾸지 않았다. 이후 AI판은 `ai-auto-publish-v1` authorization도
 사람 승인과 같은 hash·route 검사를 통과한 경우에만 표시하도록 확장됐다. 통합 feed는
-만들지 않는다. EDA판도 별도 collection·route를 사용하며 자동 schedule·git·deploy 권한은
-열지 않는다.
+만들지 않는다. EDA판도 별도 collection·route와 별도 자동 출고 policy를 사용한다.
 
 공개 반영은 로컬 검증 뒤 별도 commit·push·deploy 단계로 진행한다.
 

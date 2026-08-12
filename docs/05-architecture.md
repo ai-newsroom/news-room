@@ -24,7 +24,9 @@
     │
     ├─ 4. 공통 finalizer → git push → 시사 공개 URL 확인
     ├─ 5. 같은 checkout에서 AI판 후보 생성·검증·materialize
-    └─ 6. 공통 finalizer → git push → AI 공개 URL 확인
+    ├─ 6. 공통 finalizer → git push → AI 공개 URL 확인
+    ├─ 7. 같은 checkout에서 EDA판 후보 생성·검증·materialize
+    └─ 8. 공통 finalizer → git push → EDA 공개 URL 확인
             │
             ▼
 [GitHub] ── GitHub Actions: 정적 사이트 빌드 ──▶ GitHub Pages 배포
@@ -42,7 +44,7 @@
 - 데이터베이스 없음. **git 레포 자체가 데이터베이스이자 아카이브.**
 - 상시 실행 서버 없음. 하루 1회 배치만 돌면 됨.
 
-시사판과 AI판 발행은 하루 1회 순차 배치로 유지한다. 다만 발행 뒤 회고와 승인 작업 연결을 위해
+시사판, AI판, EDA판 발행은 하루 1회 순차 배치로 유지한다. 다만 발행 뒤 회고와 승인 작업 연결을 위해
 `coco-agents serve`가 프로젝트 로컬 routine과 관리 세션의 장기 실행 주체로 상주한다.
 이 프로세스는 편집 판단을 하드코딩하지 않고 clock, 세션 실행, 메시지 전달만 담당한다.
 systemd timer 하나가 순차 배치를 시작한다. 별도 AI automation은 비활성화하며, 지속
@@ -93,6 +95,7 @@ steps:
   7. 래퍼 조립                     → content/YYYY-MM-DD/{article,debate,guest,draft,prompt,run}.md
   8. 공통 finalizer가 허용된 시사 경로만 git commit & push
   9. 공개 검증 뒤 AI판 생성·검증·finalization
+  10. AI 단계 완료 뒤 EDA판 생성·검증·finalization과 공개 확인
 ```
 
 라운드 수(2라운드면 충분한가)는 구현하면서 실험으로 정한다.

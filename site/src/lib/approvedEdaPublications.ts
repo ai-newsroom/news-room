@@ -64,14 +64,22 @@ export async function getApprovedEdaPublications() {
     }
 
     const evidence = JSON.parse(evidenceBytes.toString('utf8'));
+    const humanAuthorized = (
+      release.data.authorization.mode === 'human'
+      && release.data.authorization.approved === true
+      && evidence.release_gate?.human_approval_required === true
+    );
+    const automaticallyAuthorized = (
+      release.data.authorization.mode === 'automatic'
+      && evidence.release_gate?.human_approval_required === false
+      && evidence.release_gate?.automatic_publish_allowed === true
+      && evidence.release_gate?.quality_gate_passed === true
+      && evidence.release_gate?.policy_id === release.data.authorization.policy_id
+    );
     if (
-      release.data.authorization.mode !== 'human'
-      || release.data.authorization.approved !== true
-      || evidence.edition !== 'eda'
+      evidence.edition !== 'eda'
       || evidence.decision !== 'publish-candidate'
-      || evidence.release_gate?.human_approval_required !== true
-      || evidence.release_gate?.automatic_publish_allowed !== false
-      || evidence.release_gate?.quality_gate_passed !== true
+      || (!humanAuthorized && !automaticallyAuthorized)
     ) {
       throw new Error(`EDA release evidence gate mismatch: ${id}`);
     }

@@ -104,14 +104,23 @@ const edaReleases = defineCollection({
       evidence_sha256: z.string().regex(/^[0-9a-f]{64}$/),
     }).strict(),
     routes: z.array(z.string()).min(2),
-    authorization: z.object({
-      mode: z.literal('human'),
-      approved: z.literal(true),
-      approved_at: z.string(),
-      approved_by: z.string(),
-      approval_basis: z.string(),
-      scope: z.array(z.string()).min(1),
-    }).strict(),
+    authorization: z.discriminatedUnion('mode', [
+      z.object({
+        mode: z.literal('human'),
+        approved: z.literal(true),
+        approved_at: z.string(),
+        approved_by: z.string(),
+        approval_basis: z.string(),
+        scope: z.array(z.string()).min(1),
+      }).strict(),
+      z.object({
+        mode: z.literal('automatic'),
+        policy_id: z.literal('eda-auto-publish-v1'),
+        authorized_at: z.string(),
+        executor: z.string(),
+        checks: z.array(z.string()).min(5),
+      }).strict(),
+    ]),
   }).strict(),
 });
 

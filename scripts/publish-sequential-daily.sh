@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Own one daily publication sequence: current affairs, then AI, then live proof.
+# Own one daily publication sequence: current affairs, AI, EDA, then live proof.
 set -euo pipefail
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
@@ -87,6 +87,20 @@ if git cat-file -e "HEAD:content/ai/$PUBLICATION_ID/article.md" 2>/dev/null; the
   PHASE="verify-ai"
   AI_URL="$("$REPO/scripts/verify-publication.sh" ai "$PUBLICATION_ID")"
   write_state "$PHASE" succeeded "$AI_URL"
+fi
+
+PHASE="eda"
+NEWS_ROOM_PUBLICATION_RUN_DIR="$RUN_DIR" "$REPO/scripts/publish-eda-daily.sh"
+if [[ -f "$RUN_DIR/eda-decision.json" ]]; then
+  write_state "$PHASE" succeeded "no-publish"
+else
+  write_state "$PHASE" succeeded
+fi
+
+if git cat-file -e "HEAD:content/eda/$PUBLICATION_ID/article.md" 2>/dev/null; then
+  PHASE="verify-eda"
+  EDA_URL="$("$REPO/scripts/verify-publication.sh" eda "$PUBLICATION_ID")"
+  write_state "$PHASE" succeeded "$EDA_URL"
 fi
 
 PHASE="complete"

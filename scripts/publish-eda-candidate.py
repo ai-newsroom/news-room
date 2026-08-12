@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Validate and materialize one human-approved EDA article.
+"""Validate and materialize one automatically authorized EDA article.
 
 The command is a deterministic repository-write boundary.  It never commits,
-pushes, deploys, or grants its own approval.  Materialization requires the
-human approver, approval basis, and explicit scope on the command line.
+pushes, or deploys.  The caller must still run all repository and site tests
+before the dedicated finalizer may perform external Git actions.
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ from zoneinfo import ZoneInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
+POLICY_ID = "eda-auto-publish-v1"
 SEOUL = ZoneInfo("Asia/Seoul")
 PUBLICATION_ID = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 EVIDENCE_ORDER = {"E0": 0, "E1": 1, "E2": 2, "E3": 3, "E4": 4}
@@ -44,6 +45,17 @@ ARTICLE_FRONTMATTER_KEYS = frozenset({
     "reproducibility",
     "conflicts",
 })
+AUTOMATIC_CHECKS = (
+    "eda-editorial-config",
+    "article-frontmatter-schema",
+    "selection-threshold",
+    "central-evidence-e2",
+    "eda-technical-blog-v1",
+    "claim-source-ledger",
+    "publication-id-and-route-unique",
+    "artifact-hashes",
+    "site-tests-and-build",
+)
 
 
 class PublishError(ValueError):
@@ -230,19 +242,20 @@ def validate_candidate(
 
     release_gate = evidence.get("release_gate")
     required_gate = {
-        "human_approval_required": True,
-        "automatic_publish_allowed": False,
+        "policy_id": POLICY_ID,
+        "human_approval_required": False,
+        "automatic_publish_allowed": True,
         "quality_gate_passed": True,
-        "content_promotion_allowed": False,
-        "git_write_allowed": False,
-        "deploy_allowed": False,
+        "content_promotion_allowed": True,
+        "git_write_allowed": True,
+        "deploy_allowed": True,
     }
     if (
         not isinstance(release_gate, dict)
         or set(release_gate) != set(required_gate)
         or any(release_gate.get(key) != value for key, value in required_gate.items())
     ):
-        raise PublishError("human EDA release gate is not authorized")
+        raise PublishError("automatic EDA release gate is not authorized")
     conflicts = evidence.get("conflicts")
     if conflicts != article_conflicts:
         raise PublishError("article and evidence conflict disclosures must match")
@@ -267,9 +280,7 @@ def validate_candidate(
 def release_record(
     candidate: Mapping[str, Any],
     *,
-    approved_by: str,
-    approval_basis: str,
-    approval_scope: list[str],
+    executor: str,
 ) -> dict[str, Any]:
     publication_id = str(candidate["publication_id"])
     return {
@@ -286,12 +297,11 @@ def release_record(
         },
         "routes": ["/eda/", f"/eda/{publication_id}/"],
         "authorization": {
-            "mode": "human",
-            "approved": True,
-            "approved_at": datetime.now(SEOUL).isoformat(timespec="seconds"),
-            "approved_by": approved_by,
-            "approval_basis": approval_basis,
-            "scope": approval_scope,
+            "mode": "automatic",
+            "policy_id": POLICY_ID,
+            "authorized_at": datetime.now(SEOUL).isoformat(timespec="seconds"),
+            "executor": executor,
+            "checks": list(AUTOMATIC_CHECKS),
         },
     }
 
@@ -299,9 +309,7 @@ def release_record(
 def materialize(
     candidate: Mapping[str, Any],
     *,
-    approved_by: str,
-    approval_basis: str,
-    approval_scope: list[str],
+    executor: str,
     repo_root: Path = ROOT,
 ) -> dict[str, Any]:
     publication_id = str(candidate["publication_id"])
@@ -309,9 +317,7 @@ def materialize(
     decision_root = repo_root / f"decisions/eda/{publication_id}"
     release = release_record(
         candidate,
-        approved_by=approved_by,
-        approval_basis=approval_basis,
-        approval_scope=approval_scope,
+        executor=executor,
     )
     created: list[Path] = []
     try:
@@ -332,6 +338,7 @@ def materialize(
         raise
     return {
         "status": "materialized",
+        "policy_id": POLICY_ID,
         "publication_id": publication_id,
         "article_path": release["article_path"],
         "evidence_path": release["evidence_path"],
@@ -346,9 +353,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--article", required=True, type=Path)
     parser.add_argument("--evidence", required=True, type=Path)
     parser.add_argument("--publication-id", required=True)
-    parser.add_argument("--approved-by")
-    parser.add_argument("--approval-basis")
-    parser.add_argument("--approval-scope", action="append", default=[])
+    parser.add_argument("--executor", default="news-room-sequential-publisher")
     parser.add_argument("--check-only", action="store_true")
     return parser.parse_args()
 
@@ -364,6 +369,7 @@ def main() -> int:
         if args.check_only:
             result = {
                 "status": "validated",
+                "policy_id": POLICY_ID,
                 "publication_id": args.publication_id,
                 "external_actions": {
                     "content": False,
@@ -373,15 +379,9 @@ def main() -> int:
                 },
             }
         else:
-            if not args.approved_by or not args.approval_basis or not args.approval_scope:
-                raise PublishError(
-                    "materialization requires approved-by, approval-basis, and approval-scope"
-                )
             result = materialize(
                 candidate,
-                approved_by=args.approved_by,
-                approval_basis=args.approval_basis,
-                approval_scope=args.approval_scope,
+                executor=args.executor,
             )
     except (PublishError, OSError, UnicodeDecodeError) as error:
         print(json.dumps({

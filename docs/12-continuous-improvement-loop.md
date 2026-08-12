@@ -14,6 +14,7 @@
 ```text
 단일 결정적 실행기가 시사판 발행·공개 확인
   -> 같은 checkout에서 AI판 발행·공개 확인
+  -> 같은 checkout에서 EDA판 발행·공개 확인
   -> 컨덕터가 원격·공개 증거 확인
   -> 읽기 전용 회고
   -> inbox 개선 제안
@@ -31,7 +32,8 @@
 결정적 상위 실행기인 `scripts/publish-sequential-daily.sh`가 맡는다. 시사판의
 `scripts/publish-daily.sh`를 먼저 실행해 기사와 토론, 초고, 실행 프롬프트, 실행 정보를
 `content/YYYY-MM-DD/`에 보존하고 공개 URL을 확인한다. 그 뒤에만
-`scripts/publish-ai-daily.sh`를 실행한다. 두 판의 Git 외부 동작은 공통 finalizer가 맡는다.
+`scripts/publish-ai-daily.sh`를 실행하고, 그 단계가 발행 또는 `no-publish`로 끝난 뒤
+`scripts/publish-eda-daily.sh`를 실행한다. 세 판의 Git 외부 동작은 공통 finalizer가 맡는다.
 발행 세션은 자기 결과의 회고나 시스템 변경을 수행하지 않는다.
 
 systemd의 `news-room-daily.timer` 하나만 이 상위 실행기를 시작한다. 기존 별도 AI Codex
@@ -42,7 +44,7 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 
 - 최종 운영에서는 오늘의 발행 작업을 시작하거나 발행 세션에 배정한다.
 - 발행 종료, Git 반영, 사이트 배포 증거를 확인한 뒤 다음 단계로 넘어간다.
-- 최신 시사판 발행 결과와 관련 아티팩트를 읽는다.
+- 오늘 공개 검증이 성공한 시사·AI·EDA판 결과와 관련 아티팩트를 읽는다.
 - 회고에서 근거가 있는 개선 후보를 하루 최대 한 건 제안한다.
 - 제안을 직접 승인하거나 구현하지 않는다.
 - 편집자가 `ready`로 승격한 작업만 작업 세션에 배정한다.
@@ -77,7 +79,7 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 
 기본 시각은 `Asia/Seoul` 기준이다.
 
-1. 07:00: 단일 timer가 시사판 → AI판 순차 발행과 각 공개 URL 검증 실행
+1. 07:00: 단일 timer가 시사판 → AI판 → EDA판 순차 발행과 각 공개 URL 검증 실행
 2. 09:30: `news-room-post-publish-retrospective` routine이 원격·공개 증거를 확인한 뒤 컨덕터를 깨움
 3. 10:00: `news-room-inbox-reconcile` routine이 이미 승인된 작업을 최대 한 건 배정
 4. 결과 메시지 도착 시: 컨덕터가 검토 세션과 작업 세션을 메시지로 조정
@@ -90,7 +92,8 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 
 - systemd timer 하나가 결정적 순차 발행기를 시작한다.
 - 발행 checkout은 시작 전 clean 상태와 `origin/main` fast-forward 동기화를 강제한다.
-- 시사판 push와 공개 검증이 끝나기 전에는 AI판을 시작하지 않는다.
+- 시사판 push와 공개 검증이 끝나기 전에는 AI판을 시작하지 않는다. AI판의 발행 또는
+  `no-publish` 결정이 끝나기 전에는 EDA판을 시작하지 않는다.
 - 모델 턴은 commit, push, deploy를 직접 수행하지 않는다. 공통 finalizer만 허용된 경로를 반영한다.
 - 발행·배포 증거가 확인된 뒤 별도 회고 턴을 연다.
 - 한 번의 conductor turn이 기사 작성, 자기 평가, 자기 수정까지 모두 수행하지 않는다.
@@ -104,6 +107,8 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 - `content/YYYY-MM-DD/draft.md`
 - `content/YYYY-MM-DD/prompt.md`
 - `content/YYYY-MM-DD/run.md`
+- `content/ai/YYYY-MM-DD/article.md`와 `decisions/ai/YYYY-MM-DD/{evidence,release}.json`
+- `content/eda/YYYY-MM-DD/article.md`와 `decisions/eda/YYYY-MM-DD/{evidence,release}.json`
 - `newsroom/charter.md`
 - `newsroom/style-exemplar.md`
 - `newsroom/CLAUDE.md`
@@ -124,7 +129,7 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 - 영향받는 범위와 제외 범위
 - 검증 가능한 완료 조건
 - 가설
-- 이후 3회 시사판 발행에서 확인할 성공 지표
+- 문제가 발견된 해당 판의 이후 발행 3회에서 확인할 성공 지표
 - 정확한 rollback 방법
 - 위험도
 
@@ -190,7 +195,7 @@ publish, deploy를 수행하지 않는다.
 retain/rollback 판정이 없다. 따라서 제안의 `measure`와 `rollback`을 정본으로 삼고,
 이후 회고가 지난 실험과 연결된 후속 항목을 만들 수 있게 한다.
 
-기본 관찰 기간은 이후 시사판 3회다.
+기본 관찰 기간은 문제를 발견한 해당 판의 이후 발행 3회다.
 
 - retain: 지표가 충족되고 새 회귀가 없음
 - adjust: 방향은 맞지만 좁은 수정이 필요함

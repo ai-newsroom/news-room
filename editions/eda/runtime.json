@@ -11,16 +11,16 @@
     "decision_root": "decisions/eda"
   },
   "schedule": {
-    "enabled": false,
-    "managed_by": "none",
+    "enabled": true,
+    "managed_by": "systemd:news-room-daily.timer",
     "timezone": "Asia/Seoul",
-    "cadence": "on-demand"
+    "cadence": "daily after the current-affairs and AI stages complete; maximum one published article per Seoul date"
   },
   "release": {
-    "mode": "prepare-only",
-    "requires_human_approval": true,
-    "git_write": false,
-    "deploy": false
+    "mode": "automatic",
+    "requires_human_approval": false,
+    "git_write": true,
+    "deploy": true
   },
   "site": {
     "route_prefix": "/eda",

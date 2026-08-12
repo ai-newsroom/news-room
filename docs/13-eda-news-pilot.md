@@ -1,6 +1,6 @@
 # EDA News 공개 파일럿
 
-> 상태: 2026-08-13 사용자 승인으로 공개 파일럿 시작
+> 상태: 2026-08-13 첫 공개 파일럿 완료. 별도 사용자 승인 뒤 일일 자동 발행으로 전환
 
 ## 목표와 독자
 
@@ -33,19 +33,20 @@ release note, 논문, standard, code, benchmark와 실행 artifact로 이동하�
 사용자가 적은 `CTS`는 EDA 벤더 문맥상 Dassault Systèmes의 `CST Studio Suite`로 해석했다.
 다른 대상을 뜻했다면 source registry에서 명시적으로 교체한다.
 
-## 파일럿 발행 경계
+## 파일럿에서 확인한 발행 경계
 
-EDA runtime은 `on-demand`, `schedule.enabled=false`, `prepare-only`를 유지한다. Candidate는
+파일럿에서는 `on-demand`, `prepare-only`, 사람 승인 경계를 사용했다. Candidate는
 `scripts/publish-eda-candidate.py`가 frontmatter, 기사 구조, 선정 점수, 중심 E2 근거,
 source URL, 이해상충, release gate를 결정적으로 검증한다.
 
-검증 성공은 공개 승인이 아니다. Materialize에는 승인자, 승인 근거와 범위를 명령행에서
-모두 전달해야 한다. 생성되는 human release는 article·evidence hash와 `/eda/` route만
-승인한다. 이 단계 자체는 commit, push, deploy를 하지 않는다. 이후 isolated clean
-worktree에서 전체 site test를 통과한 정확히 세 파일만 finalizer가 fast-forward push한다.
+파일럿 당시 검증 성공만으로는 공개하지 않았고 승인자, 승인 근거와 범위를 명시한 human
+release를 만들었다. 이 release는 article·evidence hash와 `/eda/` route만 승인했다.
+Materialize 자체는 commit, push, deploy를 하지 않았고 isolated clean worktree에서 전체
+site test를 통과한 정확히 세 파일만 finalizer가 fast-forward push했다.
 
-자동 센싱과 정기 발행은 파일럿 품질을 확인한 뒤 별도 결정한다. 켜게 되더라도 인간 승인
-요건을 바꾸려면 edition contract와 validator를 함께 바꾸고 새 정책 ID로 검토해야 한다.
+첫 기사와 공개 UI 확인 뒤 사용자가 2026-08-13 일일 자동 발행을 별도로 승인했다. 현재
+운영 계약은 `docs/14-eda-auto-publishing.md`와 `eda-auto-publish-v1`을 정본으로 삼는다.
+첫 사람 승인 release는 역사 기록으로 유효하며, 이후 release는 자동 정책 ID를 기록한다.
 
 ## 첫 기사 결정
 

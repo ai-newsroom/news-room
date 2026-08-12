@@ -26,7 +26,7 @@ CONFIG_PATHS = {
 }
 RUNTIME_PATHS = {
     edition: ROOT / f"editions/{edition}/runtime.json"
-    for edition in ("current-affairs", "ai")
+    for edition in ("current-affairs", "ai", "eda")
 }
 
 
@@ -46,20 +46,19 @@ class EditionConfigTests(unittest.TestCase):
                 config = self.config(edition)
                 result = validate_config(config, SCHEMA, ROOT)
                 expected = set(EDITORIAL_REFERENCE_KEYS) | {"release_gates"}
-                if edition == "ai":
-                    expected.update({"style_contract", "article_prompt"})
+                expected.update({"style_contract", "article_prompt"})
                 self.assertEqual(set(config["editorial"]), expected)
                 self.assertEqual(
                     result["resolved_section_references"],
-                    11 if edition == "ai" else 9,
+                    11,
                 )
                 self.assertEqual(
                     result["publish_requires_human_approval"],
-                    edition == "eda",
+                    False,
                 )
                 self.assertEqual(
                     result["automatic_publish"],
-                    edition == "ai",
+                    True,
                 )
                 self.assertEqual(result["fallback_policy"], "explicit-failure")
 
@@ -70,24 +69,13 @@ class EditionConfigTests(unittest.TestCase):
                 del config["editorial"][key]
                 self.assert_rejected(config, "missing required property")
 
-    def test_ai_style_contract_and_article_prompt_are_required(self):
-        config = self.config()
-        self.assertEqual(
-            config["editorial"]["style_contract"]["heading"],
-            "#### AI 기술 블로그 문체 계약 (`ai-technical-blog-v2`)",
-        )
-        self.assertEqual(
-            config["editorial"]["article_prompt"],
-            {
-                "path": "editions/ai/editorial/article-prompt.md",
-                "heading": "## 실행 계약",
-            },
-        )
-        for key in ("style_contract", "article_prompt"):
-            with self.subTest(key=key):
-                missing = self.config()
-                del missing["editorial"][key]
-                self.assert_rejected(missing, f"SW-engineer {key}")
+    def test_technical_style_contract_and_article_prompt_are_required(self):
+        for edition in ("ai", "eda"):
+            for key in ("style_contract", "article_prompt"):
+                with self.subTest(edition=edition, key=key):
+                    missing = self.config(edition)
+                    del missing["editorial"][key]
+                    self.assert_rejected(missing, key)
 
     def test_ai_automatic_policy_cannot_be_weakened_or_mixed(self):
         config = self.config()
@@ -102,13 +90,13 @@ class EditionConfigTests(unittest.TestCase):
         config["publication"]["automatic_publish"] = False
         self.assert_rejected(config, "AI publication")
 
-    def test_eda_remains_human_approved_and_non_automatic(self):
+    def test_eda_automatic_policy_cannot_be_weakened_or_mixed(self):
         config = self.config("eda")
-        config["publication"]["publish_requires_human_approval"] = False
+        config["publication"]["publish_requires_human_approval"] = True
         self.assert_rejected(config, "EDA publication")
 
         config = self.config("eda")
-        config["publication"]["automatic_publish"] = True
+        config["publication"]["automatic_publish"] = False
         self.assert_rejected(config, "EDA publication")
 
     def test_each_current_affairs_fallback_must_be_forbidden(self):
@@ -174,9 +162,10 @@ class EditionConfigTests(unittest.TestCase):
         self.assertEqual(report["status"], "passed")
         self.assertEqual([item["id"] for item in report["editions"]], ["ai", "eda"])
 
-    def test_current_affairs_and_ai_share_one_sequential_schedule(self):
+    def test_all_public_editions_share_one_sequential_schedule(self):
         current_affairs = load_json(RUNTIME_PATHS["current-affairs"])
         ai = load_json(RUNTIME_PATHS["ai"])
+        eda = load_json(RUNTIME_PATHS["eda"])
 
         self.assertEqual(current_affairs["schedule"]["timezone"], "Asia/Seoul")
         self.assertIn("07:00", current_affairs["schedule"]["cadence"])
@@ -191,6 +180,14 @@ class EditionConfigTests(unittest.TestCase):
         )
         self.assertIn("after", ai["schedule"]["cadence"])
         self.assertIn("current-affairs", ai["schedule"]["cadence"])
+        self.assertTrue(eda["schedule"]["enabled"])
+        self.assertEqual(eda["schedule"]["timezone"], "Asia/Seoul")
+        self.assertEqual(
+            eda["schedule"]["managed_by"],
+            current_affairs["schedule"]["managed_by"],
+        )
+        self.assertIn("daily", eda["schedule"]["cadence"])
+        self.assertIn("AI", eda["schedule"]["cadence"])
 
     def test_current_affairs_prompts_cannot_identify_as_ai_edition(self):
         for backend in ("codex", "claude"):

@@ -20,15 +20,25 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertIn("discovery_review", prompt)
         self.assertIn("선택하지 않은 실질적 발표", prompt)
 
-    def test_runner_orders_live_current_affairs_before_ai(self) -> None:
+    def test_runner_orders_current_affairs_ai_and_eda(self) -> None:
         runner = (ROOT / "scripts/publish-sequential-daily.sh").read_text()
         current = runner.index('"$REPO/scripts/publish-daily.sh"')
         live_current = runner.index(
             '"$REPO/scripts/verify-publication.sh" current-affairs'
         )
         ai = runner.index('"$REPO/scripts/publish-ai-daily.sh"')
+        live_ai = runner.index(
+            '"$REPO/scripts/verify-publication.sh" ai'
+        )
+        eda = runner.index('"$REPO/scripts/publish-eda-daily.sh"')
+        live_eda = runner.index(
+            '"$REPO/scripts/verify-publication.sh" eda'
+        )
         self.assertLess(current, live_current)
         self.assertLess(live_current, ai)
+        self.assertLess(ai, live_ai)
+        self.assertLess(live_ai, eda)
+        self.assertLess(eda, live_eda)
 
     def test_ai_entrypoint_rechecks_live_current_affairs(self) -> None:
         publisher = (ROOT / "scripts/publish-ai-daily.sh").read_text()
@@ -82,17 +92,59 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertIn("기사 frontmatter에 `publication_id`를 넣지 않는다", repair_prompt)
         self.assertIn("새 주제를 조사하지 않는다", repair_prompt)
 
-    def test_both_editions_are_owned_by_one_timer(self) -> None:
+    def test_eda_entrypoint_rechecks_prior_stages_and_uses_bounded_repair(self) -> None:
+        publisher = (ROOT / "scripts/publish-eda-daily.sh").read_text()
+        current_guard = publisher.index(
+            'HEAD:content/$PUBLICATION_ID/article.md'
+        )
+        ai_guard = publisher.index(
+            'HEAD:content/ai/$PUBLICATION_ID/article.md'
+        )
+        codex = publisher.index("codex exec")
+        self.assertLess(current_guard, ai_guard)
+        self.assertLess(ai_guard, codex)
+        self.assertIn('DECISION_FILE="$PUBLICATION_RUN_DIR/eda-decision.json"', publisher)
+        self.assertIn(
+            'MAX_VALIDATION_ATTEMPTS="${NEWS_ROOM_EDA_MAX_VALIDATION_ATTEMPTS:-2}"',
+            publisher,
+        )
+        validation = publisher.index('while ! run_candidate_validation')
+        repair = publisher.index('repair_candidate "$VALIDATION_ATTEMPT"')
+        materialize = publisher.index('--executor "news-room-sequential-publisher"')
+        self.assertLess(validation, repair)
+        self.assertLess(repair, materialize)
+
+        prompt = (ROOT / "prompts/daily-eda-codex.md").read_text()
+        self.assertIn("강제 순회 목록이 아니라 발견 출발점", prompt)
+        self.assertIn("원문을 최소 두 개", prompt)
+        self.assertIn("eda-auto-publish-v1", prompt)
+        repair_prompt = (ROOT / "prompts/repair-eda-candidate.md").read_text()
+        self.assertIn("기사 frontmatter에 `publication_id`를 넣지 않는다", repair_prompt)
+        self.assertIn("새 주제를 조사하지 않는다", repair_prompt)
+
+    def test_all_editions_are_owned_by_one_timer(self) -> None:
         current = json.loads(
             (ROOT / "editions/current-affairs/runtime.json").read_text()
         )
         ai = json.loads((ROOT / "editions/ai/runtime.json").read_text())
+        eda = json.loads((ROOT / "editions/eda/runtime.json").read_text())
         self.assertEqual(
             current["schedule"]["managed_by"], ai["schedule"]["managed_by"]
         )
         self.assertEqual(
             current["schedule"]["managed_by"], "systemd:news-room-daily.timer"
         )
+        self.assertEqual(
+            eda["schedule"]["managed_by"], current["schedule"]["managed_by"]
+        )
+
+    def test_retrospective_reads_eda_release_and_measures_its_next_three_runs(self) -> None:
+        prompt = (ROOT / "prompts/post-publish-retrospective.md").read_text()
+        self.assertIn("content/eda/YYYY-MM-DD/article.md", prompt)
+        self.assertIn("/eda/YYYY-MM-DD/", prompt)
+        self.assertIn("docs/14-eda-auto-publishing.md", prompt)
+        self.assertIn("해당 판의 이후 발행 3회", prompt)
+        self.assertIn("원문 두 개의 역할 중복", prompt)
 
 
 if __name__ == "__main__":

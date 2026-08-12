@@ -15,8 +15,8 @@ AI판은 매일 07:00 `Asia/Seoul`에 시작하는 단일 발행 실행의 두 �
 - `ai-technical-blog-v2`, 선정 점수, 이해상충, 필수 절, publication ID, route 중복,
   artifact hash, site test와 production build를 모두 통과해야 한다.
 - `no-publish`와 실행 실패는 공개 route를 만들지 않는다.
-- 자동 권한은 AI판의 `ai-auto-publish-v1`에만 적용한다. EDA판과 시사판의 권한을
-  상속하거나 변경하지 않는다.
+- 이 문서의 자동 권한은 AI판의 `ai-auto-publish-v1`에만 적용한다. EDA판은 별도
+  `eda-auto-publish-v1`을 사용하며 서로 또는 시사판의 권한을 상속하거나 변경하지 않는다.
 - 원격 push는 fast-forward만 허용하고 force push와 history rewrite를 하지 않는다.
 - GitHub Pages 성공 뒤 공개 URL의 HTTP 상태, 제목, 발행 ID를 확인해야 발행 성공이다.
 

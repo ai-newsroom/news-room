@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression tests for the human-approved EDA publication boundary."""
+"""Regression tests for the automatic EDA publication boundary."""
 
 from __future__ import annotations
 
@@ -82,12 +82,13 @@ def evidence(level: str = "E2") -> dict:
         "evidence_ceiling": level,
         "reproducibility": "R1",
         "release_gate": {
-            "human_approval_required": True,
-            "automatic_publish_allowed": False,
+            "policy_id": publisher.POLICY_ID,
+            "human_approval_required": False,
+            "automatic_publish_allowed": True,
             "quality_gate_passed": True,
-            "content_promotion_allowed": False,
-            "git_write_allowed": False,
-            "deploy_allowed": False,
+            "content_promotion_allowed": True,
+            "git_write_allowed": True,
+            "deploy_allowed": True,
         },
         "conflicts": ["당사자 발표가 중심 자료입니다."],
         "claims": [{
@@ -102,7 +103,7 @@ def evidence(level: str = "E2") -> dict:
     }
 
 
-class HumanEdaPublisherTest(unittest.TestCase):
+class AutomaticEdaPublisherTest(unittest.TestCase):
     def make_candidate(self, root: Path, level: str = "E2") -> tuple[Path, Path]:
         run = root / "var/runs/eda/test/staged-content"
         run.mkdir(parents=True)
@@ -118,7 +119,7 @@ class HumanEdaPublisherTest(unittest.TestCase):
         )
         return article, evidence_path
 
-    def test_validated_candidate_materializes_human_release_without_external_actions(self):
+    def test_validated_candidate_materializes_automatic_release_without_external_actions(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             article, evidence_path = self.make_candidate(root)
@@ -131,9 +132,7 @@ class HumanEdaPublisherTest(unittest.TestCase):
             )
             result = publisher.materialize(
                 candidate,
-                approved_by="test owner",
-                approval_basis="test approval",
-                approval_scope=["first EDA article"],
+                executor="test",
                 repo_root=root,
             )
             self.assertEqual(result["status"], "materialized")
@@ -144,8 +143,12 @@ class HumanEdaPublisherTest(unittest.TestCase):
             release = json.loads(
                 (root / "decisions/eda/2026-08-13/release.json").read_text()
             )
-            self.assertEqual(release["authorization"]["mode"], "human")
-            self.assertEqual(release["authorization"]["approved_by"], "test owner")
+            self.assertEqual(release["authorization"]["mode"], "automatic")
+            self.assertEqual(
+                release["authorization"]["policy_id"],
+                publisher.POLICY_ID,
+            )
+            self.assertIn("artifact-hashes", release["authorization"]["checks"])
 
     def test_e1_candidate_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -193,12 +196,28 @@ class HumanEdaPublisherTest(unittest.TestCase):
                     require_today=False,
                 )
 
-    def test_automatic_gate_cannot_enter_human_path(self):
+    def test_one_source_url_is_not_enough_for_automatic_analysis(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             article, evidence_path = self.make_candidate(root)
             value = json.loads(evidence_path.read_text())
-            value["release_gate"]["automatic_publish_allowed"] = True
+            value["claims"][0]["sources"] = value["claims"][0]["sources"][:1]
+            evidence_path.write_text(json.dumps(value), encoding="utf-8")
+            with self.assertRaisesRegex(publisher.PublishError, "at least two source URLs"):
+                publisher.validate_candidate(
+                    article,
+                    evidence_path,
+                    "2026-08-13",
+                    repo_root=root,
+                    require_today=False,
+                )
+
+    def test_human_gate_cannot_enter_automatic_path(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            value = json.loads(evidence_path.read_text())
+            value["release_gate"]["human_approval_required"] = True
             evidence_path.write_text(json.dumps(value), encoding="utf-8")
             with self.assertRaisesRegex(publisher.PublishError, "not authorized"):
                 publisher.validate_candidate(
