@@ -38,6 +38,14 @@
       "path": "docs/08-ai-eda-editorial-profiles.md",
       "heading": "### 4.2 심층 기사 형식"
     },
+    "article_prompt": {
+      "path": "editions/eda/editorial/article-prompt.md",
+      "heading": "## EDA판 기사 작성 프롬프트"
+    },
+    "style_contract": {
+      "path": "editions/eda/editorial/style-contract.md",
+      "heading": "## EDA 기술 기사 문체 v1"
+    },
     "no_publish_template": {
       "path": "docs/08-ai-eda-editorial-profiles.md",
       "heading": "### 4.3 미발행 결정 형식"

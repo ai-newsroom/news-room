@@ -1,5 +1,5 @@
 ---
-type Edition = 'current-affairs' | 'ai';
+type Edition = 'current-affairs' | 'ai' | 'eda';
 type PageType = 'website' | 'article';
 
 interface Props {
@@ -20,14 +20,19 @@ const fullTitle = title ? `${title} — news-room` : 'news-room';
 const defaultDescription = {
   'current-affairs': '중요한 시사 뉴스를 여러 관점으로 깊게 읽는 뉴스룸입니다.',
   ai: '중요한 AI 소식을 근거와 적용 범위까지 함께 읽는 뉴스룸입니다.',
+  eda: '중요한 EDA 변화를 도구·학회·논문 근거와 함께 읽는 뉴스룸입니다.',
 }[edition];
 const metaDescription = description || defaultDescription;
-const socialImagePath = edition === 'ai'
-  ? `${base}/social/ai.png`
-  : `${base}/social/current-affairs.png`;
-const socialImageAlt = edition === 'ai'
-  ? 'news-room AI 뉴스 — 중요한 소식을, 깊게.'
-  : 'news-room 시사 뉴스 — 중요한 소식을, 깊게.';
+const socialImagePath = {
+  'current-affairs': `${base}/social/current-affairs.png`,
+  ai: `${base}/social/ai.png`,
+  eda: `${base}/social/eda.png`,
+}[edition];
+const socialImageAlt = {
+  'current-affairs': 'news-room 시사 뉴스 — 중요한 소식을, 깊게.',
+  ai: 'news-room AI 뉴스 — 중요한 소식을, 깊게.',
+  eda: 'news-room EDA 뉴스 — 설계의 변화를, 근거로 읽습니다.',
+}[edition];
 const canonicalPath = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : `${Astro.url.pathname}/`;
@@ -37,11 +42,13 @@ const socialImageUrl = new URL(socialImagePath, Astro.site).href;
 const editions = [
   { id: 'current-affairs', label: '시사판', href: base },
   { id: 'ai', label: 'AI판', href: `${base}/ai/` },
+  { id: 'eda', label: 'EDA판', href: `${base}/eda/` },
 ] as const;
 
 const footerCopy = {
   'current-affairs': '시사판은 편집 강령, 에이전트 프롬프트, 취재 소스와 기사별 토론 과정을 공개합니다.',
   ai: 'AI판은 출고 게이트를 통과한 기사만 게재하며 원문, 버전, 근거 수준과 재현 범위를 함께 기록합니다.',
+  eda: 'EDA판은 사람의 공개 승인과 출고 게이트를 통과한 기사만 게재하며 벤더 주장, 논문 결과와 확인하지 못한 범위를 나눕니다.',
 }[edition];
 ---
 <!doctype html>
@@ -133,6 +140,11 @@ const footerCopy = {
     --accent-soft: #e4eef2;
   }
 
+  body.edition-eda {
+    --accent: #66712d;
+    --accent-soft: #eceddc;
+  }
+
   .site-header {
     border-bottom: 1px solid var(--rule);
     margin-bottom: 3rem;
@@ -164,7 +176,7 @@ const footerCopy = {
 
   .edition-switcher {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
   }
 

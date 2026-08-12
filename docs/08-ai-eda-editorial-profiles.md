@@ -2,7 +2,8 @@
 
 > 상태: edition 설정에 연결됨. AI판 문체 v2는 전용 article prompt와 validator로
 > 검증하며, AI판은 `ai-auto-publish-v1` 출고 정책으로 자동 발행한다. EDA판은
-> 비활성·사람 승인 상태를 유지한다.
+> 전용 쉬운 기술 문체와 결정적 후보 validator를 사용하되
+> 정기 schedule 비활성·사람 승인 상태를 유지한다.
 >
 > 목적: AI판과 EDA판이 공통 발행 엔진은 함께 쓰되, 시사판과 서로의 편집 판단을
 > 암묵적으로 상속하지 않게 한다. 이 문서에서 `필수`는 향후 edition 설정과 출고

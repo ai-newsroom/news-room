@@ -45,6 +45,20 @@ const pages = [
     type: 'article',
     image: 'ai.png',
   },
+  {
+    name: 'EDA index',
+    file: 'eda/index.html',
+    url: `${origin}${basePath}/eda/`,
+    type: 'website',
+    image: 'eda.png',
+  },
+  {
+    name: 'EDA article',
+    file: 'eda/2026-08-13/index.html',
+    url: `${origin}${basePath}/eda/2026-08-13/`,
+    type: 'article',
+    image: 'eda.png',
+  },
 ];
 
 for (const page of pages) {
@@ -64,7 +78,7 @@ for (const page of pages) {
   assert.ok(html.includes(`<meta name="twitter:image" content="${imageUrl}">`), `${page.name} X image is missing`);
 }
 
-for (const image of ['current-affairs.png', 'ai.png']) {
+for (const image of ['current-affairs.png', 'ai.png', 'eda.png']) {
   const png = await readFile(join(distRoot, 'social', image));
   assert.equal(png.toString('ascii', 1, 4), 'PNG', `${image} is not a PNG`);
   assert.equal(png.readUInt32BE(16), 1200, `${image} width must be 1200px`);

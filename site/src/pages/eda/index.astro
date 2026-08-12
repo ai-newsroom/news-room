@@ -1,0 +1,72 @@
+---
+import EditionHero from '../../components/EditionHero.astro';
+import Base from '../../layouts/Base.astro';
+import { getApprovedEdaPublications } from '../../lib/approvedEdaPublications';
+
+const base = import.meta.env.BASE_URL;
+const publications = await getApprovedEdaPublications();
+
+function formatDate(d: Date) {
+  return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
+}
+---
+<Base edition="eda" title="EDA 뉴스" description="설계 엔지니어의 판단을 돕는 도구·학회·논문 근거 중심 EDA 기술 뉴스">
+  <EditionHero
+    kicker="EDA Technology"
+    title="EDA 뉴스"
+    description="Cadence·Siemens·Zuken·Synopsys·Ansys·CST·Keysight와 주요 학회·논문을 살핍니다. 벤더의 주장, 저자가 보고한 결과, 독립 확인 범위를 나누고 사람의 공개 승인을 받은 기사만 게재합니다."
+  />
+
+  <section class="feed-section" aria-labelledby="recent-eda-news">
+    <h2 id="recent-eda-news" class="section-title">최근 기사</h2>
+    <ul class="feed">
+      {publications.map(({ id, article }) => (
+        <li class="item">
+          <p class="date">{formatDate(article.data.date)}</p>
+          <h3><a href={`${base}/eda/${id}/`}>{article.data.title}</a></h3>
+          <p class="summary">{article.data.summary}</p>
+          <ul class="signals" aria-label="기사 검증 수준">
+            <li>근거 수준 {article.data.evidence_ceiling}</li>
+            <li>재현성 {article.data.reproducibility}</li>
+            <li>사람 승인</li>
+          </ul>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .feed-section { margin-top: 2rem; }
+  .section-title {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .feed { list-style: none; margin: 0.65rem 0 0; padding: 0; }
+  .item { border-top: 1px solid var(--soft-rule); padding: 1.5rem 0 1.6rem; }
+  .item .date { color: var(--muted); font-size: 0.82rem; margin: 0; }
+  .item h3 { font-size: 1.35rem; margin: 0.2rem 0; }
+  .item h3 a { color: var(--ink); text-decoration: none; }
+  .item h3 a:hover { color: var(--accent); }
+  .summary { color: var(--muted); margin: 0.35rem 0 0; }
+  .signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+  }
+  .signals li {
+    background: var(--accent-soft);
+    border-radius: 999px;
+    color: var(--accent);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.73rem;
+    font-weight: 650;
+    padding: 0.2rem 0.55rem;
+  }
+</style>

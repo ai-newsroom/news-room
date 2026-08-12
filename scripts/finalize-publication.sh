@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if [[ $# -ne 2 ]]; then
-  echo "usage: $0 <current-affairs|ai> <YYYY-MM-DD>" >&2
+  echo "usage: $0 <current-affairs|ai|eda> <YYYY-MM-DD>" >&2
   exit 2
 fi
 
@@ -31,6 +31,15 @@ case "$EDITION" in
       "decisions/ai/$PUBLICATION_ID/release.json"
     )
     COMMIT_MESSAGE="publish(ai): $PUBLICATION_ID"
+    ;;
+  eda)
+    ALLOWED_ROOTS=("content/eda/$PUBLICATION_ID" "decisions/eda/$PUBLICATION_ID")
+    REQUIRED_PATHS=(
+      "content/eda/$PUBLICATION_ID/article.md"
+      "decisions/eda/$PUBLICATION_ID/evidence.json"
+      "decisions/eda/$PUBLICATION_ID/release.json"
+    )
+    COMMIT_MESSAGE="publish(eda): $PUBLICATION_ID"
     ;;
   *)
     echo "Unsupported edition: $EDITION" >&2
@@ -81,12 +90,12 @@ while IFS= read -r staged_path; do
   fi
 done < <(git diff --cached --name-only)
 
-if [[ "$EDITION" == ai ]]; then
-  ACTUAL_AI_PATHS="$(git diff --cached --name-only | LC_ALL=C sort)"
-  EXPECTED_AI_PATHS="$(printf '%s\n' "${REQUIRED_PATHS[@]}" | LC_ALL=C sort)"
-  if [[ "$ACTUAL_AI_PATHS" != "$EXPECTED_AI_PATHS" ]]; then
-    echo "AI publication must stage exactly its article, evidence, and release files" >&2
-    printf 'expected:\n%s\nactual:\n%s\n' "$EXPECTED_AI_PATHS" "$ACTUAL_AI_PATHS" >&2
+if [[ "$EDITION" == ai || "$EDITION" == eda ]]; then
+  ACTUAL_TECHNICAL_PATHS="$(git diff --cached --name-only | LC_ALL=C sort)"
+  EXPECTED_TECHNICAL_PATHS="$(printf '%s\n' "${REQUIRED_PATHS[@]}" | LC_ALL=C sort)"
+  if [[ "$ACTUAL_TECHNICAL_PATHS" != "$EXPECTED_TECHNICAL_PATHS" ]]; then
+    echo "Technical publication must stage exactly its article, evidence, and release files" >&2
+    printf 'expected:\n%s\nactual:\n%s\n' "$EXPECTED_TECHNICAL_PATHS" "$ACTUAL_TECHNICAL_PATHS" >&2
     exit 2
   fi
 fi

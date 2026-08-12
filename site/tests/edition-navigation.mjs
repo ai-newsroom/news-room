@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -22,13 +22,14 @@ const pages = {
   newsroom: await readFile(join(distRoot, 'newsroom', 'index.html'), 'utf8'),
   ai: await readFile(join(distRoot, 'ai', 'index.html'), 'utf8'),
   aiArticle: await readFile(join(distRoot, 'ai', '2026-07-21', 'index.html'), 'utf8'),
+  eda: await readFile(join(distRoot, 'eda', 'index.html'), 'utf8'),
+  edaArticle: await readFile(join(distRoot, 'eda', '2026-08-13', 'index.html'), 'utf8'),
 };
-const distEntries = await readdir(distRoot);
-assert.equal(distEntries.includes('eda'), false, 'EDA must not have a public route');
 
 const editionLinks = [
   'href="/news-room"',
   'href="/news-room/ai/"',
+  'href="/news-room/eda/"',
 ];
 
 for (const [name, html] of Object.entries(pages)) {
@@ -38,6 +39,7 @@ for (const [name, html] of Object.entries(pages)) {
   }
   assert.match(html, />\s*시사판\s*<\/a>/, `${name}: current-affairs label missing`);
   assert.match(html, />\s*AI판\s*<\/a>/, `${name}: AI label missing`);
+  assert.match(html, />\s*EDA판\s*<\/a>/, `${name}: EDA label missing`);
   assert.equal(
     (html.match(/aria-current="page"/g) ?? []).length,
     1,
@@ -49,7 +51,6 @@ assert.ok(pages.current.includes('<h1 id="edition-title">시사 뉴스</h1>'));
 assert.ok(pages.current.includes('편집 강령과 제작 과정 보기'));
 assert.match(pages.newsroom, /<h1[^>]*>시사판 편집국<\/h1>/);
 assert.ok(pages.newsroom.includes('이 편집국 계약은 시사판에만 적용됩니다'));
-assert.equal(pages.newsroom.includes('EDA판'), false);
 
 assert.ok(pages.ai.includes('<h1 id="edition-title">AI 뉴스</h1>'));
 assert.ok(pages.ai.includes('SW 엔지니어가 빠르게 판단할 수 있도록 설명합니다'));
@@ -58,10 +59,16 @@ assert.equal(pages.ai.includes('aria-label="AI News 이동"'), false);
 assert.equal(pages.ai.includes('매일의 토론 전문'), false);
 assert.ok(pages.aiArticle.includes('aria-label="기사 공개 및 검증 정보"'));
 
+assert.ok(pages.eda.includes('<h1 id="edition-title">EDA 뉴스</h1>'));
+assert.ok(pages.eda.includes('주요 학회·논문을 살핍니다'));
+assert.ok(pages.eda.includes('근거 수준 E2'));
+assert.ok(pages.edaArticle.includes('사람 공개 승인 완료'));
+
 console.log(JSON.stringify({
   status: 'pass',
-  editionRoutes: ['/', '/ai/'],
+  editionRoutes: ['/', '/ai/', '/eda/'],
   sharedNavigationPages: Object.keys(pages).length,
   legacyArticleRoutePreserved: true,
   aiEditorialScopeIsolated: true,
+  edaEditorialScopeIsolated: true,
 }));
