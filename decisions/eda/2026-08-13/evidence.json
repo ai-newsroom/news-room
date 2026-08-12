@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "edition": "eda",
+  "publication_id": "2026-08-13",
+  "date": "2026-08-13",
+  "decision": "publish-candidate",
+  "selection": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 1,
+    "reproducibility": 1,
+    "practical_decision_utility": 2,
+    "total": 8,
+    "threshold": 7
+  },
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "claim": "풍부하고 빠른 EDA 도구 피드백이 설계 agent의 신뢰성과 다음 행동 선택에 중요하다는 가설은 공개된 방법 및 bounded experiment로 지지되지만 제품 간 우월성은 입증되지 않았다.",
+      "evidence_level": "E2",
+      "limitations": [
+        "Cadence 원문은 자사 제품 전략을 설명하는 벤더 자료다.",
+        "논문 결과는 저자 보고이며 편집국 또는 독립 주체가 재현하지 않았다.",
+        "Cadence와 다른 EDA 조합의 동일 조건 비교가 없다."
+      ],
+      "sources": [
+        {
+          "url": "https://community.cadence.com/cadence_blogs_8/b/artificial-intelligence/posts/the-feedback-loop-is-the-moat-480749506",
+          "source_grade": "P1",
+          "relation": "primary",
+          "role": "Cadence의 feedback-loop 전략과 Verisium SimAI·Jasper 사례를 확인"
+        },
+        {
+          "url": "https://arxiv.org/abs/2604.23100",
+          "source_grade": "P1",
+          "relation": "primary",
+          "role": "JasperGold 구조 질의와 formal refinement loop를 사용한 assertion 생성 방법 및 저자 보고 결과"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.02895",
+          "source_grade": "P1",
+          "relation": "primary",
+          "role": "formal equivalence counterexample을 이용한 RTL-to-specification 반복 방법과 저자 보고 결과"
+        },
+        {
+          "url": "https://doi.org/10.1109/ISQED69900.2026.11534671",
+          "source_grade": "P1",
+          "relation": "primary",
+          "role": "agentic hardware design의 tool-feedback gap, closed-loop 필요와 안전 한계에 관한 논문"
+        },
+        {
+          "url": "https://dvcon-proceedings.org/wp-content/uploads/1100.pdf",
+          "source_grade": "P1",
+          "relation": "primary",
+          "role": "Verisium SimAI를 활용한 coverage closure 사례의 conference paper"
+        }
+      ]
+    }
+  ],
+  "release_gate": {
+    "human_approval_required": true,
+    "automatic_publish_allowed": false,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": false,
+    "git_write_allowed": false,
+    "deploy_allowed": false
+  },
+  "conflicts": [
+    "중심 자료 중 하나는 Cadence가 자사 제품과 전략을 설명한 벤더 블로그입니다.",
+    "인용한 연구 결과는 저자들이 선택한 과제와 평가 조건에서 보고한 수치이며 독립 재현이 아닙니다.",
+    "편집국은 JasperGold·Verisium SimAI 라이선스와 동일 실험 환경이 없어 도구 결과를 재실행하지 못했습니다."
+  ]
+}
