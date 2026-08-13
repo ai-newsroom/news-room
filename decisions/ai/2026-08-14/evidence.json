@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-14",
+  "date": "2026-08-14",
+  "subject": "Google Gemini 3.7 Flash GA, model id gemini-3.7-flash",
+  "central_claim": "Google's 2026-08-13 Gemini 3.7 Flash GA release is a publishable AI engineering topic because the official Gemini API release note, model page, latest-model guide, model card, evaluation methodology and pricing page make the model's production status, API constraints, migration requirements, published evaluation scope and pricing inspectable, while the article bounds performance comparisons as vendor-reported or mixed-source rather than independently reproduced.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The release affects concrete model/API selection for coding and agent workflows. It is a same-day GA model release with official API docs, model card, methodology and pricing. The evidence supports an E2 bounded claim about production availability and verifiable adoption conditions, while avoiding unsupported independent performance conclusions."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "google-gemini-api-changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 source path",
+        "note": "Opened the official Gemini API changelog. The August 13, 2026 item records Gemini 3.7 Flash GA with model id gemini-3.7-flash and coding/agentic workflow positioning."
+      },
+      {
+        "channel": "google-gemini-model-docs",
+        "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
+        "classification": "P1 source path",
+        "note": "Opened the official model page. It records model id, input/output modalities, token limits, tool support, thinking levels, model card link and last updated 2026-08-13 UTC."
+      },
+      {
+        "channel": "google-deepmind-model-card",
+        "url": "https://deepmind.google/models/model-cards/gemini-3-7-flash/",
+        "classification": "P1 source path",
+        "note": "Opened the Gemini 3.7 Flash model card and external PDF. The card records model dependencies, distribution channels, evaluation overview, known limitations, safety evaluation and Frontier Safety assessment."
+      },
+      {
+        "channel": "google-evaluation-methodology",
+        "url": "https://deepmind.com/models/evals-methodology/gemini-3-7-flash",
+        "classification": "P1 source path",
+        "note": "Opened the evaluation methodology PDF. It explains pass@1 use, Gemini API model-id gemini-3.7-flash settings, benchmark-specific harness notes and that non-Gemini results often come from provider self-reported numbers or public leaderboards."
+      },
+      {
+        "channel": "openai-official-surface",
+        "url": "https://openai.com/index/previewing-ultrafast/",
+        "classification": "P0/P1 discovery and alternative review",
+        "note": "Opened OpenAI's August 13, 2026 Ultrafast preview post and related GPT-5.6 builder guide/API docs. It is material for latency-sensitive frontier inference but limited-preview infrastructure rather than a same-day GA model release."
+      },
+      {
+        "channel": "anthropic-official-release-notes",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 discovery review",
+        "note": "Opened Claude Platform release notes. The visible 2026 updates did not show an August 13, 2026 model/API release stronger than Gemini 3.7 Flash GA."
+      },
+      {
+        "channel": "qwen-official-surfaces",
+        "url": "https://qwenlm.github.io/blog/",
+        "classification": "P1/P2 discovery review",
+        "note": "Checked Qwen official blog and model registry search paths. No same-day official release with stronger adoption utility than Gemini 3.7 Flash GA was selected."
+      },
+      {
+        "channel": "mistral-official-changelog",
+        "url": "https://docs.mistral.ai/resources/changelogs",
+        "classification": "P1 discovery review",
+        "note": "Opened Mistral changelog. The latest visible 2026 entry was July 16 OCR 4.1; it was not same-day and did not outrank the selected GA frontier coding/agent model."
+      },
+      {
+        "channel": "broader-frontier-and-tool-review",
+        "classification": "S2 discovery until primary source opened",
+        "note": "Used search results only as discovery signals for OpenAI, Anthropic, Google, Qwen, DeepSeek, Mistral and AI developer-tool releases. Article facts are based on opened primary sources from Google and Google DeepMind."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Google Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is a same-day GA model release with multiple official primary URLs covering model ID, production availability, token limits, supported tools, migration requirements, pricing, model card, safety limits and evaluation methodology. The central claim reaches E2 without relying on independent performance superiority."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Sol Ultrafast limited preview",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "OpenAI's August 13 post is a meaningful infrastructure signal for low-latency frontier inference, but access is limited preview for select customers and the core speed claim is vendor-published. It was weaker than a GA model release for broad developer adoption decisions."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 builder guide and Responses API agent primitives",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The builder guide and official API docs for reasoning preservation, compaction, multi-agent and programmatic tool calling are useful, but GPT-5.6 itself launched on July 9, 2026. The August 13 material is guidance and preview packaging rather than a fresher broad release than Gemini 3.7 Flash GA."
+      },
+      {
+        "subject": "Anthropic Claude Platform release notes",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Official release notes were opened, but no August 13, 2026 model/API release was visible that would clear the same-day importance bar."
+      },
+      {
+        "subject": "Qwen official blog and Hugging Face model registry updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Qwen official surfaces remain important discovery paths, especially when artifacts appear first in registries, but no opened same-day primary-source release outranked Gemini 3.7 Flash GA in this run."
+      },
+      {
+        "subject": "Mistral OCR 4.1 and earlier 2026 model releases",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Mistral's changelog was official and verifiable, but the latest visible 2026 item was not same-day and was less central to broad AI model/API selection."
+      },
+      {
+        "subject": "DeepSeek official GitHub and model-registry paths",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "DeepSeek official artifact surfaces were included in discovery scope because registry-first releases can matter, but this run did not find a stronger new official DeepSeek release than the selected Google GA model."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "PERFORMANCE_COMPARISONS_BOUNDED",
+    "NO_RUNTIME_BENCHMARK_REPRODUCTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-13T22:10:27Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-14 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official Gemini API release note, model page, latest-model guide, model card, evaluation methodology and pricing page",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-14 and decisions/ai/2026-08-14",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Google is the author/operator of the Gemini API documentation, Gemini 3.7 Flash model card, evaluation methodology and pricing page used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results were used only for discovery; article facts rely on opened official primary sources."
+  ],
+  "sources": [
+    {
+      "source_id": "google-gemini-api-changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "source_type": "P1",
+      "owner": "Google",
+      "version": "Gemini API release notes, August 13 2026 entry; accessed 2026-08-13",
+      "notes": "Records Gemini 3.7 Flash GA, model id gemini-3.7-flash, coding/agentic workflow positioning and introductory price period."
+    },
+    {
+      "source_id": "google-gemini-3-7-flash-model-page",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
+      "source_type": "P1",
+      "owner": "Google",
+      "version": "Gemini 3.7 Flash model page, last updated 2026-08-13 UTC; accessed 2026-08-13",
+      "notes": "Records model code, input/output modalities, token limits, supported capabilities, thinking support and model card link."
+    },
+    {
+      "source_id": "google-gemini-latest-model-guide",
+      "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+      "source_type": "P1",
+      "owner": "Google",
+      "version": "What's new in Gemini 3.7 Flash, last updated 2026-08-13 UTC; accessed 2026-08-13",
+      "notes": "Records GA/production-use status, default thinking level, introductory pricing, code examples, Antigravity default-model update and migration checklist."
+    },
+    {
+      "source_id": "google-deepmind-gemini-3-7-flash-model-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-7-flash/",
+      "source_type": "P1",
+      "owner": "Google DeepMind",
+      "version": "Gemini 3.7 Flash Model Card, published August 2026; accessed 2026-08-13",
+      "notes": "Records model information, dependency on Gemini 3.6 Flash, input/output, distribution channels, evaluation summary, known limitations, safety results and Frontier Safety assessment."
+    },
+    {
+      "source_id": "google-deepmind-gemini-3-7-flash-model-card-pdf",
+      "url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-7-Flash-Model-Card.pdf",
+      "source_type": "P1",
+      "owner": "Google DeepMind",
+      "version": "External model card PDF, published August 2026; accessed 2026-08-13",
+      "notes": "PDF version of the model card used to verify stable card text and limitations."
+    },
+    {
+      "source_id": "google-deepmind-gemini-3-7-flash-eval-methodology",
+      "url": "https://deepmind.com/models/evals-methodology/gemini-3-7-flash",
+      "source_type": "P1",
+      "owner": "Google DeepMind",
+      "version": "Gemini 3.7 Flash model evaluation methodology PDF, August 2026; accessed 2026-08-13",
+      "notes": "Records evaluation approach, pass@1 convention, Gemini API model-id settings, benchmark-specific harness notes and mixed provenance of non-Gemini model results."
+    },
+    {
+      "source_id": "google-gemini-api-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "source_type": "P1",
+      "owner": "Google",
+      "version": "Gemini Developer API pricing page; accessed 2026-08-13",
+      "notes": "Records Gemini 3.6/3.5 Flash comparison pricing context and grounding charges; latest-model guide records Gemini 3.7 Flash introductory price."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "Google released Gemini 3.7 Flash as a generally available Gemini API model on 2026-08-13 with model id gemini-3.7-flash.",
+      "central": true,
+      "disposition": "confirmed-from-official-release-note-and-model-page",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Gemini API changelog and Gemini 3.7 Flash model page.",
+      "sources": [
+        {
+          "source_id": "google-gemini-api-changelog",
+          "url": "https://ai.google.dev/gemini-api/docs/changelog",
+          "source_type": "P1",
+          "version": "August 13 2026 entry",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "google-gemini-3-7-flash-model-page",
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
+          "source_type": "P1",
+          "version": "last updated 2026-08-13 UTC",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "Release status and model id do not independently verify quality or superiority."
+      ],
+      "conflict_of_interest": [
+        "Google-authored release note and model page."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The official model page and model card state that gemini-3.7-flash accepts text, image, video, audio and PDF inputs, returns text output, and has a 1,048,576 input token limit and 65,536 output token limit.",
+      "central": true,
+      "disposition": "confirmed-from-official-model-page-and-card",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the model specification table and model card model-information section.",
+      "sources": [
+        {
+          "source_id": "google-gemini-3-7-flash-model-page",
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
+          "source_type": "P1",
+          "version": "last updated 2026-08-13 UTC",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "google-deepmind-gemini-3-7-flash-model-card",
+          "url": "https://deepmind.google/models/model-cards/gemini-3-7-flash/",
+          "source_type": "P1",
+          "version": "published August 2026",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "The specification does not measure actual latency, timeout frequency, task success, or cost for a user's workload."
+      ],
+      "conflict_of_interest": [
+        "Google and Google DeepMind-authored documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Gemini 3.7 Flash supports low, medium and high thinking levels, with medium as the default in the latest-model guide, and migration guidance tells developers to remove several deprecated sampling and conversation patterns.",
+      "central": true,
+      "disposition": "confirmed-from-official-guide-and-model-page",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the latest-model guide sections on the new model, reasoning levels and migration checklist, plus the model page capability table.",
+      "sources": [
+        {
+          "source_id": "google-gemini-latest-model-guide",
+          "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+          "source_type": "P1",
+          "version": "last updated 2026-08-13 UTC",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "google-gemini-3-7-flash-model-page",
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
+          "source_type": "P1",
+          "version": "last updated 2026-08-13 UTC",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "The migration impact depends on the caller's SDK, API surface and existing configuration."
+      ],
+      "conflict_of_interest": [
+        "Google-authored API documentation."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Google's latest-model guide lists Gemini 3.7 Flash introductory pricing through 2026-12-31 as $0.75 per 1M input tokens and $3.75 per 1M output tokens, with standard pricing starting 2027-01-01.",
+      "central": true,
+      "disposition": "confirmed-from-official-guide-and-pricing-page-context",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read latest-model pricing section and Gemini Developer API pricing page for related tier and grounding charge context.",
+      "sources": [
+        {
+          "source_id": "google-gemini-latest-model-guide",
+          "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+          "source_type": "P1",
+          "version": "last updated 2026-08-13 UTC",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "google-gemini-api-pricing",
+          "url": "https://ai.google.dev/gemini-api/docs/pricing",
+          "source_type": "P1",
+          "version": "pricing page accessed 2026-08-13",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "Pricing can change and actual cost depends on thinking token usage, cached input, grounding calls, tier and request shape."
+      ],
+      "conflict_of_interest": [
+        "Google-authored pricing documentation."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "The Gemini 3.7 Flash model card and evaluation methodology document publish benchmark results and methods, but the comparison table mixes Google self-computed results, public leaderboard values and other providers' self-reported numbers.",
+      "central": true,
+      "disposition": "confirmed-from-official-model-card-and-methodology",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Read the model card evaluation section and the evaluation methodology PDF.",
+      "sources": [
+        {
+          "source_id": "google-deepmind-gemini-3-7-flash-model-card",
+          "url": "https://deepmind.google/models/model-cards/gemini-3-7-flash/",
+          "source_type": "P1",
+          "version": "published August 2026",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "google-deepmind-gemini-3-7-flash-eval-methodology",
+          "url": "https://deepmind.com/models/evals-methodology/gemini-3-7-flash",
+          "source_type": "P1",
+          "version": "August 2026 methodology PDF",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "The editor did not reproduce the benchmarks.",
+        "Mixed provenance means the article cannot claim independent cross-vendor superiority."
+      ],
+      "conflict_of_interest": [
+        "Google DeepMind-authored model card and methodology."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "The editorial conclusion is that Gemini 3.7 Flash is now a production candidate developers can evaluate from public primary documents, while cross-vendor performance claims require local or independent reproduction before adoption decisions.",
+      "central": true,
+      "disposition": "derived-editorial-judgment",
+      "source_grade": "P1",
+      "evidence_level": "E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "derived",
+      "method": "Derived from C1-C5: GA release and public API/model/evaluation documents support adoption review; methodology limitations bound performance conclusions.",
+      "sources": [
+        {
+          "source_id": "google-gemini-api-changelog",
+          "url": "https://ai.google.dev/gemini-api/docs/changelog",
+          "source_type": "P1",
+          "version": "August 13 2026 entry",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "google-gemini-latest-model-guide",
+          "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+          "source_type": "P1",
+          "version": "last updated 2026-08-13 UTC",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "google-deepmind-gemini-3-7-flash-eval-methodology",
+          "url": "https://deepmind.com/models/evals-methodology/gemini-3-7-flash",
+          "source_type": "P1",
+          "version": "August 2026 methodology PDF",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "This is an adoption-facing interpretation, not a prediction of market outcome or an independent model ranking.",
+        "No claim is made that Gemini 3.7 Flash outperforms OpenAI, Anthropic, Qwen, DeepSeek, Mistral or other providers in a user's workload."
+      ],
+      "conflict_of_interest": [
+        "Google-authored sources."
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "state": "R1",
+    "public_artifacts": [
+      "Gemini API release note",
+      "Gemini 3.7 Flash model page",
+      "What's new in Gemini 3.7 Flash latest-model guide",
+      "Gemini 3.7 Flash model card and external PDF",
+      "Gemini 3.7 Flash evaluation methodology PDF",
+      "Gemini Developer API pricing page"
+    ],
+    "not_reproduced": [
+      "The editor did not call the Gemini API.",
+      "The editor did not run coding, agentic, multimodal, long-context or safety benchmarks.",
+      "The editor did not validate latency, timeout frequency, grounding charges, thinking-token consumption or Korean-language task performance.",
+      "The editor did not compare Gemini 3.7 Flash against OpenAI, Anthropic, Qwen, DeepSeek, Mistral or other models under a shared harness."
+    ]
+  }
+}
