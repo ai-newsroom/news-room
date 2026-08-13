@@ -1,0 +1,524 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-13",
+  "date": "2026-08-13",
+  "subject": "DeepSeek Harness v0.1 developer preview and DeepSeek-V4-Pro GA",
+  "central_claim": "DeepSeek's 2026-08-13 Harness developer preview matters because it makes the agent execution environment, not only the V4-Pro model, inspectable: the public MIT-licensed repository, npm package, README and architecture docs show a plugin-composed runtime for model adapters, tools, sessions, skills, filesystem/process access, sandboxing, agent loop and UI, while the same-day V4-Pro release provides the model/API backdrop rather than an independently verified performance conclusion.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The topic affects concrete SW engineering decisions around agent runtime architecture, plugin extensibility, tool execution, sandboxing and DeepSeek model integration. The central claim is bounded to public code/docs/package/API behavior and reaches E2 through multiple official primary URLs plus a public code artifact."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "editorial-brief",
+        "classification": "assigned investigation target",
+        "note": "The run brief prioritized DeepSeek Harness v0.1 developer preview and instructed that DeepSeek-V4-Pro be used only as background unless official sources could not support the core claim."
+      },
+      {
+        "channel": "deepseek-official-x-harness",
+        "url": "https://x.com/deepseek_ai/status/2087887408440164663",
+        "classification": "S2/P0 discovery signal only",
+        "note": "Opened the official X URL supplied by the brief, but the tool returned no renderable tweet text. It was retained as a discovery path and not used for article facts."
+      },
+      {
+        "channel": "deepseek-official-x-v4-pro",
+        "url": "https://x.com/deepseek_ai/status/2087864585504305397",
+        "classification": "S2/P0 discovery signal only",
+        "note": "Opened the official X URL supplied by the brief, but the tool returned no renderable tweet text. V4-Pro facts were instead checked against DeepSeek API docs and news pages."
+      },
+      {
+        "channel": "deepseek-harness-github",
+        "classification": "P2/P1 source path",
+        "note": "Opened and shallow-cloned the official GitHub repository. HEAD was 47f943859bef60e4160492346772ded9b24f765a with commit date 2026-08-13T19:38:46+08:00 and subject 'Merge pull request #2519 from deepseek-harness/feat/npm-public'. README, license, architecture docs, subsystem docs and package README files were inspected."
+      },
+      {
+        "channel": "deepseek-harness-npm",
+        "classification": "P2 package artifact",
+        "note": "Queried the npm registry for @deepseek-ai/dsh. The latest version at access time was 0.1.0-rc.6, published 2026-08-13T12:35:03.812Z, license MIT, with bin dsh."
+      },
+      {
+        "channel": "deepseek-api-docs",
+        "classification": "P1 source path",
+        "note": "Opened DeepSeek changelog, V4-Pro GA release news, Thinking Mode, Responses API and Codex integration docs to verify the same-day model/API background: V4-Pro GA, Responses API support, Codex adaptation and low/high/max effort controls."
+      },
+      {
+        "channel": "frontier-lab-and-model-registry-review",
+        "classification": "S2 discovery until opened primary source",
+        "note": "Reviewed official surfaces and search results for OpenAI API changelog, Anthropic release notes, Google Gemini API changelog, Qwen blog/model registry, DeepSeek GitHub/API docs, vLLM releases and related model/tool signals. Search snippets were used for discovery only; article facts use opened primary sources."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "DeepSeek Harness v0.1 developer preview with DeepSeek-V4-Pro background",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is a same-day official release with public code, docs, license and package artifacts. It gives developers an actionable runtime architecture question, while the article can avoid unsupported performance claims."
+      },
+      {
+        "subject": "DeepSeek-V4-Pro GA as standalone model release",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "DeepSeek docs confirm same-day GA, Responses API support, Codex adaptation and reasoning effort controls. Not selected as a standalone article because the assigned brief explicitly limited V4-Pro to background, and performance claims remain vendor-reported without independent reproduction."
+      },
+      {
+        "subject": "OpenAI Daybreak Blue/Red and GPT-5.6 Cyber access tiers",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "OpenAI's official API changelog shows an August 7 security-model access-tier update. It is material but older than the publication date and narrower for approved security users than the selected same-day DeepSeek runtime release."
+      },
+      {
+        "subject": "Anthropic Compliance API local session transcripts",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Anthropic's August 11 official release notes confirm local session transcript access for Cowork and Claude Code in beta for Enterprise compliance. It is enterprise-governance relevant but not same-day and less central to the assigned model/runtime question."
+      },
+      {
+        "subject": "Anthropic Managed Agents budgets, advisor, inference_geo and GitHub skills",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The August 7 release notes contain strong deployment details for Managed Agents, including budgets, advisor, inference geography and repository skills. It was not selected because it is older and hosted-service-specific, while DeepSeek's public runtime artifact better matched the day's brief."
+      },
+      {
+        "subject": "Google Gemini Robotics ER 2 public preview",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Google's official Gemini API changelog confirms July 30 robotics endpoints and agentic code execution/tool orchestration claims. It is older, robotics-specific and does not outrank the same-day DeepSeek Harness artifact."
+      },
+      {
+        "subject": "Qwen model registry recent updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Qwen official blog and Hugging Face organization were checked. The visible recent registry updates did not provide a stronger same-day, adoption-facing release than DeepSeek Harness."
+      },
+      {
+        "subject": "vLLM v0.27.1/v0.27.0 releases",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "vLLM's official GitHub releases show August 10 and August 11 releases with model and infrastructure changes. The release is substantial but not same-day and less aligned with the assigned DeepSeek model-plus-runtime question."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "PUBLIC_CODE_ARTIFACT_AVAILABLE",
+    "PERFORMANCE_CLAIMS_NOT_USED",
+    "NO_RUNTIME_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-13T13:52:28Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-13 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official README/docs/license/package metadata and public code artifact",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-13 and decisions/ai/2026-08-13",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "DeepSeek is the author and operator of the Harness repository, npm package and API documentation used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "X announcement pages supplied by the brief were not readable through the tool and were not used as factual sources."
+  ],
+  "sources": [
+    {
+      "source_id": "deepseek-harness-github-readme",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "source_type": "P2",
+      "owner": "DeepSeek",
+      "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a; accessed 2026-08-13",
+      "notes": "README states open-source agent harness, everything-is-a-plugin architecture, developer preview warning, npm and source-run commands, MIT license link."
+    },
+    {
+      "source_id": "deepseek-harness-license",
+      "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/LICENSE",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "MIT License, copyright 2026 DeepSeek; accessed 2026-08-13",
+      "notes": "License terms and copyright holder."
+    },
+    {
+      "source_id": "deepseek-harness-architecture",
+      "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a; accessed 2026-08-13",
+      "notes": "Architecture doc describes Cordis plugin tree, profiles, bundles, core packages, events, turn flow, session log and capability seams."
+    },
+    {
+      "source_id": "deepseek-harness-skills",
+      "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/skills.md",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a; accessed 2026-08-13",
+      "notes": "Skills subsystem doc describes ctx.skills providers, local discovery, catalogs and model-facing skill tool."
+    },
+    {
+      "source_id": "deepseek-harness-npm",
+      "url": "https://www.npmjs.com/package/@deepseek-ai/dsh",
+      "source_type": "P2",
+      "owner": "DeepSeek",
+      "version": "0.1.0-rc.6; npm publish time 2026-08-13T12:35:03.812Z; accessed 2026-08-13",
+      "notes": "npm metadata: name @deepseek-ai/dsh, license MIT, bin dsh, description for CLI/profile/plugin/browser UI alias."
+    },
+    {
+      "source_id": "deepseek-v4-pro-changelog",
+      "url": "https://api-docs.deepseek.com/updates/",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "DeepSeek changelog Date: 2026-08-13; accessed 2026-08-13",
+      "notes": "V4-Pro GA, APP/Web/API availability, Responses API support, reasoning effort levels, benchmark claims and pricing update."
+    },
+    {
+      "source_id": "deepseek-v4-pro-news",
+      "url": "https://api-docs.deepseek.com/news/news260813/",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "DeepSeek-V4-Pro GA Release, 2026-08-13; accessed 2026-08-13",
+      "notes": "Launch summary for V4-Pro, reasoning effort, Responses API and Codex adaptation."
+    },
+    {
+      "source_id": "deepseek-thinking-mode",
+      "url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "Thinking Mode guide; accessed 2026-08-13",
+      "notes": "Documents low/high/max effort mapping and tool-call handling in thinking mode."
+    },
+    {
+      "source_id": "deepseek-responses-api",
+      "url": "https://api-docs.deepseek.com/guides/responses_api",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "Responses API guide; accessed 2026-08-13",
+      "notes": "Documents DeepSeek Responses API compatibility and supported/unsupported fields."
+    },
+    {
+      "source_id": "deepseek-codex-integration",
+      "url": "https://api-docs.deepseek.com/quick_start/agent_integrations/codex/",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "Codex integration guide; accessed 2026-08-13",
+      "notes": "Documents DeepSeek as a Codex model provider via Responses API and config."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "DeepSeek Harness is a public open-source agent harness in the DeepSeek GitHub organization and is licensed under MIT.",
+      "central": true,
+      "disposition": "confirmed-from-official-repository-and-license",
+      "source_grade": "P2/P1",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Opened the official repository README and LICENSE and shallow-cloned the repository to inspect HEAD.",
+      "sources": [
+        {
+          "source_id": "deepseek-harness-github-readme",
+          "url": "https://github.com/deepseek-ai/deepseek-harness",
+          "source_type": "P2",
+          "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-harness-license",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/LICENSE",
+          "source_type": "P1",
+          "version": "MIT License; copyright 2026 DeepSeek",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "Public repository and MIT license do not prove production maturity, quality or internal usage."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek-authored repository and license."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The official README states that DeepSeek Harness is in developer preview and may introduce compatibility-breaking changes.",
+      "central": true,
+      "disposition": "confirmed-from-official-readme",
+      "source_grade": "P1/P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read the Developer preview section of the official README.",
+      "sources": [
+        {
+          "source_id": "deepseek-harness-github-readme",
+          "url": "https://github.com/deepseek-ai/deepseek-harness",
+          "source_type": "P2",
+          "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "The warning is a project maturity signal, not a measured defect rate."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek-authored README."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The README documents `npx @deepseek-ai/dsh web` as the npm-run path for starting the Web UI, and npm registry metadata lists @deepseek-ai/dsh latest as 0.1.0-rc.6 at access time.",
+      "central": true,
+      "disposition": "confirmed-from-official-readme-and-npm-metadata",
+      "source_grade": "P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read README Run section and queried npm registry metadata for @deepseek-ai/dsh.",
+      "sources": [
+        {
+          "source_id": "deepseek-harness-github-readme",
+          "url": "https://github.com/deepseek-ai/deepseek-harness",
+          "source_type": "P2",
+          "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-harness-npm",
+          "url": "https://www.npmjs.com/package/@deepseek-ai/dsh",
+          "source_type": "P2",
+          "version": "0.1.0-rc.6; publish time 2026-08-13T12:35:03.812Z",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "The command was not executed by the editor; no runtime behavior or security posture was verified."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek-authored package and README."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "DeepSeek Harness documentation describes a plugin-composed runtime in which model adapters, tools, sessions, skills, filesystem/process access, sandboxing, agent loop and UI surfaces are extensible or replaceable components.",
+      "central": true,
+      "disposition": "confirmed-from-official-architecture-and-subsystem-docs",
+      "source_grade": "P1/P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "direct",
+      "method": "Read architecture documentation, skills subsystem documentation, and package README files for base, web-app and headless bundles.",
+      "sources": [
+        {
+          "source_id": "deepseek-harness-architecture",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md",
+          "source_type": "P1",
+          "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-harness-skills",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/skills.md",
+          "source_type": "P1",
+          "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-harness-github-readme",
+          "url": "https://github.com/deepseek-ai/deepseek-harness",
+          "source_type": "P2",
+          "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "The docs identify extension seams and plugin components but do not prove that every third-party plugin will remain compatible across preview changes."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek-authored documentation."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "DeepSeek's same-day V4-Pro documentation confirms GA availability, Responses API support, Codex adaptation and low/high/max reasoning effort controls, but benchmark numbers remain vendor-reported.",
+      "central": false,
+      "disposition": "confirmed-as-background-only",
+      "source_grade": "P1",
+      "evidence_level": "E1/E2",
+      "reproducibility": "R1",
+      "direct_or_derived": "direct",
+      "method": "Opened DeepSeek changelog, V4-Pro news, Thinking Mode, Responses API and Codex integration docs.",
+      "sources": [
+        {
+          "source_id": "deepseek-v4-pro-changelog",
+          "url": "https://api-docs.deepseek.com/updates/",
+          "source_type": "P1",
+          "version": "Date: 2026-08-13 DeepSeek-V4-Pro Update",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-v4-pro-news",
+          "url": "https://api-docs.deepseek.com/news/news260813/",
+          "source_type": "P1",
+          "version": "DeepSeek-V4-Pro GA Release 2026-08-13",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-thinking-mode",
+          "url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+          "source_type": "P1",
+          "version": "accessed 2026-08-13",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-responses-api",
+          "url": "https://api-docs.deepseek.com/guides/responses_api",
+          "source_type": "P1",
+          "version": "accessed 2026-08-13",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-codex-integration",
+          "url": "https://api-docs.deepseek.com/quick_start/agent_integrations/codex/",
+          "source_type": "P1",
+          "version": "accessed 2026-08-13",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "The benchmark list is not independently verified and is not used as a central performance conclusion.",
+        "The editor did not call the DeepSeek API."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek-authored API documentation."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "The editorial conclusion is that DeepSeek has expanded the developer decision from model API selection to agent runtime architecture inspection, while stopping short of production-readiness or superiority claims.",
+      "central": true,
+      "disposition": "derived-editorial-judgment",
+      "source_grade": "P1/P2",
+      "evidence_level": "E2",
+      "reproducibility": "R2",
+      "direct_or_derived": "derived",
+      "method": "Derived from C1-C5: public code/docs/package establish runtime inspectability, preview warning bounds maturity, V4-Pro docs provide same-day model/API context.",
+      "sources": [
+        {
+          "source_id": "deepseek-harness-github-readme",
+          "url": "https://github.com/deepseek-ai/deepseek-harness",
+          "source_type": "P2",
+          "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-harness-architecture",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md",
+          "source_type": "P1",
+          "version": "master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+          "accessed_at": "2026-08-13"
+        },
+        {
+          "source_id": "deepseek-v4-pro-changelog",
+          "url": "https://api-docs.deepseek.com/updates/",
+          "source_type": "P1",
+          "version": "Date: 2026-08-13 DeepSeek-V4-Pro Update",
+          "accessed_at": "2026-08-13"
+        }
+      ],
+      "limitations": [
+        "This is an adoption-facing interpretation, not a prediction that DeepSeek Harness will become an industry standard.",
+        "No claim is made that Harness outperforms Claude Code, Codex, OpenCode or any other agent tool."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek-authored sources."
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "state": "R2",
+    "public_artifacts": [
+      "GitHub repository at master HEAD 47f943859bef60e4160492346772ded9b24f765a",
+      "README, docs/architecture.md, docs/subsystems/skills.md, LICENSE",
+      "npm package @deepseek-ai/dsh 0.1.0-rc.6"
+    ],
+    "not_reproduced": [
+      "The editor did not run npx @deepseek-ai/dsh web.",
+      "The editor did not configure a DeepSeek API key.",
+      "The editor did not run agent tasks, sandbox tests, approval-policy tests or latency/cost benchmarks."
+    ]
+  }
+}
