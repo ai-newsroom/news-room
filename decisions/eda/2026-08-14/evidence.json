@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "edition": "eda",
+  "publication_id": "2026-08-14",
+  "date": "2026-08-14",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-14-sequential/20260813T221533Z-904438/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-08-14-sequential/20260813T221533Z-904438/evidence.json",
+  "central_claim": "ACE-RTL and CVDP 1.1.0 move agentic RTL evaluation toward inspectable code, benchmark rows, tool preflight, and run artifacts, but NVIDIA and Siemens performance claims remain vendor or author-reported until independently rerun.",
+  "selection": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_utility": 2,
+    "total": 10,
+    "threshold": 7,
+    "selected": true,
+    "reason": "공개 코드, benchmark repository, dataset changelog, 논문, 벤더 발표가 서로 다른 근거 역할을 하며 RTL agent 도입 판단에 직접 연결된다."
+  },
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "중심 자료 일부는 NVIDIA와 Siemens가 자기 모델·도구 통합을 설명한 벤더 원문입니다.",
+    "CVDP benchmark와 ACE-RTL 저자 일부는 NVIDIA 소속이며, 편집국은 NVIDIA Inference API key와 동일 실행 비용을 투입해 결과를 재실행하지 않았습니다.",
+    "Siemens Fuse EDA AI Agent의 상세 제품 문서와 상용 도구 실행 환경에는 접근하지 못했습니다."
+  ],
+  "source_urls": [
+    "https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-leads-open-models-on-accuracy-and-efficiency-in-agentic-rtl-coding/",
+    "https://github.com/NVlabs/ACE-RTL",
+    "https://arxiv.org/abs/2602.10218",
+    "https://github.com/NVlabs/cvdp_benchmark",
+    "https://arxiv.org/abs/2506.14074",
+    "https://huggingface.co/datasets/nvidia/cvdp-benchmark-dataset",
+    "https://news.siemens.com/en-us/siemens-nvidia-dac-2026/"
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "claim": "ACE-RTL은 RTL 생성·검증·반복 수정을 위한 generator, reflector, coordinator 구조와 CVDP 연동 실행 절차를 공개했다.",
+      "source_url": "https://github.com/NVlabs/ACE-RTL",
+      "sources": [
+        {
+          "url": "https://github.com/NVlabs/ACE-RTL",
+          "source_grade": "P2"
+        }
+      ],
+      "additional_sources": [
+        "https://arxiv.org/abs/2602.10218"
+      ],
+      "source_type": "P2",
+      "evidence_level": "E2",
+      "evidence_grade": "E2",
+      "version": "ACE-RTL main fead921f18bb57345b5a41ef93ba625be208e99c; arXiv 2602.10218",
+      "accessed_at": "2026-08-13",
+      "direct_or_derived": "direct",
+      "method": "GitHub README, repository HEAD, and linked paper inspected; no benchmark run performed.",
+      "limitations": [
+        "Repository is maintained by NVIDIA-linked authors.",
+        "Default path uses NVIDIA Inference API and requires an API key.",
+        "Some CVDP rows may require commercial EDA tools."
+      ],
+      "conflict_of_interest": [
+        "NVIDIA-authored or NVIDIA-hosted artifact"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "claim": "CVDP는 RTL 생성, 수정, verification, debugging 등 여러 Verilog 설계 과제를 다루며, 공개 dataset은 논문 설명보다 일부 제한이 있다.",
+      "source_url": "https://github.com/NVlabs/cvdp_benchmark",
+      "sources": [
+        {
+          "url": "https://github.com/NVlabs/cvdp_benchmark",
+          "source_grade": "P2"
+        }
+      ],
+      "additional_sources": [
+        "https://arxiv.org/abs/2506.14074",
+        "https://huggingface.co/datasets/nvidia/cvdp-benchmark-dataset",
+        "https://huggingface.co/datasets/nvidia/cvdp-benchmark-dataset/raw/main/CHANGELOG"
+      ],
+      "source_type": "P2",
+      "evidence_level": "E2",
+      "evidence_grade": "E2",
+      "version": "cvdp_benchmark main 8e894cf74414ab1eaea1e2b4e80a02f123df07b6; CVDP dataset v1.1.0 changelog; arXiv 2506.14074",
+      "accessed_at": "2026-08-13",
+      "direct_or_derived": "direct",
+      "method": "CVDP README, dataset page, changelog, and paper abstract inspected.",
+      "limitations": [
+        "Public dataset page showed 749 rows while the paper describes 783 problems.",
+        "Reference solutions and some datapoints are omitted or restricted.",
+        "Dataset size and commercial-tool rows can make full reproduction costly."
+      ],
+      "conflict_of_interest": [
+        "NVIDIA-hosted benchmark and dataset"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "claim": "NVIDIA는 ACE-RTL + Nemotron 3 Ultra가 CVDP 9개 과제군 평균 97.1% pass rate와 반복당 평균 6,629 token을 기록했다고 보고했다.",
+      "source_url": "https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-leads-open-models-on-accuracy-and-efficiency-in-agentic-rtl-coding/",
+      "sources": [
+        {
+          "url": "https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-leads-open-models-on-accuracy-and-efficiency-in-agentic-rtl-coding/",
+          "source_grade": "P1"
+        }
+      ],
+      "source_type": "P1",
+      "evidence_level": "E2",
+      "evidence_grade": "E2",
+      "version": "NVIDIA Technical Blog, 2026-07-26",
+      "accessed_at": "2026-08-13",
+      "direct_or_derived": "direct",
+      "method": "NVIDIA technical blog result tables and described benchmark setup inspected.",
+      "limitations": [
+        "Vendor and author-reported result, not independently reproduced by the newsroom.",
+        "Endpoint state, seed, cost, full failure logs, and exact run artifacts were not independently verified.",
+        "Does not establish product-wide superiority for all RTL or EDA workflows."
+      ],
+      "conflict_of_interest": [
+        "NVIDIA reports results for NVIDIA model and NVIDIA-hosted artifacts"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "claim": "Siemens는 Fuse EDA AI Agent에 NVIDIA NeMo Gym, OpenShell, Nemotron, CUDA-X를 결합한 self-verifying EDA workflow를 발표했다.",
+      "source_url": "https://news.siemens.com/en-us/siemens-nvidia-dac-2026/",
+      "source_type": "P0",
+      "evidence_grade": "E1",
+      "version": "Siemens press release, 2026-07-26",
+      "accessed_at": "2026-08-13",
+      "direct_or_derived": "direct",
+      "method": "Official Siemens announcement inspected.",
+      "limitations": [
+        "Performance and productivity claims are vendor claims.",
+        "Forthcoming release details, tool settings, customer-specific data, and independent logs are not public.",
+        "No independent head-to-head comparison was used."
+      ],
+      "conflict_of_interest": [
+        "Siemens and NVIDIA product announcement"
+      ]
+    }
+  ],
+  "reproducibility_detail": {
+    "status": "R2",
+    "public_artifacts": [
+      "ACE-RTL repository with setup and runner instructions",
+      "CVDP benchmark repository",
+      "CVDP Hugging Face dataset and changelog",
+      "ACE-RTL and CVDP arXiv papers"
+    ],
+    "not_reproduced_by_newsroom": [
+      "No NVIDIA Inference API key or compute budget was used.",
+      "No CVDP benchmark row was executed in this run.",
+      "No Siemens commercial EDA workflow was executed."
+    ],
+    "required_for_full_rerun": [
+      "NVIDIA_API_KEY or equivalent model adapter",
+      "Python environment and ACE-RTL dependencies",
+      "CVDP dataset files",
+      "Open-source simulator tools such as iverilog, vvp, verilator, yosys for selected rows",
+      "Commercial EDA licenses for rows that require them"
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "name": "NVIDIA ACE-RTL and Nemotron 3 Ultra agentic RTL benchmark",
+        "urls": [
+          "https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-leads-open-models-on-accuracy-and-efficiency-in-agentic-rtl-coding/",
+          "https://github.com/NVlabs/ACE-RTL",
+          "https://github.com/NVlabs/cvdp_benchmark",
+          "https://huggingface.co/datasets/nvidia/cvdp-benchmark-dataset"
+        ],
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_utility": 2,
+          "total": 10
+        },
+        "selected": true,
+        "reason": "공개 코드·benchmark·dataset·논문·벤더 결과가 연결되어 중심 주장 E2와 원문 URL 2개 이상 조건을 충족한다."
+      },
+      {
+        "name": "Siemens Fuse EDA AI Agent and NVIDIA self-verifying workflow announcement",
+        "urls": [
+          "https://news.siemens.com/en-us/siemens-nvidia-dac-2026/",
+          "https://www.siemens.com/en-us/products/fuse-eda-ai-system/agent/"
+        ],
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_utility": 2,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "제품 방향은 중요하지만 발표 중심이고 상세 release note와 독립 실행 artifact가 부족해 단독 중심 주제로는 기준 미달이다. 선택 기사에서는 흐름 적용 범위의 보조 근거로만 사용했다."
+      },
+      {
+        "name": "Keysight ADS 2026 Update 2.0 product release",
+        "urls": [
+          "https://www.keysight.com/us/en/lib/resources/software-releases/ads-2026-update-2-product-release.html",
+          "https://docs.keysight.com/display/engdocads/ADS%2B2026%2BUpdate%2B1.0%2BRelease%2BNotes"
+        ],
+        "scores": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_utility": 1,
+          "total": 4
+        },
+        "selected": false,
+        "reason": "RF·HSD 설계자에게 유용한 release signal이지만 공개 자료만으로는 중심 분석에 필요한 조건·benchmark·재현 경로가 부족했다."
+      },
+      {
+        "name": "arXiv 2607.17528 AI agents RTL-to-GDS flow paper",
+        "urls": [
+          "https://arxiv.org/html/2607.17528v3"
+        ],
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_utility": 2,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "주제는 실무적이지만 확인한 범위에서는 논문 단일 원문 신호였고 공개 artifact·독립 원문 조합을 확보하지 못했다."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Cadence EDA agent feedback-loop strategy",
+        "status": "excluded_as_recent_duplicate",
+        "reason": "2026-08-13 EDA 기사 subject가 이미 Cadence의 EDA agent feedback loop 전략과 공개 연구였으므로 같은 발표를 새 기사처럼 반복하지 않았다."
+      },
+      {
+        "name": "OpenROAD general release and documentation",
+        "status": "not_selected",
+        "reason": "OpenROAD와 ORFS는 중요 공개 flow이지만 이번 조사에서 새 release 또는 새 benchmark 변화가 ACE-RTL/CVDP보다 명확하지 않았다."
+      },
+      {
+        "name": "DVCon and DAC 2026 AI-in-EDA sessions",
+        "status": "discovery_only",
+        "reason": "프로그램과 세션은 발견 신호로 유용했지만, 세션 소개만으로는 중심 기술 주장과 재현 경로를 구성하지 않았다."
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
