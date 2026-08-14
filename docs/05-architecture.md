@@ -36,7 +36,7 @@
     ├─ 지정 브리프 + 명시적 승인 확인
     ├─ 정규판과 같은 후보 검증·test·build
     ├─ /ai/YYYY-MM-DD/<slug>/ 공개 확인
-    └─ 발행 후 회고 routine 깨우기
+    └─ 발행 후 컨덕터에 읽기 전용 회고 턴 전달
 
 [coco-agents serve — 발행 후]
     │

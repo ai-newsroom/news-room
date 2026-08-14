@@ -102,9 +102,11 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertNotIn('"$REPO/scripts/publish-daily.sh"', publisher)
         live = publisher.index('"$REPO/scripts/verify-publication.sh" ai')
         retrospective = publisher.index(
-            "coco-agents routine run-now news-room-post-publish-retrospective"
+            '"$COCO_AGENTS" session run'
         )
         self.assertLess(live, retrospective)
+        self.assertIn("git show origin/main:prompts/post-publish-retrospective.md", publisher)
+        self.assertIn("completed deterministic publisher proof", publisher)
 
         prompt = (ROOT / "prompts/special-ai-codex.md").read_text()
         self.assertIn("ai-special-publish-v1", prompt)

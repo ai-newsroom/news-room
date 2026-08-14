@@ -226,15 +226,37 @@ python3 scripts/publish-ai-candidate.py \
 npm --prefix site test
 npm --prefix site run build
 "$REPO/scripts/finalize-publication.sh" ai "$PUBLICATION_ID"
-"$REPO/scripts/verify-publication.sh" ai "$PUBLICATION_ID"
+LIVE_URL="$("$REPO/scripts/verify-publication.sh" ai "$PUBLICATION_ID")"
+printf '%s\n' "$LIVE_URL"
 
 RETROSPECTIVE_WORKSPACE="${NEWS_ROOM_RETROSPECTIVE_WORKSPACE:-/home/pys/repositories/news-room}"
-if command -v coco-agents >/dev/null 2>&1 && [[ -d "$RETROSPECTIVE_WORKSPACE" ]]; then
-  if ! coco-agents routine run-now news-room-post-publish-retrospective \
-    --workspace "$RETROSPECTIVE_WORKSPACE"
-  then
-    echo "Special article is live, but the retrospective routine could not be started" >&2
+CONDUCTOR_STATE="$RETROSPECTIVE_WORKSPACE/.coco-agents/conductor-loop.json"
+COCO_AGENTS="$(command -v coco-agents || true)"
+if [[ -n "$COCO_AGENTS" && -d "$RETROSPECTIVE_WORKSPACE" && -f "$CONDUCTOR_STATE" ]]; then
+  CONDUCTOR_SESSION="$(python3 - "$CONDUCTOR_STATE" <<'PY' || true
+import json, sys
+value = json.load(open(sys.argv[1], encoding="utf-8"))
+session_id = value.get("conductor_session_id")
+if not isinstance(session_id, str) or not session_id:
+    raise SystemExit("conductor session id is missing")
+print(session_id)
+PY
+)"
+  if [[ -z "$CONDUCTOR_SESSION" ]]; then
+    echo "Special article is live; conductor session metadata is invalid" >&2
+  else
+    RETROSPECTIVE_PROMPT="Fetch origin main, then read the complete retrospective contract with git show origin/main:prompts/post-publish-retrospective.md and execute that origin/main contract for publication $PUBLICATION_ID. Preserve the dirty local working tree and read tracked inputs with git show origin/main. Use this completed deterministic publisher proof instead of making another network request: $LIVE_URL returned HTTP 200 and contained the expected title, publication id $PUBLICATION_ID, and human-approval label. This is read-only: create at most one evidence-based proposal and do not approve, dispatch, edit, commit, push, publish, deploy, change routines, or request network approval."
+    if ! "$COCO_AGENTS" session run \
+      --session "$CONDUCTOR_SESSION" \
+      --workspace "$RETROSPECTIVE_WORKSPACE" \
+      --turn-timeout 1800 \
+      --poll-interval-ms 1000 \
+      --json \
+      "$RETROSPECTIVE_PROMPT" > "$RUN_DIR/retrospective-run.json"
+    then
+      echo "Special article is live, but its retrospective turn did not complete" >&2
+    fi
   fi
 else
-  echo "Special article is live; retrospective routine must be started separately" >&2
+  echo "Special article is live; its retrospective turn must be started separately" >&2
 fi
