@@ -1,0 +1,340 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-14--cordis",
+  "publication_kind": "special",
+  "date": "2026-08-14",
+  "subject": "A Programming Paradigm for Spatiotemporal Composability and Cordis, draft of August 13, 2026",
+  "central_claim": "Cordis is a publishable AI engineering topic because the August 13, 2026 active-revision preprint, public Cordis implementation, DeepSeek Harness documentation and Koishi case study support a bounded E2 claim: explicit plugin dependencies and reversible context effects can narrow AI maintenance, testing, replacement and recovery scope, while Cordis itself is not evidence of autonomous self-improvement.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The topic affects agent harness and plugin-heavy application architecture decisions. It is new as an August 13, 2026 preprint and public implementation package, is verifiable through multiple primary source URLs, and helps SW engineers decide how to separate stable cores from AI-editable adapters and workflow plugins."
+  },
+  "discovery_review": {
+    "brief_source": "prompts/ai-special-briefs/2026-08-14/cordis.md and editor-provided request text",
+    "signals": [
+      {
+        "channel": "editor-approved-special-brief",
+        "classification": "assigned topic",
+        "note": "The topic was fixed by the editor. Search and popularity signals were not used to replace the subject."
+      },
+      {
+        "channel": "cordis-paper-repository",
+        "url": "https://github.com/cordiverse/paper",
+        "classification": "P1 source path",
+        "note": "Opened the public paper repository README. It states the paper title, draft date of August 13, 2026, active-revision preprint status, and links to paper.pdf."
+      },
+      {
+        "channel": "cordis-paper-pdf",
+        "url": "https://raw.githubusercontent.com/cordiverse/paper/948a07b369c62adb3b12e102458be5c18dfb69b9/paper.pdf",
+        "classification": "P1 source path",
+        "note": "Downloaded the PDF and extracted text with npx pdf-parse. It identifies authors Yifan Shi, Wei Zhang and Tianyi Cui with Peking University and DeepSeek-AI affiliations, defines the two dimensions, describes the Cordis implementation, and leaves self-evolving harness validation as future work."
+      },
+      {
+        "channel": "cordis-implementation",
+        "url": "https://github.com/cordiverse/cordis",
+        "classification": "P2 source path",
+        "note": "Opened the implementation repository and checked HEAD 8cc9e33fab69e2d0476d126baaf2acb24e6a6ab4. README describes Cordis as a meta-framework of spatiotemporal composability and warns that the API is not stable."
+      },
+      {
+        "channel": "deepseek-harness",
+        "url": "https://github.com/deepseek-ai/deepseek-harness",
+        "classification": "P2 source path",
+        "note": "Opened the public repository and README. It states that DeepSeek Harness is an open-source agent harness developed by DeepSeek AI, uses an everything-is-a-plugin architecture, and is powered by Cordis."
+      },
+      {
+        "channel": "deepseek-harness-docs",
+        "url": "https://deepseek-harness.github.io/deepseek-harness/reference/cordis-primer/",
+        "classification": "P1/P2 source path",
+        "note": "Opened the public primer and matching raw markdown. It describes plugins, contexts, service dependencies through inject, typed events, and reversible registrations through ctx.effect()/ctx.on()."
+      },
+      {
+        "channel": "koishi-repository",
+        "url": "https://github.com/koishijs/koishi",
+        "classification": "P2 source path",
+        "note": "Opened the public Koishi repository. README describes a TypeScript chatbot framework and an ecosystem with over 3000 official and community plugins; the Cordis paper case study states over 4000 community plugins and notes the observational limits."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Cordis paper and implementation",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "The editor designated this subject. It clears the special-edition threshold with a bounded E2 central claim and at least two distinct primary source URLs."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "EDITOR_APPROVED_SPECIAL_TOPIC",
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "SELF_IMPROVEMENT_CLAIM_BOUNDED",
+    "NO_RUNTIME_BENCHMARK_REPRODUCTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-14T13:01:51Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-special-publish-v1",
+    "human_approval_required": true,
+    "automatic_publish_allowed": false,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "release_gate_notes": {
+    "required_conditions_recorded": [
+      "request publication_id is 2026-08-14--cordis and publication_kind is special",
+      "article frontmatter date uses publication_date 2026-08-14 and omits publication_id",
+      "article frontmatter includes publication_kind: special exactly once",
+      "article and evidence share subject, decision, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence from the paper, public code and official project documentation",
+      "central claims include more than two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections and bounds Cordis as architecture support rather than autonomous self-improvement evidence",
+      "materialization to content/ai and decisions/ai, release file creation, commit, push, deploy and public URL verification are delegated outside this candidate-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "create release.json",
+      "commit, push or deploy",
+      "public URL verification",
+      "post-publication retrospective",
+      "editions, docs, scripts, prompts, site, content, decisions or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "The paper, Cordis implementation, DeepSeek Harness documentation and Koishi repository are primary sources from the authors or project operators.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search and popularity signals were used only for discovery and not as evidence for architecture quality or AI maintenance effect."
+  ],
+  "sources": [
+    {
+      "source_id": "cordis-paper-repo",
+      "url": "https://github.com/cordiverse/paper",
+      "source_type": "P1",
+      "owner": "cordiverse",
+      "version": "HEAD 948a07b369c62adb3b12e102458be5c18dfb69b9; README draft of August 13, 2026; accessed 2026-08-14",
+      "notes": "Records the title, draft date, active-revision preprint caveat, definition summary and Cordis implementation claim."
+    },
+    {
+      "source_id": "cordis-paper-pdf",
+      "url": "https://raw.githubusercontent.com/cordiverse/paper/948a07b369c62adb3b12e102458be5c18dfb69b9/paper.pdf",
+      "source_type": "P1",
+      "owner": "Yifan Shi, Wei Zhang, Tianyi Cui",
+      "version": "PDF metadata CreateDate/ModifyDate 2026-08-13T18:23:59+08:00, 88 pages; accessed 2026-08-14",
+      "notes": "Primary technical report for definitions, formal model, implementation, Koishi case study and discussion limitations."
+    },
+    {
+      "source_id": "cordis-repo",
+      "url": "https://github.com/cordiverse/cordis",
+      "source_type": "P2",
+      "owner": "cordiverse",
+      "version": "HEAD 8cc9e33fab69e2d0476d126baaf2acb24e6a6ab4; accessed 2026-08-14",
+      "notes": "Public implementation repository. README states active development and unstable API."
+    },
+    {
+      "source_id": "cordis-core-readme",
+      "url": "https://raw.githubusercontent.com/cordiverse/cordis/8cc9e33fab69e2d0476d126baaf2acb24e6a6ab4/packages/core/README.md",
+      "source_type": "P2",
+      "owner": "cordiverse",
+      "version": "Cordis core README at HEAD 8cc9e33fab69e2d0476d126baaf2acb24e6a6ab4; accessed 2026-08-14",
+      "notes": "Implementation README for Cordis positioning and documentation links."
+    },
+    {
+      "source_id": "deepseek-harness-repo",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "source_type": "P2",
+      "owner": "DeepSeek AI",
+      "version": "HEAD 47f943859bef60e4160492346772ded9b24f765a; accessed 2026-08-14",
+      "notes": "Public agent harness repository. README confirms Cordis-powered everything-is-a-plugin architecture and developer-preview status."
+    },
+    {
+      "source_id": "deepseek-harness-primer",
+      "url": "https://deepseek-harness.github.io/deepseek-harness/reference/cordis-primer/",
+      "source_type": "P1",
+      "owner": "DeepSeek AI",
+      "version": "Cordis Primer public docs, matching raw docs/cordis-primer.md at HEAD 47f943859bef60e4160492346772ded9b24f765a; accessed 2026-08-14",
+      "notes": "Describes plugins, contexts, service dependencies via inject, typed events, and reversible effects in Harness."
+    },
+    {
+      "source_id": "deepseek-harness-architecture",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/47f943859bef60e4160492346772ded9b24f765a/docs/architecture.md",
+      "source_type": "P1",
+      "owner": "DeepSeek AI",
+      "version": "Architecture document at HEAD 47f943859bef60e4160492346772ded9b24f765a; accessed 2026-08-14",
+      "notes": "Documents Cordis under dsh, plugin tree composition, core packages, events, capability seams and extension mechanisms."
+    },
+    {
+      "source_id": "deepseek-harness-fiber-api",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/47f943859bef60e4160492346772ded9b24f765a/docs/cordis-api/fiber.md",
+      "source_type": "P1",
+      "owner": "DeepSeek AI",
+      "version": "Generated Cordis Fiber API at HEAD 47f943859bef60e4160492346772ded9b24f765a; accessed 2026-08-14",
+      "notes": "Documents ctx.effect and fiber lifecycle/effects metadata in the vendored Cordis API."
+    },
+    {
+      "source_id": "deepseek-harness-registry-api",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/47f943859bef60e4160492346772ded9b24f765a/docs/cordis-api/registry.md",
+      "source_type": "P1",
+      "owner": "DeepSeek AI",
+      "version": "Generated Cordis Registry API at HEAD 47f943859bef60e4160492346772ded9b24f765a; accessed 2026-08-14",
+      "notes": "Documents ctx.inject, ctx.plugin, plugin entrypoint shapes and service dependency declarations."
+    },
+    {
+      "source_id": "koishi-repo",
+      "url": "https://github.com/koishijs/koishi",
+      "source_type": "P2",
+      "owner": "Koishi project",
+      "version": "HEAD fb6e2c092242c0387f07f36e21082d5715c48449; accessed 2026-08-14",
+      "notes": "Public Koishi repository. README describes the TypeScript chatbot framework and over 3000 official/community plugins; paper uses Koishi as Cordis case study and states over 4000 community plugins."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": false,
+      "claim": "DeepSeek-AI and Peking University affiliated authors published the August 13, 2026 draft of A Programming Paradigm for Spatiotemporal Composability.",
+      "evidence_level": "E2",
+      "source_url": "https://raw.githubusercontent.com/cordiverse/paper/948a07b369c62adb3b12e102458be5c18dfb69b9/paper.pdf",
+      "source_type": "P1",
+      "version": "PDF metadata CreateDate/ModifyDate 2026-08-13T18:23:59+08:00; repository HEAD 948a07b369c62adb3b12e102458be5c18dfb69b9",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Opened paper repository and extracted PDF text/metadata with npx pdf-parse and strings.",
+      "limitations": ["Active-revision preprint; arXiv, DOI, peer review and conference publication were not verified."],
+      "conflict_of_interest": ["The paper repository and PDF are author/project primary sources."],
+      "sources": [
+        {"url": "https://github.com/cordiverse/paper", "source_type": "P1"},
+        {"url": "https://raw.githubusercontent.com/cordiverse/paper/948a07b369c62adb3b12e102458be5c18dfb69b9/paper.pdf", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "claim": "Cordis formalizes temporal composability as reverting component side effects on removal and spatial composability as declaring and reactively managing component dependencies.",
+      "evidence_level": "E2",
+      "source_url": "https://github.com/cordiverse/paper",
+      "source_type": "P1",
+      "version": "README and PDF at repository HEAD 948a07b369c62adb3b12e102458be5c18dfb69b9",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read paper README, abstract and introduction pages extracted from PDF.",
+      "limitations": ["Definitions are from the authors' preprint and not independent validation of utility."],
+      "conflict_of_interest": ["The paper repository and PDF are author/project primary sources."],
+      "sources": [
+        {"url": "https://github.com/cordiverse/paper", "source_type": "P1"},
+        {"url": "https://raw.githubusercontent.com/cordiverse/paper/948a07b369c62adb3b12e102458be5c18dfb69b9/paper.pdf", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "claim": "Cordis implements the model through context, fibers, ctx.effect cleanup tracking, inject-based service dependency declarations, component lifecycle, configuration reconciliation and hot module replacement.",
+      "evidence_level": "E2",
+      "source_url": "https://github.com/cordiverse/cordis",
+      "source_type": "P2",
+      "version": "Cordis HEAD 8cc9e33fab69e2d0476d126baaf2acb24e6a6ab4; Harness vendored API docs at HEAD 47f943859bef60e4160492346772ded9b24f765a",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read paper implementation section, Cordis README, Harness generated Fiber API and Registry API docs.",
+      "limitations": ["Article did not run Cordis test suite or independently benchmark HMR/reconciliation behavior."],
+      "conflict_of_interest": ["Cordis and Harness docs are project primary sources."],
+      "sources": [
+        {"url": "https://github.com/cordiverse/cordis", "source_type": "P2"},
+        {"url": "https://raw.githubusercontent.com/cordiverse/cordis/8cc9e33fab69e2d0476d126baaf2acb24e6a6ab4/packages/core/README.md", "source_type": "P2"},
+        {"url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/47f943859bef60e4160492346772ded9b24f765a/docs/cordis-api/fiber.md", "source_type": "P1"},
+        {"url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/47f943859bef60e4160492346772ded9b24f765a/docs/cordis-api/registry.md", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": true,
+      "claim": "DeepSeek Harness is powered by Cordis and documents a plugin architecture where model adapters, tool registry, session log and agent loop are replaceable plugins or services.",
+      "evidence_level": "E2",
+      "source_url": "https://github.com/deepseek-ai/deepseek-harness",
+      "source_type": "P2",
+      "version": "DeepSeek Harness HEAD 47f943859bef60e4160492346772ded9b24f765a",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read Harness README, Cordis primer and architecture document.",
+      "limitations": ["Confirms architecture and adoption, not autonomous self-improvement performance."],
+      "conflict_of_interest": ["DeepSeek Harness documentation is a project primary source."],
+      "sources": [
+        {"url": "https://github.com/deepseek-ai/deepseek-harness", "source_type": "P2"},
+        {"url": "https://deepseek-harness.github.io/deepseek-harness/reference/cordis-primer/", "source_type": "P1"},
+        {"url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/47f943859bef60e4160492346772ded9b24f765a/docs/architecture.md", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": false,
+      "claim": "The Koishi case study is observational evidence from one TypeScript ecosystem, not a controlled runtime-overhead or productivity comparison, and Koishi uses Cordis v3 while the paper presents Cordis v4.",
+      "evidence_level": "E2",
+      "source_url": "https://raw.githubusercontent.com/cordiverse/paper/948a07b369c62adb3b12e102458be5c18dfb69b9/paper.pdf",
+      "source_type": "P1",
+      "version": "Paper PDF pages 66-67 extracted on 2026-08-14; Koishi HEAD fb6e2c092242c0387f07f36e21082d5715c48449",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Extracted paper case-study and threats-to-validity text; opened Koishi README for public repository context.",
+      "limitations": ["Plugin count differs by source and date: Koishi README states over 3000 official/community plugins while the paper states over 4000 community plugins."],
+      "conflict_of_interest": ["Paper and Koishi repository are author/project primary sources."],
+      "sources": [
+        {"url": "https://raw.githubusercontent.com/cordiverse/paper/948a07b369c62adb3b12e102458be5c18dfb69b9/paper.pdf", "source_type": "P1"},
+        {"url": "https://github.com/koishijs/koishi", "source_type": "P2"}
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "central": true,
+      "claim": "Cordis can support AI maintenance by narrowing the component scope AI must inspect, test, replace and recover, but it is not itself an autonomous self-improvement engine.",
+      "evidence_level": "E2",
+      "source_url": "https://raw.githubusercontent.com/cordiverse/paper/948a07b369c62adb3b12e102458be5c18dfb69b9/paper.pdf",
+      "source_type": "P1",
+      "version": "Derived from C2-C5 and paper conclusion at repository HEAD 948a07b369c62adb3b12e102458be5c18dfb69b9",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "derived",
+      "method": "Derived editorial judgment from paper definitions, implementation claims, Harness architecture and paper conclusion that self-evolving harness validation remains future work.",
+      "limitations": ["No independent experiment showing autonomous harness self-improvement, runtime overhead, or developer-productivity gain was found or claimed."],
+      "conflict_of_interest": ["Underlying sources are author/project primary sources; editorial derivation is bounded to architecture implications."],
+      "sources": [
+        {"url": "https://github.com/cordiverse/paper", "source_type": "P1"},
+        {"url": "https://github.com/cordiverse/cordis", "source_type": "P2"},
+        {"url": "https://github.com/deepseek-ai/deepseek-harness", "source_type": "P2"},
+        {"url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/47f943859bef60e4160492346772ded9b24f765a/docs/architecture.md", "source_type": "P1"}
+      ]
+    }
+  ],
+  "verification_commands": [
+    "git ls-remote https://github.com/cordiverse/paper.git HEAD",
+    "git ls-remote https://github.com/cordiverse/cordis.git HEAD",
+    "git ls-remote https://github.com/deepseek-ai/deepseek-harness.git HEAD",
+    "git ls-remote https://github.com/koishijs/koishi.git HEAD",
+    "npx --yes pdf-parse text /tmp/cordis-paper.pdf --pages 1-8",
+    "npx --yes pdf-parse text /tmp/cordis-paper.pdf --pages 54-73",
+    "npx --yes pdf-parse text /tmp/cordis-paper.pdf --pages 79-80"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-14--cordis",
+  "publication_kind": "special",
+  "decision": "publish-candidate",
+  "release_status": "approved-for-publication",
+  "article_path": "content/ai/2026-08-14--cordis/article.md",
+  "evidence_path": "decisions/ai/2026-08-14--cordis/evidence.json",
+  "artifact_hashes": {
+    "article_sha256": "2424cf3c09487c16a49fe2c024d503335d4d44251e09997fae5b4b11b425ec67",
+    "evidence_sha256": "9236954de7b504377491f5120a86e9a7690231c91339c032bf10fa6d1907f998"
+  },
+  "routes": [
+    "/ai/",
+    "/ai/2026-08-14/cordis/"
+  ],
+  "authorization": {
+    "mode": "human",
+    "approved": true,
+    "approved_at": "2026-08-14T22:11:22+09:00",
+    "approved_by": "편집자",
+    "approval_basis": "2026-08-14 대화에서 Cordis AI 특별판의 생성과 발행을 명시적으로 승인함",
+    "scope": [
+      "content/ai/2026-08-14--cordis/article.md",
+      "decisions/ai/2026-08-14--cordis/evidence.json",
+      "decisions/ai/2026-08-14--cordis/release.json"
+    ]
+  }
+}
