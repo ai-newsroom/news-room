@@ -4,8 +4,8 @@
   "publication_id": "2026-08-14--deepseek-v4-pro-0813",
   "publication_kind": "special",
   "date": "2026-08-14",
-  "subject": "DeepSeek-V4-Pro-0813 GA release, announced August 13, 2026",
-  "central_claim": "DeepSeek-V4-Pro-0813 is a publishable AI engineering topic because official DeepSeek GA, model/pricing and API guide documents, together with the public Hugging Face repository metadata, support a bounded E2 claim: the August 13 GA turns the V4 Pro preview into an agent-oriented API/product surface, while teams must separately track version aliasing, pricing and public weight status.",
+  "subject": "DeepSeek-V4-Pro-0813의 긴 문맥 구조와 에이전트 기술",
+  "central_claim": "DeepSeek-V4-Pro-0813 is technically significant not merely because it exposes a one-million-token context window, but because its hybrid compressed attention, tool-call reasoning continuity and adjustable test-time compute form an integrated architecture for long-horizon agent work; this is a bounded E2 interpretation of DeepSeek's official report and API documentation, not an independently reproduced performance conclusion.",
   "decision": "publish-candidate",
   "selection": {
     "importance": 2,
@@ -15,62 +15,50 @@
     "korean_reader_relevance": 1,
     "total": 9,
     "threshold": 7,
-    "reason": "The topic affects model/API selection, agent runtime integration, reproducibility logs and budget planning for SW engineering teams. It is a same-day GA release with official DeepSeek documentation and public Hugging Face metadata. Korean relevance is practical rather than local: teams in Korea need the KST price-change time and cost impact for hosted API workloads."
+    "reason": "The release provides a concrete architecture for making million-token context useful in long-horizon agents: compressed and sparse memory, persistent reasoning across tool calls, and task-dependent reasoning effort. Official documentation and a public technical report make the mechanisms inspectable, while the article bounds benchmark and production claims to vendor evidence."
   },
   "discovery_review": {
-    "brief_source": "editor-provided special brief in request turn",
+    "brief_source": "editor-requested revision of the published special article",
     "signals": [
       {
-        "channel": "editor-approved-special-brief",
-        "classification": "assigned topic",
-        "note": "The topic was fixed by the editor. Search and social signals were not used to replace the subject."
+        "channel": "editor-approved-special-revision",
+        "classification": "assigned revision",
+        "note": "The editor requested a rewrite centered on technical explanation, deep analysis and technological significance rather than version and pricing cautions."
       },
       {
         "channel": "deepseek-ga-release",
         "url": "https://api-docs.deepseek.com/news/news260813/",
         "classification": "P1 source path",
-        "note": "Official GA announcement confirms August 13, 2026 V4 Pro launch, Expert Mode availability, unchanged API model names, reasoning effort and Responses API/Codex positioning."
+        "note": "Official GA announcement confirms the August 13 release and positions reasoning effort and agent integration as product changes."
+      },
+      {
+        "channel": "deepseek-v4-technical-report",
+        "url": "https://arxiv.org/abs/2606.19348",
+        "classification": "P2 source path",
+        "note": "The project-authored public report describes CSA, HCA, mHC, Muon, reasoning-effort training, interleaved thinking, agent evaluation conditions and reported efficiency measurements."
+      },
+      {
+        "channel": "deepseek-thinking-mode",
+        "url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+        "classification": "P1 source path",
+        "note": "Official API guide confirms effort controls and the reasoning-content contract across tool calls."
       },
       {
         "channel": "deepseek-model-pricing",
         "url": "https://api-docs.deepseek.com/quick_start/pricing/",
         "classification": "P1 source path",
-        "note": "Official model/pricing page confirms model version DeepSeek-V4-Pro-0813, context/output limits, feature support and current/future prices."
+        "note": "Official model page confirms the 0813 service version, context/output limits and scheduled pricing."
       },
       {
-        "channel": "deepseek-thinking-mode",
-        "url": "https://api-docs.deepseek.com/guides/thinking_mode",
-        "classification": "P1 source path",
-        "note": "Official guide confirms thinking mode defaults and effort controls for OpenAI, Anthropic and Responses API formats."
-      },
-      {
-        "channel": "deepseek-responses-api",
-        "url": "https://api-docs.deepseek.com/guides/responses_api",
-        "classification": "P1 source path",
-        "note": "Official guide confirms Responses API support and its compatibility limits."
-      },
-      {
-        "channel": "deepseek-preview-release",
-        "url": "https://api-docs.deepseek.com/news/news260424/",
-        "classification": "P1 source path",
-        "note": "Official preview announcement confirms V4 preview, 1.6T/49B V4 Pro parameter statement, API names and open weights link."
-      },
-      {
-        "channel": "hugging-face-model",
+        "channel": "hugging-face-artifact",
         "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
         "classification": "P2 source path",
-        "note": "Public model repository confirms MIT license, safetensors files, README, model metadata and current sha."
-      },
-      {
-        "channel": "hugging-face-commits",
-        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/commits/main",
-        "classification": "P2 source path",
-        "note": "Hugging Face API commit list confirms the latest main commit is b5968e9190ef611bbf34a7229255be88a0e937c1 dated 2026-06-22 with title Update technical report."
+        "note": "Public project repository provides preview weights, implementation files and artifact metadata."
       }
     ],
     "alternatives": [
       {
-        "subject": "DeepSeek-V4-Pro-0813 GA",
+        "subject": "DeepSeek-V4-Pro-0813 long-context and agent architecture",
         "importance": 2,
         "novelty": 2,
         "verifiability": 2,
@@ -78,23 +66,24 @@
         "korean_reader_relevance": 1,
         "total": 9,
         "decision": "selected",
-        "reason": "The editor designated this subject. It clears the special-edition threshold with a bounded E2 central claim and more than two distinct primary source URLs."
+        "reason": "The editor designated the existing publication for revision. The technical mechanism and significance clear the special-edition threshold with multiple primary artifact URLs."
       }
     ]
   },
   "decision_reason_codes": [
-    "EDITOR_APPROVED_SPECIAL_TOPIC",
+    "EDITOR_APPROVED_SPECIAL_REVISION",
     "PRIMARY_SOURCES_VERIFIED",
     "CENTRAL_CLAIM_E2",
     "SELECTION_TOTAL_ABOVE_THRESHOLD",
     "MINIMUM_TWO_PRIMARY_URLS",
-    "VERSION_ALIAS_BOUNDARY_RECORDED",
-    "PUBLIC_WEIGHT_SCOPE_BOUNDED",
+    "TECHNICAL_MECHANISM_EXPLAINED",
+    "EDITORIAL_SIGNIFICANCE_BOUNDED",
     "NO_INDEPENDENT_BENCHMARK_CLAIM"
   ],
   "evidence_ceiling": "E2",
   "reproducibility": "R2",
   "observed_at": "2026-08-14T13:29:32Z",
+  "revised_at": "2026-08-14T14:18:00Z",
   "publication_actions": {
     "published": false,
     "committed": false,
@@ -112,29 +101,24 @@
   },
   "release_gate_notes": {
     "required_conditions_recorded": [
-      "request publication_id is 2026-08-14--deepseek-v4-pro-0813 and publication_kind is special",
-      "article frontmatter date uses publication_date 2026-08-14 and omits publication_id",
-      "article frontmatter includes publication_kind: special exactly once",
-      "article and evidence share subject, decision, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "publication id and route remain 2026-08-14--deepseek-v4-pro-0813",
+      "the editor explicitly requested and approved a technical-explanation-centered revision",
+      "article frontmatter includes publication_kind special and matches the evidence identity",
       "selection total is 9 with threshold 7",
-      "central claim has E2 evidence from official DeepSeek docs and public Hugging Face artifact metadata",
-      "central claims include more than two distinct primary source URLs",
-      "claim-source ledger records source type, evidence grade, version, access date, method, limitations and conflicts",
-      "conflict disclosure is present",
-      "article follows ai-technical-blog-v2 required sections and bounds DeepSeek performance as vendor claims rather than independent conclusions",
-      "materialization to content/ai and decisions/ai, release file creation, commit, push, deploy and public URL verification are delegated outside this candidate-generation turn"
+      "central technical claims have E2 support from the public DeepSeek technical report and official API documentation",
+      "central claims use more than two distinct primary artifact URLs",
+      "benchmark and efficiency results are identified as DeepSeek measurements rather than independent reproduction",
+      "version, pricing and public-weight boundaries remain recorded but are no longer the article's central narrative",
+      "article follows ai-technical-blog-v2 required sections"
     ],
     "blocked_steps_outside_this_turn": [
-      "materialize to content/ai and decisions/ai",
-      "create release.json",
-      "commit, push or deploy",
-      "public URL verification",
-      "post-publication retrospective",
-      "editions, docs, scripts, prompts, site, content, decisions or other-edition edits"
+      "commit, push or deploy before deterministic validation and full site tests",
+      "claim independent benchmark reproduction",
+      "treat the API-served 0813 version and preview public checkpoint as identical without evidence"
     ]
   },
   "conflicts": [
-    "DeepSeek official API docs and Hugging Face repository metadata are primary sources from DeepSeek or the project operator.",
+    "DeepSeek official API docs, technical report and Hugging Face repository are primary sources from DeepSeek or the project operator.",
     "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
     "Community naming signals such as DeepSeek-V4-Pro-0831 were used only as a verification question and not as evidence."
   ],
@@ -145,7 +129,23 @@
       "source_type": "P1",
       "owner": "DeepSeek",
       "version": "DeepSeek-V4-Pro GA Release, 2026-08-13; accessed 2026-08-14",
-      "notes": "Confirms GA announcement, Expert Mode availability, unchanged API model names, reasoning effort and Responses API/Codex positioning."
+      "notes": "Confirms GA timing, availability, reasoning effort and agent integration positioning."
+    },
+    {
+      "source_id": "deepseek-v4-technical-report",
+      "url": "https://arxiv.org/abs/2606.19348",
+      "source_type": "P2",
+      "owner": "DeepSeek-AI",
+      "version": "arXiv:2606.19348v1, submitted 2026-04-26; accessed 2026-08-14",
+      "notes": "Project-authored report for architecture, training, agent context management, evaluation setup and vendor-measured efficiency."
+    },
+    {
+      "source_id": "deepseek-thinking-mode",
+      "url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+      "source_type": "P1",
+      "owner": "DeepSeek",
+      "version": "Thinking Mode guide; accessed 2026-08-14",
+      "notes": "Confirms low/high/max mapping, default high effort and reasoning-content handling for tool calls."
     },
     {
       "source_id": "deepseek-pricing",
@@ -153,23 +153,7 @@
       "source_type": "P1",
       "owner": "DeepSeek",
       "version": "Models & Pricing page showing DeepSeek-V4-Pro-0813; accessed 2026-08-14",
-      "notes": "Confirms API model name, model version, context length, max output, feature matrix, current prices and scheduled peak/off-peak prices."
-    },
-    {
-      "source_id": "deepseek-thinking-mode",
-      "url": "https://api-docs.deepseek.com/guides/thinking_mode",
-      "source_type": "P1",
-      "owner": "DeepSeek",
-      "version": "Thinking Mode guide; accessed 2026-08-14",
-      "notes": "Confirms thinking mode default and reasoning effort controls across supported API formats."
-    },
-    {
-      "source_id": "deepseek-responses-api",
-      "url": "https://api-docs.deepseek.com/guides/responses_api",
-      "source_type": "P1",
-      "owner": "DeepSeek",
-      "version": "Using the Responses API guide; accessed 2026-08-14",
-      "notes": "Confirms Responses API base URL, Codex integration pointer, supported parameters and compatibility limitations."
+      "notes": "Confirms API model name, service version, context limits and current and scheduled prices."
     },
     {
       "source_id": "deepseek-preview-release",
@@ -177,152 +161,152 @@
       "source_type": "P1",
       "owner": "DeepSeek",
       "version": "DeepSeek V4 Preview Release, 2026-04-24; accessed 2026-08-14",
-      "notes": "Confirms preview release, V4 Pro parameter counts, 1M context and open weights link."
+      "notes": "Confirms V4 Pro parameter counts, 1M context and preview open-weight release."
     },
     {
       "source_id": "hf-model",
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
       "source_type": "P2",
       "owner": "deepseek-ai",
-      "version": "Model sha b5968e9190ef611bbf34a7229255be88a0e937c1; lastModified 2026-06-22T12:12:50.000Z; accessed 2026-08-14",
-      "notes": "Public model repository with MIT license, README, safetensors files, model metadata and technical report link."
+      "version": "Model sha b5968e9190ef611bbf34a7229255be88a0e937c1; accessed 2026-08-14",
+      "notes": "Public model repository with preview weights, inference code, model metadata and report reference."
     },
     {
       "source_id": "hf-commits",
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/commits/main",
       "source_type": "P2",
       "owner": "deepseek-ai",
-      "version": "Hugging Face commits API for main branch; latest commit b5968e9190ef611bbf34a7229255be88a0e937c1 dated 2026-06-22T12:12:50.000Z; accessed 2026-08-14",
-      "notes": "Commit history used to bound the claim that no August 13 GA/0813 checkpoint commit was visible on main at access time."
+      "version": "Latest visible main commit b5968e9190ef611bbf34a7229255be88a0e937c1 dated 2026-06-22; accessed 2026-08-14",
+      "notes": "Bounds the public-checkpoint claim: no August 13 GA or 0813 checkpoint commit was visible on main at access time."
     }
   ],
   "claims": [
     {
       "claim_id": "C1",
       "central": false,
-      "claim": "DeepSeek announced DeepSeek-V4-Pro GA on August 13, 2026 and made it available through app/web Expert Mode and API while keeping the API model name unchanged.",
-      "evidence_level": "E1",
+      "claim": "DeepSeek announced V4 Pro GA on August 13, 2026, and the official model page identifies the current service version as DeepSeek-V4-Pro-0813.",
+      "evidence_level": "E2",
       "source_url": "https://api-docs.deepseek.com/news/news260813/",
       "source_type": "P1",
-      "version": "DeepSeek-V4-Pro GA Release, 2026-08-13",
+      "version": "GA announcement and Models & Pricing page accessed 2026-08-14",
       "accessed_at": "2026-08-14",
       "direct_or_derived": "direct",
-      "method": "Opened the official DeepSeek GA announcement and read availability and model-name statements.",
-      "limitations": ["Confirms DeepSeek's announcement and product availability statement, not independent performance gains."],
-      "conflict_of_interest": ["DeepSeek official documentation is a vendor primary source."],
+      "method": "Read the official launch announcement and model details table.",
+      "limitations": ["Confirms the vendor's launch and version statement, not an independently pinned API endpoint."],
+      "conflict_of_interest": ["DeepSeek documentation is a vendor primary source."],
       "sources": [
-        {"url": "https://api-docs.deepseek.com/news/news260813/", "source_type": "P1"}
+        {"url": "https://api-docs.deepseek.com/news/news260813/", "source_type": "P1"},
+        {"url": "https://api-docs.deepseek.com/quick_start/pricing/", "source_type": "P1"}
       ]
     },
     {
       "claim_id": "C2",
       "central": true,
-      "claim": "The official model/pricing page separates API model name deepseek-v4-pro from model version DeepSeek-V4-Pro-0813.",
+      "claim": "DeepSeek-V4 combines Compressed Sparse Attention and Heavily Compressed Attention to reduce long-context compute and memory; the report measures V4 Pro at 27% of V3.2 single-token inference FLOPs and 10% of its KV cache at one million tokens.",
       "evidence_level": "E2",
-      "source_url": "https://api-docs.deepseek.com/quick_start/pricing/",
-      "source_type": "P1",
-      "version": "Models & Pricing page showing DeepSeek-V4-Pro-0813",
+      "source_url": "https://arxiv.org/abs/2606.19348",
+      "source_type": "P2",
+      "version": "arXiv:2606.19348v1",
       "accessed_at": "2026-08-14",
       "direct_or_derived": "direct",
-      "method": "Opened the official pricing/model page and read the model details table.",
-      "limitations": ["The page does not state that DeepSeek-V4-Pro-0813 is directly callable as a fixed-version endpoint."],
-      "conflict_of_interest": ["DeepSeek official documentation is a vendor primary source."],
+      "method": "Read the abstract and architecture Sections 2.3.1-2.3.4, including the CSA/HCA design and reported V3.2 comparison.",
+      "limitations": ["The efficiency values are DeepSeek's model-internal measurements and were not independently reproduced in this article."],
+      "conflict_of_interest": ["The technical report is authored by DeepSeek-AI."],
       "sources": [
-        {"url": "https://api-docs.deepseek.com/quick_start/pricing/", "source_type": "P1"},
-        {"url": "https://api-docs.deepseek.com/news/news260813/", "source_type": "P1"}
+        {"url": "https://arxiv.org/abs/2606.19348", "source_type": "P2"},
+        {"url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro", "source_type": "P2"}
       ]
     },
     {
       "claim_id": "C3",
       "central": true,
-      "claim": "DeepSeek-V4-Pro supports reasoning effort controls, Responses API, Anthropic API, JSON output, tool calls, 1M context length and a maximum 384K output according to official docs.",
+      "claim": "V4 uses mHC to constrain expanded residual mappings for signal stability and applies the Muon optimizer to most model modules while retaining AdamW for selected parameters.",
       "evidence_level": "E2",
-      "source_url": "https://api-docs.deepseek.com/quick_start/pricing/",
-      "source_type": "P1",
-      "version": "Models & Pricing, Thinking Mode and Responses API docs accessed 2026-08-14",
+      "source_url": "https://arxiv.org/abs/2606.19348",
+      "source_type": "P2",
+      "version": "arXiv:2606.19348v1",
       "accessed_at": "2026-08-14",
       "direct_or_derived": "direct",
-      "method": "Read official model details table, thinking mode guide and Responses API compatibility table.",
-      "limitations": ["Some Responses API fields are documented as partially supported or unsupported; article does not claim full OpenAI API parity."],
-      "conflict_of_interest": ["DeepSeek official documentation is a vendor primary source."],
+      "method": "Read architecture Sections 2.2 and 2.4 describing doubly stochastic residual mappings and optimizer allocation.",
+      "limitations": ["The report's training-stability rationale is project evidence and is not a user-configurable API feature."],
+      "conflict_of_interest": ["The technical report is authored by DeepSeek-AI."],
       "sources": [
-        {"url": "https://api-docs.deepseek.com/quick_start/pricing/", "source_type": "P1"},
-        {"url": "https://api-docs.deepseek.com/guides/thinking_mode", "source_type": "P1"},
-        {"url": "https://api-docs.deepseek.com/guides/responses_api", "source_type": "P1"}
+        {"url": "https://arxiv.org/abs/2606.19348", "source_type": "P2"},
+        {"url": "https://api-docs.deepseek.com/news/news260424/", "source_type": "P1"}
       ]
     },
     {
       "claim_id": "C4",
       "central": true,
-      "claim": "From August 16, 2026 16:00 UTC, official off-peak V4 Pro prices are still higher than current prices: cache-hit input about 6.1x, cache-miss input about 1.5x and output about 2.3x.",
+      "claim": "DeepSeek-V4 preserves reasoning state across tool-call rounds and exposes low, high and max reasoning effort; the report describes distinct specialist training configurations rather than a presentation-only length switch.",
       "evidence_level": "E2",
-      "source_url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "source_url": "https://api-docs.deepseek.com/guides/thinking_mode/",
       "source_type": "P1",
-      "version": "Models & Pricing page current and scheduled pricing tables accessed 2026-08-14",
+      "version": "Thinking Mode guide and arXiv:2606.19348v1 accessed 2026-08-14",
       "accessed_at": "2026-08-14",
-      "direct_or_derived": "derived",
-      "method": "Computed 0.022/0.003625 = 6.07, 0.66/0.435 = 1.52 and 1.98/0.87 = 2.28 from official per-1M-token tables. Converted 2026-08-16 16:00 UTC to 2026-08-17 01:00 KST.",
-      "limitations": ["Prices may vary; DeepSeek recommends checking the page for current pricing. Actual cost depends on cache hit rate and output tokens."],
-      "conflict_of_interest": ["DeepSeek official documentation is a vendor primary source."],
+      "direct_or_derived": "direct",
+      "method": "Read the API effort mapping and tool-call context rules, plus report Sections 5.1.1 and the Interleaved Thinking description.",
+      "limitations": ["Operational benefit depends on the agent runtime returning reasoning_content correctly and on workload-specific evaluation."],
+      "conflict_of_interest": ["Both sources are produced by DeepSeek."],
       "sources": [
-        {"url": "https://api-docs.deepseek.com/quick_start/pricing/", "source_type": "P1"}
+        {"url": "https://api-docs.deepseek.com/guides/thinking_mode/", "source_type": "P1"},
+        {"url": "https://arxiv.org/abs/2606.19348", "source_type": "P2"}
       ]
     },
     {
       "claim_id": "C5",
       "central": true,
-      "claim": "The April preview identified V4 Pro as a 1.6T total / 49B active parameter MoE model and linked technical report and open weights; this supports preview-weight availability, not GA 0813 weight identity.",
+      "claim": "The preview V4 Pro is described as a 1.6T-total, 49B-active MoE model pre-trained on more than 32T tokens.",
       "evidence_level": "E2",
-      "source_url": "https://api-docs.deepseek.com/news/news260424/",
-      "source_type": "P1",
-      "version": "DeepSeek V4 Preview Release, 2026-04-24; Hugging Face model sha b5968e9190ef611bbf34a7229255be88a0e937c1",
+      "source_url": "https://arxiv.org/abs/2606.19348",
+      "source_type": "P2",
+      "version": "arXiv:2606.19348v1 and preview announcement",
       "accessed_at": "2026-08-14",
       "direct_or_derived": "direct",
-      "method": "Read the official preview announcement and Hugging Face model README/metadata.",
-      "limitations": ["Preview announcement and public repository do not prove identity with the API-served DeepSeek-V4-Pro-0813 GA model."],
-      "conflict_of_interest": ["DeepSeek announcement and Hugging Face repository are project primary sources."],
+      "method": "Read the report abstract and official preview announcement.",
+      "limitations": ["These are project-reported model and training figures for the preview artifact."],
+      "conflict_of_interest": ["Both sources are produced by DeepSeek."],
       "sources": [
-        {"url": "https://api-docs.deepseek.com/news/news260424/", "source_type": "P1"},
-        {"url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro", "source_type": "P2"}
+        {"url": "https://arxiv.org/abs/2606.19348", "source_type": "P2"},
+        {"url": "https://api-docs.deepseek.com/news/news260424/", "source_type": "P1"}
       ]
     },
     {
       "claim_id": "C6",
       "central": true,
-      "claim": "The Hugging Face deepseek-ai/DeepSeek-V4-Pro main branch latest visible commit is b5968e9190ef611bbf34a7229255be88a0e937c1 on 2026-06-22 titled Update technical report; no August 13 GA or 0813 checkpoint commit was visible at access time.",
+      "claim": "The editorial significance is that compressed long-context memory, continued reasoning through tools and adjustable test-time compute form a coherent design for long-horizon agents.",
       "evidence_level": "E2",
-      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/commits/main",
+      "source_url": "https://arxiv.org/abs/2606.19348",
       "source_type": "P2",
-      "version": "Hugging Face commits API and model API accessed 2026-08-14",
+      "version": "Derived from C2-C5 using sources accessed 2026-08-14",
       "accessed_at": "2026-08-14",
-      "direct_or_derived": "direct",
-      "method": "Queried Hugging Face model API and commits API; compared latest commit date/title with GA date and checked model sha/lastModified.",
-      "limitations": ["Only the public Hugging Face main branch and model metadata were checked; private artifacts or separate repositories are outside the claim."],
-      "conflict_of_interest": ["Hugging Face repository metadata is a project primary artifact surface."],
+      "direct_or_derived": "derived",
+      "method": "Derived a bounded architectural interpretation by connecting the report's attention design, agent context management and reasoning-effort training with the GA API surface.",
+      "limitations": ["This is an editorial interpretation of the design direction, not an independently measured claim that V4 Pro wins across all agent runtimes."],
+      "conflict_of_interest": ["The source bundle is primarily DeepSeek/project material; no independent benchmark was run."],
       "sources": [
-        {"url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro", "source_type": "P2"},
-        {"url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/commits/main", "source_type": "P2"}
+        {"url": "https://arxiv.org/abs/2606.19348", "source_type": "P2"},
+        {"url": "https://api-docs.deepseek.com/guides/thinking_mode/", "source_type": "P1"},
+        {"url": "https://api-docs.deepseek.com/news/news260813/", "source_type": "P1"}
       ]
     },
     {
       "claim_id": "C7",
-      "central": true,
-      "claim": "The editorial conclusion is that the GA matters for agent-oriented API operation, while teams must log version evidence, runtime settings, pricing assumptions and public-weight scope separately.",
+      "central": false,
+      "claim": "The preview public weights are visible, but no August 13 GA or 0813 checkpoint commit was visible on the public main branch at access time; scheduled off-peak pricing is higher than the previous price table.",
       "evidence_level": "E2",
-      "source_url": "https://api-docs.deepseek.com/quick_start/pricing/",
-      "source_type": "P1",
-      "version": "Derived from C1-C6 using official docs and public artifact metadata accessed 2026-08-14",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/commits/main",
+      "source_type": "P2",
+      "version": "Hugging Face main at b5968e9190ef611bbf34a7229255be88a0e937c1 and pricing page accessed 2026-08-14",
       "accessed_at": "2026-08-14",
-      "direct_or_derived": "derived",
-      "method": "Derived editorial judgment from official GA availability, model/pricing/version tables, API guide compatibility limits and public repository commit metadata.",
-      "limitations": ["Does not claim independent benchmark superiority, fixed-version endpoint availability or GA checkpoint publication."],
-      "conflict_of_interest": ["Source bundle is primarily DeepSeek/project documentation; no independent benchmark was used."],
+      "direct_or_derived": "direct-and-derived",
+      "method": "Compared public repository commit history with the GA date and compared current and scheduled official token prices.",
+      "limitations": ["Public repository and pricing state may change after publication."],
+      "conflict_of_interest": ["The artifact and price surfaces are maintained by the project/vendor."],
       "sources": [
-        {"url": "https://api-docs.deepseek.com/news/news260813/", "source_type": "P1"},
-        {"url": "https://api-docs.deepseek.com/quick_start/pricing/", "source_type": "P1"},
-        {"url": "https://api-docs.deepseek.com/guides/thinking_mode", "source_type": "P1"},
-        {"url": "https://api-docs.deepseek.com/guides/responses_api", "source_type": "P1"},
-        {"url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/commits/main", "source_type": "P2"}
+        {"url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro", "source_type": "P2"},
+        {"url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/commits/main", "source_type": "P2"},
+        {"url": "https://api-docs.deepseek.com/quick_start/pricing/", "source_type": "P1"}
       ]
     }
   ],
@@ -330,11 +314,11 @@
     "minimum_two_primary_urls": true,
     "central_claim_e2_or_higher": true,
     "selection_total_at_least_threshold": true,
+    "technical_mechanism_explained": true,
+    "editorial_significance_bounded": true,
     "version_identified": true,
-    "api_alias_not_treated_as_fixed_endpoint": true,
     "public_weights_scope_bounded": true,
     "benchmark_superiority_not_asserted": true,
-    "korean_time_conversion_recorded": true,
     "conflicts_recorded": true
   }
 }

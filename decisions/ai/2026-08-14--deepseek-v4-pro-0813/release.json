@@ -8,8 +8,8 @@
   "article_path": "content/ai/2026-08-14--deepseek-v4-pro-0813/article.md",
   "evidence_path": "decisions/ai/2026-08-14--deepseek-v4-pro-0813/evidence.json",
   "artifact_hashes": {
-    "article_sha256": "09a22deb4b612bc8bf4b0054ceddf5e7bc414e3e0b91fad665200d4c5b486197",
-    "evidence_sha256": "76e75ad382beeaa4f4dd7cbe3fe2eeb5e21d19daa974337a1f27d9170a5578f8"
+    "article_sha256": "4efabcc74b0a1881a51f5484b4e0a035c0f14b438d58bfe8911e61f70d6a8fec",
+    "evidence_sha256": "4aa6ab47d27366ad3fed64c07726412c82ffb336a288fbff345342dff72cec8c"
   },
   "routes": [
     "/ai/",
@@ -18,9 +18,9 @@
   "authorization": {
     "mode": "human",
     "approved": true,
-    "approved_at": "2026-08-14T22:35:01+09:00",
+    "approved_at": "2026-08-14T23:19:57+09:00",
     "approved_by": "편집자",
-    "approval_basis": "2026-08-14 대화에서 DeepSeek V4 Pro 업데이트 특별판의 생성과 발행을 명시적으로 요청함",
+    "approval_basis": "2026-08-14 대화에서 DeepSeek V4 Pro 기사를 기술 설명·심층 분석·기술적 의의 중심으로 재작성해 업데이트할 것을 명시적으로 요청함",
     "scope": [
       "content/ai/2026-08-14--deepseek-v4-pro-0813/article.md",
       "decisions/ai/2026-08-14--deepseek-v4-pro-0813/evidence.json",
