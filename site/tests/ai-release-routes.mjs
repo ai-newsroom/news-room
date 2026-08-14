@@ -16,6 +16,15 @@ const releaseIds = (await readdir(decisionsRoot, { withFileTypes: true }))
   .map((entry) => entry.name)
   .sort();
 const approved = [];
+function htmlText(value) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
 function publicPath(id, kind) {
   if (kind === 'regular' || kind === undefined) return id;
   const [date, slug] = id.split('--', 2);
@@ -65,9 +74,9 @@ const landing = await readFile(join(distRoot, 'ai', 'index.html'), 'utf8');
 const legacyHome = await readFile(join(distRoot, 'index.html'), 'utf8');
 for (const { id, publicPath: routePath, release, source, title } of approved) {
   const article = await readFile(join(distRoot, 'ai', routePath, 'index.html'), 'utf8');
-  assert.ok(landing.includes(title));
+  assert.ok(landing.includes(htmlText(title)));
   assert.ok(landing.includes(`href="/news-room/ai/${routePath}/"`));
-  assert.ok(article.includes(title));
+  assert.ok(article.includes(htmlText(title)));
   assert.ok(article.includes('SW 엔지니어를 위한 판단'));
   assert.ok(article.includes('이 공개의 의의와 편집 판단'));
   assert.ok(article.includes('편집 판단:'));
