@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-15",
+  "date": "2026-08-15",
+  "subject": "Z.ai GLM-5.3, 2026-08-14 release",
+  "central_claim": "Z.ai's 2026-08-14 GLM-5.3 release is technically significant because it frames the model improvement as post-training scaling over the same GLM-5.2 base model: larger executable long-horizon task environments, verifier and reward-shortcut controls, reasoning-effort API changes, and emergent cyber capability led Z.ai to delay public weights for safety evaluation and hardening. This is an E2 bounded explanation of Z.ai's primary sources, not an independent benchmark superiority claim.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The release affects concrete SW engineering choices for coding agents, security automation, reasoning-effort configuration and self-hosting plans. It is a same-day model release with official blog, developer docs, product changelog, public security ledger and related repository/registry context. The central claim is bounded to E2 technical evidence and avoids independent performance ranking."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "zai-official-blog",
+        "url": "https://z.ai/blog/glm-5.3",
+        "classification": "P1 source path",
+        "note": "Opened the official GLM-5.3 blog. The static HTML shell loads a JavaScript bundle; the bundle contained the 2026-08-14 title, post-training explanation, benchmark table, API changes, GLM Coding Plan/ZCode notes and weight-delay statement."
+      },
+      {
+        "channel": "zai-official-blog-bundle",
+        "url": "https://z.ai/blog/assets/glm-5.3-BCnx8T5_.js",
+        "classification": "P1 captured source path",
+        "note": "Fetched the blog bundle directly. At access time it was 30,377 bytes with SHA-256 2a7089d24c9dbc8c69049b3dc26b6f4e69e613fe19fd02142285b7502f037e01."
+      },
+      {
+        "channel": "zai-developer-doc",
+        "url": "https://docs.z.ai/guides/llm/glm-5.3",
+        "classification": "P1 source path",
+        "note": "Opened the official developer document. It records that GLM-5.3 API is coming soon, GLM-5.3 is available to GLM Coding Plan users, text/text modality, 1M context, 128K maximum output, capability list and benchmark summary."
+      },
+      {
+        "channel": "zai-security-ledger",
+        "url": "https://cvd.z.ai/",
+        "classification": "P1 source path",
+        "note": "Opened Z.ai Security Disclosure Ledger. The page exposes public stats: 2,436 findings, 53 public, 2,383 under embargo, 1,097 critical/high, 269 open-source projects and 45 years impact span."
+      },
+      {
+        "channel": "zcode-changelog",
+        "url": "https://zcode.z.ai/en/changelog",
+        "classification": "P1 source path",
+        "note": "Opened ZCode changelog. The 2026-08-14 v3.7.7 release notes list reasoning-effort related fixes for automated tasks, repository knowledge-base generation and automatic git commit message generation."
+      },
+      {
+        "channel": "glm-5-github-and-hf",
+        "url": "https://github.com/zai-org/GLM-5",
+        "classification": "P1/P2 context path",
+        "note": "Opened the GLM-5 GitHub repository and Hugging Face registry for series context. The current public registry at access time exposed GLM-5/5.1/5.2 artifacts but not GLM-5.3 weights, consistent with the announced delay."
+      },
+      {
+        "channel": "google-official-surface",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Opened Gemini API changelog. Gemini 3.7 Flash GA was a strong recent model release, but it was already selected for the 2026-08-14 AI regular edition and was not selected again."
+      },
+      {
+        "channel": "openai-official-surface",
+        "url": "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/",
+        "classification": "P0/P1 alternative review",
+        "note": "Opened OpenAI Daybreak/GPT-5.6-Cyber post and Ultrafast preview post. Both are material but older or narrower than the same-day Z.ai GLM-5.3 release for this slot."
+      },
+      {
+        "channel": "anthropic-official-release-notes",
+        "url": "https://docs.anthropic.com/en/release-notes/api",
+        "classification": "P1 discovery review",
+        "note": "Opened Claude Platform release notes. No same-day Anthropic model/API release stronger than GLM-5.3 was found."
+      },
+      {
+        "channel": "qwen-deepseek-mistral-frontier-review",
+        "classification": "S2 discovery until primary source opened",
+        "note": "Used search results only as discovery signals for Qwen, DeepSeek, Mistral and other frontier/tool releases. Article facts are based on opened primary sources, not search snippets or social posts."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Z.ai GLM-5.3 post-training and cyber-capability release",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is a same-day official model release with multiple opened primary URLs. It changes developer evaluation questions around post-training task environments, reasoning-effort API behavior, agent runtime migration and security use controls while permitting an E2 bounded claim without independent benchmark ranking."
+      },
+      {
+        "subject": "Google Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Strong official release with model card and evaluation methodology, but it was already covered by the 2026-08-14 AI regular edition. Reusing it would create editorial duplication."
+      },
+      {
+        "subject": "OpenAI GPT-5.6-Cyber and Daybreak Blue/Red",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "OpenAI's August 10 official post is highly relevant to authorized cyber-defense workflows, but it is older than GLM-5.3 and access is restricted to approved Daybreak users. It remains an alternative for a security-specialized article if system card or more concrete access documentation appears."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Sol Ultrafast limited preview",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official post documents a meaningful low-latency inference tier powered by Cerebras, but it is limited preview for select customers and the 14x/750 output-token-per-second claim is vendor-published. It was less suitable than a same-day model release with broader technical explanation."
+      },
+      {
+        "subject": "ZCode v3.7.7 reasoning-effort fixes",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The August 14 ZCode changelog is official and same-day, but it is a supporting tool release rather than a stronger standalone story than the GLM-5.3 model release. It is used as contextual evidence for reasoning-effort integration."
+      },
+      {
+        "subject": "Anthropic Claude Platform release notes",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Official notes were checked, but no same-day model/API release was visible that would outrank GLM-5.3 for this slot."
+      },
+      {
+        "subject": "Qwen 3.8-Max and Qwen official surfaces",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Qwen remains important as a non-US frontier/open-weight source, and official blog/model registry paths were included in discovery. The visible Qwen 3.8-Max release was August 2, 2026, older than the same-day GLM-5.3 candidate."
+      },
+      {
+        "subject": "DeepSeek official model and GitHub surfaces",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "DeepSeek V4-Pro and Harness were already covered by recent regular and special AI editions. No stronger new DeepSeek artifact was found for the 2026-08-15 slot."
+      },
+      {
+        "subject": "Mistral official changelog",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Mistral's official changelog was included in discovery, but no same-day model or developer-tool release with stronger source support was identified."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "PERFORMANCE_CLAIMS_VENDOR_AUTHORED",
+    "NO_LOCAL_EXECUTION",
+    "NO_PUBLIC_GLM_5_3_WEIGHTS_AT_ACCESS_TIME"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-14T22:09:26Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-15 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official Z.ai blog, developer documentation, ZCode changelog, Security Disclosure Ledger and public GLM-5 repository/registry context",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-15 and decisions/ai/2026-08-15",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Z.ai is the author and operator of the GLM-5.3 blog, developer document, ZCode changelog and Security Disclosure Ledger used as primary sources.",
+    "The GLM-5 GitHub repository and Hugging Face registry are operated by zai-org and provide project-controlled context, not independent verification.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and X/social signals were used only for discovery and are not used as article facts."
+  ],
+  "sources": [
+    {
+      "source_id": "zai-glm-5-3-blog",
+      "url": "https://z.ai/blog/glm-5.3",
+      "source_type": "P1",
+      "owner": "Z.ai",
+      "version": "GLM-5.3: Frontier Coding with Emergent Cyber Capabilities, date 2026-08-14; accessed 2026-08-14",
+      "notes": "Official release page shell. Content was verified through the loaded JavaScript bundle."
+    },
+    {
+      "source_id": "zai-glm-5-3-blog-js",
+      "url": "https://z.ai/blog/assets/glm-5.3-BCnx8T5_.js",
+      "source_type": "P1",
+      "owner": "Z.ai",
+      "version": "30,377 bytes; SHA-256 2a7089d24c9dbc8c69049b3dc26b6f4e69e613fe19fd02142285b7502f037e01; accessed 2026-08-14",
+      "notes": "Rendered article content, benchmark table, API changes, footnotes and outbound links."
+    },
+    {
+      "source_id": "zai-glm-5-3-developer-doc",
+      "url": "https://docs.z.ai/guides/llm/glm-5.3",
+      "source_type": "P1",
+      "owner": "Z.ai",
+      "version": "GLM-5.3 developer document; 282,059 bytes; SHA-256 09b8d54e9b8da186b79d4909a88b7c7eba2b2737b48943fe3dcda0eaa0dc5826; accessed 2026-08-14",
+      "notes": "Documents API coming soon, GLM Coding Plan availability, model positioning, modalities, 1M context, 128K output and selected benchmark deltas."
+    },
+    {
+      "source_id": "zai-security-disclosure-ledger",
+      "url": "https://cvd.z.ai/",
+      "source_type": "P1",
+      "owner": "Z.ai",
+      "version": "Z.ai Security Disclosure Ledger; 58,241 bytes; SHA-256 b4b97bada65a947c8b8bb804037cc85dd41c44f24f3067f0dbea30c8699a1a3d; accessed 2026-08-14",
+      "notes": "Public stats and recent disclosed findings used to bound cyber-capability discussion."
+    },
+    {
+      "source_id": "zcode-changelog",
+      "url": "https://zcode.z.ai/en/changelog",
+      "source_type": "P1",
+      "owner": "Z.ai",
+      "version": "ZCode v3.7.7 released 2026-08-14; accessed 2026-08-14",
+      "notes": "Same-day tool changelog listing reasoning-effort related fixes."
+    },
+    {
+      "source_id": "glm-5-github",
+      "url": "https://github.com/zai-org/GLM-5",
+      "source_type": "P2",
+      "owner": "zai-org",
+      "version": "repository main commit 25206af860c4ac10f6411c597c574f9b1c00e53c; commit date 2026-08-11T06:36:33Z; accessed 2026-08-14",
+      "notes": "Public GLM-5 series repository used for context and to confirm no GLM-5.3 source/weight release in this repository at access time."
+    },
+    {
+      "source_id": "glm-5-huggingface",
+      "url": "https://huggingface.co/zai-org/GLM-5",
+      "source_type": "P2",
+      "owner": "zai-org",
+      "version": "model sha c183ef8c61faee82855eca1ed9bb3a9a7ce3b0b2; lastModified 2026-08-11T07:36:34Z; accessed 2026-08-14",
+      "notes": "Public registry context for the GLM-5 series. It does not provide GLM-5.3 weights at access time."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "claim": "Z.ai released GLM-5.3 on 2026-08-14 and described it as using the same base model as GLM-5.2, with gains coming from post-training.",
+      "evidence_level": "E2",
+      "source_url": "https://z.ai/blog/glm-5.3",
+      "source_type": "P1",
+      "version": "GLM-5.3 blog and JS bundle accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read official blog rendered content from the JavaScript bundle and the developer documentation overview.",
+      "limitations": [
+        "Confirms Z.ai's release statement and technical framing, not independent performance or training-data verification."
+      ],
+      "conflict_of_interest": [
+        "Z.ai is the model developer and source author."
+      ],
+      "sources": [
+        {
+          "url": "https://z.ai/blog/glm-5.3",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://docs.z.ai/guides/llm/glm-5.3",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "claim": "The GLM-5.3 post-training explanation centers on executable and verifiable long-horizon task environments, synthesized verifiers, solver trajectories and reward-shortcut controls.",
+      "evidence_level": "E2",
+      "source_url": "https://z.ai/blog/assets/glm-5.3-BCnx8T5_.js",
+      "source_type": "P1",
+      "version": "GLM-5.3 blog bundle SHA-256 2a7089d24c9dbc8c69049b3dc26b6f4e69e613fe19fd02142285b7502f037e01",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read the Stronger Coding section describing real workflow environments, verifier synthesis without reference solution access, solver trajectories and reward shortcuts.",
+      "limitations": [
+        "The full task environment corpus, verifier code, reward models and training logs are not public."
+      ],
+      "conflict_of_interest": [
+        "Z.ai is the model developer and source author."
+      ],
+      "sources": [
+        {
+          "url": "https://z.ai/blog/assets/glm-5.3-BCnx8T5_.js",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "claim": "GLM-5.3 supports reasoning_effort values low, high and max, defaults to max, and no longer supports thinking.type disabled.",
+      "evidence_level": "E2",
+      "source_url": "https://docs.z.ai/guides/llm/glm-5.3",
+      "source_type": "P1",
+      "version": "GLM-5.3 developer document accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read API changes in the official blog and developer documentation.",
+      "limitations": [
+        "General GLM-5.3 API was marked coming soon at access time, so request behavior was not executed."
+      ],
+      "conflict_of_interest": [
+        "Z.ai is the API provider and source author."
+      ],
+      "sources": [
+        {
+          "url": "https://z.ai/blog/glm-5.3",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://docs.z.ai/guides/llm/glm-5.3",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": true,
+      "claim": "Z.ai says GLM-5.3 is available to GLM Coding Plan users and usable in coding agents such as ZCode, Claude Code and OpenCode, while the general GLM-5.3 API is marked coming soon.",
+      "evidence_level": "E2",
+      "source_url": "https://docs.z.ai/guides/llm/glm-5.3",
+      "source_type": "P1",
+      "version": "GLM-5.3 developer document and blog accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read the Tip, Getting started and GLM Coding Plan sections.",
+      "limitations": [
+        "Access conditions, regions, quotas and billing are not independently tested."
+      ],
+      "conflict_of_interest": [
+        "Z.ai is the service provider and source author."
+      ],
+      "sources": [
+        {
+          "url": "https://docs.z.ai/guides/llm/glm-5.3",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://z.ai/blog/glm-5.3",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": true,
+      "claim": "Z.ai says GLM-5.3 public weights will be released about two weeks after launch, after safety evaluation and hardening are complete.",
+      "evidence_level": "E2",
+      "source_url": "https://z.ai/blog/glm-5.3",
+      "source_type": "P1",
+      "version": "GLM-5.3 blog and developer document accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read the Open Source and Serve GLM-5.3 Locally sections.",
+      "limitations": [
+        "No GLM-5.3 checkpoint, file hash, license text or serving instructions were public at access time."
+      ],
+      "conflict_of_interest": [
+        "Z.ai is the model developer and source author."
+      ],
+      "sources": [
+        {
+          "url": "https://z.ai/blog/glm-5.3",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://docs.z.ai/guides/llm/glm-5.3",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://huggingface.co/zai-org/GLM-5",
+          "source_type": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "central": false,
+      "claim": "Z.ai's public Security Disclosure Ledger showed 2,436 findings, 53 public, 2,383 under embargo, 1,097 critical/high and 269 open-source projects at access time.",
+      "evidence_level": "E2",
+      "source_url": "https://cvd.z.ai/",
+      "source_type": "P1",
+      "version": "Z.ai Security Disclosure Ledger accessed 2026-08-14; SHA-256 b4b97bada65a947c8b8bb804037cc85dd41c44f24f3067f0dbea30c8699a1a3d",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read the ledger page's initial stats embedded in the HTML/Next data.",
+      "limitations": [
+        "The ledger is Z.ai-operated; embargoed items and attribution to GLM-5.3 specifically are not independently verified."
+      ],
+      "conflict_of_interest": [
+        "Z.ai operates the disclosure ledger."
+      ],
+      "sources": [
+        {
+          "url": "https://cvd.z.ai/",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "central": true,
+      "claim": "The article treats GLM-5.3 benchmark and cyber scores as Z.ai self-reported results rather than independent superiority evidence.",
+      "evidence_level": "E2",
+      "source_url": "https://z.ai/blog/glm-5.3",
+      "source_type": "P1",
+      "version": "GLM-5.3 blog footnotes accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "derived",
+      "method": "Derived from C1-C6 and the absence of editor-run API/weight reproduction or independent benchmark source for the central comparison claims.",
+      "limitations": [
+        "Does not dispute Z.ai's reported numbers; only bounds the evidence level for editorial conclusions."
+      ],
+      "conflict_of_interest": [
+        "Z.ai authored the benchmark disclosures."
+      ],
+      "sources": [
+        {
+          "url": "https://z.ai/blog/assets/glm-5.3-BCnx8T5_.js",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://docs.z.ai/guides/llm/glm-5.3",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "central": false,
+      "claim": "ZCode v3.7.7 was released on 2026-08-14 and fixed several reasoning-effort related issues in automated tasks, repository knowledge-base generation and automatic git commit message generation.",
+      "evidence_level": "E1",
+      "source_url": "https://zcode.z.ai/en/changelog",
+      "source_type": "P1",
+      "version": "ZCode changelog v3.7.7 released 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read the v3.7.7 changelog entry.",
+      "limitations": [
+        "Supports product-context discovery only; the article does not claim ZCode performance improvements."
+      ],
+      "conflict_of_interest": [
+        "Z.ai operates ZCode and authored the changelog."
+      ],
+      "sources": [
+        {
+          "url": "https://zcode.z.ai/en/changelog",
+          "source_type": "P1"
+        }
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "state": "R1",
+    "reason": "The official blog and developer docs describe methods and evaluation conditions, but GLM-5.3 public weights were not available at access time and the general API page was marked coming soon. No editor-run benchmark or API execution was performed.",
+    "not_reproduced": [
+      "Terminal-Bench 3.0",
+      "DeepSWE v1.1",
+      "Agents' Last Exam",
+      "CyberGym",
+      "ExploitGym",
+      "ExploitBench",
+      "Z.ai Code Bench",
+      "ZCode behavior"
+    ],
+    "possible_future_recheck": [
+      "GLM-5.3 weight release with checkpoint hash and license",
+      "public API model ID and pricing documentation",
+      "independent benchmark run with matching harness, timeout, context, tool and budget settings",
+      "public safety/system card or release hardening notes"
+    ]
+  }
+}
