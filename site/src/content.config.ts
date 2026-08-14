@@ -73,6 +73,20 @@ const aiReleases = defineCollection({
         checks: z.array(z.string()).min(5),
       }).strict(),
     ]),
+    editorial_brief_alignment: z.object({
+      requested_angle: z.string(),
+      required_focus_terms: z.array(z.string()).min(2).max(8),
+      secondary_terms: z.array(z.string()).max(8),
+      checked_targets: z.tuple([
+        z.literal('title'),
+        z.literal('summary'),
+        z.literal('lead'),
+        z.literal('central_claim'),
+      ]),
+      focus_hits: z.number().int().nonnegative(),
+      secondary_hits: z.number().int().nonnegative(),
+      status: z.literal('passed'),
+    }).strict().optional(),
   }).strict(),
 });
 

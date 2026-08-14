@@ -64,11 +64,9 @@ for (const { id, release, source, title } of approved) {
   assert.ok(landing.includes(title));
   assert.ok(landing.includes(`href="/news-room/eda/${id}/"`));
   assert.ok(article.includes(title));
-  assert.ok(article.includes('EDA 엔지니어를 위한 판단'));
-  assert.ok(article.includes('확인된 것과 확인되지 않은 것'));
-  assert.ok(article.includes('이 공개의 의의와 편집 판단'));
-  assert.ok(article.includes('편집 판단:'));
-  assert.ok(article.includes('이해상충과 취재 조건'));
+  for (const requiredAppendix of ['이해상충과 취재 조건', '근거 원장', '출처']) {
+    assert.ok(article.includes(requiredAppendix), `missing ${requiredAppendix}: ${id}`);
+  }
   assert.ok(article.includes(`발행 ID ${id}`));
   const label = release.authorization.mode === 'automatic'
     ? '자동 출고 검증 완료'
