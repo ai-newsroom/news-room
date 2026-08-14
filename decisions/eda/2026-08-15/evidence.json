@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-15",
+  "date": "2026-08-15",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-15-sequential/20260814T221803Z-939637/staged-content/article.md",
+  "central_claim": "Siemens Calibre Vision AI의 2026 공개 자료는 DRC debug flow를 full-chip DRC 완료 후 batch 분석에서 OASIS 결과의 incremental loading과 AI-guided Signal/Signature triage를 쓰는 real-time collaborative closure로 옮기려는 구체적 workflow 변화를 보여 준다.",
+  "subject": "Siemens Calibre Vision AI의 2026 real-time DRC debug workflow",
+  "title": "Calibre Vision AI는 DRC 디버그를 완료 대기에서 실시간 triage로 옮깁니다",
+  "summary": "Siemens는 Calibre Vision AI가 OASIS 결과를 점진적으로 읽고 AI-guided Signal grouping으로 DRC 오류를 묶어, full-chip DRC가 끝나기 전부터 디버그와 handoff를 시작하게 한다고 설명했습니다. 다만 시간 단축과 수렴 개선은 벤더 문서 범위에 머물며 독립 재현은 확인하지 못했습니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "중심 근거는 Siemens EDA가 자기 Calibre Vision AI 제품을 설명한 공식 블로그, white paper, technical paper, fact sheet입니다.",
+    "편집국은 Calibre Vision AI 라이선스, foundry rule deck, 실제 advanced-node SoC DRC 결과 데이터에 접근하지 못해 제품 성능을 재실행하지 않았습니다."
+  ],
+  "selection": {
+    "total": 8,
+    "threshold": 7
+  },
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 1,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 8,
+    "rationale": "Advanced-node physical verification의 DRC debug 대기와 triage 병목을 직접 다룬다. 2025년 instance-complete AI-guided triage에서 2026년 real-time collaborative closure로의 변화가 Siemens white paper에 명시됐다. 다만 실제 design, node, rule deck, 서버, grouping 정확도, wall-clock 개선 수치는 공개되지 않아 조건 공개와 재현성 점수는 제한했다."
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "source_urls": [
+    "https://blogs.sw.siemens.com/calibre/2026/08/05/calibre-vision-ai-turns-billions-of-drc-errors-into-actionable-insights/",
+    "https://resources.sw.siemens.com/en-US/white-paper-from-billions-of-violations-to-actionable-insights-calibre-vision-ai/",
+    "https://resources.sw.siemens.com/en-US/technical-paper-calibre-vision-ai-a-revolution-in-chip-level-drc-debug-using-ai-guided/",
+    "https://resources.sw.siemens.com/en-US/fact-sheet-calibre-vision-ai/"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Siemens는 2026년 Calibre Vision AI를 real-time, collaborative DRC closure 환경으로 설명하며 incremental OASIS loading, Signal grouping, filtering, save/export를 주요 기능으로 제시했다.",
+      "source_url": "https://resources.sw.siemens.com/en-US/white-paper-from-billions-of-violations-to-actionable-insights-calibre-vision-ai/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Siemens white paper page accessed 2026-08-14; Calibre Vision AI 2026 described as evolved platform",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Siemens white paper landing text was checked for listed capabilities and 2026 evolution statement.",
+      "limitations": [
+        "Vendor-authored source",
+        "No customer design, node, rule deck, runtime hardware, or failure distribution disclosed on the public page"
+      ],
+      "conflict_of_interest": [
+        "Siemens EDA sells Calibre Vision AI"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Calibre Vision AI는 Calibre nmDRC run이 진행되는 동안 OASIS results database를 점진적으로 읽어 violation review를 시작하게 한다.",
+      "source_url": "https://blogs.sw.siemens.com/calibre/2026/08/05/calibre-vision-ai-turns-billions-of-drc-errors-into-actionable-insights/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Siemens EDA blog post dated 2026-08-05",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Blog section on real-time incremental results loading was checked against the white paper and technical paper pages.",
+      "limitations": [
+        "Vendor-authored source",
+        "Does not publish a reproducible DRC run or database sample"
+      ],
+      "conflict_of_interest": [
+        "Siemens EDA sells Calibre nmDRC and Calibre Vision AI"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Signal과 Signature는 개별 DRC violation을 root-cause 후보 단위로 묶어 triage와 handoff를 돕는 계층이다.",
+      "source_url": "https://resources.sw.siemens.com/en-US/fact-sheet-calibre-vision-ai/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Siemens fact sheet page accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Fact sheet description of Signals was cross-checked with Siemens blog sections on AI-guided Signal grouping and Signatures.",
+      "limitations": [
+        "No grouping accuracy, false grouping, or missed systemic issue rate disclosed",
+        "No independent comparison with manual scripts or other DRC viewers"
+      ],
+      "conflict_of_interest": [
+        "Siemens EDA sells Calibre Vision AI"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Calibre Vision AI가 실제 SoC에서 DRC iteration 시간을 얼마나 줄이고 다른 tool보다 우월한지.",
+      "source_url": "unavailable",
+      "source_type": "unavailable",
+      "evidence_grade": "E0",
+      "version": "No public independent benchmark found during this run",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Looked for independent benchmark or customer log with same design/rule deck conditions; none was used as article fact.",
+      "limitations": [
+        "Performance and superiority claims remain vendor claims unless comparable public logs are disclosed"
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://resources.sw.siemens.com/en-US/white-paper-from-billions-of-violations-to-actionable-insights-calibre-vision-ai/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://blogs.sw.siemens.com/calibre/2026/08/05/calibre-vision-ai-turns-billions-of-drc-errors-into-actionable-insights/",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "reproducibility_assessment": {
+    "status": "R1",
+    "reason": "Public Siemens documents explain the workflow and named capabilities, but reproducing the central performance effects requires licensed Calibre Vision AI, Calibre nmDRC, foundry rule decks, and real DRC result databases. No executable public artifact or benchmark log was found.",
+    "what_is_public": [
+      "Official Siemens blog post",
+      "Official Siemens white paper landing page",
+      "Official Siemens technical paper landing page",
+      "Official Siemens fact sheet landing page"
+    ],
+    "what_is_missing": [
+      "Tool binaries and license",
+      "Foundry signoff rule deck",
+      "Representative advanced-node SoC layout and DRC results database",
+      "Runtime/server configuration",
+      "Independent before/after debug logs"
+    ]
+  },
+  "conflict_of_interest_assessment": {
+    "reported_conflicts": [
+      "중심 근거는 Siemens EDA가 자기 Calibre Vision AI 제품을 설명한 공식 블로그, white paper, technical paper, fact sheet입니다.",
+      "편집국은 Calibre Vision AI 라이선스, foundry rule deck, 실제 advanced-node SoC DRC 결과 데이터에 접근하지 못해 제품 성능을 재실행하지 않았습니다."
+    ],
+    "editorial_handling": "Product functionality and workflow description were used as P1/P1-style technical vendor sources. Productivity, runtime, and superiority claims were not promoted to editorial conclusions."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "Siemens EDA blog index showed 2026-08-05 Calibre Vision AI article and 2026-08-12 Mixed-Signal Visualizer article.",
+        "source_url": "https://blogs.sw.siemens.com/eda/",
+        "used": true,
+        "note": "Used as discovery signal, then opened the Siemens Calibre article and related official resource pages."
+      },
+      {
+        "signal": "Siemens Calibre Vision AI 2026 white paper page states that the platform evolved into a real-time collaborative closure environment.",
+        "source_url": "https://resources.sw.siemens.com/en-US/white-paper-from-billions-of-violations-to-actionable-insights-calibre-vision-ai/",
+        "used": true,
+        "note": "Selected as one of the central technical sources."
+      },
+      {
+        "signal": "Search found PCBWorld arXiv/KDD workshop paper on engine-grounded PCB routing with KiCad and benchmark datasets.",
+        "source_url": "https://arxiv.org/html/2607.05915v2",
+        "used": false,
+        "note": "Important but close to the previous two EDA-agent feedback articles. Search did not reveal a directly verifiable official code repository for PCBWorld during this run, so it was not selected."
+      },
+      {
+        "signal": "Search found EDATracer arXiv paper on large-scale EDA artifact analysis.",
+        "source_url": "https://arxiv.org/html/2608.04032v1",
+        "used": false,
+        "note": "Relevant but public executable artifact or dataset URL was not confirmed during this run; performance claims compare against commercial agents without independent reproduction."
+      }
+    ],
+    "alternatives": [
+      {
+        "candidate": "Siemens Mixed-Signal Visualizer for AMS verification",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "status": "rejected",
+        "reason": "Official blog and white paper describe useful AMS debug capabilities, but public evidence is mostly vendor description and case-study summary without enough conditions or independent/source artifact detail."
+      },
+      {
+        "candidate": "PCBWorld engine-grounded PCB routing benchmark",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 8
+        },
+        "status": "rejected",
+        "reason": "Technically strong, but recent EDA articles already covered agentic tool feedback and executable benchmark direction. During this run, the promised open-source PCBWorld/PCBWorld-Bench artifact URL was not found from the primary paper or search results, so source diversity was weaker than the selected topic."
+      },
+      {
+        "candidate": "EDATracer agentic framework for EDA artifact analysis",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "status": "rejected",
+        "reason": "Paper describes a large dataset and benchmark, but no public dataset/code artifact was confirmed; central performance claims remain author-reported."
+      },
+      {
+        "candidate": "Zuken high-speed PCB signal integrity and eye pattern blog updates",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 2
+        },
+        "status": "rejected",
+        "reason": "Useful educational material but not a sufficiently new tool, standard, benchmark, or reproducible technical change."
+      },
+      {
+        "candidate": "Cadence DAC 2026 wrap-up and AI-driven workflow posts",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 2
+        },
+        "status": "rejected",
+        "reason": "Mostly event wrap-up and strategic positioning; recent EDA article already covered Cadence agent feedback loop angle."
+      },
+      {
+        "candidate": "Synopsys HPE/HPC and cloud EDA blog items",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 2
+        },
+        "status": "rejected",
+        "reason": "Discovery signal did not expose a specific new EDA release, standard, or verifiable benchmark with enough primary technical detail."
+      },
+      {
+        "candidate": "Ansys and Keysight recent semiconductor/RF blog items",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 2
+        },
+        "status": "rejected",
+        "reason": "Mostly explanatory or product-positioning material; no selected item met the score and source criteria in this run."
+      }
+    ],
+    "recent_duplicate_check": [
+      {
+        "path": "content/eda/2026-08-13/article.md",
+        "title": "EDA 에이전트의 승부처는 더 큰 모델보다 ‘검증 가능한 피드백’일 수 있습니다",
+        "subject": "Cadence의 EDA agent feedback loop 전략과 공개 연구",
+        "duplicate": false,
+        "difference": "Selected topic is physical verification DRC debug workflow in Siemens Calibre Vision AI, not EDA agent feedback loop strategy."
+      },
+      {
+        "path": "content/eda/2026-08-14/article.md",
+        "title": "ACE-RTL 공개는 EDA 에이전트 평가를 말솜씨에서 실행 로그로 옮깁니다",
+        "subject": "NVIDIA ACE-RTL 공개 코드와 CVDP 1.1.0 benchmark 실행 경로",
+        "duplicate": false,
+        "difference": "Selected topic is Calibre DRC result triage and collaboration, not RTL agent benchmark/code release."
+      }
+    ]
+  },
+  "quality_gate_notes": {
+    "minimum_score_met": true,
+    "central_claim_e2_or_above": true,
+    "minimum_two_distinct_https_originals": true,
+    "vendor_claims_separated": true,
+    "no_public_content_or_decision_path_modified": true
+  }
+}
