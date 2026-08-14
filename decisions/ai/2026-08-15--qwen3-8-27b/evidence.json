@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-15--qwen3-8-27b",
+  "publication_kind": "special",
+  "date": "2026-08-15",
+  "subject": "Qwen3.8-27B open-weight vision-language model, Hugging Face release 2026-08-14 UTC",
+  "central_claim": "Qwen3.8-27B is a publishable AI engineering topic because primary model-card, checkpoint and serving documentation support a bounded E2 claim: 27B dense 공개 가중치 모델에 장기 에이전트 실행, multimodal 입력, preserve_thinking, reasoning_effort and tool-call parser integration have become a directly self-hostable deployment choice, while benchmark superiority and 1M-context behavior remain vendor-authored or workload-dependent claims.",
+  "decision": "publish-candidate",
+  "editorial_brief_alignment": {
+    "requested_angle": "Qwen3.8의 장기 에이전트 실행 능력이 27B dense 모델로 내려오면서 팀이 직접 운영할 수 있는 AI 에이전트의 구조와 배포 선택지가 어떻게 달라지는지 설명한다.",
+    "required_focus_terms": [
+      "장기 에이전트 실행",
+      "27B dense",
+      "hybrid attention",
+      "preserve_thinking",
+      "tool-call parser",
+      "multimodal 입력"
+    ],
+    "secondary_terms": [
+      "Apache-2.0",
+      "FP8",
+      "1M context",
+      "benchmark",
+      "NVFP4"
+    ]
+  },
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The assigned topic affects concrete model hosting, agent harness, parser, context, quantization and safety choices for SW engineering teams. It is newly visible in official/public model artifacts and serving recipes, and the central claim can be bounded to E2 without treating Qwen benchmark tables as independent verification. Korean relevance is practical rather than local: Korean engineering teams can self-host or evaluate the same open weights and OpenAI-compatible serving stack."
+  },
+  "discovery_review": {
+    "brief_source": "editor-provided special brief at prompts/ai-special-briefs/2026-08-15/qwen3-8-27b.md",
+    "signals": [
+      {
+        "channel": "editor-approved-special-brief",
+        "classification": "assigned topic",
+        "note": "The topic was fixed by the editor. Search and social signals were not used to replace the subject."
+      },
+      {
+        "channel": "hugging-face-model-card",
+        "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+        "classification": "P1 source path with P2 artifact metadata",
+        "note": "Official model card and public weight repository confirm Apache-2.0 license, image-text-to-text pipeline, 27B parameter model overview, architecture, context length, MTP, API usage, benchmark table and best practices."
+      },
+      {
+        "channel": "hugging-face-fp8-checkpoint",
+        "url": "https://huggingface.co/Qwen/Qwen3.8-27B-FP8",
+        "classification": "P2 source path",
+        "note": "Official FP8 repository confirms fine-grained FP8 quantized weights, block size 128, compatibility statement and same model-card technical overview."
+      },
+      {
+        "channel": "raw-config",
+        "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/config.json",
+        "classification": "P2 source path",
+        "note": "Raw config confirms architecture Qwen3_5ForConditionalGeneration, qwen3_5 model type, 64 layers, 5120 hidden size, 17408 intermediate size, full_attention_interval 4, 262144 max_position_embeddings and vision_config presence."
+      },
+      {
+        "channel": "sglang-cookbook",
+        "url": "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8-27B",
+        "classification": "P1 serving documentation",
+        "note": "SGLang cookbook confirms dense hybrid GDN vision-language serving path, identical serving-relevant architecture to Qwen3.6-27B, state/KV memory tradeoffs, MTP recipe, parser flags and agent harness notes."
+      },
+      {
+        "channel": "vllm-recipe",
+        "url": "https://recipes.vllm.ai/Qwen/Qwen3.8-27B",
+        "classification": "P1 serving documentation",
+        "note": "vLLM recipe confirms 27B dense hybrid-attention overview, 48 linear-attention layers and 16 full-attention layers, launch commands, parser flags, MTP speculative config and 1M context extension syntax."
+      },
+      {
+        "channel": "qwen3-6-model-card",
+        "url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+        "classification": "P1 comparison source with P2 artifact metadata",
+        "note": "Official Qwen3.6-27B model card confirms the prior 27B dense vision-language model, agentic coding emphasis, thinking preservation and Qwen-Agent/Qwen Code usage context."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Qwen3.8-27B assigned special topic",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "The editor designated this subject. It clears the special-edition threshold with a bounded E2 central claim and more than two distinct primary/source-artifact URLs."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "EDITOR_APPROVED_SPECIAL_TOPIC",
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "BENCHMARKS_VENDOR_AUTHORED",
+    "NO_LOCAL_EXECUTION",
+    "SELF_HOSTING_BOUNDARIES_RECORDED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-14T23:17:15Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-special-publish-v1",
+    "human_approval_required": true,
+    "automatic_publish_allowed": false,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "release_gate_notes": {
+    "required_conditions_recorded": [
+      "request publication_id is 2026-08-15--qwen3-8-27b and publication_kind is special",
+      "article frontmatter date uses publication_date 2026-08-15 and omits publication_id",
+      "article frontmatter includes publication_kind: special exactly once",
+      "article and evidence share subject, decision, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence from Qwen model-card/checkpoint artifacts plus SGLang and vLLM serving documentation",
+      "central claims include more than two distinct original URLs",
+      "claim-source ledger records source type, evidence grade, version, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article preserves the editor's requested angle through required focus terms in title, summary, first three paragraphs and central_claim",
+      "materialization to content/ai and decisions/ai, release file creation, commit, push, deploy and public URL verification are delegated outside this candidate-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "create release.json",
+      "commit, push or deploy",
+      "public URL verification",
+      "post-publication retrospective",
+      "content, decisions, docs, editions, scripts, prompts, site, .coco-agents or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Qwen Hugging Face model card and FP8 checkpoint are primary sources from Qwen.",
+    "SGLang and vLLM recipes are serving framework documentation and may reflect framework-specific validation and recommended settings.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "hf-qwen3-8-27b-api",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B",
+      "observed": {
+        "id": "Qwen/Qwen3.8-27B",
+        "sha": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+        "lastModified": "2026-08-14T15:00:01.000Z",
+        "license": "apache-2.0",
+        "pipeline_tag": "image-text-to-text",
+        "siblings": 32
+      }
+    },
+    {
+      "artifact_id": "hf-qwen3-8-27b-fp8-api",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B-FP8",
+      "observed": {
+        "id": "Qwen/Qwen3.8-27B-FP8",
+        "sha": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+        "lastModified": "2026-08-14T14:44:41.000Z",
+        "license": "apache-2.0",
+        "pipeline_tag": "image-text-to-text",
+        "siblings": 81
+      }
+    },
+    {
+      "artifact_id": "hf-qwen3-8-27b-config",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/config.json",
+      "observed": {
+        "model_type": "qwen3_5",
+        "architectures": ["Qwen3_5ForConditionalGeneration"],
+        "num_hidden_layers": 64,
+        "hidden_size": 5120,
+        "intermediate_size": 17408,
+        "full_attention_interval": 4,
+        "max_position_embeddings": 262144,
+        "num_attention_heads": 24,
+        "num_key_value_heads": 4,
+        "vision_config_exists": true
+      }
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "qwen3-8-model-card",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "source_type": "P1",
+      "owner": "Qwen",
+      "version": "Model card and repository sha 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0; lastModified 2026-08-14T15:00:01.000Z; accessed 2026-08-14",
+      "notes": "Confirms license, model type, architecture, context length, MTP, thinking control, preserved thinking, benchmark table, API examples and serving links."
+    },
+    {
+      "source_id": "qwen3-8-fp8",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B-FP8",
+      "source_type": "P2",
+      "owner": "Qwen",
+      "version": "FP8 repository sha 017b9c7af6b5689d5dd426a76e0bc077eb5ca20a; lastModified 2026-08-14T14:44:41.000Z; accessed 2026-08-14",
+      "notes": "Confirms official FP8 quantized checkpoint and quantization description."
+    },
+    {
+      "source_id": "qwen3-8-config",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/config.json",
+      "source_type": "P2",
+      "owner": "Qwen",
+      "version": "Raw config from Qwen/Qwen3.8-27B main at access time; accessed 2026-08-14",
+      "notes": "Confirms architecture and selected config fields independently of rendered model-card prose."
+    },
+    {
+      "source_id": "sglang-qwen3-8",
+      "url": "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8-27B",
+      "source_type": "P1",
+      "owner": "SGLang",
+      "version": "Qwen3.8-27B cookbook; accessed 2026-08-14",
+      "notes": "Confirms SGLang deployment, hybrid GDN serving implications, architecture comparison to Qwen3.6-27B, parser flags, MTP and agent harness notes."
+    },
+    {
+      "source_id": "vllm-qwen3-8",
+      "url": "https://recipes.vllm.ai/Qwen/Qwen3.8-27B",
+      "source_type": "P1",
+      "owner": "vLLM",
+      "version": "Qwen/Qwen3.8-27B recipe, updated 2026-08-14; accessed 2026-08-14",
+      "notes": "Confirms vLLM launch commands, parser flags, MTP speculative config, long-context extension and text-serving validation statement."
+    },
+    {
+      "source_id": "qwen3-6-model-card",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "source_type": "P1",
+      "owner": "Qwen",
+      "version": "Qwen3.6-27B model card; accessed 2026-08-14",
+      "notes": "Comparison source for prior 27B dense model, agentic coding emphasis, thinking preservation and Qwen-Agent/Qwen Code context."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "claim": "Qwen3.8-27B is an Apache-2.0 licensed public-weight 27B dense vision-language model with text, image and video input support.",
+      "evidence_level": "E2",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "source_type": "P2",
+      "version": "Qwen/Qwen3.8-27B sha 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Opened official model card and Hugging Face API metadata; checked license, pipeline tag, model overview and API examples.",
+      "limitations": ["Confirms public artifact and model-card statements; no local weight download or inference run was performed."],
+      "conflict_of_interest": ["Qwen official model repository is a vendor primary source."],
+      "sources": [
+        {"url": "https://huggingface.co/Qwen/Qwen3.8-27B", "source_type": "P1"},
+        {"url": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B", "source_type": "P2"}
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "claim": "The language model uses 64 layers arranged as 16 repeats of three Gated DeltaNet linear-attention layers and one Gated Attention full-attention layer, with native 262,144-token context.",
+      "evidence_level": "E2",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "source_type": "P1",
+      "version": "Qwen/Qwen3.8-27B model card and raw config at sha 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Compared model-card model overview, raw config fields and serving recipes.",
+      "limitations": ["The article does not attribute performance gains solely to this architecture because SGLang states the serving-relevant architecture is identical to Qwen3.6-27B."],
+      "conflict_of_interest": ["Qwen model card is vendor-authored; SGLang/vLLM are framework documentation."],
+      "sources": [
+        {"url": "https://huggingface.co/Qwen/Qwen3.8-27B", "source_type": "P1"},
+        {"url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/config.json", "source_type": "P2"},
+        {"url": "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8-27B", "source_type": "P1"},
+        {"url": "https://recipes.vllm.ai/Qwen/Qwen3.8-27B", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": false,
+      "claim": "Qwen3.8-27B includes a multi-step MTP head that serving engines can use for speculative decoding.",
+      "evidence_level": "E2",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "source_type": "P1",
+      "version": "Qwen3.8-27B model card, SGLang cookbook and vLLM recipe accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read model overview MTP entry and serving recipes for speculative decoding flags.",
+      "limitations": ["No latency or throughput measurement was performed; speed effect depends on hardware, batch, prompt length and engine settings."],
+      "conflict_of_interest": ["Qwen model card is vendor-authored; serving framework docs may reflect framework-specific recipes."],
+      "sources": [
+        {"url": "https://huggingface.co/Qwen/Qwen3.8-27B", "source_type": "P1"},
+        {"url": "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8-27B", "source_type": "P1"},
+        {"url": "https://recipes.vllm.ai/Qwen/Qwen3.8-27B", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": true,
+      "claim": "Qwen3.8 supports thinking depth control through reasoning_effort and retains previous reasoning context through preserve_thinking by default according to the model card.",
+      "evidence_level": "E2",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "source_type": "P1",
+      "version": "Qwen3.8-27B API Usage and Best Practices sections accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read official API examples and preserved-thinking explanation.",
+      "limitations": ["Claims about improved task completion remain Qwen-authored and were not independently reproduced."],
+      "conflict_of_interest": ["Qwen official model card is a vendor primary source."],
+      "sources": [
+        {"url": "https://huggingface.co/Qwen/Qwen3.8-27B", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": true,
+      "claim": "SGLang and vLLM recipes use qwen3 reasoning parser and qwen3_coder tool-call parser for Qwen3.8-27B agent harness integration.",
+      "evidence_level": "E2",
+      "source_url": "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8-27B",
+      "source_type": "P1",
+      "version": "SGLang cookbook and vLLM recipe accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read SGLang Agent Harnesses section and vLLM launch commands.",
+      "limitations": ["Specific harness behavior depends on endpoint, served model name, tool schema and parser compatibility in the user's deployment."],
+      "conflict_of_interest": ["SGLang and vLLM docs are framework-authored documentation."],
+      "sources": [
+        {"url": "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8-27B", "source_type": "P1"},
+        {"url": "https://recipes.vllm.ai/Qwen/Qwen3.8-27B", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "central": false,
+      "claim": "Qwen's own benchmark table reports Qwen3.8-27B at 73.0 on Terminal Bench 2.1 and 61.7 on SWE-bench Pro, versus 63.4 and 53.5 for Qwen3.6-27B, under Qwen-stated evaluation conditions.",
+      "evidence_level": "E2",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "source_type": "P1",
+      "version": "Qwen3.8-27B Benchmark Results table accessed 2026-08-14",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "direct",
+      "method": "Read official benchmark table and footnotes.",
+      "limitations": ["The table is Qwen-authored; some benchmarks are in-house; the article does not turn these numbers into independent superiority claims."],
+      "conflict_of_interest": ["Qwen official model card is a vendor primary source."],
+      "sources": [
+        {"url": "https://huggingface.co/Qwen/Qwen3.8-27B", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "central": true,
+      "claim": "The technical significance is that Qwen3.8-27B makes 장기 에이전트 실행 a directly self-hostable 27B dense deployment problem spanning multimodal 입력, thinking/runtime control, parser-mediated tool calls and serving memory tradeoffs.",
+      "evidence_level": "E2",
+      "source_url": "derived-from-ledger",
+      "source_type": "P1",
+      "version": "Derived from C1-C6",
+      "accessed_at": "2026-08-14",
+      "direct_or_derived": "derived",
+      "method": "Editorial synthesis from model-card artifact facts, serving recipes, API controls and benchmark limitations.",
+      "limitations": ["Does not claim independent agent benchmark superiority, production reliability or universal cost advantage."],
+      "conflict_of_interest": ["Primary evidence includes vendor-authored Qwen material and framework-authored serving documentation."],
+      "sources": [
+        {"url": "https://huggingface.co/Qwen/Qwen3.8-27B", "source_type": "P1"},
+        {"url": "https://huggingface.co/Qwen/Qwen3.8-27B-FP8", "source_type": "P2"},
+        {"url": "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8-27B", "source_type": "P1"},
+        {"url": "https://recipes.vllm.ai/Qwen/Qwen3.8-27B", "source_type": "P1"}
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R2",
+    "reason": "The article uses public model/card repositories, raw config and serving recipes that readers can inspect. The newsroom did not download weights, run inference or reproduce benchmark/latency results.",
+    "not_reproduced": [
+      "Qwen benchmark scores",
+      "agent task completion reliability",
+      "MTP latency or throughput improvement",
+      "1M context accuracy and memory behavior",
+      "quantization quality and speed tradeoffs",
+      "vision/video prompt-injection resilience"
+    ]
+  }
+}

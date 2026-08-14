@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-15--qwen3-8-27b",
+  "publication_kind": "special",
+  "decision": "publish-candidate",
+  "release_status": "approved-for-publication",
+  "article_path": "content/ai/2026-08-15--qwen3-8-27b/article.md",
+  "evidence_path": "decisions/ai/2026-08-15--qwen3-8-27b/evidence.json",
+  "artifact_hashes": {
+    "article_sha256": "7fca04018bf6f51cc29455a2ba7b8b911e673977ddfb1a63ecd7e42ceb7b07e5",
+    "evidence_sha256": "00aa8b93f5b34e131c70362df1b9f3b51902c72bd54cb02cecc0d449707aa903"
+  },
+  "routes": [
+    "/ai/",
+    "/ai/2026-08-15/qwen3-8-27b/"
+  ],
+  "authorization": {
+    "mode": "human",
+    "approved": true,
+    "approved_at": "2026-08-15T08:53:15+09:00",
+    "approved_by": "editor-user",
+    "approval_basis": "사용자 명시 승인: Qwen3.8-27B 특별판 공개 발행",
+    "scope": [
+      "content/ai/2026-08-15--qwen3-8-27b/article.md",
+      "decisions/ai/2026-08-15--qwen3-8-27b/evidence.json",
+      "decisions/ai/2026-08-15--qwen3-8-27b/release.json"
+    ]
+  },
+  "editorial_brief_alignment": {
+    "requested_angle": "Qwen3.8의 장기 에이전트 실행 능력이 27B dense 모델로 내려오면서 팀이 직접 운영할 수 있는 AI 에이전트의 구조와 배포 선택지가 어떻게 달라지는지 설명한다.",
+    "required_focus_terms": [
+      "장기 에이전트 실행",
+      "27B dense",
+      "hybrid attention",
+      "preserve_thinking",
+      "tool-call parser",
+      "multimodal 입력"
+    ],
+    "secondary_terms": [
+      "Apache-2.0",
+      "FP8",
+      "1M context",
+      "benchmark",
+      "NVFP4"
+    ],
+    "checked_targets": [
+      "title",
+      "summary",
+      "lead",
+      "central_claim"
+    ],
+    "focus_hits": 18,
+    "secondary_hits": 6,
+    "status": "passed"
+  }
+}
