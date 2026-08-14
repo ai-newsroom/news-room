@@ -31,14 +31,6 @@ PROHIBITED_METAPHORS = (
     "혁신의 씨앗",
 )
 READER_BLAME = ("당연히", "누구나 알듯", "간단히 말해")
-ENGINEER_JUDGMENT_HEADING = "## SW 엔지니어를 위한 판단"
-ENGINEER_JUDGMENT_LABELS = (
-    "지금 확인할 수 있는 것",
-    "도입 전에 확인할 것",
-    "아직 결론 내릴 수 없는 것",
-)
-EDITORIAL_SIGNIFICANCE_HEADING = "## 이 공개의 의의와 편집 판단"
-EDITORIAL_JUDGMENT_LABEL = "편집 판단:"
 COSMOS_2026_07_21_TERM_RULES = {
     "MoT": ["트랜스포머 혼합 구조", "Mixture-of-Transformers"],
     "자동회귀": ["다음 토큰"],
@@ -127,26 +119,6 @@ def validate_text(
                 errors.append(
                     {"code": "unbounded-metaphor", "line": number, "term": phrase}
                 )
-
-    opening = next((line for _, line in prose_lines), "")
-    if not (
-        "공개" in opening
-        and "중요" in opening
-        and ("개발자" in opening or "SW 엔지니어" in opening)
-    ):
-        errors.append({"code": "opening-reader-value-missing", "line": 1})
-
-    if ENGINEER_JUDGMENT_HEADING not in narrative:
-        errors.append({"code": "engineer-judgment-heading-missing", "line": 1})
-    for label in ENGINEER_JUDGMENT_LABELS:
-        if label not in narrative:
-            errors.append(
-                {"code": "engineer-judgment-label-missing", "line": 1, "label": label}
-            )
-    if EDITORIAL_SIGNIFICANCE_HEADING not in narrative:
-        errors.append({"code": "editorial-significance-heading-missing", "line": 1})
-    if EDITORIAL_JUDGMENT_LABEL not in narrative:
-        errors.append({"code": "editorial-judgment-label-missing", "line": 1})
 
     for term, explanations in (required_terms or {}).items():
         first = next(

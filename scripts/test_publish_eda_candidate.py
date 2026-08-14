@@ -34,25 +34,21 @@ conflicts: ["당사자 발표가 중심 자료입니다."]
 
 도구 피드백이 설계 에이전트의 다음 행동을 바꿉니다.
 
-## 세 줄 요약
+## 새로 공개된 설계 피드백
 
-- 확인된 사실입니다.
-- 저자 보고 결과입니다.
-- 독립 비교는 아직 없습니다.
+새 도구는 분석 결과를 다음 설계 행동으로 연결합니다.
 
-## EDA 엔지니어를 위한 판단
+## 피드백이 다음 설계로 이어지는 과정
 
-- **지금 할 일:** 피드백 인터페이스를 확인합니다.
-- **아직 미룰 일:** 제품 우위를 단정하지 않습니다.
-- **다음 신호:** 공개 benchmark를 기다립니다.
+RTL과 constraint를 받은 도구가 분석 결과를 만들고 에이전트가 다음 탐색점을 고릅니다.
 
-## 확인된 것과 확인되지 않은 것
+### 기존 flow와 비교하면
 
-도구가 구조 정보를 제공하는 것은 확인했지만 전체 flow 우위는 확인하지 못했습니다.
+수작업 전달 단계가 줄어들 수 있습니다.
 
-## 이 공개의 의의와 편집 판단
+## 설계 흐름의 의미와 남은 검증
 
-**편집 판단:** 두 원문이 지지하는 범위에서만 판단합니다.
+설계 수렴을 앞당길 가능성이 있지만 전체 flow 우위는 아직 확인되지 않았습니다.
 
 ## 이해상충과 취재 조건
 
@@ -155,6 +151,26 @@ class AutomaticEdaPublisherTest(unittest.TestCase):
             root = Path(directory)
             article, evidence_path = self.make_candidate(root, "E1")
             with self.assertRaisesRegex(publisher.PublishError, "E2 or higher"):
+                publisher.validate_candidate(
+                    article,
+                    evidence_path,
+                    "2026-08-13",
+                    repo_root=root,
+                    require_today=False,
+                )
+
+    def test_verification_appendix_remains_required(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            article.write_text(
+                article.read_text(encoding="utf-8").replace(
+                    "## 이해상충과 취재 조건",
+                    "## 취재 메모",
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(publisher.PublishError, "required section"):
                 publisher.validate_candidate(
                     article,
                     evidence_path,

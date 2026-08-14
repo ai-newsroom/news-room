@@ -32,9 +32,6 @@ PUBLICATION_ID = re.compile(
 )
 EVIDENCE_ORDER = {"E0": 0, "E1": 1, "E2": 2, "E3": 3, "E4": 4}
 REQUIRED_HEADINGS = (
-    "## 세 줄 요약",
-    "## SW 엔지니어를 위한 판단",
-    "## 이 공개의 의의와 편집 판단",
     "## 이해상충과 취재 조건",
     "## 근거 원장",
     "## 출처",

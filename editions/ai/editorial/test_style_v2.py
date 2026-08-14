@@ -86,17 +86,19 @@ reproducibility: R1
 conflicts: ["없음"]
 ---
 
-공개된 새 사건은 SW 엔지니어에게 중요한 변경을 보여 줍니다.
+새 사건은 기존 요청 처리 방식을 두 단계로 나눕니다.
 
-## SW 엔지니어를 위한 판단
+## 이번 변경의 핵심
 
-- 지금 확인할 수 있는 것
-- 도입 전에 확인할 것
-- 아직 결론 내릴 수 없는 것
+요청 처리 경로가 달라집니다.
 
-## 이 공개의 의의와 편집 판단
+## 내부에서 작동하는 방식
 
-**편집 판단:** 확인된 범위에서 판단합니다.
+입력은 두 구성 요소를 지나 출력이 됩니다.
+
+## 기술적 의미와 남은 검증
+
+개발 흐름의 선택지가 늘지만 배포 조건은 확인해야 합니다.
 
 ## 근거 원장
 
@@ -123,9 +125,10 @@ conflicts: ["없음"]
         prompt = (HERE / "article-prompt.md").read_text(encoding="utf-8")
         self.assertIn("주 독자는 AI 연구자가 아니라", prompt)
         self.assertIn("AI 모델·API·SDK·오픈소스", prompt)
-        self.assertIn("SW 엔지니어를 위한 판단", prompt)
-        self.assertIn("이 공개의 의의와 편집 판단", prompt)
-        self.assertIn("편집 판단:", prompt)
+        self.assertIn("뉴스 설명", prompt)
+        self.assertIn("기술 이해", prompt)
+        self.assertIn("기술적 의미와 검증 과제", prompt)
+        self.assertIn("고정 골격으로 사용하지 않습니다", prompt)
         config = json.loads(
             (ROOT / "editions/ai/edition.json").read_text(encoding="utf-8")
         )

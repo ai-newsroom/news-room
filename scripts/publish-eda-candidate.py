@@ -26,10 +26,6 @@ SEOUL = ZoneInfo("Asia/Seoul")
 PUBLICATION_ID = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 EVIDENCE_ORDER = {"E0": 0, "E1": 1, "E2": 2, "E3": 3, "E4": 4}
 REQUIRED_HEADINGS = (
-    "## 세 줄 요약",
-    "## EDA 엔지니어를 위한 판단",
-    "## 확인된 것과 확인되지 않은 것",
-    "## 이 공개의 의의와 편집 판단",
     "## 이해상충과 취재 조건",
     "## 근거 원장",
     "## 출처",
@@ -214,8 +210,6 @@ def validate_candidate(
         raise PublishError("EDA publication requires E2 or higher")
     if any(heading not in article_text for heading in REQUIRED_HEADINGS):
         raise PublishError("article is missing a required section")
-    if "편집 판단:" not in article_text:
-        raise PublishError("article is missing its explicit editorial judgment")
 
     selection = evidence.get("selection")
     if (

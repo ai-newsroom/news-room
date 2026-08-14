@@ -34,21 +34,21 @@ conflicts: ["당사자 발표입니다."]
 
 공개된 새 AI 사건은 SW 엔지니어에게 중요한 운영 변경을 보여 줍니다.
 
-## 세 줄 요약
+## 이번 뉴스가 바꾼 것
 
-- 첫 번째 사실을 확인했습니다.
-- 두 번째 사실을 확인했습니다.
-- 한계도 확인했습니다.
+새 공개는 모델의 실행 방식을 바꿉니다.
 
-## SW 엔지니어를 위한 판단
+## 요청이 처리되는 방식
 
-- **지금 확인할 수 있는 것:** 공개 범위입니다.
-- **도입 전에 확인할 것:** 운영 조건입니다.
-- **아직 결론 내릴 수 없는 것:** 비공개 조건입니다.
+입력은 새 실행 단계를 지나 결과가 됩니다.
 
-## 이 공개의 의의와 편집 판단
+### 이전 방식과 비교하면
 
-**편집 판단:** 두 공식 원문이 지지하는 범위에서만 판단합니다.
+이전에는 한 단계에서 처리하던 일을 나눠 처리합니다.
+
+## 개발 흐름에 갖는 의미와 남은 검증
+
+이 변화는 운영 선택지를 넓히지만 비공개 조건은 더 확인해야 합니다.
 
 ## 이해상충과 취재 조건
 
@@ -149,6 +149,26 @@ class AutomaticAiPublisherTest(unittest.TestCase):
             root = Path(directory)
             article, evidence_path = self.make_candidate(root, "E1")
             with self.assertRaisesRegex(publisher.PublishError, "E2 or higher"):
+                publisher.validate_candidate(
+                    article,
+                    evidence_path,
+                    "2026-07-26",
+                    repo_root=root,
+                    require_today=False,
+                )
+
+    def test_verification_appendix_remains_required(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            article.write_text(
+                article.read_text(encoding="utf-8").replace(
+                    "## 근거 원장",
+                    "## 검증 자료",
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(publisher.PublishError, "required section"):
                 publisher.validate_candidate(
                     article,
                     evidence_path,
