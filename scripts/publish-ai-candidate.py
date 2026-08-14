@@ -140,6 +140,116 @@ def parse_frontmatter(text: str) -> Mapping[str, str]:
     return result
 
 
+def article_lead(text: str) -> str:
+    """Return the first three prose paragraphs before the first article section."""
+    marker = text.find("\n---\n", 4)
+    if marker < 0:
+        raise PublishError("article frontmatter is not closed")
+    introduction = text[marker + 5 :].split("\n## ", 1)[0]
+    paragraphs = [
+        " ".join(line.strip() for line in block.splitlines() if line.strip())
+        for block in introduction.split("\n\n")
+    ]
+    return "\n".join(paragraph for paragraph in paragraphs[:3] if paragraph)
+
+
+def alignment_terms(
+    value: Any,
+    *,
+    field: str,
+    minimum: int,
+    maximum: int,
+) -> list[str]:
+    if not isinstance(value, list) or not minimum <= len(value) <= maximum:
+        raise PublishError(
+            f"special brief alignment {field} must contain {minimum} to {maximum} terms"
+        )
+    terms: list[str] = []
+    for item in value:
+        if not isinstance(item, str) or len(item.strip()) < 2:
+            raise PublishError(
+                f"special brief alignment {field} requires non-empty text terms"
+            )
+        terms.append(item.strip())
+    if len({term.casefold() for term in terms}) != len(terms):
+        raise PublishError(f"special brief alignment {field} contains duplicates")
+    return terms
+
+
+def validate_special_brief_alignment(
+    evidence: Mapping[str, Any],
+    frontmatter: Mapping[str, str],
+    article_text: str,
+) -> dict[str, Any]:
+    """Require a special article's early narrative to preserve the editor's angle."""
+    alignment = evidence.get("editorial_brief_alignment")
+    if not isinstance(alignment, dict):
+        raise PublishError("special brief alignment record is required")
+    requested_angle = alignment.get("requested_angle")
+    if not isinstance(requested_angle, str) or len(requested_angle.strip()) < 12:
+        raise PublishError("special brief alignment requested_angle is required")
+    focus_terms = alignment_terms(
+        alignment.get("required_focus_terms"),
+        field="required_focus_terms",
+        minimum=2,
+        maximum=8,
+    )
+    secondary_terms = alignment_terms(
+        alignment.get("secondary_terms", []),
+        field="secondary_terms",
+        minimum=0,
+        maximum=8,
+    )
+    if {term.casefold() for term in focus_terms} & {
+        term.casefold() for term in secondary_terms
+    }:
+        raise PublishError("special brief alignment focus and secondary terms overlap")
+
+    central_claim = evidence.get("central_claim")
+    if not isinstance(central_claim, str) or not central_claim.strip():
+        raise PublishError("special brief alignment requires evidence central_claim")
+    targets = {
+        "title": frontmatter.get("title", ""),
+        "summary": frontmatter.get("summary", ""),
+        "lead": article_lead(article_text),
+        "central_claim": central_claim,
+    }
+    normalized_focus = [term.casefold() for term in focus_terms]
+    for target, text in targets.items():
+        folded = text.casefold()
+        if not any(term in folded for term in normalized_focus):
+            raise PublishError(
+                f"special brief alignment focus is missing from {target}"
+            )
+
+    combined = "\n".join(targets.values()).casefold()
+    missing_focus = [
+        term for term in focus_terms if term.casefold() not in combined
+    ]
+    if missing_focus:
+        raise PublishError(
+            "special brief alignment terms are absent from checked targets: "
+            + ", ".join(missing_focus)
+        )
+    focus_hits = sum(combined.count(term) for term in normalized_focus)
+    secondary_hits = sum(
+        combined.count(term.casefold()) for term in secondary_terms
+    )
+    if focus_hits <= secondary_hits:
+        raise PublishError(
+            "special brief alignment is dominated by secondary context"
+        )
+    return {
+        "requested_angle": requested_angle.strip(),
+        "required_focus_terms": focus_terms,
+        "secondary_terms": secondary_terms,
+        "checked_targets": list(targets),
+        "focus_hits": focus_hits,
+        "secondary_hits": secondary_hits,
+        "status": "passed",
+    }
+
+
 def central_claims(evidence: Mapping[str, Any]) -> list[Mapping[str, Any]]:
     claims = evidence.get("claims")
     if not isinstance(claims, list) or not claims:
@@ -281,6 +391,14 @@ def validate_candidate(
     if evidence.get("publication_kind", "regular") != publication_kind:
         raise PublishError("evidence publication kind is invalid")
 
+    brief_alignment = None
+    if publication_kind == "special":
+        brief_alignment = validate_special_brief_alignment(
+            evidence,
+            frontmatter,
+            article_text,
+        )
+
     claims = central_claims(evidence)
     if not any(
         EVIDENCE_ORDER.get(str(claim.get("evidence_level")), -1)
@@ -329,6 +447,7 @@ def validate_candidate(
         "publication_kind": publication_kind,
         "approved_by": approved_by,
         "approval_basis": approval_basis,
+        "editorial_brief_alignment": brief_alignment,
     }
 
 
@@ -357,7 +476,7 @@ def release_record(candidate: Mapping[str, Any], executor: str) -> dict[str, Any
             "executor": executor,
             "checks": list(AUTOMATIC_CHECKS),
         }
-    return {
+    release = {
         "schema_version": 1,
         "edition": "ai",
         "publication_id": publication_id,
@@ -373,6 +492,11 @@ def release_record(candidate: Mapping[str, Any], executor: str) -> dict[str, Any
         "routes": ["/ai/", publication_route(publication_id)],
         "authorization": authorization,
     }
+    if publication_kind == "special":
+        release["editorial_brief_alignment"] = candidate[
+            "editorial_brief_alignment"
+        ]
+    return release
 
 
 def materialize(

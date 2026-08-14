@@ -244,6 +244,12 @@ class AutomaticAiPublisherTest(unittest.TestCase):
                 article.read_text(encoding="utf-8").replace(
                     "date: 2026-07-26\n",
                     "date: 2026-07-26\npublication_kind: special\n",
+                ).replace(
+                    'title: "검증된 새 AI 사건"',
+                    'title: "검증된 AI 운영 변경"',
+                ).replace(
+                    'summary: "두 공식 기술 원문을 대조했습니다."',
+                    'summary: "운영 변경의 기술 원리를 두 공식 원문으로 확인했습니다."',
                 ),
                 encoding="utf-8",
             )
@@ -251,6 +257,12 @@ class AutomaticAiPublisherTest(unittest.TestCase):
             value.update({
                 "publication_id": "2026-07-26--cordis",
                 "publication_kind": "special",
+                "central_claim": "운영 변경의 기술 원리가 배포 판단을 바꿉니다.",
+                "editorial_brief_alignment": {
+                    "requested_angle": "운영 변경의 기술 원리와 배포 의의를 설명합니다.",
+                    "required_focus_terms": ["운영 변경", "기술 원리"],
+                    "secondary_terms": ["가격", "버전"],
+                },
             })
             value["release_gate"].update({
                 "policy_id": publisher.SPECIAL_POLICY_ID,
@@ -279,6 +291,61 @@ class AutomaticAiPublisherTest(unittest.TestCase):
             self.assertEqual(release["publication_kind"], "special")
             self.assertEqual(release["authorization"]["mode"], "human")
             self.assertEqual(release["authorization"]["approved_by"], "편집자")
+            self.assertEqual(
+                release["editorial_brief_alignment"]["status"],
+                "passed",
+            )
+            self.assertEqual(
+                release["editorial_brief_alignment"]["checked_targets"],
+                ["title", "summary", "lead", "central_claim"],
+            )
+
+    def test_special_candidate_rejects_caution_dominated_editorial_angle(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            article.write_text(
+                article.read_text(encoding="utf-8").replace(
+                    "date: 2026-07-26\n",
+                    "date: 2026-07-26\npublication_kind: special\n",
+                ).replace(
+                    'title: "검증된 새 AI 사건"',
+                    'title: "새 모델 버전과 가격은 주의해서 봐야 합니다"',
+                ),
+                encoding="utf-8",
+            )
+            value = json.loads(evidence_path.read_text())
+            value.update({
+                "publication_id": "2026-07-26--deep-analysis",
+                "publication_kind": "special",
+                "central_claim": "버전과 가격, 주의사항을 먼저 기록해야 합니다.",
+                "editorial_brief_alignment": {
+                    "requested_angle": "기술의 작동 원리를 쉽게 설명하고 기술적 의의를 분석합니다.",
+                    "required_focus_terms": ["작동 원리", "기술적 의의"],
+                    "secondary_terms": ["버전", "가격", "주의사항"],
+                },
+            })
+            value["release_gate"].update({
+                "policy_id": publisher.SPECIAL_POLICY_ID,
+                "human_approval_required": True,
+                "automatic_publish_allowed": False,
+            })
+            evidence_path.write_text(json.dumps(value), encoding="utf-8")
+
+            with self.assertRaisesRegex(
+                publisher.PublishError,
+                "special brief alignment focus is missing from title",
+            ):
+                publisher.validate_candidate(
+                    article,
+                    evidence_path,
+                    "2026-07-26--deep-analysis",
+                    repo_root=root,
+                    require_today=False,
+                    publication_kind="special",
+                    approved_by="편집자",
+                    approval_basis="기술 설명 중심 특별판을 승인함",
+                )
 
     def test_special_candidate_requires_matching_id_kind_and_approval(self):
         with tempfile.TemporaryDirectory() as directory:

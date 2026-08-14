@@ -12,6 +12,7 @@
    - `editions/ai/edition.json`
    - `editions/ai/runtime.json`
    - `docs/08-ai-eda-editorial-profiles.md`
+   - `docs/15-technical-explanatory-journalism.md`
    - `docs/11-ai-auto-publishing.md`
    - `editions/ai/editorial/article-prompt.md`
    - `editions/ai/sources/primary-sources.json`
@@ -52,6 +53,9 @@
    기사 frontmatter에는 `edition`, `decision`, `title`, `date`, `subject`, `summary`,
    `evidence_ceiling`, `reproducibility`, `conflicts`만 정확히 한 번씩 쓴다.
    `publication_id`는 evidence와 실행 요청의 식별자이며 기사 frontmatter에는 쓰지 않는다.
+   제목·summary·도입부·중심 주장은 기술이 무엇이고 어떻게 작동하며 이전 방식의 어떤
+   병목을 바꾸는지와 그 의의를 먼저 설명한다. version·가격·근거 등급·주의사항은 사건의
+   본질인 경우가 아니면 본문 중심을 차지하지 않게 한다.
 8. 기사와 evidence는 서로 같은 publication id, 중심 주장, 근거 수준, source URL을 가져야
    한다. 근거보다 강한 제목·요약·편집 판단을 쓰지 않는다.
 9. `content/`, `decisions/`, `docs/`, `editions/`, `scripts/`, `prompts/`, `site/`, `.coco-agents/`

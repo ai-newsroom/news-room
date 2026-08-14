@@ -75,9 +75,9 @@ if [[ ! "$MAX_VALIDATION_ATTEMPTS" =~ ^[12]$ ]]; then
 fi
 
 mkdir -p "$STAGED_DIR"
-python3 - "$REQUEST" "$PUBLICATION_ID" "$PUBLICATION_DATE" "$ARTICLE" "$EVIDENCE" "$NO_PUBLISH" "$REPO" <<'PY'
+python3 - "$REQUEST" "$PUBLICATION_ID" "$PUBLICATION_DATE" "$ARTICLE" "$EVIDENCE" "$NO_PUBLISH" "$REPO" "$BRIEF_FILE" <<'PY'
 import json, pathlib, sys
-path, publication_id, publication_date, article, evidence, no_publish, repo = sys.argv[1:]
+path, publication_id, publication_date, article, evidence, no_publish, repo, brief = sys.argv[1:]
 root = pathlib.Path(repo)
 relative = lambda value: str(pathlib.Path(value).relative_to(root))
 value = {
@@ -88,6 +88,7 @@ value = {
     "article_path": relative(article),
     "evidence_path": relative(evidence),
     "no_publish_path": relative(no_publish),
+    "brief_path": relative(brief),
 }
 pathlib.Path(path).write_text(
     json.dumps(value, ensure_ascii=False, indent=2) + "\n",

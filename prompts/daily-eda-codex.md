@@ -12,6 +12,7 @@
    - `editions/eda/edition.json`
    - `editions/eda/runtime.json`
    - `docs/08-ai-eda-editorial-profiles.md`
+   - `docs/15-technical-explanatory-journalism.md`
    - `docs/14-eda-auto-publishing.md`
    - `editions/eda/editorial/article-prompt.md`
    - `editions/eda/editorial/style-contract.md`
@@ -49,7 +50,10 @@
 8. 발행 후보가 있으면 `article_path`와 `evidence_path`만 작성한다. 기사에는 정본의 쉬운
    기술 문체와 필수 소제목을 적용하고, 전문 용어를 첫 등장에 풀어 쓴다. 벤더 주장,
    저자 보고 결과, 독립 확인과 미확인 범위를 분리한다. 실무 판단은 `지금 할 일 / 아직
-   미룰 일 / 다음에 확인할 신호`로 정리한다.
+   미룰 일 / 다음에 확인할 신호`로 정리한다. 제목·summary·도입부·중심 주장은 기술이
+   설계 흐름에서 어떻게 작동하고 기존 flow의 무엇을 바꾸며 어떤 의의가 있는지를 먼저
+   설명한다. PPA·runtime·node·constraint·signoff 조건은 그 판단을 지키는 근거로 두되,
+   조건 목록이 기술 설명을 밀어내지 않게 한다.
 9. Evidence에는 선정 점수, claim-source ledger, 재현성, 이해상충, 조사한 주요 경로와
    탈락 후보를 담은 `discovery_review`를 포함한다. Release gate는 다음 값을 정확히 쓴다.
 

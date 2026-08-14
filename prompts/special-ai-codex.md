@@ -12,6 +12,7 @@
    `special`이어야 한다. 지정된 출력 경로만 사용한다.
 2. `editions/ai/edition.json`, `editions/ai/runtime.json`,
    `docs/08-ai-eda-editorial-profiles.md`, `docs/11-ai-auto-publishing.md`,
+   `docs/15-technical-explanatory-journalism.md`,
    `editions/ai/editorial/article-prompt.md`, 편집자 지정 브리프를 완전히 읽는다.
 3. 브리프의 주제를 다른 최신 뉴스로 바꾸지 않는다. 검색 결과와 소셜 신호는 발견에만
    쓰고, 기사 사실은 논문·공개 코드·공식 문서·release note처럼 독자가 직접 열 수 있는
@@ -49,8 +50,24 @@
 }
 ```
 
-8. 특별판이라는 이유로 문체·근거·선정·이해상충·재현성 기준을 낮추지 않는다. 반대로
+8. 편집자 브리프에서 요청한 중심 질문과 서술 각도를 다음 형식으로 evidence의
+   `editorial_brief_alignment`에 기록한다.
+
+```json
+{
+  "requested_angle": "기사가 설명하고 판단할 중심 기술 변화와 의의",
+  "required_focus_terms": ["기사에서 그대로 사용할 핵심 표현 1", "핵심 표현 2"],
+  "secondary_terms": ["보조적으로 다룰 표현 1", "보조 표현 2"]
+}
+```
+
+   `required_focus_terms`는 2~8개, `secondary_terms`는 0~8개를 쓴다. focus term 중 최소
+   하나가 title, summary, 첫 세 문단, evidence의 `central_claim`에 각각 문자 그대로
+   나타나야 한다. 이 네 영역 전체에서는 focus term의 출현 수가 secondary term보다
+   많아야 한다. 넓고 자연스러운 핵심 표현을 선택해 억지 반복을 피하면서도 편집자 요청
+   각도가 version·가격·주의사항 목록에 밀리지 않게 한다.
+9. 특별판이라는 이유로 문체·근거·선정·이해상충·재현성 기준을 낮추지 않는다. 반대로
    검증 기록을 제목과 도입부에 반복해 기사를 판정문처럼 만들지도 않는다.
-9. `content/`, `decisions/`, `docs/`, `editions/`, `scripts/`, `prompts/`, `site/`,
+10. `content/`, `decisions/`, `docs/`, `editions/`, `scripts/`, `prompts/`, `site/`,
    `.coco-agents/`를 수정하지 않는다. commit, push, deploy와 자기개선은 턴 밖의 결정적
    발행기와 별도 회고가 맡는다.
