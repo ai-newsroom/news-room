@@ -22,9 +22,14 @@ from zoneinfo import ZoneInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
-POLICY_ID = "ai-auto-publish-v1"
+AUTOMATIC_POLICY_ID = "ai-auto-publish-v1"
+SPECIAL_POLICY_ID = "ai-special-publish-v1"
+# Backwards-compatible name used by the existing tests and callers.
+POLICY_ID = AUTOMATIC_POLICY_ID
 SEOUL = ZoneInfo("Asia/Seoul")
-PUBLICATION_ID = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+PUBLICATION_ID = re.compile(
+    r"^(?P<date>\d{4}-\d{2}-\d{2})(?:--(?P<slug>[a-z0-9]+(?:-[a-z0-9]+)*))?$"
+)
 EVIDENCE_ORDER = {"E0": 0, "E1": 1, "E2": 2, "E3": 3, "E4": 4}
 REQUIRED_HEADINGS = (
     "## 세 줄 요약",
@@ -44,7 +49,9 @@ ARTICLE_FRONTMATTER_KEYS = frozenset({
     "evidence_ceiling",
     "reproducibility",
     "conflicts",
+    "publication_kind",
 })
+REQUIRED_ARTICLE_FRONTMATTER_KEYS = ARTICLE_FRONTMATTER_KEYS - {"publication_kind"}
 AUTOMATIC_CHECKS = (
     "ai-editorial-config",
     "article-frontmatter-schema",
@@ -63,6 +70,25 @@ import style_v2  # noqa: E402
 
 class PublishError(ValueError):
     """A candidate is not safe to materialize."""
+
+
+def publication_identity(publication_id: str) -> tuple[str, str, str | None]:
+    match = PUBLICATION_ID.fullmatch(publication_id)
+    if match is None:
+        raise PublishError(
+            "publication id must be YYYY-MM-DD or YYYY-MM-DD--lowercase-slug"
+        )
+    publication_date = match.group("date")
+    slug = match.group("slug")
+    kind = "special" if slug else "regular"
+    return publication_date, kind, slug
+
+
+def publication_route(publication_id: str) -> str:
+    publication_date, kind, slug = publication_identity(publication_id)
+    if kind == "special":
+        return f"/ai/{publication_date}/{slug}/"
+    return f"/ai/{publication_date}/"
 
 
 def sha256(value: bytes) -> str:
@@ -161,11 +187,22 @@ def validate_candidate(
     *,
     repo_root: Path = ROOT,
     require_today: bool = True,
+    publication_kind: str = "regular",
+    approved_by: str | None = None,
+    approval_basis: str | None = None,
 ) -> dict[str, Any]:
-    if PUBLICATION_ID.fullmatch(publication_id) is None:
-        raise PublishError("publication id must be YYYY-MM-DD")
-    if require_today and publication_id != datetime.now(SEOUL).date().isoformat():
+    publication_date, identity_kind, _ = publication_identity(publication_id)
+    if publication_kind not in {"regular", "special"}:
+        raise PublishError("publication kind must be regular or special")
+    if identity_kind != publication_kind:
+        raise PublishError("publication id and publication kind do not match")
+    if require_today and publication_date != datetime.now(SEOUL).date().isoformat():
         raise PublishError("publication id must equal today's Seoul date")
+    if publication_kind == "special" and (
+        not approved_by or not approved_by.strip()
+        or not approval_basis or not approval_basis.strip()
+    ):
+        raise PublishError("special publication requires explicit approval metadata")
 
     run_root = repo_root / "var/runs/ai"
     article_path = regular_file_below(article_path, run_root)
@@ -180,7 +217,7 @@ def validate_candidate(
 
     frontmatter_keys = set(frontmatter)
     unexpected_fields = sorted(frontmatter_keys - ARTICLE_FRONTMATTER_KEYS)
-    missing_fields = sorted(ARTICLE_FRONTMATTER_KEYS - frontmatter_keys)
+    missing_fields = sorted(REQUIRED_ARTICLE_FRONTMATTER_KEYS - frontmatter_keys)
     if unexpected_fields:
         raise PublishError(
             "unexpected article frontmatter field(s): "
@@ -194,9 +231,12 @@ def validate_candidate(
     if (
         frontmatter.get("edition") != "ai"
         or frontmatter.get("decision") != "publish-candidate"
-        or frontmatter.get("date") != publication_id
+        or frontmatter.get("date") != publication_date
     ):
         raise PublishError("article edition, decision, or date is invalid")
+    article_kind = frontmatter.get("publication_kind", "regular")
+    if article_kind != publication_kind:
+        raise PublishError("article publication kind is invalid")
     for field in ("title", "subject", "summary"):
         if not frontmatter[field].strip():
             raise PublishError(f"article {field} is required")
@@ -227,7 +267,7 @@ def validate_candidate(
     selection = evidence.get("selection")
     if (
         evidence.get("edition") != "ai"
-        or evidence.get("date") != publication_id
+        or evidence.get("date") != publication_date
         or evidence.get("decision") != "publish-candidate"
         or evidence.get("evidence_ceiling") != evidence_ceiling
         or not isinstance(selection, dict)
@@ -236,6 +276,10 @@ def validate_candidate(
         or selection["total"] < selection["threshold"]
     ):
         raise PublishError("evidence identity, ceiling, or selection gate is invalid")
+    if evidence.get("publication_id", publication_id) != publication_id:
+        raise PublishError("evidence publication id is invalid")
+    if evidence.get("publication_kind", "regular") != publication_kind:
+        raise PublishError("evidence publication kind is invalid")
 
     claims = central_claims(evidence)
     if not any(
@@ -248,11 +292,13 @@ def validate_candidate(
 
     release_gate = evidence.get("release_gate")
     if not isinstance(release_gate, dict):
-        raise PublishError("automatic release gate is required")
+        raise PublishError("release gate is required")
     required_gate = {
-        "policy_id": POLICY_ID,
-        "human_approval_required": False,
-        "automatic_publish_allowed": True,
+        "policy_id": (
+            SPECIAL_POLICY_ID if publication_kind == "special" else AUTOMATIC_POLICY_ID
+        ),
+        "human_approval_required": publication_kind == "special",
+        "automatic_publish_allowed": publication_kind == "regular",
         "quality_gate_passed": True,
         "content_promotion_allowed": True,
         "git_write_allowed": True,
@@ -280,15 +326,42 @@ def validate_candidate(
         "article_sha256": sha256(article_bytes),
         "evidence_sha256": sha256(evidence_bytes),
         "title": frontmatter.get("title", ""),
+        "publication_kind": publication_kind,
+        "approved_by": approved_by,
+        "approval_basis": approval_basis,
     }
 
 
 def release_record(candidate: Mapping[str, Any], executor: str) -> dict[str, Any]:
     publication_id = str(candidate["publication_id"])
+    publication_kind = str(candidate["publication_kind"])
+    authorization: dict[str, Any]
+    if publication_kind == "special":
+        authorization = {
+            "mode": "human",
+            "approved": True,
+            "approved_at": datetime.now(SEOUL).isoformat(timespec="seconds"),
+            "approved_by": str(candidate["approved_by"]),
+            "approval_basis": str(candidate["approval_basis"]),
+            "scope": [
+                f"content/ai/{publication_id}/article.md",
+                f"decisions/ai/{publication_id}/evidence.json",
+                f"decisions/ai/{publication_id}/release.json",
+            ],
+        }
+    else:
+        authorization = {
+            "mode": "automatic",
+            "policy_id": AUTOMATIC_POLICY_ID,
+            "authorized_at": datetime.now(SEOUL).isoformat(timespec="seconds"),
+            "executor": executor,
+            "checks": list(AUTOMATIC_CHECKS),
+        }
     return {
         "schema_version": 1,
         "edition": "ai",
         "publication_id": publication_id,
+        "publication_kind": publication_kind,
         "decision": "publish-candidate",
         "release_status": "approved-for-publication",
         "article_path": f"content/ai/{publication_id}/article.md",
@@ -297,14 +370,8 @@ def release_record(candidate: Mapping[str, Any], executor: str) -> dict[str, Any
             "article_sha256": candidate["article_sha256"],
             "evidence_sha256": candidate["evidence_sha256"],
         },
-        "routes": ["/ai/", f"/ai/{publication_id}/"],
-        "authorization": {
-            "mode": "automatic",
-            "policy_id": POLICY_ID,
-            "authorized_at": datetime.now(SEOUL).isoformat(timespec="seconds"),
-            "executor": executor,
-            "checks": list(AUTOMATIC_CHECKS),
-        },
+        "routes": ["/ai/", publication_route(publication_id)],
+        "authorization": authorization,
     }
 
 
@@ -337,12 +404,16 @@ def materialize(
         raise
     return {
         "status": "materialized",
-        "policy_id": POLICY_ID,
+        "policy_id": (
+            SPECIAL_POLICY_ID
+            if candidate["publication_kind"] == "special"
+            else AUTOMATIC_POLICY_ID
+        ),
         "publication_id": publication_id,
         "article_path": release["article_path"],
         "evidence_path": release["evidence_path"],
         "release_path": f"decisions/ai/{publication_id}/release.json",
-        "route": f"/ai/{publication_id}/",
+        "route": publication_route(publication_id),
         "external_actions": {
             "commit": False,
             "push": False,
@@ -356,6 +427,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--article", required=True, type=Path)
     parser.add_argument("--evidence", required=True, type=Path)
     parser.add_argument("--publication-id", required=True)
+    parser.add_argument(
+        "--publication-kind",
+        choices=("regular", "special"),
+        default="regular",
+    )
+    parser.add_argument("--approved-by")
+    parser.add_argument("--approval-basis")
     parser.add_argument("--executor", default="codex-automation")
     parser.add_argument("--check-only", action="store_true")
     return parser.parse_args()
@@ -368,11 +446,18 @@ def main() -> int:
             args.article,
             args.evidence,
             args.publication_id,
+            publication_kind=args.publication_kind,
+            approved_by=args.approved_by,
+            approval_basis=args.approval_basis,
         )
         if args.check_only:
             result = {
                 "status": "validated",
-                "policy_id": POLICY_ID,
+                "policy_id": (
+                    SPECIAL_POLICY_ID
+                    if args.publication_kind == "special"
+                    else AUTOMATIC_POLICY_ID
+                ),
                 "publication_id": args.publication_id,
                 "external_actions": {
                     "content": False,

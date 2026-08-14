@@ -172,6 +172,42 @@ class PublicationGitBoundaryTest(unittest.TestCase):
             "",
         )
 
+    def test_ai_finalizer_pushes_special_release_bundle(self) -> None:
+        publication_id = "2026-08-04--cordis"
+        article_root = self.publisher / f"content/ai/{publication_id}"
+        decision_root = self.publisher / f"decisions/ai/{publication_id}"
+        article_root.mkdir(parents=True)
+        decision_root.mkdir(parents=True)
+        (article_root / "article.md").write_text("article\n", encoding="utf-8")
+        (decision_root / "evidence.json").write_text("{}\n", encoding="utf-8")
+        (decision_root / "release.json").write_text("{}\n", encoding="utf-8")
+
+        completed = run(
+            "bash",
+            "scripts/finalize-publication.sh",
+            "ai",
+            publication_id,
+            cwd=self.publisher,
+        )
+        self.assertRegex(completed.stdout.strip(), r"^[0-9a-f]{40}$")
+        committed = run(
+            "git",
+            f"--git-dir={self.origin}",
+            "show",
+            "--format=",
+            "--name-only",
+            "main",
+            cwd=self.root,
+        ).stdout.splitlines()
+        self.assertEqual(
+            sorted(path for path in committed if path),
+            [
+                f"content/ai/{publication_id}/article.md",
+                f"decisions/ai/{publication_id}/evidence.json",
+                f"decisions/ai/{publication_id}/release.json",
+            ],
+        )
+
     def test_eda_finalizer_pushes_exact_human_release_bundle(self) -> None:
         article_root = self.publisher / "content/eda/2026-08-04"
         decision_root = self.publisher / "decisions/eda/2026-08-04"

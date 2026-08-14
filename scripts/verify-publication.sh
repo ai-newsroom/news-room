@@ -21,7 +21,21 @@ case "$EDITION" in
     ;;
   ai)
     ARTICLE="$REPO/content/ai/$PUBLICATION_ID/article.md"
-    URL="$PUBLIC_BASE/ai/$PUBLICATION_ID/"
+    RELEASE="$REPO/decisions/ai/$PUBLICATION_ID/release.json"
+    if [[ ! -f "$RELEASE" ]]; then
+      echo "Cannot verify missing release: $RELEASE" >&2
+      exit 2
+    fi
+    ROUTE="$(python3 - "$RELEASE" <<'PY'
+import json, sys
+value = json.load(open(sys.argv[1], encoding="utf-8"))
+routes = [route for route in value.get("routes", []) if route != "/ai/"]
+if len(routes) != 1 or not routes[0].startswith("/ai/"):
+    raise SystemExit("invalid AI release route")
+print(routes[0])
+PY
+)"
+    URL="$PUBLIC_BASE$ROUTE"
     ;;
   eda)
     ARTICLE="$REPO/content/eda/$PUBLICATION_ID/article.md"
@@ -52,7 +66,10 @@ for ((attempt = 1; attempt <= ATTEMPTS; attempt++)); do
     if [[ "$EDITION" == current-affairs ]]; then
       VERIFIED=true
     elif grep -Fq "발행 ID $PUBLICATION_ID" "$BODY"; then
-      if [[ "$EDITION" == ai ]] && grep -Fq "자동 출고 검증 완료" "$BODY"; then
+      if [[ "$EDITION" == ai ]] && {
+        grep -Fq "자동 출고 검증 완료" "$BODY" ||
+        grep -Fq "사람 공개 승인 완료" "$BODY"
+      }; then
         VERIFIED=true
       elif [[ "$EDITION" == eda ]] && {
         grep -Fq "사람 공개 승인 완료" "$BODY" ||

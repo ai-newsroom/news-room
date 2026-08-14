@@ -9,7 +9,7 @@ fi
 
 EDITION="$1"
 PUBLICATION_ID="$2"
-if [[ ! "$PUBLICATION_ID" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+if [[ ! "$PUBLICATION_ID" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}(--[a-z0-9]+(-[a-z0-9]+)*)?$ ]]; then
   echo "Invalid publication id: $PUBLICATION_ID" >&2
   exit 2
 fi

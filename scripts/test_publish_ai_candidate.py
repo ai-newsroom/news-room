@@ -236,6 +236,72 @@ class AutomaticAiPublisherTest(unittest.TestCase):
             self.assertFalse((root / "content/ai/2026-07-26").exists())
             self.assertFalse((root / "decisions/ai/2026-07-26").exists())
 
+    def test_same_day_special_candidate_gets_nested_route_and_human_authorization(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            article.write_text(
+                article.read_text(encoding="utf-8").replace(
+                    "date: 2026-07-26\n",
+                    "date: 2026-07-26\npublication_kind: special\n",
+                ),
+                encoding="utf-8",
+            )
+            value = json.loads(evidence_path.read_text())
+            value.update({
+                "publication_id": "2026-07-26--cordis",
+                "publication_kind": "special",
+            })
+            value["release_gate"].update({
+                "policy_id": publisher.SPECIAL_POLICY_ID,
+                "human_approval_required": True,
+                "automatic_publish_allowed": False,
+            })
+            evidence_path.write_text(json.dumps(value), encoding="utf-8")
+
+            (root / "content/ai/2026-07-26").mkdir(parents=True)
+            candidate = publisher.validate_candidate(
+                article,
+                evidence_path,
+                "2026-07-26--cordis",
+                repo_root=root,
+                require_today=False,
+                publication_kind="special",
+                approved_by="편집자",
+                approval_basis="대화에서 Cordis 특별판 발행을 승인함",
+            )
+            result = publisher.materialize(candidate, executor="test", repo_root=root)
+
+            self.assertEqual(result["route"], "/ai/2026-07-26/cordis/")
+            release = json.loads(
+                (root / "decisions/ai/2026-07-26--cordis/release.json").read_text()
+            )
+            self.assertEqual(release["publication_kind"], "special")
+            self.assertEqual(release["authorization"]["mode"], "human")
+            self.assertEqual(release["authorization"]["approved_by"], "편집자")
+
+    def test_special_candidate_requires_matching_id_kind_and_approval(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article, evidence_path = self.make_candidate(root)
+            with self.assertRaisesRegex(publisher.PublishError, "do not match"):
+                publisher.validate_candidate(
+                    article,
+                    evidence_path,
+                    "2026-07-26--cordis",
+                    repo_root=root,
+                    require_today=False,
+                )
+            with self.assertRaisesRegex(publisher.PublishError, "lowercase-slug"):
+                publisher.validate_candidate(
+                    article,
+                    evidence_path,
+                    "2026-07-26--Cordis",
+                    repo_root=root,
+                    require_today=False,
+                    publication_kind="special",
+                )
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

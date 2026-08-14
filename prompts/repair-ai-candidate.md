@@ -8,9 +8,11 @@
 
 1. 이번 요청의 request JSON을 읽고 기존 `article_path`와 `evidence_path`만 확인한다.
 2. 함께 제공된 결정적 검증 오류를 그대로 해결하는 데 필요한 최소 수정만 한다.
-3. 기사 frontmatter에는 다음 필드만 정확히 한 번씩 둔다.
+3. 기사 frontmatter에는 다음 필드를 정확히 한 번씩 둔다.
    `edition`, `decision`, `title`, `date`, `subject`, `summary`, `evidence_ceiling`,
-   `reproducibility`, `conflicts`.
+   `reproducibility`, `conflicts`. request의 `publication_kind`가 `special`이면
+   `publication_kind: special`도 정확히 한 번 유지하고, 정규판이면 이 필드를 추가하지
+   않는다.
 4. 기사 frontmatter에 `publication_id`를 넣지 않는다. publication id는 evidence와 request의
    식별자로만 유지한다.
 5. 오류와 무관한 본문 퇴고, 표현 변경, source 교체, 추가 취재를 하지 않는다.

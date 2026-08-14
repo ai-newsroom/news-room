@@ -1,4 +1,4 @@
-# 일일 순차 발행 후 회고 턴
+# 발행 후 회고 턴
 
 `prompts/conductor-role.md`와 `docs/12-continuous-improvement-loop.md`를 먼저 읽고 그대로
 따라라. 이 턴은 읽기 전용 회고이며 구현 턴이 아니다.
@@ -6,17 +6,21 @@
 ## 절차
 
 1. `Asia/Seoul`의 오늘 날짜를 확인한다. `git fetch origin main` 뒤 로컬 working tree가 아니라
-   `origin/main`에서 `content/YYYY-MM-DD/article.md`와 선택적인
-   `content/ai/YYYY-MM-DD/article.md`와 `content/eda/YYYY-MM-DD/article.md`를 찾는다.
-2. 시사판 원격 파일이 없거나 공개 `/news/YYYY-MM-DD/` URL이 HTTP 200과 기대 제목을
-   만족하지 않으면 어떤 상태도 바꾸지 말고 `NO_PUBLICATION`으로 끝낸다. AI판과 EDA판은
-   원격 파일이 있을 때만 각각 `/ai/YYYY-MM-DD/`, `/eda/YYYY-MM-DD/`의 발행 ID와 공개
-   상태를 추가로 검증한다.
+   `origin/main`에서 `content/YYYY-MM-DD/article.md`, 선택적인 정규 AI·EDA 기사와 함께
+   `content/ai/YYYY-MM-DD--*/article.md` 형태의 편집자 요청 AI 특별판을 모두 찾는다.
+2. 오늘 발행된 후보의 공개 상태를 각각 검증한다. 시사판은 `/news/YYYY-MM-DD/`, AI·EDA판은
+   release JSON의 routes에 기록된 URL에서 HTTP 200, 기대 제목과 발행 ID를 확인한다.
+   특별판은 `/ai/YYYY-MM-DD/<slug>/`이고 정규판의 날짜 URL을 대신하지 않는다. 공개 검증에
+   성공한 기사가 하나도 없을 때만 어떤 상태도 바꾸지 않고 `NO_PUBLICATION`으로 끝낸다.
 3. 아래 tracked 자료는 local working tree가 아니라 `git show origin/main:<path>`로 필요한 만큼
    읽는다. Conductor workspace의 오래되거나 미커밋된 파일을 발행 정본으로 사용하지 않는다.
    - 원격 시사판 article.md, debate.md, draft.md, prompt.md, run.md
-   - 원격에 AI판이 있으면 article.md, evidence.json, release.json
-   - 원격에 EDA판이 있으면 article.md, evidence.json, release.json
+   - 정규 AI판 `content/ai/YYYY-MM-DD/article.md`와
+     `decisions/ai/YYYY-MM-DD/{evidence,release}.json`
+   - 특별 AI판 `content/ai/YYYY-MM-DD--<slug>/article.md`와
+     `decisions/ai/YYYY-MM-DD--<slug>/{evidence,release}.json`
+   - EDA판 `content/eda/YYYY-MM-DD/article.md`와
+     `decisions/eda/YYYY-MM-DD/{evidence,release}.json`
    - `editions/eda/editorial/article-prompt.md`, `editions/eda/editorial/style-contract.md`
    - `docs/14-eda-auto-publishing.md`
    - `newsroom/charter.md`, `newsroom/style-exemplar.md`, `newsroom/CLAUDE.md`
@@ -41,7 +45,7 @@
 ## proposal 계약
 
 `.coco-agents/conductor-loop.json`의 `conductor_session_id`를 `--session`에 사용한다.
-제목은 `[회고 YYYY-MM-DD] <구체적인 문제>` 형식으로 한다. 설명에는 근거 파일과 관찰,
+제목은 `[회고 <publication-id>] <구체적인 문제>` 형식으로 한다. 설명에는 근거 파일과 관찰,
 영향 범위, 제외 범위, 기대 가치를 쓴다.
 
 반드시 다음을 모두 제공한다.

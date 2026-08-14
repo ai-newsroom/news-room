@@ -16,6 +16,13 @@ const releaseIds = (await readdir(decisionsRoot, { withFileTypes: true }))
   .map((entry) => entry.name)
   .sort();
 const approved = [];
+function publicPath(id, kind) {
+  if (kind === 'regular' || kind === undefined) return id;
+  const [date, slug] = id.split('--', 2);
+  assert.ok(date && slug, `invalid special id: ${id}`);
+  return `${date}/${slug}`;
+}
+
 for (const id of releaseIds) {
   let release;
   try {
@@ -29,8 +36,10 @@ for (const id of releaseIds) {
   if (release.authorization.mode === 'automatic') {
     assert.equal(release.authorization.policy_id, 'ai-auto-publish-v1');
     assert.ok(release.authorization.checks.length >= 5);
+    assert.equal(release.publication_kind ?? 'regular', 'regular');
   } else {
     assert.equal(release.authorization.approved, true);
+    assert.ok(['regular', 'special'].includes(release.publication_kind ?? 'regular'));
   }
   const source = await readFile(join(contentRoot, id, 'article.md'), 'utf8');
   const titleLine = source.split('\n').find((line) => line.startsWith('title:'));
@@ -40,6 +49,7 @@ for (const id of releaseIds) {
     release,
     source,
     title: JSON.parse(titleLine.slice('title:'.length).trim()),
+    publicPath: publicPath(id, release.publication_kind),
   });
 }
 assert.ok(approved.length >= 1);
@@ -51,17 +61,12 @@ const build = spawnSync('npm', ['run', 'build'], {
 });
 assert.equal(build.status, 0, build.stdout + build.stderr);
 
-const aiRootEntries = (await readdir(join(distRoot, 'ai'), { withFileTypes: true }))
-  .map((entry) => entry.name)
-  .sort();
-assert.deepEqual(aiRootEntries, [...approved.map(({ id }) => id), 'index.html'].sort());
-
 const landing = await readFile(join(distRoot, 'ai', 'index.html'), 'utf8');
 const legacyHome = await readFile(join(distRoot, 'index.html'), 'utf8');
-for (const { id, release, source, title } of approved) {
-  const article = await readFile(join(distRoot, 'ai', id, 'index.html'), 'utf8');
+for (const { id, publicPath: routePath, release, source, title } of approved) {
+  const article = await readFile(join(distRoot, 'ai', routePath, 'index.html'), 'utf8');
   assert.ok(landing.includes(title));
-  assert.ok(landing.includes(`href="/news-room/ai/${id}/"`));
+  assert.ok(landing.includes(`href="/news-room/ai/${routePath}/"`));
   assert.ok(article.includes(title));
   assert.ok(article.includes('SW 엔지니어를 위한 판단'));
   assert.ok(article.includes('이 공개의 의의와 편집 판단'));
@@ -72,13 +77,17 @@ for (const { id, release, source, title } of approved) {
     ? '자동 출고 검증 완료'
     : '사람 공개 승인 완료';
   assert.ok(article.includes(label));
+  if (release.publication_kind === 'special') {
+    assert.ok(article.includes('편집자 요청 특별판'));
+    assert.ok(landing.includes('특별판'));
+  }
   assert.equal(legacyHome.includes(title), false);
   assert.equal(source.includes('no-publish'), false);
 }
 
 const cosmos = approved.find(({ id }) => id === '2026-07-21');
 assert.ok(cosmos);
-const cosmosHtml = await readFile(join(distRoot, 'ai', cosmos.id, 'index.html'), 'utf8');
+const cosmosHtml = await readFile(join(distRoot, 'ai', cosmos.publicPath, 'index.html'), 'utf8');
 for (const expected of [
   '0334b6f3da2b8519e9c832175c16fd46d32d6f2a',
   '앞선 토큰으로 다음 토큰을 예측하는 자동회귀 Reasoner',

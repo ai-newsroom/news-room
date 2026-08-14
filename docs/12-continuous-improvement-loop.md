@@ -23,6 +23,11 @@
   -> 독립 검토
   -> 승인된 범위만 최종 반영
   -> 이후 발행에서 효과 관찰
+
+편집자 요청 AI 특별판
+  -> 별도 특별판 실행기가 후보 생성·검증·공개 확인
+  -> 같은 읽기 전용 회고 routine을 즉시 깨움
+  -> 이후 승인·작업·검토 경계는 정규판과 동일
 ```
 
 ## 역할과 책임
@@ -35,6 +40,11 @@
 `scripts/publish-ai-daily.sh`를 실행하고, 그 단계가 발행 또는 `no-publish`로 끝난 뒤
 `scripts/publish-eda-daily.sh`를 실행한다. 세 판의 Git 외부 동작은 공통 finalizer가 맡는다.
 발행 세션은 자기 결과의 회고나 시스템 변경을 수행하지 않는다.
+
+`scripts/publish-ai-special.sh`는 편집자가 지정·승인한 AI 특별판만 담당한다. 정규 순차
+실행기나 systemd timer에는 들어가지 않으며, 정규판의 날짜 ID와 다른
+`YYYY-MM-DD--<slug>` 식별자를 사용한다. 공개 검증에 성공하면 09:30에 쓰는 것과 같은
+회고 routine을 `run-now`로 깨우되, 회고 실패가 이미 공개된 기사를 되돌리지는 않는다.
 
 systemd의 `news-room-daily.timer` 하나만 이 상위 실행기를 시작한다. 기존 별도 AI Codex
 automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 전용 clean checkout을 독점하고,
@@ -108,6 +118,8 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 - `content/YYYY-MM-DD/prompt.md`
 - `content/YYYY-MM-DD/run.md`
 - `content/ai/YYYY-MM-DD/article.md`와 `decisions/ai/YYYY-MM-DD/{evidence,release}.json`
+- `content/ai/YYYY-MM-DD--<slug>/article.md`와 해당 특별판의
+  `decisions/ai/YYYY-MM-DD--<slug>/{evidence,release}.json`
 - `content/eda/YYYY-MM-DD/article.md`와 `decisions/eda/YYYY-MM-DD/{evidence,release}.json`
 - `newsroom/charter.md`
 - `newsroom/style-exemplar.md`

@@ -92,6 +92,25 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertIn("기사 frontmatter에 `publication_id`를 넣지 않는다", repair_prompt)
         self.assertIn("새 주제를 조사하지 않는다", repair_prompt)
 
+    def test_ai_special_entrypoint_is_human_gated_and_preserves_daily_slot(self) -> None:
+        publisher = (ROOT / "scripts/publish-ai-special.sh").read_text()
+        self.assertIn('PUBLICATION_ID="$PUBLICATION_DATE--$SLUG"', publisher)
+        self.assertIn("special brief must be below prompts/ai-special-briefs", publisher)
+        self.assertIn('--publication-kind special', publisher)
+        self.assertIn('--approved-by "$APPROVED_BY"', publisher)
+        self.assertIn('--approval-basis "$APPROVAL_BASIS"', publisher)
+        self.assertNotIn('"$REPO/scripts/publish-daily.sh"', publisher)
+        live = publisher.index('"$REPO/scripts/verify-publication.sh" ai')
+        retrospective = publisher.index(
+            "coco-agents routine run-now news-room-post-publish-retrospective"
+        )
+        self.assertLess(live, retrospective)
+
+        prompt = (ROOT / "prompts/special-ai-codex.md").read_text()
+        self.assertIn("ai-special-publish-v1", prompt)
+        self.assertIn("publication_kind: special", prompt)
+        self.assertIn("정규 일일판의 주제 선정이나", prompt)
+
     def test_eda_entrypoint_rechecks_prior_stages_and_uses_bounded_repair(self) -> None:
         publisher = (ROOT / "scripts/publish-eda-daily.sh").read_text()
         current_guard = publisher.index(
@@ -145,6 +164,8 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertIn("docs/14-eda-auto-publishing.md", prompt)
         self.assertIn("해당 판의 이후 발행 3회", prompt)
         self.assertIn("원문 두 개의 역할 중복", prompt)
+        self.assertIn("content/ai/YYYY-MM-DD--*/article.md", prompt)
+        self.assertIn("/ai/YYYY-MM-DD/<slug>/", prompt)
 
 
 if __name__ == "__main__":

@@ -36,6 +36,7 @@ const aiArticles = defineCollection({
     evidence_ceiling: z.enum(['E1', 'E2', 'E3', 'E4']),
     reproducibility: z.enum(['R0', 'R1', 'R2', 'R3']),
     conflicts: z.array(z.string()).min(1),
+    publication_kind: z.enum(['regular', 'special']).default('regular'),
   }).strict(),
 });
 
@@ -44,7 +45,8 @@ const aiReleases = defineCollection({
   schema: z.object({
     schema_version: z.literal(1),
     edition: z.literal('ai'),
-    publication_id: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    publication_id: z.string().regex(/^\d{4}-\d{2}-\d{2}(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/),
+    publication_kind: z.enum(['regular', 'special']).default('regular'),
     decision: z.literal('publish-candidate'),
     release_status: z.enum(['approved-for-publication', 'withdrawn']),
     article_path: z.string(),

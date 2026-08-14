@@ -20,10 +20,13 @@ function formatDate(d: Date) {
   <section class="feed-section" aria-labelledby="recent-ai-news">
     <h2 id="recent-ai-news" class="section-title">최근 기사</h2>
     <ul class="feed">
-      {publications.map(({ id, article, release }) => (
+      {publications.map(({ publicPath, article, release }) => (
         <li class="item">
-          <p class="date">{formatDate(article.data.date)}</p>
-          <h3><a href={`${base}/ai/${id}/`}>{article.data.title}</a></h3>
+          <p class="date">
+            {formatDate(article.data.date)}
+            {release.data.publication_kind === 'special' && <span class="special-label">특별판</span>}
+          </p>
+          <h3><a href={`${base}/ai/${publicPath}/`}>{article.data.title}</a></h3>
           <p class="summary">{article.data.summary}</p>
           <ul class="signals" aria-label="기사 검증 수준">
             <li>근거 수준 {article.data.evidence_ceiling}</li>
@@ -48,6 +51,11 @@ function formatDate(d: Date) {
   .feed { list-style: none; margin: 0.65rem 0 0; padding: 0; }
   .item { border-top: 1px solid var(--soft-rule); padding: 1.5rem 0 1.6rem; }
   .item .date { color: var(--muted); font-size: 0.82rem; margin: 0; }
+  .special-label {
+    color: var(--accent);
+    font-weight: 700;
+    margin-left: 0.45rem;
+  }
   .item h3 { font-size: 1.35rem; margin: 0.2rem 0; }
   .item h3 a { color: var(--ink); text-decoration: none; }
   .item h3 a:hover { color: var(--accent); }

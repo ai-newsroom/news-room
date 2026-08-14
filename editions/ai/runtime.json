@@ -14,7 +14,7 @@
     "enabled": true,
     "managed_by": "systemd:news-room-daily.timer",
     "timezone": "Asia/Seoul",
-    "cadence": "daily after the 07:00 current-affairs publication is live-verified; maximum one published article per Seoul date"
+    "cadence": "one regular article daily after the 07:00 current-affairs publication is live-verified; editor-requested and human-approved special articles may publish separately without consuming the regular slot"
   },
   "release": {
     "mode": "automatic",
