@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-16",
+  "date": "2026-08-16",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-16-sequential/20260815T221144Z-960819/staged-content/article.md",
+  "central_claim": "OpenROAD-MCP v1.0.0은 MCP client가 OpenROAD/ORFS 물리설계 환경에 세션을 만들고 read-only query, state-changing exec, session history/metrics, ORFS report image 읽기를 수행할 수 있는 공개 실행 인터페이스를 npm과 Docker package로 고정했다.",
+  "subject": "The-OpenROAD-Project OpenROAD-MCP v1.0.0 공개 릴리스와 OpenROAD/ORFS MCP 실행 경로",
+  "title": "OpenROAD-MCP 1.0.0은 물리설계 AI 보조를 채팅 답변에서 실행 세션으로 옮깁니다",
+  "summary": "OpenROAD-MCP 1.0.0은 MCP client가 OpenROAD 세션을 만들고 Tcl 명령을 실행하며 ORFS 리포트 이미지를 읽는 공개 경로를 npm과 Docker로 제공합니다. 다만 QoR, PPA, runtime 개선은 이 릴리스만으로 확인되지 않으며 실제 판단은 각 설계와 OpenROAD/ORFS 환경에서 재실행해야 합니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "중심 근거는 The-OpenROAD-Project의 공개 GitHub 릴리스, README, architecture/API/security 문서와 npm registry metadata입니다.",
+    "편집국은 OpenROAD-MCP 서버와 OpenROAD/ORFS flow를 이번 턴에서 직접 실행하지 않았고, QoR·PPA·runtime 개선을 재현하지 않았습니다."
+  ],
+  "selection": {
+    "total": 8,
+    "threshold": 7
+  },
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 1,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 1,
+    "total": 8,
+    "rationale": "OpenROAD/ORFS 물리설계 세션을 AI assistant의 MCP tool 호출로 연결하는 공개 실행 인터페이스라 설계 flow 영향이 크다. v1.0.0은 2026-08-11 정식 릴리스이며 npm latest와 Docker/server manifest가 공개됐다. command boundary, architecture, API, security 조건은 문서화됐지만 실제 QoR/PPA/runtime benchmark 조건은 없으므로 조건 공개와 실무 의사결정 점수는 제한했다."
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "source_urls": [
+    "https://github.com/The-OpenROAD-Project/OpenROAD-MCP/releases/tag/v1.0.0",
+    "https://api.github.com/repos/The-OpenROAD-Project/OpenROAD-MCP/releases/latest",
+    "https://github.com/The-OpenROAD-Project/OpenROAD-MCP",
+    "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/CHANGELOG.md",
+    "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/ARCHITECTURE.md",
+    "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/docs/API.md",
+    "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/docs/SECURITY.md",
+    "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/server.json",
+    "https://registry.npmjs.org/openroad-mcp"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenROAD-MCP v1.0.0 was published on 2026-08-11 and its release body/changelog list Python distribution removal, v1.0 cleanup test improvements, TypeScript primary work, dependency updates, and project casing fixes.",
+      "source_url": "https://api.github.com/repos/The-OpenROAD-Project/OpenROAD-MCP/releases/latest",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenROAD-MCP v1.0.0; git tag v1.0.0; release id 368364585; published_at 2026-08-11T06:19:22Z",
+      "accessed_at": "2026-08-15",
+      "direct_or_derived": "direct",
+      "method": "GitHub release API and raw CHANGELOG were checked for release date, tag, and change list.",
+      "limitations": [
+        "Release notes describe packaging and cleanup, not design QoR or runtime improvement."
+      ],
+      "conflict_of_interest": [
+        "The-OpenROAD-Project publishes and maintains OpenROAD-MCP."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "OpenROAD-MCP exposes MCP tools for OpenROAD/ORFS interaction, including interactive session creation, read-only query execution, state-changing execution, session history/metrics, and ORFS report image listing/reading.",
+      "source_url": "https://github.com/The-OpenROAD-Project/OpenROAD-MCP",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "README on main as accessed 2026-08-15; OpenROAD-MCP v1.0.0 package metadata cross-check",
+      "accessed_at": "2026-08-15",
+      "direct_or_derived": "direct",
+      "method": "README tool list was cross-checked with docs/API.md and ARCHITECTURE.md.",
+      "limitations": [
+        "Documentation proves interface availability, not that a specific design closure task succeeds."
+      ],
+      "conflict_of_interest": [
+        "The-OpenROAD-Project publishes and maintains OpenROAD-MCP."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The npm registry lists openroad-mcp latest as 1.0.0 with Node.js >=22, an openroad-mcp executable, BSD-3-Clause license, SLSA provenance attestation, and GitHub repository provenance.",
+      "source_url": "https://registry.npmjs.org/openroad-mcp",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "npm package openroad-mcp@1.0.0; registry modified 2026-08-11T06:19:45.766Z",
+      "accessed_at": "2026-08-15",
+      "direct_or_derived": "direct",
+      "method": "npm registry metadata was checked for dist-tags.latest, version metadata, engine requirement, license, tarball, integrity, attestation, and gitHead.",
+      "limitations": [
+        "Package metadata confirms distribution state, not runtime behavior in a local OpenROAD installation."
+      ],
+      "conflict_of_interest": [
+        "The package is published by the project release workflow."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The architecture and security documents split read-only query and state-changing exec paths, use a Tcl command whitelist, spawn OpenROAD through node-pty, and warn that HTTP transport has no built-in authentication/CORS/DNS-rebinding protection.",
+      "source_url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/docs/SECURITY.md",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenROAD-MCP security model on main accessed 2026-08-15",
+      "accessed_at": "2026-08-15",
+      "direct_or_derived": "direct",
+      "method": "SECURITY.md was checked for whitelist tiers, query/exec enforcement, PTY spawn allowlist, and HTTP exposure notes; ARCHITECTURE.md was checked for node-pty session model.",
+      "limitations": [
+        "Security properties were not independently penetration-tested in this run.",
+        "Exec is explicitly not a sandbox; deployment safety depends on local configuration."
+      ],
+      "conflict_of_interest": [
+        "The-OpenROAD-Project documents its own server security model."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "OpenROAD-MCP v1.0.0 improves QoR, PPA, or runtime for physical design closure.",
+      "source_url": "unavailable",
+      "source_type": "unavailable",
+      "evidence_grade": "E0",
+      "version": "No public benchmark or independent reproduction used in this run",
+      "accessed_at": "2026-08-15",
+      "direct_or_derived": "direct",
+      "method": "Searched for public benchmark or design logs tying OpenROAD-MCP v1.0.0 to QoR/PPA/runtime improvement; none was used as article evidence.",
+      "limitations": [
+        "QoR/PPA/runtime effects require specific design, platform, OpenROAD/ORFS commit, constraints, seed, timeout, server hardware, and agent prompt logs."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://api.github.com/repos/The-OpenROAD-Project/OpenROAD-MCP/releases/latest",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/CHANGELOG.md",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://github.com/The-OpenROAD-Project/OpenROAD-MCP",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/docs/API.md",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/ARCHITECTURE.md",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://registry.npmjs.org/openroad-mcp",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-MCP/main/server.json",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "reproducibility_assessment": {
+    "status": "R2",
+    "reason": "OpenROAD-MCP source, npm package metadata, Docker/server manifest, README, quickstart, API reference, architecture, and security documentation are public. The central interface and installation claims can be independently inspected and rerun by installing Node.js 22+, OpenROAD, and optionally ORFS. The newsroom did not execute the tool during this turn, so no QoR/PPA/runtime outcome is claimed.",
+    "what_is_public": [
+      "GitHub repository and release tag v1.0.0",
+      "npm package openroad-mcp@1.0.0 with tarball, integrity, and provenance metadata",
+      "server.json package manifest for npm and OCI paths",
+      "README installation snippets for MCP clients",
+      "API reference and architecture document",
+      "Security model including command whitelist and HTTP exposure notes"
+    ],
+    "what_is_missing": [
+      "Newsroom-run installation log",
+      "Specific OpenROAD and ORFS commit used for an end-to-end design experiment",
+      "Design suite, platform, constraints, seed, server hardware, and agent prompt logs",
+      "Independent QoR/PPA/runtime comparison"
+    ]
+  },
+  "conflict_of_interest_assessment": {
+    "reported_conflicts": [
+      "중심 근거는 The-OpenROAD-Project의 공개 GitHub 릴리스, README, architecture/API/security 문서와 npm registry metadata입니다.",
+      "편집국은 OpenROAD-MCP 서버와 OpenROAD/ORFS flow를 이번 턴에서 직접 실행하지 않았고, QoR·PPA·runtime 개선을 재현하지 않았습니다."
+    ],
+    "editorial_handling": "Public open-source release metadata and package/documentation were used for interface and availability claims. Any claim about PPA, QoR, runtime, signoff readiness, or agent superiority was excluded from the central conclusion."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "GitHub and search results showed OpenROAD-MCP release workflow entries through v1.0.0 and a public repository under The-OpenROAD-Project.",
+        "source_url": "https://github.com/The-OpenROAD-Project/OpenROAD-MCP/actions/workflows/release.yml",
+        "used": true,
+        "note": "Used as discovery signal, then verified via GitHub release API, changelog, README, npm registry, API, architecture, and security documents."
+      },
+      {
+        "signal": "Siemens EDA blog index listed Mixed-Signal Visualizer on 2026-08-12 and other recent Siemens EDA posts.",
+        "source_url": "https://blogs.sw.siemens.com/eda/",
+        "used": false,
+        "note": "Opened the Mixed-Signal Visualizer blog and official white paper page; rejected because public evidence remained mostly vendor-authored feature description and case-study summary."
+      },
+      {
+        "signal": "Synopsys published a 2026-08-14 blog on AI-driven multi-die PG bump optimization in 3DIC Compiler.",
+        "source_url": "https://www.synopsys.com/blogs/chip-design/ai-multi-die-pg-bump-ir-drop-optimization.html",
+        "used": false,
+        "note": "Opened the blog and 3DIC Compiler product page; rejected because the public sources did not disclose a reproducible design, node, constraints, benchmark, or independent comparison."
+      },
+      {
+        "signal": "arXiv listed ZhuLong, an execution-grounded LLM agent for EDA scripting with PyAether/SKILL, submitted 2026-08-08.",
+        "source_url": "https://arxiv.org/html/2608.07925v1",
+        "used": false,
+        "note": "Technically relevant but code and benchmark are promised only upon acceptance; the article would have overlapped more closely with recent EDA agent benchmark coverage and remained R1."
+      },
+      {
+        "signal": "Cadence ChipStack AI Super Agent product page and product brief describe agent orchestration for RTL and verification.",
+        "source_url": "https://www.cadence.com/en_US/home/tools/system-design-and-verification/chipstack-ai-superagent.html",
+        "used": false,
+        "note": "Rejected as too close to the 2026-08-13 Cadence EDA agent feedback article and lacking public benchmark or execution artifact for performance claims."
+      }
+    ],
+    "alternatives": [
+      {
+        "candidate": "Siemens Mixed-Signal Visualizer for AMS verification",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "status": "rejected",
+        "reason": "Official blog and white paper explain AMS debug features such as multi-window visualization, automatic schematic generation, mixed-signal net analysis, and boundary element inspection, but public evidence lacks reproducible design cases, tool version, benchmark logs, or independent confirmation."
+      },
+      {
+        "candidate": "Synopsys AI multi-die PG bump optimization in 3DIC Compiler",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 6
+        },
+        "status": "rejected",
+        "reason": "Blog and product page describe a concrete PG bump planning loop from bump pattern through EMIR analysis and aggregate design score, but no public design, package technology, constraints, solver settings, or independent runtime/PPA data were found."
+      },
+      {
+        "candidate": "ZhuLong execution-grounded LLM agent for EDA scripting",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 7
+        },
+        "status": "rejected",
+        "reason": "The paper reports meaningful PyAether/SKILL scripting results and benchmark structure, but public code and benchmark are not yet released; the strongest claims remain author-reported and commercial-tool-dependent."
+      },
+      {
+        "candidate": "Cadence ChipStack AI Super Agent",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 0,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 3
+        },
+        "status": "rejected",
+        "reason": "Product page and brief identify mental model and specialized agents, but recent EDA coverage already handled Cadence agent feedback strategy and no public execution artifact or benchmark was found for this run."
+      },
+      {
+        "candidate": "OpenROAD-MCP v1.0.0",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 8
+        },
+        "status": "selected",
+        "reason": "Recent v1.0.0 release, public source/package/docs, explicit OpenROAD/ORFS command interface, and clear security/installation boundaries satisfy the score threshold and source diversity requirement without relying on unverified PPA claims."
+      }
+    ]
+  }
+}
