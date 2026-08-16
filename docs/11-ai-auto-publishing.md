@@ -18,7 +18,8 @@ AI 정규판은 매일 07:00 `Asia/Seoul`에 시작하는 단일 발행 실행�
 - 최소 두 개의 원문 URL과 claim별 source grade가 필요하다.
 - `ai-technical-blog-v2`, 선정 점수, 이해상충, 필수 절, publication ID, route 중복,
   artifact hash, site test와 production build를 모두 통과해야 한다.
-- `no-publish`와 실행 실패는 공개 route를 만들지 않는다.
+- `no-publish`는 기사 route를 만들지 않지만, 검증된 날짜별 결정 기록을 `/ai/` 첫 화면의
+  발행 상태로 공개한다. 실행 실패는 휴간으로 바꾸거나 공개 상태로 확정하지 않는다.
 - 정규판의 자동 권한은 `ai-auto-publish-v1`에만 적용한다. 특별판은
   `ai-special-publish-v1`과 사람 승인 기록을 사용한다. EDA판은 별도
   `eda-auto-publish-v1`을 사용하며 서로 또는 시사판의 권한을 상속하거나 변경하지 않는다.
@@ -44,6 +45,18 @@ decisions/ai/<publication-id>/release.json
 발행 전용 clean checkout에서 후보 생성, materialize, 전체 test와 build를 수행한다.
 그 결과가 성공일 때만 공통 `scripts/finalize-publication.sh`가 허용된 세 파일을 Git과
 Pages 단계로 보낸다.
+
+정상 `no-publish`는 `scripts/publish-ai-no-publish.py`가 원본 결정의 날짜, 필드 집합,
+사유와 discovery review를 검증한 뒤 다음 한 파일만 materialize한다.
+
+```text
+decisions/ai/<publication-id>/no-publish.json
+```
+
+`scripts/finalize-publication.sh ai-status`는 이 파일만 별도 상태 커밋으로 push한다. 사이트는
+이를 기사나 RSS 항목으로 만들지 않고 `/ai/` 첫 화면에서 `발행 완료`, `편집 기준에 따른
+휴간`, `발행 준비·상태 확인 중`을 구분한다. `scripts/verify-publication.sh ai-status`는 실제
+첫 화면의 휴간 문구와 날짜를 확인해야 성공한다.
 
 정규판 publication id는 `YYYY-MM-DD`이고 공개 주소는 `/ai/YYYY-MM-DD/`다. 특별판의
 내부 publication id는 `YYYY-MM-DD--<slug>`이며 파일시스템에서는 정규판과 나란히

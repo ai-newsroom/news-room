@@ -74,6 +74,20 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertIn('DECISION_FILE="$PUBLICATION_RUN_DIR/ai-decision.json"', publisher)
         self.assertIn('"decision") == "no-publish"', publisher)
         self.assertIn('mv "$DECISION_FILE.tmp" "$DECISION_FILE"', publisher)
+        self.assertIn(
+            'HEAD:decisions/ai/$PUBLICATION_ID/no-publish.json',
+            publisher,
+        )
+        self.assertEqual(publisher.count("scripts/publish-ai-no-publish.py"), 2)
+        status_validation = publisher.index("scripts/publish-ai-no-publish.py")
+        status_finalize = publisher.index(
+            '"$REPO/scripts/finalize-publication.sh" ai-status'
+        )
+        status_verify = publisher.index(
+            '"$REPO/scripts/verify-publication.sh" ai-status'
+        )
+        self.assertLess(status_validation, status_finalize)
+        self.assertLess(status_finalize, status_verify)
 
     def test_ai_validation_failure_gets_one_bounded_repair_before_materialization(self) -> None:
         publisher = (ROOT / "scripts/publish-ai-daily.sh").read_text()

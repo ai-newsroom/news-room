@@ -21,8 +21,9 @@
    끝나기 전까지 유일한 운영 배치다. 전환 중 두 runner를 같은 날짜에 함께 쓰지 않는다.
 4. AI·EDA는 누락된 설정을 `newsroom/`에서 찾지 않는다. 기술 공통 계약 외에 서로의
    prompt, role, source, validator도 fallback으로 사용하지 않는다.
-5. `no-publish`는 정상적인 편집 결정이지만 공개 기사나 휴간 공지가 아니다. 실행 실패와
-   구분해 공개 content tree 밖에 둔다.
+5. `no-publish`는 정상적인 편집 결정이지만 공개 기사나 휴간 기사가 아니다. 실행 실패와
+   구분해 공개 content tree 밖에 둔다. AI판은 검증된 날짜별 결정을 `/ai/` 첫 화면의 상태로
+   표시할 수 있지만 별도 기사 route, RSS 항목, 소셜 카드를 만들지 않는다.
 6. 새 공통 runner의 기본 모드는 `prepare-only`다. 다만 AI판은 별도
    `ai-auto-publish-v1`의 근거·문체·route·build gate를 모두 통과한 경우에만 content
    승격, commit, push, deploy를 자동 수행한다. EDA판은 사람 승인 전 쓰기를 금지한다.
@@ -93,7 +94,7 @@ scripts/
   publish-daily.sh               # 시사판 전환 완료 전까지 유지하는 legacy 진입점
 
 var/runs/<run-id>/<edition>/     # 실행 중간물; gitignore 대상, 다른 edition과 쓰기 공유 금지
-decisions/<edition>/<date>/      # 추적 가능한 no-publish 결정; 사이트 loader 대상 아님
+decisions/<edition>/<date>/      # 추적 가능한 결정; AI no-publish는 상태 전용 loader가 읽음
 
 content/
   YYYY-MM-DD/                    # 시사판 legacy 및 앞으로도 같은 URL을 쓰는 일일 발행
@@ -192,7 +193,8 @@ forbidden_fallbacks:
 - `technical` profile이 `newsroom/` 또는 다른 edition의 editorial 경로를 참조하는 설정
 - `schedule.enabled: true`인데 manager, timezone, cadence가 없는 설정
 - `requires_human_approval: false`, `git_write: true`, `deploy: true`인 AI·EDA 초기 설정
-- content root와 decision root가 같거나, no-publish artifact가 site manifest에 들어가는 설정
+- content root와 decision root가 같거나, no-publish artifact가 기사 manifest·route에
+  들어가는 설정. 날짜와 결정만 읽는 별도 상태 collection은 허용한다.
 
 환경 변수는 credential 값만 주입할 수 있다. edition id, source path, route, gate, release
 mode는 실행 때 환경 변수로 덮어쓸 수 없게 해 실행 기록과 실제 판단이 달라지는 일을 막는다.
@@ -215,7 +217,7 @@ runner는 `resolve -> acquire -> analyze -> decide -> validate -> stage` phase�
 | 결과 | 저장 위치 | 공개·git 동작 |
 |---|---|---|
 | 실행 실패 | `var/runs/.../run.json`의 failed 상태 | 기사·no-publish로 변환하지 않음 |
-| `no-publish` | `decisions/<edition>/<date>/...` 후보 | 사이트 제외, 자동 git 없음 |
+| `no-publish` | `decisions/<edition>/<date>/...` | 기사 route 제외. AI판은 결정적 검증 뒤 상태 파일만 자동 git하고 `/ai/`에 표시 |
 | `publish-candidate` | `var/runs/.../staged-content/` | edition별 출고 권한 전 `content/` 복사 금지 |
 | 승인된 publish | config가 정한 content root | publish adapter가 사람 또는 자동 정책 증거를 확인 |
 

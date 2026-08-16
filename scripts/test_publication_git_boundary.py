@@ -208,6 +208,43 @@ class PublicationGitBoundaryTest(unittest.TestCase):
             ],
         )
 
+    def test_ai_status_finalizer_pushes_only_no_publish_record(self) -> None:
+        publication_id = "2026-08-04"
+        decision_root = self.publisher / f"decisions/ai/{publication_id}"
+        decision_root.mkdir(parents=True)
+        (decision_root / "no-publish.json").write_text(
+            '{"schema_version":1,"publication_id":"2026-08-04",'
+            '"decision":"no-publish","reason":"test"}\n',
+            encoding="utf-8",
+        )
+
+        completed = run(
+            "bash",
+            "scripts/finalize-publication.sh",
+            "ai-status",
+            publication_id,
+            cwd=self.publisher,
+        )
+        self.assertRegex(completed.stdout.strip(), r"^[0-9a-f]{40}$")
+        committed = run(
+            "git",
+            f"--git-dir={self.origin}",
+            "show",
+            "--format=",
+            "--name-only",
+            "main",
+            cwd=self.root,
+        ).stdout.splitlines()
+        self.assertEqual(
+            [path for path in committed if path],
+            [f"decisions/ai/{publication_id}/no-publish.json"],
+        )
+        self.assertFalse((self.publisher / f"content/ai/{publication_id}").exists())
+        self.assertEqual(
+            run("git", "status", "--porcelain", cwd=self.publisher).stdout,
+            "",
+        )
+
     def test_eda_finalizer_pushes_exact_human_release_bundle(self) -> None:
         article_root = self.publisher / "content/eda/2026-08-04"
         decision_root = self.publisher / "decisions/eda/2026-08-04"

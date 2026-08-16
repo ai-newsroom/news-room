@@ -63,6 +63,21 @@ for (const id of releaseIds) {
 }
 assert.ok(approved.length >= 1);
 
+const noPublishStatuses = [];
+for (const id of releaseIds) {
+  let decision;
+  try {
+    decision = JSON.parse(await readFile(join(decisionsRoot, id, 'no-publish.json'), 'utf8'));
+  } catch {
+    continue;
+  }
+  assert.equal(decision.schema_version, 1);
+  assert.equal(decision.publication_id, id);
+  assert.equal(decision.decision, 'no-publish');
+  assert.equal(approved.some((publication) => publication.id === id), false);
+  noPublishStatuses.push({ id, decision });
+}
+
 const build = spawnSync('npm', ['run', 'build'], {
   cwd: siteRoot,
   encoding: 'utf8',
@@ -72,6 +87,15 @@ assert.equal(build.status, 0, build.stdout + build.stderr);
 
 const landing = await readFile(join(distRoot, 'ai', 'index.html'), 'utf8');
 const legacyHome = await readFile(join(distRoot, 'index.html'), 'utf8');
+assert.ok(landing.includes('오늘의 발행 상태'));
+assert.ok(landing.includes('data-ai-daily-status='));
+for (const { id } of noPublishStatuses) {
+  assert.ok(landing.includes(`data-no-publish-id="${id}"`));
+  await assert.rejects(
+    readFile(join(distRoot, 'ai', id, 'index.html'), 'utf8'),
+    (error) => error?.code === 'ENOENT',
+  );
+}
 for (const { id, publicPath: routePath, release, source, title } of approved) {
   const article = await readFile(join(distRoot, 'ai', routePath, 'index.html'), 'utf8');
   assert.ok(landing.includes(htmlText(title)));
@@ -117,6 +141,7 @@ console.log(JSON.stringify({
   status: 'pass',
   approvedAiRoutes: ['/ai/', ...approved.map(({ id }) => `/ai/${id}/`)],
   authorizationModes: [...new Set(approved.map(({ release }) => release.authorization.mode))],
+  noPublishStatuses: noPublishStatuses.map(({ id }) => id),
   unapprovedTechnicalRoutes,
   legacyHomeUnchangedByAiContent: true,
   sameDateLegacyRouteIsolated: true,

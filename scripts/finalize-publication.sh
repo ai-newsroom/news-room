@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if [[ $# -ne 2 ]]; then
-  echo "usage: $0 <current-affairs|ai|eda> <YYYY-MM-DD>" >&2
+  echo "usage: $0 <current-affairs|ai|ai-status|eda> <YYYY-MM-DD>" >&2
   exit 2
 fi
 
@@ -31,6 +31,11 @@ case "$EDITION" in
       "decisions/ai/$PUBLICATION_ID/release.json"
     )
     COMMIT_MESSAGE="publish(ai): $PUBLICATION_ID"
+    ;;
+  ai-status)
+    ALLOWED_ROOTS=("decisions/ai/$PUBLICATION_ID")
+    REQUIRED_PATHS=("decisions/ai/$PUBLICATION_ID/no-publish.json")
+    COMMIT_MESSAGE="status(ai): $PUBLICATION_ID no-publish"
     ;;
   eda)
     ALLOWED_ROOTS=("content/eda/$PUBLICATION_ID" "decisions/eda/$PUBLICATION_ID")
@@ -90,7 +95,7 @@ while IFS= read -r staged_path; do
   fi
 done < <(git diff --cached --name-only)
 
-if [[ "$EDITION" == ai || "$EDITION" == eda ]]; then
+if [[ "$EDITION" == ai || "$EDITION" == ai-status || "$EDITION" == eda ]]; then
   ACTUAL_TECHNICAL_PATHS="$(git diff --cached --name-only | LC_ALL=C sort)"
   EXPECTED_TECHNICAL_PATHS="$(printf '%s\n' "${REQUIRED_PATHS[@]}" | LC_ALL=C sort)"
   if [[ "$ACTUAL_TECHNICAL_PATHS" != "$EXPECTED_TECHNICAL_PATHS" ]]; then

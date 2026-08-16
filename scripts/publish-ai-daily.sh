@@ -33,14 +33,25 @@ if ! git cat-file -e "HEAD:content/$PUBLICATION_ID/article.md" 2>/dev/null; then
 fi
 "$REPO/scripts/verify-publication.sh" current-affairs "$PUBLICATION_ID" >/dev/null
 
+mkdir -p "$STAGED_DIR"
+mkdir -p "$PUBLICATION_RUN_DIR"
+
+if git cat-file -e "HEAD:decisions/ai/$PUBLICATION_ID/no-publish.json" 2>/dev/null; then
+  git show "HEAD:decisions/ai/$PUBLICATION_ID/no-publish.json" > "$DECISION_FILE.tmp"
+  mv "$DECISION_FILE.tmp" "$DECISION_FILE"
+  echo "AI no-publish status already exists for $PUBLICATION_ID"
+  exit 0
+fi
+
+REUSE_NO_PUBLISH=false
 if [[ -f "$DECISION_FILE" ]] && python3 - "$DECISION_FILE" "$PUBLICATION_ID" <<'PY'
 import json, sys
 value = json.load(open(sys.argv[1], encoding="utf-8"))
 raise SystemExit(0 if value.get("publication_id") == sys.argv[2] and value.get("decision") == "no-publish" else 1)
 PY
 then
-  echo "AI no-publish decision already exists for $PUBLICATION_ID"
-  exit 0
+  cp "$DECISION_FILE" "$NO_PUBLISH"
+  REUSE_NO_PUBLISH=true
 fi
 
 if git cat-file -e "HEAD:content/ai/$PUBLICATION_ID/article.md" 2>/dev/null; then
@@ -56,9 +67,8 @@ if [[ ! "$MAX_VALIDATION_ATTEMPTS" =~ ^[12]$ ]]; then
   exit 2
 fi
 
-mkdir -p "$STAGED_DIR"
-mkdir -p "$PUBLICATION_RUN_DIR"
-cat > "$REQUEST" <<EOF
+if [[ "$REUSE_NO_PUBLISH" == false ]]; then
+  cat > "$REQUEST" <<EOF
 {
   "schema_version": 1,
   "publication_id": "$PUBLICATION_ID",
@@ -68,26 +78,27 @@ cat > "$REQUEST" <<EOF
 }
 EOF
 
-set +e
-{
-  cat "$PROMPT_FILE"
-  printf '\n## 이번 실행 요청\n\n`%s`를 읽고 그 경로와 발행일을 정확히 사용하라.\n' "${REQUEST#$REPO/}"
-  if [[ -f "$BRIEF_FILE" ]]; then
-    printf '\n## 지정 편집 브리프\n\n다음 브리프는 이번 발행일의 주제와 독자 관점을 지정한다. 위의 근거·검증·release gate는 그대로 지킨다.\n\n'
-    cat "$BRIEF_FILE"
+  set +e
+  {
+    cat "$PROMPT_FILE"
+    printf '\n## 이번 실행 요청\n\n`%s`를 읽고 그 경로와 발행일을 정확히 사용하라.\n' "${REQUEST#$REPO/}"
+    if [[ -f "$BRIEF_FILE" ]]; then
+      printf '\n## 지정 편집 브리프\n\n다음 브리프는 이번 발행일의 주제와 독자 관점을 지정한다. 위의 근거·검증·release gate는 그대로 지킨다.\n\n'
+      cat "$BRIEF_FILE"
+    fi
+  } | codex exec \
+    --cd "$REPO" \
+    --sandbox "$NEWS_ROOM_CODEX_SANDBOX" \
+    --json \
+    --output-last-message "$LAST_MESSAGE" \
+    - > "$SESSION_RUN_JSON"
+  SESSION_EXIT=$?
+  set -e
+  printf '%s\n' "$SESSION_EXIT" > "$RUN_DIR/session-exit-code.txt"
+  if [[ $SESSION_EXIT -ne 0 ]]; then
+    echo "AI editorial turn failed with exit code $SESSION_EXIT" >&2
+    exit "$SESSION_EXIT"
   fi
-} | codex exec \
-  --cd "$REPO" \
-  --sandbox "$NEWS_ROOM_CODEX_SANDBOX" \
-  --json \
-  --output-last-message "$LAST_MESSAGE" \
-  - > "$SESSION_RUN_JSON"
-SESSION_EXIT=$?
-set -e
-printf '%s\n' "$SESSION_EXIT" > "$RUN_DIR/session-exit-code.txt"
-if [[ $SESSION_EXIT -ne 0 ]]; then
-  echo "AI editorial turn failed with exit code $SESSION_EXIT" >&2
-  exit "$SESSION_EXIT"
 fi
 
 if [[ -f "$NO_PUBLISH" ]]; then
@@ -104,6 +115,10 @@ if value.get("decision") != "no-publish" or value.get("publication_id") != publi
 if not isinstance(value.get("reason"), str) or not value["reason"].strip():
     raise SystemExit("no-publish reason is required")
 PY
+  PYTHONDONTWRITEBYTECODE=1 python3 scripts/publish-ai-no-publish.py \
+    --decision "$NO_PUBLISH" \
+    --publication-id "$PUBLICATION_ID" \
+    --check-only
   if [[ -n "$(git status --porcelain=v1 --untracked-files=all)" ]]; then
     echo "AI no-publish turn modified tracked publication files" >&2
     git status --short >&2
@@ -111,7 +126,19 @@ PY
   fi
   cp "$NO_PUBLISH" "$DECISION_FILE.tmp"
   mv "$DECISION_FILE.tmp" "$DECISION_FILE"
-  echo "AI edition: no-publish for $PUBLICATION_ID"
+  PYTHONDONTWRITEBYTECODE=1 python3 editions/validate_editions.py
+  PYTHONDONTWRITEBYTECODE=1 python3 editions/validate_source_registries.py
+  PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover editions
+  PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover scripts
+
+  PYTHONDONTWRITEBYTECODE=1 python3 scripts/publish-ai-no-publish.py \
+    --decision "$NO_PUBLISH" \
+    --publication-id "$PUBLICATION_ID"
+  npm --prefix site test
+  npm --prefix site run build
+  "$REPO/scripts/finalize-publication.sh" ai-status "$PUBLICATION_ID"
+  "$REPO/scripts/verify-publication.sh" ai-status "$PUBLICATION_ID"
+  echo "AI edition: public no-publish status for $PUBLICATION_ID"
   exit 0
 fi
 

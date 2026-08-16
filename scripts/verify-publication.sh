@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if [[ $# -ne 2 ]]; then
-  echo "usage: $0 <current-affairs|ai|eda> <YYYY-MM-DD>" >&2
+  echo "usage: $0 <current-affairs|ai|ai-status|eda> <YYYY-MM-DD>" >&2
   exit 2
 fi
 
@@ -37,6 +37,10 @@ PY
 )"
     URL="$PUBLIC_BASE$ROUTE"
     ;;
+  ai-status)
+    DECISION="$REPO/decisions/ai/$PUBLICATION_ID/no-publish.json"
+    URL="$PUBLIC_BASE/ai/"
+    ;;
   eda)
     ARTICLE="$REPO/content/eda/$PUBLICATION_ID/article.md"
     URL="$PUBLIC_BASE/eda/$PUBLICATION_ID/"
@@ -46,6 +50,36 @@ PY
     exit 2
     ;;
 esac
+
+if [[ "$EDITION" == ai-status ]]; then
+  if [[ ! -f "$DECISION" ]]; then
+    echo "Cannot verify missing AI status: $DECISION" >&2
+    exit 2
+  fi
+  python3 - "$DECISION" "$PUBLICATION_ID" <<'PY'
+import json, sys
+value = json.load(open(sys.argv[1], encoding="utf-8"))
+if value.get("publication_id") != sys.argv[2] or value.get("decision") != "no-publish":
+    raise SystemExit("invalid AI no-publish status")
+PY
+  STATUS_BODY="$(mktemp)"
+  trap 'rm -f "$STATUS_BODY"' EXIT
+  for ((attempt = 1; attempt <= ATTEMPTS; attempt++)); do
+    HTTP_CODE="$(curl -sS -L -o "$STATUS_BODY" -w '%{http_code}' "$URL" || true)"
+    if [[ "$HTTP_CODE" == 200 ]] \
+      && grep -Fq "오늘 AI판은 휴간입니다" "$STATUS_BODY" \
+      && grep -Fq "발행 상태 $PUBLICATION_ID" "$STATUS_BODY"
+    then
+      printf '%s\n' "$URL"
+      exit 0
+    fi
+    if (( attempt < ATTEMPTS )); then
+      sleep "$INTERVAL"
+    fi
+  done
+  echo "Live AI no-publish status verification failed: $URL" >&2
+  exit 4
+fi
 
 if [[ ! -f "$ARTICLE" ]]; then
   echo "Cannot verify missing article: $ARTICLE" >&2

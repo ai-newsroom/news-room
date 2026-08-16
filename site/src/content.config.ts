@@ -90,6 +90,20 @@ const aiReleases = defineCollection({
   }).strict(),
 });
 
+const aiNoPublishDecisions = defineCollection({
+  loader: glob({ pattern: '*/no-publish.json', base: '../decisions/ai' }),
+  schema: z.object({
+    schema_version: z.literal(1),
+    publication_id: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    decision: z.literal('no-publish'),
+    reason: z.string().min(12),
+    discovery_review: z.object({
+      signals: z.array(z.object({}).passthrough()),
+      alternatives: z.array(z.object({}).passthrough()),
+    }).strict(),
+  }).strict(),
+});
+
 const edaArticles = defineCollection({
   loader: glob({ pattern: '*/article.md', base: '../content/eda' }),
   schema: z.object({
@@ -146,6 +160,7 @@ export const collections = {
   guests,
   aiArticles,
   aiReleases,
+  aiNoPublishDecisions,
   edaArticles,
   edaReleases,
 };

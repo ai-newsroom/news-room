@@ -1,14 +1,63 @@
 ---
+import { getCollection } from 'astro:content';
 import EditionHero from '../../components/EditionHero.astro';
 import Base from '../../layouts/Base.astro';
 import { getApprovedAiPublications } from '../../lib/approvedAiPublications';
 
 const base = import.meta.env.BASE_URL;
 const publications = await getApprovedAiPublications();
+const noPublishDecisions = await getCollection('aiNoPublishDecisions');
+
+function collectionPublicationId(id: string) {
+  return id.split('/')[0];
+}
+
+function seoulDateId(date: Date) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+  const values = new Map(parts.map(({ type, value }) => [type, value]));
+  return `${values.get('year')}-${values.get('month')}-${values.get('day')}`;
+}
 
 function formatDate(d: Date) {
   return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
 }
+
+function formatPublicationDate(id: string) {
+  const [year, month, day] = id.split('-').map(Number);
+  return `${year}년 ${month}월 ${day}일`;
+}
+
+const regularPublicationIds = new Set(
+  publications
+    .filter(({ release }) => release.data.publication_kind === 'regular')
+    .map(({ id }) => id),
+);
+const noPublishById = new Map();
+for (const decision of noPublishDecisions) {
+  const id = decision.data.publication_id;
+  if (collectionPublicationId(decision.id) !== id || noPublishById.has(id)) {
+    throw new Error(`duplicate or mismatched AI no-publish id: ${id}`);
+  }
+  if (regularPublicationIds.has(id)) {
+    throw new Error(`AI date has both an article and no-publish status: ${id}`);
+  }
+  noPublishById.set(id, decision);
+}
+
+const todayId = seoulDateId(new Date());
+const todayRegular = publications.find(
+  ({ id, release }) => id === todayId && release.data.publication_kind === 'regular',
+);
+const todayNoPublish = noPublishById.get(todayId);
+const dailyStatus = todayRegular ? 'published' : todayNoPublish ? 'no-publish' : 'pending';
+const noPublishHistory = [...noPublishById.values()]
+  .sort((left, right) => right.data.publication_id.localeCompare(left.data.publication_id))
+  .slice(0, 12);
 ---
 <Base edition="ai" title="AI 뉴스" description="SW 엔지니어의 도입 판단을 돕는 근거 중심 AI 기술 뉴스">
   <EditionHero
@@ -16,6 +65,47 @@ function formatDate(d: Date) {
     title="AI 뉴스"
     description="모델·API·개발 도구의 변화를 SW 엔지니어가 빠르게 판단할 수 있도록 설명합니다. 원문, 버전, 재현 범위와 자동 출고 게이트를 통과한 기사만 게재합니다."
   />
+
+  <section class={`daily-status daily-status--${dailyStatus}`} data-ai-daily-status={dailyStatus} aria-labelledby="daily-ai-status">
+    <p class="status-kicker">오늘의 발행 상태</p>
+    {dailyStatus === 'published' && todayRegular && (
+      <>
+        <h2 id="daily-ai-status">오늘 AI판이 발행되었습니다</h2>
+        <p class="status-message">
+          <a href={`${base}/ai/${todayRegular.publicPath}/`}>{todayRegular.article.data.title}</a>
+        </p>
+      </>
+    )}
+    {dailyStatus === 'no-publish' && (
+      <>
+        <h2 id="daily-ai-status">오늘 AI판은 휴간입니다</h2>
+        <p class="status-message">새롭고 중복되지 않은 주제 중 오늘의 편집 기준을 충족한 후보가 없어 발행하지 않았습니다.</p>
+      </>
+    )}
+    {dailyStatus === 'pending' && (
+      <>
+        <h2 id="daily-ai-status">오늘 AI판은 발행 준비·상태 확인 중입니다</h2>
+        <p class="status-message">정규 발행 또는 휴간 결정이 확정되면 이 영역이 자동으로 갱신됩니다.</p>
+      </>
+    )}
+    <p class="status-meta">발행 상태 {todayId} · Asia/Seoul</p>
+
+    {noPublishHistory.length > 0 && (
+      <details class="status-history">
+        <summary>휴간 기록</summary>
+        <ul>
+          {noPublishHistory.map((decision) => (
+            <li data-no-publish-id={decision.data.publication_id}>
+              <time datetime={decision.data.publication_id}>
+                {formatPublicationDate(decision.data.publication_id)}
+              </time>
+              <span>편집 기준에 따른 휴간</span>
+            </li>
+          ))}
+        </ul>
+      </details>
+    )}
+  </section>
 
   <section class="feed-section" aria-labelledby="recent-ai-news">
     <h2 id="recent-ai-news" class="section-title">최근 기사</h2>
@@ -40,6 +130,52 @@ function formatDate(d: Date) {
 </Base>
 
 <style>
+  .daily-status {
+    background: color-mix(in srgb, var(--paper) 88%, var(--accent-soft));
+    border: 1px solid var(--soft-rule);
+    border-left: 4px solid var(--accent);
+    margin-top: 2rem;
+    padding: 1.25rem 1.35rem;
+  }
+  .daily-status--no-publish { border-left-color: var(--muted); }
+  .daily-status--pending { border-left-color: var(--soft-rule); }
+  .status-kicker {
+    color: var(--accent);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.35rem;
+    text-transform: uppercase;
+  }
+  .daily-status h2 { font-size: 1.3rem; margin: 0; }
+  .status-message { color: var(--muted); margin: 0.45rem 0 0; }
+  .status-message a { color: var(--ink); font-weight: 700; text-decoration: none; }
+  .status-message a:hover { color: var(--accent); }
+  .status-meta {
+    color: var(--muted);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.75rem;
+    margin: 0.75rem 0 0;
+  }
+  .status-history { border-top: 1px solid var(--soft-rule); margin-top: 1rem; padding-top: 0.8rem; }
+  .status-history summary {
+    color: var(--muted);
+    cursor: pointer;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .status-history ul { list-style: none; margin: 0.7rem 0 0; padding: 0; }
+  .status-history li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+  }
+  .status-history time { color: var(--ink); font-size: 0.82rem; }
+  .status-history span { color: var(--muted); font-size: 0.8rem; }
   .feed-section { margin-top: 2rem; }
   .section-title {
     font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
