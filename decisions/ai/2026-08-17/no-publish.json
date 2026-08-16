@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-17",
+  "decision": "no-publish",
+  "reason": "2026-08-16T22:08Z 실행 기준으로 최근 공식 AI 모델·API·개발도구 원문을 확인했지만, 중복이 아닌 새 주제 중 선정 총점 7 이상, 중심 주장 E2 이상, 서로 다른 원문 URL 최소 2개를 동시에 충족하는 후보를 찾지 못했습니다. Qwen3.8, DeepSeek V4-Pro, Gemini 3.7 Flash는 실질 후보였지만 이미 2026-08-14~2026-08-15 AI판에서 다뤄졌고, OpenAI GPT-5.6 Ultrafast와 Responses API agent primitive는 제한 preview 또는 벤더 자체 성능 주장 중심이라 이번 정규판의 새 E2 중심 주장으로 승격하지 않았습니다.",
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-17-sequential/20260816T220810Z-973430/request.json and used publication_id 2026-08-17 with no_publish_path var/runs/ai/2026-08-17-sequential/20260816T220810Z-973430/no-publish.json. Read the AI edition contract, runtime, editorial profile, explanatory-journalism contract, auto-publishing contract, article prompt, and primary-source startpoints before source review."
+      },
+      {
+        "channel": "openai-official-release-and-docs",
+        "url": "https://openai.com/news/",
+        "classification": "P1 discovery review",
+        "note": "OpenAI's official news index showed 2026-08-13 items for the builder guide to GPT-5.6 and GPT-5.6 Sol Ultrafast. The builder guide links to Responses API docs for compaction, multi-agent orchestration, programmatic tool calling, and prompt caching, and the deployment safety hub has GPT-5.6 August update and system-card material. These sources are useful but the most recent item is limited-preview or vendor-evaluation centered, not a stronger non-duplicative E2 candidate for this daily slot."
+      },
+      {
+        "channel": "openai-ultrafast-primary",
+        "url": "https://openai.com/index/previewing-ultrafast/",
+        "classification": "P0/P1 source path",
+        "note": "Verified OpenAI's 2026-08-13 Ultrafast preview: GPT-5.6 Sol on a Cerebras-powered service tier, limited preview, up to 750 output tokens per second and up to 14x faster than Standard processing. Access is restricted and performance claims are vendor-published without public reproduction artifacts."
+      },
+      {
+        "channel": "openai-responses-api-docs",
+        "url": "https://developers.openai.com/api/docs/guides/compaction",
+        "classification": "P1 source path",
+        "note": "Opened official docs for compaction, multi-agent orchestration, programmatic tool calling, reasoning models, and prompt caching. They verify technical primitives such as server-side compaction, beta multi-agent subagent delegation, and model-generated JavaScript tool orchestration, but no fresh release note after the recently covered 2026-08-13 model wave was found."
+      },
+      {
+        "channel": "qwen-official-and-model-registry",
+        "url": "https://qwen.ai/blog?id=qwen3.8",
+        "classification": "P1/P2 source path",
+        "note": "Reviewed Qwen3.8-Max official blog and Qwen Hugging Face model cards for Qwen3.8-2.4T-A95B and Qwen3.8-27B. These provide model architecture, parameter counts, open-weight artifacts, serving examples, and benchmark tables. The Qwen3.8-27B open-weight angle was already handled as a 2026-08-15 AI special article."
+      },
+      {
+        "channel": "deepseek-official-api-and-registry",
+        "url": "https://api-docs.deepseek.com/updates/",
+        "classification": "P1/P2 source path",
+        "note": "Checked DeepSeek API changelog, GA notice, pricing pages, Hugging Face registry and V4 model cards. The August 16 UTC peak/off-peak pricing change is verified, but the model release, service version, public-weight boundary and scheduled pricing were already recorded in the 2026-08-14 DeepSeek V4-Pro special article."
+      },
+      {
+        "channel": "google-gemini-official-surface",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 source path",
+        "note": "The latest visible Gemini API changelog items included the 2026-08-13 Gemini 3.7 Flash GA release and recent deprecation notices. Gemini 3.7 Flash was already selected for the 2026-08-14 AI regular edition; the deprecation notices are operationally relevant but not a fresh deep technical article center."
+      },
+      {
+        "channel": "anthropic-official-docs",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 discovery review",
+        "note": "Reviewed Anthropic platform release notes, model overview, model deprecations and Claude Opus 5 documentation. The visible model changes were older than the current daily window or maintenance/deprecation oriented, and did not yield a new E2 center claim."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results and article snippets were used only to discover possible official paths, including OpenAI Preparedness reporting, Anthropic risk-report discussion, DeepSeek pricing coverage, and Qwen3.8 coverage. No article fact or score was based on secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "OpenAI GPT-5.6 Sol Ultrafast limited preview",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "OpenAI's official post verifies the limited-preview service tier, Cerebras dependency, advertised speed class and availability. The strongest claims about 14x speed and 750 output tokens per second are vendor-published and access-limited, with no public reproduction artifact or independent measurement available for an E2 runtime-performance center claim."
+      },
+      {
+        "subject": "OpenAI Responses API compaction, multi-agent and programmatic tool calling for GPT-5.6 agents",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Official docs verify concrete primitives for long-running agent workflows, including compaction, beta multi-agent orchestration and programmatic tool calling. The public docs are strong as source material, but the current trigger is tied to the already-reviewed 2026-08-13 GPT-5.6 wave and does not add a distinct fresh release event for the 2026-08-17 daily slot."
+      },
+      {
+        "subject": "DeepSeek V4 API peak/off-peak pricing taking effect on 2026-08-16 16:00 UTC",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "DeepSeek's official API changelog and pricing page verify the new scheduled pricing and workload-scheduling implications. However, the same pricing boundary was already included in the 2026-08-14 DeepSeek V4-Pro special article, so treating the effective date as a new regular article would mostly repeat an existing decision point."
+      },
+      {
+        "subject": "Qwen3.8-27B open-weight vision-language agent model",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Qwen Hugging Face model artifacts and serving documentation support an E2/R2 technical candidate, but the topic was already handled as a 2026-08-15 AI special article. No official change after that article created a fresh angle."
+      },
+      {
+        "subject": "Qwen3.8-Max and Qwen3.8-2.4T-A95B open model card",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Qwen's official blog, QwenCloud page and Hugging Face model card describe the 2.4T/95B-activated MoE model, 1M hosted context, 262K native open-weight context and runtime controls. The Qwen3.8 family was already covered via the 27B special article, and this run did not find a distinct post-special release change strong enough to justify immediate regular duplication."
+      },
+      {
+        "subject": "Google Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official Gemini API changelog, model page, model card, evaluation methodology and pricing are enough for bounded E2 coverage, but the same subject was already selected and published as the 2026-08-14 AI regular article. No new official technical delta was found for 2026-08-17."
+      },
+      {
+        "subject": "Anthropic model and platform updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Anthropic's official docs verify model deprecations, Opus model documentation and platform release notes, but the visible items were not fresh enough or technically material enough to clear the regular AI판 threshold."
+      },
+      {
+        "subject": "OpenAI Preparedness team reporting and Anthropic risk-report coverage",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 0,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "News reports made the topics discoverable, but the run did not establish the required official primary-source basis for a technical AI판 article, and organizational safety reporting is not by itself a model/API/runtime technical release."
+      }
+    ]
+  }
+}
