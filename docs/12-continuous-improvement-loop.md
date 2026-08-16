@@ -38,8 +38,9 @@
 `scripts/publish-daily.sh`를 먼저 실행해 기사와 토론, 초고, 실행 프롬프트, 실행 정보를
 `content/YYYY-MM-DD/`에 보존하고 공개 URL을 확인한다. 그 뒤에만
 `scripts/publish-ai-daily.sh`를 실행하고, 그 단계가 발행 또는 `no-publish`로 끝난 뒤
-`scripts/publish-eda-daily.sh`를 실행한다. 세 판의 Git 외부 동작은 공통 finalizer가 맡는다.
-발행 세션은 자기 결과의 회고나 시스템 변경을 수행하지 않는다.
+`scripts/publish-eda-daily.sh`를 실행한다. AI `no-publish`는 기사 대신 날짜별 결정 파일만
+반영하고 `/ai/`의 휴간 상태를 공개 검증한다. 세 판의 Git 외부 동작은 공통 finalizer가
+맡는다. 발행 세션은 자기 결과의 회고나 시스템 변경을 수행하지 않는다.
 
 `scripts/publish-ai-special.sh`는 편집자가 지정·승인한 AI 특별판만 담당한다. 정규 순차
 실행기나 systemd timer에는 들어가지 않으며, 정규판의 날짜 ID와 다른
@@ -57,6 +58,8 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 - 최종 운영에서는 오늘의 발행 작업을 시작하거나 발행 세션에 배정한다.
 - 발행 종료, Git 반영, 사이트 배포 증거를 확인한 뒤 다음 단계로 넘어간다.
 - 오늘 공개 검증이 성공한 시사·AI·EDA판 결과와 관련 아티팩트를 읽는다.
+- AI 정규판이 `no-publish`라면 날짜별 결정, `/ai/` 휴간 상태, 같은 날짜 기사 route 부재를
+  함께 확인하고 실행 실패와 구분한다.
 - 회고에서 근거가 있는 개선 후보를 하루 최대 한 건 제안한다.
 - 제안을 직접 승인하거나 구현하지 않는다.
 - 편집자가 `ready`로 승격한 작업만 작업 세션에 배정한다.
@@ -120,6 +123,7 @@ automation은 중복 실행을 막기 위해 비활성화한다. 발행기는 �
 - `content/YYYY-MM-DD/prompt.md`
 - `content/YYYY-MM-DD/run.md`
 - `content/ai/YYYY-MM-DD/article.md`와 `decisions/ai/YYYY-MM-DD/{evidence,release}.json`
+- AI 정규판 미발행 시 `decisions/ai/YYYY-MM-DD/no-publish.json`과 `/ai/` 공개 상태
 - `content/ai/YYYY-MM-DD--<slug>/article.md`와 해당 특별판의
   `decisions/ai/YYYY-MM-DD--<slug>/{evidence,release}.json`
 - `content/eda/YYYY-MM-DD/article.md`와 `decisions/eda/YYYY-MM-DD/{evidence,release}.json`

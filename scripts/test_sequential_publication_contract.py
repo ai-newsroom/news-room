@@ -83,7 +83,11 @@ class SequentialPublicationContractTest(unittest.TestCase):
         status_finalize = publisher.index(
             '"$REPO/scripts/finalize-publication.sh" ai-status'
         )
-        status_verify = publisher.index(
+        self.assertEqual(
+            publisher.count('"$REPO/scripts/verify-publication.sh" ai-status'),
+            2,
+        )
+        status_verify = publisher.rindex(
             '"$REPO/scripts/verify-publication.sh" ai-status'
         )
         self.assertLess(status_validation, status_finalize)

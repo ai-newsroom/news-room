@@ -7,16 +7,21 @@
 
 1. `Asia/Seoul`의 오늘 날짜를 확인한다. `git fetch origin main` 뒤 로컬 working tree가 아니라
    `origin/main`에서 `content/YYYY-MM-DD/article.md`, 선택적인 정규 AI·EDA 기사와 함께
-   `content/ai/YYYY-MM-DD--*/article.md` 형태의 편집자 요청 AI 특별판을 모두 찾는다.
+   `content/ai/YYYY-MM-DD--*/article.md` 형태의 편집자 요청 AI 특별판을 모두 찾는다. 정규
+   AI 기사가 없으면 `decisions/ai/YYYY-MM-DD/no-publish.json`의 명시적 미발행 결정도 찾는다.
 2. 오늘 발행된 후보의 공개 상태를 각각 검증한다. 시사판은 `/news/YYYY-MM-DD/`, AI·EDA판은
    release JSON의 routes에 기록된 URL에서 HTTP 200, 기대 제목과 발행 ID를 확인한다.
    특별판은 `/ai/YYYY-MM-DD/<slug>/`이고 정규판의 날짜 URL을 대신하지 않는다. 공개 검증에
-   성공한 기사가 하나도 없을 때만 어떤 상태도 바꾸지 않고 `NO_PUBLICATION`으로 끝낸다.
+   성공한 AI `no-publish` 결정은 `/ai/`에서 `오늘 AI판은 휴간입니다`, 상태 날짜, 휴간 기록을
+   확인하고 `/ai/YYYY-MM-DD/` 기사 route가 없음을 확인한다. 이는 기사가 아니라 운영 상태다.
+   공개 검증에 성공한 기사와 AI 상태 기록이 하나도 없을 때만 어떤 상태도 바꾸지 않고
+   `NO_PUBLICATION`으로 끝낸다.
 3. 아래 tracked 자료는 local working tree가 아니라 `git show origin/main:<path>`로 필요한 만큼
    읽는다. Conductor workspace의 오래되거나 미커밋된 파일을 발행 정본으로 사용하지 않는다.
    - 원격 시사판 article.md, debate.md, draft.md, prompt.md, run.md
    - 정규 AI판 `content/ai/YYYY-MM-DD/article.md`와
      `decisions/ai/YYYY-MM-DD/{evidence,release}.json`
+   - 정규 AI판이 미발행이면 `decisions/ai/YYYY-MM-DD/no-publish.json`
    - 특별 AI판 `content/ai/YYYY-MM-DD--<slug>/article.md`와
      `decisions/ai/YYYY-MM-DD--<slug>/{evidence,release}.json`
    - EDA판 `content/eda/YYYY-MM-DD/article.md`와
@@ -35,6 +40,7 @@
    - 프롬프트나 절차의 충돌 때문에 생긴 문제
    - 이전 capability 실험의 지표와 새 회귀
    - 발행 전용 checkout의 clean/fast-forward/finalization 경계 위반
+   - 명시적 AI `no-publish`, 공개 휴간 상태, 실행 실패를 서로 잘못 표시한 문제
    - 비보류 done 항목의 prompt, validator, workflow, 발행 코드, runtime config, site, 발행 docs
      변경이 `origin/main`에 반영되지 않아 새 발행이 이전 contract로 승인된 문제
 5. 현재 proposed/ready/running/blocked 항목을 읽고 같은 날짜·근거·수정 범위의 중복을 찾는다.

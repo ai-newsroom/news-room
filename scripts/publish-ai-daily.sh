@@ -39,6 +39,7 @@ mkdir -p "$PUBLICATION_RUN_DIR"
 if git cat-file -e "HEAD:decisions/ai/$PUBLICATION_ID/no-publish.json" 2>/dev/null; then
   git show "HEAD:decisions/ai/$PUBLICATION_ID/no-publish.json" > "$DECISION_FILE.tmp"
   mv "$DECISION_FILE.tmp" "$DECISION_FILE"
+  "$REPO/scripts/verify-publication.sh" ai-status "$PUBLICATION_ID"
   echo "AI no-publish status already exists for $PUBLICATION_ID"
   exit 0
 fi
