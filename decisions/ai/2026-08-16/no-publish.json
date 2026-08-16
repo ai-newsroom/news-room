@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-16",
+  "decision": "no-publish",
+  "reason": "2026-08-15T22:08Z 실행 기준으로 최근 공식 AI 모델·API·개발도구 원문을 확인했지만, 중복이 아닌 새 주제 중 선정 총점 7 이상, 중심 주장 E2 이상, 서로 다른 원문 URL 최소 2개를 동시에 충족하는 후보를 찾지 못했습니다. Gemini 3.7 Flash, DeepSeek V4 Pro, Z.ai GLM-5.3, Qwen3.8-27B는 기준을 넘는 실질 후보였지만 이미 2026-08-14~2026-08-15 정규·특별 AI판에서 다뤄져 이번 정규판에서 재발행할 새 국면이 부족했습니다.",
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-16-sequential/20260815T220847Z-959863/request.json and used publication_id 2026-08-16 with no_publish_path var/runs/ai/2026-08-16-sequential/20260815T220847Z-959863/no-publish.json. Read the AI edition contract, runtime, editorial profile, explanatory-journalism contract, auto-publishing contract, article prompt, and primary-source startpoints before source review."
+      },
+      {
+        "channel": "google-gemini-official-surface",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 source path",
+        "note": "The latest visible Gemini API release note remained the 2026-08-13 Gemini 3.7 Flash GA item, with model id gemini-3.7-flash and coding/agentic workflow positioning. This was already selected for the 2026-08-14 AI regular edition."
+      },
+      {
+        "channel": "openai-api-and-chatgpt-official-surfaces",
+        "url": "https://developers.openai.com/api/docs/changelog",
+        "classification": "P1 discovery review",
+        "note": "OpenAI API changelog showed the 2026-08-13 GPT-5.6 Sol Ultrafast limited-preview service tier and earlier Daybreak updates. ChatGPT release notes showed 2026-08-14 app experience updates including interactive quizzes, project memory setting changes, Think on Free/Go, and Linux desktop public preview. These are verifiable but did not provide a new E2 technical model/API center stronger than recent covered releases."
+      },
+      {
+        "channel": "anthropic-official-and-github-surfaces",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "classification": "P1/P2 discovery review",
+        "note": "Anthropic's official Opus 4.8 model announcement was dated 2026-05-28, not a fresh daily candidate. The anthropics/claude-code GitHub releases page was checked for developer-tool changes; visible releases around 2026-08-08 were maintenance-oriented and did not clear the daily importance/newness bar."
+      },
+      {
+        "channel": "mistral-official-surfaces",
+        "url": "https://mistral.ai/news/shieldstral/",
+        "classification": "P1/P2 discovery review",
+        "note": "Shieldstral remains a strong artifact-backed safety-classifier release with official blog and model documentation, but it was already covered by the 2026-08-08 AI regular edition. Mistral's later regional-inference infrastructure article was more company/infrastructure strategy than model/API technical evidence for this slot."
+      },
+      {
+        "channel": "qwen-zai-deepseek-registry-first-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed non-US and registry-first paths, including Qwen official blog/Hugging Face signals, Z.ai GLM-5.3 official blog/docs/security ledger context, and DeepSeek official API/GitHub/Hugging Face surfaces. The strongest recent candidates were already covered in the 2026-08-14 DeepSeek special article, 2026-08-15 GLM-5.3 regular article, and 2026-08-15 Qwen3.8-27B special article."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results and AI-news trackers were used only to identify possible paths such as DeepSeek V4-Pro, Qwen3.8, GLM-5.3, and OpenAI/Google updates. No article fact or score was based on secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Google Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official Gemini API changelog, model page, model card, evaluation methodology and pricing are enough for E2 bounded coverage, but the same subject was already selected and published as the 2026-08-14 AI regular article. No new official technical delta was found for 2026-08-16."
+      },
+      {
+        "subject": "Z.ai GLM-5.3 post-training and cyber-capability release",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official Z.ai blog, developer docs, ZCode changelog and Security Disclosure Ledger support an E2 bounded article, but the topic was already selected for the 2026-08-15 AI regular edition. The weight-publication state had not changed enough during this run to justify a second regular article."
+      },
+      {
+        "subject": "Qwen3.8-27B open-weight agent model",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Qwen Hugging Face model artifacts and serving-framework recipes support an E2/R2 technical candidate, but the topic was already handled as a 2026-08-15 AI special article. Repeating it in the next regular slot would fail the new-phase requirement."
+      },
+      {
+        "subject": "DeepSeek V4-Pro-0813 GA and long-context agent architecture",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official DeepSeek announcement, technical report, API docs, pricing and Hugging Face repository are strong primary sources, but the subject was already covered by the 2026-08-14 DeepSeek V4 Pro special article. No distinct official update was found."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Sol Ultrafast limited preview",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "OpenAI's API changelog and official release surface verify the limited-preview tier and vendor-published speed claim, but access is restricted and public technical artifacts are insufficient for an E2 center claim about runtime performance or operational effect."
+      },
+      {
+        "subject": "ChatGPT 2026-08-14 app experience updates and Linux desktop public preview",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Official release notes verify interactive quizzes, project memory setting changes, Think availability on Free/Go, and Linux desktop public preview. The changes are mostly product UX and availability updates, with E1 launch evidence but not enough technical mechanism or SW-engineering decision value for a regular AI판 deep technical article."
+      },
+      {
+        "subject": "Anthropic Claude Code maintenance releases",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The GitHub release page provides P2 tags and changelog entries for Claude Code maintenance fixes, but the visible updates were reliability fixes rather than a new model, runtime architecture, evaluation method, or workflow change that clears the daily article threshold."
+      },
+      {
+        "subject": "Mistral regional inference and open-model infrastructure roadmap",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Mistral's official news surface makes the infrastructure strategy discoverable, but the available signal was not as technically specific or artifact-backed as required for an E2 center claim about model/runtime behavior."
+      }
+    ]
+  }
+}
