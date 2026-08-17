@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-18",
+  "date": "2026-08-18",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-18-sequential/20260817T221734Z-985590/staged-content/article.md",
+  "central_claim": "Accellera FSL 1.0 Draft는 FMEDA 기능안전 정보를 Tcl 기반 명령과 데이터 모델로 표현해 IP, SoC, 시스템 단계 사이에서 추적 가능한 설계 데이터 flow로 옮기려는 표준 초안이다.",
+  "subject": "Accellera Functional Safety Language 1.0 Draft public review와 FMEDA 데이터 모델",
+  "title": "FSL 1.0 Draft는 기능안전 FMEDA를 스프레드시트 교환에서 설계 데이터 flow로 옮깁니다",
+  "summary": "Accellera의 FSL 1.0 Draft public review가 2026년 8월 14일 끝났습니다. 초안은 FMEDA 안전 분석을 Tcl 기반 명령과 데이터 모델로 표현해 IP, SoC, 시스템 단계 사이의 추적성을 높이려 하지만, 아직 최종 표준이나 도구 호환성 검증은 아닙니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": ["없음"],
+  "selection": {
+    "total": 9,
+    "threshold": 7
+  },
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 9,
+    "rationale": "기능안전 FMEDA 정보를 IP, SoC, system supply-chain flow에서 교환하는 표준 초안이며, draft PDF와 WG white paper가 공개되어 구조와 범위를 확인할 수 있다. 다만 reference parser, conformance suite, vendor round-trip 실행 로그는 확인하지 못했다."
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Accellera는 FSL 1.0 Draft를 공개했고 public review는 2026년 8월 14일까지 진행됐다.",
+      "source_url": "https://www.accellera.org/",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Functional Safety Language 1.0 Draft, July 2026",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "Accellera home의 public review 공지와 Drafts Under Public Review 페이지의 상태·날짜를 대조했다.",
+      "limitations": ["홈 공지는 public review 공개 사실과 기간을 확인하지만 최종 표준 승인을 의미하지 않는다."],
+      "conflict_of_interest": ["표준 기구와 회원사 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C1b",
+      "claim": "Drafts Under Public Review 페이지는 Functional Safety Language Standard Draft 1.0의 상태를 public review period ended, date modified 2026-07-07로 표시한다.",
+      "source_url": "https://www.accellera.org/downloads/drafts-review",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Drafts Under Public Review page accessed 2026-08-17",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "공개 draft 목록의 항목명, 상태, modified date를 확인했다.",
+      "limitations": ["페이지는 review 종료 상태를 보여 주지만 반영 결과나 최종 ratification은 제공하지 않는다."],
+      "conflict_of_interest": ["표준 기구와 회원사 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "FSL draft는 FMEDA 작성, failure mode와 safety mechanism 모델링, failure mode effect 표현, safety requirement 정의, design representation mapping을 위한 언어와 데이터 모델을 정의한다.",
+      "source_url": "https://www.accellera.org/images/downloads/drafts-review/FSL-1.0-draft.pdf",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Functional Safety Language Standard Version 1.0 Draft, July 2026",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "PDF abstract, introduction, table of contents, command sections를 확인했다.",
+      "limitations": ["Draft 문서이며 Accellera notice는 정보 정확성을 독립 시험·검증하지 않는다고 밝힌다.", "상용 도구 구현 상태는 확인하지 못했다."],
+      "conflict_of_interest": ["표준 working group 참여사 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "FSL draft의 assign_sm_fm 명령은 safety mechanism을 failure mode에 연결하고 estimated diagnostic coverage와 measured diagnostic coverage를 별도 인자로 둔다.",
+      "source_url": "https://www.accellera.org/images/downloads/drafts-review/FSL-1.0-draft.pdf",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Functional Safety Language Standard Version 1.0 Draft, July 2026, section 5.6.11",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "assign_sm_fm syntax와 argument 설명에서 dc_*_estimated, dc_*_measured 필드를 확인했다.",
+      "limitations": ["초안 명령 정의 확인이며 실제 parser behavior나 tool round-trip은 확인하지 않았다."],
+      "conflict_of_interest": ["표준 working group 참여사 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "2023년 Functional Safety Working Group white paper는 FMEDA process, design representation, mapping, conceptual data model과 authoring/exchange 사용 사례를 제시했다.",
+      "source_url": "https://www.accellera.org/images/downloads/standards/functional-safety/Functional_Safety_White_Paper_20231213.pdf",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Functional Safety Working Group White Paper, 2023-12-13",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "white paper 목차와 introduction, FMEDA process, design representation sections를 확인했다.",
+      "limitations": ["white paper는 배경과 데이터 모델 설명이며 2026 draft의 최종 conformance 결과는 아니다."],
+      "conflict_of_interest": ["표준 working group 참여사 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "FSL이 상용 EDA 도구 간 완전한 호환성과 safety signoff 자동화를 이미 보장한다.",
+      "source_url": "unavailable",
+      "source_type": "unavailable",
+      "evidence_grade": "E0",
+      "version": "not available",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "공개 conformance suite, reference parser, vendor round-trip 로그를 확인하지 못했다.",
+      "limitations": ["기사 결론으로 채택하지 않았다."],
+      "conflict_of_interest": ["없음"]
+    }
+  ],
+  "source_urls": [
+    "https://www.accellera.org/",
+    "https://www.accellera.org/downloads/drafts-review",
+    "https://www.accellera.org/images/downloads/drafts-review/FSL-1.0-draft.pdf",
+    "https://www.accellera.org/activities/working-groups/functional-safety",
+    "https://www.accellera.org/images/downloads/standards/functional-safety/Functional_Safety_White_Paper_20231213.pdf"
+  ],
+  "reproducibility_assessment": {
+    "state": "R1",
+    "public_artifacts": ["FSL 1.0 Draft PDF", "Functional Safety Working Group White Paper 2023", "Accellera WG and draft listing pages"],
+    "not_reproduced": ["FSL parser execution", "vendor import/export round-trip", "conformance suite", "existing FMEDA spreadsheet conversion"],
+    "why_not_r2": "언어 specification은 공개됐지만 실행 가능한 reference implementation이나 검증 script를 확인하지 못했다."
+  },
+  "conflict_of_interest": {
+    "declared": ["없음"],
+    "source_side": ["Accellera working group에는 EDA 벤더와 반도체·IP 회사 참여자가 포함될 수 있다.", "FSL draft participant and balloter lists include industry organizations."],
+    "editorial_access": ["사전 브리핑 없음", "비공개 draft 없음", "도구 license 제공 없음", "벤더 고객 자료 없음"]
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E1",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/",
+          "source_grade": "P1",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://www.accellera.org/downloads/drafts-review",
+          "source_grade": "P1",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/images/downloads/drafts-review/FSL-1.0-draft.pdf",
+          "source_grade": "P1",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/images/downloads/drafts-review/FSL-1.0-draft.pdf",
+          "source_grade": "P1",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/images/downloads/standards/functional-safety/Functional_Safety_White_Paper_20231213.pdf",
+          "source_grade": "P1",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://www.accellera.org/images/downloads/drafts-review/FSL-1.0-draft.pdf",
+          "source_grade": "P1",
+          "source_type": "P1"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "Accellera home and Drafts Under Public Review showed Functional Safety Language 1.0 Draft public review ending 2026-08-14.",
+        "source_url": "https://www.accellera.org/downloads/drafts-review",
+        "outcome": "selected",
+        "reason": "표준 초안 전문과 배경 white paper가 공개되어 설계 flow 영향과 한계를 E2 수준으로 설명할 수 있었다."
+      },
+      {
+        "signal": "Accellera UVM page lists UVM 2020-3.2 Reference Implementation date modified 2026-08.",
+        "source_url": "https://www.accellera.org/downloads/standards/uvm",
+        "outcome": "not_selected",
+        "reason": "새 날짜 신호는 있었지만 이번 조사 범위에서 변경 내역, public GitHub 3.2 release, simulator compatibility를 확인하지 못해 중심 분석의 E2 두 원문 조합이 부족했다."
+      },
+      {
+        "signal": "Cadence DAC 2026 wrap-up discussed AI-powered engineering and grounded EDA agents.",
+        "source_url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/dac-2026-wrap-up-ai-powered-engineering-moves-from-vision-to-workflow-reality",
+        "outcome": "not_selected",
+        "reason": "최근 EDA판의 Cadence feedback loop 기사와 주제가 겹치고, 새 제품 문서나 실행 artifact가 아니라 행사 회고 성격이 강했다."
+      },
+      {
+        "signal": "Siemens EDA blog continued to show Calibre Vision AI and Tessent support posts in August 2026.",
+        "source_url": "https://blogs.sw.siemens.com/eda/",
+        "outcome": "not_selected",
+        "reason": "Calibre Vision AI는 2026-08-15 기사에서 이미 다뤘고, Tessent memory repair 글은 블로그 설명 외 공개 benchmark나 manual 조합을 확인하지 못했다."
+      },
+      {
+        "signal": "OpenROAD-MCP v1.0.0 had already been covered in the previous EDA article.",
+        "source_url": "https://github.com/The-OpenROAD-Project/OpenROAD-MCP/releases/tag/v1.0.0",
+        "outcome": "not_selected",
+        "reason": "최근 기사와 동일 발표라 새 기사로 반복하지 않았다."
+      }
+    ],
+    "alternatives": [
+      {
+        "topic": "Accellera CDC/RDC Standard 1.0 release",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 8
+        },
+        "source_urls": [
+          "https://www.accellera.org/news/press-releases/427-accellera-approves-clock-and-reset-domain-crossing-standard-1-0-for-release",
+          "https://www.accellera.org/downloads/standards/clock-domain-crossing"
+        ],
+        "reason_not_selected": "표준 release 자체는 강한 후보지만 2026-03-02 발표로 이번 2026-08-18 실행의 새 국면성은 FSL public review 종료보다 낮았다."
+      },
+      {
+        "topic": "Accellera UVM 2020-3.2 Reference Implementation",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "source_urls": ["https://www.accellera.org/downloads/standards/uvm"],
+        "reason_not_selected": "download listing은 확인했지만 세부 changelog와 공개 repository release를 확인하지 못해 기준 점수와 원문 역할을 만족하지 못했다."
+      },
+      {
+        "topic": "Cadence AuraStack AI Super Agent and DAC 2026 AI workflow posts",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "source_urls": [
+          "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/ai-infrastructure-starts-beyond-the-chip",
+          "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/dac-2026-wrap-up-ai-powered-engineering-moves-from-vision-to-workflow-reality"
+        ],
+        "reason_not_selected": "공식 글은 제품 방향 신호로 유용하지만 상세 release note, manual, benchmark artifact 없이 벤더 전략 설명에 머물렀다."
+      },
+      {
+        "topic": "Siemens Tessent memory repair support blog",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 3
+        },
+        "source_urls": ["https://blogs.sw.siemens.com/eda-support/2026/08/04/abracadabra-using-tessent-magic-to-repair-non-repairable-memories/"],
+        "reason_not_selected": "블로그 발견 신호는 있었지만 구체 tool version, memory BISR/BIRA 조건, 수율·test 결과 원문이 부족했다."
+      }
+    ]
+  }
+}
