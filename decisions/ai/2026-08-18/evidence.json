@@ -1,0 +1,438 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-18",
+  "date": "2026-08-18",
+  "subject": "Anthropic Compliance API local session transcripts beta for Claude Code and Cowork, announced 2026-08-11",
+  "central_claim": "Anthropic's Compliance API local session transcript beta is a publishable AI engineering topic because it moves locally run Claude Code and Cowork agent sessions into a central audit API: official release notes and docs support a bounded E2 claim about endpoint coverage, transcript shape, retention and exclusions, while the article avoids claiming complete endpoint monitoring or independent security effectiveness.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 1,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 8,
+    "threshold": 7,
+    "reason": "The topic affects concrete enterprise decisions about local coding agents, compliance export, SIEM/DLP integration, retention and the boundary between API transcripts, OpenTelemetry telemetry and inline inference hooks. It is not a same-day model release, so novelty is 1, but it was not selected previously and clears the threshold with multiple official primary URLs."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "anthropic-release-notes",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 source path",
+        "note": "Opened Claude Platform release notes. The August 11, 2026 item records Compliance API support for transcripts of Cowork and Claude Code sessions that run on users' machines, with local list/retrieve/messages endpoints and read:compliance_user_data scope."
+      },
+      {
+        "channel": "anthropic-compliance-sessions",
+        "url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+        "classification": "P1 source path",
+        "note": "Opened the official session transcript docs. The page records product coverage, local versus remote endpoint families, exclusions, endpoint paths, pagination, retention, transcript block shapes and omitted content."
+      },
+      {
+        "channel": "anthropic-compliance-overview",
+        "url": "https://platform.claude.com/docs/en/manage-claude/compliance-api",
+        "classification": "P1 source path",
+        "note": "Opened the Compliance API overview. It records Compliance API purpose, tenant/key model, rate limits, relationship to Activity Feed, OpenTelemetry logging and inference hooks."
+      },
+      {
+        "channel": "claude-code-monitoring",
+        "url": "https://code.claude.com/docs/en/monitoring-usage",
+        "classification": "P1 source path",
+        "note": "Opened Claude Code monitoring docs to compare OpenTelemetry telemetry with Compliance API transcript retrieval. Used only for role separation, not for the core release fact."
+      },
+      {
+        "channel": "openai-official-surface",
+        "url": "https://openai.com/index/the-defenders-window/",
+        "classification": "P0/P1 alternative review",
+        "note": "Opened OpenAI's August 17 security essay surface through official news search. It is timely, but it is a strategic/security position article rather than a concrete new model/API/runtime release with an E2 implementation surface."
+      },
+      {
+        "channel": "google-deepmind-official-surface",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Gemini 3.7 Flash GA was already published in the 2026-08-14 regular AI edition and was not selected again."
+      },
+      {
+        "channel": "deepseek-official-surface",
+        "url": "https://api-docs.deepseek.com/updates/",
+        "classification": "P1/P2 alternative review",
+        "note": "DeepSeek V4 Pro GA, DeepSeek Harness and V4-Pro-0813 technical angle were already covered in recent regular/special AI editions. The source path remained part of discovery but was not selected again."
+      },
+      {
+        "channel": "qwen-official-surface",
+        "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+        "classification": "P1/P2 alternative review",
+        "note": "Qwen3.8-27B was already handled as a 2026-08-15 special AI article. Search and model registry surfaces were used for discovery only."
+      },
+      {
+        "channel": "mistral-vllm-other-tooling-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Opened or reviewed official Mistral changelog and vLLM release surfaces in the broader run. No newer unhandled candidate outranked the selected Anthropic compliance/runtime topic for concrete engineering decision utility."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Anthropic Compliance API local session transcripts for Claude Code and Cowork",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "selected",
+        "reason": "Selected because the official docs expose a concrete new API boundary for local coding agent governance: product coverage, endpoint paths, transcript content, exclusions, retention and relationship to telemetry/control systems are all inspectable. It was a previously noted but unselected alternative and is not a duplicate of recent model-release articles."
+      },
+      {
+        "subject": "OpenAI The Defender's Window",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Timely official security signal on August 17, 2026, but it is primarily a strategic essay. The run did not find a new implementation artifact, API release, model/system card or reproducible developer surface sufficient for an E2 technical article."
+      },
+      {
+        "subject": "Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Strong and verifiable, but already selected and published as the 2026-08-14 regular AI edition. Repeating it would add little new decision value."
+      },
+      {
+        "subject": "DeepSeek V4 Pro GA and DeepSeek Harness",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The model/API/runtime surface is substantial, but it was already covered in the 2026-08-13 regular article and 2026-08-14 special revision. Not selected to avoid duplicate coverage."
+      },
+      {
+        "subject": "Qwen3.8-27B open-weight model",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official Hugging Face artifacts are strong, but the topic was already assigned and handled as the 2026-08-15 special AI article."
+      },
+      {
+        "subject": "Anthropic Managed Agents budgets, advisor, inference geography and repository skills",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Also useful for agent deployment, but the August 7 release was older and less directly tied to local coding-agent auditability than the August 11 Compliance API local-session transcript update."
+      },
+      {
+        "subject": "Mistral changelog and vLLM releases",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Official and useful as discovery surfaces, but this run did not find a newer unhandled model/runtime change with stronger practical adoption value than the selected Anthropic API governance change."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_PERFORMANCE_CLAIM",
+    "NO_RUNTIME_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-17T22:08:42Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-18 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 8 with threshold 7",
+      "central claim has E2 evidence based on official Claude Platform release notes, Compliance API docs, session transcript docs, API reference and Claude Code monitoring docs",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-18 and decisions/ai/2026-08-18",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Anthropic is the author/operator of Claude, Claude Code, Cowork, Claude Platform docs and the Compliance API documentation used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and previous discovery ledgers were used only as discovery and duplication checks; article facts rely on opened official primary sources."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Anthropic announced on 2026-08-11 that the Compliance API now returns transcripts of Cowork and Claude Code sessions that run on users' machines, in beta for Claude Enterprise organizations.",
+      "source_url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Claude Platform release notes, August 11 2026 entry",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "Read the official August 11, 2026 release note entry.",
+      "limitations": [
+        "Confirms announcement and availability scope only.",
+        "Does not independently validate security or compliance effectiveness."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the release notes for its own product."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The local session transcript surface provides list, retrieve and messages endpoints under /v1/compliance/apps/sessions/local and uses a Compliance Access Key with read:compliance_user_data scope.",
+      "source_url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Retrieve session transcripts documentation; accessed 2026-08-17",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "Read endpoint descriptions, required scope notes and local session section.",
+      "limitations": [
+        "No Enterprise Compliance Access Key was available for a live API call.",
+        "Docs are beta and may change."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the product documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Local endpoint coverage includes Cowork in Claude Desktop and Claude Code in terminal, Claude Desktop or IDE extension when running on a user's machine, while several surfaces and data-retention modes are excluded.",
+      "source_url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Retrieve session transcripts documentation, product mapping and exclusions; accessed 2026-08-17",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "Read product mapping table and exclusion bullets.",
+      "limitations": [
+        "Coverage can expand as Anthropic adds product surfaces.",
+        "Article does not claim third-party platform or web coverage."
+      ],
+      "conflict_of_interest": [
+        "Anthropic controls the documented product scope."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Transcript messages are reconstructed from captured Claude API calls and include user prompts, assistant responses, tool calls and text tool results, but omit thinking blocks, system prompt content, tool definitions, MCP server configuration and most binary or structured content.",
+      "source_url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Retrieve a local session transcript section; accessed 2026-08-17",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "direct",
+      "method": "Read messages endpoint shape and omission list.",
+      "limitations": [
+        "No live transcript was retrieved.",
+        "The transcript is not a complete local device activity log."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the transcript coverage documentation."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Local session export jobs need trailing-window re-listing and deduplication because local sessions have no status or updated_at, created_at can move as retention elapses, cursors expire after a walk window, and newly captured messages can appear after a processing delay.",
+      "source_url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "List local sessions and pagination/retention sections; accessed 2026-08-17",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "derived",
+      "method": "Derived integration guidance from documented pagination, retention, processing delay, created_at and session id behavior.",
+      "limitations": [
+        "Specific polling interval depends on organization session duration and retention policy.",
+        "No production export job was implemented."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the underlying API behavior documentation."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Compliance API transcript retrieval, OpenTelemetry logging and inference hooks serve different roles: after-the-fact record retrieval, telemetry streaming and inline allow/deny control respectively.",
+      "source_url": "https://platform.claude.com/docs/en/manage-claude/compliance-api",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Compliance API overview, related features comparison; accessed 2026-08-17",
+      "accessed_at": "2026-08-17",
+      "direct_or_derived": "derived",
+      "method": "Compared Compliance API overview with Claude Code OpenTelemetry monitoring documentation.",
+      "limitations": [
+        "No SIEM, OpenTelemetry collector or inference hook integration was tested.",
+        "The claim is limited to documented feature roles."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the feature comparison and Claude Code monitoring docs."
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "claim": "Anthropic announced on 2026-08-11 that the Compliance API now returns transcripts of Cowork and Claude Code sessions that run on users' machines, in beta for Claude Enterprise organizations.",
+      "evidence_level": "E1",
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "claim": "The local session transcript surface provides list, retrieve and messages endpoints under /v1/compliance/apps/sessions/local and uses a Compliance Access Key with read:compliance_user_data scope.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/api/compliance",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "claim": "Local endpoint coverage includes Cowork in Claude Desktop and Claude Code in terminal, Claude Desktop or IDE extension when running on a user's machine, while several surfaces and data-retention modes are excluded.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": true,
+      "claim": "Transcript messages are reconstructed from captured Claude API calls and include user prompts, assistant responses, tool calls and text tool results, but omit thinking blocks, system prompt content, tool definitions, MCP server configuration and most binary or structured content.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": true,
+      "claim": "Local session export jobs need trailing-window re-listing and deduplication because local sessions have no status or updated_at, created_at can move as retention elapses, cursors expire after a walk window, and newly captured messages can appear after a processing delay.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+          "source_type": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "central": true,
+      "claim": "Compliance API transcript retrieval, OpenTelemetry logging and inference hooks serve different roles: after-the-fact record retrieval, telemetry streaming and inline allow/deny control respectively.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/manage-claude/compliance-api",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/monitoring-usage",
+          "source_type": "P1"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "anthropic-release-notes",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source_type": "P1",
+      "owner": "Anthropic",
+      "version": "Claude Platform release notes, August 11 2026 entry; accessed 2026-08-17",
+      "notes": "Records Compliance API beta for local Cowork and Claude Code session transcripts."
+    },
+    {
+      "source_id": "anthropic-compliance-sessions",
+      "url": "https://platform.claude.com/docs/en/manage-claude/compliance-sessions",
+      "source_type": "P1",
+      "owner": "Anthropic",
+      "version": "Retrieve session transcripts docs; accessed 2026-08-17",
+      "notes": "Records endpoint families, local/remote product mapping, exclusions, retention, pagination and transcript content shape."
+    },
+    {
+      "source_id": "anthropic-compliance-overview",
+      "url": "https://platform.claude.com/docs/en/manage-claude/compliance-api",
+      "source_type": "P1",
+      "owner": "Anthropic",
+      "version": "Compliance API overview; accessed 2026-08-17",
+      "notes": "Records Compliance API purpose, tenant/key model, related feature comparison and rate-limit context."
+    },
+    {
+      "source_id": "anthropic-compliance-api-reference",
+      "url": "https://platform.claude.com/docs/en/api/compliance",
+      "source_type": "P1",
+      "owner": "Anthropic",
+      "version": "Compliance API reference; accessed 2026-08-17",
+      "notes": "API reference surface for Compliance API endpoint schemas; used as supporting source for endpoint availability."
+    },
+    {
+      "source_id": "claude-code-monitoring",
+      "url": "https://code.claude.com/docs/en/monitoring-usage",
+      "source_type": "P1",
+      "owner": "Anthropic",
+      "version": "Claude Code monitoring docs; accessed 2026-08-17",
+      "notes": "Records OpenTelemetry monitoring scope for Claude Code, used to distinguish telemetry from Compliance API transcript retrieval."
+    }
+  ]
+}
