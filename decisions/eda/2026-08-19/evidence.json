@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-19",
+  "date": "2026-08-19",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-19-sequential/20260818T221229Z-995899/staged-content/article.md",
+  "central_claim": "HighTide는 공개 VLSI 설계를 고정 source, platform constraint, Bazel 기반 OpenROAD RTL-to-GDS 실행 target, report/log 산출물로 묶어 EDA benchmark를 정적 RTL 모음에서 재실행 가능한 flow artifact로 옮긴다.",
+  "subject": "VLSIDA HighTide open-source VLSI benchmark suite와 Bazel 기반 OpenROAD RTL-to-GDS 실행 경로",
+  "title": "HighTide는 VLSI benchmark를 정적 RTL 묶음에서 실행 가능한 RTL-to-GDS flow로 바꿉니다",
+  "summary": "HighTide는 공개 하드웨어 설계를 ASAP7, NanGate45, SkyWater 130nm에서 OpenROAD RTL-to-GDS flow로 돌릴 수 있게 묶은 benchmark suite입니다. 논문과 GitHub artifact는 실행 구조와 조건을 공개하지만, 편집국은 전체 빌드를 재현하지 않았고 공개 결과 사이트 DNS도 확인하지 못했습니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": ["없음"],
+  "selection": {
+    "total": 9,
+    "threshold": 7
+  },
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 1,
+    "total": 9,
+    "rationale": "HighTide는 RTL-to-GDS 전 단계를 공개 설계와 공개 flow에서 실행하는 benchmark 구조를 제시하고, GitHub artifact가 build target, pinned source, tool archive, report/log 경로를 공개한다. 다만 편집국이 빌드를 재실행하지 않았고 결과 사이트 DNS가 확인되지 않아 실무 의사결정 점수는 1점으로 제한했다."
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "HighTide는 공개 VLSI design을 OpenROAD RTL-to-GDSII flow로 실행하는 benchmark suite다.",
+      "source_url": "https://arxiv.org/abs/2606.04126",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2606.04126v1, submitted 2026-06-02",
+      "accessed_at": "2026-08-18",
+      "direct_or_derived": "direct",
+      "method": "논문 abstract와 suite overview, conclusion을 확인했다.",
+      "limitations": ["논문 저자 보고이며 peer-review 상태와 독립 재현은 별도 확인하지 않았다."],
+      "conflict_of_interest": ["저자와 프로젝트 유지관리자 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C1b",
+      "claim": "VLSIDA/HighTide 저장소는 HighTide code와 build 문서를 공개하며 main branch 최신 commit은 7653a17908ec5b4a9c2905551e9b7c14a9a8738d로 확인됐다.",
+      "source_url": "https://api.github.com/repos/VLSIDA/HighTide/commits/main",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "commit 7653a17908ec5b4a9c2905551e9b7c14a9a8738d, committed 2026-08-13T19:34:39Z",
+      "accessed_at": "2026-08-18",
+      "direct_or_derived": "direct",
+      "method": "GitHub API로 default branch commit SHA, date, commit message를 확인했다.",
+      "limitations": ["최신 commit 확인은 저장소 상태 근거이며 개별 QoR 결과의 독립 재현은 아니다."],
+      "conflict_of_interest": ["프로젝트 유지관리자 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "HighTide는 ASAP7 7nm, NanGate45 45nm, SkyWater 130nm platform을 대상으로 한다.",
+      "source_url": "https://github.com/VLSIDA/HighTide/blob/main/docs/designs.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "HighTide docs/designs.md on main, accessed 2026-08-18",
+      "accessed_at": "2026-08-18",
+      "direct_or_derived": "direct",
+      "method": "Design Catalog의 platform table과 README 설명을 대조했다.",
+      "limitations": ["상용 PDK 또는 foundry signoff 조건이 아니다."],
+      "conflict_of_interest": ["프로젝트 유지관리자 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "HighTide의 Bazel flow는 upstream RTL source와 OpenROAD-flow-scripts/OpenROAD archive를 고정하고, synthesis부터 final GDS까지 stage별 target과 output을 만든다.",
+      "source_url": "https://github.com/VLSIDA/HighTide/blob/main/docs/architecture.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "HighTide docs/architecture.md on main, accessed 2026-08-18",
+      "accessed_at": "2026-08-18",
+      "direct_or_derived": "direct",
+      "method": "Architecture 문서의 build system, flow stages, RTL source management, design configuration sections를 확인했다.",
+      "limitations": ["문서 확인이며 편집국이 OpenROAD 실행 로그를 생성하지 않았다."],
+      "conflict_of_interest": ["프로젝트 유지관리자 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C3b",
+      "claim": "MODULE.bazel은 ORFS commit fb65d5b487d2afd443fc1892330f622c776a57ac와 OpenROAD commit b65c274cadefe2151aa7eee32e1be9026e8ff14a archive를 integrity hash와 함께 지정한다.",
+      "source_url": "https://github.com/VLSIDA/HighTide/blob/main/MODULE.bazel",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "HighTide MODULE.bazel on main, accessed 2026-08-18",
+      "accessed_at": "2026-08-18",
+      "direct_or_derived": "direct",
+      "method": "raw MODULE.bazel의 archive_override 항목을 확인했다.",
+      "limitations": ["GitHub archive tarball byte stability caveat는 MODULE.bazel 주석에도 명시되어 있다."],
+      "conflict_of_interest": ["프로젝트 유지관리자 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Quick start는 LFSR design을 ASAP7에서 final target까지 빌드하고 ODB, GDS, timing/area/DRC report, log를 얻는 절차를 제시한다.",
+      "source_url": "https://github.com/VLSIDA/HighTide/blob/main/docs/quickstart.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "HighTide docs/quickstart.md on main, accessed 2026-08-18",
+      "accessed_at": "2026-08-18",
+      "direct_or_derived": "direct",
+      "method": "Quick Start Guide의 prerequisites, clone/build command, output tree, summary script sections를 확인했다.",
+      "limitations": ["편집국은 Bazel build를 실행하지 않았다.", "처음 실행에는 Docker image와 약 10GB disk가 필요하다고 문서가 밝힌다."],
+      "conflict_of_interest": ["프로젝트 유지관리자 이해관계 가능", "편집국 제공 관계 없음"]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "HighTide가 상용 signoff 또는 silicon 결과를 보장한다.",
+      "source_url": "unavailable",
+      "source_type": "unavailable",
+      "evidence_grade": "E0",
+      "version": "not available",
+      "accessed_at": "2026-08-18",
+      "direct_or_derived": "direct",
+      "method": "논문 limitations와 공개 문서에서 post-flow verification, silicon validation, memory support 한계를 확인했다.",
+      "limitations": ["기사 결론으로 채택하지 않았다."],
+      "conflict_of_interest": ["없음"]
+    }
+  ],
+  "source_urls": [
+    "https://arxiv.org/abs/2606.04126",
+    "https://arxiv.org/html/2606.04126v1",
+    "https://github.com/VLSIDA/HighTide",
+    "https://api.github.com/repos/VLSIDA/HighTide",
+    "https://api.github.com/repos/VLSIDA/HighTide/commits/main",
+    "https://github.com/VLSIDA/HighTide/blob/main/docs/architecture.md",
+    "https://github.com/VLSIDA/HighTide/blob/main/docs/quickstart.md",
+    "https://github.com/VLSIDA/HighTide/blob/main/docs/designs.md",
+    "https://github.com/VLSIDA/HighTide/blob/main/k8s/README.md",
+    "https://github.com/VLSIDA/HighTide/blob/main/MODULE.bazel",
+    "https://github.com/VLSIDA/HighTide/blob/main/LICENSE"
+  ],
+  "reproducibility_assessment": {
+    "state": "R2",
+    "public_artifacts": [
+      "HighTide GitHub repository",
+      "Bazel build targets",
+      "MODULE.bazel pinned source/tool archives",
+      "architecture.md",
+      "quickstart.md",
+      "design catalog",
+      "Kubernetes build scripts and fetch_cache/fetch_artifacts documentation"
+    ],
+    "not_reproduced": [
+      "Local Bazel build of //designs/asap7/lfsr:lfsr_final",
+      "Full suite build",
+      "Remote cache fetch",
+      "QoR comparison across designs",
+      "Public results page; hightide-benchmarks.dev DNS did not resolve in this run"
+    ],
+    "why_not_r3": "편집국이나 독립 제3자가 같은 commit에서 재실행한 로그를 확보하지 못했다."
+  },
+  "conflict_of_interest": {
+    "declared": ["없음"],
+    "source_side": [
+      "HighTide 논문 저자와 VLSIDA 유지관리자는 suite의 가치와 채택에 이해관계가 있다.",
+      "OpenROAD 기반 flow와 공개 PDK 조건은 상용 EDA/foundry signoff 환경을 대표하지 않는다."
+    ],
+    "editorial_access": [
+      "사전 브리핑 없음",
+      "비공개 benchmark 없음",
+      "compute credit 없음",
+      "상용 EDA license 제공 없음"
+    ]
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2606.04126",
+          "source_grade": "P1",
+          "source_type": "P1"
+        },
+        {
+          "url": "https://github.com/VLSIDA/HighTide",
+          "source_grade": "P2",
+          "source_type": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://github.com/VLSIDA/HighTide/blob/main/docs/designs.md",
+          "source_grade": "P2",
+          "source_type": "P2"
+        },
+        {
+          "url": "https://github.com/VLSIDA/HighTide/blob/main/docs/architecture.md",
+          "source_grade": "P2",
+          "source_type": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://github.com/VLSIDA/HighTide/blob/main/docs/architecture.md",
+          "source_grade": "P2",
+          "source_type": "P2"
+        },
+        {
+          "url": "https://github.com/VLSIDA/HighTide/blob/main/MODULE.bazel",
+          "source_grade": "P2",
+          "source_type": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://github.com/VLSIDA/HighTide/blob/main/docs/quickstart.md",
+          "source_grade": "P2",
+          "source_type": "P2"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "HighTide arXiv paper and VLSIDA GitHub repository expose an executable OpenROAD RTL-to-GDS benchmark suite.",
+        "source_url": "https://arxiv.org/abs/2606.04126",
+        "outcome": "selected",
+        "reason": "논문과 공개 artifact가 서로 다른 근거 역할을 하며, design flow 영향과 재현 가능성이 EDA판 기준을 충족했다."
+      },
+      {
+        "signal": "GitHub API showed HighTide main branch updated on 2026-08-13 with commit 7653a17908ec5b4a9c2905551e9b7c14a9a8738d.",
+        "source_url": "https://api.github.com/repos/VLSIDA/HighTide/commits/main",
+        "outcome": "supporting",
+        "reason": "초기 논문은 2026-06-02지만 공개 artifact가 최근까지 유지되고 있음을 확인했다."
+      },
+      {
+        "signal": "arXiv listed GoalEvolve on 2026-08-17 with full-flow OpenROAD QoR claims.",
+        "source_url": "https://arxiv.org/abs/2608.16733",
+        "outcome": "not_selected",
+        "reason": "시의성은 높지만 이번 조사에서 code, logs, benchmark artifact를 확인하지 못해 중심 성능 주장에 필요한 두 번째 원문과 재현성이 부족했다."
+      },
+      {
+        "signal": "arXiv listed LEAP on 2026-08-03 as DAC 2026 accepted work for per-cycle toggle propagation and early layout power analysis.",
+        "source_url": "https://arxiv.org/abs/2608.01946",
+        "outcome": "not_selected",
+        "reason": "기술적 중요성은 있으나 공개 code/data artifact를 찾지 못했고 성능 주장은 논문 저자 보고에 머물렀다."
+      },
+      {
+        "signal": "Siemens published Mixed-Signal Visualizer blog and white paper in August 2026.",
+        "source_url": "https://blogs.sw.siemens.com/cicv/2026/08/12/from-complexity-to-clarity-simplifying-ams-verification-with-mixed-signal-visualizer/",
+        "outcome": "not_selected",
+        "reason": "AMS debug flow 변화는 분명하지만 두 원문 모두 벤더 자료이고 공개 release note, manual, 실행 artifact, 독립 사례를 확인하지 못해 선정 점수가 낮았다."
+      },
+      {
+        "signal": "Cadence DAC 2026 wrap-up discussed AI-powered engineering and EDA/SDA workflows.",
+        "source_url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/dac-2026-wrap-up-ai-powered-engineering-moves-from-vision-to-workflow-reality",
+        "outcome": "not_selected",
+        "reason": "최근 Cadence EDA agent feedback loop 기사와 주제가 겹치고 행사 회고 성격이 강했다."
+      }
+    ],
+    "alternatives": [
+      {
+        "title": "GoalEvolve: goal-driven evolution of physical design algorithms",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "arXiv paper is available, but no public code/log artifact was found in this run."
+      },
+      {
+        "title": "LEAP per-cycle toggle propagation model",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "Power-analysis speedup claim remains author-reported without accessible execution artifact."
+      },
+      {
+        "title": "Siemens Mixed-Signal Visualizer for AMS verification",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "decision": "rejected",
+        "reason": "Vendor blog and white paper explain workflow, but public release/manual/support matrix and independent evidence were not found."
+      },
+      {
+        "title": "HighTide open-source VLSI benchmark suite",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 9
+        },
+        "decision": "selected",
+        "reason": "Public paper plus executable GitHub artifact support an E2 central claim and R2 reproducibility."
+      }
+    ]
+  }
+}
