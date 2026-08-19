@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-20",
+  "decision": "no-publish",
+  "reason": "2026-08-19T22:08Z 실행 기준으로 최근 공식 AI 모델·API·개발도구 원문과 model registry를 조사했지만, 중복이 아닌 새 주제 중 선정 총점 7 이상, 중심 주장 E2 이상, 서로 다른 원문 URL 최소 2개를 동시에 충족하는 후보를 찾지 못했습니다. OpenAI의 2026-08-19 Private Safety Processing/ZDR 발표는 중요하고 새롭지만, 현재 공개 원문은 preview 설명과 정책적 약속 중심이며 기술 백서가 2026년 9월 예정이라고 밝히고 있어 구현·API·재현 가능한 artifact가 부족합니다. 같은 날 확인한 OpenAI Replit/GPT-5.6 Luna 사례, OpenAI frontier scaling pace 글, ChatGPT for Teens, Anthropic Sonnet 5 문서, Qwen3.8, DeepSeek V4-Pro, Mistral, Google Gemini, vLLM 경로도 이미 다뤄졌거나 이번 정규 AI판의 새 E2 기술 중심 주장으로 승격하기에 부족했습니다.",
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-20-sequential/20260819T220800Z-1003178/request.json and used publication_id 2026-08-20 with no_publish_path var/runs/ai/2026-08-20-sequential/20260819T220800Z-1003178/no-publish.json. Read the AI edition contract, runtime, editorial profile, explanatory-journalism contract, auto-publishing contract, article prompt, and primary-source startpoints before source review."
+      },
+      {
+        "channel": "openai-private-safety-processing",
+        "url": "https://openai.com/index/offering-zero-data-retention-for-frontier-models/",
+        "classification": "P0/P1 source path",
+        "note": "Opened OpenAI's 2026-08-19 ZDR/Private Safety Processing preview. The source says ZDR customer content is not retained after processing, Private Safety Processing is intended to detect patterns across related interactions without OpenAI personnel accessing underlying content, customer-controlled infrastructure or customer-key-encrypted OpenAI storage are being developed, and a technical white paper is planned for September. It is a strong discovery signal but lacks public implementation, API, evaluation, or reproducibility detail for an E2 technical center claim."
+      },
+      {
+        "channel": "openai-api-data-controls-context",
+        "url": "https://help.openai.com/en/articles/10306912-sharing-feedback-evaluation-and-fine-tuning-data-and-api-inputs-and-outputs-with-openai",
+        "classification": "P1 context path",
+        "note": "Opened OpenAI Help Center data-sharing documentation. It confirms API data sharing is opt-in, Enterprise and ZDR customers cannot use certain data-sharing mechanisms, and model groups including GPT-5.6 Sol/Terra/Luna are listed for data-sharing incentives. This helps bound the ZDR context but does not document Private Safety Processing itself."
+      },
+      {
+        "channel": "openai-audit-log-context",
+        "url": "https://help.openai.com/en/articles/9687866-admin-and-audit-logs-api-for-the-api-platform",
+        "classification": "P1 context path",
+        "note": "Opened OpenAI API Platform audit-log documentation. It distinguishes administrative/configuration audit events from API request and response customer content and says ZDR does not change audit-log availability or contents. This is useful context for enterprise governance but not a second primary source for the new Private Safety Processing mechanism."
+      },
+      {
+        "channel": "openai-frontier-model-safety-and-scaling",
+        "url": "https://openai.com/index/pacing-model-development-cyber-capabilities/",
+        "classification": "P0/P1 source path",
+        "note": "Opened OpenAI's 2026-08-18/19 frontier cyber-capability pacing post. It reports a two-week pause in reinforcement-learning training for latest deployment-intended models, a larger frontier RL run still on hold, and new research-environment safeguards. The post is significant for AI safety governance, but the promised technical report is not yet public and it does not provide a model/API artifact suitable for an AI판 engineering article."
+      },
+      {
+        "channel": "openai-replit-gpt-5-6-luna",
+        "url": "https://openai.com/index/replit/",
+        "classification": "P0 discovery review",
+        "note": "Opened OpenAI's 2026-08-19 Replit customer story. It verifies Replit Free Mode uses GPT-5.6 Luna and can route harder tasks to GPT-5.6 Sol while preserving project context. The source is a partner/customer story and does not add enough public model, API, benchmark or runtime detail beyond the earlier GPT-5.6 price-performance announcement."
+      },
+      {
+        "channel": "anthropic-official-release-and-model-docs",
+        "url": "https://docs.anthropic.com/en/docs/about-claude/models/whats-new-sonnet-5",
+        "classification": "P1 source path",
+        "note": "Opened Anthropic Sonnet 5 docs, release notes, launch post and system-card index. Sonnet 5 remains a strong official model release with behavior changes, new tokenizer and 1M context, but it launched on 2026-06-30 and the visible August 10 update was pricing permanence rather than a new technical release."
+      },
+      {
+        "channel": "qwen-official-and-registry-review",
+        "url": "https://github.com/QwenLM/Qwen3.8",
+        "classification": "P1/P2 source path",
+        "note": "Opened Qwen3.8 GitHub repository, Qwen3.8-Max blog signal, Qwen3.8-2.4T-A95B and Qwen3.8-27B Hugging Face model cards, and Qwen speed benchmark documentation. These official sources confirm recent Qwen3.8 open-weight releases and serving details, but Qwen3.8-27B was already handled as a 2026-08-15 AI special article and was reviewed again in the 2026-08-19 no-publish decision."
+      },
+      {
+        "channel": "deepseek-official-api-review",
+        "url": "https://api-docs.deepseek.com/updates/",
+        "classification": "P1 source path",
+        "note": "Opened DeepSeek API changelog and pricing context. DeepSeek-V4-Pro GA on 2026-08-13, Responses API support, thinking effort controls and peak/off-peak pricing remain material, but the subject was already covered by recent AI판 decisions and no newer DeepSeek release was found for this slot."
+      },
+      {
+        "channel": "google-gemini-and-mistral-official-surfaces",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 discovery review",
+        "note": "Reviewed Google Gemini API changelog and Mistral official news surfaces. Gemini 3.7 Flash GA and Mistral's August infrastructure/Shieldstral items are official and relevant, but they are older than the 2026-08-20 publication run and either already covered or insufficiently new as standalone E2 technical article centers."
+      },
+      {
+        "channel": "open-source-runtime-review",
+        "url": "https://github.com/vllm-project/vllm/releases",
+        "classification": "P1/P2 source path",
+        "note": "Reviewed vLLM release notes as an AI serving-runtime path. v0.26.0 is substantial but dated 2026-07-27, and no fresh same-day runtime release outranked the model/privacy/security signals for this run."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results were used only to discover official paths across OpenAI, Anthropic, Google, Qwen, DeepSeek, Mistral and vLLM. No article fact or scoring decision was based on search snippets, community posts or secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "OpenAI Private Safety Processing for Zero Data Retention frontier deployments",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Selected for close review because it is a same-day official OpenAI safety/privacy architecture preview that directly affects enterprise API deployment decisions. Not selected because the public material is a preview: it describes customer-controlled storage or customer-key encryption and limited safety signals, but says a technical white paper will arrive in September and does not expose implementation details, API behavior, evaluation method or reproducible artifact. The center claim would remain E1/P1 rather than E2."
+      },
+      {
+        "subject": "OpenAI pacing frontier model development around cyber-critical capabilities",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The official post reports concrete research-process changes, including a pause in some RL training and stronger research-environment safeguards. It was not selected because the technical report is still pending, the model Astra is not publicly released, and the available source does not support an engineering-facing E2 article about a deployable model, API, tool or reproducible method."
+      },
+      {
+        "subject": "Replit Free Mode powered by GPT-5.6 Luna",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The 2026-08-19 OpenAI customer story verifies a real GPT-5.6 Luna deployment surface and model-routing claim inside Replit, but it is primarily a customer/product economics story. It lacks a second direct technical source and does not add enough model or runtime detail beyond the earlier GPT-5.6 announcement."
+      },
+      {
+        "subject": "ChatGPT for Teens and OpenAI education safety surface",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The official launch is socially important and timely, but it is mainly a product-policy and education experience rollout. No model card, API release note, public evaluation method or implementation artifact was found that would support an AI판 technical article for SW-engineering decisions."
+      },
+      {
+        "subject": "Anthropic Claude Sonnet 5 behavior changes, tokenizer and pricing permanence",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Anthropic's docs and system-card index make this a verifiable technical topic, but Sonnet 5 launched on 2026-06-30 and the recent August update was pricing permanence. It is not a fresh 2026-08-20 regular-slot candidate."
+      },
+      {
+        "subject": "Qwen3.8 open-weight model family and Qwen3.8-27B",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official Qwen blog, GitHub and model-card surfaces strongly support an E2/R2 topic, but Qwen3.8-27B was already covered as a 2026-08-15 AI special article and the 2026-08-19 no-publish review also documented why the remaining Qwen hosting/model-card updates were incremental."
+      },
+      {
+        "subject": "DeepSeek V4-Pro GA, Responses API support and pricing schedule",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "DeepSeek's official API changelog and pricing page remain strong primary sources, but the V4-Pro GA and scheduled pricing boundary were already covered in recent AI판 work. No new official DeepSeek artifact changed the editorial decision for 2026-08-20."
+      },
+      {
+        "subject": "Google Gemini 3.7 Flash GA and Gemini API lifecycle notices",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Gemini 3.7 Flash GA had official changelog and model documentation support, but it was already covered by the 2026-08-14 AI regular edition. Later visible changelog items are operational lifecycle notices rather than a new deep technical release."
+      },
+      {
+        "subject": "Mistral regional inference infrastructure and Shieldstral",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Mistral's official August posts were reviewed. Shieldstral was already covered by the 2026-08-08 AI regular edition, and the regional infrastructure item is more strategy/deployment geography than a fresh model/runtime mechanism with E2 article weight."
+      },
+      {
+        "subject": "vLLM v0.26.0 serving-runtime release",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The release notes are public and implementation-backed, with meaningful model-family and kernel support. It was not selected because the release is older, the run found no new same-day runtime delta, and model/safety/privacy signals were stronger discovery candidates."
+      }
+    ]
+  }
+}
