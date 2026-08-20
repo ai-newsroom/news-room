@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-21",
+  "date": "2026-08-21",
+  "subject": "Anthropic Claude Platform computer use, browser use, Skills API, and Files API general availability, August 19-20 2026",
+  "central_claim": "Anthropic's August 19-20 Claude Platform agent API release is a publishable AI engineering topic because official release notes and documentation show a concrete GA shift from beta or ad hoc agent components to an API-defined loop that combines computer use, browser use, Skills and Files; the article limits the conclusion to documented API structure and deployment design implications, not independent runtime performance or safety effectiveness.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The release affects concrete software-engineering decisions about production agents: tool execution loops, browser automation, organizational procedure packaging, file state, sandboxing, workspace isolation and human confirmation boundaries. It is same-day official product/API news with multiple primary URLs and a bounded E2 center claim."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "central": true,
+      "claim": "Anthropic's August 19-20 Claude Platform agent API release moved computer use, browser use, Skills API and Files API into a documented production-agent surface: official release notes and docs support an E2 claim about API structure, agent-loop mechanics, state handling and deployment boundaries, but not independent performance or safety effectiveness.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://claude.com/blog/computer-use-skills-api-files-api",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/build-with-claude/files",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-21-sequential/20260820T220826Z-1012181/request.json and used publication_id 2026-08-21 with article_path var/runs/ai/2026-08-21-sequential/20260820T220826Z-1012181/staged-content/article.md and evidence_path var/runs/ai/2026-08-21-sequential/20260820T220826Z-1012181/evidence.json. Read the AI edition contract, runtime, editorial profile, explanatory-journalism contract, auto-publishing contract, article prompt, and primary-source startpoints before source review."
+      },
+      {
+        "channel": "anthropic-platform-release-notes",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 source path",
+        "note": "Opened Claude Platform release notes. The August 19, 2026 entry records GA for computer_toolset_20260801, launch of browser_toolset_20260801, GA for Files API without files-api-2025-04-14 beta header, GA for Agent Skills and /v1/skills without skills-2025-10-02 beta header, plus related Managed Agents and console observability changes."
+      },
+      {
+        "channel": "anthropic-product-announcement",
+        "url": "https://claude.com/blog/computer-use-skills-api-files-api",
+        "classification": "P0/P1 source path",
+        "note": "Opened Anthropic's August 20, 2026 product announcement. It frames computer use, browser use, Skills API and Files API as a production-agent bundle and describes how a claims agent could read files, apply a skill, operate an insurer portal and save a confirmation. Customer performance anecdotes were reviewed but not used as article performance evidence."
+      },
+      {
+        "channel": "computer-use-docs",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+        "classification": "P1 source path",
+        "note": "Opened official computer use docs. The page documents computer_toolset_20260801, GA status, 17 member tools, batch actions, agent loop, executor responsibilities, sandbox reference implementation path and security considerations including prompt injection, network allowlists, sensitive data restrictions and human confirmation."
+      },
+      {
+        "channel": "browser-use-docs",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool",
+        "classification": "P1 source path",
+        "note": "Opened official browser use docs. The page documents browser_toolset_20260801, browser-specific agent loop, page-structure reading, element references, browser_state blocks, sequential handling of tool_use blocks and required tool_result echoing."
+      },
+      {
+        "channel": "agent-skills-docs",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+        "classification": "P1 source path",
+        "note": "Opened official Agent Skills docs. The page documents Skills as filesystem-based instructions, metadata and optional resources; metadata is loaded first, SKILL.md is loaded when triggered, and additional files or scripts are read or run only when referenced."
+      },
+      {
+        "channel": "files-api-docs",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/files",
+        "classification": "P1 source path",
+        "note": "Opened official Files API docs. The page documents upload-once/reference-by-file_id behavior, downloadable output boundaries, supported content blocks and the critical workspace-level access boundary for uploaded files."
+      },
+      {
+        "channel": "openai-official-review",
+        "url": "https://deploymentsafety.openai.com/gpt-5-6-august-update",
+        "classification": "P1 alternative review",
+        "note": "Opened OpenAI GPT-5.6 August system-card update and the GPT-5.6 Sol preview path. These are important frontier-model surfaces but were already reviewed in recent AI판 work; the visible August 19 change was a correction to a GPT-5.5 pass@4 value and the remaining GPT-5.6 claims are vendor evaluations or previously covered safety context."
+      },
+      {
+        "channel": "openai-product-policy-review",
+        "url": "https://openai.com/index/pacing-model-development-cyber-capabilities/",
+        "classification": "P0/P1 alternative review",
+        "note": "Reviewed OpenAI's August 18 frontier cyber-capability pacing post and August 20 AI Futures/product/customer surfaces. The pacing post is significant governance news but still lacks the promised technical report or deployable API/model artifact needed to outrank the selected Anthropic API release for SW-engineering utility."
+      },
+      {
+        "channel": "google-gemini-official-review",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Reviewed Gemini API changelog. Gemini 3.7 Flash GA on August 13, 2026 remains a strong official model release but was already covered by the 2026-08-14 AI regular edition; no newer Google model/API item found during this run outranked the selected candidate."
+      },
+      {
+        "channel": "anthropic-watermark-review",
+        "url": "https://www.anthropic.com/news/claude-text-watermark",
+        "classification": "P1 alternative review",
+        "note": "Reviewed Anthropic's Claude text watermark explainer. It is technically interesting and relevant to EU AI Act compliance, but the post is dated August 14, contains no public detector or implementation artifact, and is weaker for immediate SW-engineering decisions than the GA agent API bundle."
+      },
+      {
+        "channel": "qwen-deepseek-mistral-vllm-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed known official surfaces for Qwen, DeepSeek, Mistral and vLLM through current search and prior local decision ledgers. Qwen3.8, DeepSeek V4-Pro/Harness, Mistral Shieldstral/regional inference and vLLM 0.26.0 were already covered or stale for this publication slot; no new unhandled official artifact outranked the selected Anthropic API release."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results and related-post surfaces were used only to locate official paths across OpenAI, Anthropic, Google, Qwen, DeepSeek, Mistral and vLLM. No article fact or scoring decision was based on search snippets, community posts or secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Anthropic Claude Platform computer use, browser use, Skills API and Files API GA",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because the same-day official announcement and release notes expose concrete API surfaces that change production-agent architecture: multi-action computer toolsets, browser element references, Skill progressive disclosure, file_id reuse and workspace isolation. The topic has at least six opened primary URLs and supports an E2 center claim without relying on vendor performance anecdotes."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Sol and August system-card updates",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "OpenAI's GPT-5.6 material is a major frontier-model surface, but recent AI판 work already covered GPT-5.6 cyber-safety implications and repeatedly reviewed Sol Ultrafast. For this run, the clearest newly visible change was a system-card correction, while stronger capability/performance claims remain vendor-evaluated and less actionable than the selected GA API surface."
+      },
+      {
+        "subject": "OpenAI pacing frontier model development around cyber-critical capabilities",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The official post reports concrete research-process changes and is important for AI safety governance, but the promised technical report is not yet public and there is no deployable model/API/runtime artifact. It remains weaker than the selected candidate for an engineering-facing E2 article."
+      },
+      {
+        "subject": "Anthropic Claude text watermarking",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The official explainer documents a compliance-driven watermark method and useful limitations, but no detector, API, code, model card or reproducibility artifact was found. The subject is older than the selected release and less directly actionable for SW engineers today."
+      },
+      {
+        "subject": "Google Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Strong official model/API candidate, but already selected and published as the 2026-08-14 regular AI edition. Repeating it would not add a new technical phase."
+      },
+      {
+        "subject": "DeepSeek V4-Pro GA and DeepSeek Harness",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official API and runtime sources remain strong, but this surface was already covered by the 2026-08-13 regular article and 2026-08-14 special DeepSeek article."
+      },
+      {
+        "subject": "Qwen3.8 open-weight model family and Qwen3.8-27B",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official blog/model-registry/GitHub surfaces support E2/R2 coverage, but Qwen3.8-27B was already handled as the 2026-08-15 AI special article and no new Qwen artifact changed the decision for this slot."
+      },
+      {
+        "subject": "Mistral Shieldstral and regional inference updates",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Shieldstral was already covered by the 2026-08-08 AI regular edition, and the regional inference item was already covered by the 2026-08-12 AI regular edition. No fresh same-day Mistral technical release was found."
+      },
+      {
+        "subject": "vLLM v0.26.0 serving-runtime release",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The release notes and source are public and implementation-backed, but vLLM 0.26.0 was already covered in early August and no newer runtime delta surfaced during this run."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED",
+    "NO_RUNTIME_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-20T22:08:26Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-21 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official Claude Platform release notes, product announcement, computer use docs, browser use docs, Agent Skills docs and Files API docs",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required sections and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-21 and decisions/ai/2026-08-21",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Anthropic is the author/operator of Claude Platform, computer use, browser use, Agent Skills, Files API and the documentation used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and previous discovery ledgers were used only as discovery and duplication checks; article facts rely on opened official primary sources."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Anthropic's August 19, 2026 Claude Platform release notes announced GA for computer_toolset_20260801, Files API and Agent Skills/Skills API, and launched browser_toolset_20260801; Anthropic's August 20, 2026 product post framed these surfaces as a production-agent bundle.",
+      "source_url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Claude Platform release notes, August 19 2026 entry; product announcement dated August 20 2026",
+      "accessed_at": "2026-08-20",
+      "direct_or_derived": "direct",
+      "method": "Read the official release-note entry and product announcement.",
+      "limitations": [
+        "Confirms release and availability facts only.",
+        "Does not independently validate performance, completion rate or safety effectiveness."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the release notes for its own platform."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The computer use tool is generally available on the Claude API as computer_toolset_20260801 without a beta header and exposes 17 member tools such as screenshot, left_click, type and zoom through tool_use blocks executed by the caller's environment.",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Computer use tool documentation for computer_toolset_20260801; accessed 2026-08-20",
+      "accessed_at": "2026-08-20",
+      "direct_or_derived": "direct",
+      "method": "Read GA status, toolset description, member-tool list and agent-loop documentation.",
+      "limitations": [
+        "No live Claude API call or executor implementation was run.",
+        "Supported models and platform availability can change."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the product documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Computer use and browser use can return several tool_use blocks in one assistant turn; the caller must run them sequentially, return one tool_result per block and stop later actions after a failure.",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Computer use and browser use documentation for 20260801 toolsets; accessed 2026-08-20",
+      "accessed_at": "2026-08-20",
+      "direct_or_derived": "direct",
+      "method": "Read batch action and agent-loop sections in computer use docs and cross-checked browser use docs.",
+      "limitations": [
+        "Behavior was not tested against a live API response.",
+        "Article does not claim lower latency or higher task completion."
+      ],
+      "conflict_of_interest": [
+        "Anthropic controls the API behavior and documentation."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The browser use tool is a browser_toolset_20260801 client toolset that works in a browser viewport, reads page structure and returns element references that Claude can act on in later turns.",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Browser use tool documentation for browser_toolset_20260801; accessed 2026-08-20",
+      "accessed_at": "2026-08-20",
+      "direct_or_derived": "direct",
+      "method": "Read toolset overview, read_page example, browser_state result shape and agent-loop steps.",
+      "limitations": [
+        "No browser executor was implemented or benchmarked.",
+        "Reliability on real web apps remains workload-dependent."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the browser use documentation."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Agent Skills are filesystem-based instruction, metadata and resource bundles; Claude loads Skill metadata first and loads SKILL.md or referenced resources only when the Skill is triggered.",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Agent Skills overview documentation; accessed 2026-08-20",
+      "accessed_at": "2026-08-20",
+      "direct_or_derived": "direct",
+      "method": "Read Agent Skills overview sections on metadata, instructions, resources and progressive disclosure.",
+      "limitations": [
+        "No custom Skill upload, versioning call or Skill execution was performed.",
+        "Trigger quality depends on Skill descriptions and model behavior."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the Agent Skills documentation."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "The Files API lets callers upload files once, reference them by file_id in Messages requests and manage them at workspace scope; uploaded file IDs must not be accepted from untrusted end users because any API key in the same workspace can access files uploaded there.",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/files",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Files API documentation; accessed 2026-08-20",
+      "accessed_at": "2026-08-20",
+      "direct_or_derived": "direct",
+      "method": "Read Files API overview, upload/reference flow and workspace access warning.",
+      "limitations": [
+        "No file upload, retrieval, deletion or expiration behavior was tested.",
+        "Workspace limits and eligibility may vary by account."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the Files API documentation."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "Anthropic's computer use documentation recommends a dedicated VM or container, sensitive-data limits, domain allowlists and human confirmation for consequential actions, and describes prompt-injection classifier defenses as an additional layer rather than a replacement for precautions.",
+      "source_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Computer use security considerations; accessed 2026-08-20",
+      "accessed_at": "2026-08-20",
+      "direct_or_derived": "direct",
+      "method": "Read security considerations and prompt-injection mitigation notes.",
+      "limitations": [
+        "The classifier's precision, recall and operational false-positive behavior are not independently verified.",
+        "The article does not claim compliance with Korean privacy or financial regulations."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authored the security guidance for its own tool."
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://platform.claude.com/docs/en/release-notes/overview",
+    "https://claude.com/blog/computer-use-skills-api-files-api",
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool",
+    "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+    "https://platform.claude.com/docs/en/build-with-claude/files"
+  ],
+  "reproducibility_notes": {
+    "state": "R1",
+    "reason": "The API request shapes, toolset names, documented agent loop, Skills architecture and Files API semantics are publicly described, but no live Anthropic API calls, sandbox executor, browser executor, custom Skill upload or file upload/download test was performed.",
+    "not_reproduced": [
+      "computer_toolset_20260801 live batch action response",
+      "browser_toolset_20260801 page reference behavior on a real site",
+      "Skills API upload/versioning and trigger behavior",
+      "Files API upload, expiration, workspace isolation and download behavior",
+      "customer workflow time, cost and completion-rate claims"
+    ]
+  },
+  "benchmark_notes": {
+    "used_in_article": false,
+    "reason": "The article does not make benchmark or performance-rank claims. Anthropic's customer anecdote about claims workflow time and cost was reviewed but not used as evidence because workload, baseline, sample size and reproduction artifacts were not public."
+  },
+  "editorial_contract": {
+    "style_contract": "ai-technical-blog-v2",
+    "required_layers": [
+      "news explanation: Anthropic moved key agent-building APIs to GA and introduced browser use",
+      "technical understanding: agent loop, batch actions, browser element references, Skills progressive disclosure and Files workspace state",
+      "technical meaning and verification tasks: executor design, sandboxing, tenant isolation, prompt-injection boundaries and unverified performance"
+    ],
+    "frontmatter_fields": [
+      "edition",
+      "decision",
+      "title",
+      "date",
+      "subject",
+      "summary",
+      "evidence_ceiling",
+      "reproducibility",
+      "conflicts"
+    ],
+    "article_sections_required": [
+      "benchmark or reproducibility discussion",
+      "conflicts and reporting conditions",
+      "claim ledger",
+      "sources"
+    ]
+  }
+}
