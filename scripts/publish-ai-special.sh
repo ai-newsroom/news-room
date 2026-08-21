@@ -27,6 +27,7 @@ PUBLICATION_ID="$PUBLICATION_DATE--$SLUG"
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PROMPT_FILE="$REPO/prompts/special-ai-codex.md"
 REPAIR_PROMPT_FILE="$REPO/prompts/repair-ai-candidate.md"
+COPYEDIT_RUNNER="$REPO/scripts/run-technical-korean-copyedit.sh"
 RUN_ROOT="$REPO/var/runs/ai/special/$PUBLICATION_ID"
 ATTEMPT_ID="$(date -u +%Y%m%dT%H%M%SZ)-$$"
 RUN_DIR="$RUN_ROOT/$ATTEMPT_ID"
@@ -65,8 +66,8 @@ if git cat-file -e "HEAD:content/ai/$PUBLICATION_ID/article.md" 2>/dev/null; the
   echo "AI special publication already exists for $PUBLICATION_ID" >&2
   exit 2
 fi
-if [[ ! -f "$PROMPT_FILE" || ! -f "$REPAIR_PROMPT_FILE" ]]; then
-  echo "AI special publication or repair prompt is missing" >&2
+if [[ ! -f "$PROMPT_FILE" || ! -f "$REPAIR_PROMPT_FILE" || ! -x "$COPYEDIT_RUNNER" ]]; then
+  echo "AI special publication, repair, or Korean copy-edit entrypoint is missing" >&2
   exit 2
 fi
 if [[ ! "$MAX_VALIDATION_ATTEMPTS" =~ ^[12]$ ]]; then
@@ -143,6 +144,9 @@ if [[ ! -f "$ARTICLE" || ! -f "$EVIDENCE" ]]; then
   echo "AI special turn produced neither a complete candidate nor no-publish" >&2
   exit 2
 fi
+
+"$COPYEDIT_RUNNER" ai "$REQUEST" "$ARTICLE" "$EVIDENCE" "$RUN_DIR" \
+  "$NEWS_ROOM_CODEX_SANDBOX"
 
 run_candidate_validation() {
   local attempt="$1"

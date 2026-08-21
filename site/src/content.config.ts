@@ -40,6 +40,15 @@ const aiArticles = defineCollection({
   }).strict(),
 });
 
+const technicalArticleRevision = z.object({
+  revision_number: z.number().int().positive(),
+  revised_at: z.string(),
+  approved_by: z.string().min(1),
+  approval_basis: z.string().min(1),
+  scope: z.array(z.string()).min(1),
+  previous_article_sha256: z.string().regex(/^[0-9a-f]{64}$/),
+}).strict();
+
 const aiReleases = defineCollection({
   loader: glob({ pattern: '*/release.json', base: '../decisions/ai' }),
   schema: z.object({
@@ -73,6 +82,7 @@ const aiReleases = defineCollection({
         checks: z.array(z.string()).min(5),
       }).strict(),
     ]),
+    revision: technicalArticleRevision.optional(),
     editorial_brief_alignment: z.object({
       requested_angle: z.string(),
       required_focus_terms: z.array(z.string()).min(2).max(8),
@@ -151,6 +161,7 @@ const edaReleases = defineCollection({
         checks: z.array(z.string()).min(5),
       }).strict(),
     ]),
+    revision: technicalArticleRevision.optional(),
   }).strict(),
 });
 

@@ -46,6 +46,7 @@ AUTOMATIC_CHECKS = (
     "article-frontmatter-schema",
     "selection-threshold",
     "central-evidence-e2",
+    "korean-writing-baseline-v1",
     "eda-technical-blog-v1",
     "claim-source-ledger",
     "publication-id-and-route-unique",

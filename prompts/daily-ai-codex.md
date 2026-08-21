@@ -11,6 +11,7 @@
 2. 다음 정본을 완전히 읽는다.
    - `editions/ai/edition.json`
    - `editions/ai/runtime.json`
+   - `docs/16-korean-writing-style.md`
    - `docs/08-ai-eda-editorial-profiles.md`
    - `docs/15-technical-explanatory-journalism.md`
    - `docs/11-ai-auto-publishing.md`
@@ -45,7 +46,9 @@
 }
 ```
 
-7. 발행 후보가 있으면 `article_path`와 `evidence_path`만 작성한다. evidence에 조사한 주요
+7. 발행 후보가 있으면 `article_path`와 `evidence_path`만 작성한다. 모든 기사 문장은
+   `docs/16-korean-writing-style.md`를 먼저 따르고 그 위에 AI 기술 기사 가이드를 적용한다.
+   evidence에 조사한 주요
    경로, 선택 후보와 탈락 후보를 담은 `discovery_review`를 포함하고, 현재 정본의 문체
    계약, 필수 절, 선정 점수, claim-source ledger, 이해상충, reproducibility, release gate를
    모두 지킨다. evidence의 release gate는 `ai-auto-publish-v1` 자동 출고 조건을 정확히
@@ -60,6 +63,8 @@
    전달하되 고정 목차나 고정 순서를 만들지 않는다. 작동 원리, 이전 기술과의 차이, 실제로
    가능해진 것, API·runtime, benchmark는 주제에 필요한 것만 선택한다. 시사판형 세 줄
    요약·엔지니어 판단·편집 판단 상자를 기계적으로 넣지 않는다.
+   소제목은 평범하고 구체적인 한국어로 쓰며, 추상명사를 결합한 판정문이나 영문식 은유로
+   의미를 압축하지 않는다.
 8. 기사와 evidence는 서로 같은 publication id, 중심 주장, 근거 수준, source URL을 가져야
    한다. 근거보다 강한 제목·요약·편집 판단을 쓰지 않는다.
 9. `content/`, `decisions/`, `docs/`, `editions/`, `scripts/`, `prompts/`, `site/`, `.coco-agents/`

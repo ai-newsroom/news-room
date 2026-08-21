@@ -26,6 +26,8 @@
      `decisions/ai/YYYY-MM-DD--<slug>/{evidence,release}.json`
    - EDA판 `content/eda/YYYY-MM-DD/article.md`와
      `decisions/eda/YYYY-MM-DD/{evidence,release}.json`
+   - `docs/16-korean-writing-style.md`
+   - `editions/ai/editorial/article-prompt.md`
    - `editions/eda/editorial/article-prompt.md`, `editions/eda/editorial/style-contract.md`
    - `docs/14-eda-auto-publishing.md`
    - `newsroom/charter.md`, `newsroom/style-exemplar.md`, `newsroom/CLAUDE.md`
@@ -34,6 +36,8 @@
 4. 형식 취향보다 반복 가능한 시스템 결함을 찾는다. 특히 다음을 확인한다.
    - 강령 또는 기사 불변 요소 위반
    - 초고에서 최종본으로 제거되지 않은 반복적 문체·구조 문제
+   - 기술판 제목·소제목·본문의 번역투, 추상명사 조합, 뜻을 다시 풀어야 하는 조어와
+     한국어 편집 턴의 사실 불변성 실패
    - 출처·근거·시간 감각·중복 주제·발행 실패 문제
    - EDA 벤더 주장의 과장, 원문 두 개의 역할 중복, 전문 용어 설명 누락
    - 주요 EDA 벤더·학회·논문 신호의 반복적인 coverage 누락

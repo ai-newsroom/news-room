@@ -18,6 +18,7 @@ ARTICLE="$STAGED_DIR/article.md"
 EVIDENCE="$RUN_DIR/evidence.json"
 PROMPT_FILE="$REPO/prompts/daily-ai-codex.md"
 REPAIR_PROMPT_FILE="$REPO/prompts/repair-ai-candidate.md"
+COPYEDIT_RUNNER="$REPO/scripts/run-technical-korean-copyedit.sh"
 BRIEF_FILE="$REPO/prompts/ai-briefs/$PUBLICATION_ID.md"
 SESSION_RUN_JSON="$RUN_DIR/session-run.jsonl"
 LAST_MESSAGE="$RUN_DIR/session-last-message.txt"
@@ -59,8 +60,8 @@ if git cat-file -e "HEAD:content/ai/$PUBLICATION_ID/article.md" 2>/dev/null; the
   echo "AI publication already exists for $PUBLICATION_ID"
   exit 0
 fi
-if [[ ! -f "$PROMPT_FILE" || ! -f "$REPAIR_PROMPT_FILE" ]]; then
-  echo "AI publication or repair prompt is missing" >&2
+if [[ ! -f "$PROMPT_FILE" || ! -f "$REPAIR_PROMPT_FILE" || ! -x "$COPYEDIT_RUNNER" ]]; then
+  echo "AI publication, repair, or Korean copy-edit entrypoint is missing" >&2
   exit 2
 fi
 if [[ ! "$MAX_VALIDATION_ATTEMPTS" =~ ^[12]$ ]]; then
@@ -147,6 +148,9 @@ if [[ ! -f "$ARTICLE" || ! -f "$EVIDENCE" ]]; then
   echo "AI turn produced neither a complete candidate nor no-publish decision" >&2
   exit 2
 fi
+
+"$COPYEDIT_RUNNER" ai "$REQUEST" "$ARTICLE" "$EVIDENCE" "$RUN_DIR" \
+  "$NEWS_ROOM_CODEX_SANDBOX"
 
 run_candidate_validation() {
   local attempt="$1"

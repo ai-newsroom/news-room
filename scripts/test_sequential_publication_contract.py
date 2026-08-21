@@ -12,6 +12,22 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class SequentialPublicationContractTest(unittest.TestCase):
+    def test_technical_editions_share_korean_baseline_before_edition_style(self) -> None:
+        baseline = (ROOT / "docs/16-korean-writing-style.md").read_text()
+        self.assertIn("korean-writing-baseline-v1", baseline)
+        self.assertIn("결론의 천장", baseline)
+        for path in (
+            "prompts/daily-ai-codex.md",
+            "prompts/daily-eda-codex.md",
+            "prompts/special-ai-codex.md",
+            "editions/ai/editorial/article-prompt.md",
+            "editions/eda/editorial/article-prompt.md",
+        ):
+            self.assertIn(
+                "docs/16-korean-writing-style.md",
+                (ROOT / path).read_text(),
+            )
+
     def test_ai_discovery_prompt_uses_global_sources_without_fixed_checklist(self) -> None:
         prompt = (ROOT / "prompts/daily-ai-codex.md").read_text()
         self.assertIn("강제 순회 목록이 아니라 발견 출발점", prompt)
@@ -100,9 +116,11 @@ class SequentialPublicationContractTest(unittest.TestCase):
             publisher,
         )
         self.assertIn('REPAIR_PROMPT_FILE="$REPO/prompts/repair-ai-candidate.md"', publisher)
+        copyedit = publisher.index('"$COPYEDIT_RUNNER" ai')
         validation = publisher.index('while ! run_candidate_validation')
         repair = publisher.index('repair_candidate "$VALIDATION_ATTEMPT"')
         materialize = publisher.index('--executor "news-room-sequential-publisher"')
+        self.assertLess(copyedit, validation)
         self.assertLess(validation, repair)
         self.assertLess(repair, materialize)
 
@@ -117,6 +135,10 @@ class SequentialPublicationContractTest(unittest.TestCase):
         self.assertIn('--publication-kind special', publisher)
         self.assertIn('--approved-by "$APPROVED_BY"', publisher)
         self.assertIn('--approval-basis "$APPROVAL_BASIS"', publisher)
+        self.assertLess(
+            publisher.index('"$COPYEDIT_RUNNER" ai'),
+            publisher.index('while ! run_candidate_validation'),
+        )
         self.assertNotIn('"$REPO/scripts/publish-daily.sh"', publisher)
         live = publisher.index('"$REPO/scripts/verify-publication.sh" ai')
         retrospective = publisher.index(
@@ -147,9 +169,11 @@ class SequentialPublicationContractTest(unittest.TestCase):
             'MAX_VALIDATION_ATTEMPTS="${NEWS_ROOM_EDA_MAX_VALIDATION_ATTEMPTS:-2}"',
             publisher,
         )
+        copyedit = publisher.index('"$COPYEDIT_RUNNER" eda')
         validation = publisher.index('while ! run_candidate_validation')
         repair = publisher.index('repair_candidate "$VALIDATION_ATTEMPT"')
         materialize = publisher.index('--executor "news-room-sequential-publisher"')
+        self.assertLess(copyedit, validation)
         self.assertLess(validation, repair)
         self.assertLess(repair, materialize)
 

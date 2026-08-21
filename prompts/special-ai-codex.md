@@ -11,7 +11,8 @@
    `YYYY-MM-DD--slug`, `publication_date`는 `YYYY-MM-DD`, `publication_kind`는
    `special`이어야 한다. 지정된 출력 경로만 사용한다.
 2. `editions/ai/edition.json`, `editions/ai/runtime.json`,
-   `docs/08-ai-eda-editorial-profiles.md`, `docs/11-ai-auto-publishing.md`,
+   `docs/16-korean-writing-style.md`, `docs/08-ai-eda-editorial-profiles.md`,
+   `docs/11-ai-auto-publishing.md`,
    `docs/15-technical-explanatory-journalism.md`,
    `editions/ai/editorial/article-prompt.md`, 편집자 지정 브리프를 완전히 읽는다.
 3. 브리프의 주제를 다른 최신 뉴스로 바꾸지 않는다. 검색 결과와 소셜 신호는 발견에만
@@ -72,6 +73,8 @@
    전달하되 절 이름과 순서는 주제에 맞게 구성한다. 작동 원리, 이전 기술과의 차이, 실제로
    가능해진 것, API·runtime, benchmark는 브리프와 기술에 유용할 때만 선택한다. 세 줄
    요약·엔지니어 판단·편집 판단 같은 시사판형 상자를 고정 목차로 넣지 않는다.
+   모든 문장은 기본 한국어 문체 계약을 먼저 따르고, 소제목은 평범하고 구체적인 한국어로
+   쓴다. 추상명사를 결합한 판정문이나 영문식 은유로 의미를 압축하지 않는다.
 10. `content/`, `decisions/`, `docs/`, `editions/`, `scripts/`, `prompts/`, `site/`,
    `.coco-agents/`를 수정하지 않는다. commit, push, deploy와 자기개선은 턴 밖의 결정적
    발행기와 별도 회고가 맡는다.

@@ -16,7 +16,8 @@ AI 정규판은 매일 07:00 `Asia/Seoul`에 시작하는 단일 발행 실행�
   추가하며 자동 발견 루프가 임의로 늘리지 않는다.
 - 중심 주장에 `E2` 이상이 있어야 한다.
 - 최소 두 개의 원문 URL과 claim별 source grade가 필요하다.
-- `ai-technical-blog-v2`, 선정 점수, 이해상충, 필수 절, publication ID, route 중복,
+- `korean-writing-baseline-v1`, `ai-technical-blog-v2`, 선정 점수, 이해상충, 필수 절,
+  publication ID, route 중복,
   artifact hash, site test와 production build를 모두 통과해야 한다.
 - `no-publish`는 기사 route를 만들지 않지만, 검증된 날짜별 결정 기록을 `/ai/` 첫 화면의
   발행 상태로 공개한다. 실행 실패는 휴간으로 바꾸거나 공개 상태로 확정하지 않는다.
@@ -31,6 +32,10 @@ AI 정규판은 매일 07:00 `Asia/Seoul`에 시작하는 단일 발행 실행�
 `scripts/publish-ai-candidate.py`는 무시되는 `var/runs/ai` 아래의 article·evidence를
 읽어 자동 출고 조건을 검사한다. 기사 frontmatter는 공개 사이트의 엄격한 schema와 같은
 필드 집합을 사용하며, `publication_id` 같은 예상 밖 필드는 materialize 전에 거부한다.
+후보가 만들어지면 순차 발행기는 결정적 검사 전에 자연어 한국어 편집 턴을 항상 한 번
+실행한다. 이 턴은 `docs/16-korean-writing-style.md`에 따라 제목·요약·소제목·설명 본문만
+다듬는다. 편집 전후의 수치, URL, 코드 식별자, 고정 frontmatter, 근거 부록을 비교하고
+evidence가 한 바이트라도 바뀌면 원본을 복원한 뒤 중단한다.
 첫 검증이 실패하면 순차 발행기는 기존 주제와 근거를 바꾸지 않는 제한 복구 턴을 한 번만
 실행하고 같은 결정적 검사를 다시 수행한다. 두 번째 검사도 실패하면 공개 경로, commit,
 push, deploy 없이 실행 실패로 남긴다. 통과하면 다음 세 파일만 저장소에 materialize한다.
@@ -87,6 +92,11 @@ decisions/ai/<publication-id>/no-publish.json
 특별판 브리프는 `prompts/ai-special-briefs/<date>/<slug>.md`에 둔다. 특별판 runner는 이
 경로 아래의 명시된 브리프만 읽으며, 브리프가 없거나 승인 메타데이터가 비어 있으면 기사
 생성 전에 중단한다.
+
+공개 기사의 문장 재편집은 자동 회고가 수행하지 않는다. 편집자가 공개 기사와 수정 범위를
+명시적으로 지정한 경우에만 기사 hash를 갱신하고 release에 수정 시각, 승인자, 승인 근거,
+수정 범위와 이전 hash를 남긴다. 근거 원장과 evidence를 바꾸지 않는 문체 수정이라도 전체
+test와 site build, 공개 URL 검증을 다시 통과해야 한다.
 
 ## 발행 후 자기개선 turn
 

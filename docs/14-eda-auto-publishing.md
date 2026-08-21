@@ -18,6 +18,8 @@ EDA판은 매일 07:00 `Asia/Seoul`에 시작하는 단일 발행 실행의 세 
 - 중심 분석에는 서로 다른 HTTPS 원문이 최소 두 개 필요하다. 같은 발표를 옮긴 검색 결과와
   2차 기사 둘은 세지 않는다.
 - 벤더 발표, 저자 보고, 독립 확인과 미확인 범위를 기사에서 분리한다.
+- 모든 문장은 `korean-writing-baseline-v1`을 먼저 따르고, 그 위에 EDA 기술 기사 문체를
+  적용한다.
 - 뉴스 설명·기술 이해·기술적 의미와 검증 과제의 세 의미 층은 작성 지침과 회고에서
   확인하되 특정 소제목으로 강제하지 않는다.
 - 허용된 frontmatter, 검증 부록,
@@ -49,6 +51,9 @@ EDA판은 매일 07:00 `Asia/Seoul`에 시작하는 단일 발행 실행의 세 
 
 기사 생성 턴은 `var/runs/eda` 아래 후보와 evidence 또는 `no-publish` 결정만 쓴다. 모델은
 Git, 공개 content·decision 경로, deploy, schedule과 self-improvement 상태를 수정하지 않는다.
+후보가 만들어지면 결정적 검사 전에 자연어 한국어 편집 턴을 한 번 실행한다. 이 턴은
+제목·요약·소제목·설명 본문의 번역투와 문장 호흡만 고치며, 수치·URL·코드 식별자·고정
+frontmatter·근거 부록과 evidence가 달라지면 원본을 복원하고 중단한다.
 결정적 publisher가 통과한 후보만 다음 세 파일로 materialize한다.
 
 ```text

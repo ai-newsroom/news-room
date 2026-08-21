@@ -9,10 +9,11 @@ AI 모델·API·SDK·오픈소스를 제품과 개발 환경에 적용할지 판
 
 작성 전에 다음 정본을 읽습니다.
 
-1. `editions/ai/edition.json`의 모든 editorial reference
-2. `docs/08-ai-eda-editorial-profiles.md`의 기술판 공통 강령과 AI판 강령
-3. 문체 계약 `ai-technical-blog-v2`
-4. 해당 후보의 claim 원장, 근거 snapshot, release note와 고정 version·commit
+1. 기본 한국어 문체 계약 `docs/16-korean-writing-style.md`
+2. `editions/ai/edition.json`의 모든 editorial reference
+3. `docs/08-ai-eda-editorial-profiles.md`의 기술판 공통 강령과 AI판 강령
+4. 기술 기사 문체 계약 `ai-technical-blog-v2`
+5. 해당 후보의 claim 원장, 근거 snapshot, release note와 고정 version·commit
 
 다음 순서로 작업합니다.
 
@@ -32,12 +33,17 @@ AI 모델·API·SDK·오픈소스를 제품과 개발 환경에 적용할지 판
    라벨이나 찬반 결론 대신 근거가 허용하는 기술적 해석을 직접 씁니다.
 5. 설치 명령, 코드, benchmark 수치는 원문에서 확인한 version·환경·조건을 함께 적습니다.
    직접 실행하지 않았다면 문서에서 확인한 절차라고 밝히고 재현 결과처럼 쓰지 않습니다.
-6. 초고를 쓴 뒤 `python3 editions/ai/editorial/style_v2.py <기사 경로>`를 실행합니다.
+6. 초고를 쓴 뒤 `docs/16-korean-writing-style.md`의 마지막 한국어 편집 항목으로 제목,
+   요약, 소제목과 본문을 자체 점검하고
+   `python3 editions/ai/editorial/style_v2.py <기사 경로>`를 실행합니다.
    문체 오류를 고치되 claim, 수치, URL, version·commit, license, 근거 등급, 재현성,
    한계와 이해상충을 바꾸지 않습니다. 이 validator는 주제에 독립적인 문체·기사 구조만
    검사합니다. 주제별 전문 용어와 사실 불변성은 해당 후보의 claim 원장과 대조합니다.
 
-서술은 동료 엔지니어에게 설계 검토 내용을 설명하듯 직접적인 `합니다체`로 씁니다.
+서술은 기술을 처음 접하는 엔지니어도 앞에서부터 따라갈 수 있는 뉴스 기사로 쓰고,
+직접적인 `합니다체`를 사용합니다. 쉬운 설명에서 시작한 뒤 필요한 만큼 기술의 구조와
+조건으로 깊어집니다. 설계 검토 보고서, claim 판정표, 영문 기술 문서의 번역문처럼 쓰지
+않습니다.
 API, SDK, runtime, latency, throughput, commit처럼 익숙한 용어는 그대로 사용할 수
 있습니다. AI 분야에만 익숙한 용어는 처음 나올 때 뜻과 이 글에서의 역할을 설명합니다.
 홍보 문구, 과장, 유행어, 불필요한 비유, 시사판의 찬반 토론과 닫는 질문은 사용하지
@@ -68,7 +74,9 @@ API, SDK, runtime, latency, throughput, commit처럼 익숙한 용어는 그대�
 - 본문 각 절은 새 질문 하나에 답해야 합니다. 요약, 판단 상자, 본문, 편집 판단이 같은
   결론을 반복하면 가장 자연스러운 한 곳만 남깁니다. 근거 원장과 출처는 엄격한 기록으로
   유지하되 본문을 claim ledger의 산문 복사본으로 만들지 않습니다.
-- 본문 소제목은 주제의 기술적 질문을 따라 자유롭게 정합니다. `세 줄 요약`, `SW
+- 본문 소제목은 주제의 기술적 질문을 따라 자유롭게 정하되, 기본 한국어 문체 계약에 따라
+  짧고 구체적으로 씁니다. 추상명사를 결합한 판정문이나 본문을 읽어야 뜻을 풀 수 있는
+  비유를 소제목으로 쓰지 않습니다. `세 줄 요약`, `SW
   엔지니어를 위한 판단`, `확인된 것과 확인되지 않은 것`, `이 공개의 의의와 편집 판단`을
   고정 골격으로 사용하지 않습니다. 앞의 세 의미 층이 기사 전체에서 분명히 전달되면 한
   절이 두 층을 연결하거나 기술 이해를 여러 절로 나눌 수 있습니다.

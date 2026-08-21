@@ -1,58 +1,64 @@
 ---
 edition: ai
 decision: publish-candidate
-title: "Mistral Agentic Search 공개 - RAG를 한 번의 검색에서 문서 안을 걷는 루프로 바꿉니다"
+title: "Mistral Agentic Search 공개 - 문서 안을 직접 탐색하는 RAG"
 date: 2026-08-22
 subject: "Mistral Agentic Search and Search Toolkit, August 20 2026"
-summary: "Mistral은 Agentic Search를 공개하며 모델이 검색 결과 chunk만 받는 대신 문서를 열고, 이동하고, 읽고, grep한 뒤 다시 검색하는 retrieval loop를 제시했습니다. 공개 문서와 PyPI 패키지는 구현 표면을 확인하게 해 주지만, FinanceBench와 OfficeQA Pro 개선 수치는 Mistral의 자체 측정이므로 다른 corpus와 운영 환경에서 그대로 일반화할 수 없습니다."
+summary: "Mistral의 Agentic Search는 처음 검색된 문서 조각만으로 답하지 않습니다. 모델이 문서를 열고 앞뒤 맥락과 특정 표현을 찾아가며 필요한 근거를 모읍니다. 공개 문서와 패키지에서 이 구조를 확인할 수 있지만, 성능 수치는 Mistral 자체 측정이어서 실제 업무 문서에서는 별도 검증이 필요합니다."
 evidence_ceiling: E2
 reproducibility: R1
 conflicts: ["Mistral은 Agentic Search, Search Toolkit, Libraries, Vibe의 개발·배포 주체이며 이 기사에 쓴 발표문과 문서를 작성했습니다. 사전 briefing, 제공받은 account·credit·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."]
 ---
 
-Mistral이 2026년 8월 20일 Agentic Search를 공개했습니다. 변화의 핵심은 RAG를 “검색기가 고른 몇 개 chunk를 모델에 넣고 끝내는 방식”에서, 모델이 corpus 안에서 직접 다음 증거를 찾는 loop로 바꾼 점입니다. 모델은 `search`로 후보 문서를 찾고, `open`으로 문서를 열고, `navigate`와 `read`로 주변 맥락을 확인하며, `grep`으로 특정 표현을 찾아 다시 검색합니다.
+Mistral이 2026년 8월 20일 Agentic Search를 공개했습니다. 이 기능은 검색 증강 생성(RAG)이 처음 찾아낸 문서 조각만 읽고 답하는 데서 멈추지 않게 합니다. 모델이 필요한 문서를 직접 열고, 앞뒤 내용을 살피고, 특정 표현을 찾아가며 답의 근거를 모읍니다.
 
-SW 엔지니어에게 중요한 지점은 새 모델 하나를 고르는 문제가 아니라 검색 runtime을 어떻게 설계할지입니다. 지금까지 많은 RAG 시스템은 chunking, embedding, reranking을 조정해 첫 검색 결과의 품질을 높이는 데 집중했습니다. Agentic Search는 그 위에 agent가 문서 내부를 순서대로 살피고 이미 본 chunk를 제외하며 질의를 바꾸는 제어층을 얹습니다.
+예를 들어 긴 재무 문서에서 표와 주석을 함께 확인해야 한다고 해보겠습니다. 기존 RAG는 검색 결과 상위에 나온 몇 개의 문서 조각(chunk)을 모델에 전달합니다. Agentic Search에서는 모델이 `search`로 문서를 찾은 뒤 `open`, `navigate`, `read`, `grep`을 차례로 사용해 문서 안에서 필요한 내용을 계속 찾을 수 있습니다.
 
-이 기사의 중심 주장은 공개된 제품 글, 공식 문서, PyPI 패키지와 starter app으로 확인 가능한 구조에 한정합니다. Mistral은 FinanceBench와 OfficeQA Pro에서 정확도, token 사용량, p90 latency가 개선됐다고 밝혔지만, 이 수치는 벤더가 선택한 stack과 benchmark 조건에서 나온 결과입니다. 따라서 “Mistral 검색이 모든 RAG보다 낫다”가 아니라 “복잡한 문서 질의를 위한 검색 설계 단위가 top-k chunk에서 탐색 가능한 문서 상태로 넓어졌다”가 검증 가능한 결론입니다.
+이 변화는 새 모델의 성능보다 검색 과정을 설계하는 방식에 가깝습니다. Mistral은 두 벤치마크에서 정확도와 token 사용량, p90 latency가 좋아졌다고 밝혔습니다. 다만 이 수치는 Mistral이 선택한 환경에서 나온 자체 측정이므로, 이번 공개에서 확인할 수 있는 핵심은 모든 RAG보다 성능이 좋다는 결론이 아니라 문서 검색을 여러 단계의 탐색으로 구성할 수 있게 됐다는 점입니다.
 
-## RAG의 병목은 첫 검색 결과에 갇히는 데 있었습니다
+## 기존 RAG는 처음 찾은 문서 조각만 읽습니다
 
-일반적인 one-shot RAG는 질문을 embedding하거나 keyword로 검색한 뒤 상위 chunk 몇 개를 모델에 넣습니다. 답이 그 안에 있으면 빠르고 단순합니다. 문제는 긴 PDF, 표가 많은 재무 문서, 여러 문서에 흩어진 근거, 특정 footnote나 조항을 찾아야 하는 질문입니다. 검색 index가 맞는 문서를 찾아도, 모델은 그 문서의 앞뒤 페이지를 걷거나 같은 문서 안에서 정확한 용어를 다시 찾지 못할 수 있습니다.
+일반적인 one-shot RAG는 질문과 가까운 내용을 embedding이나 keyword 검색으로 찾은 뒤 상위 문서 조각 몇 개를 모델에 넣습니다. 답이 그 안에 있으면 빠르고 단순합니다. 하지만 긴 PDF의 각주, 표가 많은 재무 문서의 주석, 여러 문서에 흩어진 근거를 찾아야 할 때는 문제가 생깁니다. 검색 index가 알맞은 문서를 골라도 답이 들어 있는 정확한 위치까지 찾아 주지는 않기 때문입니다.
 
-Agentic Search는 이 병목을 agent loop로 다룹니다. Mistral 문서는 keyword와 semantic retrieval을 기본 검색 primitive로 두고, Agentic Search를 그 위에서 도구를 호출하고 문서 안을 이동하는 orchestration layer로 설명합니다. `search(query, top_k, exclude_ids)`는 전역 후보를 찾고, `open(source_id, start_offset, end_offset, window)`은 특정 위치 주변을 넓혀 읽습니다. `navigate`는 문서 안에서 앞뒤로 움직이고, `read`는 알려진 범위를 읽으며, `grep`은 열린 문서 안에서 정확한 문자열을 찾습니다.
+지금까지는 첫 검색의 품질을 높이기 위해 chunk 크기, embedding 모델, 검색 결과의 순위를 다시 매기는 reranker를 조정하는 경우가 많았습니다. 그래도 필요한 문장이 처음 고른 조각 밖에 있으면 모델은 그 내용을 읽지 못합니다. Agentic Search는 첫 검색 뒤에 모델이 스스로 다음 검색 행동을 정하는 agent loop를 추가해 이 문제를 다룹니다.
 
-이 구조가 바꾸는 것은 검색 정확도만이 아닙니다. 실패 분석의 위치도 달라집니다. 답을 틀렸을 때 원인이 embedding 모델인지, chunk 크기인지, reranker인지, 아니면 agent가 적절한 follow-up query를 만들지 못했는지 나눠 볼 수 있습니다. 운영자는 search index를 그대로 두고도 loop depth, `top_k`, `exclude_ids`, grep 사용 시점, 문서별 scope를 조정하는 방식으로 retrieval 행동을 제어할 수 있습니다.
+## Agentic Search는 문서를 열고 다시 찾습니다
 
-## 구현 표면은 SDK, MCP 도구, starter app으로 나뉩니다
+Mistral 문서에 따르면 기본 검색은 keyword와 semantic retrieval을 사용합니다. Agentic Search는 그 결과를 바로 답변으로 넘기지 않고, 모델이 여러 검색 도구를 호출할 수 있게 합니다. `search(query, top_k, exclude_ids)`는 전체 문서에서 후보를 찾고, `open(source_id, start_offset, end_offset, window)`은 선택한 위치의 앞뒤 내용을 펼쳐 보여 줍니다. `navigate`와 `read`는 같은 문서의 다른 부분으로 이동해 읽고, `grep`은 열린 문서에서 정확한 문자열을 찾습니다.
 
-Mistral의 Search Toolkit 문서는 이 기능을 Python framework로 설명합니다. ingestion 쪽에는 file loader, extractor, text splitter, enricher, embedder, vector store가 있고, retrieval 쪽에는 vector search, query preprocessing, reranking, semantic cache가 있습니다. 문서는 PDF/DOCX/PPTX, HTML, spreadsheet, email, plain text 같은 입력을 다루며, storage backend는 Vespa 또는 custom vector store로 바꿀 수 있다고 설명합니다.
+한 번 본 문서 조각은 `exclude_ids`로 다음 검색에서 뺄 수 있습니다. 처음 검색어가 충분하지 않으면 모델이 질문을 바꾸어 다시 찾을 수도 있습니다. 이 과정을 반복하면 답을 만드는 모델이 검색 결과의 수동적인 소비자가 아니라, 어느 문서를 더 읽을지 결정하는 탐색 주체가 됩니다.
 
-Agentic Search 문서는 이 toolkit 위에 agent가 호출할 MCP server를 얹는 경로를 제시합니다. starter app은 ingestion pipeline, Vespa search index, navigation tool을 노출하는 MCP server, sample data를 scaffolding합니다. agent는 MCP server를 발견한 뒤 `search`, `open`, `grep`, `navigate`, `read`, `ingest`, `delete` 같은 도구를 호출합니다. 이 부분은 단순한 제품 설명을 넘어 공개 template과 패키지 metadata로 확인할 수 있는 실행 표면입니다.
+오류를 분석하는 방법도 달라집니다. 답이 틀렸을 때 embedding 모델이나 chunk 크기만 볼 것이 아니라, 모델이 후속 검색어를 잘못 만들었는지, 문서를 충분히 열어 보지 않았는지, `grep`을 써야 할 때 지나쳤는지도 살펴야 합니다. 운영자는 search index를 바꾸지 않고도 loop depth, `top_k`, `exclude_ids`, 문서별 scope를 조정해 검색 행동을 다르게 만들 수 있습니다.
 
-PyPI의 `mistralai-search-toolkit` 패키지는 2026년 7월 31일 공개된 `0.0.11`을 최신 release로 표시하며, Python `>=3.12, <3.15`와 Apache-2.0 license를 명시합니다. 같은 페이지는 source distribution과 wheel의 hash, Trusted Publishing 여부, GitHub Actions provenance도 보여 줍니다. 다만 source repository permalink는 private로 표시되어 있어, 패키지 내부 구현 전체를 GitHub에서 직접 추적하는 수준의 R2 재현성은 아직 확보하지 못했습니다.
+## Search Toolkit과 MCP로 검색 도구를 연결합니다
 
-## 벤치마크 수치는 방향을 보여 주지만 결론의 천장은 낮춥니다
+Mistral은 Search Toolkit을 문서 수집과 검색을 구성하는 Python framework로 제공합니다. 문서를 불러오고(file loader), 내용을 추출하고(extractor), 적당한 크기로 나누고(text splitter), 검색용 벡터로 바꾸는(embedder) 구성 요소가 들어 있습니다. 검색 단계에는 vector search, query preprocessing, reranking, semantic cache가 있습니다. PDF/DOCX/PPTX, HTML, spreadsheet, email, plain text를 처리할 수 있고, 저장소는 Vespa나 custom vector store로 바꿀 수 있습니다.
 
-Mistral은 FinanceBench와 OfficeQA Pro를 사용해 Agentic Search를 평가했다고 밝혔습니다. FinanceBench 설명은 368개 SEC filing, 150개 질문, 평균 약 147쪽 문서, 총 약 53,900쪽 corpus를 사용하며 LLM judge를 human label에 맞춰 보정했다고 설명합니다. OfficeQA Pro는 696개 Treasury Bulletin, 133개 “pro” subset 질문, 약 89,000쪽의 scanned, table-heavy PDF를 대상으로 한 numeric benchmark라고 제시됩니다.
+모델은 MCP server를 통해 이 검색 기능을 도구처럼 호출합니다. starter app은 문서 수집 pipeline, Vespa search index, 문서 이동 도구를 제공하는 MCP server와 sample data를 기본으로 구성합니다. MCP server에 연결된 agent는 `search`, `open`, `grep`, `navigate`, `read`, `ingest`, `delete`를 호출할 수 있습니다. 따라서 발표문의 개념만 공개된 것이 아니라, 어떤 도구를 어떻게 연결하는지 확인할 수 있는 template과 패키지도 함께 나왔습니다.
 
-공개된 수치에서 가장 큰 메시지는 agentic loop가 broad search 반복을 줄이고 문서 안 navigation으로 들어갈 때 개선 폭이 커진다는 점입니다. Mistral은 FinanceBench에서 one-shot RAG 대비 search-only loop가 Mistral Medium 3.5와 GLM-5.2 모두 약 3배 개선됐고, navigation을 추가하면 정확도가 더 올라가며 token과 latency도 줄었다고 설명합니다. OfficeQA Pro에서는 GLM-5.2 기준 one-shot RAG 6.3%에서 full loop 51.9%로 올랐다는 수치를 제시합니다.
+PyPI의 `mistralai-search-toolkit` 패키지는 2026년 7월 31일 공개된 `0.0.11`을 최신 release로 표시합니다. Python `>=3.12, <3.15`가 필요하며 license는 Apache-2.0입니다. source distribution과 wheel의 hash, Trusted Publishing 여부, GitHub Actions provenance도 공개돼 있습니다. 다만 provenance가 가리키는 source repository 일부는 private로 표시되어 있어, GitHub에서 패키지 내부 구현 전체를 추적할 수 있는 R2 수준의 재현성은 아직 확보하지 못했습니다.
 
-그러나 이 수치는 독립 검증이 아닙니다. benchmark corpus와 질문 수는 공개 설명으로 확인되지만, 이 기사 작성 시점에는 편집국이 동일 환경을 실행하지 않았고, Mistral이 사용한 out-of-the-box stack의 세부 실행 로그와 실패 사례 분포를 확인하지 못했습니다. 따라서 이 수치는 “복잡한 문서 질의에서 왜 탐색 loop가 설계상 유리할 수 있는가”를 설명하는 근거로만 쓰고, 서비스 선택의 최종 순위나 일반 성능 결론으로 쓰지 않습니다.
+## 성능은 좋아졌지만 실제 환경 검증은 남았습니다
 
-## 도입 판단은 검색 품질보다 운영 경계에서 갈립니다
+Mistral은 FinanceBench와 OfficeQA Pro로 Agentic Search를 평가했습니다. FinanceBench는 368개 SEC filing에서 만든 150개 질문을 사용합니다. 문서는 평균 약 147쪽이고 전체 corpus는 약 53,900쪽입니다. Mistral은 정답 판정에 쓰는 LLM judge를 human label에 맞춰 보정했다고 설명합니다. OfficeQA Pro는 696개 Treasury Bulletin에서 고른 133개 “pro” subset 질문을 사용하며, 약 89,000쪽의 scanned, table-heavy PDF를 다루는 numeric benchmark입니다.
 
-Agentic Search가 맞는 문제는 답이 처음 검색 결과에 없을 수 있는 업무입니다. 긴 계약서에서 특정 조항을 찾아야 하거나, 재무제표 표와 주석을 같이 읽어야 하거나, 여러 문서를 비교해 근거를 남겨야 하는 질의가 여기에 들어갑니다. 반대로 짧고 깨끗한 문서에서 답이 상위 chunk에 안정적으로 나오는 경우에는 one-shot RAG가 더 단순하고 예측 가능합니다.
+Mistral이 공개한 결과에서는 문서 안을 이동하는 단계가 추가될수록 성능이 좋아졌습니다. FinanceBench에서 search-only loop는 one-shot RAG보다 Mistral Medium 3.5와 GLM-5.2 모두 약 3배 나은 결과를 냈다고 합니다. navigation을 추가했을 때는 정확도가 더 올라가고 token과 latency도 줄었다고 보고했습니다. OfficeQA Pro에서 GLM-5.2의 결과는 one-shot RAG 6.3%에서 full loop 51.9%로 올랐습니다.
 
-도입 비용도 agent loop의 장점과 같이 봐야 합니다. 도구 호출이 늘어나면 모델이 더 많은 행동을 결정해야 하고, 검색 backend와 MCP server, 문서 offset metadata, 권한 검사가 운영 경로에 들어옵니다. 문서 접근권한이 사용자별로 다른 조직에서는 agent가 `open`이나 `grep`을 호출할 때도 같은 ACL이 적용되어야 합니다. 그렇지 않으면 retrieval 품질 문제가 아니라 권한 우회 문제가 됩니다.
+이 결과는 Agentic Search가 긴 문서에서 어떤 가능성을 보여 주는지 이해하는 데는 도움이 됩니다. 그러나 편집국은 같은 환경에서 benchmark를 실행하지 않았고, Mistral의 세부 실행 로그와 전체 실패 사례도 확인하지 못했습니다. 다른 corpus와 모델, 검색 backend에서도 같은 차이가 나는지는 실제 환경에서 따로 검증해야 합니다.
 
-한국 독자에게는 특히 내부 문서 검색과 규제 문서 확인 workflow가 직접적인 검토 대상입니다. 금융, 공공, 제조 조직은 긴 PDF와 표 중심 문서를 많이 갖고 있고, 검색 결과의 근거 위치를 남겨야 하는 경우가 많습니다. 다만 Mistral의 cloud, on-premises, isolation boundary 설명이 한국의 개인정보보호법이나 전자금융 규제를 자동으로 만족한다는 뜻은 아닙니다. 실제 도입에서는 데이터 위치, logging, index 보존 기간, 사용자별 문서 권한을 별도 설계해야 합니다.
+## 긴 문서와 근거 추적이 필요한 업무에 맞습니다
 
-## benchmark 또는 재현 결과
+Agentic Search는 답이 첫 검색 결과 밖에 있을 가능성이 큰 업무에 잘 맞습니다. 긴 계약서에서 특정 조항을 찾거나, 재무제표의 표와 주석을 함께 읽거나, 여러 문서를 비교해 답의 근거 위치를 남기는 작업이 대표적입니다. 반대로 짧고 정리된 문서에서 답이 상위 chunk에 꾸준히 나온다면 one-shot RAG가 더 단순하고 결과를 예측하기 쉽습니다.
 
-이 기사는 Agentic Search를 직접 실행하지 않았습니다. 재현성 상태는 R1입니다. 공식 문서로 retrieval loop, 도구 이름, SDK 구성, MCP server 경로, starter app, PyPI 패키지 version과 license는 설명할 수 있지만, 편집국이 FinanceBench나 OfficeQA Pro를 같은 환경에서 재실행한 로그는 없습니다.
+여러 단계로 검색하는 만큼 운영할 부분은 늘어납니다. 모델이 더 많은 도구 호출을 결정해야 하고, 검색 backend와 MCP server, 문서 offset metadata가 실행 경로에 추가됩니다. 사용자마다 읽을 수 있는 문서가 다르다면 agent가 `open`이나 `grep`을 호출할 때도 같은 접근 제어(ACL)를 적용해야 합니다. 이 규칙이 빠지면 검색 정확도가 아니라 권한 우회가 문제가 될 수 있습니다.
 
-공개 artifact 관점에서는 `mistralai-search-toolkit` 패키지와 `mistralai/search-starter-app` template이 확인됩니다. 다만 PyPI provenance가 가리키는 source repository 일부가 private로 표시되고, Mistral의 benchmark 실행 script와 원 로그가 함께 공개된 것은 확인하지 못했습니다. 따라서 중심 결론은 구현 가능한 search loop의 공개와 구조 변화에 두고, 성능 수치는 Mistral 자체 측정으로 귀속합니다.
+한국의 금융, 공공, 제조 조직에는 긴 PDF와 표 중심 문서가 많습니다. 답뿐 아니라 근거가 있는 문서 위치를 남겨야 하는 업무도 많아 직접 시험해 볼 가치가 있습니다. 다만 Mistral이 설명하는 cloud, on-premises, isolation boundary가 한국의 개인정보보호법이나 전자금융 규제를 자동으로 충족하는 것은 아닙니다. 실제 도입에서는 데이터 위치, logging, index 보존 기간과 사용자별 문서 권한을 별도로 설계해야 합니다.
+
+## 공개 자료로 확인한 범위
+
+이 기사는 Agentic Search를 직접 실행하지 않았으며 재현성 상태는 R1입니다. 공식 문서에서 retrieval loop, 도구 이름, SDK 구성, MCP server 연결 방법, starter app, PyPI 패키지 version과 license를 확인했습니다. 하지만 FinanceBench나 OfficeQA Pro를 같은 환경에서 다시 실행한 로그는 없습니다.
+
+공개 artifact로는 `mistralai-search-toolkit` 패키지와 `mistralai/search-starter-app` template이 있습니다. PyPI provenance가 가리키는 source repository 일부는 private이며, Mistral의 benchmark 실행 script와 원 로그도 함께 공개되지는 않았습니다. 따라서 이번 공개의 의미는 문서 안을 여러 단계로 탐색하는 search loop와 구현 경로가 나왔다는 데 있습니다. 성능 수치는 Mistral의 자체 측정으로 구분해 봐야 합니다.
 
 ## 이해상충과 취재 조건
 

@@ -11,6 +11,7 @@
 2. 다음 정본을 완전히 읽는다.
    - `editions/eda/edition.json`
    - `editions/eda/runtime.json`
+   - `docs/16-korean-writing-style.md`
    - `docs/08-ai-eda-editorial-profiles.md`
    - `docs/15-technical-explanatory-journalism.md`
    - `docs/14-eda-auto-publishing.md`
@@ -47,7 +48,9 @@
 }
 ```
 
-8. 발행 후보가 있으면 `article_path`와 `evidence_path`만 작성한다. 기사에는 정본의 쉬운
+8. 발행 후보가 있으면 `article_path`와 `evidence_path`만 작성한다. 모든 기사 문장은
+   `docs/16-korean-writing-style.md`를 먼저 따르고 그 위에 EDA 기술 기사 가이드를 적용한다.
+   기사에는 정본의 쉬운
    기술 문체와 필수 소제목을 적용하고, 전문 용어를 첫 등장에 풀어 쓴다. 벤더 주장,
    저자 보고 결과, 독립 확인과 미확인 범위를 분리한다. 실무 판단은 `지금 할 일 / 아직
    미룰 일 / 다음에 확인할 신호`로 정리한다. 제목·summary·도입부·중심 주장은 기술이
@@ -58,6 +61,8 @@
    전달하되 고정 목차와 고정 순서를 만들지 않는다. 작동 원리, 이전 flow와의 차이, 실제로
    가능해진 설계 작업, PPA·runtime·signoff는 주제에 유용하고 근거가 있을 때 선택한다.
    세 줄 요약·엔지니어 판단·확인/미확인·편집 판단 상자를 기계적으로 넣지 않는다.
+   소제목은 평범하고 구체적인 한국어로 쓰며, 추상명사를 결합한 판정문이나 영문식 은유로
+   의미를 압축하지 않는다.
 9. Evidence에는 선정 점수, claim-source ledger, 재현성, 이해상충, 조사한 주요 경로와
    탈락 후보를 담은 `discovery_review`를 포함한다. Release gate는 다음 값을 정확히 쓴다.
 

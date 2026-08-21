@@ -8,7 +8,7 @@
   "article_path": "content/ai/2026-08-22/article.md",
   "evidence_path": "decisions/ai/2026-08-22/evidence.json",
   "artifact_hashes": {
-    "article_sha256": "e6b79ceef26546ecd9be20ca1c1a8ead28ee31088192d807f9078ddcbdd8ae7b",
+    "article_sha256": "93409e4d302881f4a2b18e10414c1adea4e7f070b86449fff6ec239b2b8a1067",
     "evidence_sha256": "8ff240a0fedd077635440335cee60587e5097c2bb8b71babe353171d25324849"
   },
   "routes": [
@@ -31,5 +31,18 @@
       "artifact-hashes",
       "site-tests-and-build"
     ]
+  },
+  "revision": {
+    "revision_number": 2,
+    "revised_at": "2026-08-22T07:43:48+09:00",
+    "approved_by": "news-room editor",
+    "approval_basis": "기본 한국어 문체 가이드를 적용하고 2026-08-22 AI 기사의 제목, 요약, 소제목과 설명 본문을 다시 작성하라는 편집자 지시",
+    "scope": [
+      "title",
+      "summary",
+      "section-headings",
+      "explanatory-body"
+    ],
+    "previous_article_sha256": "e6b79ceef26546ecd9be20ca1c1a8ead28ee31088192d807f9078ddcbdd8ae7b"
   }
 }
