@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-22",
+  "date": "2026-08-22",
+  "subject": "Mistral Agentic Search and Search Toolkit, August 20 2026",
+  "central_claim": "Mistral's Agentic Search is a publishable AI engineering topic because official documentation and package metadata show a concrete retrieval architecture shift from one-shot top-k RAG to an agent-controlled loop that can search, open, navigate, read, grep and re-query documents; the article limits the conclusion to documented API/runtime structure and deployment implications, not independent performance superiority.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The release affects concrete software-engineering decisions about RAG architecture, search backend design, MCP tool exposure, document permission boundaries, latency/cost trade-offs and benchmark interpretation. It has an official product announcement, official docs, public PyPI package metadata and starter app path, supporting a bounded E2 center claim."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "central": true,
+      "claim": "Mistral's Agentic Search release changes the retriever design unit from a one-shot set of chunks to a navigable document loop with search, open, navigate, read, grep and re-query actions; public docs and package metadata support an E2 claim about architecture and implementation surface, while benchmark superiority remains a vendor claim.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://mistral.ai/news/agentic-search/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://docs.mistral.ai/studio/search/agentic-search",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://docs.mistral.ai/studio/search/search-toolkit",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://pypi.org/project/mistralai-search-toolkit/",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://github.com/mistralai/search-starter-app/tree/main",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-22-sequential/20260821T220908Z-1020922/request.json and used publication_id 2026-08-22 with article_path var/runs/ai/2026-08-22-sequential/20260821T220908Z-1020922/staged-content/article.md and evidence_path var/runs/ai/2026-08-22-sequential/20260821T220908Z-1020922/evidence.json. Read the AI edition contract, runtime, editorial profile, explanatory-journalism contract, auto-publishing contract, article prompt and primary-source startpoints before source review."
+      },
+      {
+        "channel": "mistral-agentic-search-announcement",
+        "url": "https://mistral.ai/news/agentic-search/",
+        "classification": "P1 source path",
+        "note": "Opened Mistral's August 20, 2026 Agentic Search announcement. It describes a multi-step retrieval loop over search, open, navigate, read and grep tools, states availability through Search Toolkit and Libraries, and reports FinanceBench and OfficeQA Pro results. Benchmark claims were treated as vendor-measured P1 claims, not independent verification."
+      },
+      {
+        "channel": "mistral-agentic-search-docs",
+        "url": "https://docs.mistral.ai/studio/search/agentic-search",
+        "classification": "P1 source path",
+        "note": "Opened official Agentic Search docs. The page documents Agentic Search as an orchestration layer over keyword/semantic retrieval, lists tool contracts including search, open, navigate, read, grep, ingest and delete, describes exclude_ids for avoiding repeated chunks, and explains MCP server and SDK integration paths."
+      },
+      {
+        "channel": "mistral-search-toolkit-docs",
+        "url": "https://docs.mistral.ai/studio/search/search-toolkit",
+        "classification": "P1 source path",
+        "note": "Opened official Search Toolkit docs. The page describes a Python framework for ingestion, retrieval and evaluation, with swappable components for file loading, extraction, splitting, enrichment, embeddings, vector storage, retrievers, rerankers and semantic caching. It also states Python 3.12+ and uv-based installation guidance."
+      },
+      {
+        "channel": "pypi-package-metadata",
+        "url": "https://pypi.org/project/mistralai-search-toolkit/",
+        "classification": "P2 artifact path",
+        "note": "Opened PyPI metadata for mistralai-search-toolkit. PyPI lists version 0.0.11 as the latest release, release/upload date Jul 31 2026, Apache-2.0 license, Python >=3.12 and <3.15, wheel/source hashes and Trusted Publishing attestations. The provenance points to a private Mistral source repository, limiting independent code inspection."
+      },
+      {
+        "channel": "github-starter-app",
+        "url": "https://github.com/mistralai/search-starter-app/tree/main",
+        "classification": "P2 artifact path",
+        "note": "Opened the official mistralai/search-starter-app GitHub path linked from Mistral docs. It is used as artifact evidence that a starter scaffold exists, but the run did not clone or execute it."
+      },
+      {
+        "channel": "openai-official-review",
+        "url": "https://openai.com/index/gpt-5-6/",
+        "classification": "P1/P0 alternative review",
+        "note": "Reviewed OpenAI GPT-5.6 GA page, preview page and GPT-5.6 system card. The August 21 visible update was a GPT-5.6 Sol price reduction, while the strongest technical capability/safety material had already been published in July or covered in recent AI판 work. It did not outrank the selected fresh retrieval-runtime release for this slot."
+      },
+      {
+        "channel": "anthropic-official-review",
+        "url": "https://www.anthropic.com/news/claude-opus-5",
+        "classification": "P1 alternative review",
+        "note": "Reviewed Anthropic news and Claude Opus 5 launch material. Opus 5 remains a major July 24 model release with system-card links and API availability, but it was not same-day new for the 2026-08-22 publication slot."
+      },
+      {
+        "channel": "google-gemini-official-review",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Reviewed Gemini API changelog. Gemini 3.7 Flash GA on August 13, 2026 was a strong official model/API release but was already covered by the 2026-08-14 AI regular edition; no newer Google item found during this run outranked the selected candidate."
+      },
+      {
+        "channel": "qwen-deepseek-registry-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed official registry signals for Qwen3.8-27B, Qwen3.8-2.4T-A95B, DeepSeek-V4-Pro-0813 and DeepSeek-V4-Flash-0731. These were credible model-card artifacts, but the substantive August 13-15 surfaces had already been covered or reviewed in recent AI판 decisions."
+      },
+      {
+        "channel": "xai-official-review",
+        "url": "https://x.ai/news",
+        "classification": "P0/P1 discovery review",
+        "note": "Reviewed xAI news surface showing August 21 Grok 4.6 on Vertex AI and Grok Bot plan expansion. These were availability/product-distribution signals with less public technical depth than the selected Agentic Search architecture and artifacts."
+      },
+      {
+        "channel": "open-source-runtime-review",
+        "url": "https://github.com/vllm-project/vllm/releases",
+        "classification": "P1/P2 source path",
+        "note": "Reviewed vLLM releases and Hugging Face Transformers release signals. vLLM v0.26.0 and Transformers v5.15.1 are implementation-backed, but the visible updates were older or patch-level and did not beat the selected candidate on novelty and article value."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results were used only to discover official paths across Mistral, OpenAI, Anthropic, Google, Qwen, DeepSeek, xAI, vLLM and Hugging Face. No article fact or scoring decision was based on search snippets, community posts or secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Mistral Agentic Search and Search Toolkit",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because the official August 20 announcement and docs expose a concrete retrieval architecture, tool loop and deployment surface, with PyPI metadata and starter app evidence. The topic is immediately useful for engineers evaluating RAG systems and supports an E2 center claim while keeping benchmark gains vendor-attributed."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Sol August 21 price reduction and GPT-5.6 GA/system-card material",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The price reduction affects API cost decisions and the system card is detailed, but the technical model release was already broadly available since July 9 and recent AI판 work has covered GPT-5.6 safety/capability surfaces. The new visible same-day delta was pricing, not a deeper model/runtime mechanism."
+      },
+      {
+        "subject": "Anthropic Claude Opus 5",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "A major official model release with API availability, system-card link and documented safeguards, but dated July 24, 2026. It is less fresh than the selected August 20 Mistral retrieval-runtime release."
+      },
+      {
+        "subject": "xAI Grok 4.6 on Vertex AI and Grok Bot plan expansion",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The xAI news page shows same-day availability changes, but the opened source provided little model-card, benchmark-method, API or implementation detail. It did not meet the E2 article center threshold."
+      },
+      {
+        "subject": "Google Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Strong official model/API candidate, but already selected and published as the 2026-08-14 regular AI edition. Repeating it would not add a new technical phase."
+      },
+      {
+        "subject": "Qwen3.8 open-weight model family and Qwen3.8-27B",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official blog/model-registry/GitHub surfaces support E2/R2 coverage, but Qwen3.8-27B was already handled as the 2026-08-15 AI special article and no new Qwen artifact changed the decision for this slot."
+      },
+      {
+        "subject": "DeepSeek V4-Pro-0813 and V4-Flash-0731 model-card releases",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The official Hugging Face model cards are concrete artifacts with serving instructions and benchmark tables, but DeepSeek V4-Pro/Harness was already covered by recent AI판 work. The remaining signals were not fresh enough for this regular slot."
+      },
+      {
+        "subject": "Mistral Shieldstral and regional inference updates",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Shieldstral and regional inference are official Mistral subjects, but they were previously covered or reviewed. Agentic Search is the fresher Mistral technical release with stronger SW-engineering utility."
+      },
+      {
+        "subject": "Hugging Face Transformers v5.15.1 and vLLM v0.26.0",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Both are implementation-backed runtime/library paths. Transformers v5.15.1 was patch-level, and vLLM v0.26.0 had already been covered earlier in August. Neither outranked the selected retrieval architecture release."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED",
+    "NO_RUNTIME_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-21T22:09:08Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-22 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official Mistral announcement, official Agentic Search docs, official Search Toolkit docs, PyPI package metadata and GitHub starter app path",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-22 and decisions/ai/2026-08-22",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Mistral is the author/operator of Agentic Search, Search Toolkit, Libraries, Studio and Vibe, and authored the announcement and documentation used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and previous discovery ledgers were used only as discovery and duplication checks; article facts rely on opened official primary sources and public package metadata."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Mistral announced Agentic Search on August 20, 2026 and described it as a retrieval layer available through Mistral Search Toolkit and Libraries in Studio and Vibe.",
+      "source_url": "https://mistral.ai/news/agentic-search/",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Mistral Agentic Search announcement dated August 20 2026",
+      "accessed_at": "2026-08-21",
+      "direct_or_derived": "direct",
+      "method": "Read the official announcement's date, summary and availability sections.",
+      "limitations": [
+        "Confirms announcement and vendor-described availability only.",
+        "Does not independently validate benchmark or production performance claims."
+      ],
+      "conflict_of_interest": [
+        "Mistral authored the announcement for its own product."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Agentic Search uses a retrieval loop in which a model can search, inspect a result, grep within a document, navigate or read adjacent ranges, and re-query with exclude_ids to avoid repeated chunks.",
+      "source_url": "https://docs.mistral.ai/studio/search/agentic-search",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Agentic Search documentation accessed 2026-08-21",
+      "accessed_at": "2026-08-21",
+      "direct_or_derived": "direct",
+      "method": "Read retrieval primitives, loop steps and navigation tool table.",
+      "limitations": [
+        "No live MCP server or SDK retrieval loop was executed.",
+        "Tool behavior can vary with backend schema, corpus and agent policy."
+      ],
+      "conflict_of_interest": [
+        "Mistral authored the documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Search Toolkit is a Python framework for building information retrieval systems with ingestion, retrieval and evaluation components, including swappable loaders, extractors, splitters, embedders, vector stores, retrievers, rerankers and semantic caching.",
+      "source_url": "https://docs.mistral.ai/studio/search/search-toolkit",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Search Toolkit documentation accessed 2026-08-21",
+      "accessed_at": "2026-08-21",
+      "direct_or_derived": "direct",
+      "method": "Read official Search Toolkit overview, architecture and components table.",
+      "limitations": [
+        "The run did not install optional extras or test backend compatibility.",
+        "The docs describe intended component contracts, not a measured production SLA."
+      ],
+      "conflict_of_interest": [
+        "Mistral authored the documentation."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The starter app scaffolds ingestion pipelines, a Vespa search index, an MCP server exposing navigation tools and sample data for Agentic Search workflows.",
+      "source_url": "https://docs.mistral.ai/studio/search/agentic-search",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Agentic Search documentation; starter app path accessed 2026-08-21",
+      "accessed_at": "2026-08-21",
+      "direct_or_derived": "direct",
+      "method": "Read starter app and MCP server sections and opened the linked GitHub path.",
+      "limitations": [
+        "The GitHub repository was not cloned or executed.",
+        "The article does not claim the starter app is production-ready."
+      ],
+      "conflict_of_interest": [
+        "Mistral authored the docs and maintains the linked starter app."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Mistral reports FinanceBench and OfficeQA Pro improvements for Agentic Search, including OfficeQA Pro GLM-5.2 moving from 6.3% one-shot RAG to 51.9% full loop, but these are vendor benchmark results rather than independent validation.",
+      "source_url": "https://mistral.ai/news/agentic-search/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Mistral Agentic Search announcement dated August 20 2026; Agentic Search docs accessed 2026-08-21",
+      "accessed_at": "2026-08-21",
+      "direct_or_derived": "direct",
+      "method": "Read benchmark description and result bullets in announcement and docs; treated figures as Mistral-reported.",
+      "limitations": [
+        "No independent run, raw logs, full prompt set, judge configuration or failure distribution was available in this run.",
+        "Results should not be generalized to all corpora, models or deployment environments."
+      ],
+      "conflict_of_interest": [
+        "Mistral reports results for its own retrieval stack."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "PyPI lists mistralai-search-toolkit version 0.0.11 as the latest release, released/uploaded July 31 2026, licensed Apache-2.0, requiring Python >=3.12 and <3.15, with published wheel/source hashes and Trusted Publishing attestations.",
+      "source_url": "https://pypi.org/project/mistralai-search-toolkit/",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "mistralai-search-toolkit 0.0.11, PyPI metadata accessed 2026-08-21",
+      "accessed_at": "2026-08-21",
+      "direct_or_derived": "direct",
+      "method": "Read PyPI release metadata, file details, hashes, license classifiers and provenance.",
+      "limitations": [
+        "The package was not installed or executed.",
+        "PyPI provenance points to a private source repository, limiting public source-level inspection."
+      ],
+      "conflict_of_interest": [
+        "Package metadata is published by Mistral AI through PyPI."
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://mistral.ai/news/agentic-search/",
+    "https://docs.mistral.ai/studio/search/agentic-search",
+    "https://docs.mistral.ai/studio/search/search-toolkit",
+    "https://pypi.org/project/mistralai-search-toolkit/",
+    "https://github.com/mistralai/search-starter-app/tree/main"
+  ],
+  "reproducibility_notes": {
+    "state": "R1",
+    "reason": "The retrieval-loop architecture, tool names, SDK structure, package metadata and starter app path are publicly described, but the run did not install the package, start Vespa, run the MCP server or reproduce FinanceBench/OfficeQA Pro measurements.",
+    "not_reproduced": [
+      "mistralai-search-toolkit installation and local query execution",
+      "search-starter-app scaffold generation",
+      "Vespa index startup and schema migration",
+      "MCP server tool discovery and calls",
+      "FinanceBench and OfficeQA Pro benchmark runs",
+      "latency, token and correctness measurements on a Korean or enterprise corpus"
+    ]
+  },
+  "benchmark_notes": {
+    "used_in_article": true,
+    "use_scope": "Mistral-reported benchmark figures are used only to explain the vendor's claimed direction of improvement and why navigation can matter for complex documents. They are not used as an independent performance ranking or product superiority conclusion.",
+    "benchmarks": [
+      {
+        "name": "FinanceBench",
+        "source_url": "https://mistral.ai/news/agentic-search/",
+        "reported_conditions": "368 SEC filings, 150 questions, roughly 53,900 pages total, LLM judge calibrated against human labels, Mistral Search Toolkit default stack as described by Mistral.",
+        "limitations": "No independent rerun, raw logs or full judge configuration checked."
+      },
+      {
+        "name": "OfficeQA Pro",
+        "source_url": "https://mistral.ai/news/agentic-search/",
+        "reported_conditions": "696 Treasury Bulletins, 133 pro-subset questions, roughly 89,000-page scanned table-heavy PDF corpus, first pass reported by Mistral.",
+        "limitations": "No independent rerun, raw logs, prompt set or failure distribution checked."
+      }
+    ]
+  },
+  "editorial_contract": {
+    "style_contract": "ai-technical-blog-v2",
+    "required_layers": [
+      "news explanation: Mistral published Agentic Search and connected it to Search Toolkit, Libraries, Studio and Vibe",
+      "technical understanding: retrieval primitives, navigable document loop, MCP tools, SDK components and package metadata",
+      "technical meaning and verification tasks: when to choose agentic retrieval, ACL/runtime risk, benchmark limits and reproducibility gaps"
+    ],
+    "frontmatter_fields": [
+      "edition",
+      "decision",
+      "title",
+      "date",
+      "subject",
+      "summary",
+      "evidence_ceiling",
+      "reproducibility",
+      "conflicts"
+    ],
+    "article_sections_required": [
+      "benchmark or reproducibility discussion",
+      "conflicts and reporting conditions",
+      "claim ledger",
+      "sources"
+    ]
+  }
+}
