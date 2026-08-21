@@ -1,56 +1,62 @@
 ---
 edition: ai
 decision: publish-candidate
-title: "Claude Platform agent API 정식 출시 - 화면 조작, 절차 지식, 파일 상태를 한 루프로 묶었습니다"
+title: "Claude Platform agent API 정식 출시 - 화면 조작부터 파일 관리까지 연결"
 date: 2026-08-21
 subject: "Anthropic Claude Platform computer use, browser use, Skills API, and Files API general availability, August 19-20 2026"
-summary: "Anthropic은 computer use, 새 browser use tool, Skills API, Files API를 Claude Platform의 일반 제공 기능으로 묶었습니다. 모델이 화면을 보고 클릭하는 데서 그치지 않고, 페이지 구조를 읽고, 조직의 절차 지식을 필요할 때만 불러오며, 파일을 API 상태로 재사용하는 agent loop를 만들 수 있게 됐지만 실행 환경, tenant 격리, prompt injection 방어는 여전히 애플리케이션 설계 책임으로 남습니다."
+summary: "Anthropic이 computer use, browser use, Skills API, Files API를 Claude Platform의 정식 기능으로 내놓았습니다. Claude가 화면과 웹페이지를 조작하고, 필요한 업무 절차를 불러오며, 작업 파일을 다음 요청에서도 이어 쓸 수 있게 됐습니다. 다만 실제 실행 환경과 사용자별 데이터 격리, prompt injection 방어는 애플리케이션이 직접 설계해야 합니다."
 evidence_ceiling: E2
 reproducibility: R1
 conflicts: ["Anthropic은 Claude Platform, computer use, browser use, Skills API, Files API의 개발·배포 주체이며 이 기사에 쓴 release note와 docs를 작성했습니다. 사전 briefing, 제공받은 account·credit·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."]
 ---
 
-Anthropic이 2026년 8월 19일 Claude Platform release notes와 8월 20일 제품 글에서 agent용 API 묶음을 일반 제공으로 전환했습니다. 핵심은 모델 하나가 더 좋아졌다는 발표가 아니라, agent가 일을 끝내는 데 필요한 네 가지 표면을 한 흐름으로 연결한 점입니다. Claude는 데스크톱 화면을 조작하고, 웹페이지의 구조를 읽어 특정 요소를 대상으로 삼고, 조직이 만든 절차 지식을 필요할 때 불러오며, 입력·출력 파일을 반복 요청마다 다시 보내지 않고 `file_id`로 이어 쓸 수 있습니다.
+Anthropic이 2026년 8월 19일 Claude Platform release notes와 8월 20일 제품 글에서 agent 개발에 쓰는 기능 네 가지를 정식 출시했습니다. computer use는 데스크톱 화면을 조작하고, browser use는 웹페이지 구조를 읽습니다. Skills API는 조직의 업무 절차를 필요한 순간에 불러오고, Files API는 작업에 쓰는 파일을 다음 요청에서도 이어 쓸 수 있게 합니다.
 
-SW 엔지니어에게 이 변화가 중요한 이유는 agent 구현의 병목이 prompt 작성에서 runtime 경계 설계로 옮겨가기 때문입니다. 이전의 computer use beta는 화면 좌표와 스크린샷 중심의 실험 기능에 가까웠습니다. 이번 GA 묶음은 `computer_toolset_20260801`, `browser_toolset_20260801`, `/v1/skills`, `/v1/files`처럼 API 계약이 붙은 부품을 제공합니다. 따라서 팀은 모델을 바꾸는 문제와 별개로, 어떤 환경에서 tool call을 실행하고 어떤 파일과 절차 지식을 어느 workspace에 두며 어떤 행동에 사람 확인을 요구할지 설계해야 합니다.
+예를 들어 Claude가 사내 보험 청구 시스템에서 문서를 확인하고 내용을 입력한다고 해보겠습니다. Claude는 browser use로 입력칸과 버튼을 찾고, Skills API에서 청구 절차를 읽은 뒤, Files API에 올라온 증빙 문서를 `file_id`로 참조할 수 있습니다. 데스크톱 프로그램까지 다뤄야 한다면 computer use로 화면을 보고 클릭하거나 글자를 입력합니다.
 
-다만 이 발표를 “자율 agent가 production 준비를 끝냈다”는 뜻으로 읽으면 안 됩니다. 공식 문서는 computer use의 internet interaction과 prompt injection 위험을 별도 경계로 다루고, Files API의 파일은 end user나 session이 아니라 workspace 단위로 접근된다고 경고합니다. 이 기사의 중심 주장은 기능 출시와 작동 구조에 관한 E2 주장입니다. Anthropic이 제시한 고객 성과 수치나 agent 완성률은 독립 검증 없이 일반 성능 결론으로 쓰지 않습니다.
+이번 출시는 이 기능들을 실험 단계에서 꺼내 API로 연결했다는 데 의미가 있습니다. `computer_toolset_20260801`, `browser_toolset_20260801`, `/v1/skills`, `/v1/files`처럼 호출 방법이 정해졌기 때문에 애플리케이션은 각 기능을 하나의 작업 흐름으로 구성할 수 있습니다. 다만 Claude가 실제 컴퓨터에 직접 접속하는 것은 아닙니다. 화면 조작을 실행할 환경, 사용자별 파일 격리와 prompt injection 방어는 여전히 개발자가 맡아야 합니다.
 
-## 화면 좌표에서 페이지 구조로 이동하는 agent loop
+## computer use는 화면을 보고 조작합니다
 
-computer use tool은 Claude에게 screenshot, mouse, keyboard control을 주는 client toolset입니다. 요청의 `tools` 배열에 `{"type": "computer_toolset_20260801"}` 하나를 넣으면 `screenshot`, `left_click`, `type`, `zoom` 같은 member tool 17개가 열립니다. Claude가 직접 사용자의 컴퓨터에 붙는 구조는 아닙니다. 애플리케이션이 Claude의 `tool_use` block을 받고, 자신이 관리하는 VM이나 container에서 해당 동작을 실행한 뒤, 결과를 `tool_result`로 다시 보냅니다.
+computer use는 Claude가 screenshot을 보고 mouse와 keyboard 동작을 선택하게 하는 client toolset입니다. 요청의 `tools` 배열에 `{"type": "computer_toolset_20260801"}`를 넣으면 `screenshot`, `left_click`, `type`, `zoom`을 비롯한 member tool 17개를 사용할 수 있습니다.
 
-이번 GA에서 중요한 변화는 batch action입니다. Claude는 한 turn에 click, type, screenshot 같은 여러 member tool call을 함께 반환할 수 있습니다. 실행자는 이 block들을 병렬로 처리하지 않고 순서대로 실행해야 합니다. 앞선 click이 어떤 입력창을 focus했는지에 따라 뒤의 type 결과가 달라지기 때문입니다. 하나가 실패하면 뒤의 action은 실행하지 않았다는 결과를 모두 돌려줘야 하며, 모든 `tool_use` block에 대응하는 `tool_result`가 없으면 다음 요청이 거부됩니다.
+Claude가 클릭이나 입력을 선택해도 그 동작을 직접 실행하지는 않습니다. 애플리케이션이 Claude의 `tool_use` block을 받은 뒤 자신이 관리하는 VM이나 container에서 동작을 실행합니다. 실행 결과는 `tool_result`로 Claude에게 돌려보냅니다. 따라서 어떤 운영체제와 프로그램을 열어 줄지, 자격 증명을 어떻게 전달할지, 어느 행동 전에 사람의 확인을 받을지는 애플리케이션이 정합니다.
 
-새 browser use tool은 같은 agent loop를 웹페이지에 더 가깝게 맞춥니다. `browser_toolset_20260801`은 browser viewport 안에서 동작하고, screenshot만 보는 대신 page structure, form, tab, element reference를 읽습니다. 문서 예시는 `read_page` 결과가 link, textbox, button을 reference와 함께 돌려주고, Claude가 다음 turn에서 그 reference를 대상으로 act할 수 있음을 보여 줍니다. 웹 애플리케이션 작업은 좌표를 추정해 클릭하는 방식보다 DOM과 accessibility tree에서 나온 참조를 쓰는 편이 더 안정적인 설계가 됩니다.
+정식 버전에서는 여러 동작을 한 turn에 묶어 보내는 batch action도 지원합니다. API 왕복은 줄일 수 있지만 click, type, screenshot을 동시에 실행해서는 안 됩니다. 앞선 click이 입력칸을 선택해야 다음 type이 제대로 작동하므로, 받은 순서대로 실행해야 합니다. 중간 동작이 실패하면 뒤의 동작을 실행하지 않았다는 결과까지 돌려줘야 하며, 모든 `tool_use`에 대응하는 `tool_result`가 없으면 다음 요청이 거부됩니다.
 
-이 차이는 운영 구현에도 영향을 줍니다. 데스크톱 전체를 움직여야 하는 업무라면 computer use가 필요하지만, 웹 portal 안에서 양식을 채우거나 navigation을 수행하는 업무라면 browser use가 더 좁은 권한 경계를 제공합니다. 두 경우 모두 Claude가 action을 제안하고 애플리케이션이 실행하는 구조라서, sandbox와 네트워크 allowlist, credential 취급, consequential action의 human confirmation은 호출자가 설계해야 합니다.
+## browser use는 좌표 대신 페이지 구조를 읽습니다
 
-## Skills와 Files는 prompt가 아니라 상태와 절차를 분리합니다
+browser use는 웹페이지 작업에 범위를 좁힌 도구입니다. `browser_toolset_20260801`은 browser viewport 안에서 동작하며, screenshot만 보고 좌표를 짐작하는 대신 page structure, form, tab과 element reference를 읽습니다. 문서의 `read_page` 예시에서는 link, textbox, button이 각각 reference와 함께 반환됩니다. Claude는 다음 turn에서 그 reference를 지정해 원하는 요소를 조작합니다.
 
-Skills API의 역할은 긴 system prompt를 계속 붙이는 것이 아닙니다. Anthropic 문서는 Skill을 instructions, metadata, optional resources가 들어 있는 filesystem 기반 디렉터리로 설명합니다. Claude는 시작 시 Skill의 name과 description 같은 metadata만 보고, 요청이 해당 description과 맞을 때 SKILL.md를 읽습니다. SKILL.md가 다른 reference file이나 script를 가리키면 그때 필요한 자료를 추가로 읽거나 실행합니다.
+웹 portal에서 양식을 채우거나 메뉴를 이동하는 작업이라면 페이지 구조를 읽는 방식이 좌표를 추정하는 것보다 안정적입니다. 데스크톱 전체를 움직여야 할 때는 computer use가 필요하지만, 웹페이지 안에서 끝나는 작업은 browser use로 권한 범위를 더 좁힐 수 있습니다. 두 기능 모두 Claude가 행동을 제안하고 애플리케이션이 실행하므로 sandbox, 네트워크 allowlist와 중요한 행동에 대한 사람 확인이 필요합니다.
 
-이 구조는 agent에게 조직의 업무 절차를 주입하는 방식을 바꿉니다. 예를 들어 보험 청구 agent가 있다면 filing procedure, template, validation script를 Skill 안에 넣고, Claude가 관련 작업에서만 이를 불러오게 만들 수 있습니다. 모든 요청에 긴 운영 매뉴얼을 붙이는 방식보다 context 사용량을 줄이고, 절차 지식의 version 관리도 API 객체나 파일 묶음에 가깝게 만들 수 있습니다.
+## Skills는 필요한 업무 절차만 불러옵니다
 
-Files API는 agent loop의 입력과 산출물을 message payload 밖으로 뺍니다. 파일을 한 번 upload하면 `file_id`를 받고, 이후 Messages API 요청에서 이 ID를 참조합니다. PDF와 text는 document block, image는 image block, code execution용 dataset 등은 container upload block으로 연결됩니다. Skills나 code execution tool이 만든 파일은 다운로드할 수 있지만, 사용자가 upload한 파일 객체는 기본적으로 같은 방식의 output artifact가 아닙니다.
+Skills API는 긴 운영 매뉴얼을 모든 요청의 system prompt에 붙이는 대신, 필요한 절차만 골라 읽게 합니다. Anthropic은 Skill을 instructions, metadata와 optional resources가 들어 있는 filesystem 기반 디렉터리로 설명합니다. Claude는 처음에 Skill의 name과 description만 확인합니다. 현재 작업과 맞는 Skill을 찾으면 SKILL.md를 읽고, 그 파일이 가리키는 reference file이나 script가 필요할 때 추가로 불러옵니다.
 
-여기서 가장 실무적인 경계는 workspace입니다. 공식 문서는 upload된 file이 end user, conversation, session이 아니라 workspace 전체에서 접근된다고 설명합니다. 같은 workspace의 API key는 같은 file에 접근할 수 있으므로, 다중 tenant 애플리케이션이 사용자에게서 `file_id`를 그대로 받아 신뢰하면 다른 사용자의 파일을 읽게 하는 참조 취약점이 생길 수 있습니다. Anthropic은 tenant별 workspace를 격리 경계로 쓰라고 안내합니다.
+보험 청구 업무라면 filing procedure, template과 validation script를 하나의 Skill에 넣을 수 있습니다. Claude는 보험 청구 작업을 할 때만 이 자료를 읽습니다. 이렇게 하면 매번 긴 지침을 보내지 않아도 되고, 업무 절차와 관련 파일을 한 묶음으로 version 관리할 수 있습니다. 다만 Skill description이 너무 넓으면 관계없는 작업에서도 불러올 수 있고, 너무 좁으면 필요한 때 선택하지 못할 수 있습니다.
 
-## API 계약은 넓어졌지만 검증 책임은 줄지 않았습니다
+## Files API는 같은 파일을 다시 보내지 않습니다
 
-이번 출시가 agent 개발에 주는 의미는 “모델에게 브라우저를 보여주면 된다”보다 큽니다. agent runtime은 네 층으로 나뉩니다. 모델은 다음 action을 고르고, toolset은 action schema를 정하며, 호출자의 executor는 실제 OS나 browser에서 action을 수행하고, Files·Skills는 작업에 필요한 장기 입력과 절차 지식을 관리합니다. 이 분리가 명확해지면 실패를 분석할 위치도 분명해집니다. 클릭 실패는 모델 추론만의 문제가 아니라 browser reference, executor 구현, 화면 상태, permission policy의 문제일 수 있습니다.
+Files API에서는 파일을 한 번 upload한 뒤 받은 `file_id`를 Messages API 요청에서 다시 사용합니다. PDF와 text는 document block으로, image는 image block으로 연결합니다. code execution에 쓸 dataset 등은 container upload block으로 전달합니다. Skills나 code execution tool이 만든 파일은 내려받을 수 있지만, 사용자가 upload한 파일 객체가 모두 같은 방식의 output artifact가 되는 것은 아닙니다.
 
-또 하나의 변화는 비용과 지연시간의 모양입니다. batch action은 여러 API 왕복을 줄일 수 있지만, 한 turn 안에서 여러 행동이 실제로 실행되므로 human confirmation과 실패 처리도 action 단위로 들어가야 합니다. Files API는 같은 문서를 반복 전송하지 않게 해 주지만, 파일 보존 기간, workspace 접근권한, 삭제 정책을 별도 상태로 운영해야 합니다. Skills는 context를 아낄 수 있지만, Skill description이 너무 넓으면 원치 않는 절차가 로드될 수 있고, 너무 좁으면 필요한 순간에 호출되지 않을 수 있습니다.
+중요한 점은 파일의 접근 범위입니다. 공식 문서에 따르면 upload된 file은 end user, conversation이나 session이 아니라 workspace 전체에서 접근됩니다. 같은 workspace의 API key는 같은 file을 읽을 수 있습니다. 다중 tenant 서비스가 사용자가 보낸 `file_id`를 확인 없이 신뢰하면 다른 사용자의 파일을 읽는 참조 취약점이 생길 수 있습니다. Anthropic은 tenant마다 workspace를 나누어 격리하라고 안내합니다.
 
-보안 측면에서는 공식 문서의 경고가 중심입니다. computer use는 internet과 만날 때 표준 API보다 다른 위험을 갖고, 웹페이지나 이미지 안의 지시가 개발자의 instruction과 충돌할 수 있습니다. Anthropic은 prompt injection classifier와 confirmation 유도 방어층을 설명하지만, 동시에 전용 VM·container, 민감 정보 제한, 도메인 allowlist, 현실 영향이 큰 행동에 대한 사람 확인을 권장합니다. 즉 방어층은 runtime 설계를 대체하지 않고, runtime 설계 위에 얹히는 추가 신호입니다.
+## 실제 동작과 보안은 애플리케이션이 맡습니다
 
-한국의 개발 조직에도 적용 지점이 뚜렷합니다. 내부 업무 시스템과 금융·보험 portal처럼 API가 없거나 자동화가 제한된 화면을 agent가 다루게 하려면, browser use와 computer use는 직접적인 검토 대상입니다. 동시에 개인정보와 고객 문서가 들어가는 workflow에서는 Files API의 workspace 경계, HIPAA 같은 미국 규제 workload eligibility가 한국의 개인정보보호법·전자금융감독규정 요구를 자동으로 충족하지 않는다는 점을 분리해서 봐야 합니다.
+Claude는 다음 행동을 고르지만, 실제 OS나 browser에서 실행하는 주체는 호출자의 executor입니다. toolset은 Claude가 선택할 수 있는 행동의 형식을 정하고, Files와 Skills는 작업 파일과 업무 절차를 보관합니다. 이 역할을 나누어 보면 오류가 난 곳도 찾기 쉬워집니다. 클릭이 실패했을 때는 모델의 판단뿐 아니라 browser reference, executor 구현, 화면 상태와 permission policy를 함께 확인해야 합니다.
 
-## benchmark 또는 재현 결과
+기능을 연결하면 운영해야 할 상태도 늘어납니다. batch action은 API 왕복을 줄이지만 각 행동의 실패 처리와 사람 확인이 필요합니다. Files API를 쓰면 같은 문서를 반복 전송하지 않아도 되지만 파일 보존 기간, workspace 접근권한과 삭제 정책을 정해야 합니다. Skills는 context 사용량을 줄일 수 있지만 어떤 절차가 언제 선택됐는지 추적할 수 있어야 합니다.
 
-이 기사는 Claude Platform API를 직접 호출하지 않았습니다. Anthropic account, 해당 기능을 쓸 수 있는 모델 접근권한, sandbox executor, browser runtime, 테스트용 파일·Skill 구성이 필요하기 때문입니다. 재현성 상태는 R1입니다. 공식 문서로 request shape, toolset 이름, agent loop, batch action 처리, Skills의 progressive disclosure, Files API의 workspace 경계는 설명할 수 있지만, 편집국이 실제 workflow를 실행해 latency, cost, completion rate를 측정한 로그는 없습니다.
+보안은 API가 대신 해결해 주지 않습니다. 웹페이지나 이미지 안에 Claude의 행동을 바꾸려는 지시가 들어 있으면 개발자가 준 instruction과 충돌할 수 있습니다. Anthropic은 prompt injection classifier와 확인을 유도하는 방어 기능을 설명하면서도 전용 VM·container, 민감 정보 제한, 도메인 allowlist와 현실에 큰 영향을 주는 행동에 대한 사람 확인을 권장합니다.
 
-Anthropic 제품 글에는 고객 workflow 시간이 줄었다는 사례가 나오지만, 이 기사는 그 수치를 성능 결론으로 쓰지 않습니다. workload, baseline, 반복 횟수, 실패 처리, 비용 산정 방식이 공개 benchmark 수준으로 제시되지 않았기 때문입니다. 중심 결론은 공개된 API 계약과 문서화된 실행 구조가 agent 설계의 경계를 바꿨다는 범위로 제한합니다.
+한국의 개발 조직도 내부 업무 시스템이나 금융·보험 portal처럼 API가 없거나 자동화가 제한된 화면에서 이 기능을 검토할 수 있습니다. 개인정보와 고객 문서를 다룬다면 Files API의 workspace 경계를 특히 주의해야 합니다. HIPAA 같은 미국 규제 workload eligibility가 한국의 개인정보보호법이나 전자금융감독규정 요구를 자동으로 충족하는 것은 아닙니다.
+
+## 공개 문서로 확인한 범위
+
+이 기사는 Claude Platform API를 직접 호출하지 않았으며 재현성 상태는 R1입니다. Anthropic account, 해당 기능을 사용할 수 있는 모델 접근권한, sandbox executor, browser runtime과 테스트용 파일·Skill 구성이 필요하기 때문입니다. 공식 문서에서 request shape, toolset 이름, agent loop, batch action 처리, Skills가 필요한 자료만 불러오는 방식과 Files API의 workspace 경계를 확인했습니다. 하지만 편집국이 실제 workflow를 실행해 latency, cost와 completion rate를 측정한 로그는 없습니다.
+
+Anthropic 제품 글에는 고객의 workflow 시간이 줄었다는 사례가 나옵니다. 그러나 workload, baseline, 반복 횟수, 실패 처리와 비용 산정 방식이 공개 benchmark 수준으로 제시되지는 않았습니다. 따라서 이번 기사에서는 기능이 정식 API로 연결됐다는 사실과 문서에 나온 실행 구조까지만 설명하며, 실제 성능은 별도 검증이 필요한 영역으로 남깁니다.
 
 ## 이해상충과 취재 조건
 

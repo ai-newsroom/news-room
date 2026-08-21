@@ -8,7 +8,7 @@
   "article_path": "content/ai/2026-08-21/article.md",
   "evidence_path": "decisions/ai/2026-08-21/evidence.json",
   "artifact_hashes": {
-    "article_sha256": "340b155b66f41e8164b7f276ad89e3835e8c28da24b1c45761dfdc3d3a39248d",
+    "article_sha256": "9a6797c4f15b785700ebefb5ad62ed0388105feebc3b9ba54777ad2503b2e6ae",
     "evidence_sha256": "8d9b74f77fc041cb3e6bc3cefa03150dc9f32aafa2991627a1d59af6783fb922"
   },
   "routes": [
@@ -31,5 +31,18 @@
       "artifact-hashes",
       "site-tests-and-build"
     ]
+  },
+  "revision": {
+    "revision_number": 2,
+    "revised_at": "2026-08-22T08:05:06+09:00",
+    "approved_by": "news-room editor",
+    "approval_basis": "기본 한국어 문체 가이드를 적용해 2026-08-21 Claude Platform agent API 기사를 다시 작성하라는 편집자 지시",
+    "scope": [
+      "title",
+      "summary",
+      "section-headings",
+      "explanatory-body"
+    ],
+    "previous_article_sha256": "340b155b66f41e8164b7f276ad89e3835e8c28da24b1c45761dfdc3d3a39248d"
   }
 }
