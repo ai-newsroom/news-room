@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-23",
+  "date": "2026-08-23",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-23-sequential/20260822T221953Z-1031490/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-08-23-sequential/20260822T221953Z-1031490/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-08-23-sequential/20260822T221953Z-1031490/no-publish.json",
+  "subject": "VPR-Evolve arXiv 2607.24998v1 and ASU-VDA-Lab/VPR-Evolve public repository",
+  "title": "VPR-Evolve는 FPGA 배치배선 튜닝을 파라미터 선택에서 도구 코드 수정으로 넓힙니다",
+  "summary": "VPR-Evolve는 LLM 에이전트가 VTR 9의 VPR 배치배선 엔진을 회로별로 고쳐 보고, 전체 빌드와 실행 결과로 패치를 남기거나 되돌리는 흐름을 제안했습니다. 공개 논문과 저장소는 방법과 일부 실행 경로를 확인하게 하지만, 편집국은 장시간 VPR 실행과 100-seed 평가를 재현하지 않았습니다.",
+  "central_claim": "VPR-Evolve는 FPGA place-and-route 자동화를 노출 파라미터 튜닝에서 VPR 소스 코드의 회로별 수정과 실행 검증으로 확장한 공개 연구·artifact다.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2607.24998",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/ASU-VDA-Lab/VPR-Evolve",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": ["없음"],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 2,
+    "total": 10,
+    "threshold": 7,
+    "rationale": "VPR/VTR의 배치배선 단계에 직접 영향을 주며, 논문과 공개 저장소가 알고리즘·스크립트·결과 문서를 함께 제공한다. 다만 편집국 재실행은 하지 않았고, 성능 일반화는 저자 보고 범위로 제한한다."
+  },
+  "selection": {
+    "total": 10,
+    "threshold": 7
+  },
+  "source_urls": [
+    "https://arxiv.org/abs/2607.24998",
+    "https://arxiv.org/html/2607.24998",
+    "https://github.com/ASU-VDA-Lab/VPR-Evolve",
+    "https://github.com/ASU-VDA-Lab/VPR-Evolve/blob/main/.vpr-evolve/README.md",
+    "https://github.com/ASU-VDA-Lab/VPR-Evolve/blob/main/docs/vpr_committed_changes.md",
+    "https://github.com/verilog-to-routing/vtr-verilog-to-routing",
+    "https://docs.verilogtorouting.org/en/latest/vpr/"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "VPR-Evolve는 VPR의 packing, placement, routing 소스 코드를 회로별로 수정하고 전체 VPR build/run으로 후보를 평가한다.",
+      "source_url": "https://arxiv.org/html/2607.24998",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2607.24998v1, 2026-07-27",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "논문 abstract, introduction, framework, experimental setup 확인",
+      "limitations": ["저자 보고 원문이며 편집국 재실행은 아님", "학회 최종본이 아닌 arXiv v1 기준"],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "저자들은 다섯 개 VTR 9 benchmark에서 stock VPR 대비 composite score 최대 2.7%, CPD 최대 9.8%, wirelength 최대 18.1%, runtime 최대 79.3% 개선을 보고했다.",
+      "source_url": "https://arxiv.org/html/2607.24998",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2607.24998v1, 2026-07-27",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "논문 abstract와 Section 6 표·설명 확인",
+      "limitations": ["성능 수치는 저자 실험 결과", "편집국은 동일 seed·장비·toolchain으로 재현하지 않음", "상용 FPGA 또는 ASIC signoff flow 일반화 근거 아님"],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "VTR/VPR은 Verilog circuit과 FPGA architecture를 입력으로 받아 packing, placement, routing, timing analysis를 수행하는 공개 FPGA CAD flow다.",
+      "source_url": "https://docs.verilogtorouting.org/en/latest/vpr/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Verilog-to-Routing 9.0.0-dev documentation",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "VPR 공식 문서의 input/output 및 stage 설명 확인",
+      "limitations": ["VPR 일반 기능 설명이며 VPR-Evolve 성능 근거는 아님"],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "ASU-VDA-Lab/VPR-Evolve 저장소에는 실행 스크립트, agent 설정, VTR submodule, 회로별 결과 문서와 일부 transfer evaluation 결과가 공개되어 있다.",
+      "source_url": "https://github.com/ASU-VDA-Lab/VPR-Evolve",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub main commit 8285bb50ce719498a49721bfd75ad6e98a05a47b, 2026-07-18T18:11:29Z",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "GitHub API와 raw 파일로 repository tree, .gitmodules, launch_experiments.sh, setup.sh, .vpr-evolve/README.md, docs/vpr_committed_changes.md 확인",
+      "limitations": ["최상위 README는 한 줄뿐이고 상세 문서는 하위 디렉터리에 있음", "submodule URL은 git@github.com 형식이라 익명 HTTPS clone에는 추가 조정이 필요할 수 있음", "편집국은 VPR build와 long-running evaluation을 실행하지 않음"],
+      "conflict_of_interest": ["없음"]
+    }
+  ],
+  "reproducibility_details": {
+    "status": "R2 실행 가능",
+    "public_artifacts": [
+      "ASU-VDA-Lab/VPR-Evolve repository",
+      "VTR submodule reference",
+      "launch_experiments.sh",
+      "setup.sh",
+      ".vpr-evolve/scripts",
+      ".vpr-evolve/agents",
+      "docs/vpr_committed_changes.md",
+      ".vpr-evolve/transfer-eval/*/results.json"
+    ],
+    "not_reproduced_by_editor": [
+      "VPR build",
+      "multi-seed place-and-route runs",
+      "AutoTuner baseline",
+      "LLM agent evolution loop",
+      "100-seed evaluation"
+    ],
+    "environment_constraints": [
+      "Lmod cluster environment assumed by setup.sh",
+      "gcc/12.5.0, bison, swig, eigen/3.4.0, oneTBB expected",
+      "scratch storage layout required for heavy worktrees and logs",
+      "long wall-clock and token budgets required by paper protocol"
+    ]
+  },
+  "conflict_of_interest": {
+    "reported": ["없음"],
+    "access_conditions": ["public web", "public GitHub", "no vendor briefing", "no provided license", "no paid account used"]
+  },
+  "duplicate_check": {
+    "recent_articles_reviewed": [
+      {
+        "path": "content/eda/2026-08-13/article.md",
+        "title": "EDA 에이전트의 승부처는 더 큰 모델보다 ‘검증 가능한 피드백’일 수 있습니다",
+        "subject": "Cadence의 EDA agent feedback loop 전략과 공개 연구",
+        "relation": "AI EDA agent라는 넓은 주제는 겹치지만 Cadence 전략과 feedback loop 기사이며 VPR source-code evolution 연구와 다름"
+      },
+      {
+        "path": "content/eda/2026-08-14/article.md",
+        "title": "ACE-RTL 공개는 EDA 에이전트 평가를 말솜씨에서 실행 로그로 옮깁니다",
+        "subject": "NVIDIA ACE-RTL 공개 코드와 CVDP 1.1.0 benchmark 실행 경로",
+        "relation": "RTL agent 평가 기사이며 FPGA place-and-route 도구 코드 수정과 다름"
+      },
+      {
+        "path": "content/eda/2026-08-15/article.md",
+        "title": "Calibre Vision AI는 DRC 디버그를 완료 대기에서 실시간 triage로 옮깁니다",
+        "subject": "Siemens Calibre Vision AI의 2026 real-time DRC debug workflow",
+        "relation": "상용 DRC debug workflow 기사로 중복 아님"
+      },
+      {
+        "path": "content/eda/2026-08-16/article.md",
+        "title": "OpenROAD-MCP 1.0.0은 물리설계 AI 보조를 채팅 답변에서 실행 세션으로 옮깁니다",
+        "subject": "The-OpenROAD-Project OpenROAD-MCP v1.0.0 공개 릴리스와 OpenROAD/ORFS MCP 실행 경로",
+        "relation": "OpenROAD MCP 실행 인터페이스 기사이며 VTR/VPR 알고리즘 evolution과 다름"
+      },
+      {
+        "path": "content/eda/2026-08-18/article.md",
+        "title": "FSL 1.0 Draft는 기능안전 FMEDA를 스프레드시트 교환에서 설계 데이터 flow로 옮깁니다",
+        "subject": "Accellera Functional Safety Language 1.0 Draft public review와 FMEDA 데이터 모델",
+        "relation": "기능안전 표준 기사로 중복 아님"
+      },
+      {
+        "path": "content/eda/2026-08-19/article.md",
+        "title": "HighTide는 VLSI benchmark를 정적 RTL 묶음에서 실행 가능한 RTL-to-GDS flow로 바꿉니다",
+        "subject": "VLSIDA HighTide open-source VLSI benchmark suite와 Bazel 기반 OpenROAD RTL-to-GDS 실행 경로",
+        "relation": "benchmark suite와 OpenROAD flow 기사이며 VPR source-code evolution 논문과 다름"
+      }
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "name": "VPR-Evolve",
+        "urls": [
+          "https://arxiv.org/abs/2607.24998",
+          "https://github.com/ASU-VDA-Lab/VPR-Evolve"
+        ],
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 2,
+          "total": 10
+        },
+        "selected": true,
+        "reason": "FPGA place-and-route flow의 최적화 대상을 hyperparameter에서 VPR source patch로 확장했고, 논문과 공개 저장소가 방법·조건·일부 결과 파일을 함께 제공했다."
+      },
+      {
+        "name": "Cadence and Rapidus Raads/InnoStack collaboration",
+        "urls": [
+          "https://www.cadence.com/en_US/home/company/newsroom/press-releases/pr/2026/rapidus-and-cadence-partner-on-agentic-ai-for-advanced-soc-design.html",
+          "https://www.rapidus.inc/en/news_topics/information/20260717-3/",
+          "https://www.cadence.com/en_US/home/ai/ai-for-design.html"
+        ],
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "공식 발표와 제품 설명은 있으나 TAT 2배 목표와 flow 효과는 벤더·파트너 주장이고 실행 artifact나 독립 검증이 부족했다. 2026-08-13 Cadence agent 기사와 주제 축도 일부 겹친다."
+      },
+      {
+        "name": "Synopsys Multiphysics Fusion first-wave availability",
+        "urls": [
+          "https://news.synopsys.com/2026-06-17-Synopsys-Announces-Availability-of-the-First-Wave-of-Multiphysics-Fusion-Solutions",
+          "https://www.synopsys.com/solutions/multiphysics-fusion.html",
+          "https://www.ansys.com/products/release-highlights"
+        ],
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "EDA와 Ansys signoff 통합의 흐름 영향은 크지만 공개 근거는 제품·고객 성과 발표 중심이며 manual이나 재실행 가능한 benchmark가 부족했다."
+      },
+      {
+        "name": "Intel 14A certifications by Synopsys, Cadence and Siemens",
+        "urls": [
+          "https://news.synopsys.com/2026-07-27-Synopsys-and-Intel-Foundry-Fast-Track-Customer-Readiness-from-Silicon-to-Systems-on-Intel-14A",
+          "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/cadence-certifies-ai-driven-reference-flows-for-intel-18a-p-and-intel-14a",
+          "https://news.siemens.com/en-us/siemens-intel-dac-2026/"
+        ],
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "총점은 7이지만 중심 주장을 E2로 올릴 공개 artifact가 부족했다. 각 회사의 인증 발표는 고객 readiness를 보여 주지만 PDK, rule deck, signoff logs는 비공개다."
+      },
+      {
+        "name": "CLOSER-Bench",
+        "urls": [
+          "https://arxiv.org/abs/2607.16632",
+          "https://arxiv.org/html/2607.16632v1"
+        ],
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 9
+        },
+        "selected": false,
+        "reason": "논문은 hardware agent 평가의 좋은 후보였지만, 원문 자체가 final signoff oracle과 paired task artifact를 향후 공개 과제로 남겨 E2 중심 기사에는 VPR-Evolve보다 약했다."
+      },
+      {
+        "name": "PDAGENT-BENCH",
+        "urls": [
+          "https://arxiv.org/abs/2606.17253",
+          "https://arxiv.org/html/2606.17253v1"
+        ],
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "물리설계 agent 평가 주제는 적합하지만 공개 실행 artifact를 확인하지 못했다."
+      }
+    ],
+    "alternatives": [
+      "Cadence official AI-for-design and Rapidus Raads pages",
+      "Synopsys DAC 2026 agentic AI releases",
+      "Siemens Intel 14A certification announcement",
+      "Ansys/Synopsys 2026 R1 and Multiphysics Fusion pages",
+      "arXiv recent cs.AR/cs.SE hardware-agent papers",
+      "GitHub open-source EDA topics and VTR/VPR repositories"
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
