@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-23",
+  "date": "2026-08-23",
+  "subject": "NVIDIA AVO applied to ARC-AGI-3 public set, August 21 2026",
+  "central_claim": "NVIDIA's August 21, 2026 AVO report is a publishable AI engineering topic because the official NVIDIA technical blog, AVO paper, ARC-AGI-3 methodology and public ARC-AGI toolkit show a concrete shift in long-horizon agent evaluation from single model answers to a stateful execution loop with persistent memory, supervisor oversight, tools and environment feedback; the article treats reported scores as NVIDIA-run results, not independent performance verification.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The topic affects concrete engineering decisions for coding agents and long-running workflow agents: what to log, how to separate model capability from harness design, and how to evaluate memory, tools, feedback and supervisor policy. It has an official August 21 source, a technical paper, official benchmark methodology and public toolkit artifacts, supporting a bounded E2 center claim."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "central": true,
+      "claim": "AVO shows a long-horizon agent system design in which persistent memory, supervisor oversight, tool use and execution feedback change the evaluation unit from a single model response to a stateful execution loop; reported ARC-AGI-3 and GPU-kernel results are NVIDIA-run claims rather than independent verification.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://developer.nvidia.com/blog/nvidia-avo-reaches-100-on-arc-agi-3-demonstrating-a-frontier-level-general-purpose-architecture-for-long-horizon-autonomous-agents/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.24517",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://docs.arcprize.org/methodology",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/arcprize/arc-agi",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://pypi.org/project/arc-agi/",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-23-sequential/20260822T221018Z-1028634/request.json and used publication_id 2026-08-23 with article_path var/runs/ai/2026-08-23-sequential/20260822T221018Z-1028634/staged-content/article.md and evidence_path var/runs/ai/2026-08-23-sequential/20260822T221018Z-1028634/evidence.json. Read the AI edition contract, runtime, Korean writing contract, AI/EDA editorial profile, explanatory-journalism contract, auto-publishing contract, AI article prompt and primary-source startpoints before source review."
+      },
+      {
+        "channel": "openai-api-changelog",
+        "url": "https://developers.openai.com/api/docs/changelog",
+        "classification": "P1 source path",
+        "note": "Opened the official OpenAI API changelog. The visible August 21, 2026 item records request-level regional processing for eligible API projects and a GPT-5.6 Sol update. It was useful for discovery but did not expose enough artifact-backed mechanism for an E2 center claim stronger than the selected AVO topic."
+      },
+      {
+        "channel": "anthropic-release-notes",
+        "url": "https://docs.anthropic.com/en/release-notes/api",
+        "classification": "P1 source path",
+        "note": "Opened Anthropic release-note paths. No August 21-22 model/API change with stronger novelty and E2 technical depth was found during this run."
+      },
+      {
+        "channel": "google-gemini-changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 source path",
+        "note": "Opened Gemini API changelog. Gemini 3.7 Flash GA remains a strong August 13 official model release, but it was already selected for the 2026-08-14 regular AI edition."
+      },
+      {
+        "channel": "qwen-and-deepseek-model-registry-review",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+        "classification": "P1/P2 source path",
+        "note": "Reviewed Qwen blog/model registry paths and DeepSeek Hugging Face artifacts. DeepSeek-V4-Pro-0813 has model card, config, weights and arXiv report, but DeepSeek V4-Pro/Harness was already covered by recent AI판 work and was not chosen for this regular slot."
+      },
+      {
+        "channel": "mistral-official-review",
+        "url": "https://docs.mistral.ai/resources/changelogs",
+        "classification": "P1 source path",
+        "note": "Opened Mistral changelog and compared with the previous day's selected Mistral Agentic Search article. No newer Mistral release was found that should displace the selected AVO topic."
+      },
+      {
+        "channel": "xai-grok-4-6-review",
+        "url": "https://x.ai/news/grok-4-6-vertex-ai",
+        "classification": "P1 source path",
+        "note": "Opened xAI's August 21 Grok 4.6 on Google Enterprise Agent Platform post and Google's model documentation. The availability and quota details are concrete, but the center claim is mainly Preview distribution and product availability. It remained below the selected AVO topic on technical depth."
+      },
+      {
+        "channel": "nvidia-avo-official-blog",
+        "url": "https://developer.nvidia.com/blog/nvidia-avo-reaches-100-on-arc-agi-3-demonstrating-a-frontier-level-general-purpose-architecture-for-long-horizon-autonomous-agents/",
+        "classification": "P1 source path",
+        "note": "Opened NVIDIA's August 21 AVO technical blog. It describes the AVO agent loop, persistent memory, supervisor role, ARC-AGI-3 public-set setup, text-grid observation choice, 100.00 RHAE claim and caveats about uncontrolled comparison with VISTA."
+      },
+      {
+        "channel": "avo-paper",
+        "url": "https://arxiv.org/abs/2603.24517",
+        "classification": "P1 source path",
+        "note": "Opened the AVO arXiv paper. It explains Agentic Variation Operators as autonomous coding agents replacing fixed evolutionary variation operators, with a seven-day NVIDIA Blackwell B200 attention-kernel optimization experiment. The paper is a method source but not an independent reproduction."
+      },
+      {
+        "channel": "arc-agi-3-official-docs",
+        "url": "https://arcprize.org/arc-agi/3",
+        "classification": "P1/P2 source path",
+        "note": "Opened ARC Prize's ARC-AGI-3 overview, scoring methodology, scorecard docs and llms.txt. These sources define interactive reasoning, RHAE scoring, scorecard handling and public toolkit routes used to bound the NVIDIA result."
+      },
+      {
+        "channel": "arc-agi-toolkit-artifacts",
+        "url": "https://github.com/arcprize/arc-agi",
+        "classification": "P2 artifact path",
+        "note": "Found the official ARC-AGI Toolkit GitHub and PyPI package paths. These artifacts support the article's claim that parts of the benchmark interface are public, while not implying that NVIDIA's AVO implementation or scorecard is public."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results and secondary summaries were used only to discover official paths across OpenAI, Anthropic, Google, Qwen, DeepSeek, Mistral, xAI, NVIDIA and ARC Prize. No article fact or score decision relies on search snippets or community posts without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "NVIDIA AVO on ARC-AGI-3 public set",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is an August 21 official technical disclosure with a paper, benchmark methodology and public toolkit artifacts. It helps engineers distinguish model selection from agent harness design and supports an E2 center claim about architecture and evaluation boundaries without promoting NVIDIA's benchmark result to independent verification."
+      },
+      {
+        "subject": "xAI Grok 4.6 on Google Enterprise Agent Platform",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The August 21 xAI and Google pages confirm Preview availability, model id, quota, supported inputs and price. The change is useful distribution news, but it lacks an artifact-backed new method or evaluation surface sufficient for the E2 center threshold."
+      },
+      {
+        "subject": "OpenAI API request-level regional processing and GPT-5.6 Sol update",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The August 21 changelog item affects compliance-sensitive API routing decisions, but the strongest available claim is product availability and data-control documentation. It did not provide the E2 technical center required for this turn."
+      },
+      {
+        "subject": "DeepSeek-V4-Pro-0813 model-card release",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The official Hugging Face model card, config and arXiv report provide strong E2/R1-R2 material, but DeepSeek V4-Pro-0813 was already covered in recent AI판 work. Repeating it would add little new value for 2026-08-23."
+      },
+      {
+        "subject": "Google Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "This is a strong official model/API release, but the 2026-08-14 regular AI edition already selected and published it. No new Google source changed the technical phase for this publication date."
+      },
+      {
+        "subject": "Mistral Agentic Search",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The topic has official docs, package metadata and implementation surface, but it was already selected for the 2026-08-22 AI edition. It is not repeated here."
+      },
+      {
+        "subject": "NVIDIA DSX MaxLPS AI factory performance-per-watt post",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "The August 21 NVIDIA blog is relevant to AI infrastructure, but the public evidence is largely vendor-projected hardware and datacenter operating claims. It was weaker than AVO for AI agent engineering decisions."
+      },
+      {
+        "subject": "vLLM v0.26.0 and open-source serving runtime updates",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Implementation-backed but older in this window and already reviewed in recent AI판 discovery. No new same-day runtime release outranked the selected AVO topic."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED",
+    "NO_RUNTIME_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-22T22:10:18Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-23 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official NVIDIA technical blog, AVO paper, ARC-AGI-3 benchmark methodology and public ARC-AGI toolkit artifacts",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-23 and decisions/ai/2026-08-23",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "NVIDIA is the author/operator of AVO research and authored the August 21 technical blog used as a primary source.",
+    "ARC Prize Foundation operates ARC-AGI-3, its scoring methodology, docs and public toolkit.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and previous discovery ledgers were used only as discovery and duplication checks; article facts rely on opened official primary sources and public artifact metadata."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "NVIDIA announced on August 21, 2026 that it applied AVO to ARC-AGI-3 public set and described AVO as a long-horizon agent architecture with persistent memory, supervision and tools.",
+      "source_url": "https://developer.nvidia.com/blog/nvidia-avo-reaches-100-on-arc-agi-3-demonstrating-a-frontier-level-general-purpose-architecture-for-long-horizon-autonomous-agents/",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "NVIDIA Technical Blog dated August 21 2026",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "Read the official blog date, AVO description, architecture explanation and ARC-AGI-3 result section.",
+      "limitations": [
+        "Confirms NVIDIA's announcement and self-described result.",
+        "Does not independently verify AVO performance or reproduce the run."
+      ],
+      "conflict_of_interest": [
+        "NVIDIA authored the blog about its own research project."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The AVO paper defines Agentic Variation Operators as autonomous coding agents that replace fixed evolutionary variation operators by using lineage, domain knowledge and execution feedback to propose, repair, critique and verify edits.",
+      "source_url": "https://arxiv.org/abs/2603.24517",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2603.24517v1 submitted March 25 2026",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "Read the abstract and method summary of the AVO paper.",
+      "limitations": [
+        "The paper is authored by the AVO researchers and reports their experiments.",
+        "The AVO implementation was not confirmed as a public code artifact."
+      ],
+      "conflict_of_interest": [
+        "Authors are affiliated with NVIDIA or collaborating institutions on the reported research."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "ARC-AGI-3 is an interactive reasoning benchmark where agents explore unfamiliar environments, infer goals and rules through actions, and adapt over time.",
+      "source_url": "https://arcprize.org/arc-agi/3",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "ARC Prize ARC-AGI-3 overview accessed 2026-08-22",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "Read the official ARC-AGI-3 overview and benchmark description.",
+      "limitations": [
+        "Benchmark design is described by its operator.",
+        "Public page does not itself verify NVIDIA's AVO score."
+      ],
+      "conflict_of_interest": [
+        "ARC Prize Foundation operates the benchmark."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "ARC-AGI-3 uses Relative Human Action Efficiency (RHAE), combining completion and action efficiency against human baselines; 100% means completing all games and levels while matching or surpassing human efficiency.",
+      "source_url": "https://docs.arcprize.org/methodology",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "ARC-AGI-3 Scoring Methodology accessed 2026-08-22",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "Read official scoring methodology and score interpretation sections.",
+      "limitations": [
+        "Defines scoring method but does not provide NVIDIA's scorecard.",
+        "Human baseline sampling details are summarized, not independently audited."
+      ],
+      "conflict_of_interest": [
+        "ARC Prize Foundation authors the scoring documentation."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "NVIDIA reports that AVO completed the ARC-AGI-3 public set's 25 environments and 183 levels with a 100.00 RHAE score using 6,624 environment actions, while warning that comparison with VISTA is not a controlled ablation.",
+      "source_url": "https://developer.nvidia.com/blog/nvidia-avo-reaches-100-on-arc-agi-3-demonstrating-a-frontier-level-general-purpose-architecture-for-long-horizon-autonomous-agents/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "NVIDIA Technical Blog dated August 21 2026",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "Read the ARC-AGI-3 performance results and caveat paragraphs.",
+      "limitations": [
+        "NVIDIA-run result, not an independent reproduction.",
+        "No public AVO scorecard ID, replay corpus or execution log was confirmed in this run.",
+        "Comparison with VISTA differs in agent backend, observation representation, memory and context management."
+      ],
+      "conflict_of_interest": [
+        "NVIDIA reports the performance of its own research system."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "ARC-AGI Toolkit is a public Python interface for ARC-AGI-3 environments that supports local and API interaction with benchmark environments.",
+      "source_url": "https://github.com/arcprize/arc-agi",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "arcprize/ARC-AGI GitHub repository accessed 2026-08-22",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "Opened official ARC Prize toolkit repository and corroborated with PyPI package page.",
+      "limitations": [
+        "Toolkit public availability does not make the NVIDIA AVO harness public.",
+        "The toolkit was not installed or executed in this run."
+      ],
+      "conflict_of_interest": [
+        "ARC Prize Foundation maintains the toolkit."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "The PyPI arc-agi package is a public package for the ARC-AGI Toolkit.",
+      "source_url": "https://pypi.org/project/arc-agi/",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "PyPI arc-agi project page accessed 2026-08-22",
+      "accessed_at": "2026-08-22",
+      "direct_or_derived": "direct",
+      "method": "Opened PyPI package page discovered from official search and ARC docs.",
+      "limitations": [
+        "Package metadata was not used to reproduce AVO.",
+        "Exact package version was not pinned in the article because the article does not provide installation instructions."
+      ],
+      "conflict_of_interest": [
+        "Package is associated with ARC Prize toolkit maintainers."
+      ]
+    }
+  ],
+  "reproducibility_detail": {
+    "state": "R1",
+    "reason": "The method, benchmark, scoring definition and public ARC toolkit are documented, but the AVO implementation, scorecard/replay logs and editor-run reproduction are unavailable or not executed.",
+    "not_run": [
+      "No ARC-AGI-3 benchmark execution was performed.",
+      "No NVIDIA AVO code was cloned or run.",
+      "No scorecard ID or replay log for NVIDIA's AVO run was independently opened."
+    ]
+  },
+  "source_urls": [
+    "https://developer.nvidia.com/blog/nvidia-avo-reaches-100-on-arc-agi-3-demonstrating-a-frontier-level-general-purpose-architecture-for-long-horizon-autonomous-agents/",
+    "https://arxiv.org/abs/2603.24517",
+    "https://arcprize.org/arc-agi/3",
+    "https://docs.arcprize.org/methodology",
+    "https://github.com/arcprize/arc-agi",
+    "https://pypi.org/project/arc-agi/"
+  ]
+}
