@@ -1,0 +1,486 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-24",
+  "date": "2026-08-24",
+  "subject": "OpenAI Codex as a platform, open-source Codex harness, app-server and Codex SDK, August 19 2026",
+  "central_claim": "OpenAI's August 19, 2026 Codex platform post is a publishable AI engineering topic because official documentation, the public openai/codex repository and npm package metadata show a concrete shift from treating a coding agent as a standalone chat/CLI surface to treating the agent loop as an inspectable harness with app-server and SDK integration surfaces; the article limits the conclusion to documented architecture, public components and adoption boundaries, not independent performance superiority.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The topic changes concrete software-engineering decisions for coding-agent adoption: whether to integrate a general assistant UI or embed an inspectable agent loop into existing products, which component owns tools, approvals, sandboxing, event logs and workflow state, and what must be logged for audit. It has official publication, official docs, public repository paths, exact git refs and npm package metadata, supporting a bounded E2 center claim."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "central": true,
+      "claim": "Codex's platform framing shifts the reusable unit from a standalone app/CLI to an inspectable coding-agent harness with documented app-server and SDK integration surfaces; public docs and artifacts support this E2 architecture claim, while ARC-AGI-3 performance figures remain OpenAI-reported and not independently reproduced.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://developers.openai.com/blog/codex-as-a-platform",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/codex/app-server",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/codex/sdk",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/codex/open-source",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/openai/codex",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://www.npmjs.com/package/@openai/codex",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://www.npmjs.com/package/@openai/codex-sdk",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-24-sequential/20260823T220817Z-1039645/request.json and used publication_id 2026-08-24 with article_path var/runs/ai/2026-08-24-sequential/20260823T220817Z-1039645/staged-content/article.md and evidence_path var/runs/ai/2026-08-24-sequential/20260823T220817Z-1039645/evidence.json. Read the AI edition contract, runtime, Korean writing contract, AI/EDA editorial profile, explanatory-journalism contract, auto-publishing contract, AI article prompt and primary-source startpoints before source review."
+      },
+      {
+        "channel": "openai-codex-platform-post",
+        "url": "https://developers.openai.com/blog/codex-as-a-platform",
+        "classification": "P1 source path",
+        "note": "Opened OpenAI's August 19, 2026 developer-blog post. It explains Codex as an open-source harness powering app, CLI and IDE experiences; identifies the agent loop as reusable; points to app-server and SDK integration surfaces; and gives an ARC-AGI-3 performance example that was treated as vendor-reported, not independently verified."
+      },
+      {
+        "channel": "openai-codex-app-server-docs",
+        "url": "https://developers.openai.com/codex/app-server",
+        "classification": "P1/P2 source path",
+        "note": "Opened official app-server docs. The page describes app-server as the interface for rich clients, points to open-source implementation in openai/codex/codex-rs/app-server, documents stdio/WebSocket/Unix socket JSON-RPC transport, health probes, WebSocket auth flags, bounded queues and explicit warnings about remote exposure and production support."
+      },
+      {
+        "channel": "openai-codex-sdk-docs",
+        "url": "https://developers.openai.com/codex/sdk",
+        "classification": "P1/P2 source path",
+        "note": "Opened official Codex SDK docs. The page documents TypeScript and Python paths for starting, continuing and resuming local Codex threads, Python control of local app-server over JSON-RPC, Node.js and Python version requirements, and sandbox presets."
+      },
+      {
+        "channel": "openai-codex-open-source-components",
+        "url": "https://developers.openai.com/codex/open-source",
+        "classification": "P1/P2 source path",
+        "note": "Opened official Open Source page. It lists Codex CLI, Codex SDK, Codex Security CLI/SDK, Codex App Server, Skills, Plugins and Universal cloud environment as open-source components, while marking IDE extension and Codex cloud as not open source."
+      },
+      {
+        "channel": "openai-codex-github-and-package-metadata",
+        "url": "https://github.com/openai/codex",
+        "classification": "P2 artifact path",
+        "note": "Queried openai/codex GitHub refs and npm metadata. main HEAD was 6677fd827d2c34cd65edb240418f80b3f97d2cc0; rust-v0.149.0 annotated tag pointed to commit 758ef40f50c1a458425c7cfbf1eb12cbc07af0b0. npm listed @openai/codex and @openai/codex-sdk at 0.149.0 with Apache-2.0 license and repository URL git+https://github.com/openai/codex.git. Packages were not installed."
+      },
+      {
+        "channel": "anthropic-official-review",
+        "url": "https://docs.anthropic.com/en/release-notes/api",
+        "classification": "P1 alternative review",
+        "note": "Reviewed Anthropic release notes, Claude Code release signals and Claude Sonnet/Opus 5 docs. Recent Python SDK 1.0 and Claude Code patch notes are useful developer-tool signals, but they are narrower or already near recently covered Anthropic agent/API surfaces. Claude Sonnet 5 and Opus 5 are major model releases but older than this publication slot."
+      },
+      {
+        "channel": "google-gemini-official-review",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Reviewed Gemini API changelog. Gemini 3.7 Flash GA on August 13, 2026 remains a strong official model release but was already covered by the 2026-08-14 AI regular edition; no newer Google model/API item found during this run outranked the selected candidate."
+      },
+      {
+        "channel": "qwen-deepseek-registry-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed official Qwen blog/model registry and DeepSeek Hugging Face/GitHub surfaces through search and existing local ledgers. Qwen3.8-27B and DeepSeek V4-Pro/Harness had strong artifacts but were already covered by recent AI판 regular or special articles, and no fresher official artifact changed the current slot."
+      },
+      {
+        "channel": "mistral-and-runtime-review",
+        "url": "https://mistral.ai/news/",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed Mistral news and runtime/library signals. Mistral Agentic Search was selected for 2026-08-22, while vLLM v0.27.0 and Transformers v5.15.1 were implementation-backed but older, previously reviewed, or patch-level relative to the selected Codex platform/harness topic."
+      },
+      {
+        "channel": "openai-api-and-model-review",
+        "url": "https://developers.openai.com/api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Opened the OpenAI API changelog and data-control docs. August 21 regional processing and GPT-5.6 Sol price/update signals are material but mainly policy/pricing/platform availability deltas with weaker public artifact depth than Codex harness/app-server/SDK. Recent GPT-5.6 safety and cyber-evaluation surfaces were already covered in earlier AI판 work."
+      },
+      {
+        "channel": "search-x-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results, X-visible snippets and secondary posts were used only to locate official paths across OpenAI, Anthropic, Google, Qwen, DeepSeek, Mistral, xAI, vLLM, PyTorch and Hugging Face. No article fact or scoring decision relies on search snippets, social posts or secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "OpenAI Codex platform and open-source harness",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because official August 19 publication, app-server docs, SDK docs, open-source component docs, GitHub repository refs and npm package metadata expose a concrete, inspectable coding-agent integration surface. It is directly useful for engineers deciding whether to embed a coding agent into existing products and how to log tools, approvals and sandbox boundaries."
+      },
+      {
+        "subject": "OpenAI API request-level regional processing and GPT-5.6 Sol price/update signals",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "The August 21 changelog affects API governance and cost decisions, but the center claim is mostly a documented policy/platform availability change without comparable public implementation artifacts. It did not outrank the Codex harness topic on E2 technical depth."
+      },
+      {
+        "subject": "Anthropic Python SDK 1.0 and Claude Code release-note signals",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The SDK 1.0 release is actionable for Anthropic users, including dependency and deprecation changes, but it is narrower than the selected agent-harness integration surface and lacks a stronger public implementation-led center claim for this slot."
+      },
+      {
+        "subject": "Google Gemini 3.7 Flash GA",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Strong official model/API candidate, but already selected and published as the 2026-08-14 regular AI edition. Repeating it would not add a new technical phase."
+      },
+      {
+        "subject": "Qwen3.8 open-weight model family and Qwen3.8-27B",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official blog, model registry and serving recipes support E2/R2 coverage, but Qwen3.8-27B was already handled as the 2026-08-15 AI special article and no new Qwen artifact changed the current decision."
+      },
+      {
+        "subject": "DeepSeek V4-Pro and DeepSeek Harness",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official API/model-card/runtime sources remain strong, but DeepSeek V4-Pro and Harness were already covered by recent regular and special AI판 articles. The selected OpenAI Codex topic is the fresher non-duplicate harness release."
+      },
+      {
+        "subject": "Mistral Agentic Search",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "A strong E2 retrieval-runtime topic, but already selected for the 2026-08-22 AI edition. It was used as a coverage comparison, not repeated."
+      },
+      {
+        "subject": "vLLM v0.27.0 and Transformers v5.15.1",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Both have public implementation artifacts, but vLLM serving releases were covered or repeatedly reviewed earlier in August, and Transformers v5.15.1 was patch-level. Neither beat the selected Codex platform topic on broad engineering decision utility."
+      },
+      {
+        "subject": "Claude Sonnet 5 and Claude Opus 5 model docs",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Major model releases with official docs and migration guidance, but launch dates were June 30 and July 24, 2026. For this publication slot they were less fresh and more vendor-evaluation bounded than the selected public harness integration story."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED",
+    "NO_RUNTIME_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-23T22:08:17Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-24 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official OpenAI publication, official Codex app-server docs, official Codex SDK docs, official Open Source docs, public GitHub repository refs and npm package metadata",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions exactly: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-24 and decisions/ai/2026-08-24",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "OpenAI is the author/operator of Codex, Codex CLI, Codex app-server, Codex SDK, the docs, the GitHub repository and npm packages used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results, X and previous discovery ledgers were used only as discovery and duplication checks; article facts rely on opened official primary sources and public artifact metadata."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenAI published 'Codex as a platform: build on the open agent harness' on August 19, 2026 and described the Codex harness as the open-source layer that powers app, CLI and IDE experiences while helping models gather context, use tools, operate within configured boundaries, request approval and carry work forward.",
+      "source_url": "https://developers.openai.com/blog/codex-as-a-platform",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "OpenAI Developer Blog post dated Aug 19 2026",
+      "accessed_at": "2026-08-23",
+      "direct_or_derived": "direct",
+      "method": "Read official post date, title, harness description and integration framing.",
+      "limitations": [
+        "Confirms OpenAI's publication and product framing only.",
+        "Does not independently validate performance or production reliability."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authored the announcement for its own product."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Codex app-server is documented as the interface for rich clients to handle authentication, conversation history, approvals and streamed agent events, and its implementation is public in the openai/codex repository under codex-rs/app-server.",
+      "source_url": "https://developers.openai.com/codex/app-server",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Codex App Server docs accessed 2026-08-23",
+      "accessed_at": "2026-08-23",
+      "direct_or_derived": "direct",
+      "method": "Read app-server overview and source link; cross-checked openai/codex repository listing and refs.",
+      "limitations": [
+        "The run did not start app-server or inspect runtime JSON-RPC messages.",
+        "The app-server docs mark WebSocket transport and remote mode as experimental or unsupported for production workloads."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authored the docs and maintains the repository."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Codex app-server supports JSON-RPC 2.0 style messages over stdio, WebSocket and Unix socket transports, provides readyz/healthz probes in WebSocket mode, and requires explicit WebSocket authentication before remote exposure.",
+      "source_url": "https://developers.openai.com/codex/app-server",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Codex App Server docs accessed 2026-08-23",
+      "accessed_at": "2026-08-23",
+      "direct_or_derived": "direct",
+      "method": "Read protocol, transport, health probe, authentication and overload sections of the official docs.",
+      "limitations": [
+        "No listener, token auth, overload queue or health probe was executed.",
+        "Docs may change while the experimental transport matures."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authored the documentation."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Codex SDK documentation describes TypeScript and Python libraries for starting, continuing and resuming local Codex threads, and states that the Python SDK controls local Codex app-server over JSON-RPC.",
+      "source_url": "https://developers.openai.com/codex/sdk",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Codex SDK docs accessed 2026-08-23",
+      "accessed_at": "2026-08-23",
+      "direct_or_derived": "direct",
+      "method": "Read SDK overview, TypeScript usage, Python usage, runtime dependency and sandbox preset sections.",
+      "limitations": [
+        "No SDK call was run.",
+        "Python package metadata was not queried because this environment did not have the pip module."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authored the documentation."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "The public openai/codex repository was reachable; main HEAD resolved to 6677fd827d2c34cd65edb240418f80b3f97d2cc0 and the rust-v0.149.0 annotated tag resolved to commit 758ef40f50c1a458425c7cfbf1eb12cbc07af0b0 during this run.",
+      "source_url": "https://github.com/openai/codex",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "git ls-remote HEAD/main and rust-v0.149.0 on 2026-08-23",
+      "accessed_at": "2026-08-23",
+      "direct_or_derived": "direct",
+      "method": "Ran git ls-remote against https://github.com/openai/codex.git for HEAD, refs/heads/main and rust-v0.149.0.",
+      "limitations": [
+        "The repository was not cloned and no source tests were run.",
+        "main is moving; the recorded commit is a point-in-time reference."
+      ],
+      "conflict_of_interest": [
+        "OpenAI maintains the repository."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "npm registry metadata listed @openai/codex and @openai/codex-sdk at version 0.149.0 with Apache-2.0 license, integrity hashes and repository URL git+https://github.com/openai/codex.git.",
+      "source_url": "https://www.npmjs.com/package/@openai/codex",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "@openai/codex 0.149.0 and @openai/codex-sdk 0.149.0 npm metadata accessed 2026-08-23",
+      "accessed_at": "2026-08-23",
+      "direct_or_derived": "direct",
+      "method": "Ran npm view @openai/codex and npm view @openai/codex-sdk for version, tarball, integrity, license and repository URL.",
+      "limitations": [
+        "Packages were not installed or executed.",
+        "npm metadata confirms distribution metadata, not runtime behavior."
+      ],
+      "conflict_of_interest": [
+        "OpenAI publishes the npm packages."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "OpenAI's Open Source docs list Codex CLI, Codex SDK, Codex Security CLI/SDK, Codex App Server, Skills, Plugins and Universal cloud environment as open-source components, while IDE extension and Codex cloud are marked as not open source.",
+      "source_url": "https://developers.openai.com/codex/open-source",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Open Source docs accessed 2026-08-23",
+      "accessed_at": "2026-08-23",
+      "direct_or_derived": "direct",
+      "method": "Read the official open-source components table and compared linked GitHub destinations.",
+      "limitations": [
+        "The docs do not expose managed service internals for Codex cloud or IDE extension source.",
+        "Component availability and source layout can change."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authored the documentation."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "OpenAI reports that on ARC-AGI-3, retained reasoning and context compaction raised GPT-5.6 Sol's score from 13.3% to 38.3% while reducing output tokens sixfold.",
+      "source_url": "https://developers.openai.com/blog/codex-as-a-platform",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI Developer Blog post dated Aug 19 2026",
+      "accessed_at": "2026-08-23",
+      "direct_or_derived": "direct",
+      "method": "Read the performance example in the official post and attributed it to OpenAI.",
+      "limitations": [
+        "No ARC-AGI-3 run, exact harness config, logs or scorecard were independently reproduced in this article.",
+        "The result is used only to explain why harness design can matter, not to rank Codex against other agents."
+      ],
+      "conflict_of_interest": [
+        "OpenAI reports a result involving its own model and harness."
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://developers.openai.com/blog/codex-as-a-platform",
+    "https://github.com/openai/codex",
+    "https://developers.openai.com/codex/app-server",
+    "https://developers.openai.com/codex/sdk",
+    "https://developers.openai.com/codex/open-source",
+    "https://www.npmjs.com/package/@openai/codex",
+    "https://www.npmjs.com/package/@openai/codex-sdk"
+  ],
+  "reproducibility_notes": {
+    "state": "R1",
+    "reason": "The harness architecture, public component boundaries, protocol shape, SDK usage and package metadata are publicly described or inspectable, but this run did not clone the repository, install packages, start app-server, connect a client, run Codex SDK, test sandbox presets or reproduce ARC-AGI-3 measurements.",
+    "not_reproduced": [
+      "Codex CLI or app-server local execution",
+      "JSON-RPC message trace over stdio, WebSocket or Unix socket",
+      "WebSocket authentication and remote host setup",
+      "TypeScript SDK thread start/continue/resume",
+      "Python SDK package metadata and runtime execution, because python3 -m pip was unavailable in the environment",
+      "sandbox preset changes across turns",
+      "approval flow and streamed event handling",
+      "ARC-AGI-3 benchmark or token-count reproduction"
+    ]
+  },
+  "benchmark_notes": {
+    "used_in_article": true,
+    "use_scope": "OpenAI's ARC-AGI-3 figures are used only to explain the vendor's claim that harness design can materially change agent results. They are not used as an independent performance ranking or proof that Codex outperforms other harnesses.",
+    "benchmarks": [
+      {
+        "name": "ARC-AGI-3",
+        "source_url": "https://developers.openai.com/blog/codex-as-a-platform",
+        "reported_conditions": "OpenAI reports retained reasoning and context compaction with GPT-5.6 Sol, score change from 13.3% to 38.3%, and output tokens reduced sixfold.",
+        "limitations": "No independent rerun, exact harness configuration, raw logs, public scorecard or failure distribution checked."
+      }
+    ]
+  },
+  "editorial_contract": {
+    "style_contract": "ai-technical-blog-v2",
+    "required_layers": [
+      "news explanation: OpenAI published Codex as a platform and framed the reusable unit as the open-source agent harness rather than only the app, CLI or IDE surface",
+      "technical understanding: harness loop, app-server thread/event/approval surface, JSON-RPC transport, SDK thread control, public component boundaries and npm/GitHub artifacts",
+      "technical meaning and verification tasks: when to embed Codex in existing products, how to separate host application responsibilities from harness behavior, and what to log for security, audit and reproducibility"
+    ],
+    "frontmatter_fields": [
+      "edition",
+      "decision",
+      "title",
+      "date",
+      "subject",
+      "summary",
+      "evidence_ceiling",
+      "reproducibility",
+      "conflicts"
+    ],
+    "article_sections_required": [
+      "benchmark or reproducibility discussion",
+      "conflicts and reporting conditions",
+      "claim ledger",
+      "sources"
+    ]
+  }
+}
