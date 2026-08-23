@@ -87,8 +87,33 @@ assert.equal(build.status, 0, build.stdout + build.stderr);
 
 const landing = await readFile(join(distRoot, 'ai', 'index.html'), 'utf8');
 const legacyHome = await readFile(join(distRoot, 'index.html'), 'utf8');
-assert.ok(landing.includes('오늘의 발행 상태'));
 assert.ok(landing.includes('data-ai-daily-status='));
+assert.ok(landing.includes('발행 기록'));
+const todayId = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'Asia/Seoul',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+}).format(new Date());
+const todayPublication = approved.find(
+  ({ id, release }) => id === todayId && (release.publication_kind ?? 'regular') === 'regular',
+);
+const todayNoPublish = noPublishStatuses.find(({ id }) => id === todayId);
+if (todayPublication) {
+  assert.ok(landing.includes('data-ai-daily-status="published"'));
+  assert.ok(landing.includes('data-today-publication="true"'));
+  assert.ok(landing.includes('<span class="today-label"'));
+  assert.ok(landing.includes('<span class="published-label"'));
+  assert.equal(landing.includes('오늘 AI판이 발행되었습니다'), false);
+} else if (todayNoPublish) {
+  assert.ok(landing.includes('data-ai-daily-status="no-publish"'));
+  assert.ok(landing.includes('오늘 AI판은 휴간입니다'));
+  assert.ok(landing.includes(`발행 상태 ${todayId}`));
+} else {
+  assert.ok(landing.includes('data-ai-daily-status="pending"'));
+  assert.ok(landing.includes('오늘 AI판의 발행 상태를 확인하고 있습니다'));
+  assert.ok(landing.includes(`발행 상태 ${todayId}`));
+}
 for (const { id } of noPublishStatuses) {
   assert.ok(landing.includes(`data-no-publish-id="${id}"`));
   await assert.rejects(

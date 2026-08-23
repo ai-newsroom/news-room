@@ -66,54 +66,55 @@ const noPublishHistory = [...noPublishById.values()]
     description="모델·API·개발 도구의 변화를 SW 엔지니어가 빠르게 판단할 수 있도록 설명합니다. 원문, 버전, 재현 범위와 자동 출고 게이트를 통과한 기사만 게재합니다."
   />
 
-  <section class={`daily-status daily-status--${dailyStatus}`} data-ai-daily-status={dailyStatus} aria-labelledby="daily-ai-status">
-    <p class="status-kicker">오늘의 발행 상태</p>
-    {dailyStatus === 'published' && todayRegular && (
-      <>
-        <h2 id="daily-ai-status">오늘 AI판이 발행되었습니다</h2>
-        <p class="status-message">
-          <a href={`${base}/ai/${todayRegular.publicPath}/`}>{todayRegular.article.data.title}</a>
-        </p>
-      </>
-    )}
-    {dailyStatus === 'no-publish' && (
-      <>
-        <h2 id="daily-ai-status">오늘 AI판은 휴간입니다</h2>
-        <p class="status-message">새롭고 중복되지 않은 주제 중 오늘의 편집 기준을 충족한 후보가 없어 발행하지 않았습니다.</p>
-      </>
-    )}
-    {dailyStatus === 'pending' && (
-      <>
-        <h2 id="daily-ai-status">오늘 AI판은 발행 준비·상태 확인 중입니다</h2>
-        <p class="status-message">정규 발행 또는 휴간 결정이 확정되면 이 영역이 자동으로 갱신됩니다.</p>
-      </>
-    )}
-    <p class="status-meta">발행 상태 {todayId} · Asia/Seoul</p>
+  <section class="feed-section" data-ai-daily-status={dailyStatus} aria-labelledby="recent-ai-news">
+    <div class="section-heading-row">
+      <h2 id="recent-ai-news" class="section-title">최근 기사</h2>
+      {noPublishHistory.length > 0 && (
+        <details class="status-history">
+          <summary>발행 기록</summary>
+          <ul>
+            {noPublishHistory.map((decision) => (
+              <li data-no-publish-id={decision.data.publication_id}>
+                <time datetime={decision.data.publication_id}>
+                  {formatPublicationDate(decision.data.publication_id)}
+                </time>
+                <span>편집 기준에 따른 휴간</span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+    </div>
 
-    {noPublishHistory.length > 0 && (
-      <details class="status-history">
-        <summary>휴간 기록</summary>
-        <ul>
-          {noPublishHistory.map((decision) => (
-            <li data-no-publish-id={decision.data.publication_id}>
-              <time datetime={decision.data.publication_id}>
-                {formatPublicationDate(decision.data.publication_id)}
-              </time>
-              <span>편집 기준에 따른 휴간</span>
-            </li>
-          ))}
-        </ul>
-      </details>
+    {dailyStatus !== 'published' && (
+      <section class={`daily-status daily-status--${dailyStatus}`} aria-labelledby="daily-ai-status">
+        <p class="status-kicker">오늘의 발행 상태</p>
+        {dailyStatus === 'no-publish' && (
+          <>
+            <h3 id="daily-ai-status">오늘 AI판은 휴간입니다</h3>
+            <p class="status-message">새롭고 중복되지 않은 주제 중 오늘의 편집 기준을 충족한 후보가 없어 발행하지 않았습니다.</p>
+          </>
+        )}
+        {dailyStatus === 'pending' && (
+          <>
+            <h3 id="daily-ai-status">오늘 AI판의 발행 상태를 확인하고 있습니다</h3>
+            <p class="status-message">정규 발행 또는 휴간 결정이 아직 확인되지 않았습니다.</p>
+          </>
+        )}
+        <p class="status-meta">발행 상태 {todayId} · Asia/Seoul</p>
+      </section>
     )}
-  </section>
 
-  <section class="feed-section" aria-labelledby="recent-ai-news">
-    <h2 id="recent-ai-news" class="section-title">최근 기사</h2>
     <ul class="feed">
-      {publications.map(({ publicPath, article, release }) => (
-        <li class="item">
+      {publications.map(({ id, publicPath, article, release }) => (
+        <li
+          class="item"
+          data-today-publication={id === todayId && release.data.publication_kind === 'regular' ? 'true' : undefined}
+        >
           <p class="date">
-            {formatDate(article.data.date)}
+            {id === todayId && release.data.publication_kind === 'regular' ? (
+              <><span class="today-label">오늘</span>{' · '}<span class="published-label">발행 완료</span></>
+            ) : formatDate(article.data.date)}
             {release.data.publication_kind === 'special' && <span class="special-label">특별판</span>}
           </p>
           <h3><a href={`${base}/ai/${publicPath}/`}>{article.data.title}</a></h3>
@@ -130,12 +131,26 @@ const noPublishHistory = [...noPublishById.values()]
 </Base>
 
 <style>
+  .feed-section { margin-top: 2rem; }
+  .section-heading-row {
+    align-items: baseline;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+  .section-title {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    margin: 0;
+    text-transform: uppercase;
+  }
   .daily-status {
     background: color-mix(in srgb, var(--paper) 88%, var(--accent-soft));
     border: 1px solid var(--soft-rule);
     border-left: 4px solid var(--accent);
-    margin-top: 2rem;
-    padding: 1.25rem 1.35rem;
+    margin-top: 0.8rem;
+    padding: 0.9rem 1rem;
   }
   .daily-status--no-publish { border-left-color: var(--muted); }
   .daily-status--pending { border-left-color: var(--soft-rule); }
@@ -148,17 +163,15 @@ const noPublishHistory = [...noPublishById.values()]
     margin: 0 0 0.35rem;
     text-transform: uppercase;
   }
-  .daily-status h2 { font-size: 1.3rem; margin: 0; }
+  .daily-status h3 { font-size: 1.05rem; margin: 0; }
   .status-message { color: var(--muted); margin: 0.45rem 0 0; }
-  .status-message a { color: var(--ink); font-weight: 700; text-decoration: none; }
-  .status-message a:hover { color: var(--accent); }
   .status-meta {
     color: var(--muted);
     font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
     font-size: 0.75rem;
     margin: 0.75rem 0 0;
   }
-  .status-history { border-top: 1px solid var(--soft-rule); margin-top: 1rem; padding-top: 0.8rem; }
+  .status-history { margin: 0; }
   .status-history summary {
     color: var(--muted);
     cursor: pointer;
@@ -166,7 +179,13 @@ const noPublishHistory = [...noPublishById.values()]
     font-size: 0.78rem;
     font-weight: 700;
   }
-  .status-history ul { list-style: none; margin: 0.7rem 0 0; padding: 0; }
+  .status-history ul {
+    border-top: 1px solid var(--soft-rule);
+    list-style: none;
+    margin: 0.7rem 0 0;
+    min-width: 18rem;
+    padding: 0.55rem 0 0;
+  }
   .status-history li {
     display: flex;
     flex-wrap: wrap;
@@ -176,17 +195,13 @@ const noPublishHistory = [...noPublishById.values()]
   }
   .status-history time { color: var(--ink); font-size: 0.82rem; }
   .status-history span { color: var(--muted); font-size: 0.8rem; }
-  .feed-section { margin-top: 2rem; }
-  .section-title {
-    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    margin: 0;
-    text-transform: uppercase;
-  }
   .feed { list-style: none; margin: 0.65rem 0 0; padding: 0; }
   .item { border-top: 1px solid var(--soft-rule); padding: 1.5rem 0 1.6rem; }
   .item .date { color: var(--muted); font-size: 0.82rem; margin: 0; }
+  .today-label {
+    color: var(--ink);
+    font-weight: 700;
+  }
   .special-label {
     color: var(--accent);
     font-weight: 700;
@@ -212,5 +227,9 @@ const noPublishHistory = [...noPublishById.values()]
     font-size: 0.73rem;
     font-weight: 650;
     padding: 0.2rem 0.55rem;
+  }
+  @media (max-width: 34rem) {
+    .section-heading-row { align-items: flex-start; }
+    .status-history ul { min-width: 0; }
   }
 </style>
