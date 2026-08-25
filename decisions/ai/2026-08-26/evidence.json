@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-26",
+  "date": "2026-08-26",
+  "subject": "OpenAI Jalapeño first measured inference results and InferenceX benchmark framing, August 25 2026",
+  "central_claim": "OpenAI's August 25, 2026 Jalapeño disclosure is a publishable AI engineering topic because it exposes a concrete inference-system design target for agentic workloads: co-designing chip, memory, network and serving software to reduce prefill/decode data movement and improve latency at matched user experience. The article limits the conclusion to OpenAI's documented architecture and vendor-reported InferenceX measurements, and does not claim independently verified accelerator superiority.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 1,
+    "korean_reader_relevance": 1,
+    "total": 8,
+    "threshold": 7,
+    "reason": "Jalapeño is a same-day hardware/inference-system disclosure from a frontier lab, and it changes how engineers should evaluate agent-serving infrastructure: latency, TBT, throughput per watt and prefill/decode/KV-cache bottlenecks must be considered together. Public evidence includes OpenAI's detailed technical post, OpenAI's full-stack strategy post, the public InferenceX benchmark surface and the InferenceX GitHub repository. The conclusion is narrowed because the chip, raw logs and independently reproducible Jalapeño results are not public."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "central": true,
+      "claim": "Jalapeño is best treated as an agentic-inference system disclosure, not as an independently proven chip ranking: OpenAI describes a custom inference chip and rack-scale system designed around prefill, decode, KV-cache placement and data movement, and reports InferenceX measurements on three public models, while public verification is limited to the documented method, benchmark surface and repository rather than direct rerun of Jalapeño results.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://openai.com/index/jalapeno-first-results/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://openai.com/index/the-full-stack-behind-abundant-intelligence/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://inferencex.semianalysis.com/inference",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/SemiAnalysisAI/InferenceX",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-26-sequential/20260825T220913Z-1059856/request.json and used publication_id 2026-08-26 with article_path var/runs/ai/2026-08-26-sequential/20260825T220913Z-1059856/staged-content/article.md, evidence_path var/runs/ai/2026-08-26-sequential/20260825T220913Z-1059856/evidence.json and no_publish_path var/runs/ai/2026-08-26-sequential/20260825T220913Z-1059856/no-publish.json. Read the AI edition contract, runtime, Korean writing contract, AI/EDA editorial profile, explanatory-journalism contract, auto-publishing contract, AI article prompt and primary-source startpoints before source review."
+      },
+      {
+        "channel": "openai-jalapeno-first-results",
+        "url": "https://openai.com/index/jalapeno-first-results/",
+        "classification": "P1 source path",
+        "note": "Opened OpenAI's August 25, 2026 Jalapeño post. It describes Jalapeño as OpenAI's first custom inference chip, reports InferenceX measurements on GPT-OSS 120B, DeepSeek R1 670B and Kimi K2.5 1T, explains the prefill/decode/KV-cache/data-movement design target, and says deployment inside OpenAI compute infrastructure is planned by the end of 2026. Treated as official technical source and vendor-reported measurement, not independent performance proof."
+      },
+      {
+        "channel": "openai-full-stack-strategy",
+        "url": "https://openai.com/index/the-full-stack-behind-abundant-intelligence/",
+        "classification": "P0/P1 context path",
+        "note": "Opened OpenAI's August 25, 2026 full-stack post. It frames Jalapeño as part of OpenAI's integrated model, serving software, chip, memory, networking and data-center strategy, and reiterates that first measured results came from InferenceX. Used to verify strategic framing and deployment context, not to promote economic advantage as a fact."
+      },
+      {
+        "channel": "semianalysis-inferencex",
+        "url": "https://inferencex.semianalysis.com/inference",
+        "classification": "P1 source path",
+        "note": "Opened the InferenceX dashboard surface. It describes agentic inference and fixed-sequence inference metrics including latency, throughput, TTFT and related views, and links to benchmark, AgentX harness and visualization resources. Used to verify benchmark surface and metric vocabulary."
+      },
+      {
+        "channel": "semianalysis-inferencex-github",
+        "url": "https://github.com/SemiAnalysisAI/InferenceX",
+        "classification": "P2 artifact path",
+        "note": "Opened the SemiAnalysisAI/InferenceX public repository. It describes InferenceX as an Apache-2.0 open-source continuous inference benchmark research platform with benchmark/config/runner folders and public hardware support notes. It does not provide public Jalapeño hardware or OpenAI's raw Jalapeño run logs."
+      },
+      {
+        "channel": "openai-model-api-review",
+        "url": "https://openai.com/index/previewing-gpt-5-6-sol/",
+        "classification": "P1 alternative review",
+        "note": "Opened OpenAI's GPT-5.6 Sol preview post, API changelog and GPT-5.6 system card. The model preview is highly important and includes system-card safety detail, but GPT-5.6 has been repeatedly covered in recent AI판 decisions, and this run found a fresher same-day hardware/inference-system disclosure with a clearer new technical angle."
+      },
+      {
+        "channel": "anthropic-official-review",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1/P2 alternative review",
+        "note": "Opened Claude Platform release notes, Anthropic Python SDK v1.0 GitHub release, raw migration guide, PyPI package page and Python SDK docs. Python SDK 1.0 is actionable and artifact-backed, but it is narrower than the same-day Jalapeño hardware/inference-system disclosure and had already been considered as an alternative in the 2026-08-24 AI decision."
+      },
+      {
+        "channel": "google-gemini-official-review",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Opened Gemini API changelog. Recent Gemini API items found in the current visible page were older or already covered, including Gemini 3.7 Flash in the 2026-08-14 AI edition. No new Google model/API/hardware item outranked Jalapeño for this publication slot."
+      },
+      {
+        "channel": "qwen-deepseek-registry-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed official Qwen blog/model registry search paths, DeepSeek API docs and DeepSeek Hugging Face/GitHub registry signals. Qwen3.8 and DeepSeek V4/Harness remain strong artifact-backed topics, but they were already covered or reviewed in recent regular/special AI판 work, and no newer official artifact changed today's decision."
+      },
+      {
+        "channel": "mistral-runtime-hardware-review",
+        "url": "https://mistral.ai/news/",
+        "classification": "P1/P2 discovery review",
+        "note": "Opened Mistral news and reviewed runtime release signals for vLLM and Hugging Face Transformers. Mistral Agentic Search was already selected on 2026-08-22. vLLM v0.27.0 and Transformers v5.15.1 are implementation-backed but older or narrower than the same-day Jalapeño candidate."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results and secondary news snippets were used only to find official OpenAI, Anthropic, Google, Qwen, DeepSeek, Mistral, SemiAnalysis, vLLM and Transformers paths. No article fact or scoring decision relies on search snippets, X posts or secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "OpenAI Jalapeño first measured inference results",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "selected",
+        "reason": "Selected because it is a same-day official frontier-lab hardware/inference-system disclosure with concrete technical explanation of prefill, decode, KV cache locality, data movement and agentic latency trade-offs. The article has at least two primary/public source URLs and keeps OpenAI's performance numbers vendor-attributed."
+      },
+      {
+        "subject": "OpenAI GPT-5.6 Sol limited preview, API pricing and system-card updates",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Major model signal with official post, API changelog and system card. Not selected because GPT-5.6 safety, pricing, Kiro and cyber-evaluation surfaces were already covered or reviewed repeatedly in recent AI판 work, and the fresh center claim would rely mainly on vendor performance/safety evaluation without public model artifact."
+      },
+      {
+        "subject": "OpenAI Admin plugin for ChatGPT Work and Codex",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Same-day official product announcement, but the opened source describes workspace administration workflows more than a technical model/API/runtime mechanism. It lacked a public implementation artifact or detailed API contract that would support a stronger AI판 engineering article."
+      },
+      {
+        "subject": "Anthropic Python SDK 1.0",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official release notes, GitHub release, migration guide, PyPI package and SDK docs support a concrete E2 migration article about Python 3.10, httpx2, removed Text Completions and raw-response changes. It was not selected because it is narrower and older than the same-day Jalapeño candidate, and it was already logged as an alternative on 2026-08-24."
+      },
+      {
+        "subject": "Mistral x HUMAIN and Mistral Agentic Search follow-up",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Mistral x HUMAIN was primarily a company/partnership signal, while Agentic Search was already selected for 2026-08-22 with stronger technical depth. No new Mistral artifact changed the slot."
+      },
+      {
+        "subject": "Qwen3.8 open-weight model family",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official blog, GitHub and Hugging Face model-card surfaces support E2/R2 coverage, but Qwen3.8-27B was already handled as a 2026-08-15 AI special article and related 2.4T-A95B signals were repeatedly reviewed afterward."
+      },
+      {
+        "subject": "DeepSeek V4 family and DeepSeek Harness",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "DeepSeek API docs, model registry and GitHub/Hugging Face artifacts remain technically strong, but V4-Pro/Harness was already covered by recent regular and special AI판 articles."
+      },
+      {
+        "subject": "vLLM v0.27.0 and Hugging Face Transformers v5.15.1",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Both are implementation-backed runtime/library signals. They did not clear the total-score gate against the same-day Jalapeño candidate because vLLM was older and Transformers v5.15.1 was patch-level."
+      },
+      {
+        "subject": "Google Gemini API recent changelog",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "The official changelog is a useful source path, but this run did not find a new unhandled Gemini model/API item with stronger novelty than Jalapeño. Gemini 3.7 Flash was already published on 2026-08-14."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED",
+    "NO_RUNTIME_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-25T22:09:13Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-26 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 8 with threshold 7",
+      "central claim has E2 evidence based on official OpenAI Jalapeño publication, OpenAI full-stack context, SemiAnalysis InferenceX benchmark surface and public InferenceX repository",
+      "central claims include at least two distinct primary/public source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions exactly: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-26 and decisions/ai/2026-08-26",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "OpenAI is the developer/operator of Jalapeño and authored the posts used for Jalapeño architecture, measurement and deployment-plan claims.",
+    "SemiAnalysis operates InferenceX and maintains the public InferenceX repository used to verify the benchmark surface and public artifact path.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and secondary news snippets were used only as discovery and duplication checks; article facts rely on opened official primary sources and public artifact metadata."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenAI published 'Jalapeño’s first results show industry-leading speed and efficiency in AI inference' on August 25, 2026 and described Jalapeño as OpenAI's first custom inference chip.",
+      "source_url": "https://openai.com/index/jalapeno-first-results/",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "OpenAI post dated August 25, 2026",
+      "accessed_at": "2026-08-25",
+      "direct_or_derived": "direct",
+      "method": "Read official post date, title and Jalapeño description.",
+      "limitations": [
+        "Confirms OpenAI's publication and product framing only.",
+        "Does not independently validate chip performance."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authored the announcement for its own hardware and infrastructure."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "OpenAI describes Jalapeño as a co-designed chip, memory, network, software and rack-scale inference system that targets prefill, decode, KV-cache locality and reduced data movement for language-model inference.",
+      "source_url": "https://openai.com/index/jalapeno-first-results/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI Jalapeño post dated August 25, 2026",
+      "accessed_at": "2026-08-25",
+      "direct_or_derived": "direct",
+      "method": "Read sections 'Architecting for speed and efficiency within a single chip' and related measurement framing.",
+      "limitations": [
+        "Detailed chip specifications, memory hierarchy, compiler implementation and rack architecture are not fully public.",
+        "The architecture description is vendor-authored."
+      ],
+      "conflict_of_interest": [
+        "OpenAI developed Jalapeño."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "OpenAI reports InferenceX results across GPT-OSS 120B, DeepSeek R1 670B and Kimi K2.5 1T, including 1.5 to 1.9 times higher peak AI work per watt and 1.7 to 3.6 times lower end-to-end latency than comparison systems.",
+      "source_url": "https://openai.com/index/jalapeno-first-results/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI Jalapeño post and appendix dated August 25, 2026",
+      "accessed_at": "2026-08-25",
+      "direct_or_derived": "direct",
+      "method": "Read OpenAI's summary results and appendix operating-point tables for GPT-OSS 120B, DeepSeek R1 670B and Kimi K2.5 1T.",
+      "limitations": [
+        "The measurements are OpenAI-reported and not independently reproduced in this turn.",
+        "Jalapeño hardware, exact software stack, run logs, failure distribution and public submission artifacts were not available.",
+        "Comparison-system tuning and quality-equivalence details are not fully inspectable from the opened pages."
+      ],
+      "conflict_of_interest": [
+        "OpenAI reports performance of its own chip."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "InferenceX is a public benchmark surface for agentic inference and fixed-sequence inference metrics, including latency, throughput, TTFT and related dashboard views.",
+      "source_url": "https://inferencex.semianalysis.com/inference",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "InferenceX dashboard accessed August 25, 2026",
+      "accessed_at": "2026-08-25",
+      "direct_or_derived": "direct",
+      "method": "Opened the InferenceX inference dashboard and recorded metric categories and linked benchmark resources.",
+      "limitations": [
+        "The dashboard view alone does not expose a Jalapeño rerun path.",
+        "Interactive charts may contain data not fully represented in the static page text."
+      ],
+      "conflict_of_interest": [
+        "SemiAnalysis operates the benchmark surface."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "SemiAnalysisAI/InferenceX is a public GitHub repository for the InferenceX benchmark research platform, with benchmark, config, runner and documentation folders and Apache-2.0 license.",
+      "source_url": "https://github.com/SemiAnalysisAI/InferenceX",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "SemiAnalysisAI/InferenceX repository accessed August 25, 2026",
+      "accessed_at": "2026-08-25",
+      "direct_or_derived": "direct",
+      "method": "Opened the GitHub repository listing and README text.",
+      "limitations": [
+        "The repository was not cloned or executed.",
+        "The public repository does not provide Jalapeño hardware or OpenAI's private run logs."
+      ],
+      "conflict_of_interest": [
+        "SemiAnalysis maintains the benchmark repository and supporter relationships are disclosed in the repository README."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "OpenAI says it plans to begin deploying Jalapeño inside OpenAI's compute infrastructure by the end of 2026, while production qualification, software maturation, scale operation preparation and more model validation continue.",
+      "source_url": "https://openai.com/index/jalapeno-first-results/",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "OpenAI Jalapeño post dated August 25, 2026",
+      "accessed_at": "2026-08-25",
+      "direct_or_derived": "direct",
+      "method": "Read 'The path ahead for efficient, ultra-fast inference' section.",
+      "limitations": [
+        "No external SKU, pricing, customer access date or cloud availability was provided.",
+        "Future deployment plan may change."
+      ],
+      "conflict_of_interest": [
+        "OpenAI controls Jalapeño deployment."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "OpenAI reports that for selected GPT-OSS attention and mixture-of-experts blocks, AI-generated implementations ran 1.5 to 1.8 times faster than existing human-expert-written implementations.",
+      "source_url": "https://openai.com/index/jalapeno-first-results/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI Jalapeño post dated August 25, 2026",
+      "accessed_at": "2026-08-25",
+      "direct_or_derived": "direct",
+      "method": "Read the section on using AI to design and program the chip.",
+      "limitations": [
+        "The claim is limited to selected blocks, not complete model serving.",
+        "No public kernel source, compiler path, benchmark script or failure cases were inspected."
+      ],
+      "conflict_of_interest": [
+        "OpenAI reports results involving its own model-assisted hardware software workflow."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "OpenAI's full-stack strategy post frames Jalapeño as part of a broader system spanning data centers, chips, serving software, models, developer platform and products, while preserving partnerships with other accelerator and cloud providers.",
+      "source_url": "https://openai.com/index/the-full-stack-behind-abundant-intelligence/",
+      "source_type": "P0",
+      "evidence_grade": "E1",
+      "version": "OpenAI full-stack post dated August 25, 2026",
+      "accessed_at": "2026-08-25",
+      "direct_or_derived": "direct",
+      "method": "Read OpenAI strategy post for broader infrastructure framing and partner list.",
+      "limitations": [
+        "Strategic and economic claims are company framing, not technical performance evidence.",
+        "No partner contract or independent audit was inspected."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authored the strategy post."
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://openai.com/index/jalapeno-first-results/",
+    "https://openai.com/index/the-full-stack-behind-abundant-intelligence/",
+    "https://inferencex.semianalysis.com/inference",
+    "https://github.com/SemiAnalysisAI/InferenceX"
+  ],
+  "reproducibility_notes": {
+    "state": "R1",
+    "reason": "The benchmark surface and InferenceX repository are public, and OpenAI documents model names, nominal request shape and comparison chip package TDPs. However Jalapeño hardware, exact software stack, run logs, submission artifacts and qualification data are not public, so neither the newsroom nor readers can rerun the central Jalapeño measurements from the opened sources.",
+    "not_reproduced": [
+      "Jalapeño hardware execution",
+      "OpenAI's InferenceX run logs or submission verification",
+      "GPT-OSS 120B, DeepSeek R1 670B or Kimi K2.5 1T serving runs on Jalapeño",
+      "comparison-system tuning and quality-equivalence checks",
+      "AI-generated Jalapeño kernel implementation benchmark",
+      "production deployment or external cloud access"
+    ]
+  },
+  "benchmark_notes": {
+    "used_in_article": true,
+    "use_scope": "OpenAI's InferenceX figures are used to explain what OpenAI measured and which agentic-inference metrics matter. They are not used as an independent ranking or a procurement conclusion.",
+    "benchmarks": [
+      {
+        "name": "InferenceX",
+        "source_url": "https://openai.com/index/jalapeno-first-results/",
+        "public_method_source_url": "https://inferencex.semianalysis.com/inference",
+        "reported_conditions": "OpenAI reports nominal 8k/1k STP operating points and package TDP comparisons: Jalapeño 700 W vs GB200 1,200 W for GPT-OSS 120B, and Jalapeño 700 W vs GB300 1,400 W for DeepSeek R1 MXFP4 and Kimi K2.5 MXFP4.",
+        "limitations": "No independent rerun, raw logs, exact software stack, quality target, public Jalapeño submission or failure distribution checked."
+      }
+    ]
+  },
+  "editorial_contract": {
+    "style_contract": "ai-technical-blog-v2",
+    "required_layers": [
+      "news explanation: OpenAI published Jalapeño's first measured inference results on August 25, 2026",
+      "technical understanding: prefill, decode, KV cache locality, data movement, TBT, end-to-end latency and throughput per watt explain why agentic inference stresses hardware differently from simple peak throughput serving",
+      "technical meaning and verification tasks: engineers should evaluate agent services by matched user experience, workload shape, latency and power/cost while treating OpenAI's Jalapeño measurements as vendor-reported until hardware, logs or third-party reruns are public"
+    ],
+    "frontmatter_fields": [
+      "edition",
+      "decision",
+      "title",
+      "date",
+      "subject",
+      "summary",
+      "evidence_ceiling",
+      "reproducibility",
+      "conflicts"
+    ],
+    "article_sections_required": [
+      "benchmark or reproducibility discussion",
+      "conflicts and reporting conditions",
+      "claim ledger",
+      "sources"
+    ]
+  }
+}
