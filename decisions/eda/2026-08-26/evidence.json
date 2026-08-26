@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-26",
+  "date": "2026-08-26",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-26-manual/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-08-26-manual/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-08-26-manual/no-publish.json",
+  "subject": "OpenAI Jalapeño AI-assisted hardware design loop presented at Hot Chips 2026",
+  "title": "Jalapeño 설계 루프 공개 - AI가 칩 설계의 반복 시간을 줄였다",
+  "summary": "OpenAI는 Jalapeño를 만들 때 실제 workload, architecture simulation, XLS, RTL, QoR 측정을 빠르게 반복하는 AI 설계 루프를 사용했다고 설명했습니다. 핵심은 AI가 낸 회로 후보를 즉시 합성·검증·측정할 수 있는 통제 가능한 설계 환경과 설계자의 판단을 결합한 데 있습니다.",
+  "central_claim": "OpenAI가 공개한 Jalapeño 개발 방식의 핵심은 AI의 회로 후보 생성을 실제 workload, architecture simulation, XLS, RTL, QoR, DV와 PD의 측정·검증 루프에 연결해 설계 반복 시간을 줄인 데 있습니다.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://hc2026.hotchips.org/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://openai.com/index/jalapeno-first-results/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://x.com/beffjezos/status/2092418951586390137",
+          "source_grade": "S2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://google.github.io/xls/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/google/xls",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": false,
+      "evidence_level": "E1",
+      "sources": [
+        {
+          "url": "https://x.com/beffjezos/status/2092418951586390137",
+          "source_grade": "S2"
+        }
+      ]
+    }
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": ["OpenAI는 Jalapeño와 발표 자료의 당사자이고, Google·Synopsys·Cadence·Google DeepMind는 비교에 사용한 각 도구와 연구의 당사자입니다. 이 기사에는 사전 briefing, 제공받은 account·credit·license·hardware, 후원, 광고, NDA 또는 embargo가 없었습니다."],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 1,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 8,
+    "threshold": 7,
+    "rationale": "실제 workload에서 architecture simulation, XLS, RTL, QoR, DV와 PD까지 이어지는 피드백 루프는 AI-assisted EDA의 적용 범위와 조직 역할을 이해하는 데 유용합니다. Hot Chips 공식 일정, OpenAI 공식 기술 글, XLS 공개 문서와 저장소가 방법의 서로 다른 면을 확인하게 합니다. 다만 내부 AI 모델, 실행 로그, 공정·library·corner·baseline 조건이 공개되지 않아 PPA 수치는 vendor report로 제한합니다."
+  },
+  "selection": {
+    "total": 8,
+    "threshold": 7
+  },
+  "source_urls": [
+    "https://x.com/beffjezos/status/2092418951586390137",
+    "https://hc2026.hotchips.org/",
+    "https://openai.com/index/jalapeno-first-results/",
+    "https://openai.com/index/openai-broadcom-jalapeno-inference-chip/",
+    "https://google.github.io/xls/",
+    "https://github.com/google/xls",
+    "https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design/",
+    "https://news.synopsys.com/2020-03-11-Synopsys-Advances-State-of-the-Art-in-Electronic-Design-with-Revolutionary-Artificial-Intelligence-Technology?asPDF=1",
+    "https://www.cadence.com/content/dam/cadence-www/global/en_US/documents/tools/digital-design-signoff/cerebrus-wp.pdf"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenAI는 Jalapeño 설계에서 실제 workload, architecture simulation, RTL·QoR, DV·PD·performance를 연결한 반복 흐름을 제시했습니다.",
+      "source_url": "https://x.com/beffjezos/status/2092418951586390137",
+      "source_type": "S2",
+      "evidence_grade": "E2",
+      "version": "Hot Chips 2026 현장 슬라이드 사진, 2026-08-26 확인",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "게시물의 두 원본 사진을 직접 열어 슬라이드 문구와 도식을 판독하고 Hot Chips 공식 일정 및 OpenAI 기술 글과 대조했습니다.",
+      "limitations": [
+        "OpenAI가 배포한 공식 slide deck 전체가 아니라 현장에서 촬영한 두 장의 사진입니다.",
+        "게시자가 붙인 hardware-in-the-loop RSI 해석은 OpenAI의 주장으로 취급하지 않았습니다.",
+        "내부 workflow와 실행 log는 공개되지 않았습니다."
+      ],
+      "conflict_of_interest": ["OpenAI와 X 게시자는 발표와 해석의 당사자입니다."]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "OpenAI는 AI가 구현 후보를 탐색하고 설계·측정·검증의 반복 시간을 줄여 Jalapeño를 초기 설계에서 tapeout까지 9개월에 진행했다고 밝혔습니다.",
+      "source_url": "https://openai.com/index/jalapeno-first-results/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI 기술 글, 2026-08-25",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "OpenAI 공식 글의 AI-assisted design, nine-month tapeout, circuit optimization 설명을 확인했습니다.",
+      "limitations": [
+        "OpenAI의 자체 설명이며 독립 실행 기록은 공개되지 않았습니다.",
+        "PPA 숫자의 공정·library·corner 조건은 포함되지 않았습니다."
+      ],
+      "conflict_of_interest": ["OpenAI는 Jalapeño의 개발·측정 주체입니다."]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "XLS는 고수준 하드웨어 표현을 XLS IR과 Verilog/SystemVerilog로 변환하고 시뮬레이션·검증·합성·PPA 수집을 연결할 수 있는 공개 도구 모음입니다.",
+      "source_url": "https://google.github.io/xls/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Google XLS 공식 문서, 2026-08-26 확인",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "XLS overview, DSLX, IR, code generation, simulation과 PPA 관련 공식 문서를 확인했습니다.",
+      "limitations": [
+        "공개 XLS가 OpenAI 내부 toolchain과 동일하다는 뜻은 아닙니다.",
+        "OpenAI가 사용한 XLS revision과 내부 변경은 공개되지 않았습니다."
+      ],
+      "conflict_of_interest": ["Google은 XLS의 개발 주체입니다."]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "슬라이드는 BF16 mul 56%, FP4 dot 21%, FP32 acc 10%의 building-block PPA 개선과 Matrix Unit 면적 10%, SIMD Unit 면적 8% 개선을 보고합니다.",
+      "source_url": "https://x.com/beffjezos/status/2092418951586390137",
+      "source_type": "S2",
+      "evidence_grade": "E1",
+      "version": "Hot Chips 2026 현장 슬라이드 사진, 2026-08-26 확인",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "두 번째 사진의 수치와 label을 직접 판독했습니다.",
+      "limitations": [
+        "56%, 21%, 10%는 PPA를 어떤 방식으로 산정했는지 공개되지 않았으므로 면적 개선으로 바꾸어 쓰지 않았습니다.",
+        "node, library, voltage·temperature·process corner, clock, baseline, signoff 단계가 공개되지 않았습니다.",
+        "독립 재현이 없는 OpenAI 발표 수치입니다."
+      ],
+      "conflict_of_interest": ["OpenAI는 수치의 보고 주체입니다."]
+    }
+  ],
+  "reproducibility_details": {
+    "status": "R1 방법 설명만 공개",
+    "public_artifacts": [
+      "Hot Chips 공식 일정",
+      "현장 슬라이드 사진 두 장",
+      "OpenAI Jalapeño 공식 기술 글",
+      "Google XLS 문서와 공개 저장소"
+    ],
+    "not_reproduced_by_editor": [
+      "OpenAI 내부 AI model과 prompt",
+      "XLS 내부 변경과 fast tooling",
+      "synthesis·place-and-route·signoff 실행",
+      "PPA 원 log와 실패 후보",
+      "Jalapeño RTL 또는 silicon 측정"
+    ]
+  },
+  "duplicate_check": {
+    "recent_articles_reviewed": [
+      {
+        "path": "content/ai/2026-08-26/article.md",
+        "title": "Jalapeño 첫 측정 공개 - 에이전트 추론에 맞춘 OpenAI 자체 칩",
+        "relation": "AI판 기사는 inference performance와 system architecture가 중심이고, 이번 EDA판은 workload에서 RTL·QoR·DV·PD로 이어지는 설계 개발 루프가 중심입니다."
+      },
+      {
+        "path": "content/eda/2026-08-13/article.md",
+        "title": "EDA 에이전트의 승부처는 더 큰 모델보다 ‘검증 가능한 피드백’일 수 있습니다",
+        "relation": "Cadence의 일반적인 feedback-loop 전략을 다룬 기사이고, 이번 기사는 OpenAI Jalapeño의 구체적인 workload·XLS·RTL·PPA 흐름과 공개 수치를 분석합니다."
+      },
+      {
+        "path": "content/eda/2026-08-23/article.md",
+        "title": "VPR-Evolve는 FPGA 배치배선 튜닝을 파라미터 선택에서 VPR 코드 수정으로 넓힙니다",
+        "relation": "FPGA CAD 도구의 source-code evolution 연구이며 ASIC inference chip의 hardware-description optimization과 다릅니다."
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
