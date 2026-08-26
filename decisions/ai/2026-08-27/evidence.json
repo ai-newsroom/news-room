@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-27",
+  "date": "2026-08-27",
+  "subject": "Qwen3.8-Flash-Next open-weight model, Hugging Face revision f5d08274bafd880402bd16f5e3e6c514136ec06c and QwenLM technical report, August 2026",
+  "central_claim": "Qwen3.8-Flash-Next is a publishable AI engineering topic because official model-card, Hugging Face artifact metadata, raw config, license and QwenLM technical-report URL support a bounded E2/R2 claim: Qwen has made a Qwen4-preview open-weight hybrid architecture inspectable, combining Gated DeltaNet, Qwen Sparse Attention, Gated Residual, MoE and n-gram embedding to target long-context agent workloads, while benchmark superiority remains vendor-authored and not independently reproduced in this turn.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "Qwen3.8-Flash-Next is a same-week official open-weight model release with public weights, config, license, model-card architecture details and a technical report URL. It gives engineers a concrete artifact for long-context agent serving decisions rather than only a vendor API announcement. The conclusion is bounded because training data, full training logs and independent benchmark reruns are not public, and the model was not executed in this turn."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "central": true,
+      "claim": "Qwen3.8-Flash-Next is an official, public, ungated Qwen open-weight release that exposes the Qwen4-preview hybrid architecture in model-card, config and repository artifacts; the publishable claim is about inspectable architecture and deployment implications for long-context agent workloads, not independently proven benchmark superiority.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/config.json",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-27-sequential/20260826T221137Z-1069651/request.json and used publication_id 2026-08-27 with article_path var/runs/ai/2026-08-27-sequential/20260826T221137Z-1069651/staged-content/article.md, evidence_path var/runs/ai/2026-08-27-sequential/20260826T221137Z-1069651/evidence.json and no_publish_path var/runs/ai/2026-08-27-sequential/20260826T221137Z-1069651/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "qwen-huggingface-model-card",
+        "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+        "classification": "P1/P2 source path",
+        "note": "Opened the official Qwen Hugging Face model card. It identifies Qwen3.8-Flash-Next as a public post-trained model with weights and configuration in Transformers format, describes Hybrid Attention with QSA, Gated Residual, n-gram embedding and tailored training recipe, and provides architecture, context-length, benchmark, serving and API usage details. Treated benchmark values as Qwen-authored."
+      },
+      {
+        "channel": "qwen-huggingface-file-tree",
+        "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/tree/main",
+        "classification": "P2 artifact path",
+        "note": "Opened the file tree. It showed a public repository with README, LICENSE, config.json, chat_template.jinja, generation_config.json and safetensors shards, with displayed repository size 360 GB and verified revision f5d0827 in the web UI."
+      },
+      {
+        "channel": "qwen-huggingface-api",
+        "url": "https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next",
+        "classification": "P2 artifact metadata",
+        "note": "Fetched Hugging Face model API. It returned id Qwen/Qwen3.8-Flash-Next, sha f5d08274bafd880402bd16f5e3e6c514136ec06c, createdAt 2026-08-24T08:24:59Z, lastModified 2026-08-26T12:29:54Z, private false, gated false, library_name transformers, pipeline_tag image-text-to-text, and 144 siblings."
+      },
+      {
+        "channel": "qwen-raw-config-and-license",
+        "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/config.json",
+        "classification": "P2 artifact path",
+        "note": "Fetched raw config.json and LICENSE. Config confirmed model_type qwen4_exp, architecture Qwen4ExpForConditionalGeneration and key attention/indexer fields visible in the model card. License confirmed Qwen Community License 1.0. Legal interpretation was not performed."
+      },
+      {
+        "channel": "qwen-github-technical-report",
+        "url": "https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf",
+        "classification": "P1 source path",
+        "note": "Opened the QwenLM GitHub technical-report path linked from the model card and checked GitHub API metadata for the repository. The main commit was 513aa6e18a335296fc13e538232a8735b230877d at 2026-08-26T13:05:07Z. The local environment lacked a PDF text extractor, so article facts from the report are limited to the URL, repository metadata and model-card citation, not unextracted PDF body text."
+      },
+      {
+        "channel": "zai-glm-5-3-flash",
+        "url": "https://docs.z.ai/release-notes/new-released",
+        "classification": "P1 alternative review",
+        "note": "Opened Z.AI release notes and GLM-5.3-Flash documentation path. The 2026-08-26 release note describes native visual capabilities, hybrid linear/sparse attention, 320B total parameters and 18B activated parameters for GLM-5.3-Flash. It was considered a same-day major model alternative but the public artifact surface found in this turn was narrower than Qwen's open-weight model-card/config/license/technical-report bundle."
+      },
+      {
+        "channel": "anthropic-official-review",
+        "url": "https://docs.anthropic.com/en/release-notes/overview",
+        "classification": "P1 discovery review",
+        "note": "Opened Anthropic release-note and model-documentation search results. Recent visible items included Claude app memory updates and older platform/model changes such as Sonnet 5 documentation. These were useful product signals but did not outrank same-week open-weight architecture evidence for this AI판 slot."
+      },
+      {
+        "channel": "google-openai-mistral-deepseek-runtime-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed official discovery paths for OpenAI API changelog, Google Gemini API changelog, Mistral changelog/news, DeepSeek GitHub and Hugging Face registries, vLLM releases and Hugging Face Transformers releases. No unhandled official item found in this pass exceeded Qwen3.8-Flash-Next on the combined score of novelty, verifiability and engineering decision utility."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results and third-party model trackers were used only to discover official Qwen, Z.AI, Anthropic, Google, OpenAI, Mistral, DeepSeek and runtime-library paths. No article fact or central scoring decision relies on search snippets, X posts or secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Qwen3.8-Flash-Next open-weight Qwen4-preview architecture",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it has public model weights, config, license, model-card architecture details, benchmark conditions and a linked technical report. The story changes engineering decisions for long-context agent serving while allowing an E2/R2 claim bounded to public artifacts."
+      },
+      {
+        "subject": "Z.AI GLM-5.3-Flash",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Same-day major model release with official release-note and documentation paths. Not selected because this turn found less public executable artifact evidence than Qwen3.8-Flash-Next, and several performance claims remained primarily vendor-written without accessible weights or independent reruns."
+      },
+      {
+        "subject": "Anthropic Claude app memory and sensitive-topic setting updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Recent official product change, but it is more application behavior and privacy control than model/API/runtime architecture. It did not meet the technical depth and E2 engineering-utility standard for this slot."
+      },
+      {
+        "subject": "Google Gemini API recent changelog",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Official changelog remains a reliable P1 source path, but no fresher unhandled Gemini model/API item was found that outranked the Qwen open-weight architecture release."
+      },
+      {
+        "subject": "OpenAI API/model release paths",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 4,
+        "decision": "not-selected",
+        "reason": "OpenAI changelog was checked as a frontier-lab source path. The most recent already-materialized AI판 work covered OpenAI Jalapeno for 2026-08-26, so this run did not select another OpenAI topic without a clearer new technical event."
+      },
+      {
+        "subject": "Mistral, DeepSeek, vLLM and Transformers release paths",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "These paths produced useful artifact-backed monitoring signals, but no single fresh release in this pass beat Qwen3.8-Flash-Next's combination of public weights, architecture detail and agent-serving relevance."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED",
+    "PUBLIC_ARTIFACTS_AVAILABLE",
+    "NO_LOCAL_MODEL_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-26T22:11:37Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-27 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official Qwen model card, Hugging Face API artifact metadata, raw config, raw license and QwenLM technical-report URL",
+      "central claims include at least two distinct primary/public source URLs",
+      "claim-source ledger records source type, evidence grade, version/date/commit, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions exactly: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-27 and decisions/ai/2026-08-27",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Qwen is the developer/operator of Qwen3.8-Flash-Next and authored the model card, benchmark table and technical-report citation used for architecture and performance-context claims.",
+    "Hugging Face hosts the model registry and artifact metadata used to verify public availability, revision and file list.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and secondary trackers were used only as discovery and duplication checks; article facts rely on opened official primary sources and public artifact metadata."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Qwen published Qwen3.8-Flash-Next as a public post-trained model with weights and configuration files in Hugging Face Transformers format and described it as an experimental preview of the architecture that will underpin Qwen4.",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Qwen/Qwen3.8-Flash-Next model card, accessed 2026-08-26; Hugging Face revision f5d08274bafd880402bd16f5e3e6c514136ec06c",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "Read official Qwen model card introduction and artifact note.",
+      "limitations": [
+        "Confirms Qwen's release framing and public artifact availability.",
+        "Does not independently validate benchmark superiority."
+      ],
+      "conflict_of_interest": [
+        "Qwen authored the model card for its own model."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Qwen3.8-Flash-Next combines Gated DeltaNet, Qwen Sparse Attention, Gated Residual, MoE and n-gram embedding; the model card lists 125B language-model parameters with 6B activated, plus 51B n-gram embedding and 4B MTP.",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Qwen/Qwen3.8-Flash-Next model card, Model Overview section",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "Read Highlights and Model Overview sections.",
+      "limitations": [
+        "Architecture and parameter details are vendor-authored.",
+        "Training data and complete training logs are not public."
+      ],
+      "conflict_of_interest": [
+        "Qwen developed the model."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The raw config identifies model_type qwen4_exp and architecture Qwen4ExpForConditionalGeneration, with visible attention/indexer fields matching the model-card architecture discussion.",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/config.json",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "config.json at Hugging Face revision f5d08274bafd880402bd16f5e3e6c514136ec06c",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "Fetched raw config.json and checked model_type, architectures and attention/indexer fields.",
+      "limitations": [
+        "Config verifies implementation metadata, not runtime behavior or quality.",
+        "The full model was not downloaded or executed."
+      ],
+      "conflict_of_interest": [
+        "Qwen maintains the artifact."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Hugging Face API reported Qwen/Qwen3.8-Flash-Next as public and ungated with sha f5d08274bafd880402bd16f5e3e6c514136ec06c, createdAt 2026-08-24T08:24:59Z, lastModified 2026-08-26T12:29:54Z, library_name transformers, pipeline_tag image-text-to-text and 144 sibling files.",
+      "source_url": "https://huggingface.co/api/models/Qwen/Qwen3.8-Flash-Next",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Hugging Face model API response accessed 2026-08-26",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "Fetched the public Hugging Face model API endpoint and recorded selected metadata fields.",
+      "limitations": [
+        "API metadata can change as the repository is updated.",
+        "Sibling file count does not prove every shard was downloaded successfully."
+      ],
+      "conflict_of_interest": [
+        "Hugging Face hosts the registry; Qwen controls the model repository."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Qwen Community License 1.0 grants broad use of model weights, parameters, config, inference code and documentation, while imposing attribution/display obligations for very large commercial products and limiting certain competing uses.",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/LICENSE",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Qwen Community License 1.0, copyright 2026 Qwen",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "Read raw LICENSE file for permission scope and visible conditions.",
+      "limitations": [
+        "This is not legal advice.",
+        "Article does not interpret enforceability or jurisdiction-specific obligations."
+      ],
+      "conflict_of_interest": [
+        "Qwen sets the license terms for its model."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "The Qwen3.8-Flash-Next model card reports 262,144 native context length and extension up to 1,000,000 tokens, and provides OpenAI-compatible Chat Completions examples with enable_thinking, preserve_thinking and reasoning_effort controls.",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Qwen/Qwen3.8-Flash-Next model card, Quickstart and API Usage sections",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "Read Model Overview and Quickstart/API Usage sections.",
+      "limitations": [
+        "The 1M-token behavior was not reproduced.",
+        "Framework support varies by serving engine and version."
+      ],
+      "conflict_of_interest": [
+        "Qwen authored the usage recommendations."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "Qwen's benchmark table includes language and vision-language results and footnotes that specify harnesses, context windows, judge model usage and manual ground-truth correction for some tasks.",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Qwen/Qwen3.8-Flash-Next model card, Benchmark Results section",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "Read benchmark table and footnotes available in the model card.",
+      "limitations": [
+        "Benchmark values are vendor-authored and not independently rerun in this turn.",
+        "Some benchmark conditions include external harnesses and judge models."
+      ],
+      "conflict_of_interest": [
+        "Qwen reports performance for its own model."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "The QwenLM/Qwen3.8-Flash-Next GitHub repository contains the linked technical_report.pdf, and the repository main commit observed in this turn was 513aa6e18a335296fc13e538232a8735b230877d dated 2026-08-26T13:05:07Z.",
+      "source_url": "https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "QwenLM/Qwen3.8-Flash-Next main commit 513aa6e18a335296fc13e538232a8735b230877d",
+      "accessed_at": "2026-08-26",
+      "direct_or_derived": "direct",
+      "method": "Opened GitHub technical-report URL and fetched GitHub commit metadata for repository main.",
+      "limitations": [
+        "The local environment lacked pdftotext or a PDF parser, so unextracted PDF body text was not used as article fact.",
+        "GitHub main branch may move after access."
+      ],
+      "conflict_of_interest": [
+        "QwenLM maintains the repository."
+      ]
+    }
+  ],
+  "style_contracts": {
+    "korean_writing": "korean-writing-baseline-v1",
+    "style_contract": "ai-technical-blog-v2",
+    "notes": [
+      "Article starts with what changed, why it matters for long-context agent workloads and who should care.",
+      "Title, summary and lead describe the technology and bottleneck before version/license caveats.",
+      "Benchmark and license caveats are included near relevant claims and in the ledger without dominating the article."
+    ]
+  }
+}
