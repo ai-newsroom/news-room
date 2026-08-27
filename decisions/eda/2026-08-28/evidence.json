@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-28",
+  "date": "2026-08-28",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-28-sequential/20260827T221858Z-1082081/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-08-28-sequential/20260827T221858Z-1082081/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-08-28-sequential/20260827T221858Z-1082081/no-publish.json",
+  "subject": "CODA-Team TaiWei-Pin-3D public 3D physical-design flow at commit c85b79352eefc31a588da3ef873e4fd68a3df3f2 and RosettaStone 2.0 ISPD 2026 paper",
+  "title": "TaiWei-Pin-3D는 3D IC 연구를 논문 그림에서 실행 가능한 물리설계 flow로 옮깁니다",
+  "summary": "TaiWei-Pin-3D는 face-to-face 3D IC 구현을 위해 OpenROAD 계열 flow와 Cadence flow에 3D stage, tier별 library view, split-net, staged CTS, 결과 JSON을 붙인 공개 저장소입니다. 논문과 코드가 함께 공개돼 연구자는 실행 경로를 볼 수 있지만, 일부 평가는 Cadence 도구와 상용 도구 허가에 걸려 완전한 공개 재현은 제한됩니다.",
+  "central_claim": "TaiWei-Pin-3D와 RosettaStone 2.0은 face-to-face 3D IC 물리설계 연구를 논문별 맞춤 실험에서 stage-managed RTL-to-GDS flow와 공개 artifact가 있는 비교 경로로 옮겼습니다.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2601.17520",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/CODA-Team/TaiWei-Pin-3D",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/README.md",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/DOC/openroad_3d_cooptimization_strategy.md",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/test/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://api.github.com/repos/CODA-Team/TaiWei-Pin-3D/commits/main",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "TaiWei-Pin-3D와 RosettaStone 2.0 논문 저자는 flow와 결과의 당사자입니다. 저장소는 Cadence와 Synopsys가 학술 연구 범위에서 일부 저작권 자료 발췌 사용을 허용했다고 밝힙니다. 이 기사에는 사전 briefing, 제공받은 account·credit·license·hardware, 후원, 광고, NDA 또는 embargo가 없었습니다."
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 2,
+    "total": 10,
+    "threshold": 7,
+    "rationale": "3D IC physical design 연구의 비교 단위를 논문별 그림과 결과표에서 공개 stage, handoff, platform, test wrapper, known issue가 있는 flow로 옮기는 변화입니다. 논문은 방법과 benchmark backplane을 설명하고, 공개 저장소는 commit, 실행 진입점, stage graph, OpenROAD/Cadence 평가 계약과 제한을 확인하게 합니다."
+  },
+  "selection": {
+    "total": 10,
+    "threshold": 7
+  },
+  "source_urls": [
+    "https://arxiv.org/abs/2601.17520",
+    "https://arxiv.org/html/2601.17520v1",
+    "https://dl.acm.org/doi/10.1145/3764386.3779611",
+    "https://github.com/ieee-ceda-datc/ORFS-Research",
+    "https://raw.githubusercontent.com/ieee-ceda-datc/ORFS-Research/master/README.md",
+    "https://github.com/CODA-Team/TaiWei-Pin-3D",
+    "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/README.md",
+    "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/DOC/openroad_3d_cooptimization_strategy.md",
+    "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/test/README.md",
+    "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/DOC/issue.md",
+    "https://api.github.com/repos/CODA-Team/TaiWei-Pin-3D/commits/main"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "RosettaStone 2.0 논문은 2D와 Pin-3D face-to-face 3D 설계를 같은 OpenROAD-Research·ORFS-Research 기반 평가 backplane에서 비교하려는 방법을 제시했습니다.",
+      "source_url": "https://arxiv.org/abs/2601.17520",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2601.17520v1, submitted 2026-01-24; ACM DOI 10.1145/3764386.3779611",
+      "accessed_at": "2026-08-27",
+      "direct_or_derived": "direct",
+      "method": "논문 초록과 HTML 전문에서 RosettaStone 2.0, OpenROAD-Research, ORFS-Research, Pin-3D F2F 3D reference flow, METRICS2.1, CI regression 설명을 확인했습니다.",
+      "limitations": [
+        "arXiv 판은 동료심사 최종본과 다를 수 있습니다.",
+        "논문 결과를 편집국이 재실행하지 않았습니다.",
+        "논문의 모든 실험 artifact가 논문 안에 포함된 것은 아닙니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자는 방법과 결과의 보고 주체입니다."
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "TaiWei-Pin-3D 저장소는 RosettaStone 2.0 논문에서 말한 Pin-3D-style 3D flow를 코드, 문서, platform, test wrapper로 공개합니다.",
+      "source_url": "https://github.com/CODA-Team/TaiWei-Pin-3D",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main at c85b79352eefc31a588da3ef873e4fd68a3df3f2",
+      "accessed_at": "2026-08-27",
+      "direct_or_derived": "direct",
+      "method": "저장소 파일 목록, README, raw 문서, GitHub commit API를 확인했습니다.",
+      "limitations": [
+        "코드를 clone하거나 flow를 실행하지 않았습니다.",
+        "상용 Cadence 경로는 license와 설치 환경이 필요합니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 flow 공개와 결과의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "TaiWei-Pin-3D는 OpenROAD 계열 flow와 Cadence flow를 대상으로 3D floorplan, IO, split-net, tier별 placement, staged CTS, route, final report를 공개 stage로 둡니다.",
+      "source_url": "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "README on main, accessed 2026-08-27",
+      "accessed_at": "2026-08-27",
+      "direct_or_derived": "direct",
+      "method": "README의 supported tools, quick start, implementation flow, stage-by-stage table을 확인했습니다.",
+      "limitations": [
+        "README의 예제는 실행 안내이며 실제 실행 성공을 편집국이 확인한 로그가 아닙니다.",
+        "Cadence tool suite가 필요한 예제가 포함됩니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 flow 공개와 결과의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "이 flow는 HBT를 확장된 metal stack의 via처럼 모델링하고, tier-specific library view와 COVER view로 기존 2D 엔진을 3D-aware하게 사용합니다.",
+      "source_url": "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "README on main, accessed 2026-08-27",
+      "accessed_at": "2026-08-27",
+      "direct_or_derived": "direct",
+      "method": "README의 'What Is Unique In This 3D Flow'와 enablement 설명을 확인했습니다.",
+      "limitations": [
+        "이 추상화가 실제 silicon signoff 정확도와 일치한다는 독립 검증은 없습니다.",
+        "대표 PDK enablement는 연구용 조건입니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 flow 공개와 결과의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "저장소는 mixed-fanout net과 cross-tier net을 구분하고, split-net stage에서 tier utilization, HBT proxy, buffer area를 함께 보는 비용식을 사용합니다.",
+      "source_url": "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/DOC/issue.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Known issue document on main, accessed 2026-08-27",
+      "accessed_at": "2026-08-27",
+      "direct_or_derived": "direct",
+      "method": "issue 문서의 split-buffer tier selection fix와 remaining limitations를 README·strategy 문서의 mixed_fanout/cross-tier 설명과 대조했습니다.",
+      "limitations": [
+        "비용식은 final routed HBT count나 congestion을 예측하지 않습니다.",
+        "global tier utilization은 근사치입니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 flow 공개와 결과의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "2026년 8월 11일 최신 commit은 3D routing layer 정렬을 위해 ASAP7/Nangate45 기반 platform의 routing layer, RCX rule, LEF layer 정의를 조정했습니다.",
+      "source_url": "https://api.github.com/repos/CODA-Team/TaiWei-Pin-3D/commits/main",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "commit c85b79352eefc31a588da3ef873e4fd68a3df3f2, 2026-08-11T21:09:40Z",
+      "accessed_at": "2026-08-27",
+      "direct_or_derived": "direct",
+      "method": "GitHub API의 commit message, 날짜, 변경 파일, diff patch를 확인했습니다.",
+      "limitations": [
+        "commit은 unsigned로 표시됩니다.",
+        "QoR, DRC, runtime 개선 효과를 편집국이 재현하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "commit 작성자는 저장소 유지관리자입니다."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "공개 재현성은 논문만 있는 경우보다 높지만, Cadence Innovus/Genus와 일부 저작권 자료 사용 조건 때문에 모든 평가를 완전 공개 환경에서 반복할 수는 없습니다.",
+      "source_url": "https://raw.githubusercontent.com/CODA-Team/TaiWei-Pin-3D/main/test/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Test Script Guide on main, accessed 2026-08-27",
+      "accessed_at": "2026-08-27",
+      "direct_or_derived": "direct",
+      "method": "test README의 run_case, run_stage, eval_case, internal CI contract와 README의 supported tools·copyright notice를 확인했습니다.",
+      "limitations": [
+        "상용 도구 license와 PDK 사용권이 없으면 전체 평가 계약을 재현할 수 없습니다.",
+        "편집국은 명령을 실행하지 않고 공개 문서와 code surface만 검토했습니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence와 Synopsys는 일부 자료 사용 허가와 commercial flow 이해관계를 가질 수 있습니다."
+      ]
+    }
+  ],
+  "reproducibility_details": {
+    "status": "R2 실행 가능한 공개 코드·문서가 있으나 전체 평가에는 상용 도구 조건이 포함됩니다.",
+    "public_artifacts": [
+      "RosettaStone 2.0 arXiv paper and ACM DOI page",
+      "CODA-Team/TaiWei-Pin-3D GitHub repository",
+      "README with supported commits and quick-start commands",
+      "OpenROAD 3D strategy document",
+      "test wrappers for full case, single stage, evaluation, and internal CI",
+      "known issue document",
+      "GitHub commit API for c85b79352eefc31a588da3ef873e4fd68a3df3f2"
+    ],
+    "not_reproduced_by_editor": [
+      "OpenROAD or Cadence full 3D flow execution",
+      "GCD, IBEX, SWERV, ariane133 case results",
+      "QoR, runtime, DRC, HBT count and thermal output",
+      "Cadence Innovus v21.39 and Genus v21.39 runs",
+      "Commercial license and PDK access checks"
+    ]
+  },
+  "duplicate_check": {
+    "recent_articles_reviewed": [
+      {
+        "path": "content/eda/2026-08-13/article.md",
+        "title": "EDA 에이전트의 승부처는 더 큰 모델보다 ‘검증 가능한 피드백’일 수 있습니다",
+        "subject": "Cadence의 EDA agent feedback loop 전략과 공개 연구",
+        "relation": "AI agent feedback loop 기사이며 3D IC physical design benchmark flow와 다릅니다."
+      },
+      {
+        "path": "content/eda/2026-08-14/article.md",
+        "title": "ACE-RTL 공개는 EDA 에이전트 평가를 말솜씨에서 실행 로그로 옮깁니다",
+        "subject": "NVIDIA ACE-RTL 공개 코드와 CVDP 1.1.0 benchmark 실행 경로",
+        "relation": "RTL agent evaluation benchmark 기사이며 physical design 3D flow와 다릅니다."
+      },
+      {
+        "path": "content/eda/2026-08-19/article.md",
+        "title": "HighTide는 VLSI benchmark를 정적 RTL 묶음에서 실행 가능한 RTL-to-GDS flow로 바꿉니다",
+        "subject": "VLSIDA HighTide open-source VLSI benchmark suite와 Bazel 기반 OpenROAD RTL-to-GDS 실행 경로",
+        "relation": "실행 가능한 RTL-to-GDS benchmark라는 문제의식은 비슷하지만, HighTide는 일반 VLSI benchmark suite이고 이번 주제는 face-to-face 3D IC flow와 HBT·tier-aware stage가 중심입니다."
+      },
+      {
+        "path": "content/eda/2026-08-23/article.md",
+        "title": "VPR-Evolve는 FPGA 배치배선 튜닝을 파라미터 선택에서 VPR 코드 수정으로 넓힙니다",
+        "subject": "VPR-Evolve arXiv 2607.24998v1과 ASU-VDA-Lab/VPR-Evolve 공개 저장소",
+        "relation": "FPGA CAD code evolution 연구이며 3D IC physical-design benchmark flow와 다릅니다."
+      },
+      {
+        "path": "content/eda/2026-08-26/article.md",
+        "title": "Jalapeño 설계 루프 공개 - AI가 칩 설계의 반복 시간을 줄였다",
+        "subject": "OpenAI Jalapeño AI-assisted hardware design loop presented at Hot Chips 2026",
+        "relation": "AI-assisted chip design loop 기사이며 3D IC physical design artifact와 다릅니다."
+      }
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "Semiconductor Engineering EDA page listed multiple August 27, 2026 EDA/AI posts, including Cadence/TSMC, ChipAgents, Keysight and Synopsys contributed material.",
+        "source_url": "https://semiengineering.com/knowledge_centers/eda-design/",
+        "outcome": "Used as discovery only. Most posts were vendor bylines or white papers without public execution artifacts, so they were not used as central evidence."
+      },
+      {
+        "signal": "Search found Accellera CDC/RDC Standard 1.0 release and public press release.",
+        "source_url": "https://www.accellera.org/news/press-releases/427-accellera-approves-clock-and-reset-domain-crossing-standard-1-0-for-release",
+        "outcome": "Credible standard topic, but March 2026 release and not a stronger daily candidate than a code-backed 3D physical-design flow."
+      },
+      {
+        "signal": "Search found RosettaStone 2.0 ISPD 2026 paper and CODA-Team TaiWei-Pin-3D repository with active August 2026 commits.",
+        "source_url": "https://arxiv.org/abs/2601.17520",
+        "outcome": "Selected because P1 paper plus P2 repository provide different HTTPS originals for the central analysis."
+      },
+      {
+        "signal": "OpenROAD-flow-scripts recent commits showed active public flow work in August 2026.",
+        "source_url": "https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/commits",
+        "outcome": "Reviewed as ecosystem context. Recent commits were incremental and not selected as standalone article."
+      }
+    ],
+    "alternatives": [
+      {
+        "candidate": "ChipAgents timing-closure and multi-agent orchestration blog series",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "source_urls": [
+          "https://chipagents.ai/blogs/ai-agent-driven-timing-closure",
+          "https://chipagents.ai/blogs/multi-agent-orchestration-ic-design-autonomy"
+        ],
+        "reason_not_selected": "Agentic EDA flow 방향은 흥미롭지만 공개 benchmark, release note, manual, code artifact가 없어 중심 주장을 E2로 올릴 수 없습니다."
+      },
+      {
+        "candidate": "Cadence and TSMC advanced-node AI silicon design white paper",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "source_urls": [
+          "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/how-cadence-and-tsmc-are-accelerating-ai-silicon-design-at-advanced-nodes",
+          "https://semiengineering.com/how-cadence-and-tsmc-are-accelerating-ai-silicon-design-at-advanced-nodes/"
+        ],
+        "reason_not_selected": "Cadence byline와 재게시 자료 중심입니다. 공개 release note, support matrix, 독립 benchmark가 없어 vendor claim 이상으로 확장하기 어렵습니다."
+      },
+      {
+        "candidate": "Synopsys hardware-assisted verification white paper",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 2
+        },
+        "source_urls": [
+          "https://www.synopsys.com/verification/resources/whitepapers/scaling-modern-complexity-hav-wp.html"
+        ],
+        "reason_not_selected": "일반 white paper 성격이 강하고, 이번 날짜의 구체 release나 실행 artifact가 확인되지 않았습니다."
+      },
+      {
+        "candidate": "Accellera CDC/RDC Standard 1.0",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 8
+        },
+        "source_urls": [
+          "https://www.accellera.org/news/press-releases/427-accellera-approves-clock-and-reset-domain-crossing-standard-1-0-for-release"
+        ],
+        "reason_not_selected": "기준점은 넘을 수 있지만 이 실행에서 표준 전문과 구현 artifact까지 충분히 확인하지 못했습니다. 또한 발표일이 2026-03-02라 최신성은 TaiWei-Pin-3D의 2026-08-11 code update보다 약했습니다."
+      },
+      {
+        "candidate": "OpenROAD-flow-scripts August 2026 commits",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 7
+        },
+        "source_urls": [
+          "https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/commits"
+        ],
+        "reason_not_selected": "개별 commit이 작은 유지보수 성격이어서 독립 기사로 설명할 설계 flow 변화가 TaiWei-Pin-3D보다 약했습니다."
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
