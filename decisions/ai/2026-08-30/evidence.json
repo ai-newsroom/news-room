@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-30",
+  "date": "2026-08-30",
+  "subject": "Google Gemini Omni 1.1 Flash, Gemini API model gemini-omni-1.1-flash, August 27 2026",
+  "central_claim": "Gemini Omni 1.1 Flash is a publishable AI engineering topic because official Google release notes, the Gemini API changelog, the model card, the model page and developer documentation support a bounded E2/R1 claim: Google has moved video generation toward an iterative API workflow with video extension, first-and-last-frame interpolation, resolution control and Interactions API state handling, while quality, speed and cost superiority remain vendor-authored and were not independently reproduced in this turn.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "Gemini Omni 1.1 Flash is a fresh 2026-08-27 generally available model release with multiple official primary documents. It changes engineering decisions for teams adding generated video to products because the public API surface now includes interaction state, extension, interpolation, file delivery and resolution choices. The conclusion is bounded because this turn did not call the API, generate videos, inspect internal weights or independently measure quality, speed or cost."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "Google released Gemini Omni 1.1 Flash as a GA Gemini API model that changes developer integration from one-shot video generation toward iterative video editing workflows through Interactions API state, video extension, first-and-last-frame interpolation and resolution control; the publishable claim is about documented API and model behavior, not independently proven video quality, speed or cost superiority.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/",
+          "source_grade": "P0"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/changelog",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/omni",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-08-30-sequential/20260829T220744Z-1097352/request.json and used publication_id 2026-08-30 with article_path var/runs/ai/2026-08-30-sequential/20260829T220744Z-1097352/staged-content/article.md, evidence_path var/runs/ai/2026-08-30-sequential/20260829T220744Z-1097352/evidence.json and no_publish_path var/runs/ai/2026-08-30-sequential/20260829T220744Z-1097352/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "google-deepmind-blog",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/",
+        "classification": "P0 source path",
+        "note": "Opened Google's 2026-08-27 Gemini Omni 1.1 Flash announcement. It described scene extension up to 40 seconds, first-and-last-frame control, 360p preview, 4K upscaling, Google AI Studio and Gemini Enterprise Agent Platform availability, and Google Flow/Gemini app availability. Used for announcement facts and feature discovery, not independent performance proof."
+      },
+      {
+        "channel": "gemini-api-changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 source path",
+        "note": "Opened Gemini API release notes. The 2026-08-27 entry confirms GA release of gemini-omni-1.1-flash, video extension, interpolation, resolution parameter values 360p/720p/1080p/4k, and deprecation of gemini-omni-flash-preview on 2026-09-30. Also reviewed nearby 2026-08-26 Gemini 3.5 Transcribe and 2026-08-13 Gemini 3.7 Flash entries as same-month alternatives."
+      },
+      {
+        "channel": "google-deepmind-model-card",
+        "url": "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+        "classification": "P1 source path",
+        "note": "Opened the Gemini Omni Flash model card updated/published 2026-08-27. It describes Gemini Omni Flash and Gemini Omni 1.1 Flash, lists text/image/audio/video inputs and video-with-audio output, native multimodal transformer architecture, training data categories, TPU/JAX/ML Pathways implementation context, known limitations around consistency, complex motion and text rendering, and speech-editing restrictions."
+      },
+      {
+        "channel": "gemini-api-model-page",
+        "url": "https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash",
+        "classification": "P1 source path",
+        "note": "Opened the model page. It confirms model code gemini-omni-1.1-flash, supported data types for input text/image/video up to 10 seconds for editing and extension, output video, 1,048,576 token context window, 3-10 second output video at 360p/720p/1080p/4K and 24 FPS, stable/preview model names, August 2026 latest update and last updated 2026-08-27 UTC."
+      },
+      {
+        "channel": "gemini-omni-developer-guide",
+        "url": "https://ai.google.dev/gemini-api/docs/omni",
+        "classification": "P1 source path",
+        "note": "Opened the Omni developer guide. It documents text-to-video, image-to-video, first-and-last-frame interpolation, video editing, response_format resolution control, Interactions API response structure, URI delivery for videos larger than 4MB, File API upload/polling and Python/JavaScript/REST examples. Treated as implementation documentation but not as proof that the examples were executed in this turn."
+      },
+      {
+        "channel": "google-gemini-3-7-flash-review",
+        "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash/",
+        "classification": "P0/P1 alternative review",
+        "note": "Opened Google DeepMind's 2026-08-13 Gemini 3.7 Flash announcement and related changelog/model-card paths. It is a major coding and agent model release with engineering relevance, but it was older than the 2026-08-27 Omni GA and centered on Google-authored benchmark claims. Omni 1.1 had a fresher API workflow change with clearer developer integration details."
+      },
+      {
+        "channel": "google-transcribe-review",
+        "url": "https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/",
+        "classification": "P0/P1 alternative review",
+        "note": "Opened the 2026-08-26 Gemini 3.5 Transcribe announcement and Gemini API changelog entry. It is relevant for speech-to-text products, including live transcription and custom vocabulary, but the editorial utility was narrower than Omni 1.1's multimodal video workflow shift."
+      },
+      {
+        "channel": "openai-official-review",
+        "url": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/",
+        "classification": "P0 alternative review",
+        "note": "Reviewed OpenAI official news paths around 2026-08-28, including the Cursor contract wind-down post, the Hugging Face incident post, GPT-5.6 Sol materials and API/changelog paths. These were important company, safety or access signals, but this pass did not find a fresher non-duplicate model/API/runtime artifact topic with stronger E2 engineering utility than Gemini Omni 1.1 Flash."
+      },
+      {
+        "channel": "anthropic-official-review",
+        "url": "https://www.anthropic.com/news",
+        "classification": "P0/P1 discovery review",
+        "note": "Reviewed Anthropic official news and release-note signals, including Claude's text watermark explanation, Claude Opus 5/Sonnet 5, Claude Code/web/browser-related product signals and system-card paths. Recent visible items were product or policy heavy and did not provide a stronger same-day E2 technical implementation story."
+      },
+      {
+        "channel": "qwen-deepseek-mistral-registry-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed Qwen blog and Hugging Face registry paths, DeepSeek GitHub/Hugging Face official paths and Mistral changelog. Qwen and Z.ai open-weight releases were already used by the 2026-08-27 and 2026-08-29 AI edition candidates, so this run avoided repeating those central claims. DeepSeek and Mistral paths did not surface a fresher official model/API/runtime item that beat the selected Google candidate."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results and secondary snippets were used only to discover official Google, OpenAI, Anthropic, Qwen, DeepSeek, Mistral and runtime-library paths. No article fact or central scoring decision relies on search snippets, social posts, community discussions or third-party summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Gemini Omni 1.1 Flash GA video generation and editing API",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is a fresh 2026-08-27 official GA release with multiple primary documents and concrete API behavior. It changes developer decisions around generated video products by exposing extension, interpolation, resolution control, File API delivery and interaction state rather than only benchmark or demo claims."
+      },
+      {
+        "subject": "Gemini 3.7 Flash GA coding and agent model",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Major model announcement with strong software-engineering relevance, but it was published on 2026-08-13 and the most newsworthy claims relied heavily on Google-authored benchmark comparisons. Omni 1.1 was fresher and exposed a more concrete API workflow change for product developers."
+      },
+      {
+        "subject": "Gemini 3.5 Transcribe GA speech-to-text models",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Fresh 2026-08-26 GA release with clear API utility for transcription products. Not selected because its workflow change is narrower than Omni 1.1's generated-video editing and delivery surface, and the selected candidate was the newer same-week model release."
+      },
+      {
+        "subject": "OpenAI Cursor contract wind-down after SpaceX acquisition",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Important access and developer-tool ecosystem signal, but primarily a business and availability decision rather than a model/API technical change. It did not provide the E2 technical implementation surface required for an AI판 technical article."
+      },
+      {
+        "subject": "OpenAI Hugging Face incident and cyber-critical pacing posts",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Important safety and governance signal with frontier-model implications. Not selected because public artifacts were mostly OpenAI narrative and safety framing, while the selected Google topic had more direct primary implementation documentation for engineers."
+      },
+      {
+        "subject": "Anthropic Claude watermark, browser, Claude Code and model-card signals",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Official paths showed relevant product and policy updates, but this pass did not find a fresh technical release with two primary implementation sources and stronger engineering utility than Gemini Omni 1.1 Flash."
+      },
+      {
+        "subject": "Qwen, Z.ai, DeepSeek and Mistral official model/release paths",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Registry-first and non-US provider paths were reviewed. Qwen3.8-Flash-Next and GLM-5.3-Flash were already covered by immediately preceding AI edition candidates, while DeepSeek and Mistral did not surface a fresher non-duplicate official announcement with higher total utility."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED",
+    "DOCUMENTED_API_SURFACE_AVAILABLE",
+    "NO_LOCAL_API_EXECUTION"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-29T22:07:44Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-08-30 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official Google announcement, Gemini API changelog, Google DeepMind model card, Gemini API model page and Omni developer guide",
+      "central claims include at least two distinct primary/public source URLs",
+      "claim-source ledger records source type, evidence grade, version/date/model ID, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions exactly: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-08-30 and decisions/ai/2026-08-30",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Google DeepMind and Google AI for Developers are the developer/provider and authored the announcement, changelog, model card, model page and developer documentation used in this article.",
+    "No vendor briefing, free account, API credits, hardware, sponsorship, advertising relationship, NDA or embargo was used."
+  ],
+  "reproducibility_notes": {
+    "status": "R1",
+    "reason": "The API call shapes, model ID, supported inputs/outputs, delivery options and limitations are documented, but this turn did not use an API key, paid quota or generated video output. Model weights, training logs and independent benchmark scripts are not public.",
+    "not_performed": [
+      "API execution",
+      "video generation or editing",
+      "latency, throughput or cost measurement",
+      "independent quality comparison"
+    ]
+  },
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Google released gemini-omni-1.1-flash as a GA Gemini API model on 2026-08-27 and plans to deprecate gemini-omni-flash-preview on 2026-09-30.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini API changelog entry dated 2026-08-27; model id gemini-omni-1.1-flash",
+      "accessed_at": "2026-08-29",
+      "direct_or_derived": "direct",
+      "method": "Opened official Gemini API release notes and used the dated release entry.",
+      "limitations": [
+        "Provider-authored release note",
+        "Account-level availability was not tested"
+      ],
+      "conflict_of_interest": [
+        "Google provides the Gemini API and authored the changelog"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Gemini Omni 1.1 Flash supports video extension, first-and-last-frame interpolation and resolution control for 360p, 720p, 1080p and 4K outputs.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini API changelog entry dated 2026-08-27",
+      "accessed_at": "2026-08-29",
+      "direct_or_derived": "direct",
+      "method": "Matched changelog feature list with Omni developer documentation.",
+      "limitations": [
+        "1080p and 4K are described as upscaled outputs",
+        "Feature availability was not tested through an account"
+      ],
+      "conflict_of_interest": [
+        "Google authored the release notes"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The Omni developer guide documents Interactions API calls, video output retrieval, URI delivery and File API polling for generated or edited video.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/omni",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Omni developer guide for gemini-omni-1.1-flash, accessed 2026-08-29",
+      "accessed_at": "2026-08-29",
+      "direct_or_derived": "direct",
+      "method": "Opened official developer guide and reviewed Python, JavaScript and REST examples plus URI delivery section.",
+      "limitations": [
+        "Code examples were not executed",
+        "No generated video artifact or latency log was captured"
+      ],
+      "conflict_of_interest": [
+        "Google authored the developer documentation"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The Gemini API model page lists gemini-omni-1.1-flash as the stable model, with text/image/video inputs up to 10 seconds for editing and extension, video output, a 1,048,576-token context window and 3-10 second video output at 24 FPS.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini Omni Flash model page, last updated 2026-08-27 UTC",
+      "accessed_at": "2026-08-29",
+      "direct_or_derived": "direct",
+      "method": "Opened official model page and recorded the model property table.",
+      "limitations": [
+        "Audio support is described more broadly in the model card than in the model-page property table",
+        "Runtime limits may vary by account or platform"
+      ],
+      "conflict_of_interest": [
+        "Google authored the model page"
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Google DeepMind's model card describes Gemini Omni Flash and Gemini Omni 1.1 Flash as a native multimodal transformer-based model trained on audio, video, image and text data.",
+      "source_url": "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini Omni Flash model card, published 2026-08-27 and last updated August 2026",
+      "accessed_at": "2026-08-29",
+      "direct_or_derived": "direct",
+      "method": "Opened official model card and recorded model description, input/output, architecture and training data sections.",
+      "limitations": [
+        "Training data sources, weights and training logs are not public",
+        "The card is provider-authored and may be updated"
+      ],
+      "conflict_of_interest": [
+        "Google DeepMind authored the model card"
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "The model card states that consistency through edits, complex motion and accurate text rendering remain challenges, and that speech-changing capability is restricted while Google studies safer release.",
+      "source_url": "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini Omni Flash model card, published 2026-08-27 and last updated August 2026",
+      "accessed_at": "2026-08-29",
+      "direct_or_derived": "direct",
+      "method": "Opened official model card and recorded known limitations and ethics/content safety sections.",
+      "limitations": [
+        "Policy enforcement details and exact product restrictions are not fully reproducible from the public card",
+        "No red-team logs were independently inspected"
+      ],
+      "conflict_of_interest": [
+        "Google DeepMind authored the model card"
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "The claim that 360p previews are up to 60% faster and one-third the cost of 720p is a Google-authored throughput and pricing statement, not an independently reproduced benchmark.",
+      "source_url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/",
+      "source_type": "P0",
+      "evidence_grade": "E1",
+      "version": "Google announcement dated 2026-08-27",
+      "accessed_at": "2026-08-29",
+      "direct_or_derived": "direct",
+      "method": "Recorded the announcement's footnoted speed/cost statement and limited article use to vendor-authored context.",
+      "limitations": [
+        "No independent latency or cost measurement",
+        "Throughput baseline and workload distribution are not fully described in public"
+      ],
+      "conflict_of_interest": [
+        "Google authored the announcement and provides the model"
+      ]
+    }
+  ]
+}
