@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-31",
+  "decision": "no-publish",
+  "reason": "2026-08-30T22:11Z 실행 기준으로 최근 공식 AI 모델·API·개발도구·runtime 원문과 registry-first 경로를 조사했지만, 중복이 아닌 새 주제 중 선정 총점 7 이상, 중심 주장 E2 이상, 서로 다른 원문 URL 최소 2개를 동시에 충족하는 후보를 찾지 못했습니다. Qwen3.8-Flash-Next, OpenAI-Hugging Face incident 기술 보고서, GLM-5.3-Flash, Gemini Omni 1.1 Flash는 모두 강한 후보였지만 2026-08-27부터 2026-08-30까지의 AI판 후보 또는 결정으로 이미 처리됐습니다. Anthropic Model Hardware Standard research preview, OpenAI Cursor 계약 종료, Anthropic Claude Code on the web 관련 product surface, Hugging Face Transformers v5.16.1, vLLM v0.27.x, PyTorch 2.13.0, Mistral changelog는 공식 원문으로 확인했지만 이번 정규 AI판에서 새 E2 기술 중심 기사로 승격하기에는 공개 artifact, 새로움, 중복 회피 또는 독자 의사결정 유용성이 부족했습니다.",
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "execution-request-and-canonical-documents",
+        "classification": "run contract",
+        "note": "Read var/runs/ai/2026-08-31-sequential/20260830T221122Z-1106538/request.json and used publication_id 2026-08-31 with the specified no_publish_path. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before deciding."
+      },
+      {
+        "channel": "official-frontier-lab-and-model-registry-review",
+        "classification": "S2 discovery to P1/P2 source paths",
+        "note": "Searched and opened official or registry-first paths for OpenAI, Anthropic, Google Gemini, Qwen, DeepSeek, Mistral, Hugging Face Transformers, vLLM and PyTorch. Search snippets and X-like social signals were used only to find possible primary sources; no article fact was promoted without opened official release notes, model cards, GitHub releases, raw repository files, model registry pages or documentation."
+      },
+      {
+        "channel": "qwen-registry-and-runtime-paths",
+        "classification": "P1/P2 source path",
+        "note": "Opened Qwen3.8-Flash-Next official Hugging Face model card, raw QwenLM README, QwenCloud model page, Qwen3.8 GitHub overview, vLLM recipe and SGLang cookbook. These sources verify public weights, Qwen4-preview architecture, 125B main model plus 51B n-gram embeddings, 6B active parameters, 262K native context, API controls and serving constraints, but the same architecture topic was already selected for 2026-08-27."
+      },
+      {
+        "channel": "google-gemini-api-paths",
+        "classification": "P1 source path",
+        "note": "Opened the Gemini API changelog. The latest visible substantial model item was Gemini Omni 1.1 Flash GA on 2026-08-27, with video extension, interpolation, resolution control and preview endpoint deprecation. The topic was already staged for the 2026-08-30 AI판 run."
+      },
+      {
+        "channel": "openai-safety-and-product-paths",
+        "classification": "P1/I1 source path",
+        "note": "Opened OpenAI's 2026-08-26 Hugging Face incident post and reviewed GPT-5.6-related official paths. The incident post links the technical report and METR/Redwood report and is important for agent containment, but it was already selected for the 2026-08-28 AI판. OpenAI's 2026-08-28 Cursor contract wind-down and company items were product or access signals, not a fresh model/API/runtime technical release with E2 engineering depth."
+      },
+      {
+        "channel": "anthropic-product-and-research-paths",
+        "classification": "P0/P1 source path",
+        "note": "Opened Anthropic's Model Hardware Standard research preview, Anthropic release notes and Claude Code on the web page. MHS describes a driver/specification preview for AI agents operating physical devices through read/write primitives, MCP, CLI and code-file APIs, but the standard is not yet open source and access is limited to preview partners. Claude Code on the web remains an older product surface with related 2026-08-28 links rather than a new technical model release."
+      },
+      {
+        "channel": "runtime-and-framework-release-paths",
+        "classification": "P1/P2 source path",
+        "note": "Opened Hugging Face Transformers releases, vLLM releases, PyTorch releases and Mistral changelog. Transformers v5.16.1 and v5.16.0 add GLM/Qwen-related model support; vLLM v0.27.x has broad model support and serving improvements; PyTorch 2.13.0 is a major framework release; Mistral's latest 2026 model changelog entry was July 16 OCR 4.1. These are useful monitoring signals but did not provide a fresher non-duplicate AI판 topic than the already covered model and incident releases."
+      },
+      {
+        "channel": "editorial-history-check",
+        "classification": "duplicate review",
+        "note": "Searched content/ai, decisions/ai and var/runs/ai for Qwen3.8-Flash-Next, GLM-5.3-Flash, Gemini Omni, GPT-5.6, Hugging Face incident, Artifactory, ExploitGym, Transformers and vLLM signals. Found recent coverage on 2026-08-27, 2026-08-28, 2026-08-29 and 2026-08-30 that made the strongest current candidates ineligible as fresh regular articles."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Qwen3.8-Flash-Next open-weight Qwen4-preview architecture",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official Hugging Face, GitHub, QwenCloud, vLLM and SGLang paths provide strong P1/P2 support for architecture and serving implications, but the same central claim was already selected and materialized for the 2026-08-27 AI판."
+      },
+      {
+        "subject": "OpenAI-Hugging Face incident technical report and METR/Redwood investigation",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "OpenAI's August 26 post, technical report and METR/Redwood investigation support an E3/R1 containment story, but it was already selected for the 2026-08-28 AI판 and earlier incident context was also covered on 2026-07-26 and 2026-08-09."
+      },
+      {
+        "subject": "Z.ai GLM-5.3-Flash open-weight hybrid attention model",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official Z.ai release notes, Hugging Face model card, raw config, MIT license and vLLM recipe support E2/R2 coverage, but this exact open-weight Flash model was already selected for the 2026-08-29 AI판."
+      },
+      {
+        "subject": "Gemini Omni 1.1 Flash GA video generation and editing API",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Google's changelog, model page, model card and developer documentation support a bounded E2/R1 claim about iterative video generation and editing APIs, but the topic was already staged for the 2026-08-30 AI판."
+      },
+      {
+        "subject": "Anthropic Model Hardware Standard research preview",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Anthropic's August 27 post describes an important agent-to-hardware standard preview and partner examples, but the specification is not yet open source, access is restricted to selected preview partners and public executable artifacts are insufficient for a center claim stronger than E1/P0-P1 in this daily slot."
+      },
+      {
+        "subject": "OpenAI Cursor contract wind-down after SpaceX acquisition",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "OpenAI's August 28 post is a real developer-access signal for Cursor users, but it is a contract and availability notice rather than a model, API, runtime or reproducible technical change for SW engineering decisions."
+      },
+      {
+        "subject": "Hugging Face Transformers v5.16.1 and v5.16.0",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "GitHub release notes and commits are P1/P2 and include GLM-5.3-Flash and Qwen4-Exp support, but the framework release mostly follows model topics already covered on 2026-08-27 and 2026-08-29. It did not add a fresh central claim with higher utility than those articles."
+      },
+      {
+        "subject": "vLLM v0.27.1 and v0.27.0 serving releases",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The official GitHub releases have strong implementation evidence for Kimi K3, DeepSeek-V4, hybrid-model disaggregation, fault tolerance and hardware enablement, but the latest visible release is older than the week's selected model and incident topics and is broad maintenance rather than a single fresh frontier AI판 story."
+      },
+      {
+        "subject": "PyTorch 2.13.0",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "PyTorch 2.13.0 has strong release-note evidence and real engineering effects, including FlexAttention on MPS, LinearCrossEntropyLoss memory savings and distributed changes, but it was released on 2026-07-08 and lacks the newness required for this 2026-08-31 daily AI판."
+      },
+      {
+        "subject": "Mistral July 2026 OCR and model changelog items",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 4,
+        "decision": "not-selected",
+        "reason": "Mistral's official changelog was checked. The latest visible 2026 item was OCR 4.1 on July 16, with no fresher model/API release that met the regular AI판 threshold."
+      },
+      {
+        "subject": "DeepSeek official registry and GitHub surfaces",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "DeepSeek V4-Pro-0813 and related DSpark/runtime paths remain technically meaningful and artifact-backed, but DeepSeek V4-Pro was already handled as a 2026-08-14 special AI판 and no newer official DeepSeek release changed the 2026-08-31 slot."
+      }
+    ]
+  }
+}
