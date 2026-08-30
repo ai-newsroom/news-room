@@ -1,0 +1,511 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-08-31",
+  "date": "2026-08-31",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-08-31-sequential/20260830T221600Z-1108381/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-08-31-sequential/20260830T221600Z-1108381/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-08-31-sequential/20260830T221600Z-1108381/no-publish.json",
+  "subject": "ReviewDSE protected white-box DSE for OpenROAD detailed placement, arXiv:2607.11294v4 and DPLEvolve-AE artifact at commit fca145292478431412aff93bbae9f011f0387508",
+  "title": "ReviewDSE는 OpenROAD 튜닝을 옵션 탐색에서 보호된 소스 수정으로 넓힙니다",
+  "summary": "ReviewDSE는 공개 EDA 도구의 설계 공간 탐색을 command option과 flow script 조합에서, 검증 경로를 고정한 소스 코드 수준의 mechanism 탐색으로 확장합니다. 논문은 OpenROAD detailed placement에서 HPWL과 strict legality 결과를 보고했고, DPLEvolve-AE artifact는 고정 tool revision과 재현 스크립트를 공개했습니다. 다만 편집국은 긴 실행과 모델 비용이 필요한 실험을 재현하지 않았고, timing·congestion·power·signoff까지 확인된 결과로 보지는 않습니다.",
+  "central_claim": "ReviewDSE와 DPLEvolve-AE artifact는 OpenROAD detailed placement의 설계 공간 탐색을 public knob 조합에서 보호된 평가기 아래의 source-level mechanism 탐색으로 넓히고, 그 결과를 논문과 공개 재현 workflow로 검토할 수 있게 했습니다.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2607.11294",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/yuan-fd/DPLEvolve-AE",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2607.11294v4",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/artifacts/01-table4-qor/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2607.11294v4",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/artifacts/03-table6-cutrow/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/provenance/source-commits.json",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://zenodo.org/api/records/21629308",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "ReviewDSE 논문과 DPLEvolve-AE artifact 저자는 방법과 결과의 당사자입니다. 논문은 AI for Science Program, Shanghai Municipal Commission of Economy and Informatization, Fudan Kunpeng&Ascend Center of Cultivation의 지원을 받았다고 밝힙니다. 이 기사에는 사전 briefing, 제공받은 account·credit·license·hardware, 후원, 광고, NDA 또는 embargo가 없었습니다."
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 2,
+    "total": 10,
+    "threshold": 7,
+    "rationale": "ReviewDSE는 공개 EDA 도구 튜닝의 탐색 단위를 option·script 조합에서 detailed placement optimizer 내부 mechanism으로 넓힌다. 논문은 protected evaluator, target set, HPWL/runtime/legality 조건과 한계를 설명하고, GitHub·Zenodo artifact는 pinned tool revision, 재현 스크립트, expected output, selected source program을 공개한다. 실무자는 production 도입보다 open-source EDA 최적화 연구와 내부 tool fork 평가 방식으로 바로 판단할 수 있다."
+  },
+  "selection": {
+    "total": 10,
+    "threshold": 7
+  },
+  "source_urls": [
+    "https://arxiv.org/abs/2607.11294",
+    "https://arxiv.org/html/2607.11294v4",
+    "https://doi.org/10.1145/3831599.3840341",
+    "https://github.com/yuan-fd/DPLEvolve-AE",
+    "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/README.md",
+    "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/CITATION.cff",
+    "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/.zenodo.json",
+    "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/provenance/source-commits.json",
+    "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/docs/requirements.md",
+    "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/artifacts/01-table4-qor/README.md",
+    "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/artifacts/03-table6-cutrow/README.md",
+    "https://zenodo.org/api/records/21629308",
+    "https://api.github.com/repos/yuan-fd/DPLEvolve-AE",
+    "https://api.github.com/repos/yuan-fd/DPLEvolve-AE/commits/main"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "ReviewDSE는 OpenROAD detailed placement의 DSE를 public knob 탐색에서 protected evaluator 아래의 source-level mechanism 탐색으로 확장합니다.",
+      "source_url": "https://arxiv.org/abs/2607.11294",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2607.11294v4; MLCAD 2026 metadata; DOI 10.1145/3831599.3840341",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "논문 abstract, introduction, method description에서 protected white-box DSE, source-level mechanism, OpenROAD detailed placement 적용 범위를 확인했습니다.",
+      "limitations": [
+        "논문은 저자 보고 결과이며 편집국 또는 독립 주체가 재현하지 않았습니다.",
+        "OpenROAD detailed placement에 대한 instantiation이며 다른 EDA stage 전체로 자동 확대할 수 없습니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자는 방법과 결과의 보고 주체입니다."
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "DPLEvolve-AE 저장소는 ReviewDSE의 source program, experiment configuration, protected evaluator, Tables 4--6와 Figures 4--5 재현 workflow를 공개합니다.",
+      "source_url": "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main at fca145292478431412aff93bbae9f011f0387508",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "README의 repository purpose, code structure, experiment entry points, authorship를 확인했습니다.",
+      "limitations": [
+        "저장소의 workflow를 clone하거나 실행하지 않았습니다.",
+        "paper-scale ReviewDSE search에는 인증된 Codex/API access와 큰 token budget이 필요합니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자와 논문 저자는 artifact 공개와 결과의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "protected evaluator는 benchmark inputs, command sequence, baseline harness, validity checker, metric parser, reference comparison, runtime gate, evaluator scripts, unrelated tool components를 고정하며, 후보가 이 경계를 바꾸거나 canonical metric·legality·liveness 조건을 놓치면 reject합니다.",
+      "source_url": "https://arxiv.org/html/2607.11294v4",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv HTML for 2607.11294v4",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "논문 Section 3 protected evaluator 설명과 Section 5 discussion을 확인했습니다.",
+      "limitations": [
+        "논문이 정의한 평가 경계를 편집국이 실행 로그로 감사하지 않았습니다.",
+        "후보 source가 실제로 모든 평가기 경계를 우회하지 못한다는 보안 감사를 수행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자 보고 결과입니다."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "논문은 아홉 target task에서 ReviewDSE가 평균 post-DPL HPWL 1.78% 개선을 냈고, runtime-aware 선택은 평균 1.68% 개선과 1.11배 평균 runtime을 보고했습니다.",
+      "source_url": "https://arxiv.org/html/2607.11294v4",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv HTML for 2607.11294v4",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "논문 abstract와 Table 4 설명 문단에서 HPWL, runtime gate, BO-DSE comparison 수치를 확인했습니다.",
+      "limitations": [
+        "저자 보고 수치이며 독립 benchmark가 아닙니다.",
+        "편집국은 Table 4의 nine default, 3600 BO placement, selected-source replay를 실행하지 않았습니다.",
+        "HPWL와 runtime은 signoff timing, congestion, power, DRC 전체를 대체하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자 보고 결과입니다."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "DPLEvolve-AE Table 4 artifact는 OpenROAD default detailed placement, 400-trial Optuna-TPE baseline, ReviewDSE-HPWL, runtime-aware ReviewDSE-GHR 비교를 아홉 design/platform target에서 재실행하는 경로를 제공합니다.",
+      "source_url": "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/artifacts/01-table4-qor/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main at fca145292478431412aff93bbae9f011f0387508",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "Table 4 README의 comparison target, reproduction commands, input and acceptance notes를 확인했습니다.",
+      "limitations": [
+        "실제 fresh output을 생성하지 않았습니다.",
+        "missing paper-time hashes for eight regenerated inputs는 execution or numerical comparison을 block하지 않는다고 artifact가 밝히지만, 편집국은 이 조건을 별도로 검증하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "artifact 유지관리자는 논문 결과의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "논문은 hard cut-row stress test 아홉 pattern에서 ReviewDSE가 strict legal placement를 모두 만들었다고 보고했습니다.",
+      "source_url": "https://arxiv.org/html/2607.11294v4",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv HTML for 2607.11294v4",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "논문 Table 6과 이어지는 설명에서 Ariane133, SWERV dense, BPQUAD cut-row pattern 결과를 확인했습니다.",
+      "limitations": [
+        "저자 보고 결과이며 독립 재현은 아닙니다.",
+        "strict placement legality는 timing·congestion·power·signoff 성공을 의미하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자 보고 결과입니다."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "DPLEvolve-AE Table 6 artifact는 Diamond, Negotiation, frozen ReviewDSE repair program을 아홉 cut-row pattern에서 실행하는 27 OpenROAD job matrix와 strict check_placement 조건을 공개합니다.",
+      "source_url": "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/artifacts/03-table6-cutrow/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main at fca145292478431412aff93bbae9f011f0387508",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "Table 6 README의 reproduction commands, 27-job matrix, 7200-second cap, canonical log HPWL, displacement metrics, strict check_placement 설명을 확인했습니다.",
+      "limitations": [
+        "Table 6 data package를 다운로드하거나 실행하지 않았습니다.",
+        "paper-time ODB와 Innovus가 필요 없다는 artifact 설명을 원문 범위에서만 확인했습니다."
+      ],
+      "conflict_of_interest": [
+        "artifact 유지관리자는 논문 결과의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "DPLEvolve-AE artifact는 OpenROAD-flow-scripts, OpenROAD, Yosys, yosys-slang 등 주요 source revision을 고정합니다.",
+      "source_url": "https://raw.githubusercontent.com/yuan-fd/DPLEvolve-AE/main/provenance/source-commits.json",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main at fca145292478431412aff93bbae9f011f0387508",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "provenance/source-commits.json에서 OpenROAD-flow-scripts prepared_commit 9e2467a6a1bf1c5786c3bbed5bc44ee14230d7e8, OpenROAD prepared_commit d5ff63abe1a1470581feef22063362641b32e41b, Yosys 0.64 commit 8449dd4700821ea021b241a6addaaf8ccd171dfc, yosys-slang commit 64b44616a3798f07453b14ea03e4ac8a16b77313을 확인했습니다.",
+      "limitations": [
+        "편집국은 pinned source를 fetch하거나 build하지 않았습니다.",
+        "GitHub main branch는 이후 변경될 수 있어 commit fca145292478431412aff93bbae9f011f0387508 기준으로 기록했습니다."
+      ],
+      "conflict_of_interest": [
+        "artifact 유지관리자는 재현 패키지 구성의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Zenodo record 21629308은 DPLEvolve-AE workflow를 open access로 게시했고, tar.gz 파일 크기 213341126 bytes와 md5 checksum 09915cfbb163bcf9ed8443fef768d43d를 제공합니다.",
+      "source_url": "https://zenodo.org/api/records/21629308",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Zenodo record 21629308, publication_date 2026-07-27, revision 4",
+      "accessed_at": "2026-08-30",
+      "direct_or_derived": "direct",
+      "method": "Zenodo API metadata, file list, license and access_right fields를 확인했습니다.",
+      "limitations": [
+        "archive를 다운로드하거나 checksum을 직접 계산하지 않았습니다.",
+        "Zenodo metadata의 license는 cc-by-4.0이고 GitHub repository license는 BSD-3-Clause로 표시되므로 code와 record metadata의 라이선스 적용 범위를 구분해야 합니다."
+      ],
+      "conflict_of_interest": [
+        "Zenodo record 제출자는 artifact 공개 당사자입니다."
+      ]
+    }
+  ],
+  "reproducibility_details": {
+    "status": "R2 실행 가능한 공개 code와 workflow가 있으나 편집국은 실행하지 않았고 paper-scale search에는 큰 계산 자원과 인증된 모델/API 접근이 필요합니다.",
+    "public_artifacts": [
+      "arXiv:2607.11294v4 paper and ACM DOI metadata",
+      "yuan-fd/DPLEvolve-AE GitHub repository",
+      "DPLEvolve-AE README with experiment entry points",
+      "provenance/source-commits.json with pinned OpenROAD, ORFS, Yosys and yosys-slang revisions",
+      "requirements.md with host and dependency requirements",
+      "Table 4 QoR/runtime reproduction README",
+      "Table 6 hard cut-row reproduction README",
+      "Zenodo record 21629308 with DPLEvolve-AE-MLCAD2026-AE-Zenodo.tar.gz"
+    ],
+    "not_reproduced_by_editor": [
+      "OpenROAD/ORFS/Yosys build",
+      "Table 4 nine default, 3600 BO placement, and selected-source replay runs",
+      "Table 6 27 OpenROAD job matrix",
+      "ReviewDSE Level 1 and paper-scale Teacher/Student search",
+      "Figures 4 and 5 regeneration",
+      "Zenodo archive download and checksum verification"
+    ],
+    "resource_constraints": [
+      "requirements.md reference system: Rocky Linux 8.10 x86-64, two Xeon Platinum 8462Y+ processors, 314 GiB RAM, 22 TiB home filesystem",
+      "At least 100 GiB free disk space recommended; complete campaigns can require more",
+      "Authenticated model/API access and paper-scale token budget only for live ReviewDSE search",
+      "No GPU, commercial EDA license, or proprietary PDK is reported as required by the artifact appendix and requirements document"
+    ]
+  },
+  "conflict_review": {
+    "newsroom_conflicts": [
+      "편집국 이해상충 없음",
+      "사전 briefing, 제공받은 account·credit·license·hardware, 후원, 광고, NDA 또는 embargo 없음"
+    ],
+    "source_conflicts": [
+      "ReviewDSE 논문 저자는 방법과 결과의 보고 주체입니다.",
+      "DPLEvolve-AE artifact 유지관리자와 contributor는 재현 패키지 공개의 당사자입니다.",
+      "논문은 AI for Science Program, Shanghai Municipal Commission of Economy and Informatization, Fudan Kunpeng&Ascend Center of Cultivation의 지원을 받았다고 밝힙니다."
+    ]
+  },
+  "duplicate_check": {
+    "recent_articles_reviewed": [
+      {
+        "path": "content/eda/2026-08-13/article.md",
+        "title": "EDA 에이전트의 승부처는 더 큰 모델보다 ‘검증 가능한 피드백’일 수 있습니다",
+        "subject": "Cadence의 EDA agent feedback loop 전략과 공개 연구",
+        "relation": "EDA agent feedback loop 일반 전략 기사이며 OpenROAD detailed placement source-level DSE artifact와 다릅니다."
+      },
+      {
+        "path": "content/eda/2026-08-14/article.md",
+        "title": "ACE-RTL 공개는 EDA 에이전트 평가를 말솜씨에서 실행 로그로 옮깁니다",
+        "subject": "NVIDIA ACE-RTL 공개 코드와 CVDP 1.1.0 benchmark 실행 경로",
+        "relation": "RTL agent benchmark 기사이며 physical design optimizer source mechanism 탐색이 아닙니다."
+      },
+      {
+        "path": "content/eda/2026-08-16/article.md",
+        "title": "OpenROAD-MCP 1.0.0은 물리설계 AI 보조를 채팅 답변에서 실행 세션으로 옮깁니다",
+        "subject": "The-OpenROAD-Project OpenROAD-MCP v1.0.0 공개 릴리스와 OpenROAD/ORFS MCP 실행 경로",
+        "relation": "OpenROAD를 다루지만 MCP 실행 interface 기사입니다. 이번 주제는 OpenROAD detailed placement source code를 후보로 바꾸는 DSE 방법입니다."
+      },
+      {
+        "path": "content/eda/2026-08-19/article.md",
+        "title": "HighTide는 VLSI benchmark를 정적 RTL 묶음에서 실행 가능한 RTL-to-GDS flow로 바꿉니다",
+        "subject": "VLSIDA HighTide open-source VLSI benchmark suite와 Bazel 기반 OpenROAD RTL-to-GDS 실행 경로",
+        "relation": "실행 가능한 open-source flow artifact라는 문제의식은 비슷하지만, HighTide는 benchmark suite이고 ReviewDSE는 optimizer 내부 source mechanism 탐색입니다."
+      },
+      {
+        "path": "content/eda/2026-08-23/article.md",
+        "title": "VPR-Evolve는 FPGA 배치배선 튜닝을 파라미터 선택에서 VPR 코드 수정으로 넓힙니다",
+        "subject": "VPR-Evolve arXiv 2607.24998v1과 ASU-VDA-Lab/VPR-Evolve 공개 저장소",
+        "relation": "코드 수정형 FPGA CAD 튜닝과 가까운 선행 기사입니다. 이번 주제는 ASIC OpenROAD detailed placement에서 protected evaluator와 full-flow mechanism evidence를 중심으로 하며, DPLEvolve-AE artifact가 Tables 4--6 재현 경로를 공개한다는 새 차이가 있습니다."
+      },
+      {
+        "path": "content/eda/2026-08-28/article.md",
+        "title": "TaiWei-Pin-3D는 3D IC 물리설계 연구를 실행 가능한 flow로 공개합니다",
+        "subject": "CODA-Team TaiWei-Pin-3D public 3D physical-design flow at commit c85b79352eefc31a588da3ef873e4fd68a3df3f2 and RosettaStone 2.0 ISPD 2026 paper",
+        "relation": "3D IC flow artifact 기사입니다. 이번 주제는 2D OpenROAD detailed placement optimizer 내부 mechanism 탐색으로 다릅니다."
+      }
+    ],
+    "conclusion": "최근 기사와 동일 발표를 반복하지 않습니다. 가장 가까운 VPR-Evolve와도 domain, target tool, protected evaluator 구조, artifact 구성에서 차이가 있습니다."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "name": "ReviewDSE / DPLEvolve-AE",
+        "signal_url": "https://arxiv.org/abs/2607.11294",
+        "why_reviewed": "MLCAD 2026 논문 신호이며 OpenROAD detailed placement를 대상으로 source-level DSE 방법, HPWL/runtime/legality 결과, 공개 GitHub·Zenodo artifact가 함께 있었다.",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 2,
+          "total": 10
+        },
+        "decision": "selected",
+        "reason": "중심 주장을 protected white-box DSE와 공개 reproduction workflow로 제한하면 E2, 원문 2개 이상, 총점 7 이상 조건을 모두 충족한다."
+      },
+      {
+        "name": "EDATracer",
+        "signal_url": "https://arxiv.org/html/2608.04032",
+        "why_reviewed": "대규모 EDA artifact 분석 agent와 linked flow artifact dataset을 보고한 2026년 8월 논문 신호다.",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 7
+        },
+        "decision": "rejected",
+        "reason": "조사 시점에 공개 code나 dataset artifact URL을 확인하지 못해 중심 주장 E2를 안정적으로 줄 수 없었다."
+      },
+      {
+        "name": "LibreLane 3.0.10 and 3.0.11 releases",
+        "signal_url": "https://github.com/librelane/librelane/releases",
+        "why_reviewed": "2026년 8월 공개 릴리스가 이어졌고 installation/changelog 원문이 있었다.",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "확인된 변경은 CI, 문서, 특정 synthesis check parse fix 등 유지보수 성격이 강해 새 기사로 삼을 설계 흐름 변화가 부족했다."
+      },
+      {
+        "name": "Cadence AuraStack AI Super Agent",
+        "signal_url": "https://newsroom.cadence.com/press-releases/press-release-details/2026/Cadence-Introduces-AuraStack-AI-Super-Agent-the-Worlds-First-Agentic-AI-Platform-for-PCB-and-Advanced-Packaging/default.aspx",
+        "why_reviewed": "PCB·advanced packaging agentic AI platform 공식 발표 신호가 있었다.",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "decision": "rejected",
+        "reason": "공식 발표는 확인됐지만 release note, manual, benchmark, 공개 artifact를 연결하지 못해 중심 분석 E2에 미치지 못했다."
+      },
+      {
+        "name": "Cadence/Rapidus agentic AI collaboration",
+        "signal_url": "https://newsroom.cadence.com/press-releases/press-release-details/2026/Rapidus-and-Cadence-Partner-on-Agentic-AI-for-Advanced-SoC-Design/default.aspx",
+        "why_reviewed": "advanced-node SoC design을 위한 agentic AI 협력 공식 발표 신호다.",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 3
+        },
+        "decision": "rejected",
+        "reason": "협력 발표에 가깝고 구체 도구 버전, 공개 조건, 재현 artifact가 부족했다."
+      },
+      {
+        "name": "Siemens Calibre Vision AI August blog signal",
+        "signal_url": "https://blogs.sw.siemens.com/eda/",
+        "why_reviewed": "Siemens EDA 블로그 최신 신호로 DRC workflow를 다뤘다.",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 3
+        },
+        "decision": "rejected",
+        "reason": "2026-08-15 기사에서 Calibre Vision AI를 이미 다뤘고, 새 원문 조합이나 공개 artifact가 없었다."
+      },
+      {
+        "name": "Protected White-Box DSE adjacent prior coverage check: VPR-Evolve",
+        "signal_url": "content/eda/2026-08-23/article.md",
+        "why_reviewed": "최근 EDA 기사 중 code-modifying CAD tuning과 가장 가까운 주제라 중복 여부를 확인했다.",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 8
+        },
+        "decision": "not_a_new_candidate",
+        "reason": "이미 발행된 기사이며, 이번 ReviewDSE는 ASIC OpenROAD detailed placement와 protected evaluator evidence 구조를 다루므로 반복 기사로 보지 않았다."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "DVCon Proceedings 2026 verification AI papers",
+        "url": "https://dvcon-proceedings.org/",
+        "reason_not_selected": "여러 verification AI paper 신호가 있었지만 짧은 proceedings 목록만으로는 중심 분석을 지탱할 원문·artifact 조합을 충분히 확보하지 못했다."
+      },
+      {
+        "name": "Zuken PCB and package design blog signals",
+        "url": "https://www.zuken.com/en/blog/",
+        "reason_not_selected": "제품·workflow 해설 신호는 있었지만 새 버전 release note나 공개 benchmark·manual 조합을 확인하지 못했다."
+      },
+      {
+        "name": "Ansys semiconductor and power-device simulation blog signals",
+        "url": "https://www.ansys.com/blog/",
+        "reason_not_selected": "벤더 기술 설명은 확인됐지만 공개 solver 조건, benchmark input, 독립 확인 또는 reproducible artifact가 부족했다."
+      },
+      {
+        "name": "Keysight RF and high-speed design blog signals",
+        "url": "https://www.keysight.com/blogs/en/tech/",
+        "reason_not_selected": "검색 신호가 오래된 application note 중심이었고 2026-08-31 발행 후보로 볼 만한 새 EDA flow 변화와 원문 두 개 조합을 찾지 못했다."
+      },
+      {
+        "name": "Dassault Systemes CST Studio Suite product surface",
+        "url": "https://www.3ds.com/products/simulia/cst-studio-suite",
+        "reason_not_selected": "제품 범위 확인에는 유용하지만 최신 release 변화, solver 조건, 공개 benchmark 또는 support matrix를 연결하지 못했다."
+      }
+    ]
+  },
+  "quality_gate_notes": {
+    "importance": "공개 EDA tool fork와 optimizer specialization을 검토하는 연구자와 CAD/PD 팀에 직접 영향을 준다.",
+    "new_phase": "최근 VPR-Evolve 기사와 달리 ASIC OpenROAD detailed placement에서 protected evaluator와 source-mechanism evidence를 결합한다.",
+    "core_evidence": "중심 주장은 arXiv/MLCAD 논문 P1과 GitHub/Zenodo artifact P2 조합으로 E2다.",
+    "traceability": "본문 주요 사실은 claim_source_ledger의 C1--C5로 역추적된다.",
+    "comparison_fairness": "HPWL/runtime 수치는 저자 보고로 귀속하고 signoff 결과로 확대하지 않았다.",
+    "limitations": "편집국 미재현, resource cost, timing·congestion·power·signoff 미확인을 본문과 ledger에 기록했다.",
+    "conflicts": "저자·funding·편집국 취재 조건을 공개했다.",
+    "edition_fit": "EDA판 정본과 source registry seed만 사용하고 다른 edition fallback을 쓰지 않았다.",
+    "writing_quality": "제품 홍보가 아니라 OpenROAD detailed placement flow 변화와 protected evaluation 구조를 설명했다."
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
