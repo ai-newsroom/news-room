@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-01",
+  "date": "2026-09-01",
+  "subject": "vLLM v0.28.0 release, GitHub tag v0.28.0, published 2026-08-26",
+  "central_claim": "vLLM v0.28.0 is a publishable AI engineering topic because the official release note, GitHub tag, release API, source repository and public release artifacts support a bounded E2/R2 claim: the runtime release moves recent large MoE and long-context agent models such as Kimi-K3, DeepSeek V4 and Qwen3.8 from model-card compatibility into serving work on decode kernels, speculative decoding, KV cache tiering, hardware backends, API routing and security hardening, while project-reported speedups remain non-independent and workload-specific.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "vLLM v0.28.0 was published on 2026-08-26 and had not been selected as a prior AI article. It is directly useful to engineers operating open and API-like model servers because it changes serving support for Kimi-K3, DeepSeek V4, Qwen3.8, speculative decoding, KV offload, ROCm/XPU/CUDA artifacts, API frontend behavior and security boundaries. Public evidence includes release notes, a GitHub tag/commit, release API metadata and downloadable artifacts. The conclusion is limited because this turn did not install vLLM or run GPU benchmarks."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "vLLM v0.28.0 is best treated as a runtime release for serving the new class of large MoE, long-context and agent-oriented models, not as an independently proven universal speedup: the public release documents Kimi-K3 and DeepSeek V4 serving work, speculative decoding changes, KV tiering, hardware artifacts and API/security changes, while its speedup figures remain project-reported and condition-bound.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://api.github.com/repos/vllm-project/vllm/releases/tags/v0.28.0",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://api.github.com/repos/vllm-project/vllm/commits/2cf0a6915ce544dc493a0990f2ea38d81601128a",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://github.com/vllm-project/vllm",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "execution-request-and-canonical-documents",
+        "classification": "run contract",
+        "note": "Read var/runs/ai/2026-09-01-sequential/20260831T221128Z-1115798/request.json and used publication_id 2026-09-01 with article_path var/runs/ai/2026-09-01-sequential/20260831T221128Z-1115798/staged-content/article.md, evidence_path var/runs/ai/2026-09-01-sequential/20260831T221128Z-1115798/evidence.json and no_publish_path var/runs/ai/2026-09-01-sequential/20260831T221128Z-1115798/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "official-frontier-lab-and-registry-review",
+        "classification": "S2 discovery to P1/P2 source paths",
+        "note": "Searched official or registry-first paths for OpenAI, Anthropic, Google Gemini, Qwen, DeepSeek, Mistral, Hugging Face Transformers, PyTorch, SGLang, vLLM and InferenceX. Search snippets, news snippets and social signals were used only to discover possible primary sources; article facts were not promoted without opened official release notes, model cards, GitHub releases, raw repository/API files or official documentation."
+      },
+      {
+        "channel": "openai-current-review",
+        "classification": "P0/P1 source path",
+        "note": "Opened OpenAI News and recent OpenAI posts around 2026-08-31, including ChatGPT Ads expansion, ChatGPT for Teachers expansion, Cursor contract wind-down, GPT-5.6 pages and Jalapeno posts. The 2026-08-31 items were product, education, company or advertising announcements with limited AI engineering artifact depth. Jalapeno was strong but already selected for the 2026-08-26 AI edition."
+      },
+      {
+        "channel": "anthropic-current-review",
+        "classification": "P0/P1 source path",
+        "note": "Opened Anthropic newsroom and release-note paths for Claude in Chrome, Claude Code on the web, release notes and Model Hardware Standard. The available late-August items were product availability or research-preview surfaces. Model Hardware Standard remained important but not open-sourced, and Claude browser/code product changes did not outrank the vLLM runtime release in public artifact depth."
+      },
+      {
+        "channel": "google-gemini-review",
+        "classification": "P1 source path",
+        "note": "Opened Gemini API changelog. Recent substantive items included Gemini Omni 1.1 Flash and prior Gemini 3.7/3.6 model changes. Gemini Omni 1.1 Flash was already handled for the 2026-08-30 AI edition and later visible entries were deprecation/product updates rather than a new non-duplicate model/runtime article."
+      },
+      {
+        "channel": "qwen-deepseek-zai-registry-review",
+        "classification": "P1/P2 source path",
+        "note": "Opened Qwen3.8-Flash-Next official blog/model card/GitHub paths, DeepSeek official Hugging Face registry paths and Z.ai GLM-5.3-Flash history. Qwen3.8-Flash-Next, DeepSeek V4-Pro and GLM-5.3-Flash are technically strong artifact-backed topics, but the relevant central claims were already covered by recent AI regular or special articles."
+      },
+      {
+        "channel": "mistral-runtime-framework-review",
+        "classification": "P1/P2 source path",
+        "note": "Opened Mistral changelog, PyTorch release notes, Hugging Face Transformers release paths, SGLang releases and vLLM releases. Mistral's visible model entries were older or not stronger than runtime candidates. PyTorch 2.13.0 is implementation-backed but old for this slot. Transformers releases followed already covered model support. SGLang v0.5.18 was useful but older and more diffuse. vLLM v0.28.0 was the strongest non-duplicate implementation-backed release found."
+      },
+      {
+        "channel": "vllm-release-review",
+        "url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+        "classification": "P1/P2 selected source path",
+        "note": "Opened vLLM v0.28.0 release note and release API. The release was published 2026-08-26T09:46:30Z, documents 584 commits from 270 contributors, lists Kimi-K3 and DeepSeek V4 serving work, speculative decoding, Model Runner V2 maturation, tiered KV cache offloading, Rust frontend/gRPC, hardware backend changes, API/security changes, breaking changes and release artifacts."
+      },
+      {
+        "channel": "vllm-release-artifacts",
+        "url": "https://api.github.com/repos/vllm-project/vllm/releases/tags/v0.28.0",
+        "classification": "P2 artifact metadata",
+        "note": "Fetched GitHub release API for vLLM v0.28.0. It returned 9 release assets including source tarball, CPU wheels, CUDA 12.9 wheels and XPU wheel with SHA-256 digests. The release note separately lists PyPI CUDA 13.0 install path, ROCm wheel index and Docker images for CUDA 13.0, CUDA 12.9, ROCm, CPU and XPU."
+      },
+      {
+        "channel": "vllm-duplication-check",
+        "classification": "duplicate review",
+        "note": "Searched content/ai, decisions/ai and var/runs/ai for vLLM v0.28.0, Kimi-K3 performance push, DeepSeek V4 sparse MLA, Jalapeno, Qwen3.8-Flash-Next and related candidates. vLLM v0.28.0 appeared only as a non-selected alternative in the 2026-08-28 evidence, not as a published AI article. Jalapeno and Qwen3.8-Flash-Next were excluded as duplicates."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "vLLM v0.28.0 runtime release",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because the release is fresh, implementation-backed and not yet covered as an article. It gives engineers concrete upgrade questions around Kimi-K3, DeepSeek V4, speculative decoding, KV tiering, hardware wheels/images, API routing and security changes."
+      },
+      {
+        "subject": "Qwen3.8-Flash-Next open-weight Qwen4-preview architecture",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official blog, Hugging Face and GitHub paths remain strong, but the same central architecture claim was already published for the 2026-08-27 AI edition."
+      },
+      {
+        "subject": "OpenAI Jalapeno first measured inference results",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The OpenAI and InferenceX source paths remain important, but Jalapeno was already selected for the 2026-08-26 AI edition and repeating it would fail the new-phase requirement."
+      },
+      {
+        "subject": "Z.ai GLM-5.3-Flash open-weight hybrid attention model",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Official Z.ai release notes, Hugging Face model card, config, license and vLLM recipe support E2/R2 coverage, but it was already selected for the 2026-08-29 AI edition."
+      },
+      {
+        "subject": "Gemini Omni 1.1 Flash GA video generation and editing API",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Google changelog, model card, model page and developer documentation support an E2/R1 article, but this model/API topic was already handled for the 2026-08-30 AI edition."
+      },
+      {
+        "subject": "Anthropic Model Hardware Standard research preview",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Important preview for agents controlling physical devices, but the standard is not yet open-sourced and public executable artifacts/specification details are too narrow for a stronger center claim than vLLM v0.28.0."
+      },
+      {
+        "subject": "OpenAI 2026-08-31 ChatGPT Ads and education expansion",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 0,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Same-day official signals, but they are product, advertising and education adoption announcements rather than AI model/API/runtime/hardware changes with technical decision utility for SW engineers."
+      },
+      {
+        "subject": "Hugging Face Transformers v5.16.x model-support releases",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Implementation-backed and useful, but mostly follows model support for GLM/Qwen topics already covered. vLLM v0.28.0 had broader runtime impact across engine, serving, hardware artifacts, API and security."
+      },
+      {
+        "subject": "SGLang v0.5.18",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Public release notes list many model additions and Qwen/DeepSeek recipes, but the release is older and more diffuse than vLLM v0.28.0 for this slot."
+      },
+      {
+        "subject": "PyTorch 2.13.0",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Strong framework release with public artifacts, but it was released in July 2026 and lacks freshness for the 2026-09-01 regular AI slot."
+      },
+      {
+        "subject": "Mistral recent changelog items",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 4,
+        "decision": "not-selected",
+        "reason": "Official changelog was checked, but no fresh non-duplicate model/API/runtime announcement with stronger evidence and utility than vLLM v0.28.0 was found."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "PUBLIC_ARTIFACTS_AVAILABLE",
+    "NO_RUNTIME_PERFORMANCE_CLAIM_PROMOTED",
+    "NON_DUPLICATE_PUBLICATION_ANGLE"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-08-31T22:11:28Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-09-01 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official vLLM release note, GitHub release API, release artifact metadata, commit metadata and source repository",
+      "central claims include at least two distinct official or public source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions exactly: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-09-01 and decisions/ai/2026-09-01",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "vLLM Project authors and publishes the v0.28.0 release note and controls the release artifacts.",
+    "GitHub hosts the release page, source repository, release API and asset metadata.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and social signals were used only as discovery and duplication checks; article facts rely on opened official primary sources and public artifacts."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "vLLM Project published v0.28.0 on 2026-08-26 and the release note says the release includes 584 commits from 270 contributors.",
+      "source_url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "vLLM v0.28.0 release note, tag v0.28.0",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Opened the official GitHub release page and release API for v0.28.0.",
+      "limitations": [
+        "Contributor and commit counts are project-reported.",
+        "Release publication does not independently prove production stability."
+      ],
+      "conflict_of_interest": [
+        "vLLM Project authored the release note."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "vLLM v0.28.0 documents Kimi-K3 serving work including Decode Context Parallel, fused FlashKDA decode and prefill kernels, SiTU activation, GEMM-RS, adaptive speculative token budget and optional shared-expert sharding.",
+      "source_url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "vLLM v0.28.0 release note, Kimi-K3 performance push section",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the Kimi-K3 highlights and connected PR references in the release note.",
+      "limitations": [
+        "This turn did not execute Kimi-K3 on vLLM.",
+        "Kernel speedups and memory savings are project-reported and workload-specific."
+      ],
+      "conflict_of_interest": [
+        "vLLM Project authored the release note."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "vLLM v0.28.0 says DeepSeek V4 sparse MLA works end-to-end for plain decode, MTP and DSpark speculative decoding, with related AMD Quark NVFP4, reasoning-effort, top-k metadata kernel, CUDA graph and ROCm enablement work.",
+      "source_url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "vLLM v0.28.0 release note, DeepSeek V4 section",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the DeepSeek V4 highlights and connected PR references in the release note.",
+      "limitations": [
+        "This turn did not run DeepSeek V4 on CUDA, ROCm or XPU.",
+        "Exact model revision, quantization, hardware and concurrency affect the result."
+      ],
+      "conflict_of_interest": [
+        "vLLM Project authored the release note."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The Engine Core section includes speculative decoding changes, per-request scheduling for MLA chunked context, fine-grained prefix reuse, KV-cache layout refactor, performance sync reductions, JIT warmup and startup robustness fixes.",
+      "source_url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "vLLM v0.28.0 release note, Engine Core section",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the Engine Core section of the release note.",
+      "limitations": [
+        "Release note granularity varies by PR.",
+        "This turn did not audit every linked PR implementation."
+      ],
+      "conflict_of_interest": [
+        "vLLM Project authored the release note."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "The Large Scale Serving section includes E/P/D disaggregation, disk KV offloading, secondary tier managers, tiering metrics, data-parallel topology exposure, connector changes and parallelism fixes.",
+      "source_url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "vLLM v0.28.0 release note, Large Scale Serving section",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the Large Scale Serving section of the release note.",
+      "limitations": [
+        "Production effects depend on cluster topology, model mix and cache behavior.",
+        "No production cluster benchmark was run in this turn."
+      ],
+      "conflict_of_interest": [
+        "vLLM Project authored the release note."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "GitHub release API for v0.28.0 returns 9 release assets including source tarball, CPU wheels, CUDA 12.9 wheels and XPU wheel with SHA-256 digests; the release note lists PyPI CUDA 13.0 install path, ROCm wheel index and Docker images for CUDA 13.0, CUDA 12.9, ROCm, CPU and XPU.",
+      "source_url": "https://api.github.com/repos/vllm-project/vllm/releases/tags/v0.28.0",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub release API response for vLLM v0.28.0, accessed 2026-08-31",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Fetched GitHub release API and read asset names, digests, publication time and release body.",
+      "limitations": [
+        "This turn did not install wheels, pull Docker images or verify asset hashes locally.",
+        "PyPI and Docker registry availability can vary by environment."
+      ],
+      "conflict_of_interest": [
+        "GitHub hosts the project release metadata.",
+        "vLLM Project publishes the release artifacts."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "vLLM v0.28.0 release note lists breaking changes including bitsandbytes support moving to an out-of-tree plugin, removal of calculate_kv_scales runtime KV scale calculation, removal of override_attention_dtype and a Transformers 5.15.0 dependency bump.",
+      "source_url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "vLLM v0.28.0 release note, Breaking Changes & Dependencies sections",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the Breaking Changes & Deprecations and Dependencies sections.",
+      "limitations": [
+        "Impact depends on each deployment's quantization, model wrapper and dependency pins."
+      ],
+      "conflict_of_interest": [
+        "vLLM Project authored the release note."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "vLLM v0.28.0 security notes include a DoS fix for sample-rate forgery bypassing the audio decode duration guard, DeepStream pixel-limit enforcement, resolve_trust_remote_code guard for _load_ov2_processor and documentation that --api-key does not gate all endpoints.",
+      "source_url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "vLLM v0.28.0 release note, Security section",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the Security section of the release note.",
+      "limitations": [
+        "This turn did not reproduce vulnerabilities or audit patches.",
+        "Security impact depends on whether deployments expose the relevant endpoints and media inputs."
+      ],
+      "conflict_of_interest": [
+        "vLLM Project authored the release note."
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "claim": "The v0.28.0 tag resolves to commit 2cf0a6915ce544dc493a0990f2ea38d81601128a in the GitHub commit API.",
+      "source_url": "https://api.github.com/repos/vllm-project/vllm/commits/2cf0a6915ce544dc493a0990f2ea38d81601128a",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub commit API for 2cf0a6915ce544dc493a0990f2ea38d81601128a",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Fetched GitHub commit API for the release commit returned by the release page.",
+      "limitations": [
+        "The commit is release metadata, not a full audit of all included changes.",
+        "The commit API reported the commit verification as unsigned."
+      ],
+      "conflict_of_interest": [
+        "GitHub hosts the commit metadata."
+      ]
+    }
+  ],
+  "sources": [
+    "https://github.com/vllm-project/vllm/releases/tag/v0.28.0",
+    "https://api.github.com/repos/vllm-project/vllm/releases/tags/v0.28.0",
+    "https://api.github.com/repos/vllm-project/vllm/commits/2cf0a6915ce544dc493a0990f2ea38d81601128a",
+    "https://github.com/vllm-project/vllm"
+  ],
+  "reproducibility_notes": {
+    "status": "R2",
+    "reason": "Source repository, release tag, source tarball, wheels and documented Docker image paths are public, so installation and workload-specific tests can be attempted. This turn did not install vLLM or run CUDA/ROCm/XPU benchmarks, and the release-note performance figures are not independently reproduced.",
+    "not_reproduced": [
+      "Kimi-K3 kernel-level speedups",
+      "DSpark TTFT improvement",
+      "shared-expert sharding memory savings",
+      "DeepSeek V4 sparse MLA runtime behavior",
+      "security fixes or DoS reproduction",
+      "Docker image and wheel installation"
+    ],
+    "minimum_recheck": [
+      "pin vllm==0.28.0 and previous production version",
+      "use the same model revision, tokenizer, quantization, max context, concurrency and hardware",
+      "record TTFT, inter-token latency, end-to-end latency, throughput, GPU memory, KV cache hit/offload behavior and failure rate",
+      "test breaking changes affecting bitsandbytes, calculate_kv_scales, override_attention_dtype and Transformers 5.15.0"
+    ]
+  },
+  "benchmark_notes": {
+    "use_scope": "Release-note speedup and memory-saving figures are used only to explain what the project claims changed and which workload dimensions matter. They are not used as an independent ranking or procurement conclusion.",
+    "reported_conditions": [
+      "Kimi-K3 combined all-gathers are described as a 1.5~3x kernel-level speedup.",
+      "Adaptive speculative token budget is described as delivering about 60% better DSpark TTFT.",
+      "Optional shared-expert sharding is described as saving about 17 GiB of memory per GPU."
+    ],
+    "limitations": [
+      "The article did not open and audit every linked PR or run a benchmark.",
+      "Release-note figures are condition-bound and may not carry to other models, hardware, concurrency or quantization settings."
+    ]
+  },
+  "article_contract_alignment": {
+    "style_contracts": [
+      "korean-writing-baseline-v1",
+      "ai-technical-blog-v2"
+    ],
+    "required_layers": [
+      "news explanation: vLLM v0.28.0 was published on 2026-08-26 with public release artifacts",
+      "technical understanding: large MoE and long-context agent model serving depends on decode, speculative decoding, KV cache tiering, hardware backends and frontend routing",
+      "technical meaning and verification tasks: engineers should canary-test workload-specific latency, memory, cache and compatibility instead of treating release-note speedups as universal"
+    ],
+    "frontmatter_fields": [
+      "edition",
+      "decision",
+      "title",
+      "date",
+      "subject",
+      "summary",
+      "evidence_ceiling",
+      "reproducibility",
+      "conflicts"
+    ],
+    "publication_id_in_frontmatter": false
+  }
+}
