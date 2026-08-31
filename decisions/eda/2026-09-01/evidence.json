@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-01",
+  "date": "2026-09-01",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-01-sequential/20260831T222320Z-1118655/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-09-01-sequential/20260831T222320Z-1118655/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-09-01-sequential/20260831T222320Z-1118655/no-publish.json",
+  "subject": "Open-Source LLM-Driven Formal Verification: A Multi-Agent Pipeline for RTL Repair, arXiv:2607.28877v1 and rtl-repair-framework commit 539301395aad8dc558faae737d33063c0b2bcf98",
+  "title": "RTL repair framework는 LLM 수정 결과를 formal proof로 다시 묻습니다",
+  "summary": "RTL repair framework는 LLM이 고친 Verilog를 바로 성공 사례로 보지 않고, Yosys·SymbiYosys·Z3 formal verification 결과와 counterexample를 다음 수정 입력으로 되돌립니다. 논문과 공개 저장소는 여섯 benchmark, 실행 스크립트, raw log, 실패 유형을 공개했습니다. 다만 저자 실험에서 5회 모두 고친 benchmark는 `alu` 하나뿐이고, 편집국은 OpenAI API와 formal toolchain이 필요한 전체 평가를 재실행하지 않았습니다.",
+  "central_claim": "RTL Repair Framework는 LLM 기반 RTL repair를 code generation demo가 아니라 formal verifier의 proof, vacuity, counterexample, failure mode를 되먹임으로 삼는 공개 재현 가능한 flow로 구성했습니다.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2607.28877",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/trunghafromvietnam/rtl-repair-framework",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2607.28877v1",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/logs/sprint1/multi_run_b11.csv",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/main_graph.py",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://api.github.com/repos/trunghafromvietnam/rtl-repair-framework/commits/539301395aad8dc558faae737d33063c0b2bcf98",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/LICENSE",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "논문과 저장소 저자는 방법과 결과의 당사자입니다. 이 기사에는 사전 briefing, 제공받은 account·credit·license·hardware, 후원, 광고, NDA 또는 embargo가 없었습니다."
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 2,
+    "total": 10,
+    "threshold": 7,
+    "rationale": "이 후보는 LLM RTL repair의 판단 단위를 자연어 답변이나 testbench success에서 formal proof, vacuity, counterexample, failure mode로 옮긴다. 논문은 방법과 benchmark 결과를 설명하고, 저장소는 code, benchmark, run script, raw CSV, log, dependency, MIT license를 공개한다. 성공률은 낮지만 그 낮은 성공률과 실패 유형 자체가 실무 검토에 유용하다."
+  },
+  "selection": {
+    "total": 10,
+    "threshold": 7
+  },
+  "source_urls": [
+    "https://arxiv.org/abs/2607.28877",
+    "https://arxiv.org/html/2607.28877v1",
+    "https://github.com/trunghafromvietnam/rtl-repair-framework",
+    "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/README.md",
+    "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/main_graph.py",
+    "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/run_n_times.py",
+    "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/logs/sprint1/multi_run_b11.csv",
+    "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/logs/sprint1/multi_run_b11.log",
+    "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/requirements.txt",
+    "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/LICENSE",
+    "https://api.github.com/repos/trunghafromvietnam/rtl-repair-framework/commits/539301395aad8dc558faae737d33063c0b2bcf98"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "RTL Repair Framework는 buggy RTL과 자연어 specification을 입력으로 받고, property 생성, formal verification, counterexample 분석, RTL patch, review, 재검증을 반복합니다.",
+      "source_url": "https://arxiv.org/abs/2607.28877",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2607.28877v1",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "논문 제목, 초록, 방법 설명에서 LLM-driven formal verification, multi-agent pipeline, RTL repair 적용 범위를 확인했습니다.",
+      "limitations": [
+        "논문은 저자 보고 결과이며 편집국 또는 독립 주체가 재현하지 않았습니다.",
+        "작은 benchmark suite의 repair flow이며 production signoff flow 전체로 일반화할 수 없습니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자는 방법과 결과의 보고 주체입니다."
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "저장소는 contract, architect, verifier, cex_analyzer, coder, reviewer node를 LangGraph state graph로 연결한 실행 code를 공개합니다.",
+      "source_url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/main_graph.py",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "commit 539301395aad8dc558faae737d33063c0b2bcf98",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "StateGraph node wiring, routing function, public entrypoint를 확인했습니다.",
+      "limitations": [
+        "편집국은 code를 clone하거나 실행하지 않았습니다.",
+        "OpenAI API와 external formal tools가 필요합니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 연구 artifact 공개의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "framework는 Yosys, SymbiYosys, Z3를 formal backend로 쓰고, k-induction 또는 iteration budget 종료까지 loop를 돌립니다.",
+      "source_url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "commit 539301395aad8dc558faae737d33063c0b2bcf98",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "README의 architecture, environment, reproducing results, known limitations를 확인했습니다.",
+      "limitations": [
+        "도구 version은 저자가 기록한 환경입니다.",
+        "편집국은 k-induction proof 로그를 새로 생성하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 연구 artifact 공개의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "저장소의 multi-run CSV는 `alu` 5/5 PASS, `counter`, `arbiter`, `axi_lite_slave`, `uart_tx`, `fifo`의 실패 또는 quota crash를 기록합니다.",
+      "source_url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/logs/sprint1/multi_run_b11.csv",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "commit 539301395aad8dc558faae737d33063c0b2bcf98; logs/sprint1/multi_run_b11.csv",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "CSV의 benchmark, run_id, status, iterations, time_seconds, vacuous, error_message 열을 확인했습니다.",
+      "limitations": [
+        "저자 실행 결과이며 독립 재현은 아닙니다.",
+        "두 fifo run은 OpenAI API quota error로 중단됐습니다.",
+        "실행 환경과 API 상태가 결과 시간과 crash 여부에 영향을 줄 수 있습니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 결과 공개의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "framework에는 property text가 비어 있거나 assert/module 구조가 부족하면 verifier로 넘기지 않는 false-pass guard가 있습니다.",
+      "source_url": "https://raw.githubusercontent.com/trunghafromvietnam/rtl-repair-framework/539301395aad8dc558faae737d33063c0b2bcf98/main_graph.py",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "commit 539301395aad8dc558faae737d33063c0b2bcf98",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "`_has_real_assertions`와 `route_after_architect` 구현을 확인했습니다.",
+      "limitations": [
+        "guard는 구조적 최소 조건을 확인할 뿐 property의 의미 충분성을 증명하지 않습니다.",
+        "Yosys/SymbiYosys frontend 동작 변화에 대한 regression test는 별도 확인이 필요합니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 구현과 설명의 당사자입니다."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "GitHub `main` HEAD는 2026-08-31 접근 시점에 `539301395aad8dc558faae737d33063c0b2bcf98`이며, 해당 commit은 MIT license 파일을 포함합니다.",
+      "source_url": "https://api.github.com/repos/trunghafromvietnam/rtl-repair-framework/commits/539301395aad8dc558faae737d33063c0b2bcf98",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "commit 539301395aad8dc558faae737d33063c0b2bcf98",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "`git ls-remote`와 GitHub commit API에서 HEAD를 확인하고 LICENSE raw file을 확인했습니다.",
+      "limitations": [
+        "GitHub branch는 이후 변경될 수 있어 commit 기준으로 기록했습니다.",
+        "commit은 unsigned로 표시됩니다."
+      ],
+      "conflict_of_interest": [
+        "저장소 유지관리자는 공개 artifact의 당사자입니다."
+      ]
+    }
+  ],
+  "reproducibility_assessment": {
+    "level": "R2",
+    "summary": "공개 code, benchmark, run script, dependency, raw CSV, log, license가 있어 재실행 경로는 열려 있습니다. 편집국은 API key와 formal toolchain을 준비해 재실행하지 않았습니다.",
+    "public_artifacts": [
+      "GitHub repository",
+      "README",
+      "run_n_times.py",
+      "benchmarks and buggy RTL files",
+      "logs/sprint1/multi_run_b11.csv",
+      "requirements.txt",
+      "MIT LICENSE"
+    ],
+    "not_reproduced_by_editorial": [
+      "Yosys/SymbiYosys/Z3 installation",
+      "OpenAI API calls",
+      "multi-run benchmark sweep",
+      "k-induction proof logs",
+      "false-pass regression"
+    ]
+  },
+  "conflict_of_interest_assessment": {
+    "editorial": [
+      "사전 briefing 없음",
+      "제공받은 account·credit·license·hardware 없음",
+      "후원·광고·NDA·embargo 없음"
+    ],
+    "source_side": [
+      "논문과 저장소 저자는 방법과 결과의 당사자입니다."
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "name": "Open-Source LLM-Driven Formal Verification: A Multi-Agent Pipeline for RTL Repair",
+        "urls": [
+          "https://arxiv.org/abs/2607.28877",
+          "https://github.com/trunghafromvietnam/rtl-repair-framework"
+        ],
+        "assessment": "선택. 논문과 공개 저장소, 실행 스크립트, raw CSV, failure-mode disclosure가 함께 있어 중심 주장 E2와 R2를 충족했습니다. 최근 EDA 기사들이 OpenROAD 튜닝과 MCP 보조를 다룬 것과 달리 RTL formal repair loop를 다룹니다."
+      },
+      {
+        "name": "EDATracer",
+        "urls": [
+          "https://arxiv.org/abs/2608.04032"
+        ],
+        "assessment": "LLM EDA 추론 trace dataset로 보이는 신호를 확인했지만, 이번 조사에서 중심 분석을 지지할 공개 실행 artifact나 별도 원문을 충분히 확보하지 못했습니다."
+      },
+      {
+        "name": "ZhuLong",
+        "urls": [
+          "https://arxiv.org/abs/2608.07925"
+        ],
+        "assessment": "open-source EDA agent 방향의 신호로 검토했지만, 공개 benchmark·code·재현 로그가 이번 기사 기준의 두 번째 원문 역할을 하기에는 부족했습니다."
+      },
+      {
+        "name": "major vendor blogs and release surfaces",
+        "urls": [
+          "https://community.cadence.com/cadence_blogs_8/b/artificial-intelligence",
+          "https://blogs.sw.siemens.com/eda/",
+          "https://www.synopsys.com/blogs/chip-design.html",
+          "https://www.ansys.com/blog/"
+        ],
+        "assessment": "Cadence, Siemens EDA, Synopsys, Ansys의 공개 blog와 release 신호를 확인했지만, 이번 턴에서 공식 발표와 manual/release note 또는 공개 artifact가 결합된 새 후보를 선택한 주제보다 강하게 확보하지 못했습니다."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "ReviewDSE / DPLEvolve-AE",
+        "status": "rejected_as_duplicate",
+        "reason": "2026-08-31 EDA 기사에서 이미 다룬 발표입니다. 이번 후보와 달리 OpenROAD detailed placement source-level DSE를 다룹니다."
+      },
+      {
+        "name": "OpenROAD-MCP",
+        "status": "rejected_as_duplicate",
+        "reason": "2026-08-16 EDA 기사에서 이미 다룬 OpenROAD/ORFS MCP 실행 경로입니다."
+      },
+      {
+        "name": "ACE-RTL",
+        "status": "rejected_as_related_but_distinct",
+        "reason": "2026-08-14 EDA 기사에서 다룬 실행 로그 기반 RTL 평가와 가까운 영역입니다. 이번 후보는 evaluation benchmark가 아니라 formal verifier를 repair loop의 판정기로 쓰는 점이 다릅니다."
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
