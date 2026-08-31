@@ -1,0 +1,393 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-31--uber-software-factory",
+  "publication_kind": "special",
+  "date": "2026-08-31",
+  "subject": "Running a Software Factory Efficiently at Uber Scale, Uber Engineering, published 2026-08-27",
+  "central_claim": "Uber 소프트웨어 팩토리의 중심 변화는 3,600개가 넘는 AI 스킬을 개인 session이 아니라 관리형 에이전트의 작업별 실행 체계로 옮기고, 도구 지연 로딩·code-mode·AI Context Graph·작업별 benchmark를 결합해 불필요한 turn·request·token을 줄이면서 품질과 완료 비용을 함께 관리한 데 있습니다.",
+  "decision": "publish-candidate",
+  "editorial_brief_alignment": {
+    "requested_angle": "Uber가 AI 코딩 에이전트를 개인 개발 도구가 아닌 대규모 소프트웨어 생산 시스템으로 운영하면서, 불필요한 실행 비용을 줄이고 작업 품질과 사용량을 함께 관리하도록 실행 구조를 바꾼 방법과 의의를 설명한다.",
+    "required_focus_terms": [
+      "관리형 에이전트",
+      "완료 비용",
+      "도구 지연 로딩",
+      "AI Context Graph"
+    ],
+    "secondary_terms": [
+      "34%",
+      "52%",
+      "1,431,594",
+      "Continuous Skill Improvement"
+    ]
+  },
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 1,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 8,
+    "threshold": 7,
+    "reason": "관리형 AI coding agent를 실제 SDLC에 넣을 때 model routing, context, tool schema, polling, 권한과 결과 단위 비용을 어떻게 함께 설계할지 보여 주는 새 기술 원문입니다. Uber Engineering 글과 Uber 소속 발표자의 공개 영상에서 시스템 구조와 실행 장면을 직접 확인할 수 있어 중심 구조는 E2로 한정할 수 있습니다. 다만 비용·사용량·benchmark raw data와 공개 구현은 없어 검증 가능성은 1점이며, 한국 독자 관련성은 지역 고유성이 아니라 국내 SW 조직에도 같은 설계 판단이 적용된다는 범위에서 1점입니다."
+  },
+  "discovery_review": {
+    "brief_source": "editor-provided special brief at prompts/ai-special-briefs/2026-08-31/uber-software-factory.md",
+    "signals": [
+      {
+        "channel": "editor-approved-special-brief",
+        "classification": "assigned topic",
+        "note": "The editor fixed the topic to Uber Engineering's August 27 article. Search and social signals were not used to replace it with another release."
+      },
+      {
+        "channel": "uber-engineering-technical-article",
+        "url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+        "classification": "P1 primary technical source",
+        "note": "Opened the public article and inspected its rendered text, tables, image alt text and original chart assets. It documents the four session layers, cost equation, managed-agent metrics, model-routing method, MCP/CLI/tool-search/code-mode path, AI Context Graph, internal comparisons and future work."
+      },
+      {
+        "channel": "uber-conference-video",
+        "url": "https://www.youtube.com/watch?v=17-YSUHo6Lk",
+        "classification": "P1 recorded primary presentation",
+        "note": "Opened the original YouTube watch page for the AI Engineer 2026 talk by Uber's Uday Kiran Medisetty and Adam Huda. Public metadata and the uploader description identify the Software Factory infrastructure and an end-to-end managed development flow."
+      },
+      {
+        "channel": "uber-engineering-x",
+        "url": "https://x.com/ubereng/status/2093444169037762840",
+        "classification": "P0 official distribution mirror",
+        "note": "Opened the official post. It exposes the same article text and title, so it confirms official distribution but is not counted as the second distinct original technical source."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Uber Software Factory assigned special topic",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "selected",
+        "reason": "The editor designated this topic. It clears the special-edition threshold with a bounded E2 architectural claim and two distinct reader-openable primary URLs: the August 27 technical article and the August 21 recorded Uber presentation."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "EDITOR_APPROVED_SPECIAL_TOPIC",
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "VENDOR_INTERNAL_METRICS_BOUNDED",
+    "NO_INDEPENDENT_BENCHMARK_REPRODUCTION",
+    "FUTURE_SELF_IMPROVEMENT_BOUNDED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-08-31T11:37:55Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-special-publish-v1",
+    "human_approval_required": true,
+    "automatic_publish_allowed": false,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "release_gate_notes": {
+    "required_conditions_recorded": [
+      "request publication_id is 2026-08-31--uber-software-factory and publication_kind is special",
+      "article frontmatter date uses publication_date 2026-08-31 and omits publication_id",
+      "article frontmatter includes publication_kind: special exactly once",
+      "article and evidence share subject, decision, evidence ceiling and reproducibility state",
+      "selection total is 8 with threshold 7",
+      "the central architectural claim is E2 while Uber-only adoption, cost and benchmark outcomes remain explicitly attributed internal measurements",
+      "central claims include two distinct primary URLs: the Uber Engineering technical article and recorded Uber conference presentation",
+      "the official X copy is recorded but not counted as a separate original source",
+      "claim-source ledger records source type, evidence grade, version, access date, method, limitations and conflicts",
+      "article preserves the requested angle through required focus terms in title, summary, first three paragraphs and central_claim",
+      "materialization, release creation, Git operations, deployment, public verification and retrospective remain outside this turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "create release.json",
+      "commit, push or deploy",
+      "public URL verification",
+      "post-publication retrospective",
+      "content, decisions, docs, editions, scripts, prompts, site, .coco-agents or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "The Uber Engineering article and the recorded talk by Uber employees are primary sources from the system's builder, not independent validation.",
+    "The adoption, cost, SQL token, uReview and AI Context Graph comparisons are Uber internal measurements without public raw traces, datasets, total spend or full model/vendor configuration.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided."
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "uber-software-factory-article",
+      "url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "observed": {
+        "title": "Running a Software Factory Efficiently at Uber Scale",
+        "author": "Uday Kiran Medisetty",
+        "published_date": "2026-08-27",
+        "page_updated_at": "2026-08-27T14:28:49.683157Z"
+      }
+    },
+    {
+      "artifact_id": "uber-ai-engineer-video",
+      "url": "https://www.youtube.com/watch?v=17-YSUHo6Lk",
+      "observed": {
+        "title": "Agentic SDLC at Uber — Uday Kiran Medisetty & Adam Huda, Uber",
+        "channel": "AI Engineer",
+        "publish_date": "2026-08-21T06:00:06-07:00",
+        "length_seconds": 1106
+      }
+    },
+    {
+      "artifact_id": "uber-unit-cost-chart",
+      "url": "https://tb-static.uber.com/prod/udam-assets/b25d175f-821b-4ba6-a149-14e5c95a25cb.png",
+      "observed": {
+        "title": "UNIT COST WITH THE MODEL HELD CONSTANT, 2026",
+        "cost_per_1000_requests_below_peak": "34%",
+        "cost_per_session_below_peak": "52%",
+        "session_series_start": "2026-05-25"
+      }
+    },
+    {
+      "artifact_id": "uber-session-layers-chart",
+      "url": "https://tb-static.uber.com/prod/udam-assets/6f6a2f9d-8e70-45a8-9637-9ffa118aa23b.png",
+      "observed": {
+        "layers": ["specialized agents", "general agents", "sessions with skills", "raw sessions"],
+        "managed_outcome_units": ["cost / merged PR", "cost / review", "cost / XP readout", "cost / alert", "cost / cleanup"]
+      }
+    },
+    {
+      "artifact_id": "uber-ureview-pareto-chart",
+      "url": "https://tb-static.uber.com/prod/udam-assets/a3b68d79-4d1f-47d5-9524-5c0c404bdbd2.png",
+      "observed": {
+        "configurations": 10,
+        "production_configuration": {"label": "Frontier Model C", "cost_per_review_usd": 0.47, "f1": 0.50},
+        "named_open_weight_examples": [
+          {"label": "Open-Weight Model A", "cost_per_review_usd": 0.28, "f1": 0.48},
+          {"label": "Open-Weight Model C", "cost_per_review_usd": 0.06, "f1": 0.31}
+        ]
+      }
+    },
+    {
+      "artifact_id": "uber-context-graph-comparison",
+      "url": "https://tb-static.uber.com/prod/udam-assets/1c6c7371-a4e4-47dd-9496-315bea2bf102.png",
+      "observed": {
+        "with_graph": {"tool_calls": 4, "errors": 0, "subagents": 0, "seconds": 38, "score": "30/30", "result": "correct"},
+        "without_graph": {"tool_calls": 5, "errors": 3, "subagents": 2, "duration": "20m 09s", "score": "19/30", "result": "wrong"}
+      }
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "uber-software-factory-blog",
+      "url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "owner": "Uber Engineering / Uday Kiran Medisetty",
+      "version": "Published 2026-08-27; page updatedAt 2026-08-27T14:28:49.683157Z; accessed 2026-08-31",
+      "notes": "Primary technical article for the four session layers, cost equation, managed-agent outcome metrics, model routing, MCP/CLI/tool-search/code-mode flow, AI Context Graph, internal measurements, limitations and future work."
+    },
+    {
+      "source_id": "uber-agentic-sdlc-video",
+      "url": "https://www.youtube.com/watch?v=17-YSUHo6Lk",
+      "source_type": "P1",
+      "owner": "AI Engineer recording of Uber speakers Uday Kiran Medisetty and Adam Huda",
+      "version": "Published 2026-08-21T06:00:06-07:00; duration 1106 seconds; accessed 2026-08-31",
+      "notes": "Reader-openable recorded presentation linked by the Uber article. Original watch-page metadata and description identify the Software Factory infrastructure, skills marketplace, MCP gateway, context graph, cloud runtime and end-to-end managed development flow."
+    },
+    {
+      "source_id": "uber-engineering-x-mirror",
+      "url": "https://x.com/ubereng/status/2093444169037762840",
+      "source_type": "P0",
+      "owner": "Uber Engineering",
+      "version": "Official X post/article visible at access time; accessed 2026-08-31",
+      "notes": "Official distribution mirror of the same Uber Engineering article. Recorded for provenance but excluded from the distinct-original-source count."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": false,
+      "claim": "Uber Engineering published Running a Software Factory Efficiently at Uber Scale on August 27, 2026 and reported more than 3,600 agent skills, more than 30,000 daily skill executions, 7x weekly users and 9.4x weekly agentic requests from February to mid-August.",
+      "evidence_level": "E1",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering article published 2026-08-27",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Opened the public article, read the introduction and inspected the scale figure and captions.",
+      "limitations": ["Scale and adoption numbers are Uber internal counts; definitions, deduplication beyond the stated cross-tool user deduplication and raw records are not public."],
+      "conflict_of_interest": ["Uber is reporting on its own system and adoption."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "claim": "Uber's Software Factory places raw interactive sessions, skill-enabled sessions, general cloud agents and specialized managed agents in one execution system, with managed agents handling bounded SDLC work such as PR creation, review, validation, alert triage and maintenance under human review or escalation.",
+      "evidence_level": "E2",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering article published 2026-08-27 and Agentic SDLC at Uber video published 2026-08-21",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the article's four-layer section, introduction and managed-agent outcome table; inspected the original layer chart; opened the linked recorded presentation and its original page metadata/description for the infrastructure and end-to-end workflow.",
+      "limitations": ["The public sources describe Uber's architecture but do not provide executable source code, detailed permission matrices or failure-recovery configurations."],
+      "conflict_of_interest": ["Both primary sources describe Uber's own engineering system."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"},
+        {"url": "https://www.youtube.com/watch?v=17-YSUHo6Lk", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "claim": "Uber decomposes total agent spend into users, sessions per user, turns per session, requests per turn, tokens per request and price per token, while specialized agents are measured by outcome-denominated cost such as cost per merged PR, review, alert or cleanup alongside quality and volume.",
+      "evidence_level": "E2",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering article and original cost/layer figures, accessed 2026-08-31",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the cost equation, weekly metric table and managed-agent outcomes row; inspected the original figure that maps specialized agents to completed-work cost units.",
+      "limitations": ["This verifies the published measurement framework, not the completeness or correctness of Uber's internal attribution pipeline."],
+      "conflict_of_interest": ["Uber authored the measurement framework and reports its own operational outcomes."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "claim": "With the model held constant, Uber reports cost per 1,000 requests almost 34% below its peak and cost per session 52% below its June peak; the session series begins at the end of May.",
+      "evidence_level": "E1",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering article and Figure 2, accessed 2026-08-31",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the model-held-constant paragraph and inspected the original unit-cost chart.",
+      "limitations": ["Internal measurement only; total spend, absolute unit costs, raw traces, workload mix and model/vendor configuration are not public. Adoption, workload and model changes affect other before-after series."],
+      "conflict_of_interest": ["Uber reports its own cost reductions."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": true,
+      "claim": "Uber removes unused MCP schemas from model context by resolving gateway tools through CLI commands or loading selected tools through search, and its code-mode batches polling and intermediate processing in a script or subprocess so only needed summaries return to the model.",
+      "evidence_level": "E2",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering article published 2026-08-27 and linked Uber presentation published 2026-08-21",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the MCP shell execution, tool search and code-mode sections and compared the published standard-tool and subprocess execution paths; checked the linked talk's original description of the MCP gateway projected into a CLI.",
+      "limitations": ["The public material does not include the gateway, CLI resolver or code-mode plugin source code. Standard MCP client behavior may differ outside the compared Uber setup."],
+      "conflict_of_interest": ["Uber describes its own implementation and savings mechanism."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"},
+        {"url": "https://www.youtube.com/watch?v=17-YSUHo6Lk", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "central": false,
+      "claim": "Uber's SQL table reports 903 to 402 tokens for SELECT 1, 954 to 403 for COUNT(*), 1,600 to 457 for GROUP BY LIMIT 20, 2,200 to 900 for SHOW COLUMNS and 1,431,594 to 900 for a 50-row wide-table SELECT *, all measured in the same Claude Code session.",
+      "evidence_level": "E1",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering code-mode table, accessed 2026-08-31",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read all five table rows and the table note in the public article.",
+      "limitations": ["The wide-table row is an extreme large-response case, not an average. No query schema, response bytes, raw session trace, model version, repetition count or variance is public."],
+      "conflict_of_interest": ["Uber selected and reported the examples."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "central": true,
+      "claim": "Uber builds per-agent benchmarks from real work, evaluates cost, task quality and reliability together, and routes to a Pareto-efficient configuration rather than treating one model as best for every workload; a primary model decomposes and evaluates while cheaper subagents execute bounded tasks by default.",
+      "evidence_level": "E2",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering model selection, uReview and default-model sections; accessed 2026-08-31",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the benchmark-driven selection method, uReview metric definition and main/subagent default-model description; inspected the 10-configuration Pareto chart.",
+      "limitations": ["uReview dataset, sample size, human-review labels, model/vendor names, full reliability distribution and raw evaluation runs are not public, so model superiority is not independently established."],
+      "conflict_of_interest": ["Uber designed the benchmark and selected the production configuration."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "central": true,
+      "claim": "Uber's AI Context Graph connects services, teams, incidents, pull requests, architecture documents, deployments, datasets and historical query use so agents can retrieve organizational context without repeatedly searching separate internal systems.",
+      "evidence_level": "E2",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering context engineering section published 2026-08-27 and linked presentation published 2026-08-21",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the graph composition and integrated-system list in the article; opened the linked talk's original page description, which independently describes the earlier context-graph role in ownership and dependency lookup.",
+      "limitations": ["Graph schema, query implementation, access controls, freshness guarantees and data ingestion code are not public. The video describes an earlier scale than the August 27 article."],
+      "conflict_of_interest": ["Uber reports its own graph architecture."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"},
+        {"url": "https://www.youtube.com/watch?v=17-YSUHo6Lk", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "central": false,
+      "claim": "In one Uber-selected same-question and same-model comparison, the graph-grounded path returned a correct answer in 38 seconds with four tool calls, while the non-graph path returned a wrong answer after 20 minutes 9 seconds with five tool calls, three errors and two subagents.",
+      "evidence_level": "E1",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering Figure 10, accessed 2026-08-31",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Inspected the original Figure 10 asset and its article caption.",
+      "limitations": ["Single internal selected question, not a general benchmark; prompt, model version, grader procedure, repetitions and variance are not public."],
+      "conflict_of_interest": ["Uber selected, ran and reported the comparison."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"}
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "central": false,
+      "claim": "Continuous Skill Improvement is listed as work in progress to record papercuts from skill traces and auto-generate updates, not as a completed autonomous self-improvement system.",
+      "evidence_level": "E1",
+      "source_url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "P1",
+      "version": "Uber Engineering What's Next section, accessed 2026-08-31",
+      "accessed_at": "2026-08-31",
+      "direct_or_derived": "direct",
+      "method": "Read the future-initiatives list and preserved the source's present-progressive wording.",
+      "limitations": ["No public implementation, evaluation, approval policy or deployment result was found in the assigned source set."],
+      "conflict_of_interest": ["Uber states its own roadmap."],
+      "sources": [
+        {"url": "https://www.uber.com/us/en/blog/efficient-software-factory/", "source_type": "P1"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-08-31--uber-software-factory",
+  "publication_kind": "special",
+  "decision": "publish-candidate",
+  "release_status": "approved-for-publication",
+  "article_path": "content/ai/2026-08-31--uber-software-factory/article.md",
+  "evidence_path": "decisions/ai/2026-08-31--uber-software-factory/evidence.json",
+  "artifact_hashes": {
+    "article_sha256": "1b0a8e09cae1e88d206e0d14a49ed00ccbdb7b1cd508598b598c6916855ffe79",
+    "evidence_sha256": "fb603d08433ca2999fc8e8ccfe52307cb6080e5b0dfbfd15708e5da3e11b678c"
+  },
+  "routes": [
+    "/ai/",
+    "/ai/2026-08-31/uber-software-factory/"
+  ],
+  "authorization": {
+    "mode": "human",
+    "approved": true,
+    "approved_at": "2026-08-31T21:03:02+09:00",
+    "approved_by": "news-room editor",
+    "approval_basis": "Editor approved public special publication in conversation on 2026-08-31",
+    "scope": [
+      "content/ai/2026-08-31--uber-software-factory/article.md",
+      "decisions/ai/2026-08-31--uber-software-factory/evidence.json",
+      "decisions/ai/2026-08-31--uber-software-factory/release.json"
+    ]
+  },
+  "editorial_brief_alignment": {
+    "requested_angle": "Uber가 AI 코딩 에이전트를 개인 개발 도구가 아닌 대규모 소프트웨어 생산 시스템으로 운영하면서, 불필요한 실행 비용을 줄이고 작업 품질과 사용량을 함께 관리하도록 실행 구조를 바꾼 방법과 의의를 설명한다.",
+    "required_focus_terms": [
+      "관리형 에이전트",
+      "완료 비용",
+      "도구 지연 로딩",
+      "AI Context Graph"
+    ],
+    "secondary_terms": [
+      "34%",
+      "52%",
+      "1,431,594",
+      "Continuous Skill Improvement"
+    ],
+    "checked_targets": [
+      "title",
+      "summary",
+      "lead",
+      "central_claim"
+    ],
+    "focus_hits": 13,
+    "secondary_hits": 0,
+    "status": "passed"
+  }
+}
