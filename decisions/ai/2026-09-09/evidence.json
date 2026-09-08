@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-09",
+  "date": "2026-09-09",
+  "subject": "OpenBMB MiniCPM5-2B open-weight model, Hugging Face revision a063f08de1bd09dfc9ae4cf3da35e6064949e533, September 2026",
+  "central_claim": "MiniCPM5-2B is a publishable AI engineering topic because the official Hugging Face model card, OpenBMB GitHub README, public Hugging Face API metadata, raw config and linked training datasets support a bounded E2/R2 claim: OpenBMB released an Apache-2.0 2.5B-parameter Llama-style long-context model that makes local agent and tool-calling experiments more inspectable and deployable, while benchmark superiority remains a vendor-authored claim.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "MiniCPM5-2B was created on Hugging Face on 2026-09-06 and last modified on 2026-09-08. It is a fresh open-weight release with public model metadata, raw config, safetensors artifact listing, Apache-2.0 license tag, model card, GitHub README, tool-calling template and vLLM/SGLang/Transformers execution paths. The conclusion is bounded to inspectable architecture and engineering implications because this turn did not download the 5GB checkpoint or rerun benchmarks."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "OpenBMB released MiniCPM5-2B as a public, ungated Apache-2.0 open-weight text-generation model with 2,516,756,480 BF16 parameters, 42 LlamaForCausalLM layers, 131,072-token context, tool-calling template and documented vLLM/SGLang/Transformers execution paths; the publishable conclusion is about inspectable local-agent deployment conditions, not independently proven benchmark superiority.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://huggingface.co/openbmb/MiniCPM5-2B",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/OpenBMB/MiniCPM",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://huggingface.co/api/models/openbmb/MiniCPM5-2B",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://huggingface.co/openbmb/MiniCPM5-2B/raw/main/config.json",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-09-sequential/20260908T213827Z-1200173/request.json and used publication_id 2026-09-09 with article_path var/runs/ai/2026-09-09-sequential/20260908T213827Z-1200173/staged-content/article.md, evidence_path var/runs/ai/2026-09-09-sequential/20260908T213827Z-1200173/evidence.json and no_publish_path var/runs/ai/2026-09-09-sequential/20260908T213827Z-1200173/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "openai-api-changelog",
+        "url": "https://developers.openai.com/api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Opened OpenAI API changelog. The 2026-09-08 item released GPT Image 2.5 Sunburst and GPT Image 2.5 Flare for the Images API and Responses API image generation tool. Model pages and pricing were opened. The update is fresh and useful, but its central claims are vendor documentation and API availability rather than public executable artifacts; it did not reach the requested E2 threshold as strongly as MiniCPM5-2B."
+      },
+      {
+        "channel": "openai-model-pages-and-image-guide",
+        "url": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+        "classification": "P1 alternative review",
+        "note": "Opened GPT Image 2.5 Sunburst and Flare model pages, image generation guide and pricing page. Confirmed dated model IDs gpt-image-2.5-sunburst-2026-09-08 and gpt-image-2.5-flare-2026-09-08, xhigh/max quality settings, Images API and Responses API tool integration, and token rates. Not selected because public code/weight artifacts for the core model behavior were not available."
+      },
+      {
+        "channel": "anthropic-release-notes",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 alternative review",
+        "note": "Opened Anthropic Platform release notes. Recent September signals included ant CLI 1.30.0 resource-as-code support and the 2026-09-01 Claude Fable 5.1 / Mythos 5.1 release with 1M context, 128k max output tokens, adaptive thinking, cache-read price change and tool-choice limitations. Important, but public evidence remains vendor API documentation without open artifacts, so it was not selected over MiniCPM5-2B."
+      },
+      {
+        "channel": "google-gemini-api-changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative review",
+        "note": "Opened Gemini API changelog and model paths. The indexed visible changelog did not expose a fresh 2026-09-08 Gemini model/API release comparable to MiniCPM5-2B in public artifacts. It remained part of discovery coverage rather than a selected candidate."
+      },
+      {
+        "channel": "qwen-official-blog-and-registry-search",
+        "url": "https://qwen.ai/blog?id=qwen3.8",
+        "classification": "P1/P2 discovery review",
+        "note": "Searched and opened official Qwen paths around Qwen3.8-Max, Qwen3.8-27B and Hugging Face registry signals. Qwen3.8-Max is important but older August news; Qwen3.8 open-weight items were already heavily covered in prior daily discovery context and did not outrank the fresh MiniCPM5-2B release for 2026-09-09."
+      },
+      {
+        "channel": "openbmb-huggingface-model-card",
+        "url": "https://huggingface.co/openbmb/MiniCPM5-2B",
+        "classification": "P1/P2 selected-source path",
+        "note": "Opened the official MiniCPM5-2B Hugging Face model card. It identifies the model as an Apache-2.0 transformers text-generation model with safetensors, English and Chinese support, long-context, tool-calling and on-device tags. The card documents MiniCPM5-2B as a dense 2B Transformer, local assistant/coding-agent/tool-use target, 131,072 context length, linked datasets, benchmark table, training recipe, vLLM/SGLang/Transformers quickstarts and SGLang tool-call parser guidance."
+      },
+      {
+        "channel": "openbmb-github-readme",
+        "url": "https://github.com/OpenBMB/MiniCPM",
+        "classification": "P1/P2 selected-source path",
+        "note": "Opened the OpenBMB MiniCPM GitHub README. It repeats MiniCPM5-2B's architecture, parameter count, layer count, GQA heads, context length, evaluation summary, base/mid/post-training recipe, public dataset links, vLLM and SGLang serving examples and DSpark speculative decoding path."
+      },
+      {
+        "channel": "huggingface-api-and-raw-config",
+        "url": "https://huggingface.co/api/models/openbmb/MiniCPM5-2B",
+        "classification": "P2 artifact metadata",
+        "note": "Fetched Hugging Face API and raw config. API returned id openbmb/MiniCPM5-2B, sha a063f08de1bd09dfc9ae4cf3da35e6064949e533, createdAt 2026-09-06T11:12:19.000Z, lastModified 2026-09-08T09:08:22.000Z, private false, gated false, downloads 2879, likes 636, library_name transformers, safetensors parameters BF16 2516756480, and siblings including model-00000-of-00001.safetensors, config.json, tokenizer.json and chat_template.jinja. Raw config confirmed LlamaForCausalLM, 42 layers, 16 attention heads, 2 KV heads, max_position_embeddings 131072, torch_dtype bfloat16 and transformers_version 5.6.2."
+      },
+      {
+        "channel": "training-dataset-links",
+        "url": "https://huggingface.co/datasets/openbmb/UltraData-SFT-Agent-2609",
+        "classification": "P2 supporting-source path",
+        "note": "Followed model-card dataset links for Ultra-FineWeb, UltraX-Preview, UltraData-Code, UltraData-SFT-Agent-2609 and UltraData-RL-2609 as supporting public artifacts. They support the bounded claim that OpenBMB disclosed some training data components, while full training logs and compute settings remain unavailable."
+      },
+      {
+        "channel": "mistral-deepseek-vllm-transformers-runtime-review",
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed official source paths and search results for Mistral changelog/model pages, DeepSeek GitHub and Hugging Face registry, vLLM releases and Hugging Face Transformers releases. This pass did not find a fresher, non-duplicate model/API/runtime announcement with a stronger combination of novelty, public artifacts and engineering decision utility than MiniCPM5-2B."
+      },
+      {
+        "channel": "search-and-social-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results, Hacker News snippets, X snippets and third-party model trackers were used only to discover official OpenAI, Anthropic, Google, Qwen, OpenBMB, DeepSeek, Mistral, vLLM and Transformers paths. No article fact or scoring decision relies on those signals without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "OpenBMB MiniCPM5-2B open-weight local-agent model",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is a fresh public-weight release with public metadata, raw config, model card, GitHub README, linked datasets and concrete vLLM/SGLang/Transformers execution paths. It directly helps engineers judge whether a small local model can support long-context and tool-calling agent experiments."
+      },
+      {
+        "subject": "OpenAI GPT Image 2.5 Sunburst and Flare",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Fresh same-day release with clear API and pricing implications. Not selected because the available official evidence confirms release, model IDs, quality settings and token pricing, but does not expose model/system cards, public code or executable artifacts sufficient for the requested E2 central claim."
+      },
+      {
+        "subject": "Claude Fable 5.1 and Mythos 5.1",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Important model/API release for long-running agentic coding and cache economics. Not selected because the public evidence is primarily Anthropic release notes and migration documentation, while MiniCPM5-2B provides open artifacts and executable local paths."
+      },
+      {
+        "subject": "Anthropic ant CLI 1.30.0 apply",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Useful infrastructure-as-code update for Claude Managed Agents resources. Not selected because it is a tool release with narrower AI-model technical significance and less public artifact depth than MiniCPM5-2B."
+      },
+      {
+        "subject": "Qwen3.8-Max and Qwen3.8 open-weight family",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Technically significant and supported by official blog, Hugging Face and GitHub paths. Not selected because the main releases were August items and prior AI edition discovery had already covered Qwen3.8-family architecture/open-weight angles more directly."
+      },
+      {
+        "subject": "Google Gemini API recent changelog paths",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Official changelog was checked as a required broad discovery path. This pass did not surface a fresh, verified 2026-09-08 model/API change strong enough for a publish candidate."
+      },
+      {
+        "subject": "Mistral, DeepSeek, vLLM and Transformers recent source paths",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Official source paths and release searches were checked. No fresher, non-duplicate model/API/runtime announcement in this pass combined public artifacts, novelty and direct engineering decision utility as well as MiniCPM5-2B."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "PUBLIC_ARTIFACTS_AVAILABLE",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "observed_at": "2026-09-08T21:38:27Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-09-09 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on the official Hugging Face model card, OpenBMB GitHub README, Hugging Face API metadata, raw config and linked public datasets",
+      "central claims include at least two distinct official or public source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions exactly: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-09-09 and decisions/ai/2026-09-09",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "OpenBMB is the model developer and author/operator of the MiniCPM5-2B model card and MiniCPM GitHub repository.",
+    "Hugging Face hosts the model registry and public artifact metadata.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and social signals were used only as discovery checks; article facts rely on opened official primary sources and public artifacts."
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenBMB released MiniCPM5-2B as the second model in the MiniCPM5 series for local assistants, coding agents, tool-use workflows and reasoning scenarios.",
+      "source_url": "https://huggingface.co/openbmb/MiniCPM5-2B",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "openbmb/MiniCPM5-2B model card, Hugging Face revision a063f08de1bd09dfc9ae4cf3da35e6064949e533",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Hugging Face model card and read the highlights, model information and introduction sections.",
+      "limitations": [
+        "OpenBMB is the release author and model developer.",
+        "Product positioning is not independent validation of usefulness."
+      ],
+      "conflict_of_interest": [
+        "OpenBMB authored the model card for its own model."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The public Hugging Face API metadata identifies MiniCPM5-2B as public, ungated, non-disabled, transformers-based and tagged with safetensors and license:apache-2.0; it reports sha a063f08de1bd09dfc9ae4cf3da35e6064949e533, createdAt 2026-09-06T11:12:19.000Z and lastModified 2026-09-08T09:08:22.000Z.",
+      "source_url": "https://huggingface.co/api/models/openbmb/MiniCPM5-2B",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Hugging Face model API response fetched 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Fetched the public Hugging Face API JSON for openbmb/MiniCPM5-2B and inspected id, sha, timestamps, gated/private flags, tags, library_name and siblings.",
+      "limitations": [
+        "The API metadata confirms public artifact state but not model quality.",
+        "This turn did not download the safetensors file or calculate local file hashes."
+      ],
+      "conflict_of_interest": [
+        "Hugging Face hosts the registry; OpenBMB controls the model repository contents."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The raw config for MiniCPM5-2B declares LlamaForCausalLM, 42 hidden layers, hidden size 2048, 16 attention heads, 2 key-value heads, max_position_embeddings 131072, torch_dtype bfloat16 and transformers_version 5.6.2.",
+      "source_url": "https://huggingface.co/openbmb/MiniCPM5-2B/raw/main/config.json",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "config.json at Hugging Face revision a063f08de1bd09dfc9ae4cf3da35e6064949e533",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Fetched raw config.json and inspected architecture, layer count, head configuration, context length and dtype fields.",
+      "limitations": [
+        "Config values do not prove long-context quality or latency.",
+        "Runtime memory use depends on framework, precision, KV cache and workload."
+      ],
+      "conflict_of_interest": [
+        "OpenBMB controls the model repository config."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "OpenBMB documents vLLM, SGLang and Transformers quickstarts for MiniCPM5-2B, and the SGLang path includes a minicpm5 tool-call parser that converts XML-style tool calls to OpenAI-compatible tool_calls.",
+      "source_url": "https://huggingface.co/openbmb/MiniCPM5-2B",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "openbmb/MiniCPM5-2B model card, Quickstart and Tool Calling sections",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Read the model card quickstart and tool-calling sections and cross-checked with GitHub README examples.",
+      "limitations": [
+        "This turn did not run the servers or measure parser reliability.",
+        "Tool-calling behavior can vary by prompt, SGLang version and application schema."
+      ],
+      "conflict_of_interest": [
+        "OpenBMB authored the execution examples."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "OpenBMB describes MiniCPM5-2B training as base training, mid-training and post-training with SFT, RL and OPD; it says OPD distills 16 RL expert models into one release model and links public UltraData datasets including Agent SFT and RL datasets.",
+      "source_url": "https://github.com/OpenBMB/MiniCPM",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenBMB/MiniCPM README, MiniCPM5-2B training recipe section",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Opened the GitHub README and read the MiniCPM5-2B training recipe and linked dataset sections.",
+      "limitations": [
+        "Training logs, compute budget, all filtering choices and complete evaluation harness settings are not public in the reviewed sources.",
+        "Linked datasets support partial inspectability, not full training reproduction."
+      ],
+      "conflict_of_interest": [
+        "OpenBMB authored the training recipe description."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "OpenBMB reports benchmark claims including 2B-class SOTA, an average score of 53.9 and RL+OPD improvements of 10.96 and 6.96 points, but these are treated as vendor-authored results rather than independent performance conclusions.",
+      "source_url": "https://huggingface.co/openbmb/MiniCPM5-2B",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "openbmb/MiniCPM5-2B model card, Evaluation Results and RL + OPD sections",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Read the model card evaluation table and RL+OPD section; used the values only to report OpenBMB's claim and to define limitations.",
+      "limitations": [
+        "No independent benchmark rerun was found or performed in this turn.",
+        "Baseline selection, hardware, decoding settings and harness details were not fully normalized by an independent evaluator."
+      ],
+      "conflict_of_interest": [
+        "OpenBMB selected and reported the benchmark results for its own model."
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "state": "R2",
+    "public_artifacts": [
+      "Hugging Face model card",
+      "Hugging Face API metadata",
+      "raw config.json",
+      "safetensors artifact listing",
+      "tokenizer and chat template files",
+      "OpenBMB GitHub README",
+      "linked UltraData datasets",
+      "vLLM, SGLang and Transformers examples"
+    ],
+    "not_reproduced": [
+      "Model weights were not downloaded in this turn.",
+      "No benchmark or serving latency test was rerun.",
+      "No output quality or tool-calling reliability test was performed."
+    ],
+    "reader_reproduction_path": "Use the model card quickstarts for vLLM, SGLang or Transformers with model id openbmb/MiniCPM5-2B, pin revision a063f08de1bd09dfc9ae4cf3da35e6064949e533, and record hardware, precision, context length, batch size, decoding options and parser version."
+  },
+  "article_contract": {
+    "frontmatter_fields": [
+      "edition",
+      "decision",
+      "title",
+      "date",
+      "subject",
+      "summary",
+      "evidence_ceiling",
+      "reproducibility",
+      "conflicts"
+    ],
+    "required_sections_present": [
+      "news explanation",
+      "technical understanding",
+      "technical meaning and verification tasks",
+      "이해상충과 취재 조건",
+      "근거 원장",
+      "출처"
+    ],
+    "style_contracts": [
+      "korean-writing-baseline-v1",
+      "ai-technical-blog-v2"
+    ],
+    "claim_strength_control": "Title, summary and lead describe the release, architecture, public artifacts and engineering implications. Benchmark superiority is explicitly limited to OpenBMB-authored claims."
+  },
+  "source_urls": [
+    "https://huggingface.co/openbmb/MiniCPM5-2B",
+    "https://huggingface.co/api/models/openbmb/MiniCPM5-2B",
+    "https://huggingface.co/openbmb/MiniCPM5-2B/raw/main/config.json",
+    "https://github.com/OpenBMB/MiniCPM",
+    "https://huggingface.co/datasets/openbmb/UltraData-Code",
+    "https://huggingface.co/datasets/openbmb/UltraData-SFT-Agent-2609",
+    "https://huggingface.co/datasets/openbmb/UltraData-RL-2609"
+  ]
+}
