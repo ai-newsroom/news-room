@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-09",
+  "date": "2026-09-09",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-09-sequential/20260908T214841Z-1203925/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-09-09-sequential/20260908T214841Z-1203925/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-09-09-sequential/20260908T214841Z-1203925/no-publish.json",
+  "subject": "Cadence full front-to-back EDA flow qualification on AWS Graviton4 and Graviton5 through Cadence OnCloud, announced 2026-09-08",
+  "title": "Cadence EDA flow는 AWS Graviton을 x86 보조가 아닌 native 실행 대상으로 넓힙니다",
+  "summary": "Cadence는 Xcelium, Jasper, Conformal, Genus, Innovus+, Tempus를 포함한 full front-to-back EDA flow를 Arm 기반 AWS Graviton에서 native로 실행하도록 qualified했다고 밝혔습니다. 이 변화는 클라우드 EDA 용량 계획에서 x86 서버만 전제로 삼던 선택지를 줄입니다. 다만 공개 원문은 정확한 Cadence tool release, design set, PPA, runtime, license 비용, signoff correlation 수치를 제시하지 않아 성능 우월성은 벤더와 파트너의 주장으로만 다뤄야 합니다.",
+  "central_claim": "Cadence의 AWS Graviton qualification은 full front-to-back Cadence EDA flow의 cloud 실행 대상을 x86 중심 fleet에서 Arm 기반 Graviton native fleet까지 넓히며, 설계팀의 burst capacity와 signoff compute 계획에 새 평가 항목을 추가합니다.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerate-chip-design-with-arm-architecture-cadence-eda-tools-on-aws-graviton",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.cadence.com/en_US/home/solutions/cadence-oncloud.html",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/graviton/",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerate-chip-design-with-arm-architecture-cadence-eda-tools-on-aws-graviton",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/soc-implementation-and-floorplanning/innovus-plus-synthesis-implementation-system.html",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/synthesis/genus-synthesis-solution.html",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.cadence.com/en_US/home/solutions/cadence-oncloud.html",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://aws.amazon.com/ec2/graviton/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.arm.com/products/cloud-datacenter",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": false,
+      "evidence_level": "E1",
+      "sources": [
+        {
+          "url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerate-chip-design-with-arm-architecture-cadence-eda-tools-on-aws-graviton",
+          "source_grade": "P0"
+        }
+      ]
+    }
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "Cadence, AWS, Arm은 이번 흐름의 직접 이해관계자입니다. 이 기사에는 사전 briefing, 제공받은 account·credit·license·hardware, 후원, 광고, NDA 또는 embargo가 없었습니다."
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 1,
+    "reproducibility": 0,
+    "practical_decision_usefulness": 2,
+    "total": 7,
+    "threshold": 7,
+    "rationale": "Cadence가 full front-to-back EDA flow를 AWS Graviton native 실행 대상으로 qualified했다고 밝힌 것은 설계팀의 cloud burst, implementation, signoff compute 선택에 직접 영향을 준다. 다만 공개 원문에는 exact tool release, design, node, PPA, runtime, signoff correlation, license 조건이 없어 성능 우월성은 판단하지 않았다."
+  },
+  "selection": {
+    "total": 7,
+    "threshold": 7
+  },
+  "source_urls": [
+    "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerate-chip-design-with-arm-architecture-cadence-eda-tools-on-aws-graviton",
+    "https://www.cadence.com/en_US/home/solutions/cadence-oncloud.html",
+    "https://aws.amazon.com/ec2/graviton/",
+    "https://www.arm.com/products/cloud-datacenter",
+    "https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/soc-implementation-and-floorplanning/innovus-plus-synthesis-implementation-system.html",
+    "https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/synthesis/genus-synthesis-solution.html"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Cadence는 full EDA flow가 Arm-based AWS Graviton CPUs에서 native로 실행되도록 qualified됐고, Annapurna Labs가 digital implementation and signoff portion을 production에서 사용 중이라고 발표했습니다.",
+      "source_url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerate-chip-design-with-arm-architecture-cadence-eda-tools-on-aws-graviton",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Cadence blog post dated 2026-09-08; Graviton4 and Graviton5 named in post",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Cadence 원문에서 발표 날짜, native qualification, Graviton4/5, Annapurna production use 문장을 확인했습니다.",
+      "limitations": [
+        "정확한 Cadence release number와 support matrix는 공개 글에 없습니다.",
+        "Annapurna는 AWS 내부 silicon 조직이므로 독립 고객 재현으로 보지 않았습니다.",
+        "PPA와 runtime 수치는 공개되지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence는 EDA tool과 OnCloud 판매사입니다.",
+        "AWS/Annapurna는 Graviton과 EC2의 이해관계자입니다."
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "Cadence OnCloud는 full front-to-back design flow와 peak capacity를 지원하는 Cadence-managed cloud service를 제공한다고 설명합니다.",
+      "source_url": "https://www.cadence.com/en_US/home/solutions/cadence-oncloud.html",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Cadence OnCloud product page accessed 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "OnCloud 페이지에서 managed cloud service, front-to-back design flow, AWS/Azure/IBM Cloud 제공 설명을 확인했습니다.",
+      "limitations": [
+        "계정별 entitlement와 regional availability는 확인하지 않았습니다.",
+        "Graviton-specific support matrix는 이 페이지에 별도 표로 공개되지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence는 OnCloud 판매사입니다."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Cadence는 Graviton native flow 범위에 Xcelium Logic Simulation, Jasper Formal Verification, Conformal technologies, Genus Synthesis, Innovus+ place-and-route, Tempus Timing Signoff를 포함한다고 밝혔습니다.",
+      "source_url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerate-chip-design-with-arm-architecture-cadence-eda-tools-on-aws-graviton",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Cadence blog post dated 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Cadence 원문의 participant table과 Powering Agentic AI Chip Design 절에서 제품 목록과 Graviton4/5 언급을 확인했습니다.",
+      "limitations": [
+        "각 제품별 exact version과 OS image는 공개되지 않았습니다.",
+        "제품 목록은 Cadence 발표이며 독립 compatibility test가 아닙니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence는 제품 판매사입니다."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Innovus+는 RTL-to-GDS 또는 netlist-driven implementation, signoff-accurate in-design flow, Tempus·Quantus·Voltus·Pegasus 연계를 제공하는 implementation platform으로 설명됩니다.",
+      "source_url": "https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/soc-implementation-and-floorplanning/innovus-plus-synthesis-implementation-system.html",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Cadence Innovus+ product page accessed 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Innovus+ 제품 페이지에서 RTL-to-GDS, netlist-driven implementation, signoff-accurate flow와 related signoff tool 연결을 확인했습니다.",
+      "limitations": [
+        "제품 페이지의 PPA와 convergence 표현은 Cadence 주장입니다.",
+        "Graviton에서의 결과 동등성은 이 페이지로 확인되지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence는 제품 판매사입니다."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Genus는 RTL synthesis, physically aware synthesis, distributed server farm scaling, Innovus와의 flow integration을 제공하는 synthesis tool로 설명됩니다.",
+      "source_url": "https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/synthesis/genus-synthesis-solution.html",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Cadence Genus product page accessed 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Genus 제품 페이지에서 RTL synthesis, physical modeling, distributed compute, Innovus integration 설명을 확인했습니다.",
+      "limitations": [
+        "제품 페이지의 speedup과 PPA 표현은 Cadence 주장입니다.",
+        "Graviton에서의 performance 비교 조건은 공개되지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence는 제품 판매사입니다."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Cadence OnCloud는 ready-to-use cloud environment, pre-installed Cadence design tools, front-to-back design flow, peak capacity augmentation을 제공한다고 설명합니다.",
+      "source_url": "https://www.cadence.com/en_US/home/solutions/cadence-oncloud.html",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Cadence OnCloud product page accessed 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "OnCloud portfolio 설명과 Managed Cloud Service 항목을 확인했습니다.",
+      "limitations": [
+        "OnCloud의 실제 tool availability는 customer entitlement에 따라 달라질 수 있습니다.",
+        "가격과 license checkout 조건은 공개 확인하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence는 OnCloud 판매사입니다."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "AWS Graviton은 EC2용 processor family이며, AWS는 Graviton5에 192 cores, 5x larger cache, up to 33% lower inter-core latency가 있다고 설명합니다.",
+      "source_url": "https://aws.amazon.com/ec2/graviton/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "AWS Graviton product page accessed 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "AWS Graviton 페이지에서 processor family, Graviton5 core/cache/inter-core latency 설명을 확인했습니다.",
+      "limitations": [
+        "AWS의 price-performance와 energy 표현은 AWS 주장입니다.",
+        "EDA workload에서의 runtime 또는 PPA 개선을 입증하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "AWS는 Graviton과 EC2 제공자입니다."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Arm은 cloud and data center 제품군을 AI, HPC, cloud workloads용 power-efficient, high-performance compute platform으로 설명합니다.",
+      "source_url": "https://www.arm.com/products/cloud-datacenter",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Arm cloud and data center product page accessed 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "direct",
+      "method": "Arm cloud/datacenter 페이지의 cloud and data center product positioning과 Neoverse 관련 설명을 확인했습니다.",
+      "limitations": [
+        "Arm 페이지는 Graviton에서 Cadence tool을 검증한 문서가 아닙니다.",
+        "EDA 성능이나 signoff 동등성을 입증하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "Arm은 Arm architecture ecosystem의 이해관계자입니다."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Annapurna Labs와 Arm의 performance, productivity, scalability 표현은 공개 조건 없는 이해관계자 인용이므로 성능 우월성의 독립 근거가 아닙니다.",
+      "source_url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerate-chip-design-with-arm-architecture-cadence-eda-tools-on-aws-graviton",
+      "source_type": "P0",
+      "evidence_grade": "E1",
+      "version": "Cadence blog post dated 2026-09-08",
+      "accessed_at": "2026-09-08",
+      "direct_or_derived": "derived",
+      "method": "인용문의 주체와 공개되지 않은 benchmark 조건을 대조해 편집 등급을 E1로 제한했습니다.",
+      "limitations": [
+        "design, node, baseline instance, tool option, thread count, PPA, runtime, signoff correlation이 공개되지 않았습니다.",
+        "독립 benchmark 또는 reproducible log가 없습니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence, AWS/Annapurna, Arm은 발표와 시장 확산의 이해관계자입니다."
+      ]
+    }
+  ],
+  "reproducibility_assessment": {
+    "level": "R1",
+    "summary": "공개 원문으로 flow 범위, OnCloud 제공 모델, Graviton platform 특성은 설명할 수 있습니다. 그러나 Cadence software entitlement, exact release, support matrix, project design data, license, PDK, foundry-qualified flow가 필요해 독자가 공개 artifact만으로 재실행할 수는 없습니다.",
+    "public_artifacts": [
+      "Cadence public announcement",
+      "Cadence OnCloud product page",
+      "AWS Graviton product page",
+      "Arm cloud and data center product page",
+      "Cadence Innovus+ and Genus product pages"
+    ],
+    "not_reproduced": [
+      "Cadence tool execution on Graviton",
+      "x86 versus Graviton runtime comparison",
+      "PPA comparison",
+      "signoff correlation",
+      "license checkout behavior"
+    ]
+  },
+  "conflict_of_interest": {
+    "summary": "Cadence, AWS, Arm은 이번 흐름의 직접 이해관계자입니다. 편집국은 공개 원문만 사용했고 제공받은 접근 권한은 없었습니다.",
+    "items": [
+      "Cadence는 EDA tool과 OnCloud 판매사입니다.",
+      "AWS/Annapurna는 Graviton과 EC2 제공자이며 production use 사례의 당사자입니다.",
+      "Arm은 Arm Neoverse ecosystem 이해관계자입니다.",
+      "사전 briefing, 제공받은 account·credit·license·hardware, 후원, 광고, NDA 또는 embargo 없음."
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "Cadence blog, 2026-09-08, full EDA flow qualified natively on AWS Graviton",
+        "urls": [
+          "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerate-chip-design-with-arm-architecture-cadence-eda-tools-on-aws-graviton",
+          "https://www.cadence.com/en_US/home/solutions/cadence-oncloud.html",
+          "https://aws.amazon.com/ec2/graviton/"
+        ],
+        "assessment": "선정. 성능 우월성 대신 native support와 flow capacity planning 변화로 제한하면 E2 중심 주장을 구성할 수 있습니다."
+      },
+      {
+        "signal": "Cadence blog, 2026-09-01, TSMC 3DFabric and TSMC-COUPE related 3D-IC flow",
+        "urls": [
+          "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/advanced-ai-scaling-with-3d-ic-and-heterogeneous-integration"
+        ],
+        "assessment": "탈락. 3D-IC와 heterogeneous integration은 중요하지만 공개 글은 제품·협력 설명 중심이고 exact flow release, support matrix, benchmark 또는 TSMC 원문을 충분히 확보하지 못했습니다."
+      },
+      {
+        "signal": "Cadence blog, 2026-09-03, in-design analysis for PCB SI/PI/thermal workflow",
+        "urls": [
+          "https://community.cadence.com/cadence_blogs_8/b/pcb/posts/using-in-design-analysis-to-cut-pcb-design-cycles-in-half"
+        ],
+        "assessment": "탈락. workflow 설명은 유용하지만 cycle reduction 수치가 webinar와 customer story에 기대며 design 조건과 독립 검증이 부족합니다."
+      },
+      {
+        "signal": "Cadence blog, 2026-09-02, UALink Verification IP layer-aware workflow",
+        "urls": [
+          "https://community.cadence.com/cadence_blogs_8/b/fv/posts/flexible-ualink-verification-for-any-layer-interface-design-configuration",
+          "https://ualinkconsortium.org/specification/"
+        ],
+        "assessment": "보류. UALink specification과 VIP 방향은 EDA 검증 주제로 적합하지만 Cadence VIP의 release 조건과 conformance artifact가 공개되지 않아 오늘 중심 후보보다 약합니다."
+      },
+      {
+        "signal": "arXiv RTLScout, agentic code and synthesis optimization for digital circuits",
+        "urls": [
+          "https://arxiv.org/abs/2606.06530"
+        ],
+        "assessment": "탈락. 논문은 흥미롭지만 2026년 6월 공개로 오늘 새 국면 신호가 아니고, 최근 EDA판은 여러 LLM/OpenROAD agentic flow를 이미 다뤘습니다."
+      }
+    ],
+    "alternatives": [
+      {
+        "candidate": "Cadence TSMC 3D-IC and TSMC-COUPE flow expansion",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "reason_not_selected": "발표 주체 원문 하나에 치우치고, certified flow의 exact release와 TSMC 원문·support matrix를 충분히 확보하지 못했습니다."
+      },
+      {
+        "candidate": "Cadence PCB in-design analysis with Allegro X, Sigrity X, Clarity 3D Solver",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "reason_not_selected": "cycle reduction claim의 design 조건, baseline, independent validation이 공개되지 않았습니다."
+      },
+      {
+        "candidate": "Cadence UALink VIP for layer-aware verification",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 6
+        },
+        "reason_not_selected": "UALink specification page는 공개됐지만 Cadence VIP release condition과 conformance or executable verification artifact가 부족했습니다."
+      },
+      {
+        "candidate": "RTLScout arXiv 2606.06530",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 0,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "reason_not_selected": "최근 EDA판에서 OpenROAD/LLM agentic flow를 여러 차례 다뤘고, 오늘 새 발표나 새 artifact 변화가 확인되지 않았습니다."
+      }
+    ],
+    "recent_coverage_check": [
+      "2026-08-13 Cadence EDA agent feedback loop",
+      "2026-08-16 OpenROAD-MCP",
+      "2026-08-23 VPR-Evolve",
+      "2026-08-26 OpenAI Jalapeno AI-assisted hardware design loop",
+      "2026-08-28 TaiWei-Pin-3D",
+      "2026-08-31 ReviewDSE",
+      "2026-09-01 RTL repair framework"
+    ],
+    "why_not_duplicate": "선정 후보는 LLM agent나 OpenROAD artifact가 아니라 commercial EDA full-flow의 cloud CPU architecture support 변화입니다. 기존 EDA판 주제와 중심 기술·판단 지점이 다릅니다."
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
