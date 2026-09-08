@@ -30,8 +30,13 @@ class PublishDailyTest(unittest.TestCase):
             publisher,
         )
 
-    def test_filter_removes_only_trailing_blank_lines(self) -> None:
-        source = "first paragraph\n\nsecond paragraph\n \t\n\n"
+    def test_publication_normalizes_every_markdown_output(self) -> None:
+        publisher = (ROOT / "scripts/publish-daily.sh").read_text()
+        self.assertIn('for markdown in "$OUT"/*.md; do', publisher)
+        self.assertIn('> "$normalized"', publisher)
+
+    def test_filter_removes_line_whitespace_and_trailing_blank_lines(self) -> None:
+        source = "first paragraph  \n\nsecond paragraph\t\n \t\n\n"
         self.assertEqual(
             trim_trailing_blank_lines(source),
             "first paragraph\n\nsecond paragraph\n",

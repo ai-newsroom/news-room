@@ -192,4 +192,13 @@ holiday: true
 EOF
 fi
 
+# 모델 산출물의 Markdown hard-break 공백이 git diff --check를 막아
+# 다음 날 발행까지 연쇄 중단하지 않도록 발행 디렉터리를 결정적으로 정규화한다.
+for markdown in "$OUT"/*.md; do
+  [[ -f "$markdown" ]] || continue
+  normalized="$markdown.normalized"
+  awk -f "$REPO/scripts/trim-trailing-blank-lines.awk" "$markdown" > "$normalized"
+  mv "$normalized" "$markdown"
+done
+
 "$REPO/scripts/finalize-publication.sh" current-affairs "$DATE"

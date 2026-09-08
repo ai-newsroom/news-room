@@ -1,5 +1,7 @@
 {
-  lines[NR] = $0
+  line = $0
+  sub(/[ \t]+$/, "", line)
+  lines[NR] = line
 }
 
 END {
