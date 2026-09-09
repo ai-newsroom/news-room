@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-10",
+  "date": "2026-09-10",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-10-sequential/20260909T221715Z-1222835/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-09-10-sequential/20260909T221715Z-1222835/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-09-10-sequential/20260909T221715Z-1222835/no-publish.json",
+  "subject": "Clock-Gating Insertion Strategies on an Open-Source MSP430 Core, arXiv:2608.30954v1 and yanyana117/openmsp430-low-power-study-full commit c8eb1603ad1804ad9ec897862ffadd466d9fb84e",
+  "title": "Clock gating 연구가 RTL 저전력 수정의 검증 지점을 gate-level로 끌어내립니다",
+  "summary": "openMSP430 clock-gating 연구는 RTL 시뮬레이션에서 맞던 수동 latch-and-AND clock gate가 합성 뒤 gate-level simulation에서 실패할 수 있음을 공개 netlist와 evidence로 보였습니다. 같은 연구에서 synthesis-inserted integrated clock-gating cell은 32 nm 조건의 세 corner에서 total power를 25~30%, dynamic power를 74~81% 줄였다고 보고했습니다. 다만 Design Compiler, PrimeTime PX, VCS와 SAED32 EDK가 필요해 독자가 완전히 무료 flow로 숫자를 다시 만들 수는 없습니다.",
+  "central_claim": "openMSP430 clock-gating 연구는 저전력 RTL 수정의 검증 기준을 RTL 기능 통과에서 합성 뒤 gate-level simulation과 tool-inserted ICG 확인으로 넓혀야 함을 공개 artifact로 보여 줍니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "없음. 공개 arXiv 원문과 GitHub 저장소만 사용했고, 사전 briefing, 제공받은 account·license·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 9,
+    "threshold": 7,
+    "rationale": "RTL에서 기능적으로 맞는 수동 clock gate가 gate-level에서 실패할 수 있음을 공개 netlist와 evidence로 보이고, synthesis-inserted ICG의 전력·검증 결과를 같은 flow에서 비교해 low-power RTL coding, synthesis constraint, GLS regression 결정에 직접 쓸 수 있습니다. 다만 상용 Synopsys tool과 SAED32 EDK가 필요해 완전 공개 재현은 아닙니다."
+  },
+  "selection": {
+    "total": 9,
+    "threshold": 7,
+    "central_claim_minimum": "E2",
+    "source_url_minimum": 2,
+    "passed": true
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2608.30954",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/yanyana117/openmsp430-low-power-study-full",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2608.30954",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part2_netlist_analysis.txt",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2608.30954",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part3_ppa_comparison.txt",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part6_multicorner_power.txt",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/REPRODUCE.md",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://api.github.com/repos/yanyana117/openmsp430-low-power-study-full/commits/main",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/PHYSICAL_DESIGN_PLAN.md",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/physical-design/results/summary.md",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://arxiv.org/abs/2608.30954",
+    "https://github.com/yanyana117/openmsp430-low-power-study-full",
+    "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/REPRODUCE.md",
+    "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part2_netlist_analysis.txt",
+    "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part3_ppa_comparison.txt",
+    "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part6_multicorner_power.txt",
+    "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/PHYSICAL_DESIGN_PLAN.md",
+    "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/physical-design/results/summary.md",
+    "https://api.github.com/repos/yanyana117/openmsp430-low-power-study-full/commits/main"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "논문은 openMSP430에서 baseline, RTL behavioral clock gating, synthesis-inserted ICG, combined configuration을 비교했고 full flow artifact를 공개했습니다.",
+      "source_url": "https://arxiv.org/abs/2608.30954",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2608.30954v1, submitted 2026-08-31",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "arXiv abstract and metadata에서 연구 대상, 비교 구성, artifact 공개 설명을 확인했습니다.",
+      "limitations": [
+        "arXiv 논문은 저자 보고이며 동료심사 완료 논문으로 확인하지 않았습니다.",
+        "논문 수치의 독립 재현은 확보하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "GitHub 저장소는 RTL, synthesis script, PTPX power script, gate-level netlist, raw evidence와 reproduction bundle을 공개합니다.",
+      "source_url": "https://github.com/yanyana117/openmsp430-low-power-study-full",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main commit c8eb1603ad1804ad9ec897862ffadd466d9fb84e, committed 2026-08-29T08:12:15Z",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "GitHub repository page, API commit response, recursive tree output에서 공개 파일과 commit을 확인했습니다.",
+      "limitations": [
+        "GitHub 저장소의 license field는 null로 확인됐습니다.",
+        "편집국은 repository를 clone하거나 tool flow를 재실행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "수동 latch-and-AND clock gate는 RTL simulation 10개를 통과했지만 gate-level simulation에서 multiply 결과가 capture되지 않아 RESLO가 0x0000으로 읽혔다고 저자들이 보고했습니다.",
+      "source_url": "https://arxiv.org/abs/2608.30954",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2608.30954v1",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "abstract에서 RTL simulation pass, gate-level failure, hold race, eight configurations, ICG pass 설명을 확인했습니다.",
+      "limitations": [
+        "초록 기반 확인이며 논문 PDF의 모든 표를 독립 계산하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "root-cause evidence는 Opt1/Opt3 netlist의 gated multiply result 저장 실패, hold race 설명, 여덟 simulation 설정 모두 실패, Opt2 ICG 통과를 기록합니다.",
+      "source_url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part2_netlist_analysis.txt",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "repository main commit c8eb1603ad1804ad9ec897862ffadd466d9fb84e",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "raw evidence file의 SUMMARY, CELL EVIDENCE, SIMULATION CONFIGURATIONS, CONCLUSION sections를 확인했습니다.",
+      "limitations": [
+        "파일 내용은 저자 제공 tool-output 요약이며 편집국 재실행 로그가 아닙니다.",
+        "SAED32 library와 VCS 환경 없이는 같은 결과를 즉시 재실행하지 못했습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "PPA evidence는 ss worst corner에서 baseline total power 1.4840 mW, Opt2 total power 1.0500 mW, baseline dynamic power 49.64 uW, Opt2 dynamic power 12.58 uW를 기록합니다.",
+      "source_url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part3_ppa_comparison.txt",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "repository main commit c8eb1603ad1804ad9ec897862ffadd466d9fb84e",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "PPA comparison table의 baseline and Opt2 rows를 확인했습니다.",
+      "limitations": [
+        "workload와 corner는 저자 설정입니다.",
+        "PPA 수치는 openMSP430과 SAED32 조건을 벗어나 일반화하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "multi-corner evidence는 Opt2가 total power를 ss 29.2%, tt 30.1%, ff 24.6% 줄이고 dynamic power를 ss 74.7%, tt 73.6%, ff 81.1% 줄였다고 기록합니다.",
+      "source_url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/evidence/part6_multicorner_power.txt",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "repository main commit c8eb1603ad1804ad9ec897862ffadd466d9fb84e",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "REDUCTIONS vs baseline table에서 Opt2 rows를 확인했습니다.",
+      "limitations": [
+        "저자들은 leakage-dominated 조건임을 명시했고, 이 기사는 dynamic 절감과 total 절감을 분리했습니다.",
+        "독립 benchmark가 아니며 동일 조건 재현은 수행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "reproduction bundle은 VCS W-2024.09-SP2-5, Design Compiler W-2024.09-SP5-4, PrimeTime PX V-2023.12-SP5-4, SAED32 EDK와 upstream openMSP430 commit 92c883abb4518dbc35b027e6cad5ffef5b2fbb81을 명시합니다.",
+      "source_url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/repro/REPRODUCE.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "repository main commit c8eb1603ad1804ad9ec897862ffadd466d9fb84e",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "Tools/environment and openMSP430 RTL source sections를 확인했습니다.",
+      "limitations": [
+        "상용 tool과 PDK가 필요합니다.",
+        "license와 EDK 접근권은 공개 저장소만으로 해결되지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "OpenROAD physical-design extension은 baseline closure를 완료했지만 clock-gated variant post-route 비교는 future work로 남겼습니다.",
+      "source_url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/PHYSICAL_DESIGN_PLAN.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "repository main commit c8eb1603ad1804ad9ec897862ffadd466d9fb84e",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "Status, Goal, Phases, Phase 4 sections를 확인했습니다.",
+      "limitations": [
+        "clock-gated variant의 post-route PPA는 아직 공개 결과가 아닙니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "baseline OpenROAD run은 util30_ar10_pd040_pad1에서 detailed-route DRC 0개, antenna violation 0 net/0 pin, final setup WNS 35.555 ns, final total power 0.004505 W를 기록했습니다.",
+      "source_url": "https://raw.githubusercontent.com/yanyana117/openmsp430-low-power-study-full/main/physical-design/results/summary.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "repository main commit c8eb1603ad1804ad9ec897862ffadd466d9fb84e",
+      "accessed_at": "2026-09-09",
+      "direct_or_derived": "direct",
+      "method": "Closed Baseline Variant table and Routability Exploration section을 확인했습니다.",
+      "limitations": [
+        "baseline physical-design closure는 clock-gated variant의 signoff 결과가 아닙니다.",
+        "OpenROAD Docker image latest는 시간에 따라 바뀔 수 있어 완전한 toolchain pin이 아닙니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    }
+  ],
+  "reproducibility_assessment": {
+    "status": "R1",
+    "public_artifacts": [
+      "arXiv abstract and PDF landing page",
+      "GitHub source repository",
+      "RTL, netlists, scripts, raw evidence files",
+      "offline reproduction instructions",
+      "baseline OpenROAD physical-design reports and final artifacts"
+    ],
+    "not_reproduced_by_editor": [
+      "VCS gate-level simulation",
+      "Design Compiler synthesis",
+      "PrimeTime PX power analysis",
+      "SAED32 multi-corner library relinking",
+      "OpenROAD baseline physical-design run"
+    ],
+    "blocking_conditions": [
+      "Synopsys VCS, Design Compiler, PrimeTime PX license 필요",
+      "SAED32 EDK 접근 필요",
+      "repository license metadata가 비어 있어 재사용 조건 별도 확인 필요"
+    ]
+  },
+  "conflict_of_interest": {
+    "editorial": [
+      "없음"
+    ],
+    "source_side": [
+      "논문과 GitHub 저장소는 저자 자기 보고와 artifact입니다.",
+      "Synopsys tool과 SAED32 EDK를 사용하지만 Synopsys의 제품 발표나 후원 자료를 근거로 쓰지 않았습니다."
+    ],
+    "access_conditions": [
+      "공개 웹 원문만 사용했습니다.",
+      "사전 briefing, 제공받은 account·credit·license·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "Cadence Community latest posts showed Virtuoso Studio IC25.1 ISR8 on 2026-09-09.",
+        "source_url": "https://community.cadence.com/cadence_blogs_8/b/cic/posts/virtuoso-studio-ic25-1-isr8-now-available",
+        "assessment": "공식 공개 release announcement는 있었지만 상세 support articles와 What's New 문서가 Cadence support/ASK 뒤에 있어 중심 분석을 공개 E2로 올리기 어려웠습니다."
+      },
+      {
+        "signal": "Cadence posted 'Accelerating AI Silicon Design with AI-Driven Flows' on 2026-09-09.",
+        "source_url": "https://community.cadence.com/cadence_blogs_8/b/corporate-news/posts/accelerating-ai-silicon-design-with-ai-driven-flows",
+        "assessment": "TSMC-certified flow와 AI-driven optimization을 설명하지만 series 성격의 vendor narrative이고 design, version, PPA, runtime 조건이 부족해 새 기사 후보로 고르지 않았습니다."
+      },
+      {
+        "signal": "Siemens EDA listed Innovator3D IC product family release 2604.0004 on 2026-09-02.",
+        "source_url": "https://blogs.sw.siemens.com/semiconductor-packaging/2026/09/02/streamlining-3d-ic-design-with-innovator3d-ic-product-family-release-2604-0004/",
+        "assessment": "ECO compare, incremental CSV import, custom outline 기능은 flow 영향이 있으나 release notes는 Support Center 뒤에 있고 공개 fact sheet는 요약 수준이라 근거 조건이 제한됐습니다."
+      },
+      {
+        "signal": "Siemens Calibre blog described shift-left memory contention analysis with Insight Analyzer on 2026-09-01.",
+        "source_url": "https://blogs.sw.siemens.com/calibre/2026/09/01/how-shift-left-memory-contention-analysis-protects-performance-and-schedule/",
+        "assessment": "설계 flow 의미는 크지만 공개 white paper와 blog가 모두 Siemens 자료이며 실행 artifact와 독립 검증이 없어 성능·효율 주장을 기사 중심으로 삼지 않았습니다."
+      },
+      {
+        "signal": "arXiv recent query found several EDA-adjacent papers around 2026-09-01 to 2026-09-06.",
+        "source_url": "https://export.arxiv.org/api/query?search_query=all:%22electronic%20design%20automation%22%20OR%20all:%22EDA%22%20OR%20all:%22RTL%22%20OR%20all:%22OpenROAD%22&start=0&max_results=20&sortBy=submittedDate&sortOrder=descending",
+        "assessment": "논문과 artifact가 같이 있는 후보를 우선 검토했습니다."
+      }
+    ],
+    "alternatives": [
+      {
+        "candidate": "Virtuoso Studio IC25.1 ISR8",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "decision": "rejected",
+        "reason": "공개 blog는 기능 목록을 제공하지만 상세 문서 대부분이 gated support로 이동합니다. 공개 원문 두 개로 중심 분석을 구성하기 어렵고 상용 tool release의 실제 조건을 확인하지 못했습니다."
+      },
+      {
+        "candidate": "Cadence AI-driven flows with TSMC-certified design flows",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "decision": "rejected",
+        "reason": "Cadence와 TSMC 협력의 flow 의미는 있으나 2026-09-09 글은 series 결론 성격이고 정확한 version, design, node, PPA, runtime, signoff 조건이 부족합니다."
+      },
+      {
+        "candidate": "Siemens Innovator3D IC release 2604.0004",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "ECO pre-import compare와 incremental CSV import는 실무 의미가 있지만 공개 fact sheet가 짧고 release notes는 Support Center 접근이 필요합니다. E2 중심 주장에는 부족했습니다."
+      },
+      {
+        "candidate": "Siemens Insight Analyzer shift-left memory contention analysis",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "blog와 white paper 모두 Siemens 자료이고 공개 benchmark나 실행 artifact가 없어 효율·품질 결론을 독립적으로 확인할 수 없습니다."
+      },
+      {
+        "candidate": "CEGAR-T: Efficient Hardware Information-Flow Tracking for Pre-Silicon Security Testing",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 8
+        },
+        "decision": "rejected",
+        "reason": "arXiv 초록 기준 flow 영향과 방법은 강하지만 공개 코드나 artifact URL을 확인하지 못했습니다. 중심 주장 E2를 위해 필요한 P2 근거가 부족했습니다."
+      },
+      {
+        "candidate": "Differentiable Partitioning with Placement and Hybrid Bonding Terminal Awareness",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 7
+        },
+        "decision": "rejected",
+        "reason": "논문 초록은 open-source partition code와 3D placement flow를 말하지만 조사 시점에 연결 저장소를 확인하지 못했습니다. 최근 3D IC flow 기사가 이미 있어 중복 위험도 있었습니다."
+      },
+      {
+        "candidate": "FoldNTT formally verified NTT core",
+        "scores": {
+          "design_flow_impact": 1,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "formal proof와 open flow 언급은 흥미롭지만 EDA판의 설계-flow 변화보다 crypto accelerator microarchitecture 비중이 컸고 공개 artifact를 확인하지 못했습니다."
+      },
+      {
+        "candidate": "Clock-Gating Insertion Strategies on an Open-Source MSP430 Core",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 9
+        },
+        "decision": "selected",
+        "reason": "논문과 GitHub artifact가 함께 있고, RTL 기능 검증과 gate-level 검증 사이의 실제 실패를 raw evidence로 보여 줍니다. 수치 조건과 재현 한계도 공개돼 있어 실무 판단에 쓸 수 있습니다."
+      }
+    ],
+    "recent_content_check": [
+      {
+        "date": "2026-08-13",
+        "subject": "Cadence의 EDA agent feedback loop 전략과 공개 연구",
+        "overlap": "없음"
+      },
+      {
+        "date": "2026-08-14",
+        "subject": "NVIDIA ACE-RTL 공개 코드와 CVDP 1.1.0 benchmark 실행 경로",
+        "overlap": "RTL/검증 주제이지만 benchmark와 assertion repair가 아니라 clock-gating gate-level failure입니다."
+      },
+      {
+        "date": "2026-08-19",
+        "subject": "VLSIDA HighTide open-source VLSI benchmark suite와 Bazel 기반 OpenROAD RTL-to-GDS 실행 경로",
+        "overlap": "OpenROAD 관련 artifact가 일부 있지만 이번 기사는 clock-gating synthesis/GLS flow입니다."
+      },
+      {
+        "date": "2026-08-31",
+        "subject": "ReviewDSE protected white-box DSE for OpenROAD detailed placement, arXiv:2607.11294v4 and DPLEvolve-AE artifact at commit fca145292478431412aff93bbae9f011f0387508",
+        "overlap": "OpenROAD 연구라는 넓은 범주만 겹치며 상세 placement DSE가 아닙니다."
+      },
+      {
+        "date": "2026-09-01",
+        "subject": "Open-Source LLM-Driven Formal Verification: A Multi-Agent Pipeline for RTL Repair, arXiv:2607.28877v1 and rtl-repair-framework commit 539301395aad8dc558faae737d33063c0b2bcf98",
+        "overlap": "RTL 검증 artifact 주제는 겹치지만 LLM repair와 formal proof가 아니라 low-power clock gating과 gate-level simulation입니다."
+      },
+      {
+        "date": "2026-09-09",
+        "subject": "Cadence full front-to-back EDA flow qualification on AWS Graviton4 and Graviton5 through Cadence OnCloud, announced 2026-09-08",
+        "overlap": "없음"
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
