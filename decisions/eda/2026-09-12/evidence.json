@@ -1,0 +1,382 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-12",
+  "date": "2026-09-12",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-12-sequential/20260911T221846Z-1259471/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-09-12-sequential/20260911T221846Z-1259471/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-09-12-sequential/20260911T221846Z-1259471/no-publish.json",
+  "subject": "HLSFactory-Agent arXiv:2609.09519v1, HLS-Eval agentic flow arXiv:2609.09526v1, sharc-lab/hlsfactory-agent commit 8fac504210fae6403808b2acaad1310300dedd69",
+  "title": "HLSFactory-Agent는 HLS 데이터셋 수집을 검증 로그가 남는 추출 flow로 바꿉니다",
+  "summary": "Georgia Tech SHARC Lab 연구진은 HLS 설계 예제를 사람이 찾아 잘라내던 일을 LLM agent가 Docker 안에서 분석, 추출, 컴파일 확인, Vitis HLS용 synth.tcl 생성까지 수행하는 flow로 제시했습니다. 공개 저장소와 companion HLS-Eval 논문이 있어 구조와 초기 결과는 추적할 수 있지만, 저자 실험을 독립 재현하지 않았고 OpenRouter API key와 Vitis HLS 접근이 필요합니다.",
+  "central_claim": "HLSFactory-Agent는 HLS 데이터셋 수집을 논문·저장소 목록 작성에서 agent가 standalone Vitis HLS project와 검증 trace를 남기는 실행 flow로 옮겼으며, companion HLS-Eval 논문은 이 흐름을 agentic HLS 평가 기준으로 연결합니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "없음. 공개 arXiv 원문과 GitHub 저장소만 사용했고, 사전 briefing, 제공받은 account·license·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 9,
+    "threshold": 7,
+    "rationale": "HLS benchmark와 dataset 구축의 병목을 agent trace, compiler check, Vitis HLS synthesis pass/fail 기준으로 재구성해 EDA AI 평가 flow에 직접 영향을 줍니다. arXiv 논문 두 편과 공개 GitHub code가 있어 구조와 초기 결과를 추적할 수 있으나, 편집국은 OpenRouter API와 Vitis HLS로 저자 실험을 재실행하지 않았습니다."
+  },
+  "selection": {
+    "total": 9,
+    "threshold": 7,
+    "central_claim_minimum": "E2",
+    "source_url_minimum": 2,
+    "passed": true
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2609.09519",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/sharc-lab/hlsfactory-agent",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.09519",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/sharc-lab/hlsfactory-agent/master/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2609.09526",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/sharc-lab/HLS-Eval",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.09526",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/sharc-lab/HLS-Eval/main/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://arxiv.org/abs/2609.09519",
+    "https://arxiv.org/html/2609.09519",
+    "https://github.com/sharc-lab/hlsfactory-agent",
+    "https://raw.githubusercontent.com/sharc-lab/hlsfactory-agent/master/README.md",
+    "https://arxiv.org/abs/2609.09526",
+    "https://arxiv.org/html/2609.09526",
+    "https://github.com/sharc-lab/HLS-Eval",
+    "https://raw.githubusercontent.com/sharc-lab/HLS-Eval/main/README.md"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "HLSFactory-Agent 논문은 HLS dataset curation을 자동화하기 위해 LLM agent가 repository에서 standalone, synthesizable HLS designs를 추출하는 방법을 제시했습니다.",
+      "source_url": "https://arxiv.org/abs/2609.09519",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.09519v1, submitted 2026-09-08",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "arXiv metadata and abstract에서 제출일, 방법, open-source artifact link를 확인했습니다.",
+      "limitations": [
+        "arXiv 논문은 저자 보고이며 동료심사 완료 논문으로 확인하지 않았습니다.",
+        "논문 수치와 agent run을 독립 재현하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "hlsfactory-agent 저장소는 core agent code, Docker image, example batch run, analysis script, HLS source indexing script를 공개합니다.",
+      "source_url": "https://github.com/sharc-lab/hlsfactory-agent",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "master commit 8fac504210fae6403808b2acaad1310300dedd69, checked by git ls-remote on 2026-09-11",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "GitHub repository page and git ls-remote output에서 branch HEAD와 공개 파일 구조를 확인했습니다.",
+      "limitations": [
+        "repository page는 latest commit timestamp를 노출하지 않았습니다.",
+        "편집국은 repository를 clone하거나 agent run을 실행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "논문은 indexing workflow가 FPGA, EDA, architecture venue에서 HLS 관련 publication 2,517개를 모았고, 26개 repository에서 271개 candidate design 중 130개가 Vitis HLS synthesis를 통과했다고 보고했습니다.",
+      "source_url": "https://arxiv.org/html/2609.09519",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.09519v1 HTML",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "HTML full text의 Methodology and Initial Results sections를 확인했습니다.",
+      "limitations": [
+        "초기 subset 결과이며 전체 HLS ecosystem 대표성은 입증하지 않습니다.",
+        "성공·실패 수치는 저자 실행 결과입니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "README는 agent가 HLS kernel/top-level function을 찾고, 설계별 folder를 만들고, 파일·header·test data를 복사하고, Vitis-compatible 형태로 고치며, synth.tcl과 log·transcript를 남긴다고 설명합니다.",
+      "source_url": "https://raw.githubusercontent.com/sharc-lab/hlsfactory-agent/master/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "master commit 8fac504210fae6403808b2acaad1310300dedd69",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "raw README의 Features, Requirements, Running the Agent Demo, Outputs sections를 확인했습니다.",
+      "limitations": [
+        "README에는 실행 결과의 원 로그가 포함되어 있지 않습니다.",
+        "OpenRouter API key와 Vitis HLS 접근이 필요합니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "HLS-Eval companion 논문은 기존 HLS-Eval에 mini-swe-agent 기반 agentic evaluation flow를 붙여 file editing, C++ compiler self-verification, iterative refinement, trace logging을 평가에 포함한다고 설명했습니다.",
+      "source_url": "https://arxiv.org/abs/2609.09526",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.09526v1, submitted 2026-09-08",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "arXiv metadata and abstract에서 제출일, agentic flow, evaluation target을 확인했습니다.",
+      "limitations": [
+        "결과는 저자 보고이며 독립 benchmark 재실행을 확보하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "HLS-Eval repository는 HLS code generation/editing benchmark designs, natural-language descriptions, testbenches, reference HLS implementations와 evaluation framework를 공개합니다.",
+      "source_url": "https://github.com/sharc-lab/HLS-Eval",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main commit 9eb7addc7103b44d25eee61fc356e3f50cfc28e9, checked by git ls-remote on 2026-09-11",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "GitHub repository page, raw README, git ls-remote output에서 repository purpose와 branch HEAD를 확인했습니다.",
+      "limitations": [
+        "이번 agentic flow 결과를 편집국이 해당 repository에서 직접 실행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "HLS-Eval agentic flow 논문은 gpt-oss-120b가 simple HLS generation task에서 pass@10 기준 모든 design stage를 통과했고, gpt-oss-20b는 k=10 sampling에서 synthesis pass rate가 60%p 개선됐다고 보고했습니다.",
+      "source_url": "https://arxiv.org/html/2609.09526",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.09526v1 HTML",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "HTML full text의 Results sections를 확인했습니다.",
+      "limitations": [
+        "simple task 포화 결과로, 실제 accelerator design 전체 능력으로 확대하지 않았습니다.",
+        "model run cost와 raw trace를 독립 검증하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R1",
+    "public_artifacts": [
+      "https://github.com/sharc-lab/hlsfactory-agent",
+      "https://github.com/sharc-lab/HLS-Eval"
+    ],
+    "not_reproduced_by_editor": true,
+    "why_not_r2": "코드와 일부 실행 경로는 공개되어 있으나, 저자 실험 재실행에는 OpenRouter API key, model access, Vitis HLS 환경이 필요하고 편집국은 이번 턴에서 실행 로그를 만들지 않았습니다."
+  },
+  "conflict_of_interest": {
+    "status": "none_disclosed",
+    "details": [
+      "공개 arXiv 원문과 공개 GitHub 저장소만 사용했습니다.",
+      "사전 briefing, 제공받은 account·license·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "name": "arXiv cs.AR recent submissions",
+        "url": "https://arxiv.org/list/cs.AR/recent",
+        "finding": "2026-09-08~11 제출물에서 HLSFactory-Agent, HLS-Eval agentic flow, CertiFlash, dense-layout routing RL, gate-level time-based power analysis 등을 확인했습니다."
+      },
+      {
+        "name": "Cadence Community and corporate/news posts",
+        "url": "https://community.cadence.com/",
+        "finding": "2026-09-11 Xcelium SimAI training/webinar, 2026-09-10 AMBA over UCIe, 2026-09-09 AI-driven flows, 2026-09-08 Graviton flow 글을 확인했습니다. Graviton flow는 2026-09-09 EDA판에서 이미 다뤘고, 다른 글은 중심 분석을 받칠 release note/manual 또는 공개 artifact가 부족했습니다."
+      },
+      {
+        "name": "Synopsys news and product signals",
+        "url": "https://news.synopsys.com/",
+        "finding": "2026 DAC와 agentic AI 관련 Synopsys 발표는 2026-07 말 발표가 중심이었고, 상세 제품 문서·release note가 공개 원문으로 충분히 확인되지 않았습니다."
+      },
+      {
+        "name": "Siemens EDA blogs",
+        "url": "https://blogs.sw.siemens.com/eda/",
+        "finding": "2026-09-11 Questa One VeriThreader traceability 글과 2026-09-10 EDA complexity commentary를 발견했으나, 공개된 기술 조건과 실행 artifact가 부족했습니다."
+      },
+      {
+        "name": "Zuken, Keysight, Ansys, Dassault Systemes CST searches",
+        "url": "https://www.zuken.com/",
+        "finding": "AI PCB routing, RF circuit simulation, ParagonX mismatch, CST Python scripting webinar 등의 신호를 확인했으나 주로 제품·webinar 소개였고 독립적인 원문 둘을 확보하지 못했습니다."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "CertiFlash formal verification framework",
+        "url": "https://arxiv.org/abs/2609.10347",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 8
+        },
+        "decision": "not_selected",
+        "reason": "논문과 Rocq/Coq artifact가 강하지만 computational SSD firmware verification이 일반 EDA 설계 flow보다는 storage-system formal methods에 가까워 이번 EDA판의 HLS agent/data-flow 후보보다 직접성이 낮았습니다."
+      },
+      {
+        "name": "Routing Dense Layouts with History-Aware Offline Reinforcement Learning using LSTM",
+        "url": "https://arxiv.org/abs/2609.08232",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 7
+        },
+        "decision": "not_selected",
+        "reason": "ICCAD 2026 accepted paper로 dense detailed routing 수렴에 직접 관련되지만 공개 code나 benchmark artifact를 찾지 못해 중심 주장 E2를 안정적으로 세우기 어려웠습니다."
+      },
+      {
+        "name": "GPU-Accelerated Gate-Level Time-Based Power Analysis",
+        "url": "https://arxiv.org/abs/2609.05960",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 2,
+          "total": 7
+        },
+        "decision": "not_selected",
+        "reason": "gate-level time-based power analysis runtime에는 중요하지만 공개 code·log·benchmark를 확인하지 못했고 PrimeTime PX 대비 speedup은 저자 보고만 확보했습니다."
+      },
+      {
+        "name": "Cadence Xcelium SimAI App training/webinar",
+        "url": "https://community.cadence.com/",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 3
+        },
+        "decision": "not_selected",
+        "reason": "training/webinar 발견 신호에 가깝고 release note, manual, support matrix, 공개 benchmark를 확보하지 못했습니다."
+      },
+      {
+        "name": "Dassault Systemes CST Studio Suite with Python webinar",
+        "url": "https://events.3ds.com/cst-studio-suite-electromagnetic-simulations",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 2
+        },
+        "decision": "not_selected",
+        "reason": "simulation scripting workflow로는 유용하지만 2026-09-17 예정 webinar 소개이며 새로운 공개 tool release나 artifact가 아닙니다."
+      }
+    ],
+    "selected": {
+      "name": "HLSFactory-Agent and HLS-Eval agentic HLS flow",
+      "reason": "두 companion arXiv 원문과 공개 repositories가 서로 다른 근거 역할을 합니다. HLSFactory-Agent는 dataset curation artifact를, HLS-Eval은 agentic evaluation flow를 제공해 EDA AI benchmark와 dataset 구축 의사결정에 직접 쓸 수 있습니다."
+    },
+    "duplicate_check": {
+      "recent_titles_subjects_checked": [
+        "2026-08-13 Cadence EDA agent feedback loop",
+        "2026-08-14 NVIDIA ACE-RTL",
+        "2026-08-16 OpenROAD-MCP",
+        "2026-08-15 Calibre Vision AI",
+        "2026-08-19 HighTide",
+        "2026-08-26 OpenAI Jalapeno",
+        "2026-08-31 ReviewDSE",
+        "2026-08-18 Accellera FSL",
+        "2026-09-09 Cadence Graviton flow",
+        "2026-08-23 VPR-Evolve",
+        "2026-09-10 openMSP430 clock gating",
+        "2026-08-28 TaiWei-Pin-3D",
+        "2026-09-01 RTL repair framework"
+      ],
+      "result": "HLSFactory-Agent와 HLS-Eval agentic HLS flow는 최근 content/eda 제목·subject에 없었습니다. 이전 EDA agent 기사들과 주제 범주는 겹치지만, 이번 후보는 HLS dataset curation과 HLS agent benchmark flow라는 별도 발표입니다."
+    }
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
