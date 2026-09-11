@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-12",
+  "date": "2026-09-12",
+  "subject": "Claude Fable 5.1 and Claude Mythos 5.1 API release, 2026-09-01",
+  "central_claim": "Claude Fable 5.1 is a publishable AI engineering topic because Anthropic's announcement, Claude Platform model page, release notes, what's-new page and migration guide support a bounded E2/R1 claim: the release changes long-running agent implementation not just through model capability claims, but through API/runtime rules for prompt caching, append-only history, thinking block binding, forced tool-use removal, per-message effort and data-retention constraints. Benchmark superiority remains Anthropic-authored and is not promoted to an independent ranking conclusion.",
+  "decision": "publish-candidate",
+  "selection": {
+    "importance": 2,
+    "novelty": 1,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 8,
+    "threshold": 7,
+    "reason": "Fable 5.1 is not the freshest model signal in the crawl, but DeepSeek V4.1-Flash was already staged as the 2026-09-11 candidate with the same central claim. Fable 5.1 remains publishable for 2026-09-12 because the official documentation gives concrete migration decisions for agent developers: remove forced tool use, preserve append-only histories for thinking blocks and prompt cache, retune effort, handle fallback and check data-retention conditions. The conclusion is bounded because no model execution, benchmark reproduction or independent evaluation was performed."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "Anthropic released Claude Fable 5.1 as a long-horizon agent model and the publishable engineering significance is that its API/runtime contract changes how developers should keep history append-only, preserve prompt cache and thinking blocks, avoid forced tool choice, tune effort by turn and handle data retention; this is not an independently verified claim that Fable 5.1 is generally superior to competing models.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/models/fable-5-1/migration-guide",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Anthropic은 2026년 9월 1일 Claude Fable 5.1과 Claude Mythos 5.1을 공개했고, Fable 5.1은 일반 고객이 Claude API와 partner platform에서 사용할 수 있다고 설명했습니다.",
+      "source_url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Fable 5.1 and Claude Mythos 5.1; announcement September 2026; model page released September 1, 2026",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "Opened Anthropic announcement, Claude Platform model page and release notes and matched model names, API ID and availability text.",
+      "limitations": [
+        "Actual per-account availability was not tested by API call.",
+        "Anthropic is the model developer and announcement author."
+      ],
+      "conflict_of_interest": [
+        "Anthropic develops and sells Claude models."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Fable 5.1은 1M token context, 128K max output, API model ID claude-fable-5-1, base input 100만 token당 10달러, output 50달러, cache read 0.25달러를 문서화했습니다.",
+      "source_url": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Fable 5.1 model overview, accessed 2026-09-11",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "Read model overview specifications and compared with what's-new and release-note pricing entries.",
+      "limitations": [
+        "Pricing and platform availability can change.",
+        "No billing account was used to verify live billing."
+      ],
+      "conflict_of_interest": [
+        "Anthropic operates the API and pricing documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Fable 5.1과 Mythos 5.1은 tool_choice의 any와 특정 tool 강제를 지원하지 않으며, auto와 none은 지원한다고 Anthropic이 문서화했습니다.",
+      "source_url": "https://platform.claude.com/docs/en/models/fable-5-1/migration-guide",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Migrating to Claude Fable 5.1 and Claude Mythos 5.1, accessed 2026-09-11",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "Read migration guide breaking changes and checked the same claim in the what's-new page.",
+      "limitations": [
+        "No live request was sent to reproduce the 400 error.",
+        "SDK-specific surfacing may vary."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authors the migration guidance."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Fable 5.1의 thinking block은 생성 당시의 system, tools, messages prefix에 묶이며, 이전 turn을 수정하면 block이 invalid해질 수 있습니다.",
+      "source_url": "https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "What's new in Claude Fable 5.1, accessed 2026-09-11",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "Read thinking-block and history-editing sections in the what's-new page and migration guide.",
+      "limitations": [
+        "No API session was run to inspect input_transformations.",
+        "The enforcement state differs for accounts created before and after August 31, 2026."
+      ],
+      "conflict_of_interest": [
+        "Anthropic defines and documents the API behavior."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Per-message effort, turn-scoped system message, progress update display and server-side compaction are documented mechanisms for preserving cache and controlling long agent sessions.",
+      "source_url": "https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "What's new, migration guide, Effort and Compaction docs, accessed 2026-09-11",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "Opened what's-new, migration guide, compaction and effort documentation and compared the beta header requirements.",
+      "limitations": [
+        "Beta feature availability can vary by account and platform.",
+        "No production harness was migrated in this turn."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authors the platform documentation."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Anthropic은 Fable 5.1이 agentic coding, research, long-context, computer use benchmark에서 Fable 5보다 좋아졌다고 설명합니다.",
+      "source_url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Fable 5.1 and Mythos 5.1 announcement, September 2026",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "Read announcement benchmark and capability sections and used them only as Anthropic-authored claims.",
+      "limitations": [
+        "Benchmarks were not independently reproduced.",
+        "Partner examples and internal evaluations are not full public reproduction artifacts."
+      ],
+      "conflict_of_interest": [
+        "Anthropic is the evaluated model's developer."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "Fable 5.1과 Mythos 5.1은 30일 data retention을 요구하고 zero data retention은 명시 승인 없이는 사용할 수 없다고 문서화되어 있습니다.",
+      "source_url": "https://platform.claude.com/docs/en/models/fable-5-1/migration-guide",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Migration guide and Enterprise Frontier Safeguards announcement, accessed 2026-09-11",
+      "accessed_at": "2026-09-11",
+      "direct_or_derived": "direct",
+      "method": "Read migration guide data-retention section and Enterprise Frontier Safeguards announcement.",
+      "limitations": [
+        "Enterprise Frontier Safeguards rollout is a phased future availability claim.",
+        "Customer-specific retention and compliance terms require separate contract review."
+      ],
+      "conflict_of_interest": [
+        "Anthropic sells enterprise Claude access and safeguards."
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-12-sequential/20260911T220923Z-1256649/request.json and used publication_id 2026-09-12 with article_path var/runs/ai/2026-09-12-sequential/20260911T220923Z-1256649/staged-content/article.md, evidence_path var/runs/ai/2026-09-12-sequential/20260911T220923Z-1256649/evidence.json and no_publish_path var/runs/ai/2026-09-12-sequential/20260911T220923Z-1256649/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "anthropic-announcement",
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+        "classification": "P1 selected-source path",
+        "note": "Opened Anthropic's Fable 5.1 and Mythos 5.1 announcement. It identifies the two models, explains that they share a base model with different safeguards, states that Fable 5.1 is generally available while Mythos 5.1 is trusted-access only, and discusses performance, safety, safeguards, data retention and pricing."
+      },
+      {
+        "channel": "anthropic-model-overview",
+        "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+        "classification": "P1 selected-source path",
+        "note": "Opened the Claude Fable 5.1 model page. It records API model ID claude-fable-5-1, 1M token context, 128K max output, input/output pricing, cache read pricing, default effort, knowledge cutoff, platform availability, release date and retirement commitment."
+      },
+      {
+        "channel": "anthropic-whats-new",
+        "url": "https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1",
+        "classification": "P1 selected-source path",
+        "note": "Opened the what's-new page. It documents the release's API behavior: forced tool use is not supported, earlier models cannot read Fable 5.1 thinking blocks, editing earlier turns invalidates thinking blocks, per-message effort and turn-scoped system messages are beta features, progress updates can be displayed, cache read pricing changed, and content provenance is added."
+      },
+      {
+        "channel": "anthropic-migration-guide",
+        "url": "https://platform.claude.com/docs/en/models/fable-5-1/migration-guide",
+        "classification": "P1 selected-source path",
+        "note": "Opened the migration guide. It gives concrete migration guidance for Messages API code, including replacing forced tool_choice, keeping histories append-only, checking prefix mismatches with beta controls, using server-side compaction or context editing and retuning effort."
+      },
+      {
+        "channel": "anthropic-release-notes",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 selected-source path",
+        "note": "Opened Claude Platform release notes. The September 1 entry records the Fable 5.1 and Mythos 5.1 launch, cache-read pricing, tool_choice limitations, thinking block preservation rules, per-message effort, turn-scoped system messages, progress updates and watermarking. September 10 Managed Agents permission-policy updates were also reviewed as a separate infrastructure alternative."
+      },
+      {
+        "channel": "anthropic-enterprise-frontier-safeguards",
+        "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+        "classification": "P1 supporting-source path",
+        "note": "Opened Anthropic's Enterprise Frontier Safeguards announcement. It supports the article's data-retention and enterprise deployment context, especially customer-owned storage, automated monitoring, phased rollout and temporary zero data retention for eligible customers until EFS is ready."
+      },
+      {
+        "channel": "google-gemini-3-8-review",
+        "urls": [
+          "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+          "https://deepmind.google/models/gemini/",
+          "https://ai.google.dev/gemini-api/docs/latest-model",
+          "https://deepmind.google/models/evals-methodology/gemini-3-8-flash"
+        ],
+        "classification": "P1 alternative review",
+        "note": "Opened Google/DeepMind Gemini 3.8 Flash and 3.8 Flash Cyber announcement, model page, API latest-model page and evaluation methodology PDF. It is an important September 2026 model release with API and benchmark methodology details, but it is older than the latest run signals and less directly actionable than Fable 5.1's migration contract for developers already running long agent sessions."
+      },
+      {
+        "channel": "deepseek-v4-1-duplicate-review",
+        "urls": [
+          "https://www.deepseek.com/",
+          "https://api-docs.deepseek.com/",
+          "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash"
+        ],
+        "classification": "P1/P2 alternative review",
+        "note": "Opened DeepSeek official home/API-doc signal and Hugging Face model card for DeepSeek-V4.1-Flash. The model is a strong same-week and same-day candidate with public weights, config, reference code and evaluation instructions, but the same central claim was already staged in var/runs/ai/2026-09-11-sequential/20260910T220843Z-1240995, so it was not selected again for 2026-09-12."
+      },
+      {
+        "channel": "qwen-official-and-registry-review",
+        "urls": [
+          "https://qwenlm.github.io/blog/",
+          "https://qwen.ai/"
+        ],
+        "classification": "P1/P2 discovery review",
+        "note": "Searched Qwen official blog, new qwen.ai blog surface and Hugging Face registry signals. Visible recent items included Qwen-Drive-1.0 and older Qwen image/safety/model-family posts. They remained useful discovery signals but did not outrank the selected Fable 5.1 migration topic for SW engineers."
+      },
+      {
+        "channel": "mistral-changelog-review",
+        "url": "https://docs.mistral.ai/resources/changelogs",
+        "classification": "P1 alternative review",
+        "note": "Opened Mistral product changelog. Recent official items included OCR 4.1 GA on August 31 and earlier model releases. No September 10 or September 11 frontier model/API/runtime item with stronger engineering value than the selected topic was found in this pass."
+      },
+      {
+        "channel": "openai-and-broader-frontier-review",
+        "classification": "P1/S2 discovery review",
+        "note": "Searched official OpenAI, Anthropic, Google, Qwen, DeepSeek and Mistral paths plus frontier-lab and model-registry surfaces. OpenAI GPT-6 Astra was already materialized for 2026-09-10. Search and social snippets were used only to discover official primary-source URLs, not as article facts."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Claude Fable 5.1 and Mythos 5.1 API/runtime migration contract",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "selected",
+        "reason": "Selected because official Anthropic docs provide concrete developer decisions for long-running agents: model ID migration, forced tool_choice removal, thinking block binding, append-only history, prompt cache preservation, per-message effort, fallback and data-retention constraints. It is not the freshest signal, but it is non-duplicate and meets the E2 threshold without making benchmark superiority claims."
+      },
+      {
+        "subject": "DeepSeek-V4.1-Flash open-weight 1M-context MoE",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 10,
+        "decision": "not-selected",
+        "reason": "Strong same-week candidate with public weights, model card, config, reference inference and evaluation instructions. Not selected because the same central claim and article were already staged for the 2026-09-11 AI run, so selecting it again would duplicate the prior candidate rather than add a new daily article."
+      },
+      {
+        "subject": "Google Gemini 3.8 Flash and 3.8 Flash Cyber",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 9,
+        "decision": "not-selected",
+        "reason": "Important September 2 model/API release with announcement, model page, API docs and evaluation methodology PDF. Not selected because its core benchmark claims remain vendor-authored and the Fable 5.1 topic gives more immediate migration guidance for agent developers while avoiding overlap with 2026-09-10 Astra coverage."
+      },
+      {
+        "subject": "Claude Managed Agents permission policy auto evaluation and ant sessions connect",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "September 10 release-note item is fresh and practical for managed agent operations. Not selected because it is narrower infrastructure tooling; Fable 5.1's migration rules affect both API and custom agent runtimes and better satisfy the AI model/API daily brief."
+      },
+      {
+        "subject": "Mistral OCR 4.1 GA",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Official changelog confirms GA, but the topic is older and narrower than current frontier agent/model releases. It did not reach the threshold against the selected topic."
+      },
+      {
+        "subject": "Qwen-Drive-1.0 and recent Qwen registry signals",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "The qwen.ai surface was detected but not sufficiently accessible in this pass, and the autonomous-driving topic is less directly useful for the AI판's SW engineer audience than Fable 5.1's API/runtime migration."
+      },
+      {
+        "subject": "OpenAI GPT-6 Astra",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 2,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Strong frontier model topic with system-card-backed E2 evidence, but it was already selected for decisions/ai/2026-09-10. It was treated as prior coverage, not a new 2026-09-12 candidate."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_VENDOR_PERFORMANCE_CLAIM_PROMOTED",
+    "NON_DUPLICATE_PUBLICATION_ANGLE"
+  ],
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "observed_at": "2026-09-11T22:09:23Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-09-12 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 8 with threshold 7",
+      "central claim has E2 evidence based on Anthropic's announcement, Claude Platform model overview, what's-new page, migration guide and release notes",
+      "central claims include at least two distinct official primary-source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions exactly: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-09-12 and decisions/ai/2026-09-12",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Anthropic is the model developer and author/operator of the Fable 5.1 announcement, Claude Platform documentation and release notes.",
+    "The article uses Anthropic-authored benchmark and partner examples only as vendor claims, not independent ranking evidence.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results and social signals were used only as discovery checks; article facts rely on opened official primary sources."
+  ],
+  "reproducibility_details": {
+    "state": "R1",
+    "reason": "The relevant API behavior, model IDs, pricing, migration patterns and data-retention constraints are documented in public primary-source documentation. This turn did not run Claude API requests, inspect system-card internals beyond linked public references, reproduce benchmarks or migrate a real agent harness.",
+    "would_be_needed_for_R2_or_higher": [
+      "live API calls showing forced tool_choice errors and thinking block prefix mismatch behavior",
+      "captured request/response logs for per-message effort and input_transformations",
+      "independent agent benchmark runs with disclosed harness, timeout, tool permissions, prompt cache and fallback settings"
+    ]
+  },
+  "source_urls": [
+    "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+    "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+    "https://platform.claude.com/docs/en/models/fable-5-1/whats-new-fable-5-1",
+    "https://platform.claude.com/docs/en/models/fable-5-1/migration-guide",
+    "https://platform.claude.com/docs/en/release-notes/overview",
+    "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+    "https://platform.claude.com/docs/en/build-with-claude/compaction",
+    "https://platform.claude.com/docs/en/build-with-claude/effort"
+  ]
+}
