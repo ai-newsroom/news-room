@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-13",
+  "date": "2026-09-13",
+  "subject": "Google Gemini 3.8 Flash and Gemini 3.8 Flash Cyber, published 2026-09-02",
+  "central_claim": "Gemini 3.8 Flash is a publishable AI engineering topic because Google and Google DeepMind primary sources support a bounded E2/R1 claim: the release moves the Flash line toward long-horizon software engineering and agent workflows with model ID gemini-3.8-flash, 1M input context, 64K output, tunable low/medium/high thinking levels, built-in agent tools, Antigravity default usage and documented pricing, while benchmark superiority remains vendor-authored and is not promoted to an independent ranking conclusion.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "selection": {
+    "importance": 2,
+    "novelty": 1,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 8,
+    "threshold": 7,
+    "reason": "Gemini 3.8 Flash is a September 2026 production model release with multiple official primary sources: announcement, model card, API docs, pricing and evaluation methodology. It was reviewed but not selected on 2026-09-12 because Claude Fable 5.1 had a sharper immediate migration contract; for 2026-09-13 it remains a distinct unmaterialized topic because GPT-6 Astra and Claude Fable 5.1 have already been covered and Gemini 3.8 Flash changes the Flash model line's role in long-horizon agent and coding workloads. The conclusion is bounded because no API call, benchmark rerun or independent evaluation was performed."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "Google released Gemini 3.8 Flash as a production Gemini API model for long-horizon software engineering and agent workflows, with inspectable API documentation for model ID, context, output limit, thinking levels, tool support, Antigravity default use and pricing; the publishable conclusion is about the documented engineering contract, not independently verified benchmark superiority.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/pricing",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://deepmind.google/models/evals-methodology/gemini-3-8-flash",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Google은 2026년 9월 2일 Gemini 3.8 Flash와 Gemini 3.8 Flash Cyber를 공개했고, 일반 개발자는 gemini-3.8-flash를 Gemini API와 Google AI Studio에서 사용할 수 있다고 설명했습니다.",
+      "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini 3.8 Flash and Gemini 3.8 Flash Cyber announcement, 2026-09-02",
+      "accessed_at": "2026-09-12",
+      "direct_or_derived": "direct",
+      "method": "Opened Google announcement and matched it against Gemini API latest-model page, model page and model card.",
+      "limitations": [
+        "Actual account-level availability was not tested by API call.",
+        "Google is the model developer and announcement author."
+      ],
+      "conflict_of_interest": [
+        "Google and Google DeepMind develop and sell Gemini models."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "gemini-3.8-flash는 stable model ID, 1,048,576 input token limit, 65,536 output token limit, text·image·video·audio·PDF input, text output을 문서화했습니다.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini API model page, last updated 2026-09-02 UTC",
+      "accessed_at": "2026-09-12",
+      "direct_or_derived": "direct",
+      "method": "Read Gemini API model page properties and cross-checked the model card's input and output description.",
+      "limitations": [
+        "No live context-limit or modality request was executed.",
+        "Hosted API behavior may differ by product surface and account."
+      ],
+      "conflict_of_interest": [
+        "Google operates the Gemini API documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Gemini 3.8 Flash는 low, medium, high thinking level을 지원하고 minimal은 지원하지 않는다고 문서화되어 있습니다.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/latest-model",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "What's new in Gemini 3.8 Flash, last updated 2026-09-03 UTC",
+      "accessed_at": "2026-09-12",
+      "direct_or_derived": "direct",
+      "method": "Read latest-model page's new model table and reasoning-level section and cross-checked the model page capability row.",
+      "limitations": [
+        "No API request was sent to reproduce minimal-level error behavior.",
+        "Effort-level cost and latency depend on workload."
+      ],
+      "conflict_of_interest": [
+        "Google authors the API behavior documentation."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Google은 Gemini 3.8 Flash가 function calling, code execution, file search, search grounding, URL context, structured output을 지원하고 computer use를 preview로 제공한다고 문서화했습니다.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini API model page, last updated 2026-09-02 UTC",
+      "accessed_at": "2026-09-12",
+      "direct_or_derived": "direct",
+      "method": "Read the model page capability list.",
+      "limitations": [
+        "Preview computer use and hosted tools may have account, region and product limitations.",
+        "The article did not test tool-call behavior."
+      ],
+      "conflict_of_interest": [
+        "Google operates the model and tool surface."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Google은 Antigravity agent와 Antigravity SDK가 Gemini 3.8 Flash를 기본 모델로 쓴다고 문서화했습니다.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/latest-model",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "What's new in Gemini 3.8 Flash, last updated 2026-09-03 UTC",
+      "accessed_at": "2026-09-12",
+      "direct_or_derived": "direct",
+      "method": "Read the updated Antigravity agent section and default-model bullet.",
+      "limitations": [
+        "Antigravity's internal harness and production configuration were not independently inspected.",
+        "The SDK default can change after documentation updates."
+      ],
+      "conflict_of_interest": [
+        "Google develops both Gemini and Antigravity."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Google은 DeepSWE v1.1, Terminal-Bench, OSWorld 2.0, HLE-Verified 등에서 Gemini 3.8 Flash 결과를 공개했고, 평가 방법 문서는 Gemini 결과와 비-Gemini 비교 수치의 출처와 self-computed 조건을 설명합니다.",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-8-flash",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Eval-Methodology-Gemini 3-8-Flash PDF, September 2026",
+      "accessed_at": "2026-09-12",
+      "direct_or_derived": "direct",
+      "method": "Opened the model card result table and the evaluation methodology PDF and compared benchmark labels, score provenance and stated conditions.",
+      "limitations": [
+        "Gemini results are partly self-computed by Google.",
+        "Some non-Gemini numbers come from provider self-reported results or public leaderboards.",
+        "No benchmark was rerun by the newsroom."
+      ],
+      "conflict_of_interest": [
+        "Google evaluates and sells Gemini models."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "2026년 말까지 Gemini 3.8 Flash standard paid tier 가격은 input 100만 token당 0.75달러, output 100만 token당 3.75달러이며 2027년 1월 1일부터 각각 1.50달러와 7.50달러로 바뀐다고 가격표가 문서화했습니다.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Gemini Developer API pricing, accessed 2026-09-12",
+      "accessed_at": "2026-09-12",
+      "direct_or_derived": "direct",
+      "method": "Read Gemini 3.8 Flash pricing table for Standard, Batch, Flex and Priority entries; article used Standard paid tier only.",
+      "limitations": [
+        "Prices can change after publication.",
+        "Actual cost depends on cache, batch, priority, storage, tool usage and output thinking tokens."
+      ],
+      "conflict_of_interest": [
+        "Google publishes and can change Gemini API prices."
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-13-sequential/20260912T220917Z-1274586/request.json and used publication_id 2026-09-13 with article_path var/runs/ai/2026-09-13-sequential/20260912T220917Z-1274586/staged-content/article.md, evidence_path var/runs/ai/2026-09-13-sequential/20260912T220917Z-1274586/evidence.json and no_publish_path var/runs/ai/2026-09-13-sequential/20260912T220917Z-1274586/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "google-gemini-3-8-announcement",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+        "classification": "P1 selected-source path",
+        "note": "Opened Google's September 2 announcement for Gemini 3.8 Flash and Gemini 3.8 Flash Cyber. It identifies Gemini 3.8 Flash as a Flash-priced model for long-horizon coding and autonomous agents, describes extra reasoning steps and iterative tool calls, and separates the restricted Gemini 3.8 Flash Cyber path."
+      },
+      {
+        "channel": "google-deepmind-model-page",
+        "url": "https://deepmind.google/models/gemini/",
+        "classification": "P1 selected-source path",
+        "note": "Opened the Gemini model family page. It lists Gemini 3.8 Flash as the current workhorse model for complex agentic tasks and links to model details, safety, performance and ecosystem sections."
+      },
+      {
+        "channel": "gemini-api-latest-model",
+        "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+        "classification": "P1 selected-source path",
+        "note": "Opened the Gemini API latest-model page. It documents model ID gemini-3.8-flash, GA status, 1M context, 64K output, low/medium/high thinking levels, unsupported minimal level, Antigravity default use and introductory pricing."
+      },
+      {
+        "channel": "gemini-api-model-card",
+        "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+        "classification": "P1 selected-source path",
+        "note": "Opened the Gemini API model page. It documents stable model ID, input and output limits, modalities, supported tools, computer use preview, batch/flex/priority consumption options and September 2026 latest update."
+      },
+      {
+        "channel": "deepmind-model-card",
+        "url": "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
+        "classification": "P1 selected-source path",
+        "note": "Opened the Google DeepMind model card. It confirms publication on 2026-09-02, links the model to Gemini 3.7 Flash, states input/output scope, distribution channels, benchmark result table, known limitations, safety regression note for non-English languages and Frontier Safety assessment."
+      },
+      {
+        "channel": "deepmind-evaluation-methodology",
+        "url": "https://deepmind.google/models/evals-methodology/gemini-3-8-flash",
+        "classification": "P1 selected-source path",
+        "note": "Opened the evaluation methodology PDF. It explains pass@1 settings, self-computed Gemini results, provider self-reported non-Gemini numbers, public leaderboard usage and benchmark-specific notes for DeepSWE, Terminal-Bench, OSWorld, HLE-Verified and related evaluations."
+      },
+      {
+        "channel": "gemini-pricing",
+        "url": "https://ai.google.dev/gemini-api/docs/pricing",
+        "classification": "P1 selected-source path",
+        "note": "Opened Gemini Developer API pricing. It documents Standard, Batch, Flex and Priority pricing for Gemini 3.8 Flash, context caching prices and the January 1, 2027 standard-pricing transition."
+      },
+      {
+        "channel": "openai-duplicate-review",
+        "urls": [
+          "https://openai.com/index/gpt-6-astra/",
+          "https://deploymentsafety.openai.com/gpt-6-astra",
+          "https://openai.com/"
+        ],
+        "classification": "P1 duplicate review",
+        "note": "Opened OpenAI GPT-6 Astra announcement and system card paths while checking September frontier signals. The topic remains highly important, but it was already materialized for the 2026-09-10 AI edition with the same model/safety central claim, so it was not selected again."
+      },
+      {
+        "channel": "anthropic-duplicate-review",
+        "urls": [
+          "https://www.anthropic.com/",
+          "https://platform.claude.com/docs/en/release-notes/overview",
+          "https://www-cdn.anthropic.com/"
+        ],
+        "classification": "P1 duplicate review",
+        "note": "Checked Anthropic official surface and search result signals for Claude Fable 5.1 and Mythos 5.1. The migration-contract topic was already materialized for the 2026-09-12 AI edition, so it was not selected again."
+      },
+      {
+        "channel": "qwen-official-and-registry-review",
+        "urls": [
+          "https://qwen.ai/",
+          "https://qwenlm.github.io/blog/",
+          "https://huggingface.co/Qwen/models"
+        ],
+        "classification": "P1/P2 discovery review",
+        "note": "Searched Qwen official blog, the newer qwen.ai surface and Hugging Face registry signals. Recent visible items included Qwen3-VL and older Qwen image/safety/model-family posts; no accessible same-day model/API/runtime candidate with stronger SW-engineering decision value than Gemini 3.8 Flash was confirmed in this pass."
+      },
+      {
+        "channel": "deepseek-official-and-registry-review",
+        "urls": [
+          "https://github.com/deepseek-ai",
+          "https://huggingface.co/deepseek-ai/models"
+        ],
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed DeepSeek official GitHub and Hugging Face registry start points for same-week release signals. The recent DeepSeek V4.1-Flash path had already been considered in prior AI runs, and no fresher primary-source-backed topic outranked Gemini 3.8 Flash for this publication date."
+      },
+      {
+        "channel": "mistral-official-review",
+        "urls": [
+          "https://mistral.ai/",
+          "https://docs.mistral.ai/",
+          "https://docs.mistral.ai/resources/changelogs"
+        ],
+        "classification": "P1 discovery review",
+        "note": "Opened Mistral home and documentation surfaces. Signals included Mistral OCR 4/4.1, Vibe, AI Cloud and model-list updates. These were relevant but either narrower document-intelligence or platform announcements, and did not exceed Gemini 3.8 Flash's model/API/evaluation package for the AI판's regular article."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Google Gemini 3.8 Flash and Gemini 3.8 Flash Cyber",
+        "published_or_observed_at": "2026-09-02",
+        "official_urls": [
+          "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+          "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
+          "https://ai.google.dev/gemini-api/docs/latest-model",
+          "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+          "https://deepmind.google/models/evals-methodology/gemini-3-8-flash"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": true,
+        "reason": "Selected because GPT-6 Astra and Claude Fable 5.1 were already covered, while Gemini 3.8 Flash remains an unmaterialized September production model release with official model card, API surface, pricing and evaluation-methodology sources. The selected angle is the engineering contract for long-horizon agents, not an independent benchmark ranking."
+      },
+      {
+        "subject": "OpenAI GPT-6 Astra",
+        "published_or_observed_at": "2026-09-04 to 2026-09-10 signals",
+        "official_urls": [
+          "https://openai.com/index/gpt-6-astra/",
+          "https://deploymentsafety.openai.com/gpt-6-astra"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 0,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Not selected because the same central model/safety topic was already published as the 2026-09-10 AI edition. New OpenAI homepage signals were treated as duplicate monitoring, not a fresh regular article."
+      },
+      {
+        "subject": "Claude Fable 5.1 and Mythos 5.1 API/runtime migration contract",
+        "published_or_observed_at": "2026-09-01",
+        "official_urls": [
+          "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+          "https://platform.claude.com/docs/en/release-notes/overview"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 0,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Not selected because this topic was already materialized for the 2026-09-12 AI edition with detailed migration guidance, claim ledger and sources."
+      },
+      {
+        "subject": "Mistral OCR 4/4.1 and Vibe platform signals",
+        "published_or_observed_at": "2026-08-31 to 2026-09-08 signals",
+        "official_urls": [
+          "https://mistral.ai/",
+          "https://docs.mistral.ai/"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "Not selected because the visible sources in this pass were product and documentation signals without a stronger model/evaluation package for general AI engineering than Gemini 3.8 Flash."
+      },
+      {
+        "subject": "Qwen official blog and registry September signals",
+        "published_or_observed_at": "September 2026 discovery pass",
+        "official_urls": [
+          "https://qwen.ai/",
+          "https://qwenlm.github.io/blog/",
+          "https://huggingface.co/Qwen/models"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "Not selected because no accessible primary-source bundle reviewed in this pass exceeded the selected Gemini topic's API, model-card, pricing and evaluation-methodology support."
+      }
+    ]
+  },
+  "reproducibility_details": {
+    "status": "R1",
+    "summary": "The article can explain documented model/API behavior, pricing and evaluation conditions, but the newsroom did not run the Gemini API or rerun benchmarks.",
+    "not_reproduced": [
+      "No live request to gemini-3.8-flash was sent.",
+      "No Antigravity agent session was inspected.",
+      "No DeepSWE, Terminal-Bench, OSWorld, HLE-Verified or Korean-language workload was rerun."
+    ],
+    "would_raise_to_R2_or_R3": [
+      "A saved API log with model ID, thinking level, tool configuration, latency and token usage on a representative workload.",
+      "A public benchmark harness rerun with fixed timeout, tools and cost accounting.",
+      "Independent Korean-language agent evaluation covering repository work, document retrieval and safety/refusal behavior."
+    ]
+  },
+  "conflicts": [
+    "Google and Google DeepMind are the model developers and authors/operators of the Gemini 3.8 Flash announcement, model card, API documentation, pricing page and evaluation methodology.",
+    "No newsroom briefing, account, credit, hardware, sponsorship, advertising relationship, NDA or embargo was used."
+  ],
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "checks": [
+      "ai-editorial-config",
+      "article-frontmatter-schema",
+      "selection-threshold",
+      "central-evidence-e2",
+      "korean-writing-baseline-v1",
+      "ai-technical-blog-v2",
+      "claim-source-ledger",
+      "publication-id-and-route-unique",
+      "artifact-hashes",
+      "site-tests-and-build"
+    ],
+    "notes": "This evidence records the ai-auto-publish-v1 automatic publication contract exactly for the downstream sequential publisher. This turn only stages article_path and evidence_path under var/runs/ai and does not materialize content/ai, decisions/ai, Git commits, pushes or deployments."
+  },
+  "source_urls": [
+    "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+    "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
+    "https://ai.google.dev/gemini-api/docs/latest-model",
+    "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+    "https://ai.google.dev/gemini-api/docs/pricing",
+    "https://deepmind.google/models/evals-methodology/gemini-3-8-flash"
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ]
+}
