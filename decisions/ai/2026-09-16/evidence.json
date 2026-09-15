@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-16",
+  "date": "2026-09-16",
+  "subject": "Claude Messages API compact-on-demand beta, compact-2026-09-04",
+  "central_claim": "Anthropic's September 14, 2026 Claude Messages API compact-on-demand beta is a publishable AI engineering topic because official release notes and compaction documentation support a bounded E2/R1 claim: long-running agent runtimes can request a server-generated signed compaction block in the background and replace older messages with it, changing context-management design from client-side summaries toward API-recognized history migration. The article does not claim independent improvements in model quality, latency or cost.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The September 14 feature changes how developers operate long-running Claude agents: background summary requests, signed compaction blocks, preserved recent turns, billing aggregation and failure handling affect runtime architecture and observability. Official release notes and API documentation give concrete behavior and limitations, while no benchmark or independent superiority claim is needed."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "Claude Messages API compact-on-demand beta lets agent runtimes request a signed compaction block separately from a conversation turn and later replace older messages with it, which is an API-level context-management change rather than a verified model-performance improvement.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Anthropic은 2026년 9월 14일 Claude Messages API에 on-demand compaction beta를 추가했습니다.",
+      "source_url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform release notes, September 14, 2026 entry",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Opened Claude Platform release notes and matched the September 14, 2026 entry against the compaction documentation.",
+      "limitations": [
+        "Actual beta availability for a specific account was not tested.",
+        "Anthropic is the API provider and release-note author."
+      ],
+      "conflict_of_interest": [
+        "Anthropic develops and sells Claude models and Claude API access."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "compact-2026-09-04 beta header와 top-level compaction parameter를 쓰면 별도 요청으로 summary를 받고, 이후 요청에서 signed compaction block을 앞쪽 message 대신 보낼 수 있습니다.",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform Docs, Compaction page, compact-on-demand beta",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Read the compact-on-demand, request-a-summary and continue-from-summary sections, then cross-checked the release note's signed-block description.",
+      "limitations": [
+        "No Messages API request was executed.",
+        "SDK-specific wrappers and account-specific beta access were not tested."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authors the API documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "최근 turn을 원문으로 보존하려면 그 turn을 compaction 요청에서 제외하고, 돌아온 compaction block을 보존한 turn 앞에 둡니다.",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform Docs, Compaction page, continue-from-summary guidance",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Read the history-swap and kept-turn guidance and translated it into agent runtime implications.",
+      "limitations": [
+        "The newsroom did not test preserved thinking behavior.",
+        "Correctness depends on history ordering and unchanged system/tools conditions."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authors the behavior guidance."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "compaction 사용 시 비용 집계는 usage.iterations를 합산해야 하며, 요약 실패는 max_tokens, model_context_window_exceeded, refusal, tool_use, end_turn 같은 stop reason과 빈 content로 나타날 수 있습니다.",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform Docs, Compaction page, usage and failure handling",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Read usage.iterations documentation and the when-no-summary-comes-back section.",
+      "limitations": [
+        "Actual billing records were not inspected.",
+        "Failure frequency was not measured."
+      ],
+      "conflict_of_interest": [
+        "Anthropic defines and documents Claude API billing fields."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "summarized message 안의 image, document, container_upload block, fetched URL은 compaction block으로 대체된 뒤 사라지므로 이후 turn에서 필요하면 다시 제공해야 합니다.",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform Docs, Compaction page, API fit and limitations",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Read the API compatibility section and content-that-summary-cannot-carry limitation.",
+      "limitations": [
+        "No file, URL fetch or container upload request was reproduced.",
+        "Product-surface behavior may vary as beta evolves."
+      ],
+      "conflict_of_interest": [
+        "Anthropic authors and can update the beta documentation."
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-16-sequential/20260915T220759Z-1324309/request.json and used publication_id 2026-09-16 with article_path var/runs/ai/2026-09-16-sequential/20260915T220759Z-1324309/staged-content/article.md, evidence_path var/runs/ai/2026-09-16-sequential/20260915T220759Z-1324309/evidence.json and no_publish_path var/runs/ai/2026-09-16-sequential/20260915T220759Z-1324309/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "anthropic-release-notes",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 selected-source path",
+        "note": "Opened Claude Platform release notes. The September 14, 2026 entry records Messages API compact-on-demand beta, compact-2026-09-04 beta header, top-level compaction parameter, signed compaction block, background execution and ability to keep recent turns verbatim after the summary."
+      },
+      {
+        "channel": "anthropic-compaction-docs",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+        "classification": "P1 selected-source path",
+        "note": "Opened the official compaction documentation. It explains threshold compaction, compact-on-demand requests, history swap rules, custom instructions, usage.iterations billing, failure stop reasons, compatibility with prompt caching and unsupported carried content."
+      },
+      {
+        "channel": "openai-official-surface",
+        "urls": [
+          "https://openai.com/",
+          "https://openai.com/index/gpt-6-astra/",
+          "https://deploymentsafety.openai.com/"
+        ],
+        "classification": "P0/P1 alternative review",
+        "note": "Reviewed OpenAI's official surface and search result signals for September 2026 frontier releases. GPT-6 Astra remains a major model topic with system-card paths, but it was published earlier in September and was already present in AI edition history, so it did not outrank the fresh September 14 API-runtime change for this run."
+      },
+      {
+        "channel": "google-gemini-official-surface",
+        "urls": [
+          "https://ai.google.dev/gemini-api/docs/changelog",
+          "https://deepmind.google/models/model-cards/"
+        ],
+        "classification": "P1 alternative review",
+        "note": "Reviewed Gemini API changelog and model-card paths through official search results. Gemini 3 Flash/3.8-era model releases remain important, but recent Gemini model topics were already materialized in the September AI edition history and no September 14 model release stronger than Anthropic compaction was found."
+      },
+      {
+        "channel": "qwen-official-and-registry-review",
+        "urls": [
+          "https://qwenlm.github.io/blog/",
+          "https://huggingface.co/Qwen/models"
+        ],
+        "classification": "P1/P2 discovery review",
+        "note": "Checked Qwen official blog and model-registry search paths because Qwen releases can appear first in registries. Opened search snippets indicated older Qwen blog releases and no new September 14/15 official model artifact that cleared the selection bar in this run."
+      },
+      {
+        "channel": "deepseek-official-artifact-review",
+        "urls": [
+          "https://github.com/deepseek-ai",
+          "https://huggingface.co/deepseek-ai/models"
+        ],
+        "classification": "P1/P2 discovery review",
+        "note": "Included DeepSeek GitHub and model-registry paths in discovery scope because registry-first releases can be material. Search signals did not surface a stronger new official DeepSeek release than the selected Claude API runtime change."
+      },
+      {
+        "channel": "mistral-official-docs-review",
+        "url": "https://docs.mistral.ai/",
+        "classification": "P1 alternative review",
+        "note": "Opened Mistral documentation. The visible latest-model area listed Z.ai GLM 5.2, Mistral Medium 3.5, Mistral Small 4, Voxtral and OCR releases; these were material alternatives but did not provide a fresher broad API-runtime decision point than the September 14 Claude compaction beta."
+      },
+      {
+        "channel": "vllm-and-pytorch-release-review",
+        "urls": [
+          "https://github.com/vllm-project/vllm/releases",
+          "https://github.com/pytorch/pytorch/releases"
+        ],
+        "classification": "P1/P2 infrastructure review",
+        "note": "Searched official release surfaces for vLLM and PyTorch. vLLM v0.29.0 appeared as a September 8 infrastructure signal, but the selected Anthropic API change had more direct relevance to long-running agent application architecture for this publication date."
+      },
+      {
+        "channel": "broader-frontier-and-tool-review",
+        "classification": "S2 discovery until primary source opened",
+        "note": "Used web search results only to discover official paths across OpenAI, Anthropic, Google, Qwen, DeepSeek, Mistral, vLLM and PyTorch. Article facts rely on opened Anthropic primary sources."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Claude Messages API compact-on-demand beta",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is a fresh September 14 API-runtime release with direct engineering consequences for long-running agent history management, prompt caching, preserved thinking, billing and failure recovery. Two official primary URLs support the bounded E2 claim."
+      },
+      {
+        "subject": "OpenAI GPT-6 Astra",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Major frontier model release and system-card topic, but it was earlier in September and already appeared in AI edition history. It was not selected again for this daily run."
+      },
+      {
+        "subject": "Google Gemini 3.8 Flash and Gemini 3.8 Flash Cyber",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Important model/API topic with model-card and methodology sources, but the September AI edition history already materialized Gemini 3.8 Flash as a distinct model-release article."
+      },
+      {
+        "subject": "Mistral documentation latest models including Z.ai GLM 5.2 on La Plateforme",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Official documentation identifies model availability, including third-party open model access, but this run did not find a fresher or more decision-changing technical claim than Claude compact-on-demand."
+      },
+      {
+        "subject": "vLLM v0.29.0 release",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Infrastructure releases can be publishable when they expose concrete serving changes, but the September 8 release was older and less central than a September 14 API feature that changes long-agent runtime design."
+      },
+      {
+        "subject": "Qwen official blog and Hugging Face registry updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Qwen remains a required discovery surface, especially for registry-first artifacts, but no opened September 14/15 official release with two primary URLs and a stronger central claim was found."
+      },
+      {
+        "subject": "DeepSeek official GitHub and model registry paths",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "DeepSeek official artifact surfaces were included in discovery, but search and opened-source review did not surface a stronger new official release for this publication date."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "PERFORMANCE_COMPARISONS_BOUNDED",
+    "NO_RUNTIME_REPRODUCTION"
+  ],
+  "observed_at": "2026-09-15T22:07:59Z",
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-09-16 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling E2, reproducibility state R1, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on official Claude Platform release notes and compaction documentation",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required sections and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 conditions: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-09-16 and decisions/ai/2026-09-16",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "Anthropic is the author/operator of the Claude Platform release notes and compaction documentation used as primary sources.",
+    "No advance access, vendor account, paid subscription, credits, hardware, sponsorship, advertising relationship, NDA or embargo was provided.",
+    "Search results were used only for discovery; article facts rely on opened official primary sources."
+  ],
+  "sources": [
+    {
+      "source_id": "anthropic-claude-platform-release-notes",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source_type": "P1",
+      "owner": "Anthropic",
+      "version": "Claude Platform release notes, September 14, 2026 entry; accessed 2026-09-15",
+      "notes": "Records compact-on-demand beta for Messages API, compact-2026-09-04 beta header, top-level compaction parameter, signed compaction block, background execution and recent-turn preservation."
+    },
+    {
+      "source_id": "anthropic-claude-compaction-docs",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "source_type": "P1",
+      "owner": "Anthropic",
+      "version": "Claude Platform Docs, Compaction page; accessed 2026-09-15",
+      "notes": "Documents threshold compaction, compact-on-demand requests, compaction block placement, history swap rules, usage.iterations billing, failure stop reasons, prompt caching interaction, content that summaries cannot carry and supported models/platforms."
+    }
+  ],
+  "article_path": "var/runs/ai/2026-09-16-sequential/20260915T220759Z-1324309/staged-content/article.md",
+  "evidence_path": "var/runs/ai/2026-09-16-sequential/20260915T220759Z-1324309/evidence.json"
+}
