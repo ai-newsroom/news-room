@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-16",
+  "date": "2026-09-16",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-16-sequential/20260915T221558Z-1326846/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-09-16-sequential/20260915T221558Z-1326846/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-09-16-sequential/20260915T221558Z-1326846/no-publish.json",
+  "subject": "Accellera Portable Test and Stimulus Standard 3.1 Draft for Public Review, August 31 2026",
+  "title": "PSS 3.1 초안은 검증 시나리오를 target code까지 더 세밀하게 내립니다",
+  "summary": "Accellera가 PSS 3.1 공개 검토 초안을 2026년 8월 31일 공개했고 9월 30일까지 의견을 받습니다. 초안은 제약 언어, 재사용 library, target code 생성, address와 register 모델을 보강해 같은 검증 의도를 여러 실행 환경으로 내리는 과정을 더 명시합니다. 아직 최종 표준이나 도구 호환성 검증은 아닙니다.",
+  "central_claim": "Accellera PSS 3.1 공개 검토 초안은 PSS 3.0 이후의 portable verification scenario 모델을 제약 언어, library reuse, target code 생성 제어, address와 register 모델 쪽에서 보강해 추상 검증 의도가 실행 target code로 내려가는 경로를 더 명시합니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "없음. 공개 Accellera 웹페이지와 공개 초안 PDF만 사용했고, 사전 briefing, 제공받은 account·license·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 9,
+    "threshold": 7,
+    "rationale": "PSS는 SoC verification intent를 여러 target implementation으로 내리는 표준이며, 3.1 공개 검토 초안은 constraint, target code generation, register modeling처럼 실제 flow 작성 규칙에 영향을 주는 변경을 공개했습니다. 초안 PDF와 working group 원문으로 방법과 변경 범위는 추적할 수 있지만, 아직 최종 표준이나 tool 실행 artifact는 아닙니다."
+  },
+  "selection": {
+    "total": 9,
+    "threshold": 7,
+    "central_claim_minimum": "E2",
+    "source_url_minimum": 2,
+    "passed": true
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": false,
+      "evidence_level": "E1",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.accellera.org/downloads/drafts-review",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.accellera.org/images/downloads/drafts-review/PSS%203.1%20Public%20Review%20Draft%202026.08.28.pdf",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/images/downloads/drafts-review/PSS%203.1%20Public%20Review%20Draft%202026.08.28.pdf",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.accellera.org/activities/working-groups/portable-stimulus",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/activities/working-groups/portable-stimulus",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.accellera.org/images/downloads/drafts-review/PSS%203.1%20Public%20Review%20Draft%202026.08.28.pdf",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://www.accellera.org/",
+    "https://www.accellera.org/downloads/drafts-review",
+    "https://www.accellera.org/images/downloads/drafts-review/PSS%203.1%20Public%20Review%20Draft%202026.08.28.pdf",
+    "https://www.accellera.org/activities/working-groups/portable-stimulus"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Accellera는 Portable Test and Stimulus Standard 3.1 Draft Standard를 public review에 올렸고, public review 기간은 2026년 9월 30일까지입니다.",
+      "source_url": "https://www.accellera.org/",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Accellera home page captured 2026-09-15; PSS 3.1 Public Review Now Open section",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Accellera home page의 PSS 3.1 Public Review Now Open 공지에서 상태와 review 종료일을 확인했습니다.",
+      "limitations": [
+        "공지 페이지는 표준 변경의 상세 조항을 모두 싣지 않습니다.",
+        "발표와 공개 검토 상태 확인 근거이며 tool 구현을 검증하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "Drafts Under Public Review 페이지는 Portable Stimulus Standard Draft 3.1의 상태를 'Public Review open until September 30, 2026'로 표시하고 date modified를 2026-08-31로 표시합니다.",
+      "source_url": "https://www.accellera.org/downloads/drafts-review",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Drafts Under Public Review page captured 2026-09-15",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Download Drafts table에서 PSS 3.1 entry의 status와 date modified를 확인했습니다.",
+      "limitations": [
+        "목록 페이지는 변경 내용과 구현 상태를 설명하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Accellera는 PSS 3.1을 PSS 3.0 위에 쌓는 focused release로 설명하며, 변경이 stronger constraint language, reusable libraries, generated target code control, address spaces and registers 네 영역에 집중됐다고 밝혔습니다.",
+      "source_url": "https://www.accellera.org/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Accellera home page captured 2026-09-15; PSS 3.1 Public Review Now Open section",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "공지 본문의 four key areas bullet list를 확인했습니다.",
+      "limitations": [
+        "Accellera의 요약 설명이며, 개별 tool support나 conformance 결과를 포함하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "PSS 3.1 draft PDF는 language syntax와 semantics를 정의하고, PSS 3.0 대비 새 기능, 오류 수정, 의미 clarification, 일부 기능 제거와 section 재구성을 포함한다고 설명합니다.",
+      "source_url": "https://www.accellera.org/images/downloads/drafts-review/PSS%203.1%20Public%20Review%20Draft%202026.08.28.pdf",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Portable Test and Stimulus Standard 3.1 Draft for Public Review, August 31 2026",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "PDF abstract와 introduction의 revision summary를 확인했습니다.",
+      "limitations": [
+        "Draft for Public Review이며 최종 ratified standard가 아닙니다.",
+        "편집국은 PSS parser나 verification tool에서 문법을 실행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "PSS 3.1 draft의 새 기능 목록에는 solve context string literal formatting, inline non-rand action attribute value, overlap keyword, target-template and triple-quote clarification, target-time communication and synchronization, multi-dimensional arrays of action handles, mutable attributes, soft constraints, exported functions, code generation deduplication을 위한 exec block tags, solve와 target platform의 message, register base types, annotation elements, overlapping action 간 address claim sharing, mem_access_desc 확장, target code의 symbolic register representation이 들어갑니다.",
+      "source_url": "https://www.accellera.org/images/downloads/drafts-review/PSS%203.1%20Public%20Review%20Draft%202026.08.28.pdf",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Portable Test and Stimulus Standard 3.1 Draft for Public Review, August 31 2026",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "PDF introduction의 'The new features include' table을 확인했습니다.",
+      "limitations": [
+        "표준 문법과 semantics의 공개 초안 근거입니다.",
+        "특정 EDA tool의 구현 완료 여부나 runtime 효과를 입증하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "PSS working group은 PSS가 여러 target implementation에 stimulus를 생성하기 위한 portable test and stimulus specification language라고 설명합니다.",
+      "source_url": "https://www.accellera.org/activities/working-groups/portable-stimulus",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Portable Stimulus Working Group page captured 2026-09-15",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Working Group 페이지의 Scope와 Background sections를 확인했습니다.",
+      "limitations": [
+        "표준 의도와 범위 설명이며, PSS 3.1 구현 결과는 아닙니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "PSS working group page는 PSS 3.0이 2024년 8월 release됐고, 가장 큰 추가 기능이 behavioral coverage support였다고 설명합니다.",
+      "source_url": "https://www.accellera.org/activities/working-groups/portable-stimulus",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Portable Stimulus Working Group page captured 2026-09-15",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "Working Group 페이지의 Background section에서 PSS 3.0 release 설명을 확인했습니다.",
+      "limitations": [
+        "PSS 3.0과 3.1의 전체 diff를 기계적으로 비교하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "PSS 3.1 draft notices는 Accellera standards documents가 voluntary use 대상이며 Accellera가 contained information의 accuracy를 independently evaluate, test, or verify하지 않는다고 밝힙니다.",
+      "source_url": "https://www.accellera.org/images/downloads/drafts-review/PSS%203.1%20Public%20Review%20Draft%202026.08.28.pdf",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Portable Test and Stimulus Standard 3.1 Draft for Public Review, August 31 2026",
+      "accessed_at": "2026-09-15",
+      "direct_or_derived": "direct",
+      "method": "PDF notices section에서 표준 사용 조건과 검증 한계를 확인했습니다.",
+      "limitations": [
+        "법적 notice와 표준 적용 한계에 관한 근거입니다.",
+        "기술 기능의 유용성이나 tool conformance를 평가하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R1",
+    "public_artifacts": [
+      "https://www.accellera.org/images/downloads/drafts-review/PSS%203.1%20Public%20Review%20Draft%202026.08.28.pdf"
+    ],
+    "not_reproduced_by_editor": true,
+    "why_not_r2": "공개 표준 초안은 방법과 문법을 설명하지만 실행 가능한 parser, conformance suite, vendor tool release note, public regression log가 함께 제공되지 않았습니다. 편집국은 PSS 3.1 문법을 tool에서 실행하지 않았습니다."
+  },
+  "conflict_of_interest": {
+    "status": "none_disclosed",
+    "details": [
+      "공개 Accellera 웹페이지와 공개 초안 PDF만 사용했습니다.",
+      "사전 briefing, 제공받은 account·license·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "name": "Accellera PSS 3.1 public review",
+        "url": "https://www.accellera.org/",
+        "finding": "2026-08-31 공개 검토 초안이 열렸고, review 종료일이 2026-09-30으로 확인됐습니다. draft PDF와 working group page가 함께 있어 중심 분석을 E2로 구성할 수 있었습니다."
+      },
+      {
+        "name": "Accellera Drafts Under Public Review",
+        "url": "https://www.accellera.org/downloads/drafts-review",
+        "finding": "PSS 3.1 Draft가 현재 public review 중인 표준 초안임을 확인했습니다. FSL 1.0 Draft는 public review가 끝난 상태이며 2026-08-18 EDA판에서 이미 다뤘습니다."
+      },
+      {
+        "name": "Siemens Innovator3D IC release 2604.0004",
+        "url": "https://blogs.sw.siemens.com/semiconductor-packaging/2026/09/02/streamlining-3d-ic-design-with-innovator3d-ic-product-family-release-2604-0004/",
+        "finding": "ODB++/Snapshot ECO compare, incremental CSV import, custom device outlines가 공개됐지만 release notes와 factsheet가 Support Center에 있어 중심 분석을 받칠 공개 원문이 부족했습니다."
+      },
+      {
+        "name": "Cadence agentic AI and AuraStack signals",
+        "url": "https://www.cadence.com/",
+        "finding": "Cadence home page에서 Fully Autonomous Semiconductor Design, Cadence-NVIDIA collaboration, AuraStack AI Super Agent 신호를 확인했습니다. 그러나 최근 EDA판의 Cadence agent 주제와 겹치고, 공개 artifact나 manual 기반의 새 E2 분석 근거가 부족했습니다."
+      },
+      {
+        "name": "arXiv cs.AR and EDA agent papers",
+        "url": "https://arxiv.org/list/cs.AR/recent",
+        "finding": "HLSFactory-Agent와 HLS-Eval agentic flow는 2026-09-12 EDA판에서 이미 다뤘습니다. FluxBench 등 일부 agentic RTL-to-GDS 논문은 흥미롭지만 현재 공개 artifact가 충분하지 않거나 최근 기사군과 각도가 겹쳤습니다."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Siemens Innovator3D IC 2604.0004",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "decision": "rejected",
+        "reason": "블로그는 공개됐지만 release notes와 factsheet가 gated Support Center에 있어 조건과 구현 세부를 충분히 공개 근거로 삼기 어렵습니다."
+      },
+      {
+        "name": "Cadence AuraStack AI Super Agent",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "decision": "rejected",
+        "reason": "제품 신호는 크지만 공개 manual, release note, benchmark artifact가 부족하고 최근 EDA판의 Cadence agent feedback loop 기사와 중복 위험이 있습니다."
+      },
+      {
+        "name": "FluxBench RTL-to-GDS agent benchmark",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "decision": "rejected",
+        "reason": "논문 초록은 complete EDA workflows와 Token ROI를 제시하지만, 공개 code·benchmark artifact를 확인하지 못해 E2 중심 분석으로 쓰기 어렵습니다."
+      },
+      {
+        "name": "Accellera FSL 1.0 draft",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 0,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "2026-08-18 EDA판에서 이미 FSL 1.0 Draft public review와 FMEDA 데이터 모델을 다뤘습니다."
+      }
+    ],
+    "selected": {
+      "name": "Accellera Portable Test and Stimulus Standard 3.1 Draft for Public Review",
+      "reason": "current public review 상태이고, announcement, draft list, draft PDF, working group page가 서로 다른 역할의 공개 원문입니다. 표준 초안의 변경 내용이 verification scenario 작성과 target code generation flow에 직접 영향을 주며, 성능 주장 없이 E2 중심 분석이 가능합니다."
+    }
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
