@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-17",
+  "date": "2026-09-17",
+  "subject": "OpenAI Agents API public beta, September 10 2026",
+  "central_claim": "OpenAI's September 10, 2026 Agents API public beta is a publishable AI engineering topic because official changelog and API documentation support a bounded E2/R1 claim: OpenAI has turned the Codex harness into a managed API runtime with durable sessions, selectable execution environments, sandboxed command/file work, MCP connections, subagents, progress events and usage observability, shifting agent application design from repeated single model calls toward session and environment architecture. The article does not claim independent improvements in model quality, latency or total cost.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The Agents API changes a concrete engineering decision for agent builders: whether to keep orchestrating model calls, tool state, summaries, command execution and recovery in their own application, or use a managed Codex harness with sessions and environments. Official docs provide multiple primary-source pages for behavior and limitations. The conclusion is bounded because no beta API call, sandbox execution, MCP connection or cost measurement was run in this turn."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "OpenAI Agents API public beta exposes a managed Codex harness with durable sessions, configurable environments and tool connections, changing agent architecture from repeated single model calls toward session-runtime design rather than proving independent quality or cost gains.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://developers.openai.com/api/docs/changelog",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/guides/agents-api/architecture",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/guides/agents-api/environments/security",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenAI는 2026년 9월 10일 Agents API public beta를 공개했습니다.",
+      "source_url": "https://developers.openai.com/api/docs/changelog",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API changelog, September 10 2026 Agents API entry",
+      "accessed_at": "2026-09-16",
+      "direct_or_derived": "direct",
+      "method": "Opened OpenAI API changelog and matched the September 10, 2026 Agents API public beta entry against Agents API documentation.",
+      "limitations": [
+        "Actual beta access for a specific account was not tested.",
+        "OpenAI is the API provider and changelog author."
+      ],
+      "conflict_of_interest": [
+        "OpenAI develops and sells Agents API, Codex harness and related model access."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Agents API는 OpenAI-managed Codex harness를 통해 session orchestration, context compaction, recovery를 관리하고, 애플리케이션은 tool과 execution environment를 고릅니다.",
+      "source_url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Agents API overview, public beta documentation",
+      "accessed_at": "2026-09-16",
+      "direct_or_derived": "direct",
+      "method": "Read the Agents API overview and extracted the managed harness responsibilities and application responsibilities.",
+      "limitations": [
+        "No managed session was created.",
+        "Recovery quality and compaction quality were not measured."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors the API documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Agents API의 주요 개념은 agent, environment, session, events and items이며, session은 같은 conversation을 이어 작업하고 active turn steering을 받을 수 있습니다.",
+      "source_url": "https://developers.openai.com/api/docs/guides/agents-api/sessions",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Run and continue sessions documentation",
+      "accessed_at": "2026-09-16",
+      "direct_or_derived": "direct",
+      "method": "Read overview concept definitions and the session continuation/steering guidance.",
+      "limitations": [
+        "The newsroom did not test session event ordering or SDK-specific errors.",
+        "Beta behavior may change."
+      ],
+      "conflict_of_interest": [
+        "OpenAI defines and documents the session API."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "OpenAI-hosted sandbox는 Linux workspace, package/setup/file/env/network 설정, session별 workspace와 artifact 보존을 제공합니다.",
+      "source_url": "https://developers.openai.com/api/docs/guides/agents-api/environments/openai-hosted",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI-hosted sandboxes documentation",
+      "accessed_at": "2026-09-16",
+      "direct_or_derived": "direct",
+      "method": "Read hosted sandbox configuration, network access and files/lifetime sections.",
+      "limitations": [
+        "No hosted sandbox was provisioned or executed.",
+        "Package installation, artifact download and expiry behavior were not reproduced."
+      ],
+      "conflict_of_interest": [
+        "OpenAI operates and documents the hosted sandbox service."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "self-hosted sandbox에서는 개발팀 환경의 codex exec-server가 outbound WebSocket으로 연결되고, agent-generated code가 읽을 수 있는 environment key는 환경 연결 권한만 갖도록 분리됩니다.",
+      "source_url": "https://developers.openai.com/api/docs/guides/agents-api/environments/self-hosted",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Self-hosted sandboxes documentation",
+      "accessed_at": "2026-09-16",
+      "direct_or_derived": "direct",
+      "method": "Read self-hosted sandbox connection and authentication sections and cross-checked the security page's credential separation guidance.",
+      "limitations": [
+        "No executor was run.",
+        "Provider-specific lifecycle, reconnection and cleanup behavior were not measured."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors the executor and API documentation."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "MCP server는 OpenAI service, session environment, stdio process 위치에서 연결할 수 있고, credential은 inline, vault, environment variable, broker 방식으로 나뉩니다.",
+      "source_url": "https://developers.openai.com/api/docs/guides/agents-api/tools/mcp",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "MCP connections documentation",
+      "accessed_at": "2026-09-16",
+      "direct_or_derived": "direct",
+      "method": "Read MCP connection-origin table, HTTP/stdout connection examples, authentication guidance and troubleshooting notes.",
+      "limitations": [
+        "No MCP server was connected.",
+        "Credential broker pattern was documented but not implemented."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors the Agents API MCP integration documentation."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "Agents API usage는 root-agent와 subagent turn 단위로 볼 수 있지만 best-effort일 수 있으며, 최종 비용은 여러 model call, cache, tool, sandbox, third-party 비용을 합산해야 합니다.",
+      "source_url": "https://developers.openai.com/api/docs/guides/agents-api/observability",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Observability and usage documentation",
+      "accessed_at": "2026-09-16",
+      "direct_or_derived": "direct",
+      "method": "Read observability and usage sections about live progress, traces, model usage, prompt caching and usage limitations.",
+      "limitations": [
+        "No dashboard trace or billing record was inspected.",
+        "Usage fields may be null or change according to the documentation."
+      ],
+      "conflict_of_interest": [
+        "OpenAI defines the Agents API usage fields and pricing integration."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "Agent-generated code can access files, credentials and network available to its environment, so workloads and credentials should be isolated and network access restricted.",
+      "source_url": "https://developers.openai.com/api/docs/guides/agents-api/environments/security",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Sandbox security documentation",
+      "accessed_at": "2026-09-16",
+      "direct_or_derived": "direct",
+      "method": "Read sandbox security guidance on workload isolation, network restrictions, credential separation and third-party credential brokering.",
+      "limitations": [
+        "No threat model or red-team test was performed.",
+        "Security guidance is provider-authored and beta-era documentation."
+      ],
+      "conflict_of_interest": [
+        "OpenAI documents and operates the sandbox and executor model."
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-17-sequential/20260916T220932Z-1342311/request.json and used publication_id 2026-09-17 with article_path var/runs/ai/2026-09-17-sequential/20260916T220932Z-1342311/staged-content/article.md, evidence_path var/runs/ai/2026-09-17-sequential/20260916T220932Z-1342311/evidence.json and no_publish_path var/runs/ai/2026-09-17-sequential/20260916T220932Z-1342311/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "openai-api-changelog",
+        "url": "https://developers.openai.com/api/docs/changelog",
+        "classification": "P1 selected-source path",
+        "note": "Opened the OpenAI API changelog. The September 10, 2026 entry says Agents API was released in public beta and describes a managed Codex harness with durable sessions, progress streaming, context compaction, recovery, tool/MCP connections and hosted or self-hosted sandboxes."
+      },
+      {
+        "channel": "openai-agents-overview",
+        "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+        "classification": "P1 selected-source path",
+        "note": "Opened the Agents API overview. It defines agent, environment, session and events/items, and says OpenAI manages sessions, orchestration, context compaction and recovery while the application provides tools and chooses the execution environment."
+      },
+      {
+        "channel": "openai-agents-architecture",
+        "url": "https://developers.openai.com/api/docs/guides/agents-api/architecture",
+        "classification": "P1 selected-source path",
+        "note": "Opened the architecture page. It separates harness, environment and application server, and distinguishes no-environment, OpenAI-hosted environment and self-hosted environment patterns."
+      },
+      {
+        "channel": "openai-agents-sessions",
+        "url": "https://developers.openai.com/api/docs/guides/agents-api/sessions",
+        "classification": "P1 selected-source path",
+        "note": "Opened session documentation. It documents follow-up input to the same session, steering active work, event streams and session setting changes."
+      },
+      {
+        "channel": "openai-agents-environments",
+        "urls": [
+          "https://developers.openai.com/api/docs/guides/agents-api/environments/openai-hosted",
+          "https://developers.openai.com/api/docs/guides/agents-api/environments/self-hosted",
+          "https://developers.openai.com/api/docs/guides/agents-api/environments/security"
+        ],
+        "classification": "P1 selected-source path",
+        "note": "Opened hosted sandbox, self-hosted sandbox and security pages. These pages support claims about workspace behavior, network policy, environment key separation, outbound executor connection and credential risk."
+      },
+      {
+        "channel": "openai-agents-tools-and-observability",
+        "urls": [
+          "https://developers.openai.com/api/docs/guides/agents-api/tools/mcp",
+          "https://developers.openai.com/api/docs/guides/agents-api/observability"
+        ],
+        "classification": "P1 selected-source path",
+        "note": "Opened MCP connections and observability pages. These support claims about service-origin vs environment-origin MCP connections, stdio MCPs, credentials, live progress, traces, subagent usage and best-effort token accounting."
+      },
+      {
+        "channel": "openai-other-september-signals",
+        "urls": [
+          "https://developers.openai.com/api/docs/changelog",
+          "https://developers.openai.com/api/docs/guides/gpt-live",
+          "https://developers.openai.com/api/docs/guides/prompt-caching"
+        ],
+        "classification": "P1 alternative review",
+        "note": "Reviewed other OpenAI September entries, including GPT-Live 1 general availability, Prompt Cache Diagnostics, image models, API-key governance and GPT-6 Astra. GPT-6 Astra was already published in the 2026-09-10 AI edition, and the Agents API was a distinct unmaterialized runtime release with broader developer architecture impact."
+      },
+      {
+        "channel": "anthropic-official-review",
+        "urls": [
+          "https://platform.claude.com/docs/en/release-notes/overview",
+          "https://platform.claude.com/docs/en/build-with-claude/compaction"
+        ],
+        "classification": "P1 alternative review",
+        "note": "Opened Anthropic release notes and considered September 14 compact-on-demand. It was already selected for 2026-09-16, so it was treated as covered rather than selected again."
+      },
+      {
+        "channel": "google-gemini-official-review",
+        "urls": [
+          "https://ai.google.dev/gemini-api/docs/changelog",
+          "https://deepmind.google/models/model-cards/"
+        ],
+        "classification": "P1 alternative review",
+        "note": "Reviewed Gemini changelog and model-card paths. Gemini 3.8 Flash was already covered on 2026-09-13, and no fresher official Gemini release in this pass outranked OpenAI Agents API on novelty and decision utility."
+      },
+      {
+        "channel": "qwen-deepseek-mistral-registry-review",
+        "urls": [
+          "https://qwenlm.github.io/blog/",
+          "https://huggingface.co/Qwen/models",
+          "https://github.com/deepseek-ai",
+          "https://huggingface.co/deepseek-ai/models",
+          "https://docs.mistral.ai/"
+        ],
+        "classification": "P1/P2 discovery review",
+        "note": "Reviewed official blog, registry and release-note paths for Qwen, DeepSeek and Mistral because registry-first model releases can be material. This pass did not surface a fresher non-duplicate model or API release with stronger public primary-source evidence and engineering decision utility than Agents API."
+      },
+      {
+        "channel": "vllm-and-pytorch-runtime-review",
+        "urls": [
+          "https://github.com/vllm-project/vllm/releases",
+          "https://github.com/pytorch/pytorch/releases"
+        ],
+        "classification": "P1/P2 infrastructure review",
+        "note": "Opened vLLM v0.29.0 release signals and checked PyTorch release path. vLLM v0.29.0 is a strong infrastructure alternative because Model Runner V2 became default for all models and release artifacts are public, but the 2026-09-01 AI edition already covered vLLM v0.28.0 and the Agents API offered a broader fresh application-architecture change for this slot."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results were used only to discover official OpenAI, Anthropic, Google, Qwen, DeepSeek, Mistral, vLLM and PyTorch source paths. No article fact or selection decision relies on search snippets, X posts or secondary summaries without opened primary-source confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "OpenAI Agents API public beta",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is a recent unmaterialized OpenAI runtime release with multiple official documentation pages and direct implications for teams building long-running coding and business agents. The evidence supports E2 claims about API structure, not performance superiority."
+      },
+      {
+        "subject": "vLLM v0.29.0 release",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Strong infrastructure candidate with public release notes, tag and artifacts. Not selected because vLLM v0.28.0 was covered on 2026-09-01, and v0.29.0 is an incremental runtime follow-up compared with the broader new Agents API contract. It remains a future candidate if a release adds a sharper serving architecture break or independent deployment evidence."
+      },
+      {
+        "subject": "OpenAI GPT-Live 1 general availability",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Official API availability and pricing are verifiable, but the article value would center on voice product integration rather than the AI판's stronger model/runtime engineering priority for this date."
+      },
+      {
+        "subject": "OpenAI Prompt Cache Diagnostics for GPT-5.6 and later",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Useful developer-tool feature for cost debugging, but narrower than Agents API and not selected after comparison with the broader session/runtime release."
+      },
+      {
+        "subject": "OpenAI API key creation governance controls",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Important platform governance update, but closer to account administration than AI model/API runtime architecture. It did not outrank Agents API for the AI판 technical slot."
+      },
+      {
+        "subject": "Anthropic Claude compact-on-demand beta",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Meets technical importance, but already selected and staged for the 2026-09-16 AI edition, so selecting it again would duplicate the public article."
+      },
+      {
+        "subject": "OpenAI GPT-6 Astra",
+        "importance": 2,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Major September frontier model release with system card, but already published in the 2026-09-10 AI edition. The current selected angle avoids duplicating the model release and focuses on a separate runtime API."
+      },
+      {
+        "subject": "Qwen, DeepSeek, Mistral recent official paths",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Discovery paths were reviewed, but no fresh non-duplicate official model/API release with at least two primary source URLs and a stronger engineering decision claim was confirmed in this pass."
+      }
+    ]
+  },
+  "decision_reason_codes": [
+    "PRIMARY_SOURCES_VERIFIED",
+    "CENTRAL_CLAIM_E2",
+    "SELECTION_TOTAL_ABOVE_THRESHOLD",
+    "MINIMUM_TWO_PRIMARY_URLS",
+    "NO_PERFORMANCE_CLAIM_PROMOTED",
+    "NO_LOCAL_API_EXECUTION"
+  ],
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions_recorded": [
+      "article and evidence share publication_id 2026-09-17 through evidence and run request, while article frontmatter omits publication_id as required",
+      "article and evidence share subject, central claim, evidence ceiling, reproducibility state, conflict disclosure and source URLs",
+      "selection total is 9 with threshold 7",
+      "central claim has E2 evidence based on OpenAI changelog and official Agents API documentation",
+      "central claims include at least two distinct primary source URLs",
+      "claim-source ledger records source type, evidence grade, version/date, access date, method, limitations and conflicts",
+      "conflict disclosure is present",
+      "article follows korean-writing-baseline-v1 and ai-technical-blog-v2 required layers and avoids stronger claims than evidence supports",
+      "release gate records ai-auto-publish-v1 automatic publishing conditions exactly: article, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, site test and production build must all pass before materialization to content/ai/2026-09-17 and decisions/ai/2026-09-17",
+      "route uniqueness, artifact hashes, site tests, production build, materialization, commit, push, deploy and public URL verification are delegated to the sequential publisher outside this article-generation turn"
+    ],
+    "blocked_steps_outside_this_turn": [
+      "materialize to content/ai and decisions/ai",
+      "commit, push or deploy",
+      "public URL verification",
+      "inbox, schedule, docs, editions, scripts, prompts, site or other-edition edits"
+    ]
+  },
+  "conflicts": [
+    "OpenAI is the developer/operator of Agents API, Codex harness, OpenAI-hosted sandboxes and related documentation used for this article.",
+    "No vendor briefing, embargo, NDA, paid account, credits, hardware, sponsorship or advertising relationship was used in this turn."
+  ],
+  "reproducibility_notes": {
+    "status": "R1",
+    "reason": "Official documentation describes API behavior, architecture and configuration choices, but this turn did not create an Agents API session, run hosted or self-hosted sandboxes, connect MCP servers, inspect dashboard traces or compare cost/latency on a workload."
+  },
+  "publication_actions": {
+    "published": false,
+    "committed": false,
+    "pushed": false,
+    "deployed": false
+  },
+  "source_urls": [
+    "https://developers.openai.com/api/docs/changelog",
+    "https://developers.openai.com/api/docs/guides/agents-api/overview",
+    "https://developers.openai.com/api/docs/guides/agents-api/architecture",
+    "https://developers.openai.com/api/docs/guides/agents-api/sessions",
+    "https://developers.openai.com/api/docs/guides/agents-api/environments/openai-hosted",
+    "https://developers.openai.com/api/docs/guides/agents-api/environments/self-hosted",
+    "https://developers.openai.com/api/docs/guides/agents-api/environments/security",
+    "https://developers.openai.com/api/docs/guides/agents-api/tools/mcp",
+    "https://developers.openai.com/api/docs/guides/agents-api/observability"
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "observed_at": "2026-09-16T22:09:32Z"
+}
