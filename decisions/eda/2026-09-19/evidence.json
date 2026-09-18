@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-19",
+  "date": "2026-09-19",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-19-sequential/20260918T221957Z-1378272/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-09-19-sequential/20260918T221957Z-1378272/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-09-19-sequential/20260918T221957Z-1378272/no-publish.json",
+  "subject": "SpecLens arXiv:2609.16729v1, ASP-DAC 2027 accepted paper and wenbing1216/SpecLens public code at commit e081268556802e359f860203c42123ae772453d6",
+  "title": "SpecLens는 Verilog 생성을 정답 맞히기에서 명세 모호성 찾기로 바꿉니다",
+  "summary": "SpecLens는 자연어 명세에서 Verilog RTL을 만들 때 여러 후보의 시뮬레이션 결과가 갈라지는 지점을 찾아, 그 차이를 다시 명세 제약으로 넣는 flow를 제안합니다. 논문과 공개 코드는 절차와 benchmark 실행 경로를 확인하게 해 주지만, 성능 수치는 저자 보고 결과이고 편집국이 재실행하지는 않았습니다.",
+  "central_claim": "SpecLens는 자연어 spec-to-RTL flow에서 여러 Verilog 후보의 시뮬레이션 trace가 갈라지는 지점을 찾아 명세 제약으로 되돌려 넣음으로써, LLM 기반 Verilog 생성을 단순 후보 선택에서 명세 모호성 탐지와 보강 절차로 옮기는 방법을 제안합니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "없음"
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 2,
+    "total": 10,
+    "threshold": 7,
+    "rationale": "spec-to-RTL 생성 flow에서 testbench 통과만 보는 대신 후보 trace divergence로 명세 모호성을 찾아 제약으로 되돌리는 방식은 RTL 생성·검증 workflow에 직접 영향을 줍니다. 논문은 benchmark, model setting, simulator, pass@k 계산과 mismatch 분석을 공개했고, 공개 저장소는 runnable pipeline과 benchmark 폴더, 환경 조건을 제공합니다. 편집국은 재실행하지 않았으므로 성능 수치는 저자 보고로 귀속합니다."
+  },
+  "selection": {
+    "total": 10,
+    "threshold": 7,
+    "central_claim_minimum": "E2",
+    "source_url_minimum": 2,
+    "passed": true
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.16729",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/wenbing1216/SpecLens/main/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2609.16729",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://api.github.com/repos/wenbing1216/SpecLens",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.16729",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://api.github.com/repos/wenbing1216/SpecLens/contents",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.16729",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://api.github.com/repos/wenbing1216/SpecLens/commits/main",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://arxiv.org/abs/2609.16729",
+    "https://arxiv.org/html/2609.16729",
+    "https://github.com/wenbing1216/SpecLens",
+    "https://raw.githubusercontent.com/wenbing1216/SpecLens/main/README.md",
+    "https://api.github.com/repos/wenbing1216/SpecLens",
+    "https://api.github.com/repos/wenbing1216/SpecLens/contents",
+    "https://api.github.com/repos/wenbing1216/SpecLens/commits/main"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "SpecLens는 자연어 명세에서 행동 요구사항을 추출하고, Verilog 후보 trace의 behavioral divergence를 이용해 specification-derived constraint를 생성하는 flow를 제안합니다.",
+      "source_url": "https://arxiv.org/html/2609.16729",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.16729v1, submitted 2026-09-15, ASP-DAC 2027 accepted paper",
+      "accessed_at": "2026-09-18",
+      "direct_or_derived": "direct",
+      "method": "논문 abstract, introduction, methodology sections에서 Stage I, Stage II, Stage III 흐름과 behavioral divergence, entropy-guided constraint validation을 확인했습니다.",
+      "limitations": [
+        "논문 저자가 보고한 방법과 결과입니다.",
+        "편집국은 pipeline을 실행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "공개 README는 SpecLens 실험에 쓰인 runnable pipeline과 benchmark 폴더, 실행 경로를 제공합니다.",
+      "source_url": "https://raw.githubusercontent.com/wenbing1216/SpecLens/main/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "wenbing1216/SpecLens main branch README, latest commit e081268556802e359f860203c42123ae772453d6",
+      "accessed_at": "2026-09-18",
+      "direct_or_derived": "direct",
+      "method": "README의 What Is Included, Where To Configure Things, Tested Environment, Quick Start sections를 확인했습니다.",
+      "limitations": [
+        "README와 code 공개는 논문 수치 재현 자체가 아닙니다.",
+        "API key와 simulator 설치가 필요합니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "arXiv record는 SpecLens 논문이 2026-09-15 제출됐고 ASP-DAC 2027 채택 논문이라고 명시합니다.",
+      "source_url": "https://arxiv.org/abs/2609.16729",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.16729v1",
+      "accessed_at": "2026-09-18",
+      "direct_or_derived": "direct",
+      "method": "arXiv abstract page의 title, submission history, comments, abstract code link를 확인했습니다.",
+      "limitations": [
+        "arXiv는 동료심사 상태를 보증하지 않습니다.",
+        "채택 표기는 저자 metadata와 논문 본문에 따른 것입니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "GitHub API는 wenbing1216/SpecLens가 공개 저장소이며 Python code와 MIT license를 가진다고 반환합니다.",
+      "source_url": "https://api.github.com/repos/wenbing1216/SpecLens",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "repository metadata, pushed_at 2026-07-28T22:41:59Z, updated_at 2026-09-18T07:32:31Z",
+      "accessed_at": "2026-09-18",
+      "direct_or_derived": "direct",
+      "method": "GitHub API repository metadata에서 visibility, language, license, default branch, pushed_at을 확인했습니다.",
+      "limitations": [
+        "repository metadata는 실험 재현 성공을 보장하지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "논문은 VerilogEval v2.0에서 o3-mini-medium 설정의 SpecLens가 syntactic pass@1 100.0%, functional pass@1 86.2%, functional pass@5 92.6%를 기록했다고 보고합니다.",
+      "source_url": "https://arxiv.org/html/2609.16729",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.16729v1, Table 1 and Experimental Results",
+      "accessed_at": "2026-09-18",
+      "direct_or_derived": "direct",
+      "method": "논문 Table 1과 Results and Comparison section에서 수치를 확인했습니다.",
+      "limitations": [
+        "저자 보고 결과이며 독립 재현이 아닙니다.",
+        "DeepV와 VeriSeek 일부 수치는 원 VerilogEval 기준이라 직접 비교가 제한됩니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "공개 저장소 contents API는 실행 wrapper, requirements, benchmark bundle, pipeline directories가 main branch에 있음을 보여 줍니다.",
+      "source_url": "https://api.github.com/repos/wenbing1216/SpecLens/contents",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main branch contents, commit e081268556802e359f860203c42123ae772453d6",
+      "accessed_at": "2026-09-18",
+      "direct_or_derived": "direct",
+      "method": "GitHub contents API에서 README.md, requirements.txt, safe_pipeline_156.py, safe_pipeline_RTLLM.py, pipeline directories와 156_rtllm_data.zip을 확인했습니다.",
+      "limitations": [
+        "대용량 benchmark 상세 파일 전체를 모두 열람하지는 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "논문은 RTLLM v1.1과 v2.0에서 specification-testbench mismatch 사례를 식별했고, testbench 통과가 지역 명세 충실성과 다를 수 있음을 분석합니다.",
+      "source_url": "https://arxiv.org/html/2609.16729",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.16729v1, Section 4.2",
+      "accessed_at": "2026-09-18",
+      "direct_or_derived": "direct",
+      "method": "Results and Comparison section에서 RTLLM mismatch task 목록, revised-testbench setting, baseline의 benchmark-aligned prior 분석을 확인했습니다.",
+      "limitations": [
+        "mismatch 판정과 revised testbench는 저자 분석입니다.",
+        "편집국이 task별 testbench를 별도로 감사하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "main branch HEAD는 e081268556802e359f860203c42123ae772453d6이며, commit은 GitHub verified로 표시됩니다.",
+      "source_url": "https://api.github.com/repos/wenbing1216/SpecLens/commits/main",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "commit e081268556802e359f860203c42123ae772453d6, committed 2026-07-28T22:41:58Z",
+      "accessed_at": "2026-09-18",
+      "direct_or_derived": "direct",
+      "method": "GitHub commit API에서 sha, commit date, verified status와 files list 일부를 확인했습니다.",
+      "limitations": [
+        "verified commit은 source provenance에 대한 단서일 뿐 실험 결과의 독립 검증이 아닙니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R2",
+    "public_artifacts": [
+      "https://github.com/wenbing1216/SpecLens",
+      "https://raw.githubusercontent.com/wenbing1216/SpecLens/main/README.md",
+      "https://api.github.com/repos/wenbing1216/SpecLens/contents",
+      "https://api.github.com/repos/wenbing1216/SpecLens/commits/main"
+    ],
+    "not_reproduced_by_editor": true,
+    "why_not_r3": "논문, code, bundled benchmark folders와 실행 안내는 공개되어 재실행이 가능하지만, 편집국은 이번 턴에서 API key, Icarus Verilog, Verilator를 준비해 benchmark를 재실행하거나 독립 로그를 만들지 않았습니다."
+  },
+  "conflict_of_interest": {
+    "values": [
+      "없음"
+    ],
+    "details": "공개 원문과 공개 저장소만 사용했습니다. 벤더나 저자에게 자료·계정·라이선스·브리핑을 제공받지 않았습니다."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "name": "SpecLens",
+        "source": "arXiv cs.AR recent submissions and paper-linked public code",
+        "urls": [
+          "https://arxiv.org/abs/2609.16729",
+          "https://github.com/wenbing1216/SpecLens"
+        ],
+        "assessment": "선택. 최근 논문, ASP-DAC 2027 채택 표기, 공개 runnable pipeline, benchmark folders, simulator 조건이 있어 중심 주장을 E2로 둘 수 있었습니다."
+      },
+      {
+        "name": "CovR",
+        "source": "arXiv cs.AR recent submissions and MLCAD 2026 program",
+        "urls": [
+          "https://arxiv.org/abs/2609.19189",
+          "https://mlcad.org/symposium/2026/program/"
+        ],
+        "assessment": "탈락. hardware verification coverage-aware RL 주제는 중요하지만, 확인 가능한 공개 code 또는 dataset artifact를 확보하지 못해 중심 주장 E2와 재현성 기준을 넘기기 어려웠습니다."
+      },
+      {
+        "name": "Rect3D",
+        "source": "arXiv cs.AR recent submissions",
+        "urls": [
+          "https://arxiv.org/abs/2609.18946"
+        ],
+        "assessment": "탈락. 3D-IC rectilinear floorplanning 주제와 결과는 강하지만, 공개 code나 benchmark artifact 연결을 찾지 못해 PPA/runtime 결과를 저자 보고 이상으로 올릴 수 없었습니다."
+      },
+      {
+        "name": "Cadence September EDA AI blog posts",
+        "source": "Cadence Community latest blogs",
+        "urls": [
+          "https://community.cadence.com/"
+        ],
+        "assessment": "탈락. agentic AI, Modus 26.1, RF design AI 관련 신호가 있었으나 공개 release note나 manual, 비교 가능한 artifact 없이 벤더 설명에 머무르는 항목이 많았습니다."
+      },
+      {
+        "name": "Accellera CDC/RDC Standard 1.0",
+        "source": "Accellera site",
+        "urls": [
+          "https://www.accellera.org/"
+        ],
+        "assessment": "보류. 표준 자체는 중요하지만 2026년 3월 발표로 시의성이 낮고, 이번 최근 후보 대비 새 변화가 약했습니다."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "EDA-Schema-V2",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 2,
+          "total": 9
+        },
+        "reason_not_selected": "논문과 GitHub artifact가 있어 기준은 넘을 수 있지만 2026년 5월 공개로, 2026년 9월 15일 공개된 SpecLens보다 이번 일일 후보의 시의성이 낮았습니다."
+      },
+      {
+        "name": "LLM-enabled Behavior Driven Development Workflow for Formally Verified Hardware Designs",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 7
+        },
+        "reason_not_selected": "최근 논문이고 FV Gherkin Scenario 개념은 흥미롭지만 공개 실행 artifact를 찾지 못했습니다. 중심 주장 E2 기준을 안정적으로 충족하지 못했습니다."
+      },
+      {
+        "name": "Alpha-RTL / TTT-RTL",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 7
+        },
+        "reason_not_selected": "RTL 최적화에서 test-time training을 쓰는 주제는 강하지만 2026년 6월 공개이고 공식 code artifact를 찾지 못했습니다."
+      },
+      {
+        "name": "OpenROAD / OpenLane September release signals",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 1,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "reason_not_selected": "검색에서 이번 날짜의 뚜렷한 새 release note와 중심 분석을 받칠 두 원문 조합을 확인하지 못했습니다."
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
