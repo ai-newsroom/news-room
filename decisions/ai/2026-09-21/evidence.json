@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-21",
+  "date": "2026-09-21",
+  "subject": "OpenAI GPT-6 Astra (`gpt-6-astra`)",
+  "central_claim": "OpenAI's GPT-6 Astra announcement is a publishable AI engineering topic because official OpenAI announcement, system card and API model documentation support a bounded E2/R1 claim: Astra shifts the practical integration question from single-response model quality toward long-running computer-use and coding-agent execution, where larger context, tool support, Codex context retrieval and safety monitoring must be evaluated together. The article does not independently conclude that Astra is the best coding model or reproduce OpenAI benchmark claims.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "없음"
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "Astra is a frontier model announcement with direct implications for software engineering, coding agents, computer use, hosted tools, context handling, cyber safety and API cost planning. It is new in the current discovery window, supported by multiple official primary sources, and actionable for Korean SW engineers who evaluate Codex, OpenAI API, Azure or Bedrock-based agent workflows. Korean relevance is not country-specific but is strong enough for developers using global AI platforms."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "GPT-6 Astra changes the engineering evaluation question from pure model answer quality to long-running computer-use and coding-agent execution, because OpenAI documents it as a model for complex reasoning, coding, computer use, research and document creation with broad Responses API tool support, Codex long-context retrieval behavior and external safety monitoring for increased cyber and autonomous-action risk.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://openai.com/index/gpt-6-astra/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://deploymentsafety.openai.com/gpt-6-astra",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/docs/models/gpt-6-astra",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenAI announced GPT-6 Astra and said it is rolling out to ChatGPT paid/business users and to the OpenAI API, Microsoft Azure and AWS Bedrock; the API model ID is `gpt-6-astra`.",
+      "source_url": "https://openai.com/index/gpt-6-astra/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI announcement page, GPT-6 Astra, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Opened the official OpenAI announcement and checked the availability section and model ID references.",
+      "limitations": [
+        "No API account was used to confirm project-level availability.",
+        "OpenAI is the developer and provider of the model."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors the launch announcement for its own model."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The OpenAI API model page describes GPT-6 Astra as intended for complex reasoning, coding, computer use, research and document creation, with 1,050,000 token context window and 128,000 max output tokens.",
+      "source_url": "https://developers.openai.com/docs/models/gpt-6-astra",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI Developers model page, GPT-6 Astra, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Opened the official model page and recorded intended uses, context window and max output fields.",
+      "limitations": [
+        "The model page is provider documentation and not an independent evaluation.",
+        "No live token-limit test was performed."
+      ],
+      "conflict_of_interest": [
+        "OpenAI maintains the API documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The OpenAI API model page lists Standard pricing for GPT-6 Astra as $10 per million input tokens and $50 per million output tokens, with higher rates for prompts above 272,000 input tokens and 2x pricing for Fast mode.",
+      "source_url": "https://developers.openai.com/docs/models/gpt-6-astra",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI Developers model page, pricing section, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Read the model page pricing table and notes.",
+      "limitations": [
+        "Pricing can change after publication.",
+        "No invoice or usage record was inspected."
+      ],
+      "conflict_of_interest": [
+        "OpenAI sets and documents its API pricing."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The OpenAI API model page documents Responses API tool support for GPT-6 Astra, including web search, file search, image generation, code interpreter, hosted shell, apply patch, skills, computer use, MCP and tool search.",
+      "source_url": "https://developers.openai.com/docs/models/gpt-6-astra",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI Developers model page, tools section, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Read the model page endpoints and supported tools sections.",
+      "limitations": [
+        "Tool support was not tested through API calls.",
+        "Project- or account-level gates may affect access."
+      ],
+      "conflict_of_interest": [
+        "OpenAI documents its own tool support."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "OpenAI says Codex with Astra can keep notes across context windows and search earlier context windows, rather than relying only on repeated compaction summaries during long sessions.",
+      "source_url": "https://openai.com/index/gpt-6-astra/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI announcement page, Coding section, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Read the Codex context-handling description in the official launch announcement.",
+      "limitations": [
+        "The experimental Codex feature was not enabled or tested locally.",
+        "No configuration file or runtime log was inspected."
+      ],
+      "conflict_of_interest": [
+        "OpenAI develops Codex and Astra."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "OpenAI's system card says Astra meets the Preparedness Framework Critical cybersecurity threshold and describes added cyber safeguards, Trusted Access for Cyber and misalignment monitoring for deployment.",
+      "source_url": "https://deploymentsafety.openai.com/gpt-6-astra",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "GPT-6 Astra System Card, cybersecurity and deployment sections, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Read the system card cybersecurity capability and internal/external safeguard sections.",
+      "limitations": [
+        "The Critical threshold assessment is OpenAI's application of its own framework.",
+        "Underlying private evaluation data and complete logs were not public."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authored the system card for its own model."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "OpenAI's announcement includes benchmark tables for computer use, coding, academic, cyber and alignment tasks, but notes that GPT evaluations were run in a research environment or via API and may differ from production ChatGPT because of system prompt and tool differences.",
+      "source_url": "https://openai.com/index/gpt-6-astra/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI announcement page, benchmark tables and notes, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Read the benchmark tables and accompanying evaluation notes.",
+      "limitations": [
+        "The article does not use benchmark numbers to make an independent ranking claim.",
+        "Some tasks are internal and cannot be reproduced from public artifacts."
+      ],
+      "conflict_of_interest": [
+        "OpenAI selected and reported the benchmark set."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "Gemini 3.8 Flash was reviewed as a same-window major model alternative; Google's model page documents it as the most intelligent Flash model with 1,048,576 input tokens, 65,536 output tokens, and September 2026 update date.",
+      "source_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Gemini 3.8 Flash model page, last updated 2026-09-02 UTC",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Google model page and checked model code, token limits, capability table and update date.",
+      "limitations": [
+        "Used for candidate comparison rather than article's central claim.",
+        "No Gemini API call or independent benchmark review was performed."
+      ],
+      "conflict_of_interest": [
+        "Google documents its own model."
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "claim": "Anthropic Fable 5.1/Mythos 5.1 was reviewed as an earlier September frontier model alternative based on Anthropic newsroom and docs discovery surfaces.",
+      "source_url": "https://www.anthropic.com/news",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Anthropic Newsroom, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Reviewed Anthropic newsroom search result and homepage/docs discovery snippets identifying the September 1 Fable 5.1 and Mythos 5.1 announcement.",
+      "limitations": [
+        "The article does not rely on Anthropic performance claims.",
+        "Detailed Anthropic system-card contents were not used for the selected Astra article."
+      ],
+      "conflict_of_interest": [
+        "Anthropic documents its own model releases."
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "claim": "Qwen3.8-Omni-Flash and Qwen3.8-LiveTranslate were discovered as Qwen official September 2026 signals but were not selected because the accessible official page rendering did not provide stable extractable primary text for article-grade claims in this run.",
+      "source_url": "https://qwen.ai/blog?id=qwen3.8-omni-flash",
+      "source_type": "S2",
+      "evidence_grade": "E0",
+      "version": "Qwen official blog search/discovery surface, accessed 2026-09-20",
+      "accessed_at": "2026-09-20",
+      "direct_or_derived": "direct",
+      "method": "Used search discovery and attempted to fetch qwen.ai blog pages; the fetched HTML was CSR shell content without stable article text in the terminal/web extraction.",
+      "limitations": [
+        "Used only for discovery review and candidate comparison.",
+        "Not used as factual support for the article."
+      ],
+      "conflict_of_interest": [
+        "Qwen documents its own model releases."
+      ]
+    }
+  ],
+  "benchmark_and_reproducibility": {
+    "benchmarks_used": true,
+    "benchmark_notes": "The article mentions OpenAI's own benchmark tables only as provider-reported evidence of what OpenAI claims and as a reason to focus on computer-use/coding integration. It does not create an independent ranking or assert reproduced performance. Material benchmark limitations recorded in the article: research/API environment may differ from production ChatGPT; system prompts and tools vary; some tasks are internal; full logs and prompts are not public.",
+    "reproducibility": "R1",
+    "reproducibility_notes": "The official announcement, system card and API model page are public and inspectable. Reproducing the central integration claim would require API/Codex access, live runs with tool logs, cost traces and safety-interruption logs. Reproducing OpenAI benchmark claims is not possible from the public documents alone."
+  },
+  "conflict_review": {
+    "declared": [
+      "없음"
+    ],
+    "source_conflicts": [
+      "OpenAI is the developer and operator of GPT-6 Astra, Codex and the OpenAI API.",
+      "Google, Anthropic and Qwen official sources were reviewed as vendor primary sources for competing candidate announcements."
+    ],
+    "access_conditions": [
+      "No vendor briefing, embargo, paid account, credits, hardware or private documentation were used.",
+      "Only public official documents, model registries, release notes and web pages were used."
+    ]
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions": [
+      "Article frontmatter contains exactly edition, decision, title, date, subject, summary, evidence_ceiling, reproducibility and conflicts.",
+      "Decision is publish-candidate.",
+      "Publication ID in evidence and request is 2026-09-21.",
+      "Central claim has evidence_ceiling E2 or higher.",
+      "At least two distinct primary-source URLs support the central claim.",
+      "Selection score is at least 7 across importance, novelty, verifiability, SW-engineer decision utility and Korean-reader relevance.",
+      "Claim-source ledger records source type, evidence grade, version, accessed_at, method, limitations and conflict_of_interest for each material claim.",
+      "Conflicts and access conditions are disclosed.",
+      "Reproducibility state is recorded.",
+      "Article follows korean-writing-baseline-v1 and ai-technical-blog-v2.",
+      "Route duplication, artifact hash, site test and production build are left for the sequential publisher's deterministic gate before materialization.",
+      "This candidate-preparation turn does not perform content materialization, commit, push or deployment; those external actions remain for the sequential publisher after deterministic validation."
+    ],
+    "status": "candidate-prepared; external content, commit, push and deployment actions not performed in this turn"
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-21-sequential/20260920T220847Z-1407701/request.json and used publication_id 2026-09-21 with article_path var/runs/ai/2026-09-21-sequential/20260920T220847Z-1407701/staged-content/article.md, evidence_path var/runs/ai/2026-09-21-sequential/20260920T220847Z-1407701/evidence.json and no_publish_path var/runs/ai/2026-09-21-sequential/20260920T220847Z-1407701/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "OpenAI announcement",
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "classification": "P1 selected-source path",
+        "note": "Reviewed the launch article for availability, computer-use/coding claims, Codex context retrieval description, benchmark tables, benchmark caveats, cyber deployment notes and pricing summary."
+      },
+      {
+        "channel": "OpenAI Deployment Safety Hub",
+        "url": "https://deploymentsafety.openai.com/gpt-6-astra",
+        "classification": "P1 selected-source path",
+        "note": "Reviewed system-card sections on training/reasoning, internal deployment, safeguards, cybersecurity threshold, ExploitBench caveats and external monitoring."
+      },
+      {
+        "channel": "OpenAI Developers model page",
+        "url": "https://developers.openai.com/docs/models/gpt-6-astra",
+        "classification": "P1 selected-source path",
+        "note": "Reviewed model ID, intended uses, context window, max output, knowledge cutoff, pricing, endpoints and Responses API tool support."
+      },
+      {
+        "channel": "Google Gemini official docs",
+        "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+        "classification": "P1 alternative path",
+        "note": "Reviewed Gemini 3.8 Flash model page and latest-model guide. It is a strong same-window model announcement with agent/coding relevance, but Astra was selected because the OpenAI package ties model capability, Codex context handling, API tool support and cyber monitoring into one higher-impact engineering decision."
+      },
+      {
+        "channel": "Anthropic official discovery",
+        "url": "https://www.anthropic.com/news",
+        "classification": "P1 alternative path",
+        "note": "Reviewed Anthropic newsroom and docs discovery results for Claude Fable 5.1/Mythos 5.1. The announcement is important but earlier in September and less directly tied to the current day's API/Codex engineering integration question than Astra."
+      },
+      {
+        "channel": "Qwen official discovery",
+        "url": "https://qwen.ai/blog?id=qwen3.8-omni-flash",
+        "classification": "S2 discovery-only path",
+        "note": "Search surfaced Qwen3.8-Omni-Flash and Qwen3.8-LiveTranslate as recent official Qwen blog signals. Attempts to fetch qwen.ai pages returned a client-rendered shell without stable article text for claim verification in this run, so Qwen was retained as a discovery signal rather than a factual basis."
+      },
+      {
+        "channel": "Hugging Face/Qwen registry surface",
+        "url": "https://huggingface.co/Qwen",
+        "classification": "model-registry discovery path",
+        "note": "Checked Qwen's Hugging Face organization surface and recent activity. Recent Qwen-Image-2.1 activity appeared, but it was not selected because the frontier-agent/model announcement with clearer official primary documentation was Astra."
+      },
+      {
+        "channel": "Mistral/DeepSeek/OpenAI/Anthropic/Google broad source search",
+        "classification": "broad-discovery",
+        "note": "Searched official release-note, model-registry and blog surfaces for major frontier-lab, developer-tool and hardware-adjacent AI releases. No Mistral or DeepSeek current-window official release with stronger E2 support than Astra was found in this run."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "OpenAI GPT-6 Astra",
+        "official_urls": [
+          "https://openai.com/index/gpt-6-astra/",
+          "https://deploymentsafety.openai.com/gpt-6-astra",
+          "https://developers.openai.com/docs/models/gpt-6-astra"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 9
+        },
+        "selected": true,
+        "reason": "Selected because it is a major frontier model release with multiple official primary sources and clear SW-engineering implications for coding agents, computer use, context handling, tool permissions, cyber safeguards and API cost."
+      },
+      {
+        "name": "Google Gemini 3.8 Flash",
+        "official_urls": [
+          "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+          "https://ai.google.dev/gemini-api/docs/latest-model",
+          "https://deepmind.google/models/model-cards/gemini-3-8-flash/"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "Strong candidate with official model page, latest-model guide and model card. Not selected because Astra is newer in the current discovery window and has broader direct implications for API, Codex, computer use and safety monitoring."
+      },
+      {
+        "name": "Anthropic Claude Fable 5.1 and Mythos 5.1",
+        "official_urls": [
+          "https://www.anthropic.com/news",
+          "https://docs.anthropic.com/"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Major model release and relevant to coding/knowledge work, but it was earlier in September and the selected Astra package had more directly usable primary-source coverage for today's article angle."
+      },
+      {
+        "name": "Qwen3.8-Omni-Flash and Qwen3.8-LiveTranslate",
+        "official_urls": [
+          "https://qwen.ai/blog?id=qwen3.8-omni-flash",
+          "https://qwen.ai/blog?id=qwen3.8-livetranslate"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 2,
+          "verifiability": 0,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "Recent official Qwen signals were found, but stable primary text and artifact details were not extractable in this run, so they did not meet the E2 article threshold."
+      },
+      {
+        "name": "Qwen-Image-2.1 Hugging Face activity",
+        "official_urls": [
+          "https://huggingface.co/Qwen"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "Registry activity was visible, but it did not provide a stronger SW-engineering decision topic than Astra within this run."
+      },
+      {
+        "name": "Mistral or DeepSeek current-window official release",
+        "official_urls": [],
+        "scores": {
+          "importance": 0,
+          "novelty": 0,
+          "verifiability": 0,
+          "decision_utility": 0,
+          "korean_reader_relevance": 0,
+          "total": 0
+        },
+        "selected": false,
+        "reason": "Broad official-source search did not surface a current-window model, API or developer-tool release with article-grade primary evidence stronger than the selected topic."
+      }
+    ]
+  }
+}

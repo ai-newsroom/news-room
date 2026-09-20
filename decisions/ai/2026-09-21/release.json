@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-21",
+  "publication_kind": "regular",
+  "decision": "publish-candidate",
+  "release_status": "approved-for-publication",
+  "article_path": "content/ai/2026-09-21/article.md",
+  "evidence_path": "decisions/ai/2026-09-21/evidence.json",
+  "artifact_hashes": {
+    "article_sha256": "04b337b9872c5dae734a3cd5ce79b80af435bf1747e9fbfb44b4059e77c68f75",
+    "evidence_sha256": "e6183bbeb93988f4dc3b62d721e4148287433b88d8854e08510d47011d0f3e19"
+  },
+  "routes": [
+    "/ai/",
+    "/ai/2026-09-21/"
+  ],
+  "authorization": {
+    "mode": "automatic",
+    "policy_id": "ai-auto-publish-v1",
+    "authorized_at": "2026-09-21T07:16:25+09:00",
+    "executor": "news-room-sequential-publisher",
+    "checks": [
+      "ai-editorial-config",
+      "article-frontmatter-schema",
+      "selection-threshold",
+      "central-evidence-e2",
+      "korean-writing-baseline-v1",
+      "ai-technical-blog-v2",
+      "claim-source-ledger",
+      "publication-id-and-route-unique",
+      "artifact-hashes",
+      "site-tests-and-build"
+    ]
+  }
+}
