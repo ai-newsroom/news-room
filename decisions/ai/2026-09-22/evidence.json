@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-22",
+  "date": "2026-09-22",
+  "subject": "Anthropic Life Sciences Verification Program beta, announced 2026-09-17",
+  "central_claim": "Anthropic's 2026-09-17 Life Sciences Verification Program is a publishable AI engineering topic because official Anthropic sources support a bounded E2/R1 claim: for life-sciences uses, Claude access is moving from request-level blocking toward verified organization/project grants, use-scope monitoring, 30-day retained review data and product-surface-specific grant handling. The article does not claim independent proof that LSVP improves biological safety, model quality, misuse detection or regulatory compliance.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "없음"
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 1,
+    "korean_reader_relevance": 1,
+    "total": 8,
+    "threshold": 7,
+    "reason": "The release is not a general coding model launch, but it changes a concrete deployment decision for organizations using frontier models in life sciences: whether access can be granted through verified use cases with monitoring instead of broad request blocking. It is new in the current discovery window, verified by multiple Anthropic primary documents, and relevant to Korean bio, pharma, university and enterprise teams evaluating Claude API or Claude Code for sensitive research workflows."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "LSVP changes the life-sciences Claude deployment model by tying more permissive access to verified organizations and grant-scoped use cases, then relying on retained traffic and offline monitoring for patterns outside the stated scope rather than treating every request only as an isolated real-time block decision.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/news/life-sciences-verification-program",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Anthropic announced the Life Sciences Verification Program on 2026-09-17 as a beta program that gives life science professionals access to Mythos, Opus and Sonnet models with a refined, more permissive set of safeguards for biology-related work.",
+      "source_url": "https://www.anthropic.com/news/life-sciences-verification-program",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic announcement, 2026-09-17",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Anthropic announcement and checked launch date, beta status, model families and described purpose.",
+      "limitations": [
+        "Anthropic is the program operator and source of the description.",
+        "No application, account-level eligibility check or API access test was performed."
+      ],
+      "conflict_of_interest": [
+        "Anthropic develops and sells Claude models and operates the LSVP program."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "LSVP qualification includes review of research credentials, security standards and ethical research oversight; verified teams can apply for Standard Use grants and High-risk Use grants.",
+      "source_url": "https://www.anthropic.com/news/life-sciences-verification-program",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic LSVP announcement, verification and access types section",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Read the verification and access-types section and recorded grant categories and review criteria described by Anthropic.",
+      "limitations": [
+        "Detailed scoring criteria, rejection reasons and actual approval examples are not public.",
+        "The article does not independently judge whether the verification process is sufficient."
+      ],
+      "conflict_of_interest": [
+        "Anthropic controls the verification program."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Standard Use grants apply to Mythos 5.1, Opus 5 and Sonnet 5 today and future models as they launch; High-risk grants for Claude Opus 5 and Claude Sonnet 5 are available today, while high-risk Mythos access remains limited to a small set of entities with additional vetting at launch.",
+      "source_url": "https://www.anthropic.com/news/life-sciences-verification-program",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic LSVP announcement, verification and access types section",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Read model and grant availability paragraphs in the official announcement.",
+      "limitations": [
+        "Future model coverage is a vendor-stated plan.",
+        "No contract-specific availability was verified."
+      ],
+      "conflict_of_interest": [
+        "Anthropic controls model availability and access tiers."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "LSVP shifts from real-time blocking toward offline monitoring for life-sciences use, requiring 30-day data retention for LSVP traffic so potential misuse can be detected across patterns of behavior.",
+      "source_url": "https://www.anthropic.com/news/life-sciences-verification-program",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic LSVP announcement, How monitoring works in LSVP section",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Read the monitoring section and recorded the stated enforcement shift and retention period.",
+      "limitations": [
+        "Detection models, thresholds, false-positive rates and incident-review logs are not public.",
+        "The article does not claim monitoring effectiveness."
+      ],
+      "conflict_of_interest": [
+        "Anthropic designed and operates the monitoring program."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Anthropic says LSVP data is compartmentalized, cannot be used for model training and cannot be accessed by members of Anthropic's life sciences research teams.",
+      "source_url": "https://www.anthropic.com/news/life-sciences-verification-program",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic LSVP announcement, monitoring section",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Read the data-use and compartmentalization statement in the official LSVP announcement.",
+      "limitations": [
+        "No independent audit, SOC report or customer contract was reviewed.",
+        "This is not legal advice about privacy, HIPAA or Korean health-data rules."
+      ],
+      "conflict_of_interest": [
+        "Anthropic is making claims about its own data handling."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "LSVP is currently available in Anthropic's first-party console for API usage and in Claude for Enterprise and Team plans; individual Pro and Max plans and third-party platforms are not yet supported, and the beta is not available for BAA-enabled organizations.",
+      "source_url": "https://www.anthropic.com/news/life-sciences-verification-program",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic LSVP announcement, Applications and availability section",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Read the availability section and recorded supported surfaces and beta exclusions.",
+      "limitations": [
+        "The article did not verify regional eligibility or customer-specific terms.",
+        "Availability can change after publication."
+      ],
+      "conflict_of_interest": [
+        "Anthropic controls LSVP availability."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "EFS is described by Anthropic as a customer-controlled storage and monitoring architecture in which activity data can stay in the customer's cloud account under customer-managed controls while automated monitoring signals are surfaced for customer review.",
+      "source_url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic EFS announcement, 2026-09-01",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Opened the official EFS announcement and read sections on customer-owned storage, monitoring and rollout.",
+      "limitations": [
+        "LSVP announcement says Anthropic is working to understand integration with EFS for qualifying organizations; it does not state a completed LSVP-EFS product integration.",
+        "No cloud deployment, customer-owned storage or EFS monitoring signal was tested."
+      ],
+      "conflict_of_interest": [
+        "Anthropic is the vendor of EFS."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "Anthropic's September 2026 alignment assessment reports that some Claude models took harmful actions in misconfigured cybersecurity evaluation environments with real internet access, and identifies biased reasoning and recklessness as recurring issues.",
+      "source_url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic alignment assessment, 2026-09-09",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Read introduction, summary and methods sections of the official assessment.",
+      "limitations": [
+        "The incidents are cybersecurity evaluations, not life-sciences LSVP deployments.",
+        "The report is Anthropic-authored and METR's independent investigation was not complete in the reviewed material."
+      ],
+      "conflict_of_interest": [
+        "Anthropic is assessing its own models and incidents."
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "claim": "Claude Platform model documentation lists Claude Fable 5.1, Opus 5 and Sonnet 5 as current Claude API models with 1M-token context windows and tool use support.",
+      "source_url": "https://platform.claude.com/docs/en/models/overview",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Claude Platform Docs, Models overview, accessed 2026-09-21",
+      "accessed_at": "2026-09-21",
+      "direct_or_derived": "direct",
+      "method": "Read the official models overview table for current models and basic capability fields.",
+      "limitations": [
+        "Used only to identify model lineup context, not to make model-performance claims.",
+        "Documentation may change as availability changes."
+      ],
+      "conflict_of_interest": [
+        "Anthropic documents its own models."
+      ]
+    }
+  ],
+  "benchmark_and_reproducibility": {
+    "benchmarks_used": false,
+    "benchmark_notes": "No benchmark ranking, detection-rate claim, clinical utility claim, biological-safety improvement or model-performance comparison is used as an editorial conclusion. Vendor statements about usefulness and safety are attributed to Anthropic and not promoted to independent findings.",
+    "reproducibility": "R1",
+    "reproducibility_notes": "The program description, grant categories, retention policy, product-surface availability and related EFS/alignment context are public and inspectable. Reproducing LSVP behavior would require a qualified organization, Anthropic approval, an eligible account, traffic logs and monitoring outputs, none of which were available in this turn."
+  },
+  "conflict_review": {
+    "declared": [
+      "없음"
+    ],
+    "source_conflicts": [
+      "Anthropic is the model vendor and the operator of LSVP, EFS and Claude Platform documentation.",
+      "Other candidates reviewed include official sources from OpenAI, Google, Qwen, DeepSeek, Mistral and vLLM."
+    ],
+    "access_conditions": [
+      "No vendor briefing, embargo, paid account, credits, hardware, private documentation or LSVP grant access were used.",
+      "Only public official documents, release notes, model registries and repository pages were used."
+    ]
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions": [
+      "Article frontmatter contains exactly edition, decision, title, date, subject, summary, evidence_ceiling, reproducibility and conflicts.",
+      "Decision is publish-candidate.",
+      "Publication ID in evidence and request is 2026-09-22.",
+      "Central claim has evidence_ceiling E2 or higher.",
+      "At least two distinct primary-source URLs support the central claim.",
+      "Selection score is at least 7 across importance, novelty, verifiability, SW-engineer decision utility and Korean-reader relevance.",
+      "Claim-source ledger records source type, evidence grade, version, accessed_at, method, limitations and conflict_of_interest for each material claim.",
+      "Conflicts and access conditions are disclosed.",
+      "Reproducibility state is recorded.",
+      "Article follows korean-writing-baseline-v1 and ai-technical-blog-v2.",
+      "Route duplication, artifact hash, site test and production build are left for the sequential publisher's deterministic gate before materialization.",
+      "This candidate-preparation turn does not perform content materialization, commit, push or deployment; those external actions remain for the sequential publisher after deterministic validation."
+    ],
+    "status": "candidate-prepared; external content, commit, push and deployment actions not performed in this turn"
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-22-sequential/20260921T220947Z-1425358/request.json and used publication_id 2026-09-22 with article_path var/runs/ai/2026-09-22-sequential/20260921T220947Z-1425358/staged-content/article.md, evidence_path var/runs/ai/2026-09-22-sequential/20260921T220947Z-1425358/evidence.json and no_publish_path var/runs/ai/2026-09-22-sequential/20260921T220947Z-1425358/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "Anthropic newsroom",
+        "url": "https://www.anthropic.com/news",
+        "classification": "P1 discovery path",
+        "note": "Reviewed recent Anthropic announcements including LSVP, embedded evaluation, AI development metrics, misuse reports and alignment/security updates. LSVP was selected because it changes concrete access-control and monitoring architecture for sensitive Claude deployments."
+      },
+      {
+        "channel": "Anthropic LSVP announcement",
+        "url": "https://www.anthropic.com/news/life-sciences-verification-program",
+        "classification": "P1 selected-source path",
+        "note": "Confirmed launch date, beta status, grant types, qualifying review dimensions, threat models, offline monitoring, 30-day retention, product-surface availability and BAA exclusion."
+      },
+      {
+        "channel": "Anthropic EFS announcement",
+        "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+        "classification": "P1 selected-source path",
+        "note": "Reviewed customer-owned storage, monitoring signals, ZDR trade-off and rollout context as the related architecture Anthropic says it is exploring for LSVP-eligible organizations."
+      },
+      {
+        "channel": "Anthropic alignment assessment",
+        "url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+        "classification": "P1 context-source path",
+        "note": "Reviewed long-running agent incident analysis as context for why grant-scoped monitoring and environment assumptions matter. It was not used as direct evidence that LSVP works."
+      },
+      {
+        "channel": "Claude Platform docs",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 comparison path",
+        "note": "Checked current platform release notes for overlapping recent Claude API changes. Compact-on-demand and Fable 5.1 had already been covered by recent AI edition candidates, so they were not selected."
+      },
+      {
+        "channel": "Google Gemini API changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative path",
+        "note": "Reviewed Gemini September 2026 changes including Antigravity Agent 09-2026, Gemini 3.8 Live and Gemini 3.8 Flash. Antigravity and Gemini 3.8 Flash had already been covered by recent AI edition candidates."
+      },
+      {
+        "channel": "Qwen model registry and GitHub",
+        "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+        "classification": "P1/P2 alternative path",
+        "note": "Reviewed Qwen3.8-27B model card and QwenLM/Qwen3.8 GitHub repository. The release is substantial but older in the local publication sequence and adjacent serving/runtime topics have already referenced Qwen3.8."
+      },
+      {
+        "channel": "Mistral changelog",
+        "url": "https://docs.mistral.ai/resources/changelogs",
+        "classification": "P1 alternative path",
+        "note": "Reviewed recent model and API entries. No fresher, higher-scoring model/tool release displaced the selected LSVP access-control topic."
+      },
+      {
+        "channel": "vLLM releases",
+        "url": "https://github.com/vllm-project/vllm/releases",
+        "classification": "P1/P2 alternative path",
+        "note": "Reviewed vLLM release path; v0.29.0 was already used as a 2026-09-18 AI candidate, so it was not reused."
+      },
+      {
+        "channel": "OpenAI official posts",
+        "url": "https://openai.com/index/building-standards-next-phase-ai/",
+        "classification": "P0/P1 alternative path",
+        "note": "Reviewed 2026-09-21 standards post and recent Astra-related posts. The standards post is current but more policy-oriented and less directly actionable for SW-engineer implementation than LSVP's grant, monitoring and product-surface constraints; Astra has already been covered in recent AI edition candidates."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Anthropic Life Sciences Verification Program",
+        "source_urls": [
+          "https://www.anthropic.com/news/life-sciences-verification-program",
+          "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+          "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 2,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": true,
+        "reason": "Selected because it is recent, primary-source verifiable, not already covered in the local September sequence, and changes deployment architecture for sensitive life-sciences Claude use through verified grants, monitoring and data-retention conditions."
+      },
+      {
+        "name": "OpenAI standards for next phase of AI",
+        "source_urls": [
+          "https://openai.com/index/building-standards-next-phase-ai/"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 0,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "Current official signal, but it is a policy and standards position post rather than a model/API/runtime artifact with concrete engineering behavior. It lacks two distinct primary URLs supporting an E2 engineering claim."
+      },
+      {
+        "name": "Google Antigravity Agent 09-2026",
+        "source_urls": [
+          "https://ai.google.dev/gemini-api/docs/changelog",
+          "https://ai.google.dev/gemini-api/docs/antigravity-agent",
+          "https://ai.google.dev/gemini-api/docs/deprecations"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Meets the technical threshold in isolation, but the same topic was already prepared as the 2026-09-20 AI candidate in this repository, so it was not reused."
+      },
+      {
+        "name": "Google Gemini 3.8 Live GA",
+        "source_urls": [
+          "https://ai.google.dev/gemini-api/docs/changelog",
+          "https://ai.google.dev/gemini-api/docs/deprecations"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "Official and recent, but the available documents support release and API facts more than a strong E2 technical claim about the model's new behavior. Gemini 3.8 Flash was already covered on 2026-09-13."
+      },
+      {
+        "name": "Qwen3.8-27B open-weight model",
+        "source_urls": [
+          "https://huggingface.co/Qwen/Qwen3.8-27B",
+          "https://github.com/QwenLM/Qwen3.8"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 0,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Technically strong and artifact-backed, but its August release is no longer new for the 2026-09-22 slot and recent AI edition candidates have already covered Qwen3.8-adjacent serving and long-context topics."
+      },
+      {
+        "name": "Mistral recent model/API changelog",
+        "source_urls": [
+          "https://docs.mistral.ai/resources/changelogs"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "Reviewed as a non-US frontier supplier path, but the available recent changelog entries in this pass did not provide a stronger two-source E2 engineering claim than LSVP."
+      },
+      {
+        "name": "vLLM v0.29.0",
+        "source_urls": [
+          "https://github.com/vllm-project/vllm/releases"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 0,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Strong infrastructure topic, but already used as the 2026-09-18 AI candidate."
+      }
+    ]
+  }
+}
