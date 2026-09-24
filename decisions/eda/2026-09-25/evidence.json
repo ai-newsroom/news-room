@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-25",
+  "date": "2026-09-25",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-25-sequential/20260924T222059Z-1476414/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-09-25-sequential/20260924T222059Z-1476414/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-09-25-sequential/20260924T222059Z-1476414/no-publish.json",
+  "subject": "ChipMEM arXiv:2609.27067v1, aalrabah/ChipMEM public implementation at commit 39c22105acb5e0c18d14e0a9bf6f7ea213fc4cc3, RTLRewriter-Bench commit 96639fe67bc8f020c05978ef5028d75fcf6980f2, and CVDP benchmark commit 8e894cf74414ab1eaea1e2b4e80a02f123df07b6",
+  "title": "ChipMEM은 EDA 에이전트의 시행착오를 검증 통과한 기억으로 바꿉니다",
+  "summary": "ChipMEM은 RTL 최적화와 testbench 생성 에이전트가 이전 실행에서 얻은 교훈을 아무 때나 저장하지 않고, 합성·시뮬레이션·등가성 확인 같은 결정적 평가를 통과한 뒤에만 다음 작업의 기억으로 쓰는 방법을 제안합니다. 논문과 공개 구현은 구조와 실행 인터페이스를 확인하게 해 주지만, 논문 성능 수치는 저자 보고 결과이고 raw trajectory와 상용 도구 설정은 공개 저장소에 없습니다.",
+  "central_claim": "ChipMEM은 RTL 최적화와 testbench 생성 agent가 이전 실행에서 얻은 절차를 검증 통과 결과에 묶어 저장하고, 도구 호출 실패 이력을 통계적으로 써서 다음 설계 작업의 복구 행동을 바꾸는 EDA agent memory layer를 제안합니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "논문 저자 중 NVIDIA와 Cadence 소속자가 포함되어 있습니다",
+    "편집국의 사전 briefing, 제공받은 계정·라이선스·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다"
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 9,
+    "threshold": 7,
+    "rationale": "ChipMEM은 spec-to-RTL 자체보다 agent가 도구 검증 결과를 다음 설계 작업의 기억으로 넘기는 flow를 다룹니다. 논문은 task, benchmark, 모델, retrieval threshold, acceptance gate와 일부 결과를 공개했고, 저장소는 구현과 runner interface를 제공합니다. 다만 논문 결과, raw trajectory, trained memory state, proprietary agents와 commercial tool configuration이 공개되지 않아 재현 가능성은 1점으로 제한했습니다."
+  },
+  "selection": {
+    "total": 9,
+    "threshold": 7,
+    "central_claim_minimum": "E2",
+    "source_url_minimum": 2,
+    "passed": true
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.27067v1",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/aalrabah/ChipMEM/main/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.27067v1",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/yaoxufeng/RTLRewriter-Bench/master/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.27067v1",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/NVlabs/cvdp_benchmark/main/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://github.com/aalrabah/ChipMEM",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/aalrabah/ChipMEM/main/README.md",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://arxiv.org/abs/2609.27067",
+    "https://arxiv.org/html/2609.27067v1",
+    "https://github.com/aalrabah/ChipMEM",
+    "https://raw.githubusercontent.com/aalrabah/ChipMEM/main/README.md",
+    "https://github.com/yaoxufeng/RTLRewriter-Bench",
+    "https://raw.githubusercontent.com/yaoxufeng/RTLRewriter-Bench/master/README.md",
+    "https://github.com/NVlabs/cvdp_benchmark",
+    "https://raw.githubusercontent.com/NVlabs/cvdp_benchmark/main/README.md"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "ChipMEM은 절차 기억과 통계 기억을 결합해, 검증 통과 실행에서만 reusable skill을 저장하고 도구 호출 결과를 Bayesian model로 갱신하는 EDA agent memory layer를 제안합니다.",
+      "source_url": "https://arxiv.org/html/2609.27067v1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.27067v1, submitted 2026-09-22",
+      "accessed_at": "2026-09-24",
+      "direct_or_derived": "direct",
+      "method": "Abstract, Introduction, ChipMEM section, Algorithm, Agent adapter and verification sections에서 procedural memory, statistical memory, verification gate, frozen/evolving modes를 확인했습니다.",
+      "limitations": [
+        "논문 저자 보고 방법과 결과입니다.",
+        "편집국은 논문 실험을 재실행하지 않았습니다.",
+        "논문 저자 중 NVIDIA와 Cadence 소속자가 포함되어 있습니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자 중 NVIDIA와 Cadence 소속자가 포함되어 있습니다"
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "공개 ChipMEM README는 benchmark-declared task artifact를 retrieval key로 쓰고, deterministic evaluation harness가 PASS를 반환한 뒤에만 immutable skill을 만들며, FAIL 또는 INVALID 뒤에는 skill을 만들지 않는다고 설명합니다.",
+      "source_url": "https://raw.githubusercontent.com/aalrabah/ChipMEM/main/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "aalrabah/ChipMEM main branch, HEAD 39c22105acb5e0c18d14e0a9bf6f7ea213fc4cc3",
+      "accessed_at": "2026-09-24",
+      "direct_or_derived": "direct",
+      "method": "README의 Core behavior, Task format, Adapter interface sections와 git ls-remote HEAD를 확인했습니다.",
+      "limitations": [
+        "저장소 구현 공개는 논문 수치 재현 자체가 아닙니다.",
+        "실제 논문 agent와 raw trajectory는 공개 범위에 포함되지 않습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "논문은 RTLRewriter-Bench에서 memory off 35/54 equivalence-passing outputs 대비 ChipMEM 39/54, 49-design short suite 평균 area improvement 5.66% 대비 8.69%를 보고합니다.",
+      "source_url": "https://arxiv.org/html/2609.27067v1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.27067v1, Abstract and Results sections",
+      "accessed_at": "2026-09-24",
+      "direct_or_derived": "direct",
+      "method": "Abstract와 Results and Discussion에서 RTLRewriter-Bench 결과 수치를 확인했습니다.",
+      "limitations": [
+        "저자 보고 결과이며 독립 재현이 아닙니다.",
+        "편집국은 RTLRewriter-Bench를 재실행하지 않았습니다.",
+        "논문 수치의 raw trajectory와 trained memory state는 공개 저장소에 포함되지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자 중 NVIDIA와 Cadence 소속자가 포함되어 있습니다"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "RTLRewriter-Bench 공개 README는 short benchmark 55개와 large benchmark 5개를 제공하고, short benchmark가 기본 RTL pattern, datapath, memory, MUX, FSM, control logic을 포함한다고 설명합니다.",
+      "source_url": "https://raw.githubusercontent.com/yaoxufeng/RTLRewriter-Bench/master/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "yaoxufeng/RTLRewriter-Bench master branch, HEAD 96639fe67bc8f020c05978ef5028d75fcf6980f2",
+      "accessed_at": "2026-09-24",
+      "direct_or_derived": "direct",
+      "method": "README의 benchmark 설명과 git ls-remote HEAD를 확인했습니다.",
+      "limitations": [
+        "benchmark 공개는 ChipMEM 논문 결과의 독립 검증이 아닙니다.",
+        "논문은 54 scored cases와 49-design short suite처럼 일부 filtering을 적용해 보고합니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "논문은 CVDP held-out task에서 frozen procedural library를 쓴 ChipMEM이 memory off 18/20 대비 20/20 accepted outcomes를 냈다고 보고합니다.",
+      "source_url": "https://arxiv.org/html/2609.27067v1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.27067v1, Abstract and Held-out CVDP transfer section",
+      "accessed_at": "2026-09-24",
+      "direct_or_derived": "direct",
+      "method": "Abstract와 Held-out CVDP transfer result에서 CID012/CID013 held-out 결과를 확인했습니다.",
+      "limitations": [
+        "저자 보고 결과이며 편집국 재현이 아닙니다.",
+        "hidden checks와 commercial EDA 조건이 포함될 수 있어 독자가 모든 조건을 즉시 재현하기 어렵습니다."
+      ],
+      "conflict_of_interest": [
+        "논문 저자 중 NVIDIA와 Cadence 소속자가 포함되어 있습니다"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "CVDP 공개 README는 hardware verification challenges 평가 framework이며 Hugging Face dataset, arXiv paper, Docker 기반 open-source simulation image, agentic workflow를 제공합니다.",
+      "source_url": "https://raw.githubusercontent.com/NVlabs/cvdp_benchmark/main/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "NVlabs/cvdp_benchmark main branch, HEAD 8e894cf74414ab1eaea1e2b4e80a02f123df07b6",
+      "accessed_at": "2026-09-24",
+      "direct_or_derived": "direct",
+      "method": "README의 Front Matter, Quick Start, agentic workflow sections와 git ls-remote HEAD를 확인했습니다.",
+      "limitations": [
+        "일부 dataset datapoint와 reference solutions는 공개 범위에서 제외됐다고 README가 밝힙니다.",
+        "commercial dataset 실행은 상용 EDA tools, license network, custom verification image가 필요합니다."
+      ],
+      "conflict_of_interest": [
+        "CVDP는 NVIDIA가 공개한 benchmark입니다"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "ChipMEM 공개 저장소는 public implementation과 generic runner를 제공하지만, paper results, raw trajectories, trained memory states, proprietary agents, private prompts, commercial datasets, commercial tool configurations를 포함하지 않는다고 밝힙니다.",
+      "source_url": "https://raw.githubusercontent.com/aalrabah/ChipMEM/main/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "aalrabah/ChipMEM main branch, HEAD 39c22105acb5e0c18d14e0a9bf6f7ea213fc4cc3",
+      "accessed_at": "2026-09-24",
+      "direct_or_derived": "direct",
+      "method": "README 첫 부분과 repository layout, installation, adapter interface sections를 확인했습니다.",
+      "limitations": [
+        "논문 결과 전체 재현에는 공개 저장소 밖의 agent, prompts, trajectories 또는 tool configuration이 필요할 수 있습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R1",
+    "public_artifacts": [
+      "https://github.com/aalrabah/ChipMEM",
+      "https://raw.githubusercontent.com/aalrabah/ChipMEM/main/README.md",
+      "https://github.com/yaoxufeng/RTLRewriter-Bench",
+      "https://github.com/NVlabs/cvdp_benchmark"
+    ],
+    "pinned_artifacts": [
+      {
+        "name": "aalrabah/ChipMEM",
+        "commit": "39c22105acb5e0c18d14e0a9bf6f7ea213fc4cc3"
+      },
+      {
+        "name": "yaoxufeng/RTLRewriter-Bench",
+        "commit": "96639fe67bc8f020c05978ef5028d75fcf6980f2"
+      },
+      {
+        "name": "NVlabs/cvdp_benchmark",
+        "commit": "8e894cf74414ab1eaea1e2b4e80a02f123df07b6"
+      }
+    ],
+    "not_reproduced_by_editor": true,
+    "why_not_r2": "ChipMEM 구현과 일부 benchmark는 공개되어 구조 검사는 가능하지만, 논문 README가 paper results, raw trajectories, trained memory states, proprietary agents, private prompts, commercial datasets, commercial tool configurations를 포함하지 않는다고 밝힙니다. 이번 턴에서 논문 실험을 같은 조건으로 재실행하지 않았습니다."
+  },
+  "benchmark_notes": {
+    "reported_by_authors": [
+      "RTLRewriter-Bench: equivalence-passing outputs 39/54 with ChipMEM vs 35/54 without memory; 49-design short suite mean area improvement 8.69% vs 5.66%.",
+      "Held-out CVDP: frozen procedural library accepted outcomes 20/20 with ChipMEM vs 18/20 without memory.",
+      "OpenTitan audit: full PPA gate pass 4/10 with ChipMEM vs 1/10 without memory, while equivalence passed 6/10 in both modes."
+    ],
+    "editor_reproduction": "not attempted",
+    "comparison_limits": [
+      "수치는 논문 저자 보고 결과입니다.",
+      "공개 저장소에 논문 결과와 raw trajectories가 포함되어 있지 않습니다.",
+      "상용 도구 설정과 proprietary agent 조건은 독자가 직접 확인할 수 없습니다."
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "arXiv:2609.27067 ChipMEM",
+        "source_url": "https://arxiv.org/abs/2609.27067",
+        "why_reviewed": "2026-09-22 제출된 EDA agent memory 논문이며 공개 구현과 공개 benchmark 연결이 있었습니다.",
+        "outcome": "selected"
+      },
+      {
+        "signal": "Cadence ChipStack AI Super Agent RTL Generation Agent",
+        "source_url": "https://login.cadence.com/content/cadence-www/global/en_US/home/company/newsroom/press-releases/pr/2026/cadence-expands-chipstack-ai-super-agent-with-a-new-agent-for.html",
+        "why_reviewed": "2026-09-22 공식 발표이며 RTL generation과 early PPA optimization을 직접 다룹니다.",
+        "outcome": "rejected",
+        "reason": "중심 PPA 수치가 벤더 발표와 고객 초기 평가에 머물렀고, design, node, baseline version, constraint, 독립 artifact가 부족했습니다."
+      },
+      {
+        "signal": "Cadence and TSMC advanced process certification and UALink/IP announcement",
+        "source_url": "https://newsroom.cadence.com/press-releases/press-release-details/2026/Cadence-Collaborates-With-TSMC-to-Deliver-Certified-Tool-Solutions-and-Industry-Leading-Silicon-Proven-UALink-IP-on-TSMC-Advanced-Processes/default.aspx",
+        "why_reviewed": "2026-09-23 공식 발표이며 A14 certification, N3/N2/A16/A14 flow, 3DFabric support를 다룹니다.",
+        "outcome": "rejected",
+        "reason": "TSMC EDA alliance page로 일부 certification 맥락은 확인되지만, 기사 중심 분석을 구성할 공개 release note나 support matrix 수준의 세부 조건이 부족했습니다."
+      },
+      {
+        "signal": "Accellera PSS 3.1 public review",
+        "source_url": "https://accellera.org/downloads/drafts-review",
+        "why_reviewed": "public review가 2026-09-30까지 열려 있어 시의성이 있었습니다.",
+        "outcome": "rejected",
+        "reason": "2026-09-16 EDA판에서 이미 Portable Test and Stimulus Standard 3.1 Draft를 다뤘습니다."
+      },
+      {
+        "signal": "OpenLane 2 changelog and releases",
+        "source_url": "https://github.com/chipfoundry/openlane2/blob/main/Changelog.md",
+        "why_reviewed": "open-source RTL-to-GDS flow update 후보로 확인했습니다.",
+        "outcome": "rejected",
+        "reason": "최근 changelog는 bugfix와 step-level 변경 중심이어서 이번 기사 기준의 새 flow 영향과 중심 주장 E2를 만들기에는 약했습니다."
+      },
+      {
+        "signal": "Synopsys AI and chip design blog series",
+        "source_url": "https://www.synopsys.com/blogs/chip-design/category.ai-and-machine-learning.html",
+        "why_reviewed": "2026-09-15 이후 agentic AI in chip design 글이 이어졌습니다.",
+        "outcome": "rejected",
+        "reason": "전략·thought leadership 성격이 강하고 release note, manual, benchmark artifact가 부족했습니다."
+      },
+      {
+        "signal": "Siemens EDA September blog posts",
+        "source_url": "https://blogs.sw.siemens.com/eda/",
+        "why_reviewed": "Innovator3D IC release와 Calibre/AI 관련 공개 글을 확인했습니다.",
+        "outcome": "rejected",
+        "reason": "일부 글은 제품 블로그 수준이었고, 공개 조건·version·benchmark를 뒷받침할 두 번째 원문이 충분하지 않았습니다."
+      }
+    ],
+    "alternatives": [
+      {
+        "title": "Cadence RTL Generation Agent",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "drop_reason": "설계 흐름 영향과 시의성은 높지만 PPA 조건과 독립 artifact가 부족해 기준 7점과 중심 E2를 통과하지 못했습니다."
+      },
+      {
+        "title": "Cadence-TSMC A14/N2P/N3P certification and UALink/IP",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "drop_reason": "공식 발표와 TSMC alliance page는 있으나 tool별 version, certification 상세, 사용자가 확인할 release/support matrix가 부족했습니다."
+      },
+      {
+        "title": "OpenLane 2 recent changelog",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 7
+        },
+        "drop_reason": "점수 합계는 기준에 닿지만 중심 변화가 bugfix·minor step update에 가까워 일일 심층 기사 주제로는 ChipMEM보다 실무 영향과 새로움이 약했습니다."
+      },
+      {
+        "title": "Accellera PSS 3.1 Draft public review",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 0,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 7
+        },
+        "drop_reason": "이미 2026-09-16 기사에서 같은 발표를 다뤄 중복입니다."
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
