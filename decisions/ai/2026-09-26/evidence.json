@@ -1,0 +1,417 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-26",
+  "date": "2026-09-26",
+  "subject": "OpenAI GPT-6 Sol and GPT-6 Luna, released 2026-09-22",
+  "central_claim": "GPT-6 Sol and GPT-6 Luna are a publishable AI engineering topic because OpenAI primary sources support a bounded E2/R1 claim: the release lowers the API price tier for GPT-6 reasoning models and, more importantly for long-running agents, pairs those models with prompt caching, explicit cache breakpoints, reasoning-effort updates that preserve cached prefixes, stable tool-list guidance and cache diagnostics. The article does not claim independent proof that Sol or Luna is generally superior to competing models.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "OpenAI develops and sells GPT-6 Sol, GPT-6 Luna and the API services described in the cited documents.",
+    "No vendor briefing, account, credit, hardware, sponsorship, advertising relationship, NDA or embargo was used."
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The topic directly affects software teams evaluating reasoning models for Codex-style coding agents and long-running business agents. It is new in the current discovery window, supported by multiple OpenAI primary documents, and useful because the engineering decision is not merely model ranking but prompt-cache-aware request design, tool stability and observability."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "GPT-6 Sol and GPT-6 Luna change the practical economics of long-running agents by combining lower GPT-6 model prices with prompt-cache-aware controls and diagnostics; integration teams should evaluate cache prefix stability, tool-list management, reasoning effort changes and cache miss observability before treating the models as a simple price cut.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/changelog",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://openai.com/index/better-prompt-caching-for-gpt-6/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://deploymentsafety.openai.com/gpt-6-astra",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenAI released GPT-6 Sol and GPT-6 Luna on 2026-09-22 and documents API model IDs `gpt-6-sol` and `gpt-6-luna`.",
+      "source_url": "https://developers.openai.com/api/docs/changelog",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API changelog, September 22, 2026 GPT-6 Sol/Luna entry",
+      "accessed_at": "2026-09-25",
+      "direct_or_derived": "direct",
+      "method": "Opened the official OpenAI API changelog and cross-checked the launch post availability section.",
+      "limitations": [
+        "No live API request was sent to test account-level availability.",
+        "OpenAI is the model developer and source of the release note."
+      ],
+      "conflict_of_interest": [
+        "OpenAI develops and sells the cited models."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The API changelog lists standard per-1M-token prices for prompts up to 272K input tokens: GPT-6 Sol at $2 input, $0.20 cached input and $10 output; GPT-6 Luna at $0.10 input, $0.01 cached input and $0.50 output.",
+      "source_url": "https://developers.openai.com/api/docs/changelog",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API changelog, September 22, 2026 pricing entry",
+      "accessed_at": "2026-09-25",
+      "direct_or_derived": "direct",
+      "method": "Read the Sol/Luna changelog pricing bullets and compared them with the launch post pricing table.",
+      "limitations": [
+        "The changelog notes that longer prompts, cache writes and processing tiers require pricing details outside the short entry.",
+        "Prices can change after publication."
+      ],
+      "conflict_of_interest": [
+        "OpenAI publishes its own pricing."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "OpenAI says GPT-6 prompt caching reuses eligible shared prefixes within a 30-minute window and offers discounts of up to 90% on cached input tokens.",
+      "source_url": "https://openai.com/index/better-prompt-caching-for-gpt-6/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Better prompt caching for GPT-6, published 2026-09-22",
+      "accessed_at": "2026-09-25",
+      "direct_or_derived": "direct",
+      "method": "Opened OpenAI's prompt caching announcement and checked it against the prompt caching API guide.",
+      "limitations": [
+        "Actual cache hit rates depend on request shape, model routing, tool definitions and workload.",
+        "No application trace or billing record was inspected."
+      ],
+      "conflict_of_interest": [
+        "OpenAI operates the caching system and sells cached-input processing."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The prompt caching guide documents explicit cache breakpoints and says supported GPT-6 and later models can change reasoning effort by appending a `configuration_update` item while preserving the earlier cached prefix.",
+      "source_url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API prompt caching guide, accessed 2026-09-25",
+      "accessed_at": "2026-09-25",
+      "direct_or_derived": "direct",
+      "method": "Read the explicit breakpoint section and the change-reasoning-effort section of the prompt caching guide.",
+      "limitations": [
+        "No request was executed to validate the cache-preservation behavior.",
+        "Compatibility limits may differ by model and API state."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors the API guide."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "The prompt caching guide tells developers to keep tool definitions, ordering and schemas stable, use `tool_choice: none` rather than removing tools, and use `allowed_tools` to restrict callable tools while preserving the supplied tool list.",
+      "source_url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API prompt caching guide, manage tools with append-only updates",
+      "accessed_at": "2026-09-25",
+      "direct_or_derived": "direct",
+      "method": "Read the manage-tools guidance in the prompt caching guide.",
+      "limitations": [
+        "The newsroom did not measure the magnitude of cache savings from these practices.",
+        "Tooling behavior can vary with application design."
+      ],
+      "conflict_of_interest": [
+        "OpenAI defines the API behavior being described."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Prompt cache diagnostics can return `cache_hit`, `cache_miss`, `comparison_response_not_found` or `unavailable`; cache miss results can include a reason such as `tools_changed` and missed-token estimates, but usage fields remain the billing measurement.",
+      "source_url": "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API prompt cache diagnostics guide, accessed 2026-09-25",
+      "accessed_at": "2026-09-25",
+      "direct_or_derived": "direct",
+      "method": "Read the diagnostics examples, response interpretation table and token-count caveat.",
+      "limitations": [
+        "No diagnostics request was executed.",
+        "Diagnostic estimates may differ from actual usage accounting."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors the diagnostics guide."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "OpenAI's GPT-6 Astra system card change log says a GPT-6 Sol/Luna appendix was added on 2026-09-22; the appendix treats Sol and Luna as High capability in Cybersecurity and Biological/Chemical domains, and below High in AI Self-Improvement.",
+      "source_url": "https://deploymentsafety.openai.com/gpt-6-astra",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "GPT-6 Astra System Card, September 22, 2026 change log and GPT-6 Sol/Luna appendix",
+      "accessed_at": "2026-09-25",
+      "direct_or_derived": "direct",
+      "method": "Opened the Deployment Safety Hub system card, read the change log and the GPT-6 Sol/Luna appendix.",
+      "limitations": [
+        "OpenAI is the system-card author and evaluated its own models.",
+        "No independent audit or reproduction was used for this claim."
+      ],
+      "conflict_of_interest": [
+        "OpenAI develops and deploys the evaluated models."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "OpenAI's benchmark and cost-efficiency comparisons for Sol and Luna are vendor-authored claims and are not used as independent proof that either model is generally superior to competing models.",
+      "source_url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Introducing GPT-6 Sol and Luna, benchmark sections",
+      "accessed_at": "2026-09-25",
+      "direct_or_derived": "derived",
+      "method": "Classified benchmark comparisons by source relationship and checked whether independent matching-condition reruns were available in the current evidence set.",
+      "limitations": [
+        "No benchmark was rerun by the newsroom.",
+        "Some competitor values are taken from public reports under potentially different harness and effort settings."
+      ],
+      "conflict_of_interest": [
+        "OpenAI develops and sells the models being compared."
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-26-sequential/20260925T220836Z-1491744/request.json and used publication_id 2026-09-26 with article_path var/runs/ai/2026-09-26-sequential/20260925T220836Z-1491744/staged-content/article.md, evidence_path var/runs/ai/2026-09-26-sequential/20260925T220836Z-1491744/evidence.json and no_publish_path var/runs/ai/2026-09-26-sequential/20260925T220836Z-1491744/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "openai-launch-post",
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "classification": "P1 selected-source path",
+        "note": "Opened OpenAI's September 22, 2026 Sol/Luna launch post. It documents lower GPT-6 API prices, ChatGPT Work/Codex and API availability, benchmark claims and prompt-caching improvements. Selected as a primary source for release fact, price direction and product framing, not as independent benchmark proof."
+      },
+      {
+        "channel": "openai-api-changelog",
+        "url": "https://developers.openai.com/api/docs/changelog",
+        "classification": "P1 selected-source path",
+        "note": "Opened the OpenAI API changelog. The September 22 entry records `gpt-6-sol` and `gpt-6-luna`, Responses and Chat Completions support, and exact standard prices for input, cached input and output tokens for prompts up to 272K input tokens. September 8 and September 3 entries were also reviewed as context for Prompt Cache Diagnostics and GPT-6 Astra."
+      },
+      {
+        "channel": "openai-prompt-caching-announcement",
+        "url": "https://openai.com/index/better-prompt-caching-for-gpt-6/",
+        "classification": "P1 selected-source path",
+        "note": "Opened OpenAI's prompt caching announcement. It provides the engineering angle: higher default cache hit rates, 30-minute reusable shared prefixes, dashboard and diagnostics, explicit breakpoints, reasoning-effort updates that preserve cache and stable tool-list guidance."
+      },
+      {
+        "channel": "openai-api-prompt-caching-guide",
+        "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+        "classification": "P1 selected-source path",
+        "note": "Opened the API prompt caching guide. Used it to verify explicit cache breakpoints, `configuration_update` for reasoning effort, `tool_choice: none`, `allowed_tools`, stable tool definitions and append-only tool/instruction guidance."
+      },
+      {
+        "channel": "openai-api-cache-diagnostics-guide",
+        "url": "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
+        "classification": "P1 selected-source path",
+        "note": "Opened the prompt cache diagnostics guide. Used it to verify cache hit/miss result types, miss reasons such as `tools_changed`, missed-token estimates and the warning that usage fields measure actual cache reuse and billing."
+      },
+      {
+        "channel": "openai-deployment-safety-hub",
+        "url": "https://deploymentsafety.openai.com/gpt-6-astra",
+        "classification": "P1 selected-source path",
+        "note": "Opened the GPT-6 Astra system card and read the September 22 change log plus GPT-6 Sol/Luna appendix. Used it to bound safety claims and avoid treating low price as low risk."
+      },
+      {
+        "channel": "anthropic-source-review",
+        "url": "https://www.anthropic.com/claude-opus-5-5",
+        "classification": "P1 alternative-reviewed",
+        "note": "Reviewed Claude Opus 5.5 launch and docs signals. This was not selected because the immediately previous AI판 run for 2026-09-25 already produced a candidate on Opus 5.5's API/runtime migration contract."
+      },
+      {
+        "channel": "google-gemini-api-changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative-reviewed",
+        "note": "Reviewed recent Gemini API changes including September 22 Gemini 3.8 Flash TTS and September 17 Antigravity Agent 09-2026. Antigravity was recently covered in the 2026-09-23 AI판 run; TTS was real but less central to SW-engineering decision utility than GPT-6 Sol/Luna plus cache controls."
+      },
+      {
+        "channel": "qwen-deepseek-mistral-review",
+        "classification": "official-registry-and-release-note-review",
+        "note": "Checked official-style Qwen blog/model-registry search results, DeepSeek Hugging Face organization signals and Mistral changelog/release notes. No fresher model/API release in the discovery window beat the selected topic on combined novelty, source coverage and SW-engineering decision utility."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "OpenAI GPT-6 Sol and GPT-6 Luna plus GPT-6 prompt caching controls",
+        "urls": [
+          "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+          "https://developers.openai.com/api/docs/changelog",
+          "https://openai.com/index/better-prompt-caching-for-gpt-6/",
+          "https://developers.openai.com/api/docs/guides/prompt-caching",
+          "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
+          "https://deploymentsafety.openai.com/gpt-6-astra"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 9
+        },
+        "selected": true,
+        "reason": "Selected because it is a major same-week model/API release with multiple primary sources and a concrete engineering decision surface: price tier, cache-aware long-agent design, tool-list stability, reasoning effort updates and cache diagnostics. The article avoids independent benchmark superiority claims."
+      },
+      {
+        "name": "Anthropic Claude Opus 5.5",
+        "urls": [
+          "https://www.anthropic.com/claude-opus-5-5",
+          "https://platform.claude.com/docs/en/models/overview",
+          "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "A high-scoring topic, but the 2026-09-25 AI판 run already produced a publish candidate centered on Opus 5.5's always-on adaptive thinking, preserved thinking and tool/runtime migration. Repeating it the next day would be duplicative unless a new primary source changed the conclusion."
+      },
+      {
+        "name": "Google Gemini 3.8 Flash TTS and Voices endpoint GA",
+        "urls": [
+          "https://ai.google.dev/gemini-api/docs/changelog"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 2,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "Official changelog confirms a new audio/TTS release, voices endpoint, voice design and consent-verified voice replication. It did not reach the selection threshold because the available review set had weaker directly opened source depth and lower immediate SW-engineering decision utility than the selected GPT-6 cache/runtime topic."
+      },
+      {
+        "name": "Google Antigravity Agent 09-2026",
+        "urls": [
+          "https://ai.google.dev/gemini-api/docs/changelog"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "Strong source profile, but already covered by the 2026-09-23 AI판 run as a coding-agent runtime contract change. Not selected to avoid near-duplicate coverage."
+      },
+      {
+        "name": "Mistral September 2026 product and changelog updates",
+        "urls": [
+          "https://docs.mistral.ai/resources/release-notes",
+          "https://docs.mistral.ai/resources/changelogs"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "Recent official updates were mostly product experience, OCR or earlier model releases rather than a fresh frontier model or developer-runtime change in the current window."
+      },
+      {
+        "name": "DeepSeek recent Hugging Face model registry updates",
+        "urls": [
+          "https://huggingface.co/deepseek-ai/models"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "The registry showed recent activity and older V4.1/V4 model artifacts, but the current review did not find a same-window official technical report or release note strong enough to support an E2 central claim."
+      }
+    ]
+  },
+  "reproducibility_details": {
+    "status": "R1",
+    "reason": "Official documents describe model IDs, prices, prompt caching behavior, cache diagnostics and safety evaluation summaries, but no API call, cache trace, billing record or benchmark rerun was executed in this turn.",
+    "not_reproduced": [
+      "API availability for the newsroom account",
+      "Actual cache hit rate, latency and billing deltas",
+      "Prompt cache diagnostics response payloads",
+      "OpenAI benchmark scores or cost-per-task comparisons"
+    ]
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "publication_id": "2026-09-26",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions": [
+      "decision is publish-candidate",
+      "central claim evidence ceiling is E2 or higher",
+      "selection total is at least 7",
+      "at least two primary source URLs support the central claim",
+      "article frontmatter contains only edition, decision, title, date, subject, summary, evidence_ceiling, reproducibility and conflicts exactly once",
+      "article and evidence share publication_id, central claim, evidence level and source URLs",
+      "claim-source ledger, conflicts and reproducibility details are present",
+      "korean-writing-baseline-v1 and ai-technical-blog-v2 style checks pass",
+      "route duplicate check for /ai/2026-09-26/ passes",
+      "artifact hash, site test and production build pass before materialization",
+      "automatic materialization writes only content/ai/2026-09-26/article.md, decisions/ai/2026-09-26/evidence.json and decisions/ai/2026-09-26/release.json",
+      "final publication uses fast-forward commit and push only, deploys only after deterministic checks, and verifies GitHub Pages URL title and publication ID"
+    ],
+    "current_turn_actions": [
+      "Created only the requested staged article and evidence files under var/runs/ai/2026-09-26-sequential/20260925T220836Z-1491744.",
+      "Did not modify content/, decisions/, docs/, editions/, scripts/, prompts/, site/, .coco-agents/, schedule, inbox or Git state.",
+      "Did not commit, push, deploy, materialize or run post-publication review."
+    ]
+  }
+}
