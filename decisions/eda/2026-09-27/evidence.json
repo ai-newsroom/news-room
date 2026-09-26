@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-27",
+  "date": "2026-09-27",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-27-sequential/20260926T221846Z-1513180/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-09-27-sequential/20260926T221846Z-1513180/evidence.json",
+  "no_publish_path": "var/runs/eda/2026-09-27-sequential/20260926T221846Z-1513180/no-publish.json",
+  "subject": "ETH Zurich EZ130 8T v1.1 open standard-cell library for IHP SG13G2, arXiv:2609.29965v1 and public library archive dated 2026-09-25",
+  "title": "EZ130 8T 공개는 표준셀 라이브러리 수업을 실제 tapeout flow로 잇습니다",
+  "summary": "ETH Zurich 연구진과 학생들이 IHP 130nm SG13G2 공정용 8-track 표준셀 라이브러리 EZ130 8T v1.1을 Apache 2.0으로 공개했습니다. 이 공개는 표준셀을 layout에서 LIB·LEF·GDSII·Verilog까지 만들어 합성·배치배선 flow에 넣는 과정을 공개 artifact로 남겼다는 점이 중요합니다. 면적과 에너지 개선 수치는 저자들이 상용 도구와 제한된 benchmark에서 보고한 결과이며, 편집국이 재실행하지는 않았습니다.",
+  "central_claim": "EZ130 8T v1.1은 IHP SG13G2용 표준셀 라이브러리를 공개 파일과 논문 평가 조건으로 함께 제시해, 표준셀 설계 교육을 실제 합성·배치배선·검증 flow로 연결하는 공개 EDA artifact를 제공합니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "논문과 배포물은 Cadence가 설계와 characterization에 필요한 라이선스를 제공했다고 밝힙니다",
+    "편집국의 사전 briefing, 제공받은 계정·라이선스·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다"
+  ],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 9,
+    "threshold": 7,
+    "rationale": "EZ130 8T는 IHP SG13G2용 표준셀을 GDS, LEF, LIB, Verilog, CDL, datasheet와 함께 공개해 RTL-to-GDS flow의 cell-library 경계를 직접 확인할 수 있게 합니다. 논문은 cell 구성, benchmark, corner, 비교 library revision과 일부 post-layout 조건을 공개했습니다. 다만 성능 수치 재현에는 상용 EDA 도구와 원 benchmark flow가 필요하고 편집국이 재실행하지 않아 재현성 점수는 1점으로 제한했습니다."
+  },
+  "selection": {
+    "total": 9,
+    "threshold": 7,
+    "central_claim_minimum": "E2",
+    "source_url_minimum": 2,
+    "passed": true
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.29965",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://iip.ethz.ch/ez-library/ihp130-8t.html",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.29965",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2609.29965",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://iip.ethz.ch/ez-library/ihp130-8t.html",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://github.com/IHP-GmbH/IHP-Open-PDK",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://arxiv.org/abs/2609.29965",
+    "https://arxiv.org/html/2609.29965",
+    "https://iip.ethz.ch/ez-library.html",
+    "https://iip.ethz.ch/ez-library/ihp130-8t.html",
+    "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+    "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_tt_1p20v_25c.pdf",
+    "https://github.com/IHP-GmbH/IHP-Open-PDK",
+    "https://www.apache.org/licenses/LICENSE-2.0"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "EZ130 8T v1.1은 IHP SG13G2용 8-track 공개 표준셀 라이브러리이며 220개 cell을 담습니다.",
+      "source_url": "https://arxiv.org/html/2609.29965",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.29965v1, submitted 2026-09-24",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Abstract, Introduction, Technical Specifications, Conclusions sections에서 cell 수, IHP SG13G2, 8-track, 공개 library 설명을 확인했습니다.",
+      "limitations": [
+        "논문은 저자 보고 결과입니다.",
+        "편집국은 library를 실제 EDA flow에 넣어 재실행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "논문은 Cadence가 라이선스를 제공했다고 밝힙니다"
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "ETH Zurich 배포 페이지는 EZ130 8T v1.1 파일과 datasheet를 제공하고 Apache 2.0 license 조건을 명시합니다.",
+      "source_url": "https://iip.ethz.ch/ez-library/ihp130-8t.html",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "EZ130 8T page, canonical URL, observed 2026-09-26",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Overview와 Download sections에서 220 cells, IHP 130nm open SG13G2 PDK, v1.1 download, datasheet, Apache 2.0 license를 확인했습니다.",
+      "limitations": [
+        "기관 배포 페이지이며 독립 검증은 아닙니다.",
+        "페이지의 33% lower area and energy 문구는 상세 조건을 arXiv 논문으로 되돌려 확인해야 합니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence license 제공 감사 표기가 있습니다"
+      ]
+    },
+    {
+      "claim_id": "C1",
+      "claim": "EZ130 8T v1.1 archive는 cdl, gds, verilog, lef, lib, doc 디렉터리와 TT/FF/SS LIB 및 datasheet 파일을 포함합니다.",
+      "source_url": "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "ez130_8t_v1p1.zip, Last-Modified 2026-09-25 06:41:03 UTC, Content-Length 6192012",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "HTTP HEAD와 zip file listing을 확인했습니다. 목록에는 ez130_8t.cdl, ez130_8t.gds, ez130_8t.v, ez130_8t.lef, ez130_8t_tt_1p20v_25c.lib, ez130_8t_ff_1p32v_m40c.lib, ez130_8t_ss_1p08v_125c.lib, datasheet PDF가 포함됐습니다.",
+      "limitations": [
+        "편집국은 파일 내용을 EDA 도구로 실행하지 않았습니다.",
+        "zip 파일에 전체 benchmark script가 포함된 것은 확인하지 못했습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "논문은 VLSI 5 수업에서 학생들이 schematic과 layout을 만들고 Cadence Liberate, Cadence Abstract Generator, Synopsys DC, Cadence Innovus, Siemens Calibre, Siemens QuestaSim을 써서 표준셀을 characterization, 합성, 배치배선, 물리 검증, 기능 검증에 연결했다고 설명합니다.",
+      "source_url": "https://arxiv.org/html/2609.29965",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.29965v1, Sections II-B and II-C",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Course Organization과 Course Project sections에서 tool chain과 student project 절차를 확인했습니다.",
+      "limitations": [
+        "상용 도구 license와 설정이 있어 일반 독자가 같은 flow를 즉시 재현하기 어렵습니다.",
+        "상세 scripts 전체가 논문 본문에 공개되지는 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "논문은 Cadence가 라이선스를 제공했다고 밝힙니다"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "배포 archive README와 release note는 EZ130 8T v1.1이 첫 공개 release이고 lecturer optimization 뒤 220개 cell을 포함한다고 적습니다.",
+      "source_url": "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "ReleaseNotes.txt: Technology SG13G2, Library EZ130 8T, Revision v1.1, Date 24 September 2026",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "zip 내부 README와 doc/ReleaseNotes.txt를 읽어 version, release date, first public release, 220 cells를 확인했습니다.",
+      "limitations": [
+        "release note는 배포자가 작성한 원문입니다.",
+        "편집국은 모든 cell의 layout과 timing table을 감사하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence license 제공 감사 표기가 있습니다"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "논문은 8x8 matrix-vector multiplier post-layout 평가에서 EZ130 8T v1.1이 SG13G2 R0.1.4 대비 cell area 0.92mm2 대 1.42mm2, energy 0.77nJ/MVP 대 1.27nJ/MVP, clock period 5.05ns 대 4.89ns라고 보고합니다.",
+      "source_url": "https://arxiv.org/html/2609.29965",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2609.29965v1, Table II and Section III-D",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Place-and-Route Results table and discussion에서 수치, 50% density, 100ps clock sweep, TT/FF/SS corner, energy stimulus 조건을 확인했습니다.",
+      "limitations": [
+        "저자 보고 결과이며 독립 재현이 아닙니다.",
+        "상용 EDA 도구와 benchmark setup이 필요합니다.",
+        "다른 design, 공정, signoff 조건으로 일반화할 수 없습니다."
+      ],
+      "conflict_of_interest": [
+        "논문은 Cadence가 라이선스를 제공했다고 밝힙니다"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "ETH 배포 페이지는 EZ130 8T가 SG13G2 PDK 기본 표준셀 library보다 낮은 area와 energy를 쓴다고 설명하고, 자세한 비교는 arXiv paper로 연결합니다.",
+      "source_url": "https://iip.ethz.ch/ez-library/ihp130-8t.html",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "EZ130 8T page, observed 2026-09-26",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Overview paragraph에서 area and energy claim과 arXiv paper link를 확인했습니다.",
+      "limitations": [
+        "페이지의 축약 수치는 조건이 짧으므로 논문 조건과 함께만 사용했습니다.",
+        "독립 benchmark가 아닙니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence license 제공 감사 표기가 있습니다"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "배포 archive는 Apache License 2.0 전문, NOTICE, IHP Open PDK 포함 사실, Cadence Liberate characterization 사용 사실을 포함합니다.",
+      "source_url": "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "ez130_8t_v1p1.zip LICENSE and NOTICE",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "zip 내부 LICENSE와 NOTICE를 읽어 Apache 2.0, IHP PDK authors file inclusion, Cadence Liberate characterization text를 확인했습니다.",
+      "limitations": [
+        "license 해석은 법률 자문이 아닙니다.",
+        "PDK와 EDA 도구 license는 별도 확인이 필요합니다."
+      ],
+      "conflict_of_interest": [
+        "Cadence Liberate 사용 및 Cadence license 제공 감사 표기가 있습니다"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "IHP Open PDK는 SG13G2 관련 공개 PDK 출처로 논문과 ETH 페이지가 연결하는 원문입니다.",
+      "source_url": "https://github.com/IHP-GmbH/IHP-Open-PDK",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub repository observed 2026-09-26",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "논문 reference와 ETH 배포 페이지의 IHP open SG13G2 PDK link를 확인했습니다.",
+      "limitations": [
+        "편집국은 PDK와 EZ130 8T를 조합해 tool run을 수행하지 않았습니다."
+      ],
+      "conflict_of_interest": [
+        "없음"
+      ]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R1",
+    "public_artifacts": [
+      "https://iip.ethz.ch/ez-library/ihp130-8t.html",
+      "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+      "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_tt_1p20v_25c.pdf",
+      "https://github.com/IHP-GmbH/IHP-Open-PDK"
+    ],
+    "archive_observation": {
+      "url": "https://iis-people.ee.ethz.ch/~iisdatasets/iip/ezlib/ihp130_8t/v1p1/ez130_8t_v1p1.zip",
+      "last_modified": "2026-09-25 06:41:03 UTC",
+      "content_length": 6192012,
+      "file_count": 25,
+      "observed_top_level_files": [
+        "ez130_8t_v1p1/cdl/ez130_8t.cdl",
+        "ez130_8t_v1p1/gds/ez130_8t.gds",
+        "ez130_8t_v1p1/verilog/ez130_8t.v",
+        "ez130_8t_v1p1/verilog/ez130_8t_pwr.v",
+        "ez130_8t_v1p1/lef/ez130_8t.lef",
+        "ez130_8t_v1p1/lib/ez130_8t_tt_1p20v_25c.lib",
+        "ez130_8t_v1p1/lib/ez130_8t_ff_1p32v_m40c.lib",
+        "ez130_8t_v1p1/lib/ez130_8t_ss_1p08v_125c.lib",
+        "ez130_8t_v1p1/doc/ReleaseNotes.txt"
+      ]
+    },
+    "not_reproduced_by_editor": true,
+    "why_not_R2": [
+      "논문 성능 수치를 재현하는 전체 script와 log가 확인되지 않았습니다.",
+      "논문 평가에는 Synopsys DC, Cadence Innovus, Cadence Liberate, Siemens Calibre, Siemens QuestaSim 같은 상용 도구와 license가 필요합니다.",
+      "편집국은 공개 archive를 실제 합성·배치배선 flow에 넣어 실행하지 않았습니다."
+    ]
+  },
+  "conflict_of_interest": {
+    "declared": [
+      "논문 thanks와 README는 Cadence가 EZ130 8T 설계와 characterization을 위한 license를 제공했다고 밝힙니다.",
+      "NOTICE는 characterization이 Cadence Liberate Library Characterization Platform으로 수행됐다고 적습니다."
+    ],
+    "editorial": [
+      "편집국의 사전 briefing, 제공받은 계정·라이선스·hardware, 후원, 광고, NDA 또는 embargo는 없었습니다."
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "name": "arXiv cs.AR recent submissions",
+        "url": "https://arxiv.org/list/cs.AR/recent",
+        "finding": "2026-09-24~25 recent list에서 EZ130 8T 논문, word-level PDR with LLM guidance, GRADE-RTL, AgenticSizing, WaveletECO 등을 확인했습니다."
+      },
+      {
+        "name": "ETH Zurich EZ library page",
+        "url": "https://iip.ethz.ch/ez-library/ihp130-8t.html",
+        "finding": "EZ130 8T v1.1 파일, datasheet, Apache 2.0 license, IHP SG13G2 연결, tapeout 사용 사실을 확인했습니다."
+      },
+      {
+        "name": "Cadence ChipStack RTL Generation Agent announcement",
+        "url": "https://newsroom.cadence.com/press-releases/press-release-details/2026/Cadence-Expands-ChipStack-AI-Super-Agent-with-a-New-Agent-for-RTL-Generation-and-Early-PPA-Optimization/default.aspx",
+        "finding": "2026-09-22 발표와 product brief를 확인했지만 공개 artifact나 독립 기술 근거가 부족해 성능 중심 기사는 보류했습니다."
+      },
+      {
+        "name": "Siemens and TSMC OIP 2026 DRC-fix agent announcement",
+        "url": "https://news.siemens.com/ja-jp/siemens-tsmc-oip-ecosystem-forum-2026/",
+        "finding": "2026-09-23 발표에서 Calibre, Aprisa AI, Solido Fuse 기반 DRC-fix workflow를 확인했지만 구체 release note, manual, benchmark artifact가 부족했습니다."
+      },
+      {
+        "name": "Siemens EDA blog index",
+        "url": "https://blogs.sw.siemens.com/eda/",
+        "finding": "2026-09-24 PCB manufacturing handoff와 2026-09-02 Innovator3D IC release 2604.0004 신호를 확인했지만 중심 분석용 두 원문과 공개 조건이 부족했습니다."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Cadence ChipStack AI Super Agent RTL Generation Agent",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "공식 발표와 product brief는 agent 범위와 vendor claim을 확인하게 해 주지만, RTL 생성 결과를 검증할 공개 artifact와 재현 가능한 benchmark가 없어 중심 주장 E2 기준을 넘기 어렵습니다."
+      },
+      {
+        "subject": "Siemens and TSMC AI-powered DRC-fix workflow",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "DRC fixing flow의 설계 영향은 크지만 현재 공개 자료는 발표와 보도자료성 반복이 중심입니다. manual, release note, example deck, benchmark log가 없어 자동 기사로 확대하지 않았습니다."
+      },
+      {
+        "subject": "Enhancing Word-Level Property Directed Reachability with LLM-Driven Semantic Guidance",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "Formal verification 방향의 신호는 좋지만 공개 코드나 benchmark artifact를 확인하지 못해 E2 기사 후보로 삼지 않았습니다."
+      },
+      {
+        "subject": "GRADE-RTL: Evaluating LLM-Generated RTL Beyond Compilation",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "decision": "rejected",
+        "reason": "LLM RTL 평가 주제는 최근 기사들과 겹치고, 공개 artifact가 확인되지 않아 새 기사 기준을 넘지 못했습니다."
+      },
+      {
+        "subject": "AgenticSizing analog circuit sizing framework",
+        "scores": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "decision": "rejected",
+        "reason": "아날로그 sizing agent 신호는 확인했지만 공개 artifact와 평가 조건이 부족하고 같은 날 EZ130 8T보다 실무 검증성이 낮았습니다."
+      },
+      {
+        "subject": "WaveletECO closed-loop physical ECO platform",
+        "scores": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 5
+        },
+        "decision": "rejected",
+        "reason": "Physical ECO 주제는 EDA판 적합성이 있지만 공개 코드나 flow artifact를 확인하지 못했습니다."
+      }
+    ],
+    "selected": {
+      "subject": "EZ130 8T v1.1 open standard-cell library for IHP SG13G2",
+      "reason": "논문과 공개 배포물, datasheet, license, IHP PDK 연결이 서로 다른 원문으로 확인됐고, 실제 RTL-to-GDS flow의 cell-library interface에 영향을 주는 공개 artifact입니다. 최근 EDA 기사에서 다룬 LLM RTL agent, PSS, cocotb, SpecLens, ChipMEM과 중복되지 않습니다."
+    }
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
