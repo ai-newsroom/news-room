@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-27",
+  "date": "2026-09-27",
+  "subject": "Qwen-Image-2.1, released 2026-09-20",
+  "central_claim": "Qwen-Image-2.1 is a publishable AI engineering topic because official Qwen sources and public model artifacts support an E2/R2 claim: Qwen released a 7B visual generation model that unifies text-to-image generation, image editing and transparent RGBA output in one Diffusers pipeline, while publishing weights, code, prompt rewriting checkpoints and runtime-serving paths. The article does not claim independent proof that Qwen-Image-2.1 is superior to competing image models.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "Qwen develops and distributes Qwen-Image-2.1, the GitHub repository, Hugging Face model card and cited checkpoints.",
+    "No vendor briefing, account, credit, hardware, sponsorship, advertising relationship, NDA or embargo was used."
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The release affects concrete engineering decisions for image-generation products: whether one public-weight model can cover text-to-image, image editing, multi-reference composition and transparent RGBA assets; which runtime path to test; and whether Qwen Research License terms fit deployment plans. Public code, weights and model metadata make the center claim verifiable without relying on social media or vendor benchmark rankings."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "Qwen-Image-2.1 changes the integration surface for image-generation products by putting text-to-image generation, image editing, multiple reference images and transparent RGBA output behind one public-weight pipeline, with documented architecture, weights and serving paths; teams still need their own quality, latency and license checks before production deployment.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://github.com/QwenLM/Qwen-Image-2.1",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen-Image-2.1",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://qwen.ai/blog?id=qwen-image-2.1",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-T2I",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-I2I",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Qwen released Qwen-Image-2.1 on 2026-09-20 and states that weights are available on Hugging Face and ModelScope.",
+      "source_url": "https://github.com/QwenLM/Qwen-Image-2.1",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub repository QwenLM/Qwen-Image-2.1 main commit fb7ae1d1f9611cd91524d03c53c5246b36ac8577",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Qwen GitHub repository and read the News and Introduction sections; fixed the public main branch HEAD with git ls-remote.",
+      "limitations": [
+        "ModelScope mirror was not independently executed.",
+        "Qwen is the release author and model developer."
+      ],
+      "conflict_of_interest": [
+        "Qwen develops and distributes the cited model."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Qwen-Image-2.1 provides text-to-image generation, single-image editing, multiple-reference editing and transparent RGBA generation examples through the same `QwenImage21Pipeline`.",
+      "source_url": "https://github.com/QwenLM/Qwen-Image-2.1",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub repository QwenLM/Qwen-Image-2.1 main commit fb7ae1d1f9611cd91524d03c53c5246b36ac8577",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Read the Quick Start sections for Text-to-Image, Image Editing, Multiple Reference Images and Transparent Image Generation.",
+      "limitations": [
+        "No GPU inference was run in this turn.",
+        "Examples demonstrate documented usage, not measured production reliability."
+      ],
+      "conflict_of_interest": [
+        "Qwen authors the examples."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The Qwen-Image-2.1 architecture is described as a 32-layer 7B single-stream DiT with a Qwen3-VL 8B text encoder, 64-channel RGBA VAE and Flow Matching scheduler.",
+      "source_url": "https://github.com/QwenLM/Qwen-Image-2.1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "GitHub repository QwenLM/Qwen-Image-2.1 main commit fb7ae1d1f9611cd91524d03c53c5246b36ac8577",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Read the Architecture section of the official repository README.",
+      "limitations": [
+        "Training data composition and complete evaluation logs are not supplied in the opened source.",
+        "Architecture description is vendor-authored."
+      ],
+      "conflict_of_interest": [
+        "Qwen describes its own model architecture."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Qwen says mixed-granularity attention enables efficient prefix KV cache reuse: input images and text instructions are computed once at the first denoising step and cached for later steps.",
+      "source_url": "https://github.com/QwenLM/Qwen-Image-2.1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "GitHub repository QwenLM/Qwen-Image-2.1 main commit fb7ae1d1f9611cd91524d03c53c5246b36ac8577",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Read the Prefix KV Cache and Architecture sections.",
+      "limitations": [
+        "No latency or memory benchmark was independently reproduced.",
+        "The magnitude of speedup depends on runtime, GPU, image size, number of reference images and batch shape."
+      ],
+      "conflict_of_interest": [
+        "Qwen authors the technical explanation."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "The Hugging Face model card lists `Qwen/Qwen-Image-2.1` as safetensors, BF16, 7B params, with license `qwen-research`.",
+      "source_url": "https://huggingface.co/Qwen/Qwen-Image-2.1",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Hugging Face model repository main revision 790c92633540aa0cb11d9abf19eb46d861714758",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Hugging Face model card and fixed the repository HEAD with git ls-remote.",
+      "limitations": [
+        "License implications require separate legal review.",
+        "The model card does not prove suitability for any particular commercial workload."
+      ],
+      "conflict_of_interest": [
+        "Qwen controls the Hugging Face organization page."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Qwen provides prompt rewriting checkpoints for text-to-image and image editing, and documents Diffusers, vLLM-Omni and SGLang-Diffusion support paths.",
+      "source_url": "https://github.com/QwenLM/Qwen-Image-2.1",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub repository QwenLM/Qwen-Image-2.1 main commit fb7ae1d1f9611cd91524d03c53c5246b36ac8577; T2I checkpoint f3ed7985c788ad75b3ab7223e0c4c51e2a43545b; I2I checkpoint 72927bc08afc99b7888ceb7d7d51a12db3700bbd",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "direct",
+      "method": "Read the Prompt Rewriting, Inference with vLLM, Inference with SGLang and Community Support sections; fixed Hugging Face checkpoint HEAD revisions with git ls-remote.",
+      "limitations": [
+        "Runtime support claims were not verified by running Diffusers, vLLM-Omni or SGLang-Diffusion.",
+        "Performance depends on hardware and runtime versions."
+      ],
+      "conflict_of_interest": [
+        "Qwen curates the release README and checkpoint links."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "This article does not treat Qwen's quality claims or showcase examples as independent proof that Qwen-Image-2.1 is superior to competing image models.",
+      "source_url": "https://github.com/QwenLM/Qwen-Image-2.1",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Editorial source classification based on official repository, model card and artifact availability",
+      "accessed_at": "2026-09-26",
+      "direct_or_derived": "derived",
+      "method": "Classified vendor-authored quality claims separately from release facts, architecture descriptions and public artifacts.",
+      "limitations": [
+        "No independent image-quality benchmark or newsroom evaluation set was run.",
+        "No production workload latency or cost measurement was made."
+      ],
+      "conflict_of_interest": [
+        "Qwen is the source of the model release and quality framing."
+      ]
+    }
+  ],
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-27-sequential/20260926T220917Z-1510451/request.json and used publication_id 2026-09-27 with article_path var/runs/ai/2026-09-27-sequential/20260926T220917Z-1510451/staged-content/article.md, evidence_path var/runs/ai/2026-09-27-sequential/20260926T220917Z-1510451/evidence.json and no_publish_path var/runs/ai/2026-09-27-sequential/20260926T220917Z-1510451/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "qwen-official-github",
+        "url": "https://github.com/QwenLM/Qwen-Image-2.1",
+        "classification": "P1/P2 selected-source path",
+        "note": "Opened the official Qwen-Image-2.1 GitHub repository. It supplied release date, model intent, architecture, quick start, prompt rewriting, Diffusers, vLLM-Omni, SGLang-Diffusion, hardware and license references. Fixed main HEAD at fb7ae1d1f9611cd91524d03c53c5246b36ac8577."
+      },
+      {
+        "channel": "qwen-huggingface-model-card",
+        "url": "https://huggingface.co/Qwen/Qwen-Image-2.1",
+        "classification": "P2 selected-source path",
+        "note": "Opened the official Hugging Face model card. It confirmed tags for Text-to-Image, Diffusers, Safetensors, QwenImage21Pipeline, image-generation, image-editing and rgba, and metadata for license qwen-research, 7B params and BF16 tensor type. Fixed main revision at 790c92633540aa0cb11d9abf19eb46d861714758."
+      },
+      {
+        "channel": "qwen-official-blog",
+        "url": "https://qwen.ai/blog?id=qwen-image-2.1",
+        "classification": "P1 selected-source path",
+        "note": "Discovered the official Qwen blog path through search and repository links. The page was JavaScript-rendered in the browser extractor, so article facts did not rely on unparsed page text beyond using the URL as an official release path."
+      },
+      {
+        "channel": "qwen-prompt-rewrite-checkpoints",
+        "urls": [
+          "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-T2I",
+          "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-I2I"
+        ],
+        "classification": "P2 selected-source path",
+        "note": "Fixed prompt rewriting checkpoint revisions with git ls-remote: T2I f3ed7985c788ad75b3ab7223e0c4c51e2a43545b and I2I 72927bc08afc99b7888ceb7d7d51a12db3700bbd."
+      },
+      {
+        "channel": "openai-source-review",
+        "urls": [
+          "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+          "https://developers.openai.com/api/docs/changelog",
+          "https://deploymentsafety.openai.com/gpt-6-astra"
+        ],
+        "classification": "P1 alternative-reviewed",
+        "note": "Reviewed GPT-6 Sol/Luna and GPT-6 Astra official sources. They are major AI model/API signals, but the immediately previous 2026-09-26 AI run already produced a Sol/Luna prompt-caching candidate; repeating it for 2026-09-27 would be duplicative."
+      },
+      {
+        "channel": "google-gemini-api-changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative-reviewed",
+        "note": "Reviewed recent Gemini API changes, including September 22 Gemini 3.8 Flash TTS and the Voices endpoint, September 18 Gemini 2.5 access update, September 17 Antigravity Agent 09-2026 and September 15 Gemini 3.8 Live GA."
+      },
+      {
+        "channel": "anthropic-system-cards-and-news",
+        "urls": [
+          "https://www.anthropic.com/system-cards",
+          "https://www.anthropic.com/news"
+        ],
+        "classification": "P1 alternative-reviewed",
+        "note": "Reviewed Anthropic system-card and newsroom signals, including September 2026 Claude Opus 5.5 and Fable/Mythos 5.1 entries plus safety and threat-intelligence posts. Opus 5.5 had already been covered by the 2026-09-25 AI run."
+      },
+      {
+        "channel": "mistral-deepseek-vllm-review",
+        "urls": [
+          "https://docs.mistral.ai/resources/changelogs",
+          "https://huggingface.co/deepseek-ai/models",
+          "https://github.com/vllm-project/vllm/releases"
+        ],
+        "classification": "official-registry-and-release-note-review",
+        "note": "Reviewed Mistral changelog, DeepSeek Hugging Face registry and vLLM release notes. These supplied real signals but did not outrank the selected Qwen topic on combined artifact availability, novelty in the current AI판 sequence and direct product-engineering utility."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Qwen-Image-2.1",
+        "urls": [
+          "https://github.com/QwenLM/Qwen-Image-2.1",
+          "https://huggingface.co/Qwen/Qwen-Image-2.1",
+          "https://qwen.ai/blog?id=qwen-image-2.1",
+          "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-T2I",
+          "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-I2I"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 9
+        },
+        "selected": true,
+        "reason": "Selected because the release combines a recent model announcement with public code, weights, architecture notes, prompt rewriting checkpoints and serving paths. It gives engineers a concrete decision surface: unified generation/editing/RGBA workflow, runtime choice, GPU validation and license review. The article avoids unsupported superiority claims."
+      },
+      {
+        "name": "OpenAI GPT-6 Sol and GPT-6 Luna plus prompt caching controls",
+        "urls": [
+          "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+          "https://developers.openai.com/api/docs/changelog",
+          "https://deploymentsafety.openai.com/gpt-6-astra"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "Major model/API release with strong official source coverage, but not selected because the 2026-09-26 AI판 run already staged a GPT-6 Sol/Luna prompt-caching article. A second consecutive article would add less reader value than the Qwen public-weight image release."
+      },
+      {
+        "name": "Google Gemini 3.8 Flash TTS and Voices endpoint GA",
+        "urls": [
+          "https://ai.google.dev/gemini-api/docs/changelog"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 2,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "Official changelog confirms a new TTS release, voices endpoint, voice design and consent-verified voice replication. It did not reach the threshold because the reviewed source set had weaker directly opened technical artifact depth and lower immediate SW-engineering decision utility than Qwen-Image-2.1."
+      },
+      {
+        "name": "Google Antigravity Agent 09-2026",
+        "urls": [
+          "https://ai.google.dev/gemini-api/docs/changelog"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "Strong source profile, but already covered by the 2026-09-23 AI판 run as a coding-agent runtime contract change. Not selected to avoid near-duplicate coverage."
+      },
+      {
+        "name": "Anthropic Claude Opus 5.5 and September 2026 system-card updates",
+        "urls": [
+          "https://www.anthropic.com/system-cards",
+          "https://www.anthropic.com/news"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "A high-scoring frontier-lab topic, but the 2026-09-25 AI판 run already produced a candidate centered on Opus 5.5's API/runtime migration contract. Repeating it would be duplicative without a new primary source changing the conclusion."
+      },
+      {
+        "name": "vLLM v0.29.0",
+        "urls": [
+          "https://github.com/vllm-project/vllm/releases"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "The release is important for inference infrastructure and Model Runner V2, but the same discovery pass found a fresh model release where vLLM support is part of the integration story. Qwen-Image-2.1 had broader article value for this slot."
+      },
+      {
+        "name": "Mistral September 2026 product and changelog updates",
+        "urls": [
+          "https://docs.mistral.ai/resources/changelogs",
+          "https://docs.mistral.ai/resources/release-notes"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "Recent official updates were mostly product experience, OCR or earlier model releases rather than a fresh frontier model or developer-runtime change in the current window."
+      },
+      {
+        "name": "DeepSeek recent Hugging Face model registry updates",
+        "urls": [
+          "https://huggingface.co/deepseek-ai/models"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "The registry showed recent activity and V4.1/V4 model artifacts, but this review did not find a same-window official technical report or release note strong enough to support an E2 central claim."
+      }
+    ]
+  },
+  "reproducibility_details": {
+    "status": "R2",
+    "reason": "Public GitHub code, Hugging Face weights, prompt rewriting checkpoints and usage examples are available. The newsroom did not run GPU inference, image-quality evaluation or serving benchmarks in this turn.",
+    "artifacts": [
+      {
+        "name": "QwenLM/Qwen-Image-2.1 GitHub repository",
+        "url": "https://github.com/QwenLM/Qwen-Image-2.1",
+        "revision": "fb7ae1d1f9611cd91524d03c53c5246b36ac8577"
+      },
+      {
+        "name": "Qwen/Qwen-Image-2.1 Hugging Face model",
+        "url": "https://huggingface.co/Qwen/Qwen-Image-2.1",
+        "revision": "790c92633540aa0cb11d9abf19eb46d861714758"
+      },
+      {
+        "name": "Qwen/Qwen-Image-2.1-PE-T2I prompt rewriting checkpoint",
+        "url": "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-T2I",
+        "revision": "f3ed7985c788ad75b3ab7223e0c4c51e2a43545b"
+      },
+      {
+        "name": "Qwen/Qwen-Image-2.1-PE-I2I prompt rewriting checkpoint",
+        "url": "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-I2I",
+        "revision": "72927bc08afc99b7888ceb7d7d51a12db3700bbd"
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "release_gate_notes": {
+    "required_automatic_checks": [
+      "ai-editorial-config",
+      "article-frontmatter-schema",
+      "selection-threshold",
+      "central-evidence-e2",
+      "korean-writing-baseline-v1",
+      "ai-technical-blog-v2",
+      "claim-source-ledger",
+      "publication-id-and-route-unique",
+      "artifact-hashes",
+      "site-tests-and-build"
+    ],
+    "status": [
+      "article frontmatter contains only edition, decision, title, date, subject, summary, evidence_ceiling, reproducibility and conflicts",
+      "selection total is 9 with threshold 7",
+      "central claim is E2 and supported by at least two different original-source URLs",
+      "claim-source ledger records source URL, source type, evidence grade, version or revision, access date, method, limitations and conflicts",
+      "conflicts are disclosed",
+      "automatic publication under ai-auto-publish-v1 still requires the outside sequential publisher to run deterministic checks for article schema, claim ledger, conflicts, style v2, publication ID, route duplication, artifact hash, full tests, site build, materialization to content/ai and decisions/ai, fast-forward commit and push, GitHub Pages success, and public URL title/publication-id verification"
+    ],
+    "candidate_generation_turn_scope": "This turn wrote only the requested article_path and evidence_path under var/runs. It did not modify content, decisions, docs, editions, scripts, prompts, site, inbox, schedule, Git, deployment or other editions."
+  }
+}
