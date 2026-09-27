@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-28",
+  "date": "2026-09-28",
+  "subject": "Anthropic Claude Opus 5.5, released 2026-09-22",
+  "central_claim": "Anthropic's 2026-09-22 Claude Opus 5.5 release is a publishable AI engineering topic because official Anthropic primary sources support a bounded E2/R1 claim: Opus 5.5 is positioned for long-running agentic coding and knowledge work, and its API contract changes always-on adaptive thinking, effort-based control, tool_choice behavior, computer-use toolset requirements, context/output limits and pricing. The article does not claim independent benchmark superiority over OpenAI, Google or previous Claude models.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "없음"
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "selection": {
+    "importance": 2,
+    "novelty": 1,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 8,
+    "threshold": 7,
+    "reason": "Claude Opus 5.5 is a recent frontier-lab model release with concrete API migration details that affect long-running coding agents and knowledge-work products. It is not Korea-specific, but Korean software teams using Claude API, Bedrock, Google Cloud or agent coding products would need to re-check thinking, effort, tool_choice, computer-use toolsets and cost traces before migration."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "Claude Opus 5.5 changes more than a model choice: for long-running coding and knowledge-work agents, Anthropic's official documents require teams to account for always-on adaptive thinking, effort-based control, tool_choice restrictions, computer-use toolset migration, 1M context, 128K output and revised token/cache pricing.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/claude-opus-5-5",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/models/overview",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Anthropic introduced Claude Opus 5.5 on 2026-09-22 as the first model in its Claude 5.5 family.",
+      "source_url": "https://www.anthropic.com/claude-opus-5-5",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Opus 5.5 launch page, 2026-09-22",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Anthropic launch page and checked the title, publication date and introductory release statement.",
+      "limitations": [
+        "Anthropic authors the launch page for its own model.",
+        "The page confirms release and vendor claims but does not independently verify model quality."
+      ],
+      "conflict_of_interest": [
+        "Anthropic develops and sells access to Claude Opus 5.5."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Claude Platform release notes list `claude-opus-5-5` as a model for long-running agentic coding and knowledge work, with 1M token context, 128K max output tokens and always-on adaptive thinking.",
+      "source_url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform release notes, 2026-09-22 entry",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Claude Platform release notes and read the September 22, 2026 Opus 5.5 entry.",
+      "limitations": [
+        "No API call was run to verify account-level availability or token limits.",
+        "The claim is bounded to documented platform behavior."
+      ],
+      "conflict_of_interest": [
+        "Anthropic controls the Claude Platform documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "For Claude Opus 5.5, Anthropic documents that `thinking` cannot be disabled or explicitly enabled; developers should omit the `thinking` field and control thinking depth with the `effort` parameter.",
+      "source_url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform release notes, 2026-09-22 API migration notes",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "Read the release-note bullet describing 400 errors for disabled or enabled thinking fields and the effort-parameter guidance.",
+      "limitations": [
+        "The behavior was not reproduced with live API requests.",
+        "The article does not infer quality or latency effects beyond the documented contract."
+      ],
+      "conflict_of_interest": [
+        "Anthropic documents the behavior of its own API."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Claude Opus 5.5 rejects `tool_choice` types `any` and `tool`, and computer use on the Claude API and Google Cloud requires `computer_toolset_20260801`; on Amazon Bedrock, `computer_20251124` remains supported.",
+      "source_url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform release notes, 2026-09-22 tool migration notes",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "Read the official release-note bullets for tool_choice and computer-use toolset behavior.",
+      "limitations": [
+        "No platform-specific request was executed on Claude API, Bedrock or Google Cloud.",
+        "The article treats this as migration guidance rather than a measured reliability improvement."
+      ],
+      "conflict_of_interest": [
+        "Anthropic publishes the migration guidance for its model."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "The Claude models overview describes Opus 5.5 as a model for long-running agentic coding and knowledge work and lists its API alias, cloud platform IDs, default effort, context window, max output, knowledge cutoff and retirement commitment.",
+      "source_url": "https://platform.claude.com/docs/en/models/overview",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform Models overview, accessed 2026-09-27",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "Opened the official model overview and read the current model comparison table.",
+      "limitations": [
+        "Model overview is documentation, not an independent benchmark.",
+        "The article does not rely on the overview for performance superiority claims."
+      ],
+      "conflict_of_interest": [
+        "Anthropic maintains the model overview."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Claude Platform pricing lists Opus 5.5 at $4 per million input tokens and $20 per million output tokens, with prompt cache writes and hits priced separately; it also notes that Claude 4.7 and later models use a newer tokenizer that can produce about 30% more tokens for the same text depending on workload.",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Claude Platform Pricing page, accessed 2026-09-27",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "Read the pricing table and additional tokenizer note on the official pricing page.",
+      "limitations": [
+        "Actual customer bills depend on tokenization, cache hit rates, effort, output length, platform and negotiated discounts.",
+        "No trace-based cost measurement was performed."
+      ],
+      "conflict_of_interest": [
+        "Anthropic sells access to Claude models and publishes the pricing page."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "Anthropic reports Opus 5.5 benchmark and early-tester results, but the article treats these as vendor-authored performance signals rather than independent evidence of general superiority.",
+      "source_url": "https://www.anthropic.com/claude-opus-5-5",
+      "source_type": "P1",
+      "evidence_grade": "E1",
+      "version": "Claude Opus 5.5 launch page, benchmark and tester sections",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "Read the benchmark table, footnotes and early-tester examples and restricted their use to context.",
+      "limitations": [
+        "Benchmark and customer examples are not editor-run or independently reproduced in this turn.",
+        "Some reported comparisons depend on effort, safeguards, platform and evaluator-specific harnesses."
+      ],
+      "conflict_of_interest": [
+        "Anthropic markets Claude Opus 5.5 and selected the presentation of benchmark and tester evidence."
+      ]
+    }
+  ],
+  "benchmark_and_reproducibility": {
+    "benchmarks_used": false,
+    "benchmark_notes": "The article mentions Anthropic's benchmark surfaces only as context for what Anthropic claims. It does not make an editorial claim that Opus 5.5 is generally superior to GPT-6 Astra, GPT-6 Sol, Claude Fable 5.1, Claude Opus 5 or other models.",
+    "reproducibility": "R1",
+    "reproducibility_notes": "Official launch, release-note, model-overview and pricing documents are public and inspectable. The model weights, training data, evaluation harnesses, production safeguards and live API behavior were not reproduced. No Claude API account, Bedrock deployment or Google Cloud endpoint was used."
+  },
+  "conflict_review": {
+    "declared": [
+      "없음"
+    ],
+    "source_conflicts": [
+      "Anthropic develops and sells Claude Opus 5.5 and authors the launch page, release notes, model overview and pricing documentation.",
+      "Other candidates reviewed included official source paths from OpenAI, Google, Mistral, vLLM, DeepSeek and Qwen."
+    ],
+    "access_conditions": [
+      "No vendor briefing, embargo, paid account, credits, hardware or private documentation were used.",
+      "Only public official documents, release notes, model docs, pricing pages, GitHub release pages and search-discovered primary paths were used."
+    ]
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions": [
+      "Article frontmatter contains exactly edition, decision, title, date, subject, summary, evidence_ceiling, reproducibility and conflicts.",
+      "Decision is publish-candidate.",
+      "Publication ID in evidence and request is 2026-09-28.",
+      "Central claim has evidence_ceiling E2 or higher.",
+      "At least two distinct primary-source URLs support the central claim.",
+      "Selection score is at least 7 across importance, novelty, verifiability, SW-engineer decision utility and Korean-reader relevance.",
+      "Claim-source ledger records source type, evidence grade, version, accessed_at, method, limitations and conflict_of_interest for each material claim.",
+      "Conflicts and access conditions are disclosed.",
+      "Reproducibility state is recorded.",
+      "Article follows korean-writing-baseline-v1 and ai-technical-blog-v2.",
+      "Route duplication, artifact hash, site test and production build are left for the sequential publisher's deterministic gate before materialization.",
+      "This candidate-preparation turn does not perform content materialization, commit, push or deployment; those external actions remain for the sequential publisher after deterministic validation."
+    ],
+    "status": "candidate-prepared; external content, commit, push and deployment actions not performed in this turn"
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-28-sequential/20260927T220914Z-1528558/request.json and used publication_id 2026-09-28 with article_path var/runs/ai/2026-09-28-sequential/20260927T220914Z-1528558/staged-content/article.md, evidence_path var/runs/ai/2026-09-28-sequential/20260927T220914Z-1528558/evidence.json and no_publish_path var/runs/ai/2026-09-28-sequential/20260927T220914Z-1528558/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "Anthropic launch page",
+        "url": "https://www.anthropic.com/claude-opus-5-5",
+        "classification": "P1 selected-source path",
+        "note": "Opened the official Claude Opus 5.5 page. It provides release date, positioning, benchmark and cost-efficiency claims, pricing comparison with Opus 5 and availability framing. Used for release fact and vendor-attributed performance context, not independent benchmark conclusions."
+      },
+      {
+        "channel": "Claude Platform release notes",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "classification": "P1 selected-source path",
+        "note": "Opened the official release notes and read the September 22, 2026 entry. This was the strongest source for model ID, 1M context, 128K output, always-on adaptive thinking, effort guidance, tool_choice restrictions, computer-use toolset migration, Fast mode and inline-tool beta context."
+      },
+      {
+        "channel": "Claude model overview and pricing docs",
+        "url": "https://platform.claude.com/docs/en/models/overview",
+        "classification": "P1 selected-source path",
+        "note": "Opened the model overview and pricing pages. They confirm model positioning, API and cloud aliases, context/output limits, default effort, retirement date, token prices, prompt cache prices and tokenizer note."
+      },
+      {
+        "channel": "OpenAI official review",
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "classification": "P1 alternative-source path",
+        "note": "Opened the GPT-6 Sol/Luna launch page, OpenAI API changelog, model catalog and GPT-6 Astra system card. These confirm a major same-week model/API release, but the current run history showed GPT-6 Sol/Luna and prompt caching already staged in a recent AI run, increasing duplicate risk for this publication slot."
+      },
+      {
+        "channel": "Google Gemini API changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative-source path",
+        "note": "Reviewed September entries including Gemini 3.8 Flash TTS/Flash-Lite TTS GA, Antigravity Agent 09-2026 and Gemini 2.5 access update. Antigravity had already been handled in recent AI output, and TTS GA was less directly useful to SW engineers than the Claude Opus 5.5 agent API migration surface."
+      },
+      {
+        "channel": "Mistral official changelog and release notes",
+        "url": "https://docs.mistral.ai/resources/changelogs",
+        "classification": "P1 alternative-source path",
+        "note": "Reviewed Mistral changelog and release-note surfaces. The visible current signal was mainly Vibe experience consolidation and earlier OCR/model updates; no fresher model/API/runtime topic beat Opus 5.5 on importance and decision utility."
+      },
+      {
+        "channel": "vLLM GitHub releases",
+        "url": "https://github.com/vllm-project/vllm/releases",
+        "classification": "P1/P2 alternative-source path",
+        "note": "Opened vLLM releases. v0.29.0 and v0.30.0 are strong implementation-backed runtime signals with Model Runner V2 and model support changes, but the public release was older in the window and more infrastructure-specific than the same-week frontier model API migration."
+      },
+      {
+        "channel": "Qwen and DeepSeek discovery",
+        "classification": "P1/P2 discovery review",
+        "note": "Searched official Qwen model/blog paths and DeepSeek GitHub/model-registry signals. Visible search results did not surface a fresh official Qwen or DeepSeek model release with stronger non-duplicate evidence than Claude Opus 5.5. Search snippets were used only to locate official paths."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search result snippets and general web results were used only to discover official primary-source URLs. Article facts and candidate scoring rely on opened official launch pages, platform docs, release notes, pricing pages and GitHub release pages."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "Anthropic Claude Opus 5.5",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "selected",
+        "reason": "Selected because it is a fresh frontier-lab model release with concrete API migration details across thinking, effort, tool_choice, computer-use toolsets, context/output limits and pricing. The article can make a bounded E2 claim using multiple Anthropic primary URLs without relying on independent performance superiority."
+      },
+      {
+        "subject": "OpenAI GPT-6 Sol and GPT-6 Luna model/API release",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Official launch, changelog, model catalog and system-card appendix support a strong E2 candidate. Not selected because local run history shows a recent 2026-09-24 AI candidate already centered on GPT-6 prompt caching, Sol and Luna; another Sol/Luna article would risk repeating the same release window instead of adding a new topic."
+      },
+      {
+        "subject": "Google Gemini 3.8 Flash TTS and Flash-Lite TTS GA",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The Gemini API changelog verifies a same-day TTS model and Voices endpoint GA, but it is more voice-product specific and less immediately useful for the AI판's SW-engineering model/API/runtime audience than Opus 5.5's agent API migration details."
+      },
+      {
+        "subject": "Google Gemini API Antigravity Agent 09-2026",
+        "importance": 1,
+        "novelty": 0,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The release note provides strong tool-contract migration evidence, but this exact Antigravity 09-2026 topic was already staged in a recent AI run. It failed the new-phase requirement for 2026-09-28."
+      },
+      {
+        "subject": "vLLM v0.29.0 and v0.30.0 runtime releases",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "The GitHub releases are artifact-backed and useful for serving engineers, especially Model Runner V2 and model support changes. Not selected because the major v0.29.0 release was earlier in the window and did not outrank a same-week frontier model release with direct API migration impact."
+      },
+      {
+        "subject": "Mistral Vibe experience consolidation and recent model changelog items",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "Official Mistral docs confirm recent product and model updates, but the visible September signal was mostly product-surface consolidation and earlier model entries. It did not provide a stronger E2 engineering center than Opus 5.5."
+      },
+      {
+        "subject": "DeepSeek GitHub and model registry signals",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Search surfaced active DeepSeek repository updates and discussions, but this pass did not find a fresh official model or API release with at least two primary URLs and a clear E2 center claim."
+      },
+      {
+        "subject": "Qwen official blog and model registry signals",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 5,
+        "decision": "not-selected",
+        "reason": "Qwen remained in discovery scope, including official blog and Hugging Face registry paths, but this run did not surface a fresh official Qwen release stronger than the Anthropic and OpenAI candidates."
+      },
+      {
+        "subject": "OpenAI API key governance updates",
+        "importance": 1,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The OpenAI API changelog verifies September organization/project API key controls and expiration governance. It is operationally useful but less AI-model specific and less significant than Opus 5.5 for the AI판 daily slot."
+      }
+    ]
+  }
+}
