@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-28",
+  "date": "2026-09-28",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-28-sequential/20260927T221711Z-1531095/staged-content/article.md",
+  "central_claim": "OpenSTA의 2026년 9월 4일 변경은 `write_path_spice`와 `write_gate_spice`가 여러 cell transistor-level subckt 파일을 직접 입력으로 받게 해, 타이밍 경로나 gate를 SPICE 시뮬레이션으로 넘기는 공개 디버그 flow의 사전 파일 병합 부담을 줄인다.",
+  "subject": "OpenSTA master commit ef17b3fd81404d685d33ec65e0354c122d701e4d, 2026-09-04 write_path_spice and write_gate_spice -lib_subckt_files change",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": ["없음"],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 1,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 1,
+    "total": 8,
+    "rationale": "변경 범위는 좁지만 STA 경로를 SPICE deck으로 넘기는 자동화 접점에 직접 영향을 준다. 공개 changelog와 source code로 인터페이스와 구현을 확인할 수 있고, commit을 고정해 재검사가 가능하다. 다만 성능·PPA·signoff correlation을 입증하는 자료는 없어 실무 유용성은 script 정비 수준으로 제한했다."
+  },
+  "source_urls": [
+    "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/doc/ChangeLog.md",
+    "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/spice/WriteSpice.tcl"
+  ],
+  "selection": {
+    "total": 8,
+    "threshold": 7
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/doc/ChangeLog.md",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/spice/WriteSpice.tcl",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/spice/WriteSpice.tcl",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenSTA changelog는 2026년 9월 4일 `write_path_spice`와 `write_gate_spice`의 `-lib_subckt_file`이 `-lib_subckt_files`로 바뀌었고 파일 하나 또는 목록을 받을 수 있다고 적었다.",
+      "source_url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/doc/ChangeLog.md",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenSTA master commit ef17b3fd81404d685d33ec65e0354c122d701e4d, ChangeLog entry dated 2026-09-04",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "공개 changelog의 해당 날짜 항목 확인",
+      "limitations": ["사용자-visible 변경 설명이며 성능·정확도 결과를 포함하지 않는다."],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "`write_path_spice` 구현은 plural 인자를 정의하고, 단수형 인자가 들어오면 deprecation warning을 낸 뒤 전달된 파일들을 순회해 readable 여부를 검사한다.",
+      "source_url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/spice/WriteSpice.tcl",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "OpenSTA master commit ef17b3fd81404d685d33ec65e0354c122d701e4d",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "공개 Tcl source의 command definition, parse_key_args, warning, foreach 파일 검사 경로 확인",
+      "limitations": ["편집국은 OpenSTA를 빌드하거나 실제 design에서 명령을 실행하지 않았다."],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "`write_gate_spice` 구현도 plural 인자를 정의하고, 단수형 인자는 warning과 함께 같은 목록 처리로 넘긴다.",
+      "source_url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/spice/WriteSpice.tcl",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "OpenSTA master commit ef17b3fd81404d685d33ec65e0354c122d701e4d",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "direct",
+      "method": "공개 Tcl source의 `write_gate_spice` command definition과 argument parsing 확인",
+      "limitations": ["편집국은 gate SPICE deck과 simulator log를 생성하지 않았다."],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "이번 변경은 타이밍 경로나 gate를 SPICE로 넘기는 script의 입력 처리 부담을 줄일 수 있지만, timing signoff 정확도나 PPA 개선을 입증하지는 않는다.",
+      "source_url": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenSTA/ef17b3fd81404d685d33ec65e0354c122d701e4d/doc/ChangeLog.md",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenSTA master commit ef17b3fd81404d685d33ec65e0354c122d701e4d",
+      "accessed_at": "2026-09-27",
+      "direct_or_derived": "derived",
+      "method": "C1-C3의 공개 변경 범위에서 편집 판단을 도출하고, 공개 원문에 없는 PPA·runtime·signoff correlation은 미확인으로 제한",
+      "limitations": ["실제 효과는 library 구성, PDK, simulator, design script에 따라 달라진다."],
+      "conflict_of_interest": ["없음"]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R2",
+    "public_artifacts": [
+      "OpenSTA ChangeLog at fixed commit",
+      "OpenSTA WriteSpice.tcl at fixed commit"
+    ],
+    "not_reproduced": [
+      "OpenSTA build",
+      "example design timing run",
+      "SPICE deck generation",
+      "ngspice, HSPICE, or Xyce simulator execution"
+    ],
+    "why_not_higher": "공개 source는 실행 가능하지만 편집국이 빌드와 예제 실행 로그를 남기지 않았고, 독립 재현 결과도 확인하지 못했다."
+  },
+  "conflict_of_interest": {
+    "declared": ["없음"],
+    "access_conditions": "공개 HTTPS 원문만 사용했다. 벤더 계정, 유료 라이선스, 사전 브리핑, NDA, 제공받은 자료는 없었다."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "OpenSTA release notes and source updates around 2026-09-04",
+        "source": "OpenROAD ReadTheDocs search result, OpenSTA raw GitHub source",
+        "outcome": "선정. changelog와 source code가 같은 사용자-visible 변경을 서로 다른 역할로 확인했다."
+      },
+      {
+        "signal": "Accellera Portable Stimulus Standard Draft 3.1 public review",
+        "source": "https://www.accellera.org/downloads/drafts-review",
+        "outcome": "탈락. 최근 EDA 기사에서 2026-09-16에 이미 다룬 발표와 같은 주제다."
+      },
+      {
+        "signal": "ChipMEM arXiv 2609.27067 and public implementation",
+        "source": "https://arxiv.org/abs/2609.27067",
+        "outcome": "탈락. 최근 EDA 기사에서 2026-09-25에 이미 다룬 주제다."
+      },
+      {
+        "signal": "OpenROAD organization repository updates through 2026-09-27",
+        "source": "https://github.com/the-openroad-project",
+        "outcome": "탐색 신호로 사용. 개별 repository activity만으로는 기사 중심 주장을 만들지 않았다."
+      }
+    ],
+    "alternatives": [
+      {
+        "topic": "OpenSTA future warning for unquoted bus names and command abbreviation",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "reason_rejected": "검색 snippet에서는 2026-09-24 항목이 보였지만 고정 commit의 ChangeLog 원문에서 해당 항목을 확인하지 못했다. 중심 주장 E2로 쓰지 않았다."
+      },
+      {
+        "topic": "Accellera PSS 3.1 Draft public review",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 0,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 7
+        },
+        "reason_rejected": "총점은 가능하지만 기존 2026-09-16 기사와 중복된다. 후속 변화로 볼 새 사실을 확인하지 못했다."
+      },
+      {
+        "topic": "OpenSTA `-lib_subckt_files` support for SPICE extraction",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 8
+        },
+        "reason_selected": "중복 이력이 없고, changelog와 source code가 변경 사실과 구현을 직접 확인시켜 준다. 성능 주장을 하지 않는 범위에서는 E2 중심 분석이 가능하다."
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
