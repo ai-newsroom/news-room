@@ -1,0 +1,431 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-09-29",
+  "date": "2026-09-29",
+  "subject": "Anthropic uplifting-biomolecular-modeling optimization kits, published 2026-09-17",
+  "central_claim": "Anthropic's 2026-09-17 biomolecular modeling release is a publishable AI engineering topic because the official post and public GitHub repository provide an E2/R2 basis for a bounded claim: Claude was used to optimize inference paths for more than 30 open biomolecular models, and Anthropic released 36 pinned optimization kits that separate stock upstream code, optimized code, execution environments, modes and change records. The article does not claim independent reproduction of Anthropic's speedups, biological correctness across all systems, or general replacement of human optimization engineers.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "없음"
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The topic affects teams evaluating AI agents for performance engineering, scientific computing and research software maintenance. It is novel because it packages Claude-produced optimization work as public, pinned kits rather than only a model announcement. It is verifiable through an official Anthropic post and a public GitHub repository with code and execution instructions. Decision utility is high for engineers because it shows how to package agent-generated optimization work with baselines, modes and environment pins. Korean-reader relevance is moderate because Korean AI, bio and pharmaceutical teams face GPU-cost and reproducibility constraints."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "Anthropic used Claude to optimize inference paths for more than 30 open biomolecular models and released 36 optimization kits with pinned upstream stock code, optimized code, environment definitions, modes and change records; the public material supports an E2 article about the engineering package, but not an independent conclusion that the reported speedups generalize.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/anthropics/uplifting-biomolecular-modeling",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://www-cdn.anthropic.com/e96b5807039a88168733d9687afe41dfbbd5de13.pdf",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Anthropic published 'How Claude is uplifting biomolecular modeling' on 2026-09-17 and said Claude optimized more than 30 open biomolecular models in just under four weeks.",
+      "source_url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic research post, published 2026-09-17",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Opened the official Anthropic research post and checked the publication date, model count, stated optimization scope and linked code/report resources.",
+      "limitations": [
+        "Anthropic is the developer and evaluator of the Claude system used in the work.",
+        "The post reports Anthropic's measurements; independent reruns were not available in the opened materials."
+      ],
+      "conflict_of_interest": [
+        "Anthropic develops and sells Claude and operates Claude Science."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The public GitHub repository contains 36 drop-in optimization kits for inference paths of open protein and genomics ML tools, with one kit per upstream tool.",
+      "source_url": "https://github.com/anthropics/uplifting-biomolecular-modeling",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub repository main branch, accessed 2026-09-28",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Opened the repository README and folder listing; confirmed the repository description and visible kit directories.",
+      "limitations": [
+        "The repository page did not expose a stable release tag in the opened view.",
+        "The repository is a reference release and Anthropic says it is not maintained and not accepting contributions."
+      ],
+      "conflict_of_interest": [
+        "Anthropic owns and publishes the repository."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Each kit is organized around pinned upstream stock code, optimized code, environment definitions, per-card configs, run scripts, kit README files, STOCK.md and CHANGES.md.",
+      "source_url": "https://github.com/anthropics/uplifting-biomolecular-modeling",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub repository README layout section, accessed 2026-09-28",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Read the repository layout table and install/run description.",
+      "limitations": [
+        "Article did not execute the kits.",
+        "Per-kit completeness must be checked before production or research use."
+      ],
+      "conflict_of_interest": [
+        "Anthropic controls the packaging and documentation."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The kits expose modes named off, exact, fast and big, separating stock execution, identical-output acceleration, small documented numerical differences and lower peak GPU memory.",
+      "source_url": "https://github.com/anthropics/uplifting-biomolecular-modeling",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub repository README modes section, accessed 2026-09-28",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Read the repository modes section and article text matched the documented mode definitions.",
+      "limitations": [
+        "Each kit ships a subset of modes; unsupported mode names are errors.",
+        "A user's hardware and inputs determine whether a mode can engage."
+      ],
+      "conflict_of_interest": [
+        "Anthropic defines the mode taxonomy."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Anthropic identifies triangle attention and triangle multiplication as major runtime and memory costs in modern structure prediction models, and says its FlashPairformer custom kernels speed those operations.",
+      "source_url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic research post, sections 'Accelerating protein structure prediction and design models'",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Read the technical explanation of triangle operations and FlashPairformer.",
+      "limitations": [
+        "The reported speedups are Anthropic measurements.",
+        "The article does not independently compare FlashPairformer against NVIDIA kernels."
+      ],
+      "conflict_of_interest": [
+        "Anthropic reports results for code it produced."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Anthropic reports roughly 4x average speedup with minimal precision loss, nearly 2x speedup with identical outputs, and successful single-node modeling of systems larger than 10,000 tokens, while also reporting failures at much larger 31,000-70,000-token systems.",
+      "source_url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Anthropic research post, published 2026-09-17",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Read the performance and large-system sections; article attributes all performance claims to Anthropic.",
+      "limitations": [
+        "No third-party benchmark rerun was found during this turn.",
+        "Biological correctness is not established for every large system; Anthropic reports collapse for some very large proof-of-concept runs."
+      ],
+      "conflict_of_interest": [
+        "Anthropic benefits from demonstrating Claude Science capabilities."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "NVIDIA cuEquivariance and BioNeMo Inference Runtime are the public kernel/runtime paths Anthropic cites as field-standard comparisons for parts of the structure-prediction optimization.",
+      "source_url": "https://github.com/nvidia/cuequivariance",
+      "source_type": "P2",
+      "evidence_grade": "E1",
+      "version": "NVIDIA cuEquivariance GitHub repository, accessed 2026-09-28",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Opened the NVIDIA repository linked from the Anthropic post to confirm it is a public low-level primitive/kernel library path.",
+      "limitations": [
+        "Used only to identify the comparison path cited by Anthropic.",
+        "No independent benchmark was performed."
+      ],
+      "conflict_of_interest": [
+        "NVIDIA publishes the repository and provides GPU software."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "NVIDIA BioNeMo Inference Runtime is a public structure-prediction inference runtime repository linked by Anthropic as a recent field-standard path.",
+      "source_url": "https://github.com/NVIDIA-BioNeMo/BioNeMo-Inference-Runtime",
+      "source_type": "P2",
+      "evidence_grade": "E1",
+      "version": "NVIDIA BioNeMo Inference Runtime GitHub repository, accessed 2026-09-28",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Opened the NVIDIA BioNeMo repository linked from the Anthropic post.",
+      "limitations": [
+        "Used only for comparison-path identification.",
+        "The article does not evaluate NVIDIA runtime performance."
+      ],
+      "conflict_of_interest": [
+        "NVIDIA publishes the repository and provides GPU software."
+      ]
+    }
+  ],
+  "benchmark_and_reproducibility": {
+    "benchmarks_used": true,
+    "benchmark_notes": "The article reports Anthropic's benchmark claims only as Anthropic claims: roughly 4x average speedup with minimal precision loss, nearly 2x with identical outputs, FlashPairformer operation-level speedups and single-node large-system runs. It does not turn those into independent leaderboard conclusions.",
+    "reproducibility": "R2",
+    "reproducibility_notes": "The code repository, per-kit layout and execution instructions are public, so a qualified third party with GPUs, weights and compatible licenses can attempt reruns. This article did not execute the kits, and no independent rerun was found in the primary-source review."
+  },
+  "conflict_review": {
+    "declared": [
+      "없음"
+    ],
+    "source_conflicts": [
+      "Anthropic develops Claude, operates Claude Science and publishes the selected post and code repository.",
+      "NVIDIA publishes the comparison kernel/runtime repositories cited by Anthropic."
+    ],
+    "access_conditions": [
+      "No vendor briefing, embargo, paid account, credits, hardware or private documentation were used.",
+      "Only public official documents, model registries, release notes and repository metadata were used."
+    ]
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions": [
+      "Article frontmatter contains exactly edition, decision, title, date, subject, summary, evidence_ceiling, reproducibility and conflicts.",
+      "Decision is publish-candidate.",
+      "Publication ID in evidence and request is 2026-09-29.",
+      "Central claim has evidence_ceiling E2 or higher.",
+      "At least two distinct primary-source URLs support the central claim.",
+      "Selection score is at least 7 across importance, novelty, verifiability, SW-engineer decision utility and Korean-reader relevance.",
+      "Claim-source ledger records source type, evidence grade, version, accessed_at, method, limitations and conflict_of_interest for each material claim.",
+      "Conflicts and access conditions are disclosed.",
+      "Reproducibility state is recorded.",
+      "Article follows korean-writing-baseline-v1 and ai-technical-blog-v2.",
+      "Route duplication, artifact hash, site test and production build are left for the sequential publisher's deterministic gate before materialization.",
+      "This candidate-preparation turn does not perform content materialization, commit, push or deployment; those external actions remain for the sequential publisher after deterministic validation."
+    ],
+    "status": "candidate-prepared; external content, commit, push and deployment actions not performed in this turn"
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-09-29-sequential/20260928T221128Z-1547987/request.json and used publication_id 2026-09-29 with article_path var/runs/ai/2026-09-29-sequential/20260928T221128Z-1547987/staged-content/article.md, evidence_path var/runs/ai/2026-09-29-sequential/20260928T221128Z-1547987/evidence.json and no_publish_path var/runs/ai/2026-09-29-sequential/20260928T221128Z-1547987/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "Anthropic Science official posts",
+        "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+        "classification": "P1 selected-source path",
+        "note": "Opened Anthropic's 2026-09-17 biomolecular modeling post. It links the code repository and technical report, explains triangle attention/multiplication as bottlenecks, reports speed and memory results, and describes the protein design competition and verification program."
+      },
+      {
+        "channel": "Anthropic GitHub repository",
+        "url": "https://github.com/anthropics/uplifting-biomolecular-modeling",
+        "classification": "P2 selected-source path",
+        "note": "Opened the public repository. It contains 36 drop-in optimization kits, a README describing stock/opt/environment/configs/run.sh/STOCK.md/CHANGES.md layout, modes off/exact/fast/big, install/run patterns and security considerations."
+      },
+      {
+        "channel": "Anthropic technical report PDF",
+        "url": "https://www-cdn.anthropic.com/e96b5807039a88168733d9687afe41dfbbd5de13.pdf",
+        "classification": "P1 source path",
+        "note": "Confirmed the official technical-report URL linked from Anthropic's post. The web tool could not fully fetch it because of file size, so the article does not rely on uninspected report-only details."
+      },
+      {
+        "channel": "OpenAI official news and API changelog",
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "classification": "P1 alternative-source path",
+        "note": "Reviewed GPT-6 Sol/Luna, GPT-6 Astra, prompt-caching and API changelog paths. These were highly relevant to AI engineering and same-window major model releases, but the public materials mostly support P1 product/API claims and vendor benchmark claims rather than a P2-backed E2 central mechanism for this daily slot."
+      },
+      {
+        "channel": "Google Gemini API changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative-source path",
+        "note": "Reviewed recent September 2026 entries including Gemini 3.8 Flash, Gemini 3.8 Live, Antigravity Agent 09-2026, Lyria 3.5 and TTS releases. Important same-month signals were found, but none had stronger P2 artifact-backed engineering depth than the selected Anthropic code release."
+      },
+      {
+        "channel": "Qwen official Hugging Face registry",
+        "url": "https://huggingface.co/Qwen/models",
+        "classification": "P1/P2 alternative-source path",
+        "note": "Reviewed recent Qwen registry updates including Qwen3Guard-Stream models and Qwen-Image-2.1. Qwen3Guard-Stream had public model cards and weights, but its technical report dates to 2025 and the latest observed change was a maintenance update, so novelty was lower."
+      },
+      {
+        "channel": "DeepSeek GitHub organization",
+        "url": "https://github.com/deepseek-ai",
+        "classification": "P2 alternative-source path",
+        "note": "Reviewed DeepSeek GitHub organization activity including DeepGEMM, DeepEP and DeepJIT updates. These are important infrastructure paths, but no same-window release note or model/system-card package cleared the selected topic's score."
+      },
+      {
+        "channel": "Mistral official docs",
+        "url": "https://docs.mistral.ai/resources",
+        "classification": "P1 alternative-source path",
+        "note": "Reviewed Mistral resources and changelog entry points. No stronger same-window model/API/runtime candidate with two primary URLs and E2 center claim was found in the opened materials."
+      },
+      {
+        "channel": "NVIDIA public kernel/runtime repositories",
+        "url": "https://github.com/nvidia/cuequivariance",
+        "classification": "P2 context path",
+        "note": "Opened NVIDIA cuEquivariance and BioNeMo Inference Runtime repositories because Anthropic cites them as field-standard comparison paths. They were used only to identify comparison context, not to make an independent performance claim."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Anthropic biomolecular modeling optimization kits",
+        "url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 9
+        },
+        "selected": true,
+        "reason": "Selected because it combines a frontier-lab AI-agent result with public code artifacts, pinned execution packaging and concrete engineering lessons about optimization, modes and reproducibility. The article can make an E2/R2 claim about the released engineering package while bounding performance claims as Anthropic-reported."
+      },
+      {
+        "name": "OpenAI GPT-6 Sol and Luna",
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 1,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "Major same-day model-family release with API pricing and developer impact. Not selected because the core cost-performance claims rely mainly on OpenAI product posts, API docs and vendor benchmark tables; no public implementation artifact or independently reproducible package was opened to support an E2 central claim stronger than the selected code release."
+      },
+      {
+        "name": "OpenAI better prompt caching for GPT-6",
+        "url": "https://openai.com/index/better-prompt-caching-for-gpt-6/",
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 1,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "Highly useful for agent economics and long-running applications. Not selected because public evidence is largely official documentation and customer/vendor claims; it has less P2 artifact depth than Anthropic's released optimization kits."
+      },
+      {
+        "name": "OpenAI GPT-6 Astra",
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 8
+        },
+        "selected": false,
+        "reason": "Major model announcement with a detailed system card and safety appendix. Not selected because it was first published earlier in September and the Sol/Luna update was the fresher OpenAI branch; performance claims remain vendor-run without public execution artifacts comparable to the selected topic."
+      },
+      {
+        "name": "Anthropic Yes, Claude can do Nine Loops",
+        "url": "https://www.anthropic.com/research/yes-claude-can-do-nine-loops",
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Fresh frontier-science signal with a validation narrative and linked result material. Not selected because it is less directly useful to the SW-engineering audience than the biomolecular optimization code release and has less public implementation/package detail in the opened materials."
+      },
+      {
+        "name": "Google Gemini 3.8 Flash and Antigravity Agent 09-2026",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Important API/model and agent-tooling updates. Not selected because opened materials were primarily changelog and product documentation, and the articleable center would be narrower than the selected P2-backed code release."
+      },
+      {
+        "name": "Qwen3Guard-Stream model-card updates",
+        "url": "https://huggingface.co/Qwen/Qwen3Guard-Stream-4B",
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Public model-card and weight artifacts support E2 coverage of streaming moderation architecture, but the technical report is from 2025 and the latest observed change was maintenance-oriented, reducing novelty for the 2026-09-29 slot."
+      },
+      {
+        "name": "DeepSeek infrastructure repositories",
+        "url": "https://github.com/deepseek-ai",
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "DeepGEMM, DeepEP and DeepJIT are relevant implementation surfaces, but the visible same-window signals were ongoing repository activity rather than a distinct release package with explanatory documentation strong enough to beat the selected topic."
+      },
+      {
+        "name": "Mistral resources and changelog paths",
+        "url": "https://docs.mistral.ai/resources",
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "Official entry points were reviewed, but no opened Mistral item met total score, E2 center-claim and two-primary-URL requirements for this run."
+      }
+    ]
+  }
+}
