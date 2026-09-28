@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-09-29",
+  "date": "2026-09-29",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-09-29-sequential/20260928T222013Z-1550658/staged-content/article.md",
+  "central_claim": "Yosys 0.69 changes practical open-source synthesis maintenance by removing legacy synthesis options and passes that may break existing scripts, while adding an explicit Verific `-sv2023` frontend mode whose usefulness depends on a Verific-enabled build and license conditions.",
+  "subject": "Yosys 0.69 release, tag v0.69 commit 9f75ca1f9834a39a863915b5dae0c7b1e33533bc, CHANGELOG and verific frontend source",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": ["없음"],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 1,
+    "condition_disclosure": 2,
+    "reproducibility": 2,
+    "practical_decision_usefulness": 2,
+    "total": 9,
+    "rationale": "Yosys is a common open-source synthesis component, and removed options can affect scripted CI and board or technology wrappers directly. The novelty is moderate because the release is an incremental cleanup, not a new synthesis method. Conditions are well disclosed through the release note, fixed tag, changelog, source, and README. Reproducibility is R2 because all inspected artifacts are public source files, though the newsroom did not build or run the release. The practical action is clear: search and migrate scripts before upgrading."
+  },
+  "source_urls": [
+    "https://github.com/YosysHQ/yosys/releases/tag/v0.69",
+    "https://api.github.com/repos/YosysHQ/yosys/git/tags/14c55bfd9941046244300f92bb707ff99be2c5b2",
+    "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/CHANGELOG",
+    "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/frontends/verific/verific.cc",
+    "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/README.md"
+  ],
+  "selection": {
+    "total": 9,
+    "threshold": 7,
+    "central_claim_minimum": "E2",
+    "original_source_url_count": 5
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://github.com/YosysHQ/yosys/releases/tag/v0.69",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://api.github.com/repos/YosysHQ/yosys/git/tags/14c55bfd9941046244300f92bb707ff99be2c5b2",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/CHANGELOG",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/frontends/verific/verific.cc",
+          "source_grade": "P2"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "central": false,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/README.md",
+          "source_grade": "P1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/CHANGELOG",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/frontends/verific/verific.cc",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/README.md",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "Yosys 0.69 was published on GitHub on 2026-09-09, and tag `v0.69` points to commit `9f75ca1f9834a39a863915b5dae0c7b1e33533bc` through tag object `14c55bfd9941046244300f92bb707ff99be2c5b2`.",
+      "source_url": "https://github.com/YosysHQ/yosys/releases/tag/v0.69",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Yosys 0.69, tag v0.69, commit 9f75ca1f9834a39a863915b5dae0c7b1e33533bc",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "GitHub release metadata and Git tag object were opened and compared.",
+      "limitations": ["Release metadata was checked, but the release tarball was not built or executed."],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Yosys 0.69 `CHANGELOG` records removal of sum-of-products related parameters from `abc`, removal of `coolrunner2`, `greenpak4`, and `nlutmap`, removal of `-retime`, `-noabc9`, `-abc2`, and `-abc` from synthesis passes, and removal of `-[no]stderr` from `logger`.",
+      "source_url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/CHANGELOG",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Yosys v0.69 CHANGELOG, section `Yosys 0.68 .. Yosys 0.69`",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Fixed-tag changelog section was read directly.",
+      "limitations": ["The changelog states interface changes, but does not quantify user breakage or QoR impact."],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Yosys 0.69 `frontends/verific/verific.cc` documents `-sv2023` in the `verific` help text and maps the argument to `veri_file::SYSTEM_VERILOG_2023` in command parsing.",
+      "source_url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/frontends/verific/verific.cc",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Yosys v0.69 `frontends/verific/verific.cc`",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Searched the fixed-tag source for `-sv2023` in help output and argument handling.",
+      "limitations": ["The newsroom did not compile a Verific-enabled Yosys build or parse an SV 2023 design."],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Yosys README distinguishes Yosys's open frontend support from the need for Tabby CAD Suite evaluation access when industry-grade SystemVerilog and VHDL parsers are required.",
+      "source_url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/README.md",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Yosys v0.69 README.md",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "direct",
+      "method": "Read the fixed-tag README installation and feature support sections.",
+      "limitations": ["The README is project documentation and does not verify any individual user's license entitlement."],
+      "conflict_of_interest": ["없음"]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "The practical impact of Yosys 0.69 is script compatibility and frontend mode selection; public sources do not support a PPA, runtime, or signoff-quality improvement claim.",
+      "source_url": "https://raw.githubusercontent.com/YosysHQ/yosys/v0.69/CHANGELOG",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Yosys v0.69 release artifacts",
+      "accessed_at": "2026-09-28",
+      "direct_or_derived": "derived",
+      "method": "Derived from C1-C4 by limiting the conclusion to publicly documented interface and source changes.",
+      "limitations": ["No public benchmark logs or independent reproductions were found for QoR or runtime claims."],
+      "conflict_of_interest": ["없음"]
+    }
+  ],
+  "reproducibility_notes": {
+    "status": "R2",
+    "public_artifacts": [
+      "Yosys v0.69 GitHub release metadata",
+      "Yosys v0.69 tag object",
+      "Yosys v0.69 CHANGELOG",
+      "Yosys v0.69 verific frontend source",
+      "Yosys v0.69 README"
+    ],
+    "not_reproduced": [
+      "Building Yosys 0.69 from source",
+      "Running old scripts against Yosys 0.68 and 0.69",
+      "Parsing a SystemVerilog 2023 design through a Verific-enabled build",
+      "Comparing QoR or runtime on a benchmark suite"
+    ],
+    "why_not_higher": "The source and metadata are public and fixed by tag, but the newsroom did not execute the tool and found no independent reproduction logs for the migration impact."
+  },
+  "conflict_of_interest": {
+    "declared": ["없음"],
+    "access_conditions": "Only public HTTPS sources were used. No vendor account, paid license, embargo briefing, NDA document, provided hardware, or provided EDA access was used."
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "signal": "Yosys 0.69 release and changelog",
+        "source": "https://github.com/YosysHQ/yosys/releases/tag/v0.69",
+        "outcome": "Selected. The release has fixed public metadata, a fixed tag, changelog entries with script-facing removals, and source-level confirmation for the `-sv2023` frontend path."
+      },
+      {
+        "signal": "YosysHQ OSS CAD Suite 2026-09-28 nightly build",
+        "source": "https://github.com/YosysHQ/oss-cad-suite-build/releases/tag/2026-09-28",
+        "outcome": "Used as a discovery signal only. The nightly release proves current binary distribution activity, but its release body does not explain the Yosys 0.69 interface change."
+      },
+      {
+        "signal": "OpenROAD organization repositories updated around 2026-09-27",
+        "source": "https://github.com/the-openroad-project",
+        "outcome": "Discovery signal only. Recent activity alone did not provide a new, non-duplicative central claim beyond previously covered OpenSTA and OpenROAD topics."
+      },
+      {
+        "signal": "Accellera Portable Stimulus Standard Draft 3.1 public review",
+        "source": "https://www.accellera.org/downloads/drafts-review",
+        "outcome": "Rejected as duplicate. The 2026-09-16 EDA article already covered the same PSS 3.1 draft announcement."
+      },
+      {
+        "signal": "cocotb release stream",
+        "source": "https://github.com/cocotb/cocotb/releases",
+        "outcome": "Rejected as duplicate or insufficiently new. The 2026-09-17 EDA article already covered cocotb 2.1.0."
+      }
+    ],
+    "alternatives": [
+      {
+        "topic": "Accellera PSS 3.1 Draft public review",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 0,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 7
+        },
+        "reason_rejected": "It meets some technical criteria but is the same announcement already handled in content/eda/2026-09-16/article.md, and no later material change was verified."
+      },
+      {
+        "topic": "OpenSTA SPICE extraction `-lib_subckt_files` change",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 0,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 7
+        },
+        "reason_rejected": "The 2026-09-28 EDA article already covered this OpenSTA change. No follow-up difference was found."
+      },
+      {
+        "topic": "OpenLane 2 release/changelog maintenance updates",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 7
+        },
+        "reason_rejected": "Search results and changelog snippets showed bugfix and messaging changes, but the available public evidence did not produce a stronger central EDA flow claim than the Yosys 0.69 migration story."
+      },
+      {
+        "topic": "Yosys 0.69 removal of legacy options and `verific -sv2023`",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 1,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 2,
+          "total": 9
+        },
+        "reason_selected": "It is not duplicated in recent EDA articles, has public fixed sources, and yields a concrete migration decision for teams maintaining open-source synthesis scripts."
+      },
+      {
+        "topic": "Verilator current release stream",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 1,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "reason_rejected": "The GitHub latest-release endpoint did not expose a current release artifact in this check, and no two-source central claim was established."
+      }
+    ]
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  }
+}
