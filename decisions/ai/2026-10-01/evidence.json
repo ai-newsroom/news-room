@@ -1,0 +1,403 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-10-01",
+  "date": "2026-10-01",
+  "subject": "GPT-6.1 Sol, released 2026-09-29",
+  "central_claim": "GPT-6.1 Sol is a publishable AI engineering topic because OpenAI's announcement, API changelog, model page, GPT-6 guide and system-card addendum support a bounded E2/R1 claim: OpenAI has repositioned Sol as a lower-cost middle model for long coding, computer-use and professional agent workflows, with concrete engineering consequences around Responses API tool calling, cache economics, reasoning effort, context limits, data residency and safety safeguards. The article does not claim independent benchmark superiority, reproducible cost savings or independently verified safeguard effectiveness.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R1",
+  "conflicts": [
+    "없음"
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "GPT-6.1 Sol was released on 2026-09-29 and directly affects teams choosing model routing for coding agents, computer use, long-context document work and cost-sensitive automations. Multiple official primary sources identify the model ID, API support, pricing, limits, migration constraints and safety assessment. Korean-reader relevance is scored 1 because availability and data-processing choices depend on each organization's OpenAI account, region and compliance needs, but Korean software teams commonly use OpenAI API and Codex-like agent workflows."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "GPT-6.1 Sol changes model-routing decisions for long coding and computer-use agents by offering an officially documented lower-cost middle tier between Astra and Luna, while requiring engineering checks around Responses API tool calling, reasoning effort, caching, context limits and safeguards.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/changelog",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/guides/latest-model",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://deploymentsafety.openai.com/gpt-6-1-sol",
+          "source_grade": "P1"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "OpenAI released GPT-6.1 Sol on 2026-09-29 under model ID gpt-6.1-sol for complex coding, computer use and professional work at a lower cost than GPT-6 Astra.",
+      "source_url": "https://developers.openai.com/api/docs/changelog",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API changelog, September 29, 2026 entry",
+      "accessed_at": "2026-09-30",
+      "direct_or_derived": "direct",
+      "method": "Opened the official changelog and checked the September 29 entry for model ID, supported APIs, release description, pricing note and multi-agent note.",
+      "limitations": [
+        "OpenAI publishes the changelog for its own API.",
+        "The changelog confirms release facts and vendor positioning, not independent performance."
+      ],
+      "conflict_of_interest": [
+        "OpenAI develops and sells GPT-6.1 Sol."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The GPT-6.1 Sol model page lists a 1,050,000-token context window, 922,000 maximum input tokens, 128,000 maximum output tokens and April 30, 2026 knowledge cutoff.",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API model page for gpt-6.1-sol, accessed 2026-09-30",
+      "accessed_at": "2026-09-30",
+      "direct_or_derived": "direct",
+      "method": "Opened the markdown version of the official model page and checked the Model details section.",
+      "limitations": [
+        "Operational availability can differ by account, tier, rate limit and region.",
+        "The page is a living document and may be updated."
+      ],
+      "conflict_of_interest": [
+        "OpenAI controls the model documentation."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The GPT-6.1 Sol model page lists standard text-token pricing of $2 input, $0.10 cached input, $2.50 cache write and $10 output per 1M tokens, and says prompts above 272K input tokens are priced at higher rates for the full request.",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API model page for gpt-6.1-sol, accessed 2026-09-30",
+      "accessed_at": "2026-09-30",
+      "direct_or_derived": "direct",
+      "method": "Opened the official model page and checked the Pricing table and pricing notes.",
+      "limitations": [
+        "Actual cost depends on cache hit rates, output length, tool calls, processing tier and future price changes.",
+        "The article does not independently verify OpenAI's claimed cost-per-task improvements."
+      ],
+      "conflict_of_interest": [
+        "OpenAI controls pricing for its own API."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "GPT-6.1 Sol supports reasoning.effort values low, medium, high, xhigh and max; none and minimal are not supported.",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API model page and GPT-6 guide, accessed 2026-09-30",
+      "accessed_at": "2026-09-30",
+      "direct_or_derived": "direct",
+      "method": "Checked the official model page and the GPT-6 guide's GPT-6.1 Sol and migration sections.",
+      "limitations": [
+        "The docs identify supported settings but do not establish universal quality or cost tradeoffs for every workload."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors the model and migration guidance."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "OpenAI documents that tool calling for GPT-6.1 Sol should use the Responses API and lists supported tools including web search, file search, image generation, code interpreter, hosted shell, apply patch, skills, computer use, MCP and tool search.",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API model page, accessed 2026-09-30",
+      "accessed_at": "2026-09-30",
+      "direct_or_derived": "direct",
+      "method": "Opened the official model page and checked Endpoints, Supported features and Supported tools sections; cross-checked GPT-6 guide migration language.",
+      "limitations": [
+        "Tool access can depend on account permissions, product surface, runtime configuration and safety controls.",
+        "No API calls were executed in this turn."
+      ],
+      "conflict_of_interest": [
+        "OpenAI controls the API docs and tool surfaces."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "The GPT-6 guide says GPT-6.1 Sol is intended for complex coding, computer use and professional work when developers want near-Astra performance at lower cost, and instructs teams migrating from gpt-6-sol to review model parameters, reasoning effort, tool calling, unsupported parameters, data residency, reasoning-effort changes and prompt caching.",
+      "source_url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "OpenAI API GPT-6 guide, accessed 2026-09-30",
+      "accessed_at": "2026-09-30",
+      "direct_or_derived": "direct",
+      "method": "Opened the official guide markdown and checked the GPT-6.1 Sol, What's new, Limitations and Migration quickstart sections.",
+      "limitations": [
+        "The guidance is a vendor starting point and must be tested on representative workloads."
+      ],
+      "conflict_of_interest": [
+        "OpenAI authors migration guidance for its own models."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "OpenAI's GPT-6.1 Sol system-card addendum treats GPT-6.1 Sol as Critical capability in cybersecurity and High capability in biological and chemical domains, and says it applies the same safeguards stack as GPT-6 Astra.",
+      "source_url": "https://deploymentsafety.openai.com/gpt-6-1-sol",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "Addendum to GPT-6 Astra System Card: GPT-6.1 Sol, published 2026-09-29",
+      "accessed_at": "2026-09-30",
+      "direct_or_derived": "direct",
+      "method": "Opened the public Deployment Safety Hub page and checked Introduction and Preparedness sections. Also reviewed visible cybersecurity and biological evaluation passages.",
+      "limitations": [
+        "The addendum is authored by OpenAI and includes internal evaluations.",
+        "Raw logs, full evaluation harnesses and production safeguard-effectiveness data were not reproduced."
+      ],
+      "conflict_of_interest": [
+        "OpenAI evaluates and deploys GPT-6.1 Sol."
+      ]
+    }
+  ],
+  "benchmark_and_reproducibility": {
+    "benchmarks_used": true,
+    "benchmark_notes": "The article quotes only a small number of OpenAI-reported safety/cyber evaluation figures from the system-card addendum to explain deployment constraints. It does not build a cross-vendor leaderboard or declare independent model superiority. Performance and cost claims are attributed to OpenAI's own documents.",
+    "reproducibility": "R1",
+    "reproducibility_notes": "The announcement, API changelog, model page, GPT-6 guide, model-selection page and system-card addendum are public. Reproducing the core model performance, cost-per-task claims or safeguard results would require access to proprietary model deployments, internal evaluation tasks, raw logs and hidden operational settings."
+  },
+  "conflict_review": {
+    "declared": [
+      "없음"
+    ],
+    "source_conflicts": [
+      "OpenAI is the developer and commercial provider of GPT-6.1 Sol and publishes the announcement, model documentation, API changelog, GPT-6 guide and system-card addendum.",
+      "Anthropic, Google, Mistral, Qwen and DeepSeek sources reviewed as alternatives are also authored or maintained by the relevant vendors or projects."
+    ],
+    "access_conditions": [
+      "No vendor briefing, embargo, paid account, credits, hardware or private documentation were used.",
+      "Only public official documents, model registry pages, release notes and repository metadata were used."
+    ]
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions": [
+      "Article frontmatter contains exactly edition, decision, title, date, subject, summary, evidence_ceiling, reproducibility and conflicts.",
+      "Decision is publish-candidate.",
+      "Publication ID in evidence and request is 2026-10-01.",
+      "Central claim has evidence_ceiling E2 or higher.",
+      "At least two distinct primary-source URLs support the central claim.",
+      "Selection score is at least 7 across importance, novelty, verifiability, SW-engineer decision utility and Korean-reader relevance.",
+      "Claim-source ledger records source type, evidence grade, version, accessed_at, method, limitations and conflict_of_interest for each material claim.",
+      "Conflicts and access conditions are disclosed.",
+      "Reproducibility state is recorded.",
+      "Article follows korean-writing-baseline-v1 and ai-technical-blog-v2.",
+      "Route duplication, artifact hash, site test and production build are left for the sequential publisher's deterministic gate before materialization.",
+      "This candidate-preparation turn does not perform content materialization, commit, push or deployment; those external actions remain for the sequential publisher after deterministic validation."
+    ],
+    "status": "candidate-prepared; external content, commit, push and deployment actions not performed in this turn"
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-10-01-sequential/20260930T220927Z-1580885/request.json and used publication_id 2026-10-01 with article_path var/runs/ai/2026-10-01-sequential/20260930T220927Z-1580885/staged-content/article.md, evidence_path var/runs/ai/2026-10-01-sequential/20260930T220927Z-1580885/evidence.json and no_publish_path var/runs/ai/2026-10-01-sequential/20260930T220927Z-1580885/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "OpenAI official announcement",
+        "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
+        "classification": "P1 selected-source path",
+        "note": "Found the 2026-09-29 GPT-6.1 Sol announcement describing near-Astra positioning, coding, professional work, computer use, scientific research, factuality, safety and pricing/availability."
+      },
+      {
+        "channel": "OpenAI API changelog",
+        "url": "https://developers.openai.com/api/docs/changelog",
+        "classification": "P1 selected-source path",
+        "note": "Reviewed September 2026 API changelog. The September 29 entries include GPT-6.1 Sol, Agents API computer use and GPT-6 Astra Ultrafast; the selected model release was the strongest same-day model candidate."
+      },
+      {
+        "channel": "OpenAI model catalog",
+        "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+        "classification": "P1 selected-source path",
+        "note": "Reviewed official model page for model ID, context window, max input/output, pricing, endpoints, supported features, supported tools and rate limits."
+      },
+      {
+        "channel": "OpenAI GPT-6 guide",
+        "url": "https://developers.openai.com/api/docs/guides/latest-model",
+        "classification": "P1 selected-source path",
+        "note": "Reviewed GPT-6 family positioning, GPT-6.1 Sol usage guidance, migration quickstart, reasoning-effort guidance, data residency limitations, prompt caching and tool-calling migration notes."
+      },
+      {
+        "channel": "OpenAI Deployment Safety Hub",
+        "url": "https://deploymentsafety.openai.com/gpt-6-1-sol",
+        "classification": "P1 selected-source path",
+        "note": "Reviewed system-card addendum for public safety classification, safeguards stack and selected evaluation limitations. Treated as OpenAI-authored technical primary source, not independent safety verification."
+      },
+      {
+        "channel": "Anthropic official review",
+        "url": "https://www.anthropic.com/claude-sonnet-5-5",
+        "classification": "P1 alternative-source path",
+        "note": "Reviewed Claude Sonnet 5.5 as same-week major model release. It was already selected for the 2026-09-30 AI regular article, so it was not repeated."
+      },
+      {
+        "channel": "Google Gemini API changelog",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative-source path",
+        "note": "Reviewed September 2026 entries including Gemini 3.8 Flash GA, Live models, TTS and agentic video understanding. These are substantial but older than the September 29 OpenAI release and did not outrank the same-day GPT-6.1 Sol candidate for this slot."
+      },
+      {
+        "channel": "Mistral changelog",
+        "url": "https://docs.mistral.ai/resources/changelogs",
+        "classification": "P1 alternative-source path",
+        "note": "Reviewed September 28-29 entries including Z.ai GLM 5.3 GA and deprecations. The GLM item had limited accessible supporting technical detail in the opened Mistral changelog compared with GPT-6.1 Sol's model page, guide and safety addendum."
+      },
+      {
+        "channel": "Qwen model registry",
+        "url": "https://huggingface.co/Qwen/models",
+        "classification": "P1/P2 alternative-source path",
+        "note": "Reviewed recent Qwen registry signals including Qwen-Image-2.1 and Qwen3Guard Stream models. They were noted as registry updates, but no stronger same-day official technical package outranked GPT-6.1 Sol."
+      },
+      {
+        "channel": "DeepSeek GitHub organization",
+        "url": "https://github.com/deepseek-ai",
+        "classification": "P2 alternative-source path",
+        "note": "Reviewed recent DeepSeek repository activity including DeepGEMM-Ascend, DeepEP-Ascend and deepseek-harness. These are relevant infrastructure/tool signals but did not beat the same-day major model release after comparing decision utility and primary-source depth."
+      },
+      {
+        "channel": "search-and-secondary-signals",
+        "classification": "S2 discovery only",
+        "note": "Search results and news snippets were used only to find official OpenAI, Anthropic, Google, Qwen, DeepSeek and Mistral paths. Article facts and selection scoring rely on opened official primary-source URLs, not search snippets, X or secondary coverage."
+      }
+    ],
+    "alternatives": [
+      {
+        "subject": "OpenAI GPT-6.1 Sol",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "selected",
+        "reason": "Selected because it is a same-day major model release with multiple official primary sources: announcement, changelog, model page, GPT-6 guide, model-selection guide and system-card addendum. It changes concrete engineering decisions around model routing, Responses API migration, cache economics, effort settings, tool calls, data residency and safeguards."
+      },
+      {
+        "subject": "OpenAI Agents API computer use",
+        "importance": 2,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 9,
+        "decision": "not-selected",
+        "reason": "Strong infrastructure/tool candidate in the same OpenAI changelog, but same-day major model release took priority under the instruction to compare model releases against infrastructure/tool releases. Computer use is incorporated as part of GPT-6.1 Sol's tool-enabled engineering surface rather than used as the main article center."
+      },
+      {
+        "subject": "OpenAI GPT-6 Astra Ultrafast mode",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Relevant API performance tier and migration issue, but it is an inference-service mode for an already covered GPT-6 Astra family rather than a broader new model-routing surface. It was less central than GPT-6.1 Sol for the daily AI article."
+      },
+      {
+        "subject": "Anthropic Claude Sonnet 5.5",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Official announcement and system-card path support a strong model article, but it was already selected for the 2026-09-30 AI regular edition. Repeating it on 2026-10-01 would fail the new-phase requirement."
+      },
+      {
+        "subject": "Anthropic Claude Opus 5.5",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "A significant September 22 model release with system card support, but older than the GPT-6.1 Sol release and less fresh for this publication slot after the Sonnet 5.5 article the previous day."
+      },
+      {
+        "subject": "Google Gemini 3.8 Flash GA and Gemini 3.8 Live/TTS releases",
+        "importance": 2,
+        "novelty": 1,
+        "verifiability": 2,
+        "decision_utility": 2,
+        "korean_reader_relevance": 1,
+        "total": 8,
+        "decision": "not-selected",
+        "reason": "Google's September entries are substantial and official, especially for coding/agent and live voice workflows, but they are earlier in September and did not outrank the September 29 OpenAI model release under recency and same-day major-model comparison."
+      },
+      {
+        "subject": "Mistral-hosted Z.ai GLM 5.3 GA",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 1,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 6,
+        "decision": "not-selected",
+        "reason": "The Mistral changelog confirms a model availability event, but the opened source path did not provide enough public model/system-card detail, API constraints or reproducible evaluation artifact to beat GPT-6.1 Sol or clear a strong E2 center claim."
+      },
+      {
+        "subject": "Qwen-Image-2.1 and Qwen3Guard Stream registry updates",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "Qwen registry updates have P1/P2 value and help broaden discovery beyond US vendors, but available opened evidence was model-registry metadata rather than a richer official technical package. They did not beat the same-day GPT-6.1 Sol release for SW-engineer decision utility."
+      },
+      {
+        "subject": "DeepSeek DeepGEMM-Ascend, DeepEP-Ascend and deepseek-harness activity",
+        "importance": 1,
+        "novelty": 2,
+        "verifiability": 2,
+        "decision_utility": 1,
+        "korean_reader_relevance": 1,
+        "total": 7,
+        "decision": "not-selected",
+        "reason": "DeepSeek repositories show implementation-backed infrastructure signals and broaden non-US coverage, but the visible review path was repository metadata and recent activity rather than a single official release note with enough engineering context to outrank GPT-6.1 Sol."
+      }
+    ]
+  }
+}
