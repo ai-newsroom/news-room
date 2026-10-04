@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "publication_id": "2026-10-05",
+  "date": "2026-10-05",
+  "edition": "eda",
+  "decision": "publish-candidate",
+  "article_path": "var/runs/eda/2026-10-05-sequential/20261004T221756Z-1647833/staged-content/article.md",
+  "evidence_path": "var/runs/eda/2026-10-05-sequential/20261004T221756Z-1647833/evidence.json",
+  "central_claim": "SyntheticHLS는 HLS 학습용 데이터를 단순 LLM 코드 생성 결과가 아니라 C simulation, Vitis HLS synthesis, OptDSLv2 design-space 평가가 붙은 반복 flow 산출물로 만들도록 논문과 공개 코드를 함께 제시했다.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "central": true,
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2610.00106",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://github.com/sharc-lab/synthetic-hls",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "title": "SyntheticHLS, HLS 학습 데이터를 코드 생성에서 합성 로그가 남는 flow로 옮깁니다",
+  "subject": "SyntheticHLS arXiv:2610.00106v1 and sharc-lab/synthetic-hls commit e0cdc84ee5186f1864057e8b032655422036cd45",
+  "summary": "SyntheticHLS는 LLM이 만든 high-level synthesis 설계를 그냥 모으지 않고, C simulation, Vitis HLS synthesis, OptDSLv2 기반 design-space 평가를 통과한 후보만 다음 반복으로 넘기는 공개 flow입니다. 논문과 코드는 공개됐지만 Vitis HLS, model API, HLSFactory의 특정 branch가 필요해 재현성은 공개 artifact와 상용 도구 조건이 함께 걸려 있습니다.",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": ["없음"],
+  "selection_score": {
+    "design_flow_impact": 2,
+    "novelty": 2,
+    "condition_disclosure": 2,
+    "reproducibility": 1,
+    "practical_decision_usefulness": 2,
+    "total": 9,
+    "rationale": "HLS 학습 데이터 생성이 LLM text generation에서 C simulation, synthesis, design-space evaluation feedback loop로 이동한다는 점은 HLS QoR modeling과 DSE 연구 flow에 직접 영향을 준다. 논문과 공개 저장소가 방법, code path, 의존성을 밝히지만 Vitis HLS와 model API 접근이 필요해 전체 실험 재현은 제한된다."
+  },
+  "selection": {
+    "total": 9,
+    "threshold": 7
+  },
+  "release_gate": {
+    "policy_id": "eda-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true
+  },
+  "source_urls": [
+    "https://arxiv.org/abs/2610.00106",
+    "https://arxiv.org/html/2610.00106",
+    "https://github.com/sharc-lab/synthetic-hls",
+    "https://github.com/sharc-lab/HLSFactory"
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "SyntheticHLS proposes an iterative feedback-guided mutation flow that starts from LLM-generated HLS seed designs and selects valid candidates after compilation, C simulation, and Vitis HLS synthesis checks.",
+      "source_url": "https://arxiv.org/html/2610.00106",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2610.00106v1, submitted 2026-09-09",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "논문 HTML의 SyntheticHLS framework, candidate selection, evaluation 절을 확인했다.",
+      "limitations": ["저자 보고 방법이다.", "편집국은 Vitis HLS 전체 flow를 실행하지 않았다."],
+      "conflict_of_interest": ["저자는 자기 연구 방법과 결과를 보고한다."]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "SyntheticHLS uses call_graph.json and pareto_scores_summary.json as structured feedback for LLM-guided design mutation.",
+      "source_url": "https://arxiv.org/html/2610.00106",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2610.00106v1",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "논문 III-B와 III-C에서 call graph metric, Pareto score, feedback prompt 입력을 확인했다.",
+      "limitations": ["논문 설명이다.", "실제 artifact 일부는 repository code path로만 확인했다."],
+      "conflict_of_interest": ["저자는 자기 연구 방법을 보고한다."]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The authors report that iteratively mutated SyntheticHLS designs generalize better for HLS QoR modeling than zero-shot synthetic designs or common benchmark designs in their cross-validation experiments.",
+      "source_url": "https://arxiv.org/html/2610.00106",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "arXiv:2610.00106v1",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "논문 abstract, IV-A, conclusion의 cross-dataset generalization 결과 보고를 확인했다.",
+      "limitations": ["저자 실험 결과다.", "독립 재현이나 편집국 재실행은 없다.", "정확한 hardware와 license 환경은 독자가 맞춰야 한다."],
+      "conflict_of_interest": ["저자는 자기 연구 성과를 보고한다."]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The sharc-lab/synthetic-hls repository is public at main commit e0cdc84ee5186f1864057e8b032655422036cd45 and contains code, experiment scripts, TCL templates, README, pyproject.toml, and AGPL-3.0 license.",
+      "source_url": "https://github.com/sharc-lab/synthetic-hls",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "main commit e0cdc84ee5186f1864057e8b032655422036cd45",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "GitHub page, git ls-remote, shallow clone, README, pyproject.toml, LICENSE, file tree를 확인했다.",
+      "limitations": ["repository 공개는 전체 논문 수치 재현과 다르다.", "Vitis HLS와 model API key가 필요하다."],
+      "conflict_of_interest": ["저자 연구실이 repository owner다."]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "SyntheticHLS README states it has been tested with Vitis HLS 2023.1 and requires HLSFactory with OptDSLv2 frontend and validation logic; pyproject.toml pins HLSFactory to the mzhou_OptDSLv2 branch.",
+      "source_url": "https://github.com/sharc-lab/synthetic-hls/blob/main/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "synthetic-hls main commit e0cdc84ee5186f1864057e8b032655422036cd45",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "README와 pyproject.toml에서 Vitis HLS 2023.1, HLSFactory mzhou_OptDSLv2 dependency, environment variables를 확인했다.",
+      "limitations": ["다른 Vitis HLS version은 under test로 표시됐다.", "OpenRouter API key와 local tool path가 필요하다."],
+      "conflict_of_interest": ["저자 연구실이 repository owner다."]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "The required HLSFactory mzhou_OptDSLv2 branch was publicly observable at commit b063823948c6d633224bdbd6d421a9a2baa1cf51 on 2026-10-04.",
+      "source_url": "https://github.com/sharc-lab/HLSFactory",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "mzhou_OptDSLv2 commit b063823948c6d633224bdbd6d421a9a2baa1cf51",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "git ls-remote로 branch commit을 확인했고 HLSFactory public repository README로 tool role을 확인했다.",
+      "limitations": ["SyntheticHLS README는 해당 support가 아직 main branch에 merge되지 않았다고 설명한다."],
+      "conflict_of_interest": ["동일 연구실이 HLSFactory repository owner다."]
+    }
+  ],
+  "reproducibility_assessment": {
+    "status": "R2",
+    "public_artifacts": [
+      {
+        "name": "SyntheticHLS repository",
+        "url": "https://github.com/sharc-lab/synthetic-hls",
+        "license": "AGPL-3.0",
+        "observed_commit": "e0cdc84ee5186f1864057e8b032655422036cd45"
+      },
+      {
+        "name": "HLSFactory repository",
+        "url": "https://github.com/sharc-lab/HLSFactory",
+        "license": "AGPL-3.0 and CC-BY-SA-4.0 repository notices",
+        "observed_branch": "mzhou_OptDSLv2",
+        "observed_commit": "b063823948c6d633224bdbd6d421a9a2baa1cf51"
+      },
+      {
+        "name": "arXiv paper",
+        "url": "https://arxiv.org/abs/2610.00106",
+        "version": "v1"
+      }
+    ],
+    "not_reproduced": [
+      "Full Vitis HLS 2023.1 synthesis runs",
+      "LLM seed generation and mutation runs requiring model API access",
+      "Cross-dataset GNN QoR modeling results",
+      "Paper figures and RMSE bars"
+    ],
+    "reason": "코드, experiment scripts, dependencies, templates, analysis files가 공개되어 실행 artifact는 있다. 그러나 상용 Vitis HLS와 model API key, specific HLSFactory branch, compute budget이 필요해 편집국은 전체 결과를 재현하지 않았고 저자 결과로 귀속했다."
+  },
+  "conflict_of_interest": {
+    "editorial": ["없음"],
+    "source_conflicts": [
+      "논문 저자와 SHARC Lab은 SyntheticHLS와 HLSFactory의 개발 주체다.",
+      "Vitis HLS는 AMD/Xilinx 상용 도구이며 실험 재현 조건에 영향을 준다."
+    ],
+    "access_conditions": [
+      "공개 arXiv, 공개 GitHub, git ls-remote, shallow clone만 사용했다.",
+      "벤더 브리핑, 비공개 계정, Vitis HLS license, model API credit, hardware는 제공받지 않았다."
+    ]
+  },
+  "prior_coverage_check": {
+    "checked_paths_pattern": "content/eda/*/article.md",
+    "related_previous_articles": [
+      {
+        "path": "content/eda/2026-09-12/article.md",
+        "title": "HLSFactory-Agent는 HLS 데이터셋 수집에 검증 로그를 남깁니다",
+        "subject": "HLSFactory-Agent arXiv:2609.09519v1, HLS-Eval agentic flow arXiv:2609.09526v1, sharc-lab/hlsfactory-agent commit 8fac504210fae6403808b2acaad1310300dedd69",
+        "difference": "이전 기사는 HLSFactory-Agent와 HLS-Eval이 agentic HLS data collection에 verification log를 남기는 문제를 다뤘다. 이번 후보는 별도 SyntheticHLS 논문과 repository가 LLM-generated HLS design을 iterative mutation, C simulation, Vitis HLS synthesis, OptDSLv2 Pareto feedback으로 확장해 synthetic HLS dataset diversity를 만드는 새 flow를 다룬다."
+      },
+      {
+        "path": "content/eda/2026-09-25/article.md",
+        "title": "ChipMEM은 검증을 통과한 실행만 EDA 에이전트의 기억으로 남깁니다",
+        "subject": "ChipMEM arXiv:2609.27067v1, aalrabah/ChipMEM public implementation at commit 39c22105acb5e0c18d14e0a9bf6f7ea213fc4cc3, RTLRewriter-Bench commit 96639fe67bc8f020c05978ef5028d75fcf6980f2, and CVDP benchmark commit 8e894cf74414ab1eaea1e2b4e80a02f123df07b6",
+        "difference": "이전 기사는 RTL agent memory와 verification-grounded execution reuse를 다뤘다. 이번 후보는 HLS benchmark data generation과 QoR modeling dataset diversity에 초점을 둔다."
+      }
+    ]
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "title": "SyntheticHLS: Building Diverse Synthetic High-Level Synthesis Datasets using LLMs",
+        "url": "https://arxiv.org/abs/2610.00106",
+        "observed_at": "2026-10-04",
+        "why_investigated": "arXiv cs.AR recent list에서 HLS dataset generation paper가 확인됐고, 논문이 framework, dataset, evaluation 공개 저장소를 명시했다.",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 2,
+          "reproducibility": 1,
+          "practical_decision_usefulness": 2,
+          "total": 9
+        },
+        "decision": "selected",
+        "reason": "논문(P1)과 공개 repository(P2), dependency branch(P2)가 서로 다른 근거 역할을 하며 중심 주장 E2와 원문 URL 최소 두 개를 충족했다."
+      },
+      {
+        "title": "Timing-Driven Logic Remapping with Local Physical Context",
+        "url": "https://arxiv.org/abs/2610.01918",
+        "observed_at": "2026-10-04",
+        "why_investigated": "arXiv cs.AR recent list에서 post-placement local remapping과 timing feedback을 다룬 EDA 방법 논문으로 확인됐다.",
+        "score": {
+          "design_flow_impact": 2,
+          "novelty": 2,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "논문은 source code URL을 적었지만 조사 시점에 https://github.com/jzj3021/PCR 접근이 인증 실패/비공개 상태로 확인되어 P2 artifact를 확보하지 못했다."
+      },
+      {
+        "title": "Structure-augmented LLMs for High-Level Synthesis Pragma Optimization",
+        "url": "https://arxiv.org/abs/2609.38601",
+        "observed_at": "2026-10-04",
+        "why_investigated": "HLS pragma optimization과 LLM 구조 정보를 다루는 MLCAD 2026 paper로 확인됐다.",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 1,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 4
+        },
+        "decision": "rejected",
+        "reason": "관련성은 있지만 공개 artifact와 재현 경로를 충분히 확보하지 못했고 SyntheticHLS보다 실무 판단에 필요한 공개 조건이 약했다."
+      },
+      {
+        "title": "OpenROAD and OpenROAD-flow-scripts release check",
+        "url": "https://github.com/The-OpenROAD-Project/OpenROAD/releases",
+        "observed_at": "2026-10-04",
+        "why_investigated": "Open-source RTL-to-GDS flow의 새 release 여부를 확인했다.",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 0,
+          "condition_disclosure": 2,
+          "reproducibility": 2,
+          "practical_decision_usefulness": 1,
+          "total": 6
+        },
+        "decision": "rejected",
+        "reason": "OpenROAD-flow-scripts releases는 비어 있었고 OpenROAD release page의 최신 노출 release는 2020 v0.9.0-beta로 보여 새 기사 후보가 되지 않았다."
+      },
+      {
+        "title": "DVCon proceedings and vendor blog sweep",
+        "url": "https://dvcon-proceedings.org/",
+        "observed_at": "2026-10-04",
+        "why_investigated": "검증 방법론과 vendor release 신호를 확인하기 위해 DVCon, Cadence, Siemens EDA, Synopsys, Ansys, Zuken, Keysight seed를 함께 살폈다.",
+        "score": {
+          "design_flow_impact": 1,
+          "novelty": 1,
+          "condition_disclosure": 0,
+          "reproducibility": 0,
+          "practical_decision_usefulness": 1,
+          "total": 3
+        },
+        "decision": "rejected",
+        "reason": "검색 신호는 있었지만 같은 날 자동 기사 기준인 중심 주장 E2, 공개 artifact, 서로 다른 원문 두 개를 충족하는 새 공식 발표를 SyntheticHLS보다 강하게 확인하지 못했다."
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Timing-Driven Logic Remapping with Local Physical Context",
+        "reason_not_selected": "논문상 기술 새로움은 크지만 공개 repository 접근이 실패해 재현 가능성 점수가 0이었다."
+      },
+      {
+        "name": "Structure-augmented LLMs for HLS Pragma Optimization",
+        "reason_not_selected": "HLS LLM 주제지만 code/artifact 확인이 부족하고 이전 HLSFactory-Agent 기사와 비교해 새 실무 판단점이 약했다."
+      },
+      {
+        "name": "OpenROAD / ORFS recent commits",
+        "reason_not_selected": "recent activity는 있었지만 정식 release나 기사화할 단일 flow 변화로 묶을 공개 원문이 부족했다."
+      }
+    ]
+  }
+}

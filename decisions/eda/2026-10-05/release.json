@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "edition": "eda",
+  "publication_id": "2026-10-05",
+  "decision": "publish-candidate",
+  "release_status": "approved-for-publication",
+  "article_path": "content/eda/2026-10-05/article.md",
+  "evidence_path": "decisions/eda/2026-10-05/evidence.json",
+  "artifact_hashes": {
+    "article_sha256": "38fd1042de7c991a33c87efb25b01b864b2c268af2cc09a74c80dca466e5ee3b",
+    "evidence_sha256": "253f7522670ba36032038cd6b7c520a67bae964d8a2264f9a1f7b27351e695f2"
+  },
+  "routes": [
+    "/eda/",
+    "/eda/2026-10-05/"
+  ],
+  "authorization": {
+    "mode": "automatic",
+    "policy_id": "eda-auto-publish-v1",
+    "authorized_at": "2026-10-05T07:26:03+09:00",
+    "executor": "news-room-sequential-publisher",
+    "checks": [
+      "eda-editorial-config",
+      "article-frontmatter-schema",
+      "selection-threshold",
+      "central-evidence-e2",
+      "korean-writing-baseline-v1",
+      "eda-technical-blog-v1",
+      "claim-source-ledger",
+      "publication-id-and-route-unique",
+      "artifact-hashes",
+      "site-tests-and-build"
+    ]
+  }
+}
