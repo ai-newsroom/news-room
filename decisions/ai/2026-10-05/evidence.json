@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "edition": "ai",
+  "publication_id": "2026-10-05",
+  "date": "2026-10-05",
+  "subject": "deepseek-ai/DeepSeek-V4.1-Flash, Hugging Face revision 2cba9e42aa026125f3ed06c6d98c1db82f7ca027, updated 2026-10-01",
+  "central_claim": "DeepSeek-V4.1-Flash is a publishable AI engineering topic because public primary sources support an E2/R2 bounded claim: DeepSeek released an open-weight multimodal MoE model whose Causal Encoder-Decoder architecture, sparse-attention and compressed KV-cache design target long agent inputs, with public model weights, config, inference code, prompt encoding code and DeepSWE reproduction instructions. The article does not claim independent reproduction of DeepSeek's benchmark scores or superiority over competing frontier models.",
+  "decision": "publish-candidate",
+  "evidence_ceiling": "E2",
+  "reproducibility": "R2",
+  "conflicts": [
+    "없음"
+  ],
+  "style_contracts": [
+    "korean-writing-baseline-v1",
+    "ai-technical-blog-v2"
+  ],
+  "selection": {
+    "importance": 2,
+    "novelty": 2,
+    "verifiability": 2,
+    "decision_utility": 2,
+    "korean_reader_relevance": 1,
+    "total": 9,
+    "threshold": 7,
+    "reason": "The topic affects teams deciding whether to evaluate open-weight long-context multimodal agent models. It is novel because the public materials describe a Causal Encoder-Decoder and compressed KV-cache design rather than only a larger context window. It is verifiable through the Hugging Face model card, API metadata, raw config, public files, evaluation README and DeepSeek's deepseek-recipe GitHub repository. Decision utility is high because engineers can inspect architecture, prompt protocol, reproducibility requirements and serving constraints before planning evaluations. Korean-reader relevance is moderate because Korean product and platform teams face the same long-context agent cost and self-hosting questions, although the model is not Korea-specific."
+  },
+  "claims": [
+    {
+      "id": "C0",
+      "claim_id": "C0",
+      "central": true,
+      "claim": "DeepSeek released DeepSeek-V4.1-Flash as a public, ungated, MIT-tagged Hugging Face model with model card, technical report, config, safetensors, inference code, prompt encoding code, evaluation instructions and a companion protocol-conversion repository; the public material supports an E2/R2 article about its long-context KV-cache design and self-hosting evaluation surface, but not an independent performance-ranking claim.",
+      "evidence_level": "E2",
+      "sources": [
+        {
+          "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+          "source_grade": "P1"
+        },
+        {
+          "url": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/main/config.json",
+          "source_grade": "P2"
+        },
+        {
+          "url": "https://github.com/deepseek-ai/deepseek-recipe",
+          "source_grade": "P2"
+        }
+      ]
+    }
+  ],
+  "claim_source_ledger": [
+    {
+      "claim_id": "C1",
+      "claim": "DeepSeek-V4.1-Flash is public and ungated on Hugging Face, with revision 2cba9e42aa026125f3ed06c6d98c1db82f7ca027, lastModified 2026-10-01T05:56:24.000Z, pipeline_tag image-text-to-text and license tag mit.",
+      "source_url": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Hugging Face model API, sha 2cba9e42aa026125f3ed06c6d98c1db82f7ca027, lastModified 2026-10-01T05:56:24.000Z",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "Opened the Hugging Face model API and checked private, gated, disabled, sha, lastModified, pipeline_tag, tags and cardData fields.",
+      "limitations": [
+        "Hugging Face metadata can change after access.",
+        "The metadata confirms publication and artifact presence, not benchmark correctness."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek publishes and controls the model repository.",
+        "Hugging Face hosts model registry metadata and artifacts."
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "claim": "The model repository contains model card material, a technical report PDF, config, 48 safetensors shards, prompt encoding files, inference code and evaluation instructions.",
+      "source_url": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "Hugging Face model API siblings list, accessed 2026-10-04",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "Read the siblings list from the model API and cross-checked visible Hugging Face file listing for the repository.",
+      "limitations": [
+        "This article did not download the 510GB repository or verify individual shard hashes.",
+        "The file listing is not an independent assessment of model quality."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek controls the repository contents."
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "claim": "The model card says DeepSeek-V4.1-Flash is a multimodal MoE model with 552B backbone parameters, 1M-token context support, a 20-layer causal encoder plus 20-layer decoder Causal Encoder-Decoder architecture, and decoder global KV cache projected from final encoder hidden states.",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "DeepSeek-V4.1-Flash model card, accessed 2026-10-04",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "Read the model card introduction and architecture description.",
+      "limitations": [
+        "Architecture description is from the model developer.",
+        "The article does not independently inspect the full model implementation against the report."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek authored the model card."
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "claim": "The model card attributes reduced cache footprint to SWA Bounded Replay, Compressed Sparse Attention 2 and FP4 main KV caching, and states the global KV cache footprint is 890 bytes per token, roughly one quarter of DeepSeek-V4-Flash.",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "DeepSeek-V4.1-Flash model card, introduction section, accessed 2026-10-04",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "Read the architecture and KV-cache description in the model card.",
+      "limitations": [
+        "The 890 bytes-per-token figure and comparison are DeepSeek's own measurement or calculation.",
+        "No independent KV-cache measurement was performed."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek benefits from demonstrating cost efficiency."
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "claim": "The raw config specifies architecture DeepseekV41ForCausalLM, model_type deepseek_v41, max_position_embeddings 1048576, 40 text hidden layers, 384 routed experts, one shared expert, six routed experts per token, FP8 quantization configuration and a vision_config.",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/main/config.json",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "config.json at main, accessed 2026-10-04",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "Opened the raw config and checked architecture, model_type, max_position_embeddings, layer count, expert counts, quantization_config and vision_config fields.",
+      "limitations": [
+        "Raw config confirms declared model settings, not runtime performance.",
+        "Main branch can move; evidence records the current model API sha."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek publishes the config."
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "claim": "The evaluation README gives step-by-step DeepSWE instructions for mini-swe-agent and dsh-minimal, including Docker, Python 3.12+, uv, DeepSeek-compatible endpoint credentials, Pier commit 0c802fc067a425345b24d1c69411aa98acf61a1d, DeepSWE commit 0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea and the dsh-minimal patch.",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/main/evaluation/README.md",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "evaluation/README.md at main, accessed 2026-10-04",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "Opened the raw evaluation README and read prerequisites, repository checkout commands, patch instructions and run commands.",
+      "limitations": [
+        "The article did not execute the benchmark.",
+        "An API key, endpoint access, Docker and substantial compute are required to rerun the procedure."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek authored the evaluation instructions."
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "claim": "deepseek-recipe provides Rust libraries and Python bindings for converting Messages, Chat Completions and Responses requests into DeepSeek V4/V4.1 prompt or token formats, and parsing complete or streaming outputs, while leaving inference, tool execution and HTTP transport to the caller.",
+      "source_url": "https://github.com/deepseek-ai/deepseek-recipe",
+      "source_type": "P2",
+      "evidence_grade": "E2",
+      "version": "GitHub repository README, accessed 2026-10-04",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "Opened the GitHub README and checked supported scope, unsupported features, installation and examples.",
+      "limitations": [
+        "This article did not install or run deepseek-recipe.",
+        "Production integration depends on external inference backend, HTTP transport and tool execution."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek publishes and maintains the repository."
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "claim": "The model card reports DeepSeek's own benchmark results for agentic, reasoning, code and multimodal tasks; the article uses those figures only as vendor-reported context, not as independent rankings.",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "source_type": "P1",
+      "evidence_grade": "E2",
+      "version": "DeepSeek-V4.1-Flash model card evaluation tables, accessed 2026-10-04",
+      "accessed_at": "2026-10-04",
+      "direct_or_derived": "direct",
+      "method": "Read the evaluation tables and footnotes, then constrained article language to vendor-reported context.",
+      "limitations": [
+        "No independent rerun or third-party benchmark comparison was used as a central source.",
+        "Competitor model versions, harnesses, costs and failure cases may not be directly comparable."
+      ],
+      "conflict_of_interest": [
+        "DeepSeek publishes the benchmark table."
+      ]
+    }
+  ],
+  "benchmark_and_reproducibility": {
+    "benchmarks_used": true,
+    "benchmark_notes": "The article mentions DeepSeek's benchmark tables only to explain intended workload targets such as DeepSWE, Terminal-Bench, CyberGym and SEC-Bench Pro. It does not convert those vendor-reported scores into independent rankings.",
+    "reproducibility": "R2",
+    "reproducibility_notes": "The model weights, config, inference code, prompt encoding code, deepseek-recipe repository and DeepSWE reproduction instructions are public. This article did not download the 510GB repository, run inference or rerun benchmarks."
+  },
+  "conflict_review": {
+    "declared": [
+      "없음"
+    ],
+    "source_conflicts": [
+      "DeepSeek develops DeepSeek-V4.1-Flash and publishes the model card, technical report, evaluation instructions, repository artifacts and deepseek-recipe.",
+      "Hugging Face hosts registry metadata and model artifacts."
+    ],
+    "access_conditions": [
+      "No vendor briefing, embargo, paid account, credits, hardware or private documentation were used.",
+      "Only public official documents, model registries, release notes and repository metadata were used."
+    ]
+  },
+  "release_gate": {
+    "policy_id": "ai-auto-publish-v1",
+    "human_approval_required": false,
+    "automatic_publish_allowed": true,
+    "quality_gate_passed": true,
+    "content_promotion_allowed": true,
+    "git_write_allowed": true,
+    "deploy_allowed": true,
+    "required_conditions": [
+      "Article frontmatter contains exactly edition, decision, title, date, subject, summary, evidence_ceiling, reproducibility and conflicts.",
+      "Decision is publish-candidate.",
+      "Publication ID in evidence and request is 2026-10-05.",
+      "Central claim has evidence_ceiling E2 or higher.",
+      "At least two distinct primary-source URLs support the central claim.",
+      "Selection score is at least 7 across importance, novelty, verifiability, SW-engineer decision utility and Korean-reader relevance.",
+      "Claim-source ledger records source type, evidence grade, version, accessed_at, method, limitations and conflict_of_interest for each material claim.",
+      "Conflicts and access conditions are disclosed.",
+      "Reproducibility state is recorded.",
+      "Article follows korean-writing-baseline-v1 and ai-technical-blog-v2.",
+      "Route duplication, artifact hash, site test and production build are left for the sequential publisher's deterministic gate before materialization.",
+      "This candidate-preparation turn does not perform content materialization, commit, push or deployment; those external actions remain for the sequential publisher after deterministic validation."
+    ],
+    "status": "candidate-prepared; external content, commit, push and deployment actions not performed in this turn"
+  },
+  "discovery_review": {
+    "signals": [
+      {
+        "channel": "run-request-and-canonical-contracts",
+        "classification": "editorial-control",
+        "note": "Read var/runs/ai/2026-10-05-sequential/20261004T220933Z-1645089/request.json and used publication_id 2026-10-05 with article_path var/runs/ai/2026-10-05-sequential/20261004T220933Z-1645089/staged-content/article.md, evidence_path var/runs/ai/2026-10-05-sequential/20261004T220933Z-1645089/evidence.json and no_publish_path var/runs/ai/2026-10-05-sequential/20261004T220933Z-1645089/no-publish.json. Read editions/ai/edition.json, editions/ai/runtime.json, docs/16-korean-writing-style.md, docs/08-ai-eda-editorial-profiles.md, docs/15-technical-explanatory-journalism.md, docs/11-ai-auto-publishing.md, editions/ai/editorial/article-prompt.md and editions/ai/sources/primary-sources.json before source review."
+      },
+      {
+        "channel": "DeepSeek Hugging Face organization",
+        "url": "https://huggingface.co/deepseek-ai/models",
+        "classification": "P1/P2 selected discovery path",
+        "note": "Checked the official DeepSeek Hugging Face organization. The recent list showed DeepSeek-V4.1-Flash as the newest substantial model candidate, updated four days before access, with a connected paper and active repository signals."
+      },
+      {
+        "channel": "DeepSeek-V4.1-Flash model card",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+        "classification": "P1 selected source",
+        "note": "Opened the model card and read architecture, KV-cache design, training/post-training, evaluation, prompt encoding, minimal inference, reproduction and license sections."
+      },
+      {
+        "channel": "DeepSeek-V4.1-Flash model API and files",
+        "url": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash",
+        "classification": "P2 selected source",
+        "note": "Opened the Hugging Face API and file listing to verify public/ungated status, revision, lastModified, MIT tag, config, safetensors shards, inference code, encoding tests and evaluation README."
+      },
+      {
+        "channel": "DeepSeek raw config",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/main/config.json",
+        "classification": "P2 selected source",
+        "note": "Opened raw config to verify architecture, model_type, long-context setting, expert routing, quantization config and vision config."
+      },
+      {
+        "channel": "DeepSeek evaluation README",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/main/evaluation/README.md",
+        "classification": "P2 selected source",
+        "note": "Opened evaluation README to verify DeepSWE reproduction steps, pinned Pier and DeepSWE commits, Docker/Python/uv requirements and dsh-minimal patch instructions."
+      },
+      {
+        "channel": "DeepSeek GitHub organization",
+        "url": "https://github.com/deepseek-ai",
+        "classification": "P2 selected support path",
+        "note": "Checked the official DeepSeek GitHub organization for companion tooling. The organization page showed deepseek-recipe and other current infrastructure repositories updated around the same period."
+      },
+      {
+        "channel": "deepseek-recipe",
+        "url": "https://github.com/deepseek-ai/deepseek-recipe",
+        "classification": "P2 selected source",
+        "note": "Opened deepseek-recipe README to verify protocol conversion, prompt encoding, image, thinking, tool call and streaming response support, and explicit exclusions."
+      },
+      {
+        "channel": "OpenAI official API changelog and GPT-6 posts",
+        "url": "https://developers.openai.com/api/docs/changelog",
+        "classification": "P1 alternative discovery path",
+        "note": "Checked official OpenAI changelog and GPT-6 Astra post. Recent September entries include GPT-6.1 Sol, GPT-6 Astra ultrafast mode and Agents API features, but the strongest recent model release facts were already several days old, mostly closed API/product changes, and did not offer the same P2 artifact surface for an E2 technical article about internal operation."
+      },
+      {
+        "channel": "Google Gemini API changelog and model cards",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "classification": "P1 alternative discovery path",
+        "note": "Checked Gemini API changelog and Google DeepMind model cards. The current changelog surfaced deprecations and older 2025 entries in the opened view; model card search showed September 2026 Gemini 3.8 model cards, but no same-period artifact package with public weights or reproduction material matching the selected candidate's verification depth."
+      },
+      {
+        "channel": "Qwen official model registry",
+        "url": "https://huggingface.co/Qwen/models",
+        "classification": "P1/P2 alternative discovery path",
+        "note": "Checked Qwen's official Hugging Face registry because Qwen releases can appear first as model artifacts. Recent visible candidates included Qwen-Image-2.1 and Qwen3Guard-Stream updates, but they were image/safety-model updates with less direct software-engineering decision utility than DeepSeek-V4.1-Flash for this run."
+      },
+      {
+        "channel": "Mistral release notes",
+        "url": "https://docs.mistral.ai/resources/release-notes",
+        "classification": "P1 alternative discovery path",
+        "note": "Checked Mistral official release notes. Recent visible items centered on Vibe Work product workflow features rather than a frontier model or technical artifact package with E2-level model-operation evidence."
+      },
+      {
+        "channel": "Hugging Face Transformers releases",
+        "url": "https://github.com/huggingface/transformers/releases",
+        "classification": "P2 alternative discovery path",
+        "note": "Checked Transformers releases as an AI developer tooling path. Recent releases were meaningful for model support, but the selected DeepSeek model provided a stronger single-topic link between model architecture, open artifact, prompt protocol and reproducible agent benchmark instructions."
+      }
+    ],
+    "alternatives": [
+      {
+        "candidate": "DeepSeek-V4.1-Flash open-weight model",
+        "official_urls": [
+          "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+          "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4.1-Flash",
+          "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/main/config.json",
+          "https://github.com/deepseek-ai/deepseek-recipe"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 2,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 9
+        },
+        "selected": true,
+        "reason": "Selected because it clears the score threshold and hard gates: central E2 claim, at least two primary URLs, public weights/config/code/evaluation instructions and clear SW-engineering relevance around long-context agent cost and self-hosting feasibility."
+      },
+      {
+        "candidate": "OpenAI GPT-6.1 Sol and GPT-6 Astra API updates",
+        "official_urls": [
+          "https://developers.openai.com/api/docs/changelog",
+          "https://openai.com/index/gpt-6-astra/"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Important API/model news, but opened sources mainly establish release facts, pricing and product constraints. They do not expose public model artifacts or enough technical method detail for a stronger E2 explanation than the DeepSeek candidate in this run."
+      },
+      {
+        "candidate": "Google Gemini 3.8 model card and Gemini API changelog",
+        "official_urls": [
+          "https://deepmind.google/models/model-cards/",
+          "https://ai.google.dev/gemini-api/docs/changelog"
+        ],
+        "scores": {
+          "importance": 2,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "Model cards are useful P1 sources, but the opened current changelog did not reveal a same-period developer-impacting release with public artifacts or reproduction materials. It did not meet the total score threshold for this turn."
+      },
+      {
+        "candidate": "Qwen recent registry updates including Qwen-Image-2.1 and Qwen3Guard-Stream",
+        "official_urls": [
+          "https://huggingface.co/Qwen/models"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 6
+        },
+        "selected": false,
+        "reason": "Registry artifacts were visible and verifiable, but the visible recent candidates were less directly useful for broad SW-engineer architecture/runtime decisions than DeepSeek-V4.1-Flash."
+      },
+      {
+        "candidate": "Mistral Vibe Work product updates",
+        "official_urls": [
+          "https://docs.mistral.ai/resources/release-notes"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 1,
+          "decision_utility": 1,
+          "korean_reader_relevance": 1,
+          "total": 5
+        },
+        "selected": false,
+        "reason": "Recent official notes focused on hosted product workflow features rather than a model, runtime or artifact release with enough technical depth for the AI technical edition."
+      },
+      {
+        "candidate": "Hugging Face Transformers 5.18/5.17 releases",
+        "official_urls": [
+          "https://github.com/huggingface/transformers/releases"
+        ],
+        "scores": {
+          "importance": 1,
+          "novelty": 1,
+          "verifiability": 2,
+          "decision_utility": 2,
+          "korean_reader_relevance": 1,
+          "total": 7
+        },
+        "selected": false,
+        "reason": "Developer tooling releases are verifiable and useful, but in this same-day comparison the DeepSeek model release had stronger frontier-model significance and a more coherent artifact set tying architecture, protocol and agent benchmark reproduction together."
+      }
+    ]
+  }
+}
